@@ -1,0 +1,38 @@
+{
+  "content": {
+    "bootInfoEBX": {
+      "label": "EBX® configuration",
+      "content": {
+        "product": {
+          "content": {
+            "version": {
+              "label": "EBX® product version",
+              "content": "5.8.1 [...] Enterprise Edition"
+            },
+            "configuration": {
+              "content": {
+                "file": {
+                  "label": "EBX® main configuration file",
+                  "content": "System property [ebx.properties=./ebx.properties]"
+                }
+              }
+            }
+          }
+        },
+        "vm": {
+          "content": {
+            "startTime": {
+              "label": "VM start time",
+              "content": "2017/09/11-10:04:17-0729 CEST"
+            },
+            "identifier": {
+              "label": "VM identifier",
+              "content": "1"
+            }
+          }
+        },
+        // other hierarchical keys
+      }
+    }
+  }
+}

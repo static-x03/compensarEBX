@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - D3 broadcasts and delivery dataspaces</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="d3_broadcast" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/d3_broadcast.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+<h1>
+D3 broadcasts and delivery dataspaces</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#broadcast">Broadcast</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Scope and contents of a broadcast</a></li><li class="toc2"><a href="#id1s2">Performing a broadcast</a></li><li class="toc2"><a href="#broadcast_conditions">Conditions</a></li><li class="toc2"><a href="#id1s4">Persistence</a></li><li class="toc2"><a href="#broadcast_destination">Destination</a></li></ul>
+</li><li class="toc1"><a href="#registration">Replica node registration</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Scope and contents</a></li><li class="toc2"><a href="#id2s2">Performing an initialization</a></li><li class="toc2"><a href="#initialization_conditions">Conditions</a></li></ul>
+</li><li class="toc1"><a href="#id3">Accessing delivery dataspaces</a><ul class="toc2">
+<li class="toc2"><a href="#dataServices">Data services</a></li><li class="toc2"><a href="#id3s2">Access restrictions</a></li><li class="toc2"><a href="#id3s3">D3 broadcast Java API</a></li></ul>
+</li></ul>
+</div>
+<h2 id="broadcast">
+Broadcast</h2>
+<h3 id="id1s1">
+Scope and contents of a broadcast</h3>
+<p>A D3 broadcast occurs at the dataspace or snapshot level. For dataspace broadcasts, D3 first creates a snapshot to capture the current state, then broadcasts this newly created snapshot.</p><p>A broadcast performs one of the following procedures depending on the situation:</p><ul>
+<li><p>An update of the differences computed between the new broadcast snapshot and the current &#39;commit&#39; one on the replica node.</p></li><li><p>A full synchronization containing all datasets, tables, records, and permissions. This is done on the first broadcast to a given replica node, if the previous replica node commit is not known to the primary node, or on demand using the user service in &#39;[D3] Primary node configuration&#39;. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3_admin.html#D3ServicesOnMaster">Services on primary nodes</a></li></ul>
+</div>
+</li></ul>
+<h3 id="id1s2">
+Performing a broadcast</h3>
+<p>The broadcast can be performed:</p><ul>
+<li><p>By the end-user, using the <strong>Broadcast</strong> action available in the dataspace or snapshot (this action is available only if the dataspace is registered as a delivery dataspace)</p></li><li><p>Using custom Java code that uses <a target="_blank" href="../Java_API/com/orchestranetworks/d3/D3NodeAsMaster.html"><code>D3NodeAsMaster</code></a>.</p></li></ul>
+<h3 id="broadcast_conditions">
+Conditions</h3>
+<p>In order to be able to broadcast, the following conditions must be fulfilled:</p><ul>
+<li><p>The authenticated user profile has permission to broadcast.</p></li><li><p>The dataspace or snapshot to be broadcast has no validation errors.</p><p><strong>Note:</strong> Although it is not recommended, it is possible to force a broadcast of a delivery dataspace that contains validation errors. In order to do this, set the maximum severity threshold allowed in a delivery dataspace validation report under &#39;[D3] Primary node configuration&#39; in the &#39;Administration&#39; area.</p></li><li><p>The D3 primary node configuration has no validation errors on the following scope: the technical record of the concerned delivery dataspace and all its dependencies (dependent delivery mappings, delivery profiles and registered replica nodes).</p></li><li><p>There is an associated delivery profile.</p></li><li><p>If broadcasting a dataspace, the dataspace is not locked.</p></li><li><p>If broadcasting a snapshot, the snapshot belongs to a dataspace declared as delivery dataspace and is not already the current broadcast snapshot (though a rollback to a previously broadcast snapshot is possible).</p></li><li><p>The dataspace or snapshot contains differences compared to the last broadcast snapshot.</p></li></ul>
+<h3 id="id1s4">
+Persistence</h3>
+<p>When a primary node shuts down, all waiting or in progress broadcast requests abort, then they will be persisted on a temporary file. On startup, all aborted broadcasts are restarted.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3_admin.html#temporary_files">Temporary files</a></li></ul>
+</div>
+<h3 id="broadcast_destination">
+Destination</h3>
+<p>On the target replica or hub node side:</p><ul>
+<li><p>The <code>ebx-d3-reference</code> dataspace identifier is the common parent of all the delivery dataspaces. </p></li><li><p>The delivery dataspace has the same identifier in primary, replica or hub nodes. </p></li><li><p>If the delivery dataspace is missing, it will be created on the first or on the full synchronization broadcast. </p></li><li><p>If the delivery dataspace already exists on the first broadcast or full synchronization, it will be overridden. </p></li><li><p>If an existing dataspace with the same identifier as the delivery one is detected outside of the <code>ebx-d3-reference</code>, an error will be raised. </p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3.html#known_limitations">Known limitations</a></li></ul>
+</div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>Broadcasts are performed asynchronously. Therefore, no information is displayed in the user interface about the success or failure of a broadcast. Nevertheless, it is possible to monitor the broadcast operations inside &#39;[D3] Primary node configuration&#39;. See <a href="../engine/d3_admin.html#d3supervision">Supervision</a>.</p></p></div>
+<h2 id="registration">
+Replica node registration</h2>
+<h3 id="id2s1">
+Scope and contents</h3>
+<p>An initialization occurs at the replica node level according to the delivery profiles registered in the TIBCO EBX&reg; main configuration file of the replica node. When the primary node receives that initialization request, it creates or updates the replica node entry, then sends the last broadcast snapshot of all registered delivery dataspaces.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>If the registered replica node repository ID or communication layer already exists, the replica node entry in the &#39;Registered replica nodes&#39; technical table is updated, otherwise a new entry is created.</p></p></div>
+<h3 id="id2s2">
+Performing an initialization</h3>
+<p>The initialization can be done:</p><ul>
+<li><p>Automatically at replica node server startup.</p></li><li><p>Manually when calling the replica node service &#39;Register replica node&#39;.</p></li></ul>
+<h3 id="initialization_conditions">
+Conditions</h3>
+<p>To be able to register, the following conditions must be fulfilled:</p><ul>
+<li><p>The D3 mode must be &#39;hub&#39; or &#39;slave&#39;.</p></li><li><p>The primary and replica node authentication parameters must correspond to the primary node administrator and replica node administrator defined in their respective directories.</p></li><li><p>The delivery profiles defined on the replica node must exist in the primary node configuration.</p></li><li><p>All data models contained in the registered dataspaces must exist in the replica node. If embedded, the data model names must be the same. If packaged, they must be located at the same module name and the schema path in the module must be the same in both the primary and replica nodes.</p></li><li><p>The D3 primary node configuration has no validation error on the following scope: the technical record of the registered replica node and all its dependencies (dependent delivery profiles, delivery mappings and delivery dataspaces).</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>To set the parameters, see the replica or hub EBX&reg; properties in <a href="../engine/d3_admin.html#technicalD3Config">Configuring primary, hub and replica nodes</a>.</p></p></div>
+<h2 id="id3">
+Accessing delivery dataspaces</h2>
+<h3 id="dataServices">
+Data services</h3>
+<p>By default, when a data service accesses a delivery dataspace, it is redirected to the current snapshot, which is the last broadcast one. However, this default behavior can be modified either at the request level or in the global configuration.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_execution.html#disableRedirectionToLastBroadcast">Common parameter &#39;disableRedirectionToLastBroadcast&#39;</a></li></ul>
+</div>
+<h3 id="id3s2">
+Access restrictions</h3>
+<p>On the primary node, a delivery dataspace can neither be merged nor closed. Other operations are available depending on permissions. For example, modifying a delivery dataspace directly, creating a snapshot independent from a broadcast, or creating and merging a child dataspace.</p><p>On the replica node, aside from the broadcast process, no modifications of any kind can be made to a delivery dataspace, whether by the end-user, data services, or a Java program. Furthermore, any dataspace-related operations, such as merge, close, etc., are forbidden on the replica node.</p><h3 id="id3s3">
+D3 broadcast Java API</h3>
+<p>The last broadcast snapshot may change between two calls if a broadcast has taken place in the meantime. If a fully stable view is required for several successive calls, these calls need to specifically refer to the same snapshot.</p><p>To get the last broadcast snapshot, see <a target="_blank" href="../Java_API/com/orchestranetworks/d3/D3Node.html#getBroadcastVersion-com.orchestranetworks.instance.BranchKey-"><code>D3Node.getBroadcastVersion</code></a>. </p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

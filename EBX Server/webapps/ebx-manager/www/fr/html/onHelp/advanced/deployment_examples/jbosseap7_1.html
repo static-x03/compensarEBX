@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Installation note for JBoss EAP 7.1.x</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="installation_jee_jbosseap" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=deployment_examples/jbosseap7_1.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+<h1>
+Installation note for JBoss EAP 7.1.x</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Requirements</a></li><li class="toc1"><a href="#id3">JBoss Application Server installation</a></li><li class="toc1"><a href="#id4">EBX&reg; home directory configuration</a></li><li class="toc1"><a href="#id5">JBoss Application Server and Java Virtual Machine configuration</a></li><li class="toc1"><a href="#id6">JNDI entries configuration</a></li><li class="toc1"><a href="#id7">Data source and JDBC provider configuration</a></li><li class="toc1"><a href="#id8">EBX.ear application update</a></li><li class="toc1"><a href="#id9">EBX.ear application deployment</a></li><li class="toc1"><a href="#id10">EBX&reg; application start</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>This chapter describes a <em>quick installation example</em> of TIBCO EBX&reg; on JBoss Application Server. </p></li><li><p>It does not replace the <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.1/"> documentation </a> of this application server. </p></li><li><p>They are <em>not</em> general installation recommendations, as the installation process is determined by architectural decisions, such as the technical environment, application mutualization, delivery process, and organizational decisions. </p></li><li><p>The complete description of the components needed by EBX&reg; is given in chapter <a href="../installation/deploy_on_jee.html">Java EE deployment</a>. </p></li><li><p>To avoid unpredictable behavior, the guideline to follow is to avoid any duplicates of <code>ebx.jar</code>, <code>ebx-lz4.jar</code> or other libraries in the class-loading system. </p></li></ul>
+</p></div>
+<h2 id="id2">
+Requirements</h2>
+<ul>
+<li><p>Java SE 8 or 11</p></li><li><p>JBoss Application Server EAP 7.1</p></li><li><p>Database and JDBC driver</p></li><li><p>EBX&reg; CD</p></li><li><p> No CDI features in EBX&reg;&#39;s additional modules (since CDI will be automatically disable) </p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/supported_env.html">Supported environments</a></li></ul>
+</div>
+<h2 id="id3">
+JBoss Application Server installation</h2>
+<p><em> This quick installation example is performed for a Linux operating system. </em></p><ol>
+<li><p> Download JBoss EAP 7.1 <code>Installer</code> jar version 7.1.x from: </p><p><a href="https://developers.redhat.com/products/eap/download/"> https://developers.redhat.com/products/eap/download/ </a></p></li><li><p> Run the <code>Installer</code> using <em>java -jar</em> command line. </p><p> For further installation details, refer to the <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.1/html/installation_guide/index"> documentation </a>. </p></li><li><p> Perform a standard installation: </p><ol>
+<li><p>Select the language and click &#39;OK&#39;,</p></li><li><p>Accept the License and click &#39;Next&#39;,</p></li><li><p>Choose the installation path and click &#39;Next&#39;,</p></li><li><p>Keep the &#39;Component Selection&#39; as it is and click &#39;Next&#39;,</p></li><li><p>Enter &#39;Admin username&#39;, &#39;Admin password&#39; and click &#39;Next&#39;,</p></li><li><p>On &#39;Installation Overview&#39; click &#39;Next&#39;,</p></li><li><p>On &#39;Component Installation&#39; click &#39;Next&#39;,</p></li><li><p>On &#39;Configure Runtime Environment&#39; leave the selection as it is and click &#39;Next&#39;, </p></li><li><p>When &#39;Processing finished&#39; appear, click &#39;Next&#39;,</p></li><li><p>Uncheck &#39;Create shortcuts in the start menu&#39; and click &#39;Next&#39;,</p></li><li><p> Generate &#39;installation script and properties file&#39; in the JBoss EAP 7.1 installation root directory, </p></li><li><p>Click &#39;done&#39;.</p></li></ol>
+</li></ol>
+<h2 id="id4">
+EBX&reg; home directory configuration</h2>
+<ol>
+<li><p>Create the <em>EBX_HOME</em> directory, for example <code>/opt/ebx/home</code>. </p></li><li><p> Copy from the <em>EBX&reg; CD</em>, the <code>ebx.software/files/ebx.properties</code> file to <em>EBX_HOME</em>. In our example, we will have the following file: </p><p><code>/opt/ebx/home/ebx.properties</code>. </p></li><li><p>If needed, edit the <code>ebx.properties</code> file to override the default database. By default the standalone H2 database is defined. The property key <code>ebx.persistence.factory</code> must be uncommented for other supported databases and the <code>h2.standalone</code> one must be commented. </p></li></ol>
+<h2 id="id5">
+JBoss Application Server and Java Virtual Machine configuration</h2>
+<ol>
+<li><p>Open the <code>standalone.conf</code> configuration file, placed in <code>&lt;JBOSS_HOME&gt;/bin</code> (or <code>jboss-eap.conf</code> file placed in <code>&lt;JBOSS_HOME&gt;/bin/init.d</code> for running the server as a service). </p></li><li><p>Add &#39;ebx.properties&#39; and &#39;ebx.home&#39; properties to the &#39;JAVA_OPTS&#39; environment variable respectively set with <code>ebx.properties</code> file&#39;s path and <em>EBX_HOME</em> directory&#39;s path. </p></li><li><p> Set the &#39;JBOSS_MODULES_SYSTEM_PKGS&#39; environment variable like the following: </p><pre class="brush: bash; toolbar: false; gutter: false;">
+JBOSS_MODULES_SYSTEM_PKGS="org.jboss.byteman,net.jpountz"</pre>
+</li><li><p>Copy from the <em>EBX&reg; CD</em>, the <a href="../installation/deploy_on_jee.html#ebx_lz4"><code>ebx.software/lib/ebx-lz4.jar</code></a> Data compression library to a dedicated directory (for example <code>&lt;JBOSS_HOME&gt;/compress</code>). </p></li><li><p>Open the <code>standalone.sh</code> script file, placed in <code>&lt;JBOSS_HOME&gt;/bin</code>. </p></li><li><p>Create a &#39;CLASSPATH&#39; environment variable like the following:</p><pre class="brush: bash; toolbar: false; gutter: false;">
+CLASSPATH="&lt;path_to_the_data_compression_library>:${JBOSS_HOME}/jboss-modules.jar:${CLASSPATH}"
+
+# For our example
+# CLASSPATH="${JBOSS_HOME}/compress/ebx-lz4.jar:${JBOSS_HOME}/jboss-modules.jar:${CLASSPATH}"</pre>
+</li><li><p>Replace the launch command options for foreground and background executions like the following: </p><pre class="brush: bash; toolbar: false; gutter: false;">
+if [ "x$LAUNCH_JBOSS_IN_BACKGROUND" = "x" ]; then
+   # Execute the JVM in the foreground
+   eval \"$JAVA\" -D\"[Standalone]\" $JAVA_OPTS \
+      -cp "$CLASSPATH" \
+      \"-Dorg.jboss.boot.log.file="$JBOSS_LOG_DIR"/server.log\" \
+      \"-Dlogging.configuration=file:"$JBOSS_CONFIG_DIR"/logging.properties\" \
+      org.jboss.modules.Main \
+      $MODULE_OPTS \
+      -mp \""${JBOSS_MODULEPATH}"\" \
+      org.jboss.as.standalone \
+      -Djboss.home.dir=\""$JBOSS_HOME"\" \
+      -Djboss.server.base.dir=\""$JBOSS_BASE_DIR"\" \
+      "$SERVER_OPTS"
+      JBOSS_STATUS=$?
+
+else
+   # Execute the JVM in the background
+   eval \"$JAVA\" -D\"[Standalone]\" $JAVA_OPTS \
+      -cp "$CLASSPATH" \
+      \"-Dorg.jboss.boot.log.file="$JBOSS_LOG_DIR"/server.log\" \
+      \"-Dlogging.configuration=file:"$JBOSS_CONFIG_DIR"/logging.properties\" \
+      org.jboss.modules.Main \
+      $MODULE_OPTS \
+      -mp \""${JBOSS_MODULEPATH}"\" \
+      org.jboss.as.standalone \
+      -Djboss.home.dir=\""$JBOSS_HOME"\" \
+      -Djboss.server.base.dir=\""$JBOSS_BASE_DIR"\" \
+      "$SERVER_OPTS" "&amp;"
+...
+fi</pre>
+</li></ol>
+<h2 id="id6">
+JNDI entries configuration</h2>
+<ol>
+<li><p> Open the <code>standalone-full.xml</code> file placed in <code>&lt;JBOSS_HOME&gt;/standalone/configuration</code>. </p></li><li><p>Add, at least, the following lines to the <code>server</code> tag in <code>messaging-activemq</code> subsystem: </p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;connection-factory
+    name="jms/EBX_JMSConnectionFactory"
+    entries="java:/EBX_JMSConnectionFactory"
+    connectors="To Be Defined"/>
+&lt;jms-queue
+    name="jms/EBX_D3ReplyQueue"
+    entries="java:/jms/EBX_D3ReplyQueue"
+    durable="true"/>
+&lt;jms-queue
+    name="jms/EBX_QueueIn"
+    entries="java:/jms/EBX_QueueIn"
+    durable="true"/>
+&lt;jms-queue
+    name="jms/EBX_QueueFailure"
+    entries="java:/jms/EBX_QueueFailure"
+    durable="true"/>
+&lt;jms-queue
+    name="jms/EBX_D3MasterQueue"
+    entries="java:/jms/EBX_D3MasterQueue"
+    durable="true"/>
+&lt;jms-queue
+    name="jms/EBX_D3ArchiveQueue"
+    entries="java:/jms/EBX_D3ArchiveQueue"
+    durable="true"/>
+&lt;jms-queue
+    name="jms/EBX_D3CommunicationQueue"
+    entries="java:/jms/EBX_D3CommunicationQueue"
+    durable="true"/>
+</pre>
+<p><em>Caution</em>: the <code>connectors</code> attribute value, from the <code>connection-factory</code> element, has to be defined. Since the kind of connectors is strongly reliant on the environment infrastructure, a default configuration can not be provided. </p><p>See <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.1/html-single/configuring_messaging/index"> configuring messaging </a> for more information. </p></li><li><p>Add, at least, the following line to <code>mail</code> subsystem: </p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;mail-session name="mail" debug="false" jndi-name="java:/EBX_MAIL_SESSION"/></pre>
+</li></ol>
+<h2 id="id7">
+Data source and JDBC provider configuration</h2>
+<ol>
+<li><p>After the launch of the JBoss Server, run the management CLI without the use of &#39;--connect&#39; or &#39;-c&#39; argument. </p></li><li><p>Use the &#39;module add&#39; management CLI command to add the new core module. Sample for PostgreSQL configuration: </p><pre class="brush: plain; toolbar: false; gutter: false;">
+module add \
+  --name=org.postgresql \
+  --resources=&lt;PATH_TO_JDBC_JAR&gt; \
+  --dependencies=javax.api,javax.transaction.api
+</pre>
+</li><li><p>Use the &#39;connect&#39; management CLI command to connect to the running instance. </p></li><li><p>Register the JDBC driver. When running in a managed domain, ensure to precede the command with &#39;/profile=&lt;PROFILE_NAME&gt;&#39;. Sample for PostgreSQL configuration: </p><pre class="brush: plain; toolbar: false; gutter: false;">
+/subsystem=\
+  datasources/jdbc-driver=\
+    postgresql:add(\
+      driver-name=postgresql,\
+      driver-module-name=org.postgresql,\
+      driver-xa-datasource-class-name=org.postgresql.ds.PGConnectionPoolDataSource,\
+      driver-class-name=org.postgresql.Driver\
+    )</pre>
+</li><li><p>Define the datasource using the &#39;xa-data-source add&#39; command, specifying the appropriate argument values. Sample for PostgreSQL configuration: </p><pre class="brush: plain; toolbar: false; gutter: false;">
+xa-data-source add \
+  --name=jdbc/EBX_REPOSITORY \
+  --jndi-name=java:/EBX_REPOSITORY \
+  --driver-name=postgresql \
+  --xa-datasource-class=org.postgresql.ds.PGConnectionPoolDataSource \
+  --xa-datasource-properties={"URL"=>"&lt;CONNECTION_URL&gt;"}</pre>
+</li></ol>
+<h2 id="id8">
+EBX.ear application update</h2>
+<ol>
+<li><p>Copy from the <em>EBX&reg; CD</em>, the <code>ebx.software/webapps/ear-packaging/EBX.ear</code> file to your working directory. </p></li><li><p>Uncompress the ear archive to add the application&#39;s specific required third-party libraries and additional web modules. </p><p>Mail: see <a href="../installation/deploy_on_jee.html#smtp_library">SMTP and emails</a> for more information. </p><p>SSL: see <a href="../installation/deploy_on_jee.html#ssl">Secure Socket Layer (SSL)</a> for more information. </p><p>JMS: see <a href="../installation/deploy_on_jee.html#jms">Java Message Service (JMS)</a> for more information. </p><p>XML Catalog API: see <a href="../installation/deploy_on_jee.html#xmlCatalogAPI">XML Catalog API</a> for more information. </p></li><li><p>Update the <code>/META-INF/application.xml</code> and <code>/META-INF/jboss-deployment-structure.xml</code> files according to the added additional web modules. </p></li><li><p>Compress anew the ear archive.</p></li></ol>
+<h2 id="id9">
+EBX.ear application deployment</h2>
+<ol>
+<li><p>Copy EBX.ear into the <code><em>JBOSS_HOME</em>/standalone/deployments </code> directory. </p></li></ol>
+<h2 id="id10">
+EBX&reg; application start</h2>
+<ol>
+<li><p>After the launch of the JBoss Application Server, with the <code>&lt;JBOSS_HOME&gt;/bin/standalone.sh -c standalone-full.xml</code> command line or through the service command, run the EBX&reg; web application by entering the following URL in the browser: <a target="_blank" href="http://localhost:8080/ebx/">http://localhost:8080/ebx/</a>. </p></li><li><p>At first launch, <a href="../installation/configuration_wizard.html"> EBX&reg; Wizard </a> helps to configure the default properties of the initial repository. </p></li></ol>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

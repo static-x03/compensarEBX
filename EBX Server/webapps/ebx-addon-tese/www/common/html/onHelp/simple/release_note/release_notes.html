@@ -1,0 +1,676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - All release notes</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="releasenotes" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Information Search Add-on Documentation &gt; Release Notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=release_note/release_notes.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Information Search Add-on Documentation &gt; Release Notes</span></div>
+<h1>
+All release notes</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Version 3.0.1</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">New features</a></li><li class="toc2"><a href="#id1s2">Changes in Functionality</a></li><li class="toc2"><a href="#id1s3">Closed Issues</a></li><li class="toc2"><a href="#id1s4">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id2">Version 3.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Updates and enhancements</a></li></ul>
+</li><li class="toc1"><a href="#id3">Version 2.4.10</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id4">Release Note 2.4.8</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id5">Version 2.4.9</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Product updates</a></li><li class="toc2"><a href="#id5s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id6">Release Note 2.4.8</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id7">Release Note 2.4.7</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">New features and optimizations</a></li><li class="toc2"><a href="#id7s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id8">Release Note 2.4.6</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">New features</a></li><li class="toc2"><a href="#id8s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id9">Release Note 2.4.5</a><ul class="toc2">
+<li class="toc2"><a href="#id9s1">New features</a></li><li class="toc2"><a href="#id9s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id10">Release Note 2.4.4</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">Product updates</a></li><li class="toc2"><a href="#id10s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id11">Release Note 2.4.3</a><ul class="toc2">
+<li class="toc2"><a href="#id11s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id12">Release Note 2.4.2</a><ul class="toc2">
+<li class="toc2"><a href="#id12s1">New features</a></li><li class="toc2"><a href="#id12s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id13">Release Note 2.4.1</a><ul class="toc2">
+<li class="toc2"><a href="#id13s1">Updates</a></li><li class="toc2"><a href="#id13s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id14">Release Note 2.4.0</a><ul class="toc2">
+<li class="toc2"><a href="#id14s1">New features and updates</a></li><li class="toc2"><a href="#id14s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id15">Release Note 2.3.1</a><ul class="toc2">
+<li class="toc2"><a href="#id15s1">Featured updates</a></li></ul>
+</li><li class="toc1"><a href="#id16">Release Note 2.3.0</a><ul class="toc2">
+<li class="toc2"><a href="#id16s1">Featured updates</a></li></ul>
+</li><li class="toc1"><a href="#id17">Release Note 2.2.4</a><ul class="toc2">
+<li class="toc2"><a href="#id17s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id18">Release Note 2.2.3</a><ul class="toc2">
+<li class="toc2"><a href="#id18s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id19">Release Note 2.2.2</a><ul class="toc2">
+<li class="toc2"><a href="#id19s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id20">Release Note 2.2.1</a><ul class="toc2">
+<li class="toc2"><a href="#id20s1">New features</a></li><li class="toc2"><a href="#id20s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id21">Release Note 2.2.0</a><ul class="toc2">
+<li class="toc2"><a href="#id21s1">New features</a></li><li class="toc2"><a href="#id21s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id22">Release Note 2.1.3</a><ul class="toc2">
+<li class="toc2"><a href="#id22s1">New features</a></li><li class="toc2"><a href="#id22s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id23">Release Note 2.1.2</a><ul class="toc2">
+<li class="toc2"><a href="#id23s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id24">Release Note 2.1.1</a><ul class="toc2">
+<li class="toc2"><a href="#id24s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id25">Release Note 2.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id25s1">New features</a></li><li class="toc2"><a href="#id25s2">Updates and improvements</a></li><li class="toc2"><a href="#id25s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id26">Release Note 2.0.5</a><ul class="toc2">
+<li class="toc2"><a href="#id26s1">New features</a></li><li class="toc2"><a href="#id26s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id27">Release Note 2.0.4</a><ul class="toc2">
+<li class="toc2"><a href="#id27s1">New features</a></li><li class="toc2"><a href="#id27s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id28">Release Note 2.0.3</a><ul class="toc2">
+<li class="toc2"><a href="#id28s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id29">Release Note 2.0.2</a><ul class="toc2">
+<li class="toc2"><a href="#id29s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id30">Release Note 2.0.1</a><ul class="toc2">
+<li class="toc2"><a href="#id30s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id31">Release Note 2.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id31s1">New features</a></li><li class="toc2"><a href="#id31s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id32">Release Note 1.7.5 fix 001</a><ul class="toc2">
+<li class="toc2"><a href="#id32s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id33">Release Note 1.7.5</a><ul class="toc2">
+<li class="toc2"><a href="#id33s1">Optimization</a></li><li class="toc2"><a href="#id33s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id34">Release Note 1.7.4</a><ul class="toc2">
+<li class="toc2"><a href="#id34s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id35">Release Note 1.7.3</a><ul class="toc2">
+<li class="toc2"><a href="#id35s1">New features</a></li><li class="toc2"><a href="#id35s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id36">Release Note 1.7.2</a><ul class="toc2">
+<li class="toc2"><a href="#id36s1">Optimization</a></li><li class="toc2"><a href="#id36s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id37">Release Note 1.7.1</a><ul class="toc2">
+<li class="toc2"><a href="#id37s1">New features</a></li><li class="toc2"><a href="#id37s2">Optimization</a></li></ul>
+</li><li class="toc1"><a href="#id38">Release Note 1.7.0</a><ul class="toc2">
+<li class="toc2"><a href="#id38s1">New features</a></li><li class="toc2"><a href="#id38s2">Optimization</a></li><li class="toc2"><a href="#id38s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id39">Release Note 1.6.5</a><ul class="toc2">
+<li class="toc2"><a href="#id39s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id40">Release Note 1.6.4</a><ul class="toc2">
+<li class="toc2"><a href="#id40s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id41">Release Note 1.6.3</a><ul class="toc2">
+<li class="toc2"><a href="#id41s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id42">Release Note 1.6.2</a><ul class="toc2">
+<li class="toc2"><a href="#id42s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id43">Release Note 1.6.1</a><ul class="toc2">
+<li class="toc2"><a href="#id43s1">Optimization</a></li></ul>
+</li><li class="toc1"><a href="#id44">Release Note 1.6.0</a><ul class="toc2">
+<li class="toc2"><a href="#id44s1">New features</a></li><li class="toc2"><a href="#id44s2">New updates</a></li><li class="toc2"><a href="#id44s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id45">Release Note 1.5.4</a><ul class="toc2">
+<li class="toc2"><a href="#id45s1">New features</a></li><li class="toc2"><a href="#id45s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id46">Release Note 1.5.3 fix 001</a><ul class="toc2">
+<li class="toc2"><a href="#id46s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id47">Release Note 1.5.3</a><ul class="toc2">
+<li class="toc2"><a href="#id47s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id48">Release Note 1.5.2</a><ul class="toc2">
+<li class="toc2"><a href="#id48s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id49">Release Note 1.5.1</a><ul class="toc2">
+<li class="toc2"><a href="#id49s1">New features</a></li><li class="toc2"><a href="#id49s2">New API</a></li></ul>
+</li><li class="toc1"><a href="#id50">Release Note 1.5.0</a><ul class="toc2">
+<li class="toc2"><a href="#id50s1">New features</a></li><li class="toc2"><a href="#id50s2">Bug fixes</a></li><li class="toc2"><a href="#id50s3">Optimization</a></li></ul>
+</li><li class="toc1"><a href="#id51">Release Note 1.4.3</a><ul class="toc2">
+<li class="toc2"><a href="#id51s1">Bug fixes</a></li><li class="toc2"><a href="#id51s2">Limitations</a></li></ul>
+</li><li class="toc1"><a href="#id52">Release Note 1.4.2</a><ul class="toc2">
+<li class="toc2"><a href="#id52s1">New features</a></li><li class="toc2"><a href="#id52s2">New API</a></li></ul>
+</li><li class="toc1"><a href="#id53">Release Note 1.4.1</a><ul class="toc2">
+<li class="toc2"><a href="#id53s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id54">Release Note 1.4.0</a><ul class="toc2">
+<li class="toc2"><a href="#id54s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id55">Release Note 1.3.2</a><ul class="toc2">
+<li class="toc2"><a href="#id55s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id56">Release Note 1.3.1</a><ul class="toc2">
+<li class="toc2"><a href="#id56s1">API</a></li></ul>
+</li><li class="toc1"><a href="#id57">Release Note 1.3.0</a><ul class="toc2">
+<li class="toc2"><a href="#id57s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id58">Release Note 1.2.5</a><ul class="toc2">
+<li class="toc2"><a href="#id58s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id59">Release Note 1.2.4</a><ul class="toc2">
+<li class="toc2"><a href="#id59s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id60">Release Note 1.2.3</a><ul class="toc2">
+<li class="toc2"><a href="#id60s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id61">Release Note 1.2.2</a><ul class="toc2">
+<li class="toc2"><a href="#id61s1">Bug fixes</a></li><li class="toc2"><a href="#id61s2">Optimization</a></li></ul>
+</li><li class="toc1"><a href="#id62">Release Note 1.2.1</a><ul class="toc2">
+<li class="toc2"><a href="#id62s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id63">Release Note 1.2.0</a><ul class="toc2">
+<li class="toc2"><a href="#id63s1">Optimization</a></li></ul>
+</li><li class="toc1"><a href="#id64">Release Note 1.1.1</a><ul class="toc2">
+<li class="toc2"><a href="#id64s1">Optimization</a></li></ul>
+</li><li class="toc1"><a href="#id65">Release Note 1.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id65s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id66">Release Note 1.0.1 fix 001</a><ul class="toc2">
+<li class="toc2"><a href="#id66s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id67">Release Note 1.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id67s1">Search scope</a></li><li class="toc2"><a href="#id67s2">Search algorithms</a></li><li class="toc2"><a href="#id67s3">UI results</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Version 3.0.1</h2>
+<p><strong>Released: July 2021</strong></p><h3 id="id1s1">
+New features</h3>
+<p>Targeted searches now take into account table permission settings.</p><h3 id="id1s2">
+Changes in Functionality</h3>
+<p>This release includes no changes to functionality.</p><h3 id="id1s3">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id1s4">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Search can execute on all field types except linked fields and labels of foreign keys or enumerations.</p></li><li><p>Search with computed values or inherited fields might lead to performance issues.</p></li><li><p>The use of keywords that contain only special characters is not supported.</p></li></ul>
+<h2 id="id2">
+Version 3.0.0</h2>
+<p><strong>Released: March 2021</strong></p><h3 id="id2s1">
+Updates and enhancements</h3>
+<p>This release of the TIBCO EBX® Information Search Add-on has been updated to ensure compatibility with the TIBCO EBX® 6.0.0 GA release. Beginning with this release, search capabilities in the EBX® core product were expanded. As a result, the add-on&#39;s functional scope is now reduced. See the <em>TIBCO EBX&reg; Release Notes</em> for additional details on the core product&#39;s expanded search capabilities. </p><p>The add-on still allows you to configure a targeted search (previously global search) across dataspaces and datasets. Additionally, you can create custom configurations to use your own implementation of search templates, synonyms, and stopwords. Note that deployment of this version of the add-on resets the add-on&#39;s configuration dataset.</p><h2 id="id3">
+Version 2.4.10</h2>
+<p><strong>Released: February 2021</strong></p><h3 id="id3s1">
+Bug fixes</h3>
+<p><strong>[TESE-1243]</strong> The add-on executes indexing to cache data continuously when executing a <strong>Search</strong> operation.</p><h2 id="id4">
+Release Note 2.4.8</h2>
+<p><strong>Release Date: October 20, 2020</strong></p><h3 id="id4s1">
+Bug fixes</h3>
+<p>This release includes support for bug fixes in the TIBCO EBX® Match and Cleanse Add-on (version 2.5.6).</p><h2 id="id5">
+Version 2.4.9</h2>
+<p><strong>Released: January 2021</strong></p><h3 id="id5s1">
+Product updates</h3>
+<p>The following libraries were updated in this release:</p><ul>
+<li><p>Apache Standard Taglibs library to version 1.2.3.</p></li><li><p>Spring framework library to version 5.2.9.</p></li><li><p>Jackson Databind library to version 2.11.2.</p></li></ul>
+<h3 id="id5s2">
+Bug fixes</h3>
+<p>This release includes support for bug fixes in the TIBCO EBX® Match and Cleanse Add-on (version 2.5.7).</p><h2 id="id6">
+Release Note 2.4.8</h2>
+<p><strong>Release Date: October 20, 2020</strong></p><h3 id="id6s1">
+Bug fixes</h3>
+<p>This release includes support for bug fixes in the TIBCO EBX® Match and Cleanse Add-on (version 2.5.6).</p><h2 id="id7">
+Release Note 2.4.7</h2>
+<p><strong>Release Date: September 18, 2020</strong></p><h3 id="id7s1">
+New features and optimizations</h3>
+<p>This release contains the following new features and optimizations:</p><ul>
+<li><p>An empty line separator has been added between each result in the <strong>Search</strong> screen.</p></li><li><p>The add-on has been updated to support the OpenJDK8 libraries.</p></li></ul>
+<h3 id="id7s2">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[TESE-1145]</strong> A blank page is returned when executing a <strong>Global search</strong> and the user has insufficient permissions.</p></li><li><p><strong>[TESE-1148]</strong> An incorrect highlight is returned when searching a compound keyword.</p></li><li><p><strong>[TESE-1150]</strong> A <code>NumberFormatException</code> occurs when searching a multi-value foreign key field under multi-value group.</p></li><li><p><strong>[TESE-1151]</strong> An incorrect result returned when searching a compound keyword in the multi-value string field and the <strong>Best word</strong> option is activated.</p></li></ul>
+<h2 id="id8">
+Release Note 2.4.6</h2>
+<p><strong>Release Date: June 23, 2020</strong></p><h3 id="id8s1">
+New features</h3>
+<p>This release includes support for new features in the TIBCO EBX® Match and Cleanse Add-on (version 2.5.4).</p><h3 id="id8s2">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[TESE-1144]</strong> An incorrect result is returned when searching on a foreign key with a numeric keyword.</p></li><li><p><strong>[TESE-1146]</strong> An incorrect result is returned when executing the <strong>Global search</strong> operation when the <strong>Specific policy</strong> property is configured.</p></li></ul>
+<h2 id="id9">
+Release Note 2.4.5</h2>
+<p><strong>Release Date: April 20, 2020</strong></p><h3 id="id9s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>The add-on can now display custom table labels on search results. You can use this feature to clarify search result display. For example, a global search might include results from tables with the same name but that come from different data models. In this case, a custom label could help differentiate between tables by naming each table&#39;s containing model. Administrators set the custom label using a configured table&#39;s <strong>Label</strong> option.</p></li><li><p>It is now possible to search a label of a String enumeration field.</p></li></ul>
+<h3 id="id9s2">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[TESE-1119]</strong> An incorrect result is returned when searching on a raw-value of a foreign key.</p></li><li><p><strong>[TESE-1121]</strong> An incorrect result is returned when searching on an enumeration field of the Integer, Date and HTML data types.</p></li><li><p><strong>[TESE-1124]</strong> An incorrect result is returned when searching on a dataset through REST.</p></li><li><p><strong>[TESE-1135]</strong> An incorrect result is returned when searching on an external foreign key and the <strong>Best word</strong> property is activated.</p></li></ul>
+<h2 id="id10">
+Release Note 2.4.4</h2>
+<p><strong>Release Date: January 15, 2020</strong></p><h3 id="id10s1">
+Product updates</h3>
+<p>The TIBCO EBX® Information Search Add-on no longer ships with certain third-party Limited General Public License (LGPL) libraries. You must re-package the add-on before you can successfully deploy it. The add-on bundle includes a script to automate this process. Please see the <em>TIBCO EBX&reg; Add-ons Versioning and Packaging Guide</em> for detailed instructions. You can find this guide in the PDF documents included with your add-on bundle, or on <em>https://docs.tibco.com</em> under the page dedicated to the TIBCO EBX&reg; 4.3.2 Add-ons Bundle.</p><h3 id="id10s2">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[TESE-1027]</strong> An incorrect result is returned when executing a <strong>Search</strong> operation in a dataspace after merging a child dataspace.</p></li></ul>
+<h2 id="id11">
+Release Note 2.4.3</h2>
+<p><strong>Release Date: December 10, 2019</strong></p><h3 id="id11s1">
+Bug fixes</h3>
+<p>This release includes support for bug fixes in the TIBCO EBX® Match and Cleanse Add-on (version 2.5.1).</p><h2 id="id12">
+Release Note 2.4.2</h2>
+<p><strong>Release Date: November 8, 2019</strong></p><h3 id="id12s1">
+New features</h3>
+<p>The <strong>Contains</strong> search algorithm is now available for use. This algorithm finds data containing the keyword. It is not case-sensitive.</p><h3 id="id12s2">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[TESE-998]</strong> An incorrect result is returned when searching on a foreign key with a tabular filter.</p></li><li><p><strong>[TESE-1001]</strong> An incorrect result is returned when searching on a parent dataspace after merging a child dataspace.</p></li></ul>
+<h2 id="id13">
+Release Note 2.4.1</h2>
+<p><strong>Release Date: June 20, 2019</strong></p><h3 id="id13s1">
+Updates</h3>
+<p>This release includes support for new features in the TIBCO EBX® Match and Cleanse Add-on (version 2.4.0).</p><h3 id="id13s2">
+Bug fixes</h3>
+<p><strong>[TESE-977]</strong> A concurrent issue occurs when executing multiple search threads on a table at the same time.</p><p><strong>[TESE-990]</strong> A NullPointerException occurs when executing a programmatic search.</p><h2 id="id14">
+Release Note 2.4.0</h2>
+<p><strong>Release Date: March 25, 2019</strong></p><h3 id="id14s1">
+New features and updates</h3>
+<p>The new features and updates for this release are described in the following sections:</p><ul>
+<li><p><a href="#generalUpdates240">General updates</a></p></li><li><p><a href="#uiUpdates240">UI updates and enhancements</a></p></li></ul>
+<h4 id="generalUpdates240">
+General updates</h4>
+<p>This release contains the following new features and updates:</p><ul>
+<li><p>Add-on configuration settings have been moved under <em>Administration &gt; Data quality &amp; analytics &gt; TIBCO EBX&reg; Information Search Add-on</em>.</p></li><li><p>When using the <strong>Search table filter</strong>, the configured primary and secondary search algorithms are now applied.</p></li><li><p>One of the following options can be selected when configuring the add-on to use synonyms during search:</p><ul>
+<li><p><strong>Use synonyms for the entire value of the attribute:</strong> This option compares synonyms with the entire word or phrase being searched. Take fore example the following group of synonyms: &quot;Mr&quot;, &quot;Mister&quot;, and &quot;Sir&quot;. Taken as a whole, the search phrase &quot;Mr. Bob Smith&quot; may not match close enough to trigger results. However, if the entire search term was &quot;Sir&quot;, it could return the record for &quot;Sir Bob Smith&quot;.</p></li><li><p><strong>Use synonyms for every words of the attribute:</strong> This option compares synonyms with each part of a phrase being searched. Using the above example, the search phrase &quot;Mr. Bob Smith&quot; could return &quot;Sir Bob Smith&quot; as a result.</p></li></ul>
+</li><li><p>The <strong>Best word</strong> option is now disabled when the keyword is surrounded by double quotes.</p></li><li><p>This release contains support for new features in the TIBCO EBX&reg; GO for iOS and TIBCO EBX&reg; GO for Android mobile applications.</p></li></ul>
+<h4 id="uiUpdates240">
+UI updates and enhancements</h4>
+<p>This release includes the following UI updates and enhancements:</p><ul>
+<li><p>Search result tabs now display, and are ordered according to the number of results:</p><p><img alt="/updated_results_UI.png" src="./resources/images/updated_results_UI.png"></img></p></li><li><p>Search result display can now be configured by administrators. Each line of a search result can be customized according to order of display, content, and formatting. The image below shows an example of different configurations for two tables:</p><p><img alt="/config_results_1.png" src="./resources/images/config_results_1.png"></img></p></li></ul>
+<h3 id="id14s2">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[TESE-885]</strong> The results display incorrectly when executing <strong>Global search</strong> and the <strong>Results sorted by</strong> property is set to <strong>Field order</strong>.</p></li><li><p><strong>[TESE-887]</strong> An error message is displayed when users configure the parent group for a synonym group.</p></li></ul>
+<h2 id="id15">
+Release Note 2.3.1</h2>
+<p><strong>Release Date: December 13, 2018</strong></p><h3 id="id15s1">
+Featured updates</h3>
+<p>This release contains the following updates and enhancements:</p><ul>
+<li><p>Memory usage has been enhanced when loading the cache.</p></li></ul>
+<h2 id="id16">
+Release Note 2.3.0</h2>
+<p><strong>Release Date: October 26, 2018</strong></p><h3 id="id16s1">
+Featured updates</h3>
+<p>This release contains the following updates and enhancements:</p><ul>
+<li><p>The EBX® Information Search Add-on has undergone significant updates to ensure compatibility with the EBX® 5.9.0 GA release.</p></li><li><p>To use the <strong>Global Search</strong> service within a perspective, you must now specify a value for the <strong>Dataspace</strong> parameter during configuration.</p></li></ul>
+<h2 id="id17">
+Release Note 2.2.4</h2>
+<p><strong>Release Date: October 12, 2018</strong></p><h3 id="id17s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[36046]</strong> A 404 error is returned when opening the <strong>Search view</strong> on a WebLogic server.</p></li></ul>
+<h2 id="id18">
+Release Note 2.2.3</h2>
+<p><strong>Release Date: October 5, 2018</strong></p><h3 id="id18s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[35714]</strong> The search result is incorrectly highlighted when using the <strong>Best word</strong> option, and there are at least two words that match the keyword.</p></li></ul>
+<h2 id="id19">
+Release Note 2.2.2</h2>
+<p><strong>Release Date: September 13, 2018</strong></p><h3 id="id19s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[35409]</strong> A Null pointer exception occurs when updating a <strong>Filter by</strong> field that was empty.</p></li></ul>
+<h2 id="id20">
+Release Note 2.2.1</h2>
+<p><strong>Release Date: July 31, 2018</strong></p><h3 id="id20s1">
+New features</h3>
+<p>You can now search on a string field containing only numeric characters.</p><h3 id="id20s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[34369]</strong> A ClassCastException is thrown when searching with two algorithms and the <strong>Primary search algorithm</strong> returns no results.</p></li></ul>
+<h2 id="id21">
+Release Note 2.2.0</h2>
+<p><strong>Release Date: July 17, 2018</strong></p><h3 id="id21s1">
+New features</h3>
+<p>It is now possible to define the display order for search results.</p><h3 id="id21s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[32526]</strong> A blank page is displayed when searching with the <strong>Best word</strong> option.</p></li><li><p><strong>[33877]</strong> A ClassCastException error occurs when searching with the <strong>Levenshtein</strong> algorithm and the <strong>Best word</strong> option activated.</p></li></ul>
+<h2 id="id22">
+Release Note 2.1.3</h2>
+<p><strong>Release Date: June 22, 2018</strong></p><h3 id="id22s1">
+New features</h3>
+<p>This release includes support for new features in the TIBCO EBX&reg; GO Add-on.</p><h3 id="id22s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[32779]</strong> An incorrect result is returned when applying a search filter that has no columns selected.</p></li></ul>
+<h2 id="id23">
+Release Note 2.1.2</h2>
+<p><strong>Release Date: April 20, 2018</strong></p><h3 id="id23s1">
+New features</h3>
+<p>This release includes support for new features in the Match and Cleanse Add-on (version 2.1.0).</p><h2 id="id24">
+Release Note 2.1.1</h2>
+<p><strong>Release Date: March 28, 2018</strong></p><h3 id="id24s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[31696]</strong> The cache is not updated when updating data on foreign key tables.</p></li></ul>
+<h2 id="id25">
+Release Note 2.1.0</h2>
+<p><strong>Release Date: March 16, 2018</strong></p><h3 id="id25s1">
+New features</h3>
+<p>This release includes the new global search feature. With this feature, searches can span multiple dataspaces and datasets. Global search is accessed from the main toolbar, which lifts the requirement that users navigate to the dataset or table they want to search.</p><p align="left"><img alt="/global_search_access.png" src="./resources/images/global_search_access.png"></img></p><p>When configuring global search, administrators create contexts that point to tables, and link the contexts with profiles. Note that in order to include a table in a context, it must already be configured in the add-on for localized dataset and table searches. The image below highlights the location of new tables used to configure global search.</p><p><img alt="/global_search_configure.png" src="./resources/images/global_search_configure.png"></img></p><p>The global search feature can be used when searching via a REST request. Additionally, global search is available as a perspective action and workflow task. For more information on using and configuring global search, see:</p><ul>
+<li><p><a href="../user_guide/user_using_search.html">Running searches</a></p></li><li><p><a href="../user_guide/user_configuring_sample.html">Configuration overview and examples</a></p></li><li><p><a href="../reference_guide/reference_configuration_domain.html">The Configuration domain</a></p></li></ul>
+<h3 id="id25s2">
+Updates and improvements</h3>
+<p>This release contains the following updates and improvements:</p><ul>
+<li><p>The <strong>Maximum No. of results</strong> field has been moved to the <strong>User preference</strong> table. All previous configurations for this field have been reset to the default value of unbounded.</p></li><li><p>You can now clear your own history. As shown below, individual entries can be removed, or you can completely reset your history:</p><p><img alt="/search_history.png" src="resources/images/search_history.png"></img></p></li><li><p>The <strong>Check permission</strong> option has been removed from the <strong>Model</strong> table, and permissions are now checked by default. This option is still included in the search APIs and you can enable/disable permission check via APIs.</p></li><li><p>The table search filter appearance has been updated.</p></li><li><p>New APIs are available to search at the repository level and within a user&#39;s history.</p></li><li><p>In the SOAP and REST search services, the <strong>sensibility</strong> parameter has been updated to <strong>sensitivity</strong>. Both parameters are still supported for backwards compatibility.</p></li><li><p>The field path is now included in the search result returned by REST service.</p><p><img alt="/rest_search_result.png" src="./resources/images/rest_search_result.png"></img></p></li><li><p>The tokens in search results that match with the keyword are now highlighted.</p><p><img alt="/highlight_keyword.png" src="./resources/images/highlight_keyword.png"></img></p></li><li><p>Search is now included as perspective actions and workflow tasks.</p></li></ul>
+<h3 id="id25s3">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[30399]</strong> Searching on a foreign key field in a multi-valued group returns no results after changing the EBX® Information Search Add-on configuration.</p></li><li><p><strong>[30400]</strong> An error message is displayed when searching with the Date data type using REST service.</p></li><li><p><strong>[30531]</strong> The label and description of records in the <strong>Algorithm</strong> table cannot be updated.</p></li></ul>
+<h2 id="id26">
+Release Note 2.0.5</h2>
+<p><strong>Release Date: February 28, 2018</strong></p><h3 id="id26s1">
+New features</h3>
+<ul>
+<li><p> A new method that allows you to scan all of a table&#39;s records when using a custom search algorithm has been added to SearchComparator in the API.</p></li></ul>
+<h3 id="id26s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[31003]</strong> You cannot use a search keyword that contains numeric values when using the custom distance algorithm.</p></li></ul>
+<h2 id="id27">
+Release Note 2.0.4</h2>
+<p><strong>Release Date: January 31, 2018</strong></p><h3 id="id27s1">
+New features</h3>
+<p>This release includes support for new features and bug fixes in Match and Cleanse Add-on 1.13.0.</p><h3 id="id27s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[30440]</strong> A search on a dataset cannot be completed when searching on two tables with foreign keys referring to each other.</p></li></ul>
+<h2 id="id28">
+Release Note 2.0.3</h2>
+<p><strong>Release Date: December 22, 2017</strong></p><h3 id="id28s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>Support of case sensitive search has been added for all Match and Cleanse Add-on algorithms.</p></li></ul>
+<h2 id="id29">
+Release Note 2.0.2</h2>
+<p><strong>Release Date: December 15, 2017</strong></p><h3 id="id29s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>Support for global search in the TIBCO EBX&reg; GO Add-on.</p></li><li><p>Memory usage when loading the cache has been optimized. </p></li></ul>
+<h2 id="id30">
+Release Note 2.0.1</h2>
+<p><strong>Release Date: November 10, 2017</strong></p><h3 id="id30s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[29359]</strong> Bugs fixed in Match and Cleanse Add-on 1.12.0. </p></li></ul>
+<h2 id="id31">
+Release Note 2.0.0</h2>
+<p><strong>Release Date: October 16, 2017</strong></p><h3 id="id31s1">
+New features</h3>
+<ul>
+<li><p><strong>[22743]</strong> It is now possible to modify pre-built algorithm parameters. </p></li><li><p><strong>[22768]</strong> You can now perform a search at table level. </p></li><li><p><strong>[26295]</strong> Search has been optimized to remove irrelevant results. </p></li><li><p><strong>[26551]</strong> There is a new search UI and search result format. </p></li><li><p><strong>[26555]</strong> You can now store/display search history. </p></li><li><p><strong>[26557]</strong> You now have the ability to filter search results. </p></li><li><p><strong>[26559]</strong> A new service allows you to purge the search history. </p></li><li><p><strong>[26640]</strong> The <strong>Maximum No. of results</strong> property in the <strong>Model</strong> table has been updated to apply at the record level. </p></li><li><p><strong>[26663]</strong> Some tables and fields that are no longer used were removed from search configuration. </p></li><li><p><strong>[26849]</strong> The add-on no longer supports relational models. </p></li><li><p><strong>[26857]</strong> Search performance has been optimized by using a cache mechanism. </p></li><li><p><strong>[27705]</strong> Searching with special characters is not supported. </p></li><li><p><strong>[27954]</strong> A new API has been added to preload the cache. </p></li></ul>
+<h3 id="id31s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[26468]</strong> Searching in a list returns an incorrect score. </p></li><li><p><strong>[27561]</strong> An association field can be registered with EBX® Information Search Add-on. </p></li><li><p><strong>[27956]</strong> A blank page is displayed when searching with the EBX® table filter and <strong>Check permissions</strong> deactivated. </p></li><li><p><strong>[28520]</strong>An error occurs when performing a search using REST service on a multi-valued field that is a number data type.</p></li></ul>
+<h2 id="id32">
+Release Note 1.7.5 fix 001</h2>
+<p><strong>Release Date: August 2, 2017</strong></p><h3 id="id32s1">
+New features</h3>
+<ul>
+<li><p><strong>[24249]</strong> When searching via the API, you can get the schema node that leads to the record being returned in the result. </p></li></ul>
+<h2 id="id33">
+Release Note 1.7.5</h2>
+<p><strong>Release Date: April 18, 2017</strong></p><h3 id="id33s1">
+Optimization</h3>
+<ul>
+<li><p><strong>[25012]</strong> Search performance on surrogate fields was improved. </p></li></ul>
+<h3 id="id33s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[25008]</strong> The tab in the search UI is not selectable if a table label contains special characters. </p></li></ul>
+<h2 id="id34">
+Release Note 1.7.4</h2>
+<p><strong>Release Date: March 20, 2017</strong></p><h3 id="id34s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[24855]</strong> The Preview button does not work when including EBX® Information Search Add-on in a specific portal. </p></li></ul>
+<h2 id="id35">
+Release Note 1.7.3</h2>
+<p><strong>Release Date: January 23, 2017</strong></p><h3 id="id35s1">
+New features</h3>
+<ul>
+<li><p><strong>[23695]</strong> A new surrogate field matching was added. </p></li></ul>
+<h3 id="id35s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[23885]</strong> Soap WS fails when search results do not contain additional scores. </p></li></ul>
+<h2 id="id36">
+Release Note 1.7.2</h2>
+<p><strong>Release Date: December 16, 2016</strong></p><h3 id="id36s1">
+Optimization</h3>
+<ul>
+<li><p><strong>[23528]</strong> Search performance for the predicate filter has been improved. </p></li></ul>
+<h3 id="id36s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[23252]</strong> Null value options are not taken into account during relational matching. </p></li></ul>
+<h2 id="id37">
+Release Note 1.7.1</h2>
+<p><strong>Release Date: November 18, 2016</strong></p><h3 id="id37s1">
+New features</h3>
+<ul>
+<li><p><strong>[23005]</strong> Crosswalk search results are updated when searching with multiple target tables. </p></li></ul>
+<h3 id="id37s2">
+Optimization</h3>
+<ul>
+<li><p><strong>[23061]</strong> Data indexing has been optimized for lower memory usage. </p></li></ul>
+<h2 id="id38">
+Release Note 1.7.0</h2>
+<p><strong>Release Date: October 12, 2016</strong></p><h3 id="id38s1">
+New features</h3>
+<ul>
+<li><p><strong>[14900]</strong> An option is available to search in fields via the API. </p></li><li><p><strong>[17904]</strong> All the search algorithm parameters now have clear labels and descriptions. </p></li><li><p><strong>[18048]</strong> It is possible to search using REST. </p></li><li><p><strong>[20111]</strong> Japanese search algorithms are now available. </p></li><li><p><strong>[20747]</strong> Synonym management functionality was added to enhance search flexibility. </p></li><li><p><strong>[21541]</strong> The table filter is automatically applied when searching at table level. </p></li><li><p><strong>[22216]</strong> Search now can be initiated outside a Procedure. </p></li></ul>
+<h3 id="id38s2">
+Optimization</h3>
+<ul>
+<li><p><strong>[21995]</strong> Search performance on multiple fields was improved. </p></li><li><p><strong>[22107]</strong> Indexing data was optimized to improve search performance. </p></li></ul>
+<h3 id="id38s3">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[21690]</strong> A JavaScript error is displayed when choosing &#39;Metadata&#39; option in the Search box. </p></li><li><p><strong>[21695]</strong> Incorrect behavior in the &#39;Keyword&#39; table when searching with keyword is long text and contain spaces. </p></li></ul>
+<h2 id="id39">
+Release Note 1.6.5</h2>
+<p><strong>Release Date: September 9, 2016</strong></p><h3 id="id39s1">
+New features</h3>
+<ul>
+<li><p><strong>[21415]</strong> Null values are now taken into account when executing matching with any algorithms. </p></li><li><p><strong>[21416]</strong> It is possible to match on multiple fields in crosswalk. </p></li></ul>
+<h2 id="id40">
+Release Note 1.6.4</h2>
+<p><strong>Release Date: August 4, 2016</strong></p><h3 id="id40s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[21363]</strong> Searching a foreign key field in an external dataset using a combination of programmatic label and Levenshtein, JaroWinkler, or NGram algorithm returns an incorrect result. </p></li></ul>
+<h2 id="id41">
+Release Note 1.6.3</h2>
+<p><strong>Release Date: July 8, 2016</strong></p><h3 id="id41s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[21045]</strong> Incorrect search result when searching on inherited fields or computed value fields. </p></li></ul>
+<h2 id="id42">
+Release Note 1.6.2</h2>
+<p><strong>Release Date: June 10, 2016</strong></p><h3 id="id42s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[20678]</strong> When performing a metadata search, the web view was unable to display long table labels. </p></li><li><p><strong>[20679]</strong> The search UI did not display the horizontal scroll-bar for the table and field lists when their labels were excessively long. </p></li></ul>
+<h2 id="id43">
+Release Note 1.6.1</h2>
+<p><strong>Release Date: May 19, 2016</strong></p><h3 id="id43s1">
+Optimization</h3>
+<p>Improve performance by enabling permission checking in the search configuration. </p><h2 id="id44">
+Release Note 1.6.0</h2>
+<p><strong>Release Date: April 13, 2016</strong></p><h3 id="id44s1">
+New features</h3>
+<ul>
+<li><p>Instead of using a dataspace and dataset to point to a data model (that you want to enable EBX® Information Search Add-on on) you only need to specify the data model. </p></li><li><p>It is now possible to make changes to algorithm parameters. </p></li><li><p>Searches on fields that are integer, decimal, date or date time data types are allowed. </p></li><li><p>A primary and a secondary algorithm can be used in a search. </p></li><li><p>The &#39;Best word&#39; option is integrated in distance searches such as: Levenshtein and Jarowinkler. </p></li></ul>
+<h3 id="id44s2">
+New updates</h3>
+<ul>
+<li><p>The default value for the &#39;Search criteria on data&#39; table&#39;s &#39;Check permission&#39; property is now &#39;Yes&#39;. </p></li></ul>
+<h3 id="id44s3">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[14201]</strong> The HTML values are saved in the &#39;Result&#39; table located under &#39;EBX® Information Search Add-on configuration&#39;. </p></li><li><p><strong>[19714]</strong> The field&#39;s label is not displayed in the result when the foreign key field is one of the fields being searched. </p></li><li><p><strong>[19787]</strong> A waiting prompt occurs when searching on the hidden dataset. </p></li><li><p><strong>[19810]</strong> The table label does not change in the search panel when changing the label&#39;s table in Information Governance Add-on. </p></li><li><p><strong>[19852]</strong> Search cannot be performed on an enumeration field. </p></li><li><p><strong>[19864]</strong> Searching on an enumeration field defined by the &#39;Label&#39; field value does not work correctly. </p></li><li><p><strong>[19996]</strong> There is a performance problem when searching with distance algorithms. </p></li></ul>
+<h2 id="id45">
+Release Note 1.5.4</h2>
+<p><strong>Release Date: February 26, 2016 </strong></p><h3 id="id45s1">
+New features</h3>
+<p>Access rules can now be taken into consideration when searching. </p><h3 id="id45s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[19428]</strong> An exception is raised when more than one search executes simultaneously on multiple fields. </p></li><li><p><strong>[19429]</strong> A JavaScript error occurs when searching in the Internet Explorer 8 browser. </p></li></ul>
+<h2 id="id46">
+Release Note 1.5.3 fix 001</h2>
+<p><strong>Release Date: February 4, 2016 </strong></p><h3 id="id46s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[19191]</strong><strong> Records with scores lower than the min score threshold are returned.</strong></p></li><li><p><strong>[19293]</strong> The redundant &#39;&amp;&#39; character is displayed in the generated URL when searching in the Web view. </p></li></ul>
+<h2 id="id47">
+Release Note 1.5.3</h2>
+<p><strong>Release Date: January 18, 2016 </strong></p><h3 id="id47s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[18486]</strong> A runtime exception occurs when running the table filter on EBX®&#39;s search panel. </p></li><li><p><strong>[18061]</strong> Invalid format warnings for WSDL file. </p></li><li><p><strong>[19018]</strong> An incorrect score is returned when searching on more than one field and when a field has a score lower than the minScore threshold. </p></li></ul>
+<h2 id="id48">
+Release Note 1.5.2</h2>
+<p><strong>Release Date: January 7, 2016 </strong></p><h3 id="id48s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[18757]</strong> Incorrect score is returned when the search keyword contains special characters. </p></li></ul>
+<h2 id="id49">
+Release Note 1.5.1</h2>
+<p><strong>Release Date: November 3, 2015</strong></p><h3 id="id49s1">
+New features</h3>
+<p>In case you need to ignore some characters, words in the information used to search, you can now configure filters as direct values or through a custom Java class. </p><h3 id="id49s2">
+New API</h3>
+<p>It is now possible to set an XPath filter in the SearchContext API in order to reduce the scope of the search. </p><h2 id="id50">
+Release Note 1.5.0</h2>
+<p><strong>Release Date: October 9, 2015</strong></p><h3 id="id50s1">
+New features</h3>
+<ul>
+<li><p>When searching via API or Web Service you can specify whether to store results. </p></li><li><p>You can execute a search on a multi-value field inside a terminal group. </p></li><li><p>You can execute a search on a multi-value field inside a multi-value group. </p></li></ul>
+<h3 id="id50s2">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[17565]</strong> A search returns an empty result when performed on a foreign key field using a programmatic label. </p></li></ul>
+<h3 id="id50s3">
+Optimization</h3>
+<p>Searching process has been optimized.</p><h2 id="id51">
+Release Note 1.4.3</h2>
+<p><strong>Release Date: September 3, 2015</strong></p><h3 id="id51s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[17503]</strong> Searching simple fields under a terminal group may return an incorrect score. </p></li><li><p><strong>[17504]</strong> Searching simple fields under a multi-value group returns an incorrect score. </p></li></ul>
+<h3 id="id51s2">
+Limitations</h3>
+<ul>
+<li><p>Searching based on a multi-value field inside a terminal group is not supported. </p></li><li><p>Searching based on a multi-value field inside a multi-value group is not supported. </p></li></ul>
+<h2 id="id52">
+Release Note 1.4.2</h2>
+<p><strong>Release Date: July 31, 2015</strong></p><h3 id="id52s1">
+New features</h3>
+<p>Accept filter with predicate when searching in group. </p><h3 id="id52s2">
+New API</h3>
+<p>It is now possible to retrieve the search configuration associated to a dataset. </p><h2 id="id53">
+Release Note 1.4.1</h2>
+<p><strong>Release Date: June 29, 2015</strong></p><h3 id="id53s1">
+New features</h3>
+<p>You can now define a custom distance algorithm on any simple type. </p><h2 id="id54">
+Release Note 1.4.0</h2>
+<p><strong>Release Date: June 10, 2015 </strong></p><h3 id="id54s1">
+New features</h3>
+<ul>
+<li><p>EBX® Information Search Add-on can now be used to extend the EBX® table filter. It allows user to apply the fuzzy search from the table search UI component. </p></li><li><p>A new web service allows user to expose searching.</p></li></ul>
+<h2 id="id55">
+Release Note 1.3.2</h2>
+<p><strong>Release Date: May 6, 2015 </strong></p><h3 id="id55s1">
+Bug fixes</h3>
+<ul>
+<li><p><strong>[15943]</strong> In case of many similarities between more records than the number of records searched for (for instance the cluster size in Matching), results can be inconsistent. It is especially true in funneling mode. </p></li></ul>
+<h2 id="id56">
+Release Note 1.3.1</h2>
+<p><strong>Release Date: April 15, 2015 </strong></p><h3 id="id56s1">
+API</h3>
+<ul>
+<li><p>Fix the API in order to be used within a trigger or a procedure. </p></li></ul>
+<h2 id="id57">
+Release Note 1.3.0</h2>
+<p><strong>Release Date: January 26, 2015 </strong></p><h3 id="id57s1">
+New features</h3>
+<ul>
+<li><p>When deleting a configuration in the &#39;Search criteria on data&#39;, the system now applies a delete &#39;on cascade&#39; of all the related records in the &#39;Table&#39; and &#39;Field&#39; tables. This change simplifies the administration process of removing a search configuration. </p></li><li><p>The &#39;Similarity&#39; and &#39;Prefix length&#39; properties are now configured only when the &#39;FuzzyFullText&#39; algorithm is selected. </p></li><li><p>The search result UI is improved and allows you to preview records. </p></li></ul>
+<h2 id="id58">
+Release Note 1.2.5</h2>
+<p><strong>Release Date: January 22, 2015 </strong></p><h3 id="id58s1">
+New features</h3>
+<ul>
+<li><p>Add the possibility to define filters to normalize values when searching. </p></li></ul>
+<h2 id="id59">
+Release Note 1.2.4</h2>
+<p><strong>Release Date: January 19, 2015 </strong></p><h3 id="id59s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_14213"><strong>[14213]</strong> The option best word is not taken into account. </p></li></ul>
+<h2 id="id60">
+Release Note 1.2.3</h2>
+<p><strong>Release Date: November 10, 2014 </strong></p><h3 id="id60s1">
+New features</h3>
+<ul>
+<li><p>Add Chinese search algorithm.</p></li></ul>
+<h2 id="id61">
+Release Note 1.2.2</h2>
+<p><strong>Release Date: October 10, 2014 </strong></p><h3 id="id61s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_12833"><strong>[12833]</strong> The configuration of the search is not unique for a same data model. </p></li><li><p id="bug_12568"><strong>[12568]</strong> The creation of new record in Result table of TIBCO EBX&reg; Information Search Add-on dataspace is enabled. </p></li></ul>
+<h3 id="id61s2">
+Optimization</h3>
+<p>Update the display of fields in configuration.</p><h2 id="id62">
+Release Note 1.2.1</h2>
+<p><strong>Release Date: September 12, 2014 </strong></p><h3 id="id62s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_12526"><strong>[12526]</strong> Exception when searching with null foreign key using &#39;Exact algorithm&#39;. </p></li></ul>
+<h2 id="id63">
+Release Note 1.2.0</h2>
+<p><strong>Release Date: August 29, 2014 </strong></p><h3 id="id63s1">
+Optimization</h3>
+<p>The performances have been improved.</p><h2 id="id64">
+Release Note 1.1.1</h2>
+<p><strong>Release Date: June 19, 2014 </strong></p><h3 id="id64s1">
+Optimization</h3>
+<p>Some drastic improvement of the performances have been done. </p><h2 id="id65">
+Release Note 1.1.0</h2>
+<p><strong>Release Date: June 3, 2014 </strong></p><h3 id="id65s1">
+New features</h3>
+<p>It is now possible to search a &#39;best word&#39; among a long text such as a description. With this option, the score of the search is based on the sole matching against the search criteria. It is no longer the average score based on the number of words in the targeted text. </p><h2 id="id66">
+Release Note 1.0.1 fix 001</h2>
+<p><strong>Release Date: April 7, 2014 </strong></p><h3 id="id66s1">
+Bug fixes</h3>
+<p>Search panel background color does not follow the &#39;Colors and themes&#39; from the general preferences. </p><h2 id="id67">
+Release Note 1.0.0</h2>
+<p><strong>Release Date: Dec 19, 2013 </strong></p><p> EBX® Information Search Add-on allows retrieving data anywhere in the repository. The search is multi-table-oriented. This means that the result of a search query is a collection of data sourced from one or multiple tables. The ability to search over a set of tables allows querying a large scope of information, similar to a web search engine. </p><p>The search query is based on a fuzzy execution retrieves information even if the search criteria do not match the data exactly. For example, the search criterion &#39;John&#39; will return information such as &#39;Jone&#39;, &#39;Johnson&#39;, &#39;Cohn&#39; depending on the configuration of the search engine. This configuration allows for tuning the search to avoid unwanted results and for deciding which fuzzy search policies to apply (phonetics, distance). </p><p>EBX® Information Search Add-on allows for retrieving information not only on data value of the repository but also on meta-data, namely the data models and workflow descriptions. </p><h3 id="id67s1">
+Search scope</h3>
+<p>All tables in a dataset.</p><h3 id="id67s2">
+Search algorithms</h3>
+<p>Phonetics and distance.</p><h3 id="id67s3">
+UI results</h3>
+<p>Generic tabular view and web view.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

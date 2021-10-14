@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "label": "Level 0",
+      "members": "http://.../BooksByAuthors/orphans/0/members"
+    },
+    {
+      "label": "Level 1",
+      "members": "http://.../BooksByAuthors/orphans/1/members"
+    }
+  ]
+}

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for users default directory, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.service.directory.DirectoryPaths">
+					<nodes prefix="" root="/"/>
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:extensions class="com.orchestranetworks.service.directory.Extensions"/>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.directory"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- 
+		Root
+	-->
+	<xs:element name="directory" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.directory"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="policy" type="Policy" minOccurs="0"/>
+				<xs:element name="mailingList" type="MailingList" minOccurs="0"/>
+				<xs:element name="users" type="User" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="roles" type="Role" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="usersRoles" type="UserRole" minOccurs="0" maxOccurs="unbounded" osd:category="Hidden"/>
+				<xs:element name="rolesInclusions" type="RoleInclusion" minOccurs="0" maxOccurs="unbounded" osd:category="Hidden"/>
+				<xs:element name="salutations" type="Salutation" minOccurs="0" maxOccurs="unbounded" osd:category="Hidden"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object definition -->
+	<xs:complexType name="User">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.User"/>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/login</primaryKeys>
+					<defaultLabel>${./firstName} ${./lastName} [${./login}]</defaultLabel>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.service.directory.UserTableTrigger"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="login">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.login"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="salutation" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.salutation"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/directory/salutations</tablePath>
+								<display osd:class="com.onwbp.base.text.bean.TableRefDisplayLocalizedLabel">
+									<pathToDocumentation>label</pathToDocumentation>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="firstName" type="xs:string" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.firstName"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastName" type="xs:string" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.lastName"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" type="osd:email" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.email"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avatar" minOccurs="0" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.avatar"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.service.directory.UIUserAvatar"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.service.directory.UserAvatar">
+					<xs:sequence>
+						<xs:element name="url" type="xs:anyURI" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.User.avatar.url"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="initials" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.User.avatar.initials"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--  -->
+			<xs:element name="password" type="osd:password" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.password"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="passwordLastUpdate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.passwordLastUpdate"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.service.directory.UIBeanPasswordLastUpdate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="passwordMustChange" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.passwordMustChange"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="builtInRoles" minOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.service.directory.DdsUIBeanForBuiltInRoles"/>
+					</xs:appinfo>
+					<xs:documentation osd:id="complexType.User.builtInRoles"/>
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.service.directory.BuiltInRoles">
+					<xs:sequence>
+						<xs:element name="administrator" type="xs:boolean" default="false" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.User.builtInRoles.administrator"/>
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.service.directory.DdsUIBeanForBuiltInRoleAdministrator"/>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="readOnly" type="xs:boolean" default="false" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.User.builtInRoles.readOnly"/>
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.service.directory.DdsUIBeanForForBuiltInRoleReadOnly"/>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!-- 
+			 -->
+			<xs:element name="specificRoles" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.specificRoles"/>
+					<xs:appinfo>
+						<osd:association>
+							<linkTable>
+								<table>/directory/usersRoles</table>
+								<fieldToSource>/directory/usersRoles/user</fieldToSource>
+								<fieldToTarget>/directory/usersRoles/role</fieldToTarget>
+							</linkTable>
+						</osd:association>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<!--  -->
+			<!--  -->
+			<xs:element name="jobFunction" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.jobFunction"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="officePhoneNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.officePhoneNumber"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mobilePhoneNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.mobilePhoneNumber"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="faxNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.faxNumber"/>
+				</xs:annotation>
+			</xs:element>
+			<!--  -->
+			<xs:element name="comments" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.comments"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="osd:text">
+						<xs:maxLength value="9999999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="attributes" type="UserAttribute" minOccurs="0" maxOccurs="unbounded" osd:category="Hidden"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Role">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Role"/>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name</primaryKeys>
+					<defaultLabel osd:class="com.orchestranetworks.service.directory.DdsRoleLabel" />
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.service.directory.DdsRoleTableTrigger"/>
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.service.directory.DdsIncludedRolesConstraint"/>
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Role.name"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.onwbp.base.schema.definition.DefaultConstraintForStringPrimaryKey"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[\w -_&amp;]{1,80}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="documentation" minOccurs="0" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Role.documentation"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescription">
+					<xs:sequence>
+						<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+								<xs:sequence>
+									<xs:element name="locale" type="osd:locale"/>
+									<xs:element name="label" type="xs:string" minOccurs="0"/>
+									<xs:element name="description" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="99999"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="email" type="osd:email" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Role.email"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="usersInRole" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Role.usersInRole"/>
+					<xs:appinfo>
+						<osd:association>
+							<linkTable>
+								<table>/directory/usersRoles</table>
+								<fieldToSource>/directory/usersRoles/role</fieldToSource>
+								<fieldToTarget>/directory/usersRoles/user</fieldToTarget>
+							</linkTable>
+						</osd:association>
+						<osd:defaultView>
+							<displayMode>tab</displayMode>
+							<tabularView>
+								<column>/avatar</column>
+								<column>/login</column>
+								<column>/lastName</column>
+								<column>/firstName</column>
+								<sort>
+									<nodePath>/login</nodePath>
+									<isAscending>true</isAscending>
+								</sort>
+							</tabularView>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="includedRoles" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Role.includedRoles"/>
+					<xs:appinfo>
+						<osd:association>
+							<linkTable>
+								<table>/directory/rolesInclusions</table>
+								<fieldToSource>/directory/rolesInclusions/encompassingRole</fieldToSource>
+								<fieldToTarget>/directory/rolesInclusions/includedRole</fieldToTarget>
+							</linkTable>
+							<xpathFilter>name != ${../name}</xpathFilter>
+						</osd:association>
+						<osd:defaultView>
+							<displayMode>tab</displayMode>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RoleInclusion">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.RoleInclusion"/>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/encompassingRole /includedRole</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="encompassingRole" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Role.encompassingRole"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/directory/roles</tablePath>
+								<display osd:class="com.onwbp.base.text.bean.TableRefDisplayLocalizedLabel">
+									<pathToDocumentation>documentation</pathToDocumentation>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="includedRole" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Role.includedRole"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/directory/roles</tablePath>
+								<display osd:class="com.onwbp.base.text.bean.TableRefDisplayLocalizedLabel">
+									<pathToDocumentation>documentation</pathToDocumentation>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserRole">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.UserRole"/>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/role /user </primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="role" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserRole.role"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/directory/roles</tablePath>
+								<display osd:class="com.onwbp.base.text.bean.TableRefDisplayLocalizedLabel">
+									<pathToDocumentation>documentation</pathToDocumentation>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="user" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserRole.user"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/directory/users</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Salutation">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Salutation"/>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Salutation.name"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="Label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Salutation.label"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Policy">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Policy"/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="selfEdition" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Policy.editOwnProfile"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="selfEditionFields" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Policy.editOwnProfileFields"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.service.directory.SelfEditionFieldsEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.directory.SelfEditionFieldsEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="enablePasswordReminder" type="xs:boolean" default="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Policy.enablePasswordReminder"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Label" osd:access="RW" osd:class="com.onwbp.base.text.bean.Label">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabel"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Label.localizedDocumentations"/>
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Label.localizedDocumentations.locale"/>
+								<xs:appinfo>
+									<osd:defaultView>
+										<hiddenInSearch>true</hiddenInSearch>
+									</osd:defaultView>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="label" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Label.localizedDocumentations.label"/>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MailingList">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.MailingList"/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="everybody" type="osd:email" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MailingList.everybody"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="administrator" type="osd:email" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MailingList.administrator"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  -->
+	<xs:complexType name="UserAttribute" osd:class="com.orchestranetworks.service.directory.DdeUserAttribute">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.User.attributes"/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="key" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.attributes.key"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.User.attributes.value"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Compact</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="json_compact" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/json_compact.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Compact</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#id2">Global structure</a><ul class="toc2">
+<li class="toc2"><a href="#request">JSON Request body</a></li><li class="toc2"><a href="#response">JSON Response body</a></li></ul>
+</li><li class="toc1"><a href="#id3">Content</a><ul class="toc2">
+<li class="toc2"><a href="#nodeValue">Node value</a></li><li class="toc2"><a href="#simpleTypes">Content of simple types</a></li><li class="toc2"><a href="#groupsAndLists">Content of group, list and enumeration</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p> The JSON compact format purpose is to retrieve the master data using a lightweight structure. It follows the key-value design to display data in the simplest way and without any technical information. To activate the compact format, the <code>compact</code> suffixed REST category, like <code>data-compact</code> or <code>form-data-compact</code>, must be used in URL. </p><h2 id="id2">
+Global structure</h2>
+<h3 id="request">
+JSON Request body</h3>
+<p> The request body is represented by a JSON <code>Object</code> whose content varies according to the operation and the category. </p><h4 id="DataCategoryRequestBody">
+Data category</h4>
+<ul>
+<li><p id="nodeRequest"><strong>Dataset node</strong></p><p>Specifies the target values of terminal nodes under the specified node. This request is used for the dataset node update operation. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "nodeName1": true,
+  "nodeName2": 2,
+  "nodeName3": "Hello"
+}</pre>
+<p> To ensure a JSON symmetric structure between the HTTP request and the HTTP response, enumeration node request format is like the following: </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "enumerationNode": {
+    "key": "a key value"
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="recordRequest"><strong>Record</strong></p><p>Specifies the target record content by setting the value of each field. For missing fields, the behavior depends on the request parameter <code>byDelta</code>. This structure is used for table record insert, record update or selector&#39;s select operation when local enumeration dependency field values are declared. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "gender": {
+    "key": "M"
+  },
+  "lastName": "Chopin",
+  "lastName-en": "Chopin",
+  "firstName": "Fryderyk",
+  "firstName-en": "Fr&eacute;d&eacute;ric",
+  "birthDate": "1810-03-01",
+  "deathDate": "1849-10-17",
+  "jobs": [
+    {
+      "key": "CM"
+    },
+    {
+      "key": "PI"
+    }
+  ],
+  "infos": [
+    "https://en.wikipedia.org/wiki/Chopin"
+  ]
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#insert">Insert operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="recordFieldsRequest"><strong>Record fields</strong></p><p>Specifies the target values of fields under the record terminal node by setting the value of each field. For missing fields, the behavior depends on the request parameter <code>byDelta</code>. This structure is only used for table record updates. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "jobs": [
+    {
+      "key": "CM"
+    },
+    {
+      "key": "PI"
+    }
+  ]
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="recordTableRequest"><strong>Record table</strong></p><p> Defines the content of one or more records by indicating the value of each field. For missing fields, the behavior depends on the parameter of the request <code>byDelta</code>. This structure is used upon insert or update records in the table. </p><pre class="brush: json; toolbar: false; gutter: false;">
+[
+  {
+    "gender": {
+      "key": "M"
+    },
+    "lastName": "Saint-Sa&euml;ns",
+    "firstName": "Camille",
+    "birthDate": "1835-10-09",
+    ...
+  },
+  {
+    "gender": {
+      "key": "M"
+    },
+    "lastName": "Debussy",
+    "firstName": "Claude",
+    "birthDate": "1862-10-22",
+    ...
+  }
+]
+</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#insert">Insert operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="deleteMultipleRecordsRequest"><strong>Record table to delete</strong></p><p> Defines one or more records. This structure is used upon deleting several records from the same table. </p><pre class="brush: json; toolbar: false; gutter: false;">
+[
+  {
+    "details": "http://.../root/table/1"
+  },
+  {
+    "details": "http://.../root/table/2"
+  },
+  {
+    "primaryKey": "./oid=3"
+  },
+  {
+    "foreignKey": "4"
+  },
+  ...
+]</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#deleteOperation">Delete operation</a></li></ul>
+</div>
+</li><li><p><strong>Field</strong></p><p> Specifies the target field content. This request is used upon field update. </p><p>The request has the same structure as defined in <a href="../data_services/json_compact.html#nodeValue">node value</a>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li></ul>
+<p> Only writable fields can be mentioned in the request, this excludes the following cases: </p><ul>
+<li><p>Association node,</p></li><li><p>Selection node,</p></li><li><p>Value function,</p></li><li><p>JavaBean field that does not have a setter,</p></li><li><p>Unwritable permission on node for the authenticated user.</p></li></ul>
+<h3 id="response">
+JSON Response body</h3>
+<p> The response body is represented by a JSON <code>Object</code> whose content depends on the operation and the category. </p><h4 id="DataCategoryResponseBody">
+Data category</h4>
+<ul>
+<li><p><strong>Dataset node</strong></p><p>Contains the list of terminal nodes under the specified node.</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "nodeName1": true,
+  "nodeName2": 2,
+  "nodeName3": "Hello"
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li></ul>
+</div>
+</li><li><p><strong>Table</strong></p><p>JSON <code>Object</code> containing the following properties: </p><ul>
+<li><p id="rows"><code>rows</code> corresponding to JSON <code>Array</code> of selected records. Each record is represented by a JSON <code>Object</code>. If no record is selected, then the JSON <code>Array</code> is empty. </p></li><li><p>(Optional) <code>pagination</code> containing <a href="../data_services/json_common.html#pagination">pagination </a> data. </p></li></ul>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "id": 1,
+      "firstName": "Claude",
+      "lastName": "Levi-Strauss"
+    },
+    {
+      "id": 2,
+      "firstName": "Sigmoud",
+      "lastName": "Freud"
+    },
+    {
+      "id": 3,
+      "firstName": "Alfred",
+      "lastName": "Dreyfus"
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../root/individu?pageRecordFilter=./id=9&amp;pageSize=9&amp;pageAction=next",
+    "lastPage": "http://.../root/individu?pageSize=9&amp;pageAction=last"
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li></ul>
+</div>
+</li><li><p id="DataCategoryRecordResponseBody"><strong>Record</strong></p><p>JSON <code>Object</code> containing the record content. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "pk": "pk1",
+  "name": "Name1",
+  "name-fr": "Name1",
+  "parent": null
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#prepareOperation">Prepare operations</a></li></ul>
+</div>
+</li><li><p><strong>Fields</strong></p><p>The compact json format does not support the association and selection nodes. </p><p>For other kinds of nodes, they contain the current <a href="../data_services/json_compact.html#nodeValue">node value</a>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li></ul>
+</div>
+</li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Nodes, records and fields property and value may be hidden depending on their resolved permissions  . </p></div>
+<h2 id="id3">
+Content</h2>
+<p>This section is always included and contains master data without any additional fields.</p><h3 id="nodeValue">
+Node value</h3>
+<p> The node value contains only the data or the label and the details link in case of enumeration. It is available for all nodes except association and selection. </p><h3 id="simpleTypes">
+Content of simple types</h3>
+<p>Corresponds to a key-value JSON entry which describes the node content.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_common.html#simpleTypes"> Simple types formats </a></li></ul>
+</div>
+<h3 id="groupsAndLists">
+Content of group, list and enumeration</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Examples</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>Group</p><p><code>xs:complexType</code></p></td><td><p><code>Object</code></p><p>Contains a property per sub-node.</p></td><td><p>Example for a simple-occurrence group.</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "road": "11 rue scribe",
+  "zipcode": "75009",
+  "country": "France"
+}</pre>
+</td></tr>
+<tr>
+<td><p>List</p><p><code>maxOccurs &gt; 1</code></p></td><td><p><code>Array</code></p><p>Contains an array of all field occurrences represented by a JSON <code>Object</code> or a simple type. </p><p>Each JSON <code>Object</code> is composed of <a href="../data_services/json_compact.html#nodeValue"> node values </a>. </p></td><td><p>Example for a multi-occurrence field of <code>xs:int</code> type. </p><pre class="brush: json; toolbar: false; gutter: false;">
+[
+  0,
+  1,
+  2,
+  3,
+  4
+]</pre>
+<p>Example for a multi-occurrence group.</p><pre class="brush: json; toolbar: false; gutter: false;">
+[
+  {
+    "road": "11 rue scribe",
+    "zipcode": "75009",
+    "country": "France"
+  },
+  {
+    "road": "711 Atlantic Ave",
+    "zipcode": "MA 02111",
+    "country": "United States"
+  }
+]</pre>
+</td></tr>
+<tr>
+<td><p>Enumeration</p><p><code>xs:string</code></p></td><td><p id="enumeration"><code>Object</code></p><p>Contains <code>key</code>, <code>link</code> and <code>label</code> properties.</p></td><td><p>Example for a foreign key.</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "key":"1",
+  "details":"http://.../Bdataspace/dataset/root/nationality/FRA",
+  "label":"Française"
+}</pre>
+</td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

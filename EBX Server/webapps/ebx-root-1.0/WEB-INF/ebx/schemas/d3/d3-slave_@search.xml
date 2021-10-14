@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/d3/d3-slave.xsd, iid=006]
+ -->
+<search>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/slave/deliveryBranch/currentVersion</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/slave/deliveryBranch/broadcastTrigger</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+</search>

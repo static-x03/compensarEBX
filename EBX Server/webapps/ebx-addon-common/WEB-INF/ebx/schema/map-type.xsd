@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX(TM) DMA instance [reference=map-defined-model] on Thu Nov 28 11:56:45 ICT 2019 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:resourceBundle source="com.orchestranetworks.addon.common.i18n.xsdSchema.map-type" />
+			<osd:information>@administrative</osd:information>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd" />
+	<xs:complexType name="map_address" osd:access="RW" osd:class="com.orchestranetworks.addon.common.datatype.map.models.MapTypeAddress">
+		<xs:sequence>
+			<xs:element name="address" minOccurs="1" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_address.address" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="256" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="map_address_detail" osd:access="RW" osd:class="com.orchestranetworks.addon.common.datatype.map.models.MapTypeAddressDetail">
+		<xs:sequence>
+			<xs:element name="street" minOccurs="0" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_address_detail.street" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="128" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="district" minOccurs="1" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_address_detail.district" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="32" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="city" minOccurs="0" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_address_detail.city" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="128" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="province" minOccurs="1" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_address_detail.province" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="128" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="state" minOccurs="0" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_address_detail.state" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="128" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="country" minOccurs="1" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_address_detail.country" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="128" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="map_coordinate" osd:access="RW" osd:class="com.orchestranetworks.addon.common.datatype.map.models.MapTypeCoordinate">
+		<xs:sequence>
+			<xs:element name="latitude" type="xs:decimal" minOccurs="1" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_coordinate.latitude" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="longitude" type="xs:decimal" minOccurs="1" maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.map_coordinate.longitude" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CRS" minOccurs="0" maxOccurs="1" default="EPSG:4326" osd:access="RW">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.addon.common.datatype.map.MapCRSSelector" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="32" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

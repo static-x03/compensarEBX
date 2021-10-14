@@ -1,0 +1,47 @@
+{
+  ...
+  "lastUpdateDate": "2015-12-25T00:00:00.001",
+  ...
+  "content": {
+    "gender": {
+      "content": "Mr."
+    },
+    "lastName": {
+      "content": "Chopin"
+    },
+    "lastName-en": {
+      "content": "Chopin",
+      "inheritedFieldMode": "inherit"
+    },
+    "firstName": {
+      "content": "Fryderyk"
+    },
+    "firstName-en": {
+      "content": "Fr&eacute;d&eacute;ric",
+      "inheritedFieldMode": "overwrite"
+    },
+    "birthDate": {
+      "content": "1810-03-01"
+    },
+    "deathDate": {
+      "content": "1849-10-17"
+    },
+    "jobs": {
+      "content": [
+        {
+          "content": "CM"
+        },
+        {
+          "content": "PI"
+        }
+      ]
+    },
+    "infos": {
+      "content": [
+        {
+          "content": "https://en.wikipedia.org/wiki/Chopin"
+        }
+      ]
+    }
+  }
+}

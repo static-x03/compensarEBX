@@ -1,0 +1,38 @@
+{
+  "rows": [
+    {
+      "content": {
+        "gender": {
+          "content": "M"
+        },
+        "lastName": {
+          "content": "Saint-Sa&euml;ns"
+        },
+        "firstName": {
+          "content": "Camille"
+        },
+        "birthDate": {
+          "content": "1835-10-09"
+        },
+        ...
+      }
+    },
+    {
+      "content": {
+        "gender": {
+          "content": "M"
+        },
+        "lastName": {
+          "content": "Debussy"
+        },
+        "firstName": {
+          "content": "Claude"
+        },
+        "birthDate": {
+          "content": "1862-10-22"
+        },
+        ...
+      }
+    }
+  ]
+}

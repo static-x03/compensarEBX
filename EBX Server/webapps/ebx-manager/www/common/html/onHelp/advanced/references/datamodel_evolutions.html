@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Data model evolutions</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_schemaEvol" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Persistence</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/datamodel_evolutions.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Persistence</span></div>
+<h1>
+Data model evolutions</h1>
+<p>This chapter describes the modifications that are possible on data models, as well as potential limitations.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Whenever the data modeler performs an evolution on the primary key of a table, the resulting definition is considered as a new table. In such cases, if existing data must be preserved in some ways, a data migration plan must be set up and operated before the new data model is published or deployed. It can also be noted that data is not destroyed immediately after the data model evolution; if the data model is rolled back to its previous state, then the previous data is retrieved.</p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Certain types of data model evolutions cannot be performed directly in the user interface, and thus the data model must be exported, modified in XSD format, then re-imported. For changes to a data model that impact its configuration, not just its structure, the XSD must be imported into TIBCO EBX&reg; from a module. Otherwise, the configuration modifications are not taken into account.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/persistence_overview.html#mapped">Mapped mode</a></li></ul>
+</div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Types of permitted evolutions</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Model-level evolutions</a></li><li class="toc2"><a href="#id1s2">Table-level evolutions</a></li><li class="toc2"><a href="#id1s3">Field-level evolutions</a></li></ul>
+</li><li class="toc1"><a href="#limitations">Limitations/restrictions</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Limitations related to primary key evolutions</a></li><li class="toc2"><a href="#id2s2">Limitations related to foreign key evolutions</a></li><li class="toc2"><a href="#id2s3">Limitations related to field-level evolutions</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Types of permitted evolutions</h2>
+<p>This section describes the possible modifications to data models after their creation.</p><h3 id="id1s1">
+Model-level evolutions</h3>
+<p>The following modifications can be made to existing data models:</p><ul>
+<li><p>Replication units can be added to the data model. If their refresh policy is &#39;onCommit&#39;, the corresponding replica tables will be created and refreshed on next schema compilation.</p></li><li><p>Replication units can be removed from the data model. The corresponding replica tables will be dropped immediately.</p></li><li><p>The data model can be deleted. If it declares replication units, the corresponding replica tables will be dropped immediately. If it contains historized tables, this change marks the associated mapped tables as disabled. See <a href="../engine/database_mapping.html">Database mapping</a> for the actual removal of associated database objects.</p></li></ul>
+<h3 id="id1s2">
+Table-level evolutions</h3>
+<p>The following modifications can be made to a data model at the table-level:</p><ul>
+<li><p>A new table can be added. Upon creation, the table can also declare one or more mapped modes.</p></li><li><p>An existing table can be deleted. If it declares replication units, the corresponding replica tables will be dropped immediately. If it historized, this change marks the mapped table as disabled. See <a href="../engine/database_mapping.html">Database mapping</a> for the actual removal of associated database objects.</p></li><li><p>History can be enabled or disabled on a table. History will not take into account the operations performed while it is disabled.</p></li><li><p>A table can be renamed. Data should be manually migrated, by exporting then re-importing an XML or archive file, because this change is considered to be a combination of deletion and creation.</p></li></ul>
+<h3 id="id1s3">
+Field-level evolutions</h3>
+<p>The following modifications can be made to a data model at the field-level:</p><ul>
+<li><p>A new field can be added.</p></li><li><p>An existing field can be deleted. The data of the deleted field will be removed from each record upon its next update. For a replica table, the corresponding column is automatically removed. In history mode, the field is marked as disabled.</p></li><li><p>A field can be specifically disabled from the history or replication which applies to its containing table, by using the attribute <code>disable=&quot;true&quot;</code>. For a replica table, the corresponding column is automatically removed. For a history table, the column remains but is marked as disabled. See <a href="../references/history.html#disableHistory">Disabling history on a specific field or group</a> and <a href="../references/replication.html#disable">Disabling replication on a specific field or group</a>.</p></li><li><p>The facets of a field can be modified, except for the facets listed under <a href="#limitations">Limitations/restrictions</a>.</p></li></ul>
+<p>The following changes are accepted, but they can lead to a loss of data. Data should be migrated manually, by exporting then re-importing an XML or archive file, since these changes are considered to be a combination of deletion and creation:</p><ul>
+<li><p>A field can be renamed.</p></li><li><p>The type of a field can be changed.</p></li></ul>
+<h2 id="limitations">
+Limitations/restrictions</h2>
+<h3 id="id2s1">
+Limitations related to primary key evolutions</h3>
+<p>When a primary key definition is modified:</p><ul>
+<li><p>The content of the table will be reset to an empty content, in all datasets and dataspaces.</p></li><li><p>If the new primary key has been used in the past, the content of the table will be reset to the previous data existing at the time this primary key was used, in all datasets and dataspaces.</p></li><li><p>The modification will be rejected if the table has - or has had - history activated in the existing dataspaces. A possible workaround: first drop the history table associated with the dedicated table, then proceed to modifying the primary key. For the procedure to purge mapped table database resources, see <a href="../engine/database_mapping.html">Database mapping</a>.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> If the modified primary key is referenced in the primary key of another table, all the limitations mentioned above apply to the target table.</p></div>
+<h3 id="id2s2">
+Limitations related to foreign key evolutions</h3>
+<ul>
+<li><p>When the declaration of a <code>osd:tableRef</code> facet is added or modified, or when the primary key of its target table is modified, the existing values will restart from empty (except if this modification is reverting to a previous definition; in this case, the previous content will be retrieved).</p></li><li><p>In replication mode, the structure of a foreign key field is set to match that of the target primary key. A single field declaring an <code>osd:tableRef</code> constraint may then be split into a number of columns, whose number and types correspond to that of the target primary key. Hence, the following cases of evolutions will have an impact on the structure of the mapped table:</p><ul>
+<li><p> declaring a new <code>osd:tableRef</code> constraint on a table field;</p></li><li><p> removing an existing <code>osd:tableRef</code> constraint on a table field;</p></li><li><p> adding (resp. removing) a column to (resp. from) a primary key referenced by an existing <code>osd:tableRef</code> constraint;</p></li><li><p> modifying the type or path for any column of a primary key referenced by an existing <code>osd:tableRef</code> constraint.</p></li></ul>
+<p>These cases of evolution will translate to a combination of field deletions and/or creations. Consequently, the existing data should be migrated manually.</p></li></ul>
+<h3 id="id2s3">
+Limitations related to field-level evolutions</h3>
+<p>When changing the type of a field to an incompatible type or cardinality, the field will be considered as a new one, and start with an empty content. The previous content will be retrieved if the model is rolled back to a previous definition.</p><ul>
+<li><p>The following types are fully inter-convertible (meaning these types have the same exact persistent representation, and can be substituted to each other in the following charts):</p><ul>
+<li><p><code>xs:string</code></p></li><li><p><code>osd:color</code></p></li><li><p><code>osd:datasetName</code></p></li><li><p><code>osd:dataspaceKey</code></p></li><li><p><code>osd:email</code></p></li><li><p><code>osd:html</code></p></li><li><p><code>osd:local</code></p></li><li><p><code>osd:resource</code></p></li><li><p><code>xs:nmtoken</code></p></li><li><p><code>xs:nmtokens</code></p></li><li><p><code>osd:text</code></p></li><li><p><code>xs:anyUri</code></p></li><li><p><code>xs:name</code></p></li></ul>
+</li><li><p>The following conversions are fully supported (that is, regardless of their cardinalities):</p><ul>
+<li><p><code>xs:decimal</code> to <code>xs:string</code></p></li><li><p><code>xs:datetime</code> to <code>xs:string</code></p></li><li><p><code>xs:date</code> to <code>xs:string</code></p></li><li><p><code>xs:integer</code> to <code>xs:string</code></p></li><li><p><code>xs:int</code> to <code>xs:decimal</code></p></li><li><p><code>xs:integer</code> to <code>xs:decimal</code></p></li><li><p><code>xs:decimal</code> to <code>xs:integer</code> (losing the decimal part)</p></li><li><p><code>xs:int</code> to <code>xs:integer</code></p></li><li><p><code>xs:datetime</code> to <code>xs:date</code> (losing the time part)</p></li><li><p><code>xs:date</code> to <code>xs:datetime</code> (defaulting the time part to 0)</p></li></ul>
+</li><li><p>The following conversions are possible only if the original type is single-valued:</p><ul>
+<li><p><code>xs:boolean</code> to <code>xs:string</code></p></li><li><p><code>xs:time</code> to <code>xs:string</code></p></li><li><p><code>xs:int</code> to <code>xs:string</code></p></li><li><p><code>xs:long</code> to <code>xs:string</code></p></li></ul>
+</li></ul>
+<p>The cardinality of a type can be changed; when the conversion is supported, it has the following behavior:</p><ul>
+<li><p>When changing a single element to an aggregated list, the previous single value is preserved and added to the new aggregated list.</p></li><li><p>When changing an aggregated list to a single element, only the last value of the aggregated list is preserved in the single element. Other values are lost.</p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Groups and complex types do not support conversion to (and from) any other types. Moreover, when a group or complex type changes between single-occurrenced and multi-occurrenced, the conversion is supported only if the group or complex type is terminal.</p></div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Persistence</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

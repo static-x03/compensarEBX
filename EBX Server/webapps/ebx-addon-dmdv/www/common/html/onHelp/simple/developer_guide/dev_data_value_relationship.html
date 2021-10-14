@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Data value and relationship graph options</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_data_value_relationship" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=developer_guide/dev_data_value_relationship.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</span></div>
+<h1 id="dev_data_value_relationship_top">
+Data value and relationship graph options</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#dev_data_value_relationship_overview">Overview</a></li><li class="toc1"><a href="#dev_data_value_relationship_UI_tab">Displaying a graph in a UI tab</a></li><li class="toc1"><a href="#dev_data_value_relationship_custom_service">Displaying a graph from a custom service</a></li><li class="toc1"><a href="#dev_data_value_relationship_filter">Filtering data values and relationships</a></li></ul>
+</div>
+<h2 id="dev_data_value_relationship_overview">
+Overview</h2>
+<p>The API allows you to:</p><ul>
+<li><p>create a service that displays an existing data value and relationship graph—one already configured using the add-on. You can add the graph to a widget and display it on a tab of an open record. See <a href="#dev_data_value_relationship_UI_tab">Displaying a graph in a UI tab</a>.</p></li><li><p>filter which nodes and links display in a data value and relationship graph. See <a href="#dev_data_value_relationship_filter">Filtering data values and relationships</a> for an example.</p></li></ul>
+<h2 id="dev_data_value_relationship_UI_tab">
+Displaying a graph in a UI tab</h2>
+<p>The API provides a sample widget you can use to display an existing data value and relationship graph in a UI tab. When users view a record, they can select the tab that displays the graph. To display a data value graph in a UI tab:</p><ol>
+<li><p>Add the EBX® Data Model and Data Visualization Add-on&#39;s <code>com.orchestranetworks.addon.dmdv.data.ui.GraphDataUIWidgetFactory</code> component to the desired data model. As shown below, the full name of the component must be included in the <strong>Configuration</strong> field.</p><p><img alt="/add_component_1.png" src="./resources/images/add_component_1.png"></img></p></li><li><p>Select the <strong>Configuration</strong>&#39;s <strong>Parameters</strong> tab and enable both parameters.</p><p><img alt="/add_component_2.png" src="./resources/images/add_component_2.png"></img></p></li><li><p>In the navigation pane select the table where the tab will be added. On the <strong>Advanced properties</strong> tab, under <em>Table &gt; Presentation &gt; Default rendering for groups in forms &gt; Enabled rendering</em>, enable the tabs option. Save your progress. </p></li><li><p>Add a <strong>Group</strong> child element to this table.</p></li><li><p> Set the <strong>Minimum number of values</strong> property to 0. This setting doesn&#39;t change the ability to display the graph, but prevents a validation message from displaying.</p></li><li><p>Select the <strong>Advanced properties</strong> tab and under <strong>Default view and tools</strong>:</p><ul>
+<li><p>Enable the <strong>As tab</strong> option under <strong>Rendering in forms</strong>.</p></li><li><p>In the <strong>Widget</strong> group&#39;s <strong>Component</strong> tab select the component created in previous steps.</p></li><li><p>Select the <strong>Parameters</strong> tab and enter the configuration name for the graph you want to display. Enter the following in the <strong>widgetKey</strong> parameter: <strong><code>com.orchestranetworks.addon.dmdv.data.ui.GraphDataTabUIWidget</code></strong>.</p></li><li><p>Set <strong>Access properties</strong> to <strong>Read only</strong>. Save your progress.</p></li></ul>
+</li><li><p>To test, navigate to the updated table, open a record, and select the new tab.</p><p><img alt="/graph_ui_tab_1.png" src="./resources/images/graph_ui_tab_1.png"></img></p></li></ol>
+<h2 id="dev_data_value_relationship_custom_service">
+Displaying a graph from a custom service</h2>
+<p>You can write a service from which users can generate an existing data value and relationship graph. As the following sample shows you use <code>UIHttpManagerComponent.getComponentForGraphDataService</code> to generate a web component containing a data value graph. The <code>GraphDataSpec</code> instance must set the graph name that of an existing value and relationship graph configuration. When you register the service in <code>module.xml</code>, its scope must be set to <code>onRecord</code>. Currently, the API only supports the selection of one record. For more information on writing services, see the EBX® product documentation.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>You can use <code>GraphDataSpec</code> to enable or disable specific graph features. The <code>GraphDataFeatures</code> class enumerates these features.</p></div>
+<pre class="brush: java; toolbar: false; gutter: false;">
+/*
+ * Copyright Orchestra Networks 2000-2008. All rights reserved.
+ */
+package com.orchestranetworks.addon.dmdv.userservice;
+
+import com.onwbp.adaptation.*;
+import com.orchestranetworks.addon.dmdv.data.ui.*;
+import com.orchestranetworks.ui.*;
+import com.orchestranetworks.ui.selection.*;
+import com.orchestranetworks.userservice.*;
+
+/**
+ */
+public class ADataValueDemo implements UserService&lt;RecordEntitySelection>
+{
+
+	@Override
+	public void setupObjectContext(
+		UserServiceSetupObjectContext&lt;RecordEntitySelection> context,
+		UserServiceObjectContextBuilder builder)
+	{
+	}
+
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;RecordEntitySelection> context,
+		UserServiceDisplayConfigurator config)
+	{
+		final Adaptation record = context.getEntitySelection().getRecord();
+
+		if (record != null)
+		{
+			config.setContent(new UserServicePane()
+			{
+				@Override
+				public void writePane(UserServicePaneContext context, UserServicePaneWriter writer)
+				{
+					String GRAPH_CONFIGURATION_NAME = "SupplyChainConfiguration";
+					// Initiate an instance of Graph Data Specification and set the graph name to a working configuration
+					GraphDataSpec graphSpec = new GraphDataSpec();
+					graphSpec.setGraphConfigurationName(GRAPH_CONFIGURATION_NAME);
+
+					// Prepare the necessary info: record selection and place holder for graph
+					writer.add("&lt;div id='" + GRAPH_CONFIGURATION_NAME + "' style='height:100%;'>");
+					writer.add(
+						"&lt;iframe id='" + GRAPH_CONFIGURATION_NAME
+							+ "_frame' width='100%' height='100%'");
+
+					// Use GraphDataHttpManagerComponentUtils to generate a web component containing the graph
+					UIHttpManagerComponent comp = GraphDataHttpManagerComponentUtils
+						.getComponentForGraphDataService(writer, record, graphSpec);
+
+					// Insert graph component URL into the prepared iframe to display
+					String url = comp.getURIWithParameters();
+					writer.add(
+						" frameBorder='0' style='border-width: 0px; ' src='" + url + "'>&lt;/iframe>");
+					writer.add("&lt;/div>");
+				}
+			});
+		}
+	}
+
+	@Override
+	public void validate(UserServiceValidateContext&lt;RecordEntitySelection> context)
+	{
+	}
+
+	@Override
+	public UserServiceEventOutcome processEventOutcome(
+		UserServiceProcessEventOutcomeContext&lt;RecordEntitySelection> context,
+		UserServiceEventOutcome eventOutcome)
+	{
+		return null;
+	}
+}</pre>
+<p>As shown below, the service is available from the <strong>Actions</strong> menu:</p><p><img alt="/data_value_graph_custom_service.png" src="./resources/images/data_value_graph_custom_service.png"></img></p><h2 id="dev_data_value_relationship_filter">
+Filtering data values and relationships</h2>
+<p>You can use a Java class to filter out values and relationships from a graph. After creating the class, it must be declared in the data value and relationship graph configuration. The following example describes a basic filter. For a more in-depth description, see the API documentation:</p><ol>
+<li><p>As shown below the class must implement the <code>DisplayFilter</code> interface and basic logic to determine which nodes should be filtered out. The <code>accept()</code> is called on each link in the graph during generation. If it returns <code>True</code> the link and related nodes display. </p><pre class="brush: java; toolbar: false; gutter: false;">
+package com.orchestranetworks.addon.test.dmdv.model;
+
+import com.orchestranetworks.addon.dmdv.data.filter.*;
+import com.orchestranetworks.schema.*;
+
+public class FilterNodes implements DisplayFilter
+{
+	@Override
+	public boolean accept(FilterContext context)
+	{
+		
+		NodeContext factoryNodeContext = context.getLink().getEndNodeContext();
+		Node factoryNode = factoryContext.getNode();
+		Record factoryRecord = factoryNode.getRecord();
+		String factoryName = factoryRecord.get(Path.parse("./factory")).toString();
+
+		return !factoryName.contains("Factory");
+	}
+}
+</pre>
+</li><li><p>Open the <strong>Link configuration</strong> from which you want to filter values. In the <strong>Custom filter class</strong> enter the qualified path to the created filter.</p><p>The following image shows a graph before applying the filter and after:</p><p><img alt="/implemented_filter.png" src="./resources/images/implemented_filter.png"></img></p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

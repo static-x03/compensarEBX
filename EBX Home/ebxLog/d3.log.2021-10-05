@@ -1,0 +1,10 @@
+2021-10-05 15:27:24,541 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:27:48,045 MDT INFO   log.d3 1155 [ebx-boot] D3 is not activated in 'ebx.properties'.
+2021-10-05 15:35:22,397 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:38:11,690 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:42:20,319 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:52:45,790 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:54:21,916 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:55:39,169 MDT INFO   log.d3 1155 [http-nio-9090-exec-3] D3 is not activated in 'ebx.properties'.
+2021-10-05 16:11:45,153 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 16:12:21,981 MDT INFO   log.d3 1155 [ebx-boot] D3 is not activated in 'ebx.properties'.

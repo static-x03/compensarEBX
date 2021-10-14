@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="restapi_introduction" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/restapi_introduction.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Introduction</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#interactions">Interactions</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Input and output message encoding</a></li><li class="toc2"><a href="#tracking">Tracking information</a></li><li class="toc2"><a href="#inputParameters">Session parameters</a></li><li class="toc2"><a href="#procedureContext">Procedure context</a></li><li class="toc2"><a href="#exceptions">Exception handling</a></li></ul>
+</li><li class="toc1"><a href="#security">Security</a><ul class="toc2">
+<li class="toc2"><a href="#authentication">Authentication</a></li><li class="toc2"><a href="#lookupMecanism">Lookup mechanism</a></li></ul>
+</li><li class="toc1"><a href="#comparative">SOAP and REST comparative</a></li><li class="toc1"><a href="#limitations">Limitations</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Date, time &amp; dateTime format</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>REST data services allow external systems to interact with data governed in the TIBCO EBX&reg; repository using the RESTful built-in services.</p><p>The request and response syntax for built-in services are described in the chapter <a href="../data_services/dataservices_rest_v1.html">Built-in RESTful services</a>.</p><p>Built-in REST data services allow performing operations such as:</p><ul>
+<li><p>Selecting, inserting, updating, deleting, or counting records</p></li><li><p>Selecting or counting history records</p></li><li><p>Selecting, updating, or counting dataset values</p></li><li><p>Selecting or updating dataspace or snapshot information</p></li><li><p>Selecting children dataspaces or snapshots</p></li><li><p>Creating, merging, or closing a dataspace</p></li><li><p>Creating or closing a snapshot</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>See <a href="#comparative">SOAP and REST comparative</a>.</p></div>
+<h2 id="interactions">
+Interactions</h2>
+<h3 id="id2s1">
+Input and output message encoding</h3>
+<p>All input and output messages must be <em>exclusively</em> in UTF-8 for REST built-in.</p><h3 id="tracking">
+Tracking information</h3>
+<p>Depending on the data services operation being called, it may be possible to specify session-tracking information.</p><ul>
+<li><p>Example for a RESTful operation, the JSON request contains:</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+	"procedureContext":               // JSON Object (optional)
+	{
+		"trackingInformation": "String" // JSON String (optional)
+	},
+	...
+}</pre>
+</li></ul>
+<h3 id="inputParameters">
+Session parameters</h3>
+<p>Depending on the data services operation being called, it is possible to specify session input parameters. They are defined in the request body.</p><ul>
+<li><p>Example for a RESTful operation, the JSON request contains:</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+	"procedureContext":                // JSON Object (optional)
+	{
+		"trackingInformation": "String", // JSON String (optional)
+		"inputParameters":               // JSON Array (optional)
+		[
+			// JSON Object for each parameter
+			{
+				"name": "String",            // JSON String (required)
+				"value": "String"            // JSON String (optional)
+			},
+			...
+		]
+	},
+	...
+}</pre>
+</li></ul>
+<h3 id="procedureContext">
+Procedure context</h3>
+<p>Depending on the data services operation being called, it is possible to overwrite the default procedure context configuration. They are defined in the request body and are applied within the built-in operation.</p><ul>
+<li><p>Example for a RESTful operation, the JSON request body contains:</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+	"procedureContext":            // JSON Object (optional)
+	{
+		"commitThreshold": Integer   // JSON Number (optional)
+	},
+	...
+}</pre>
+</li></ul>
+<h3 id="exceptions">
+Exception handling</h3>
+<p>When an error occurs, a JSON exception response is returned to the caller. For example:</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "code": 999,               // JSON Number, HTTP status code
+  "errors": [
+    {
+      "level": "...",        // JSON String, severity level (optional)
+      "rowIndex": 999,       // JSON Number, request row index (optional)
+      "userCode": "...",     // JSON String, user code (optional)
+      "message": "...",      // JSON String, message
+      "blocksCommit": "...", // JSON String, Type of blocking constraints (optional)
+      "details": "...",      // JSON String, URL (optional)
+      "pathInRecord": "...", // JSON String, Path in record (optional)
+      "pathInDataset": "..." // JSON String, Path in dataset (optional)
+    }
+  ]
+}</pre>
+<p>The response contains an HTTP status code and a table of errors. The severity level of each error is specified by a character, with one of the possible values (<code>fatal</code>, <code>error</code>, <code>warning</code>, <code>info</code>).</p><p>The HTTP error <code>422</code><em> (Unprocessable entity)</em> corresponds to a functional error. It contains a user code under the <code>userCode</code> key and is a JSON <code>String</code> type.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#httpCode">HTTP codes</a></li></ul>
+</div>
+<h2 id="security">
+Security</h2>
+<h3 id="authentication">
+Authentication</h3>
+<p>Authentication is mandatory to access built-in services. Several authentication methods are available and described below. The descriptions are ordered by priority (EBX&reg; applies the highest priority authentication method first).</p><ul>
+<li id="token"><p>&#39;Token Authentication Scheme&#39; method is based on the HTTP-Header <code>Authorization</code>, as described in <a href="https://tools.ietf.org/html/rfc2617">RFC 2617</a>.</p><pre class="brush: plain; toolbar: false; gutter: false;">
+&gt; Authorization: &lt;tokenType&gt; &lt;accessToken&gt;</pre>
+<p>For more information on this authentication scheme, see <a href="../data_services/dataservices_rest_v1.html#authOperation">Token authentication operations</a>.</p></li><li id="basic"><p>&#39;Basic Authentication Scheme&#39; method is based on the HTTP-Header <code>Authorization</code> in base64 encoding, as described in <a href="https://tools.ietf.org/html/rfc2617#section-2">RFC 2617 (Basic Authentication Scheme)</a>.</p><pre class="brush: plain; toolbar: false; gutter: false;">
+If the user agent wishes to send the userid "Alibaba" and password "open sesame",
+it will use the following header field:
+&gt; Authorization: Basic QWxpYmFiYTpvcGVuIHNlc2FtZQ==
+</pre>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>The <code><a href="../data_services/dataservices_rest_v1.html#WWW_Authenticate">WWW-Authenticate</a></code> header can be valued with this method.</p></div>
+</li><li id="standard"><p>&#39;Standard Authentication Scheme&#39; is based on the HTTP <code>Request</code>. User and password are extracted from request parameters. For more information on request parameters, see <a href="../data_services/dataservices_wsdl.html#WSDLConnector_Parameters">Parameters</a> section.</p></li><li id="anonymous"><p>&#39;Anonymous authentication Scheme&#39; is used only to access the REST services handling the authentication operations. The credentials acquisition, password changes, etc. implies that the user cannot be known yet. </p></li></ul>
+<h3 id="lookupMecanism">
+Lookup mechanism</h3>
+<p> Because EBX&reg; offers several authentication methods, a lookup mechanism based on conditions was set to know which method should be applied for a given request. The method application conditions are evaluated according to the authentication scheme priority. If the conditions are not satisfied, the server evaluates the next method. The following table presents the available authentication methods for each supported protocol and their application conditions. They are ordered from the highest priority to the lowest. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th align="center" valign="top"><p><strong> Operation / Protocol </strong></p></th><th align="center" valign="top"><p><strong> Authentication methods and application conditions </strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="middle"><p>REST / HTTP</p></td><td valign="top"><p><a href="#token">Token</a></p><ul>
+<li><p> The HTTP request must hold an <code>Authorization</code> header. </p></li><li><p><code>Authorization</code> header value must start with the word <code>EBX</code>. </p></li><li><p> No <code>login</code> is provided in the URL parameters. </p></li></ul>
+<p><a href="#basic">Basic</a></p><ul>
+<li><p> The HTTP request must hold an <code>Authorization</code> header. </p></li><li><p><code>Authorization</code> header value must start with the word <code>Basic</code>. </p></li><li><p> No <code>login</code> is provided in the URL parameters. </p></li></ul>
+<p><a href="#standard">Standard</a></p><ul>
+<li><p> The HTTP request must not hold an <code>Authorization</code> header. </p></li><li><p> A <code>login</code> and a <code>password</code> are provided in the URL parameters. </p></li></ul>
+<p><a href="#anonymous">Anonymous</a></p><ul>
+<li><p>None of the previous authentication methods can be applied.</p></li><li><p>The requested REST service is handling an authentication operation.</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<p> In case of multiple authentication methods present in the same request, EBX&reg; will return an HTTP code <code>401 Unauthorized</code>. </p><h2 id="comparative">
+SOAP and REST comparative</h2>
+<p></p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Operations</strong></p></th><th align="center" valign="top"><p><strong>SOAP</strong></p></th><th align="center" valign="top"><p><strong>REST</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><strong>Data</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Select metadata</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select or count records (with filter and/or view publication)</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Selector for possible enumeration values (with filter)</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Prepare for creation or duplication</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Insert, update or delete records</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select or count history records (with filter and/or view publication)</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select node values from dataset</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Update node value from dataset</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Get table or dataset changes between dataspaces or snapshots</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Get credentials for records</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Generate service contract</p></td><td align="center"><p>WSDL</p></td><td align="center"><p>OpenAPI</p></td></tr>
+<tr>
+<td><p><strong>Views</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Look up published table views</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p><strong>Dataspaces</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Select dataspace or snapshot information</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select root or children dataspaces, or select snapshots</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Create, close, merge a dataspace</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Create, close a snapshot</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Validate a dataspace or a snapshot</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Validate a dataset</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Locking, unlocking a dataspace</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p><strong>Workflow</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Start, resume or end a workflow</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+</tbody>
+</table>
+<h2 id="limitations">
+Limitations</h2>
+<h3 id="id5s1">
+Date, time &amp; dateTime format</h3>
+<p>Data services only support the following date and time formats:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Type</strong></p></th><th valign="top"><p><strong>Format</strong></p></th><th valign="top"><p><strong>Example</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>xs:date</p></td><td><p>yyyy-MM-dd</p></td><td><p>2007-12-31</p></td></tr>
+<tr>
+<td><p>xs:time</p></td><td><p>HH:mm:ss or HH:mm:ss.SSS</p></td><td><p>11:55:00</p></td></tr>
+<tr>
+<td><p>xs:dateTime</p></td><td><p>yyyy-MM-ddTHH:mm:ss or yyyy-MM-ddTHH:mm:ss.SSS</p></td><td><p>2007-12-31T11:55:00</p></td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

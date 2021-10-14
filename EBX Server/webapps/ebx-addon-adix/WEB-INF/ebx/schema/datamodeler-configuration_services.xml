@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML for user services generated from EBX5 DMA instance [reference=DML] on Wed Feb 08 13:37:00 ICT 2017 by user [admin].-->
+<services xmlns="urn:ebx-schemas:userServices_1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:ebx-schemas:userServices_1.0 http://schema.orchestranetworks.com/userServices_1.0.xsd">
+	<service name="DMLSnipletServlet">
+		<resourcePath>/DataExchangeSnipletServlet</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/root/DataModel</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>false</displayInMenu>
+		<confirmation disable="false" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="generateToXSD">
+		<documentation id="service.generateToXSD" />
+		<resourcePath>/datamodeler?service_name=generateToXSD&amp;action=generateWaiting</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.AdministrationPermission" />
+		<activation>
+			<onDataModel>
+				<path>/root/DataModel{1}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>2</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="ImportDescription">
+		<documentation id="service.ImportDescription" />
+		<resourcePath>/datamodeler?service_name=importDescription&amp;action=uploadFile</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.AdministrationPermission" />
+		<activation>
+			<onDataModel>
+				<path>/root/DataModel{1}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>1</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+</services>
+

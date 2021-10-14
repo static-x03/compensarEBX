@@ -1,0 +1,21 @@
+{
+  "parent": "http://.../BooksByAuthors/orphans/0",
+  "content": [
+    {
+      "label": "The dream",
+      "member": "http://.../BooksByAuthors/orphans/0/book1011",
+      ...
+    },
+    {
+      "label": "Les mystères de la peur",
+      "member": "http://.../BooksByAuthors/orphans/0/book1321",
+      ...
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../BooksByAuthors/orphans/0/members?pageAction=next&amp;pageCursor=book1321",
+    "lastPage": "http://.../BooksByAuthors/orphans/0/members?pageAction=last"
+  }
+}

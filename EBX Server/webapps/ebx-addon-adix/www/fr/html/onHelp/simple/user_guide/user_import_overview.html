@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Importing data</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_import_overview_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; User Guide &gt; Getting Started with Data Exchange</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_import_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; User Guide &gt; Getting Started with Data Exchange</span></div>
+<h1>
+Importing data</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_import_overview_top">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#user_import_overview_common_pages">Common pages</a></li></ul>
+</li><li class="toc1"><a href="#user_import_overview_csv">Importing from a CSV file</a></li><li class="toc1"><a href="#user_import_overview_excel">Importing from an Excel file</a></li><li class="toc1"><a href="#user_importing_sql">Overview of importing from an external database</a><ul class="toc2">
+<li class="toc2"><a href="#user_importing_sql_steps">SQL import </a></li></ul>
+</li><li class="toc1"><a href="#user_import_overview_xml">Importing from an XML file</a></li></ul>
+</div>
+<h2 id="user_import_overview_top">
+Overview</h2>
+<p>When you import data using the add-on, you bring data from a <em>source</em> location such as a file, or database, into a <em>target</em> EBX® table. You can initiate import from the following two locations:</p><ul>
+<li><p>A dataset&#39;s <strong>Actions</strong> menu. Note that the only available import format here is importing from an Excel file. You will have the option of selecting one or more of the dataset&#39;s tables as the import&#39;s target.</p><p><img alt="/run_import_data_set.png" src="./resources/images/run_import_data_set.png"></img></p></li><li><p>A table&#39;s <strong>Actions</strong> menu. All import formats are available here and the table from which you run the service becomes the target.</p><p><img alt="/run_import_table.png" src="./resources/images/run_import_table.png"></img></p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>When importing XML or Excel, you can import multi-valued complex fields. All levels of a complex field can be imported with XML. However, only the first level can be imported from an Excel file.</p></div>
+<h3 id="user_import_overview_common_pages">
+Common pages</h3>
+<p>There are several pages common to CSV, Excel and XML import operations. Note that the <strong>Configuration</strong>, <strong>Mapping</strong>, and <strong>Simulation</strong> screens are accessible by default. However, administrators can use permissions to restrict access to these screens for specific profiles. See <a href="../user_guide/user_setting_permissions.html">Setting import and export permissions</a> for more information.</p><p>The following sections provide brief overviews of each page:</p><ul>
+<li><p><a href="#file_select_page">File selection and Preference page</a></p></li><li><p><a href="#configuration_page">Configuration page</a></p></li><li><p><a href="#mapping_page">Mapping page</a></p></li><li><p><a href="#preview_page">Preview and simulation page</a></p></li><li><p><a href="#results_page">Results page</a></p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>At any time, if you have a question about an option on an import page, hover your mouse over its label and click the icon to open the related tooltip. Additionally, you can see the <em>Reference Guide</em> which also contains descriptions of each field. For options, or behavior specific to each format, see their corresponding sections below.</p></div>
+<h4 id="file_select_page">
+File selection and Preference page</h4>
+<p>When importing from Excel or CSV formats, this page allows you to select the source file and optionally choose a preference to load. Preferences store import configuration settings. If you use a preference, you can still adjust individual configuration settings. For example, you can include or exclude tables after loading a preference. When importing XML, file selection is done from the configuration page (described in the next section).</p><p>If an administrator has setup a custom mapping for data transformation, you&#39;ll use the preferences to tell the add-on to import using the appropriate configuration.</p><h4 id="configuration_page">
+Configuration page</h4>
+<p>The configuration page allows you to provide information about the file used as source for this import. For example, when importing from a CSV file, you can specify the types of separators and line breaks used in the file. Additional options allow you to control import behavior such as:</p><ul>
+<li><p>Specifying the import mode. Options can include update, insert, replace all content.</p></li><li><p>Determining whether to force the import by disabling any existing triggers and constraints.</p></li><li><p>Ensuring all primary key columns are mapped.</p></li><li><p>Specifying that missing values, are not imported into the table.</p></li><li><p>Pointing to custom Java classes that transform, or validate imported data.</p></li></ul>
+<h4 id="mapping_page">
+Mapping page</h4>
+<p>The add-on has two types of mapping pages; those for tables and those for columns. Only Excel uses the table mapping functionality as you can import to multiple tables and from multiple sheets. The objective of these two pages is to map the data source and target. All columns must either be mapped, or ignored. Additionally, you can view a sample of the data and save preferences for later use.</p><h4 id="preview_page">
+Preview and simulation page</h4>
+<p>After all configuration settings are complete, you can simulate the import operation prior to execution. This page provides several options for simulation that help you ensure the desired outcome before importing.</p><h4 id="results_page">
+Results page</h4>
+<p>The results page displays the import operation&#39;s results. From this page you can also start another import.</p><h2 id="user_import_overview_csv">
+Importing from a CSV file</h2>
+<p>When you import a CSV file, the configuration page allows you to:</p><ul>
+<li><p>Specify import behavior.</p></li><li><p>Supply information about the file you are importing from, such as the separators and line return types used in the file.</p></li><li><p>Point to any Java classes used to transform, or validate data.</p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>If you are importing to a table that has its primary key set to read-only and you want to map to this column, you can run the import in <strong>Update only</strong>, or <strong>Update or insert</strong> mode. In these modes, records will be updated, but an error message will display if an attempt is made to insert a new record.</p></div>
+<p>Remember that on the column mapping page all columns must either be mapped, or ignored. The following image highlights some of these features:</p><p><img alt="/import_csv_column_mapping_page.png" src="./resources/images/import_csv_column_mapping_page.png"></img></p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the source file sample isn&#39;t displaying, the wrong separators may be selected in the configuration page.</p></div>
+<h2 id="user_import_overview_excel">
+Importing from an Excel file</h2>
+<p>Import behavior and options can vary slightly depending on where you initiate Excel import from. However, the first three pages always allow you to select the file to import, load any saved preferences, and adjust configuration settings.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>If you are importing to a table that has its primary key set to read-only, and you want to map to this column, you can run the import in <strong>Update only</strong>, or <strong>Update and insert</strong> mode. In these modes, records will be updated, but an error message will display if an attempt is made to insert a new record.</p></div>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>To avoid issues during import of a large Excel file, please do not activate the <strong>Download file of invalid data</strong> option.</p></div>
+<p>When you run the import service from a dataset&#39;s <strong>Actions</strong> menu, the add-on presents you with the additional table mapping screen. This screen allows you to import the same source sheet into multiple tables, and import each source sheet into different tables. The following image highlights these options:</p><p><img alt="/import_excel_table_mapping_page.png" src="./resources/images/import_excel_table_mapping_page.png"></img></p><h2 id="user_importing_sql">
+Overview of importing from an external database</h2>
+<p>Before importing from an SQL source, an administrator needs to configure the add-on to connect to the database. The service is not available until these steps are completed.</p><h3 id="user_importing_sql_steps">
+SQL import </h3>
+<p>The following steps demonstrate how to use the <strong>Import SQL</strong> service</p><ol>
+<li><p>From a table&#39;s <strong>Actions</strong> menu, select the <strong>Import SQL</strong> service, the <strong>Import SQL</strong> screen displays.</p><p><img alt="/sql_import_1.png" src="./resources/images/sql_import_1.png"></img></p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>If you are importing to a table that has its primary key set to Read-only, you can run the import in <strong>Update only</strong>, or <strong>Update and insert</strong> mode. In these modes, records will be updated, but an error message will display if an attempt is made to insert a new record.</p></div>
+</li><li><p>On the <strong>Import SQL</strong> screen, you must specify the source table or view in the external database on which the add-on reads data from and choose the Java class used to map data. All the tables in the connected external database display in the <strong>SQL table view</strong> property&#39;s drop-down list. </p><p><img alt="/sql_import_2.png" src="./resources/images/sql_import_2.png"></img></p></li><li><p>If you are connected to a database with a large number of tables or views, it may negatively affect add-on performance when loading. You can narrow down the loading scope by setting the specific table name or limiting table objects using the relational search character <code><em>%</em></code> in <em>Reference data</em> &gt; <em>SQL data source</em> &gt; the <em>Table name pattern</em> property.</p></li><li><p>As shown below, you also can filter data from the external database when importing by entering the conditions in the <strong>SQL predicate</strong> text box in the same way as you use the <em>WHERE</em> SQL clause. </p><p><img alt="/sql_import_3.png" src="./resources/images/sql_import_3.png"></img></p></li><li><p>Once you have finished the configuration, click the <strong>Mapping</strong> button to enter the <strong>Mapping column</strong> screen. You can select or ignore columns by checking the checkbox before each field name prior to data import.</p><p><img alt="/sql_import_4.png" src="./resources/images/sql_import_4.png"></img></p></li><li><p>Click <strong>Import</strong> if you&#39;ve finished mapping. When the import progress completes, a detailed result report displays the number of records proceeded.</p><p><img alt="/sql_import_5.png" src="./resources/images/sql_import_5.png"></img></p></li></ol>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th colspan="2" valign="top"><p>Special notation:</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p align="center"><img alt="/100002010000000E0000000E3C009B93.png" src="./resources/images/100002010000000E0000000E3C009B93.png" width="18"></img></p></td><td valign="top"><p>You must have &#39;Read&#39; permission on the external database to import data to EBX® tables.</p></td></tr>
+</tbody>
+</table>
+<h2 id="user_import_overview_xml">
+Importing from an XML file</h2>
+<p>When you import from an XML file, the add-on automatically detects the appropriate data mapping to use. So, all you have to do is select the file and set configuration options.</p><p>If you encounter difficulties when importing from XML, it could be that the file either doesn&#39;t meet the requirements to use the add-on&#39;s default formatting. In this case an administrator needs to customize a mapping configuration.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>If you are importing to a table that has its primary key set to Read-only, and you want to map to this column, you can run the import in <strong>Update and insert</strong> mode. In this mode, records will be updated, but an error message will display if an attempt is made to insert a new record.</p></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

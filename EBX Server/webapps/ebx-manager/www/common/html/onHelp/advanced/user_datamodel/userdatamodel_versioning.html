@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Versioning a data model</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_versioning" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data models &gt; Publishing and versioning data models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_versioning.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Publishing and versioning data models</span></div>
+<h1>
+Versioning a data model</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">About versions</a></li><li class="toc1"><a href="#id2">Accessing versions</a></li><li class="toc1"><a href="#actions">Working with versions</a></li><li class="toc1"><a href="#id4">Known limitations on data model versioning</a></li></ul>
+</div>
+<h2 id="id1">
+About versions</h2>
+<p>You can create <em>versions</em> for data models that evolve in parallel. Versions are not to be confused with data model snapshots, which are taken at publication time and kept strictly for historical read-only reference.</p><h2 id="id2">
+Accessing versions</h2>
+<p>To see the existing versions of your data model, select &#39;Manage versions&#39; from the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>data model &#39;Actions&#39;</strong></a> menu of the data model.</p><p>The existing versions are represented in a tree format according to their parent-child relationships. Every data model has a root version by default, with the same name as the data model.</p><h2 id="actions">
+Working with versions</h2>
+<p>In the workspace, using the down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img>menu next to each version, you can perform the following actions:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Access data model version</p></td><td class="ebx_definitionListDefinition"><p>Go to the corresponding version of the data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Create version</p></td><td class="ebx_definitionListDefinition"><p>Creates a new version based on the contents of the selected version. The new version is added as a child of the selected version, though its contents bear no relation to those of its parent version after creation.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Set as default version</p></td><td class="ebx_definitionListDefinition"><p>Sets the selected version as the default version opened when users access the data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Export archive</p></td><td class="ebx_definitionListDefinition"><p>Exports the selected data model version to an archive containing the version&#39;s content, including its permissions and information. The exported archive is located in the archives directory, which is accessible to repository administrators. Exporting to an existing archive name will overwrite the existing file.</p><p>See <a href="../engine/repository_administration.html#archive">Archives directory</a> for more information.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Import archive</p></td><td class="ebx_definitionListDefinition"><p>Imports the content of an archive into the selected version. The archive to import must contain a data model with the same name as the data model associated with the version.</p></td></tr>
+</table>
+<p>A version can be deleted by clicking the <strong>X</strong> button to the right of its entry. A version cannot be deleted if it is linked to a publication or if it has child versions. The root version of a data model also cannot be deleted.</p><p>Two versions of the same data model can be compared in the workspace by selecting their checkboxes, then selecting <strong>Actions &gt; Compare selected versions</strong>. The side-by-side comparison shows structural differences between the version of the data model, with the older version on the left and the newer version on the right.</p><h2 id="id4">
+Known limitations on data model versioning</h2>
+<ul>
+<li><p>It is not possible to merge two versions of a data model.</p></li><li><p>The comparison interface does not display updates on fields, only additions and deletions.</p></li><li><p>Versioning of data models packaged in modules is not supported.</p></li><li><p>Resources packaged in a module that are used by an embedded data model are not versioned when a version is created. That is, only the reference of the resources are saved during the creation of a version, and it is the responsibility of developers to ensure that the content of the referenced resources are compatible with any versions that may be using them.</p></li></ul>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Publishing and versioning data models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

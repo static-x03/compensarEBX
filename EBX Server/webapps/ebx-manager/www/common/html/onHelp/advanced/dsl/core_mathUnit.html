@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Unit core.math</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dsl.core.mathUnit" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/core_mathUnit.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+<h1>
+Unit core.math</h1>
+<p>Script unit that provides mathematical functions and constants.</p><table>
+<thead>
+<tr>
+<th align="left" valign="top">Methods</th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><a href="#functionsinvaluedecimaldecimal">function sin(value: decimal): decimal</a></p><p>Returns the trigonometric sine of an angle.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functioncosvaluedecimaldecimal">function cos(value: decimal): decimal</a></p><p>Returns the trigonometric cosine of an angle.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontanvaluedecimaldecimal">function tan(value: decimal): decimal</a></p><p>Returns the trigonometric tangent of an angle.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionasinvaluedecimaldecimal">function asin(value: decimal): decimal</a></p><p>Returns the arc sine of a value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionacosvaluedecimaldecimal">function acos(value: decimal): decimal</a></p><p>Returns the arc cosine of a value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionatanvaluedecimaldecimal">function atan(value: decimal): decimal</a></p><p>Returns the arc tangent of a value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoDegreesvaluedecimaldecimal">function toDegrees(value: decimal): decimal</a></p><p>Converts an angle measured in degrees to an approximately equivalent angle measured in radians.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoRadiansvaluedecimaldecimal">function toRadians(value: decimal): decimal</a></p><p>Converts an angle measured in radians to an approximately equivalent angle measured in degrees.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionexpvaluedecimaldecimal">function exp(value: decimal): decimal</a></p><p>Returns Euler&#39;s number <em>e</em> raised to the power of a <code>decimal</code> value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionlogvaluedecimaldecimal">function log(value: decimal): decimal</a></p><p>Returns the natural logarithm (base <em>e</em>) of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionscaleByPowerOfTenvaluedecimalpowerdecimaldecimal">function scaleByPowerOfTen(value: decimal, power: decimal): decimal</a></p><p>Returns the <code>value</code> scale by <code>power</code> of ten.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionsqrtvaluedecimaldecimal">function sqrt(value: decimal): decimal</a></p><p>Returns the positive square root of a value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functioncbrtvaluedecimaldecimal">function cbrt(value: decimal): decimal</a></p><p>Returns the cube root of a <code>decimal</code> value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionabsvaluedecimaldecimal">function abs(value: decimal): decimal</a></p><p>Returns the absolute value of a <code>decimal</code> value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionroundvaluedecimaldecimal">function round(value: decimal): decimal</a></p><p>Returns the integer round value of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionroundHalfEvenvaluedecimaldecimal">function roundHalfEven(value: decimal): decimal</a></p><p>Returns the integer round half even value of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionroundHalfDownvaluedecimaldecimal">function roundHalfDown(value: decimal): decimal</a></p><p>Returns the integer round half down value of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionroundUpvaluedecimaldecimal">function roundUp(value: decimal): decimal</a></p><p>Returns the integer round up value of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionroundDownvaluedecimaldecimal">function roundDown(value: decimal): decimal</a></p><p>Returns the integer round down value of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionfloorvaluedecimaldecimal">function floor(value: decimal): decimal</a></p><p>Returns the integer floor value of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionceilvaluedecimaldecimal">function ceil(value: decimal): decimal</a></p><p>Returns the integer ceil value of the input value.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionpidecimal">function pi(): decimal</a></p><p>Returns <code>pi</code> value:&nbsp;3.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionedecimal">function e(): decimal</a></p><p>Returns <code>e</code> value:&nbsp;2.</p></td></tr>
+</tbody>
+</table>
+<p></p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#functionsinvaluedecimaldecimal">function sin(value: decimal): decimal</a></li><li class="toc1"><a href="#functioncosvaluedecimaldecimal">function cos(value: decimal): decimal</a></li><li class="toc1"><a href="#functiontanvaluedecimaldecimal">function tan(value: decimal): decimal</a></li><li class="toc1"><a href="#functionasinvaluedecimaldecimal">function asin(value: decimal): decimal</a></li><li class="toc1"><a href="#functionacosvaluedecimaldecimal">function acos(value: decimal): decimal</a></li><li class="toc1"><a href="#functionatanvaluedecimaldecimal">function atan(value: decimal): decimal</a></li><li class="toc1"><a href="#functiontoDegreesvaluedecimaldecimal">function toDegrees(value: decimal): decimal</a></li><li class="toc1"><a href="#functiontoRadiansvaluedecimaldecimal">function toRadians(value: decimal): decimal</a></li><li class="toc1"><a href="#functionexpvaluedecimaldecimal">function exp(value: decimal): decimal</a></li><li class="toc1"><a href="#functionlogvaluedecimaldecimal">function log(value: decimal): decimal</a></li><li class="toc1"><a href="#functionscaleByPowerOfTenvaluedecimalpowerdecimaldecimal">function scaleByPowerOfTen(value: decimal, power: decimal): decimal</a></li><li class="toc1"><a href="#functionsqrtvaluedecimaldecimal">function sqrt(value: decimal): decimal</a></li><li class="toc1"><a href="#functioncbrtvaluedecimaldecimal">function cbrt(value: decimal): decimal</a></li><li class="toc1"><a href="#functionabsvaluedecimaldecimal">function abs(value: decimal): decimal</a></li><li class="toc1"><a href="#functionroundvaluedecimaldecimal">function round(value: decimal): decimal</a></li><li class="toc1"><a href="#functionroundHalfEvenvaluedecimaldecimal">function roundHalfEven(value: decimal): decimal</a></li><li class="toc1"><a href="#functionroundHalfDownvaluedecimaldecimal">function roundHalfDown(value: decimal): decimal</a></li><li class="toc1"><a href="#functionroundUpvaluedecimaldecimal">function roundUp(value: decimal): decimal</a></li><li class="toc1"><a href="#functionroundDownvaluedecimaldecimal">function roundDown(value: decimal): decimal</a></li><li class="toc1"><a href="#functionfloorvaluedecimaldecimal">function floor(value: decimal): decimal</a></li><li class="toc1"><a href="#functionceilvaluedecimaldecimal">function ceil(value: decimal): decimal</a></li><li class="toc1"><a href="#functionpidecimal">function pi(): decimal</a></li><li class="toc1"><a href="#functionedecimal">function e(): decimal</a></li></ul>
+</div>
+<h2 id="functionsinvaluedecimaldecimal">
+function sin(value: decimal): decimal</h2>
+<p>Returns the trigonometric sine of an angle.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p> Special cases:</p><p> If the input value is zero, then the result is a zero.</p><p><strong>Parameters :</strong></p><p>value: the input value in radians.</p><p><strong>Return :</strong></p><p>the sine of the input value or null if the input value is null.</p><h2 id="functioncosvaluedecimaldecimal">
+function cos(value: decimal): decimal</h2>
+<p>Returns the trigonometric cosine of an angle.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p></p><p><strong>Parameters :</strong></p><p>value: the input value in radians.</p><p><strong>Return :</strong></p><p>the cosine of the input value or null if the input value is null.</p><h2 id="functiontanvaluedecimaldecimal">
+function tan(value: decimal): decimal</h2>
+<p>Returns the trigonometric tangent of an angle.</p><p> Special cases:</p><p> If the input value is zero, then the result is a zero.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value in radians.</p><p><strong>Return :</strong></p><p>the tangent of the input value or null if the input value is null.</p><h2 id="functionasinvaluedecimaldecimal">
+function asin(value: decimal): decimal</h2>
+<p>Returns the arc sine of a value.</p><p> The returned angle is in the range -<em>pi</em>/2 through <em>pi</em>/2.</p><p> Special cases:</p><p> If the input value is zero, then the result is a zero.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value. Absolute value must not be greater than 1.</p><p><strong>Return :</strong></p><p>the arc sine of the input value or null if the input value is null.</p><h2 id="functionacosvaluedecimaldecimal">
+function acos(value: decimal): decimal</h2>
+<p>Returns the arc cosine of a value.</p><p> The returned angle is in the range 0.0 through <em>pi</em>.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value. Absolute value must not be greater than 1.</p><p><strong>Return :</strong></p><p>the arc cosine of the input value or null if the input value is null.</p><h2 id="functionatanvaluedecimaldecimal">
+function atan(value: decimal): decimal</h2>
+<p>Returns the arc tangent of a value.</p><p> The returned angle is in the range -<em>pi</em>/2 through <em>pi</em>/2.</p><p> Special cases:</p><p> If the input value is zero, then the result is a zero.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the arc tangent of the input value or null if the input value is null.</p><h2 id="functiontoDegreesvaluedecimaldecimal">
+function toDegrees(value: decimal): decimal</h2>
+<p>Converts an angle measured in degrees to an approximately equivalent angle measured in radians.</p><p> The conversion from degrees to radians is generally inexact.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value in radians</p><p><strong>Return :</strong></p><p>the measurement of the input value in degrees or null if the input value is null.</p><h2 id="functiontoRadiansvaluedecimaldecimal">
+function toRadians(value: decimal): decimal</h2>
+<p>Converts an angle measured in radians to an approximately equivalent angle measured in degrees.</p><p> The conversion from radians to degrees is generally inexact;</p><p> users should <em>not</em> expect <code>cos(toRadians(90.0))</code> to exactly equal <code>0.0</code>.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value in degrees</p><p><strong>Return :</strong></p><p>the measurement of the input value in radians or null if the input value is null.</p><h2 id="functionexpvaluedecimaldecimal">
+function exp(value: decimal): decimal</h2>
+<p>Returns Euler&#39;s number <em>e</em> raised to the power of a <code>decimal</code> value.</p><p> Calculations are executed after conversion in double and use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the value <em>e^value</em> where <em>e</em> is the base of the natural logarithms.</p><p> If the input value is null returns null.</p><h2 id="functionlogvaluedecimaldecimal">
+function log(value: decimal): decimal</h2>
+<p>Returns the natural logarithm (base <em>e</em>) of the input value.</p><p> Calculations use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value. Must be strictly greater than zero.</p><p><strong>Return :</strong></p><p>the natural logarithm of the input value a or null if input value is null.</p><h2 id="functionscaleByPowerOfTenvaluedecimalpowerdecimaldecimal">
+function scaleByPowerOfTen(value: decimal, power: decimal): decimal</h2>
+<p>Returns the <code>value</code> scale by <code>power</code> of ten.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p>power: the power of ten that the value will be scale to to. Must be an integer.</p><p><strong>Return :</strong></p><p>the input value scaled by the <code>power</code> of ten or null if input value or power is null.</p><h2 id="functionsqrtvaluedecimaldecimal">
+function sqrt(value: decimal): decimal</h2>
+<p>Returns the positive square root of a value.</p><p> Calculations use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value. Must be positive or null.</p><p><strong>Return :</strong></p><p>the positive square root of the input value or null if input value is null.</p><h2 id="functioncbrtvaluedecimaldecimal">
+function cbrt(value: decimal): decimal</h2>
+<p>Returns the cube root of a <code>decimal</code> value. Calculations use double-precision 64-bit IEEE 754 floating point.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the cube root of the input value or null if input value is null.</p><h2 id="functionabsvaluedecimaldecimal">
+function abs(value: decimal): decimal</h2>
+<p>Returns the absolute value of a <code>decimal</code> value.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the absolute value of the input value or null if input value is null.</p><h2 id="functionroundvaluedecimaldecimal">
+function round(value: decimal): decimal</h2>
+<p>Returns the integer round value of the input value. This method uses the standard round half up rounding mode.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the round half up value of the input value or null if input value is null.</p><h2 id="functionroundHalfEvenvaluedecimaldecimal">
+function roundHalfEven(value: decimal): decimal</h2>
+<p>Returns the integer round half even value of the input value.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the round half even value of the input value or null if input value is null.</p><h2 id="functionroundHalfDownvaluedecimaldecimal">
+function roundHalfDown(value: decimal): decimal</h2>
+<p>Returns the integer round half down value of the input value.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the round half down value of the input value or null if input value is null.</p><h2 id="functionroundUpvaluedecimaldecimal">
+function roundUp(value: decimal): decimal</h2>
+<p>Returns the integer round up value of the input value.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the round up value of the input value or null if input value is null.</p><h2 id="functionroundDownvaluedecimaldecimal">
+function roundDown(value: decimal): decimal</h2>
+<p>Returns the integer round down value of the input value.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the round down value of the input value or null if input value is null.</p><h2 id="functionfloorvaluedecimaldecimal">
+function floor(value: decimal): decimal</h2>
+<p>Returns the integer floor value of the input value.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the floor value of the input value or null if input value is null.</p><h2 id="functionceilvaluedecimaldecimal">
+function ceil(value: decimal): decimal</h2>
+<p>Returns the integer ceil value of the input value.</p><p><strong>Parameters :</strong></p><p>value: the input value.</p><p><strong>Return :</strong></p><p>the ceil value of the input value or null if input value is null..</p><h2 id="functionpidecimal">
+function pi(): decimal</h2>
+<p>Returns <code>pi</code> value:&nbsp;3.141592653589793238462643383279503</p><p><strong>Return :</strong></p><p>pi value.</p><h2 id="functionedecimal">
+function e(): decimal</h2>
+<p>Returns <code>e</code> value:&nbsp;2.718281828459045235360287471352662</p><p><strong>Return :</strong></p><p>e value.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

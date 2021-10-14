@@ -1,0 +1,9 @@
+-------------------------------------------------------------------
+MERCI DE NE PAS REPONDRE A CE MESSAGE
+Notification envoy�e automatiquement par [[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIRepositoryTitle]].
+-------------------------------------------------------------------
+L'int�grit� de ce message ne peut pas �tre garantie sur Internet.
+TIBCO Software Inc. ne peut donc pas �tre tenue pour responsable du contenu.
+Si vous n'�tes pas le destinataire de ce message confidentiel, 
+veuillez le d�truire et pr�venir imm�diatement l'�metteur.
+-------------------------------------------------------------------

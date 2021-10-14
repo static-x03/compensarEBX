@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Connecting to an SQL data source</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_connecting_sql_datasource_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_connecting_sql_datasource.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options</span></div>
+<h1>
+Connecting to an SQL data source</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_connecting_sql_overview">Overview</a></li><li class="toc1"><a href="#user_connecting_sql_front_end">Configuring data source via the add-on</a></li><li class="toc1"><a href="#user_connecting_sql_back_end">Configuring a data source in the application server</a></li></ul>
+</div>
+<h2 id="user_connecting_sql_overview">
+Overview</h2>
+<p>Administrators can create a connection to an SQL data source by:</p><ul>
+<li><p>Configuring all settings via the add-on.</p></li><li><p>Defining the connection information in the application server. Then, using the connection information, associate the database or view to a data model.</p></li></ul>
+<h2 id="user_connecting_sql_front_end">
+Configuring data source via the add-on</h2>
+<p>To define a JNDI database connection and associate it with a data model:</p><ol>
+<li><p>Navigate to <em>Administration &gt; Integration &gt; TIBCO EBX® Data Exchange Add-on &gt; Reference data &gt; JNDI data source</em> and create a new record. </p></li><li><p>Define the following connection parameters:</p><ul>
+<li><p><strong>Name</strong>: The connection name you specify will be used in a later configuration step to associate this connection information with a data model.</p></li><li><p><strong>URL</strong>: Add the appropriate URL for this database connection.</p></li><li><p><strong>User/Password</strong>: The permissions obtained from the login credentials will be granted to each EBX® user accessing this data source.</p></li></ul>
+</li><li><p>Click <strong>Test connection</strong> to check configuration settings and save and close if successful.</p><p><img alt="/sql-data-source-test-connect.png" src="./resources/images/sql-data-source-test-connect.png"></img></p></li><li><p>Navigate to the <strong>SQL data source</strong> table and create a new record.</p></li><li><p>Associate the previously created connection to a data model using the following properties:</p><ul>
+<li><p><strong>Name</strong>: You must enter the same name used for the JNDI connection.</p></li><li><p><strong>EBX® data model</strong>: Select the data model publication to link to this connection.</p></li><li><p>If desired, use the optional properties to filter schemas and tables and add a description.</p><p><img alt="/sql-data-source-config.png" src="./resources/images/sql-data-source-config.png"></img></p></li></ul>
+</li><li><p>After saving and closing, users can access the SQL import and export services.</p></li></ol>
+<h2 id="user_connecting_sql_back_end">
+Configuring a data source in the application server</h2>
+<p>You can setup an SQL data source connection in your application server and use the add-on to associate the data source with an EBX® data model publication. The connection configuration requirements differ from environment to environment. Please, consult your application server&#39;s documentation. The high-level steps are outlined below:</p><ul>
+<li><p>Configure the JNDI data source in your application server.</p></li><li><p>Expose any required resources to the <strong>ebx</strong>, <strong>ebx-manager</strong>, and <strong>ebx-addon-adix</strong> web applications.</p></li><li><p>Use the add-on to create a configuration that links the data source to an EBX® data model publication.</p></li></ul>
+<p>The example below demonstrates how configuration might be completed using Tomcat 8.5:</p><ol>
+<li><p>In the <code>server.xml</code> file, use a <strong>Resource</strong> to declare the JNDI data source. Note that the JDBC driver for this resource must deployed in Tomcat&#39;s <strong>lib</strong> folder. Additionally, you may need to refer to Tomcat&#39;s documentation for the correct <strong>Resource</strong> parameter values.</p><pre class="brush: text; toolbar: false; gutter: false;">
+&lt;GlobalNamingResources>
+    	&lt;Resource name="jdbc/postgres" auth="Container"
+          type="javax.sql.DataSource" factory="org.apache.commons.dbcp.BasicDataSourceFactory" driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://123.1.2.3:5432/postgres"
+          username="postgres" password="postgres" maxActive="20" maxIdle="10" maxWait="-1"/>
+    &lt;/GlobalNamingResources></pre>
+</li><li><p>In the <code>server.xml</code> file, add a <strong>ResourceLink</strong> to the <strong>ebx</strong>, <strong>ebx-manager</strong> and <strong>ebx-addon-adix</strong> contexts that links to the JNDI resource created in the first step.</p><pre class="brush: text; toolbar: false; gutter: false;">
+&lt;Host name="localhost" appBase="webapps" workDir="work"
+				unpackWARs="false" autoDeploy="false">
+&lt;Context path="/ebx" docBase="ebx.war">
+	&lt;ResourceLink name="jdbc/postgres" type="javax.sql.DataSource" global="jdbc/postgres"/>
+&lt;/Context>
+&lt;Context path="/ebx-manager" docBase="ebx-manager.war">
+	&lt;ResourceLink name="jdbc/postgres" type="javax.sql.DataSource" global="jdbc/postgres"/>
+&lt;/Context>
+&lt;Context path="/ebx-addon-adix" docBase="ebx-addon-adix.war">
+	&lt;ResourceLink name="jdbc/postgres" type="javax.sql.DataSource" global="jdbc/postgres"/>
+&lt;/Context>
+&lt;/Host></pre>
+</li><li><p>In each webapp&#39;s <code>web.xml</code> file, declare the JNDI resource.</p><pre class="brush: text; toolbar: false; gutter: false;">
+&lt;resource-ref>
+  &lt;res-ref-name>jdbc/postgres&lt;/res-ref-name>
+  &lt;res-type>javax.sql.DataSource&lt;/res-type>
+  &lt;res-auth>Container&lt;/res-auth>
+&lt;/resource-ref></pre>
+</li><li><p>Navigate to the <em>Administration &gt; Integration &gt; TIBCO EBX® Data Exchange Add-on &gt; Reference data &gt; SQL data source</em> table and create a new record.</p></li><li><p>Associate the data source configuration with a published data model using the following properties:</p><ul>
+<li><p><strong>Name</strong>: You must enter the same name used by the <strong>Resource</strong>, in this case <code>jdbc/postgres</code>.</p></li><li><p><strong>EBX® data model</strong>: Select the data model publication to link with this connection.</p></li></ul>
+</li><li><p>When you save the record the add-on validates the connection information. Upon successful save, users can access the SQL import and export services.</p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

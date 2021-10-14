@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+    <tableViews>
+        <id>1B774820-0B88-11E8-AABE-0088D80CB0AF</id>
+        <publicationName>WorkItemsView</publicationName>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <activity>WorkflowMonitoring</activity>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Work Items View</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+        <owner>RTech Admin</owner>
+        <tablePath>/root/execution/workItem</tablePath>
+        <readers>Beveryone</readers>
+        <tabularViewOnSingleTable>
+            <columns>/dwfActions</columns>
+            <columns>/dwfGraphicalView</columns>
+            <columns>/dwfWorkItemLabel</columns>
+            <columns>/process</columns>
+            <columns>/dwfCreationDate</columns>
+            <columns>/startDate</columns>
+            <columns>/offeredTo</columns>
+            <columns>/allocatedTo</columns>
+            <columns>/state</columns>
+            <columns>/dwfComments</columns>
+            <columns>/dwfDeadlineDate</columns>
+            <columns>/publication</columns>
+            <usingDataModelOrdering>false</usingDataModelOrdering>
+            <allowGridEditing>false</allowGridEditing>
+            <disableCreateAndDuplicateInGridEditing>false</disableCreateAndDuplicateInGridEditing>
+            <predicate/>
+            <order>
+                <nodePath>/dwfCreationDate</nodePath>
+                <isAscending>false</isAscending>
+            </order>
+        </tabularViewOnSingleTable>
+    </tableViews>
+    <tableViews>
+        <id>6997D9D0-0B87-11E8-AABE-0032349ED918</id>
+        <publicationName>InboxView</publicationName>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <activity>WorkflowWorking</activity>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Inbox View</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+        <owner>RTech Admin</owner>
+        <tablePath>/root/execution/workItem</tablePath>
+        <readers>Beveryone</readers>
+        <tabularViewOnSingleTable>
+            <columns>/dwfActions</columns>
+            <columns>/dwfGraphicalView</columns>
+            <columns>/dwfWorkItemLabel</columns>
+            <columns>/process</columns>
+            <columns>/dwfCreationDate</columns>
+            <columns>/startDate</columns>
+            <columns>/offeredTo</columns>
+            <columns>/state</columns>
+            <columns>/dwfComments</columns>
+            <columns>/dwfDeadlineDate</columns>
+            <columns>/publication</columns>
+            <usingDataModelOrdering>false</usingDataModelOrdering>
+            <allowGridEditing>false</allowGridEditing>
+            <disableCreateAndDuplicateInGridEditing>false</disableCreateAndDuplicateInGridEditing>
+            <predicate/>
+            <order>
+                <nodePath>/dwfCreationDate</nodePath>
+                <isAscending>false</isAscending>
+            </order>
+        </tabularViewOnSingleTable>
+    </tableViews>
+    <tableViews>
+        <id>BDF85860-0B87-11E8-AABE-00F356D6B39D</id>
+        <publicationName>ActiveWorkflowsView</publicationName>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <activity>WorkflowMonitoring</activity>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Active Workflows View</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+        <owner>RTech Admin</owner>
+        <tablePath>/root/execution/process</tablePath>
+        <readers>Beveryone</readers>
+        <tabularViewOnSingleTable>
+            <columns>/dwfActions</columns>
+            <columns>/dwfGraphicalView</columns>
+            <columns>/dwfLabel</columns>
+            <columns>/dwfCreationDate</columns>
+            <columns>/lastUpdate</columns>
+            <columns>/dwfTokenCurrentStep</columns>
+            <columns>/dwfProcessInstanceCurrentUser</columns>
+            <columns>/dwfTokenState</columns>
+            <columns>/dwfTokenErrorMessage</columns>
+            <columns>/publication</columns>
+            <usingDataModelOrdering>false</usingDataModelOrdering>
+            <allowGridEditing>false</allowGridEditing>
+            <disableCreateAndDuplicateInGridEditing>false</disableCreateAndDuplicateInGridEditing>
+            <predicate/>
+            <order>
+                <nodePath>/lastUpdate</nodePath>
+                <isAscending>false</isAscending>
+            </order>
+        </tabularViewOnSingleTable>
+    </tableViews>
+    <tableViews>
+        <id>BECB4110-BA46-11EA-B420-00532AA9E21F</id>
+        <publicationName>WorkflowLauncherView</publicationName>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <activity>WorkflowWorking</activity>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Workflow Launcher View</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+        <owner>RTech Admin</owner>
+        <tablePath>/root/processPublished</tablePath>
+        <readers>Beveryone</readers>
+        <tabularViewOnSingleTable>
+            <columns>/dwfActions</columns>
+            <columns>/dwfWorkflowModel</columns>
+            <columns>/dwfWorkflowModelDescription</columns>
+            <usingDataModelOrdering>false</usingDataModelOrdering>
+            <allowGridEditing>false</allowGridEditing>
+            <disableCreateAndDuplicateInGridEditing>false</disableCreateAndDuplicateInGridEditing>
+            <predicate/>
+            <order>
+                <nodePath>/dwfWorkflowModel</nodePath>
+                <isAscending>true</isAscending>
+            </order>
+        </tabularViewOnSingleTable>
+    </tableViews>
+    <tableViews>
+        <id>EFC8C450-0B88-11E8-AABE-006E9FCACA88</id>
+        <publicationName>CompletedWorkflowsView</publicationName>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <activity>WorkflowWorking</activity>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Completed Workflows View</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+        <owner>RTech Admin</owner>
+        <tablePath>/root/execution/process</tablePath>
+        <readers>Beveryone</readers>
+        <tabularViewOnSingleTable>
+            <columns>/dwfActions</columns>
+            <columns>/dwfGraphicalView</columns>
+            <columns>/dwfLabel</columns>
+            <columns>/dwfCreationDate</columns>
+            <columns>/lastUpdate</columns>
+            <columns>/dwfTokenState</columns>
+            <columns>/dwfTokenErrorMessage</columns>
+            <columns>/publication</columns>
+            <usingDataModelOrdering>false</usingDataModelOrdering>
+            <allowGridEditing>false</allowGridEditing>
+            <disableCreateAndDuplicateInGridEditing>false</disableCreateAndDuplicateInGridEditing>
+            <predicate/>
+            <order>
+                <nodePath>/lastUpdate</nodePath>
+                <isAscending>false</isAscending>
+            </order>
+        </tabularViewOnSingleTable>
+    </tableViews>
+</preferences>

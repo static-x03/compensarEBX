@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Generating a model graph from an external source</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_external_model" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=developer_guide/dev_external_model.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</span></div>
+<h1 id="dev_external_model_top">
+Generating a model graph from an external source</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#dev_external_model_overview">Overview</a></li><li class="toc1"><a href="#id2">Defining a model with CustomGraphModelFactory</a></li><li class="toc1"><a href="#id3">Customizing look and feel</a></li><li class="toc1"><a href="#id4">Including in a graph configuration</a></li><li class="toc1"><a href="#dev_external_model_custom_service">Generating from a service</a></li></ul>
+</div>
+<h2 id="dev_external_model_overview">
+Overview</h2>
+<p>This section shows how to generate data model graphs from external sources and customize look and feel. You can define all data model graph components in a Java class. This is similar to using the DMA to build out a model, except model components are created using the API. You can allow users access to custom graphs in the following ways:</p><ul>
+<li><p>By creating a configuration in the add-on that points to the custom graph. This makes the graph selectable when users run the add-on&#39;s <strong>Generate custom graph</strong> service.</p></li><li><p>By making the graph available from a custom service you write using EBX®&#39;s API.</p></li></ul>
+<h2 id="id2">
+Defining a model with CustomGraphModelFactory</h2>
+<p>You can use a Java class that implements the <code>CustomGraphModelFactory</code> interface to create a custom data model. The interface&#39;s <code>build()</code> returns a <code>Diagram</code>, which corresponds to a data model. The getGraphModelTemplate() returns the template to determine look and feel.</p><p>The <code>DemoCustomGraphModelFactory</code> class example below defines a model using some basic components. Please refer to the API reference to see how all objects translate to graph components.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Each constructed model must start with a root node. You then build-out the model by defining how components relate.</p></div>
+<pre class="brush: java; toolbar: false; gutter: false;">
+package com.orchestranetworks.addon.test.dmdv.service.model;
+
+import com.onwbp.base.text.*;
+import com.orchestranetworks.addon.dmdv.model.extension.*;
+
+/**
+ */
+public final class DemoCustomGraphModelFactory implements CustomGraphModelFactory
+{
+	public Diagram build()
+	{
+		Diagram diagram = new Diagram();
+
+		// The Diagram must start with a root node.
+		DatasetGroup rootNode = diagram.getRootNode();
+
+		// Add model components relative to the root node. The following adds a Stores group with one table and two fields.
+		DatasetGroup storeGroup = rootNode.addGroup("Stores");
+		Table storeDescription = storeGroup.addTable("Description");
+		storeDescription.addPrimaryKeyField("Identifier");
+		storeDescription.addField("Address");
+		// The following adds a Items group, a table, and updates the table label. Two of the fields are added to a table group. The final field is a FK to the Stores table.
+		DatasetGroup itemGroup = rootNode.addGroup("Items");
+		Table brandTable = itemGroup.addTable("brand");
+		brandTable.setLabel(UserMessage.createInfo("Brand"));
+		TableGroup brandTableGroup = brandTable.addGroup("Definition");
+		brandTableGroup.addField("Name");
+		brandTableGroup.addField("Comment");
+		TableField storeForeignKey = brandTableGroup.addField("Store");
+		storeForeignKey.setReferenceTable(storeDescription);
+
+		return diagram;
+	}
+
+	// To get the default graph template, return a new GraphModelTemplate().
+	public GraphModelTemplate getGraphModelTemplate()
+	{
+		
+		return new GraphModelTemplate();
+	}
+
+}
+</pre>
+<p>When users generate a graph based on the code in the sample, they will see the following:</p><img alt="/example_model_1.png" src="./resources/images/example_model_1.png"></img><h2 id="id3">
+Customizing look and feel</h2>
+<p>To customize the look and feel of a data model graph, you can edit <code>getGraphModelTemplate()</code>. The following example shows a couple of basic changes to the <code>DemoCustomGraphModelFactory</code> class. Refer to the API documentation for a complete list of editable attributes.</p><pre class="brush: java; toolbar: false; gutter: false;">
+package com.orchestranetworks.addon.test.dmdv.service.model;
+
+import com.onwbp.base.text.*;
+import com.orchestranetworks.addon.dmdv.model.extension.*;
+
+/**
+ */
+public final class DemoCustomGraphModelFactory implements CustomGraphModelFactory
+{
+	public Diagram build()
+	{
+		Diagram diagram = new Diagram();
+
+		// The Diagram must start with a root node.
+		DatasetGroup rootNode = diagram.getRootNode();
+
+		// Add model components relative to the root node. The following adds a Stores group with one table and two fields.
+		DatasetGroup storeGroup = rootNode.addGroup("Stores");
+		Table storeDescription = storeGroup.addTable("Description");
+		storeDescription.addPrimaryKeyField("Identifier");
+		storeDescription.addField("Address");
+		// The following adds a Items group, a table, and updates the table label. Two of the fields are added to a table group. The final field is a FK to the Stores table.
+		DatasetGroup itemGroup = rootNode.addGroup("Items");
+		Table brandTable = itemGroup.addTable("brand");
+		brandTable.setLabel(UserMessage.createInfo("Brand"));
+		TableGroup brandTableGroup = brandTable.addGroup("Definition");
+		brandTableGroup.addField("Name");
+		brandTableGroup.addField("Comment");
+		TableField storeForeignKey = brandTableGroup.addField("Store");
+		storeForeignKey.setReferenceTable(storeDescription);
+
+		return diagram;
+	}
+
+	// To get the default graph template, return a new GraphModelTemplate().
+	public GraphModelTemplate getGraphModelTemplate()
+	{
+		DisplayOptions displayOptions = new DisplayOptions();
+		displayOptions.setLabelOnLinksDisplayed(true);
+		
+		TableStyle tableTemplate = new TableStyle();
+		tableTemplate.setBackground("#0706F9");
+		tableTemplate.setTextColor("#FFFFFF");
+		
+		GraphModelTemplate template = new GraphModelTemplate();
+		template.setDisplayOptions(displayOptions);
+		template.setTableStyle(tableTemplate);
+		
+		return template;
+	}
+
+}
+</pre>
+<p>The following image shows the changes to the graph appearance by editing the template:</p><img alt="/example_model_2.png" src="./resources/images/example_model_2.png"></img><h2 id="id4">
+Including in a graph configuration</h2>
+<p>Once you have defined a model as described in the previous section, you can include it in a configuration in the add-on. After this users can access it via the <strong>Generate custom graph</strong> option in the UI. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The following steps must be performed by a user with administrative access.</p></div>
+<p>To add the graph to a configuration:</p><ol>
+<li><p>Navigate to <em>Administration &gt; User interface &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Data model graphs &gt; Configuration</em> and create a new record.</p></li><li><p>Supply a name to identify this graph configuration. The add-on displays this name when users run the service.</p></li><li><p>For the <strong>Graph type</strong> option, select <strong>Custom</strong>.</p></li><li><p>In the <strong>Data source</strong> field, enter the fully qualified path to the class that defines the custom model.</p></li><li><p>Set the <strong>Display in dataset</strong> option as desired. This property determines whether users can access this graph from a dataset&#39;s <strong>Actions</strong> menu. If you only want this data model graph to be available from a custom service, set to <strong>No</strong></p><p><img alt="/custom_graph_1.png" src="./resources/images/custom_graph_1.png"></img></p><p>The following image shows availability of the graph from a dataset&#39;s <strong>Actions</strong> menu:</p><p><img alt="/custom_graph_2.png" src="./resources/images/custom_graph_2.png"></img></p></li></ol>
+<h2 id="dev_external_model_custom_service">
+Generating from a service</h2>
+<p>You can make a custom graph available from all locations where users can run a service. Once you have defined an external model, use <code>GraphModelHttpManagerComponentUtils.getComponentForGraphModelService</code> to get the <code>UIHttpManagerComponent</code> that holds the custom graph. For more information on creating user services, refer to the EBX® product documentation.</p><p>As shown in the following example, a <code>customGraphModelFactory</code> is created based on the model previously defined in <code>DemoCustomGraphModelFactory</code>: </p><pre class="brush: java; toolbar: false; gutter: false;">
+package com.orchestranetworks.addon.test.dmdv.service.model;
+import javax.servlet.http.*;
+import com.orchestranetworks.addon.dmdv.model.extension.*;
+import com.orchestranetworks.service.*;
+import com.orchestranetworks.ui.*;
+
+/**
+ */
+public final class GraphModelAPI
+{
+	private final ServiceContext sContext;
+
+	public GraphModelAPI(HttpServletRequest req)
+	{
+		this.sContext = ServiceContext.getServiceContext(req);
+	}
+
+	public void callPage()
+	{
+		UIServiceComponentWriter writer = this.sContext.getUIComponentWriter();
+		writer.add("&lt;div id='GRAPH_MODEL_CONTAINER_TAB_DIV' style='height: 100%;'>");
+		writer.add("&lt;iframe id='GRAPH_MODEL_IFRAME' width='100%' height='100%'");
+
+		CustomGraphModelFactory customGraphModelFactory = new DemoCustomGraphModelFactory();
+
+		GraphModelSpec graphModelSpec = new GraphModelSpec(
+			customGraphModelFactory,
+			this.sContext.getSession());
+		graphModelSpec.setDisplayGraphTitle(true);
+
+		UIHttpManagerComponent comp = GraphModelHttpManagerComponentUtils.getComponentForGraphModelService(
+			writer,
+			this.sContext.getCurrentAdaptation(),
+			graphModelSpec);
+
+		String url = comp.getURIWithParameters();
+		writer.add(" frameBorder='0' style='border-width: 0px; ' src='" + url + "'>&lt;/iframe>");
+		writer.add("&lt;/div>");
+		writer.addJS_cr(
+			"var GRAPH_MODEL_CONTAINER_TAB_DIV = document.getElementById('GRAPH_MODEL_CONTAINER_TAB_DIV');");
+
+		writer.addJS_cr("function resizeGraphTabModel(size){");
+		{
+			writer.addJS_cr("GRAPH_MODEL_CONTAINER_TAB_DIV.style.width = size.w + 'px';");
+			writer.addJS_cr("GRAPH_MODEL_CONTAINER_TAB_DIV.style.height = size.h + 'px';");
+		}
+		writer.addJS_cr("}");
+		writer.addJS_addResizeWorkspaceListener("resizeGraphTabModel");
+
+	}
+
+}
+</pre>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+Natural line-height may vary for each font family .
+To have some beautiful interfaces with full-pixels height (no decimals), it's important to fix the line height with full pixel.
+This fixed line height must be approximately the same line height than the font family.
+To compute the natural line height of each font used in EBX®, we put a short text in a span in an empty page with no CSS,
+then we apply the font family and a font-size of 100000px.
+The line height is measured with the DOM's offset-height of the span, and the ratio can be computed.
+We have observed that the ratio is the same for all sizes, so using a font size of 100000 give a more precise natural line height.
+We have observed that Chrome prefers a rounded up line-height in full px, and we think that is better to avoid side effects.
+
+Computed natural line-height of fonts:
+Arial: 111.718% // supplied with Windows 3.1 (since 1992) and Mac OS X (since 2001) by default
+
+OpenSans: 136.182%
+OpenSans-Light: 136.182%
+
+DroidSansMono: 132.715%
+Width of a char with DroidSansMono: 60.0098%
+
+Helvetica: 115.000% // not supplied with Windows by default, but it is with Mac
+Helvetica Neue: 116.500% // not supplied with Windows by default, but it is with Mac
+
+Trebuchet: 110.742% // not supplied with Mac by default, but it is with Windows
+Calibri: 122.070% // not supplied with Mac by default, but it is with Windows
+
+Lato: 100.00% (in 2017, the max font-size in Chrome is 10000px -- 2000 on Firefox, same result)
+
+== Alignment tests with OpenSans, font-size 12px ==
+Knowing that the reference value is supposed to be 12px * 1.36182 = 16.34184px
+(16 in round version, well, but 17 if we want to keep space to avoid non-full pixel heights of containers)
+
+tables (align table fixed and main)
+line-height		15	16	17	18	19
+Chrome			x	x	ok	ok	x
+Firefox ESR 38	x	ok	ok	x	x
+IE 11			x	ok	ok	x	x
+IE 8					ok
+Firefox 3.6				ok
+IE 9					ok
+IE 10					ok
+
+forms (alignment label and simple test field)
+line-height		15	16	17	18	19	20
+Chrome			x	x	x	ok	x	ok // with 17, set line-height+1 for input for Chrome, then it's ok
+Firefox ESR 38	ok	ok	ok	ok	ok	ok
+IE 11			ok	ok	ok	ok	ok	ok
+IE 8					ok
+Firefox 3.6				ok
+IE 9					ok
+IE 10					ok
+
+Chrome works for all line heights, only if the text field have an odd height.
+Problem: buttons have an even height (because icons are 16 height).
+
+After a test with Firefox 3.6 on Windows XP VS. Firefox 3.6 on Windows 7,
+it is mandatory to enable ClearType on Windows XP for OpenSans to avoid
+a too-thin-and-quite-erased effect.
+
+
+== Alignment tests with OpenSans, font-size 13px ==
+Computed line-height: 13px * 1.36182 = 17.70366px ; up round = 18px
+
+tables (align table fixed and main)
+line-height		15	16	17	18	19
+Chrome			 	 	  	ok	 
+Firefox ESR 38	 	  	  	ok 
+IE 11			 	  	  	ok 
+IE 8					  
+Firefox 3.6				  
+IE 9					  
+IE 10					  
+
+forms (alignment label and simple test field)
+line-height		15	16	17	18	19	20
+Chrome			 	 	 	ok	 	   // no need to adjust the line height for input for Chrome
+Firefox ESR 38	  	  	  	ok	  	  
+IE 11			  	  	  	ok	  	  
+IE 8					  
+Firefox 3.6				  
+IE 9					  
+IE 10					  

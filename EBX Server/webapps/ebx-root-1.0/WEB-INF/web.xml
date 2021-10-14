@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_0.xsd"
+	    metadata-complete="true"
+      version="3.0">
+	<servlet>
+		<servlet-name>com.onwbp.front.RegisterRootServlet</servlet-name>
+		<servlet-class>com.onwbp.front.RegisterRootServlet</servlet-class>
+		<!-- must start after REST registration servlets -->
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<display-name>wfserviceDispatcher</display-name>
+		<servlet-name>wfserviceDispatcher</servlet-name>
+		<servlet-class>
+			com.orchestranetworks.workflow.module.WfserviceDispatcher
+    	</servlet-class>
+	</servlet>
+
+	<servlet>
+		<display-name>d3ServiceDispatcher</display-name>
+		<servlet-name>d3ServiceDispatcher</servlet-name>
+		<servlet-class>
+			com.orchestranetworks.d3.ui.D3ServiceDispatcher
+    	</servlet-class>
+	</servlet>
+
+	<servlet>
+		<display-name>evbServiceDispatcher</display-name>
+		<servlet-name>evbServiceDispatcher</servlet-name>
+		<servlet-class>
+			com.orchestranetworks.eventbroker.manager.EvbServiceDispatcher
+    	</servlet-class>
+	</servlet>
+
+	<servlet>
+		<display-name>Workflow-jaxrs</display-name>
+		<servlet-name>Workflow-jaxrs</servlet-name>
+		<servlet-class>com.orchestranetworks.rest.internal.RESTRegistrationServlet</servlet-class>
+		<init-param>
+			<param-name>RESTApplicationAbstract</param-name>
+			<param-value>com.orchestranetworks.workflow.rest.RTKWorkflowApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ebxModuleName</param-name>
+			<param-value>ebx-root-1.0</param-value>
+		</init-param>
+		<!-- CVE-2019-17573 [https://nvd.nist.gov/vuln/detail/CVE-2019-17573] -->
+		<!-- Force the "hide-service-list-page" servlet parameter to "true" -->
+		<init-param>
+			<param-name>hide-service-list-page</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!-- must start before module registration servlet -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>wfserviceDispatcher</servlet-name>
+		<url-pattern>/wfserviceDispatcher</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>d3ServiceDispatcher</servlet-name>
+		<url-pattern>/d3ServiceDispatcher</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>evbServiceDispatcher</servlet-name>
+		<url-pattern>/evbServiceDispatcher</url-pattern>
+	</servlet-mapping>
+
+</web-app>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Installation note for WebLogic 14c</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="installation_jee_weblogic" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=deployment_examples/weblogic14c.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+<h1>
+Installation note for WebLogic 14c</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Requirements</a></li><li class="toc1"><a href="#id3">WebLogic Application Server installation</a></li><li class="toc1"><a href="#id4">EBX&reg; home directory configuration</a></li><li class="toc1"><a href="#id5">WebLogic Application Server and Java Virtual Machine configuration</a></li><li class="toc1"><a href="#id6">EBX&reg; and third-party libraries deployment</a></li><li class="toc1"><a href="#id7">Data source and JDBC provider configuration</a></li><li class="toc1"><a href="#id8">EBX&reg; application deployment</a></li><li class="toc1"><a href="#id9">EBX&reg; application start</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>This chapter describes a <em>quick installation example</em> of TIBCO EBX&reg; on WebLogic Application Server. </p></li><li><p>It does not replace the <a href="https://docs.oracle.com/en/middleware/standalone/weblogic-server/14.1.1.0/"> documentation </a> of this application server. </p></li><li><p>They are <em>not</em> general installation recommendations, as the installation process is determined by architectural decisions, such as the technical environment, application mutualization, delivery process, and organizational decisions. </p></li><li><p>The complete description of the components needed by EBX&reg; is given in chapter <a href="../installation/deploy_on_jee.html">Java EE deployment</a>. </p></li><li><p>To avoid unpredictable behavior, the guideline to follow is to avoid any duplicates of <code>ebx.jar</code>, <code>ebx-lz4.jar</code> or other libraries in the class-loading system. </p></li></ul>
+</p></div>
+<h2 id="id2">
+Requirements</h2>
+<ul>
+<li><p>Certified Oracle Java SE 8 or 11</p></li><li><p>WebLogic Server 14c</p></li><li><p>Database and JDBC driver</p></li><li><p>EBX&reg; CD</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/supported_env.html">Supported environments</a></li></ul>
+</div>
+<h2 id="id3">
+WebLogic Application Server installation</h2>
+<ol>
+<li><p> Download WebLogic 14c latest version from: </p><p><a href="https://www.oracle.com/middleware/technologies/fusionmiddleware-downloads.html"> https://www.oracle.com/middleware/technologies/fusionmiddleware-downloads.html </a></p></li><li><p>Run the <code>Oracle Fusion Middleware Weblogic installation</code> wizard using a certified Oracle JDK and the <em>java -jar</em> command line </p></li><li><p>Perform a standard installation with default options and choose the appropriate installation directory </p></li><li><p>Leave the &#39;Automatically launch the Configuration Wizard&#39; option activated to perform the next steps: </p><ol>
+<li><p>Create Domain: choose &#39;Create a new domain&#39; and specify the domain home directory, then click &#39;Next&#39; </p></li><li><p>Templates: keep as default and click &#39;Next&#39;</p></li><li><p>Administrator Account: enter a domain administrator username and password and click &#39;Next&#39; </p></li><li><p>Domain Mode and JDK: choose the production mode and your JDK installation home and click &#39;Next&#39; </p></li><li><p>Advanced configuration: check &#39;Administration server&#39; and &#39;Topology&#39;. That way, we create two independent domain nodes: an administration one and an application one. </p><p>Click &#39;Next&#39;</p></li><li><p>Administration Server: enter your administration node name (for example &#39;AdminServer&#39;) and listen port (by default <code>7001</code>), then click &#39;Next&#39; </p></li><li><p>Managed Servers: add the application node name (for example &#39;EbxServer&#39;) and listen port (for example <code>7003</code>), then click &#39;Next&#39; </p></li><li><p>Clusters: keep as default and click &#39;Next&#39;</p></li><li><p>Server Templates: keep as default and click &#39;Next&#39;</p></li><li><p>Machines: keep as default and click &#39;Next&#39;</p></li><li><p>Configuration Summary: click &#39;Create&#39;</p></li><li><p>Configuration Process: click &#39;Next&#39;</p></li><li><p>End Of Configuration: click &#39;Finish&#39;</p></li></ol>
+</li></ol>
+<h2 id="id4">
+EBX&reg; home directory configuration</h2>
+<ol>
+<li><p>Create <em>EBX_HOME</em> directory, for example <code>C:\EBX\home</code>, or <code>/home/ebx</code></p></li><li><p>Copy from <em>EBX&reg; CD</em> the <code>ebx.software/files/ebx.properties</code> file to <em>EBX_HOME</em>. In our example, we will have the following file: </p><p><code>C:\EBX\home\ebx.properties</code>, or <code>/home/ebx/ebx.properties</code></p></li><li><p>If needed, edit the <code>ebx.properties</code> file to override the default database. By default the standalone H2 database is defined. The property key <code>ebx.persistence.factory</code> must be uncommented for other supported databases and the <code>h2.standalone</code> one must be commented. </p></li></ol>
+<h2 id="id5">
+WebLogic Application Server and Java Virtual Machine configuration</h2>
+<ol>
+<li><p>Configure the launch properties for the <em>Managed Server</em> (for example &#39;EbxServer&#39;) </p><p>Edit the <code>&lt;DOMAIN_HOME&gt;/bin/startManagedWebLogic.sh</code> script file by adding the following lines: </p><pre class="brush: bash; toolbar: false; gutter: false;">
+EBX_HOME="&lt;path_to_the_directory_ebx_home>"
+EBX_OPTIONS="-Debx.home=${EBX_HOME} -Debx.properties=${EBX_HOME}/ebx.properties"
+export JAVA_OPTIONS="${EBX_OPTIONS} ${JAVA_OPTIONS}"</pre>
+</li><li><p>Edit the <code>&lt;DOMAIN_HOME&gt;/bin/setDomainEnv.sh</code> script file by adding the following line: </p><pre class="brush: bash; toolbar: false; gutter: false;">
+PRE_CLASSPATH="&lt;path_to_the_data_compression_library>"
+
+# For our example
+# PRE_CLASSPATH="${DOMAIN_HOME}/compress/ebx-lz4.jar"</pre>
+</li></ol>
+<h2 id="id6">
+EBX&reg; and third-party libraries deployment</h2>
+<ol>
+<li><p>Copy third-party libraries from the <em>EBX&reg; CD</em> to the <code>&lt;DOMAIN_HOME&gt;/lib</code> directory except for the <a href="../installation/deploy_on_jee.html#ebx_lz4">Data compression library</a>. In our example, for an H2 standalone data base, we will have: </p><p><code>&lt;DOMAIN_HOME&gt;/lib/h2-1.4.196.jar</code> (default persistence factory) coming from <code>ebx.software/lib/lib-h2</code> directory. </p><p> The complete description of the components needed by EBX&reg; is given in chapter <a href="../installation/deploy_on_jee.html">Java EE deployment</a>. Obviously, if those components are already deployed on the class-loading system, they do not have to be duplicated (ex: javax.mail-1.5.6.jar and xml-apis-1.4.01.jar are already present in the WebLogic Server). </p></li><li><p>Create a directory dedicated to the <a href="../installation/deploy_on_jee.html#ebx_lz4">Data compression library</a> (for example <code>&lt;DOMAIN_HOME&gt;/compress</code>) and copy it there. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Ensure that the library is copied in the directory pointed out by the previously updated <em>PRE_CLASSPATH</em> environment variable. </p></div>
+</li></ol>
+<h2 id="id7">
+Data source and JDBC provider configuration</h2>
+<ol>
+<li><p>Start the &#39;Administration server&#39; (for example &#39;AdminServer&#39;), using: </p><p><code>&lt;DOMAIN_HOME&gt;/bin/startWebLogic.sh</code></p></li><li><p>Launch the &#39;WebLogic Server Administration Console&#39; by entering the following URL in the browser: </p><p><a target="_blank" href="http://localhost:7001/console">http://localhost:7001/console</a>. </p><p>Log in with the domain administrator username and password</p></li><li><p>Click on &#39;Services &gt; Data sources&#39; in the &#39;Domain Structure&#39; panel, then click on &#39;New &gt; Generic Data Source&#39;: </p><ol>
+<li><p>Set: Type Name: <code>EBX_REPOSITORY</code>, JNDI Name: <code>EBX_REPOSITORY</code>, Database Type: <em>Your database type</em></p><p> Click &#39;Next&#39; </p></li><li><p>Choose your database driver type, and click &#39;Next&#39;</p></li><li><p>Uncheck &#39;Supports Global Transactions&#39;, and click &#39;Next&#39;</p></li><li><p>Setup your database &#39;Connection Properties&#39; and click &#39;Next&#39;</p></li><li><p>Click &#39;Test Configuration&#39; and then &#39;Finish&#39;</p></li><li><p>Switch on the &#39;Targets&#39; tab and select all Servers, then click &#39;Save&#39;</p></li><li><p>Restart the Administration server (for example &#39;AdminServer&#39;), using:</p><p><code>&lt;DOMAIN_HOME&gt;/bin/stopWebLogic.sh</code></p><p><code>&lt;DOMAIN_HOME&gt;/bin/startWebLogic.sh</code></p></li></ol>
+</li></ol>
+<h2 id="id8">
+EBX&reg; application deployment</h2>
+<ol>
+<li><p>Copy from the <em>EBX&reg; CD</em> the <code>ebx.software/webapps/ear-packaging/EBXForWebLogic.ear</code> to the <em>EBX_HOME</em> directory. In our example, we will have: </p><p><code>C:\EBX\home\EBXForWebLogic.ear</code>, or <code>/home/ebx/EBXForWebLogic.ear</code></p></li><li><p>Launch the &#39;WebLogic Server Administration Console&#39; by entering the following URL in the browser: </p><p><a target="_blank" href="http://localhost:7001/console">http://localhost:7001/console</a></p></li><li><p>Click on &#39;Lock and Edit&#39; in the &#39;Change Center&#39; panel</p></li><li><p>Click on &#39;Deployments&#39; in the &#39;Domain Structure&#39; panel, and click &#39;Install&#39;:</p><ol>
+<li><p>Install Application Assistant: Enter in &#39;Path&#39; the application full path to EBXForWebLogic.ear file, located in <code>C:\EBX\home\</code>, or <code>/home/ebx/</code> directory and click &#39;Next&#39; </p></li><li><p>Choose the installation type and scope: Click on &#39;Install this deployment as an application&#39;, &#39;Global&#39; default scope and click &#39;Next&#39; </p></li><li><p>Select the deployment targets: Select a node (for example &#39;EbxServer&#39;) from the &#39;Servers&#39; list and click &#39;Next&#39; </p></li><li><p>Optional Settings: keep as default and click &#39;Finish&#39;</p></li></ol>
+</li><li><p>Click on &#39;Activate Changes&#39;, on the top left corner. The deployment status will change to &#39;prepared&#39; </p></li><li><p>Switch to &#39;Control&#39; tab, select the &#39;EBXForWebLogic&#39; enterprise application, then click &#39;Start&#39; &gt; &#39;Servicing all requests&#39; </p></li><li><p>Start the application node (for example &#39;EbxServer&#39;), using:</p><p><code>&lt;DOMAIN_HOME&gt;/bin/startManagedWebLogic.sh EbxServer http://localhost:7001 </code></p></li></ol>
+<h2 id="id9">
+EBX&reg; application start</h2>
+<ol>
+<li><p>After WebLogic Application Server launch, run the EBX&reg; web application by entering the following URL in the browser: </p><p><a target="_blank" href="http://localhost:7003/ebx/">http://localhost:7003/ebx/</a></p></li><li><p>At first launch, <a href="../installation/configuration_wizard.html"> EBX&reg; Wizard </a> helps to configure the default properties of the initial repository. </p></li></ol>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

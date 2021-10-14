@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Displaying digital assets on nodes</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_damImages" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_damImages.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</span></div>
+<h1 id="user_data_value_graph_damImagesTop">
+Displaying digital assets on nodes</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_data_value_graph_styles_overview">Overview</a></li><li class="toc1"><a href="#id2">Configuration settings</a></li><li class="toc1"><a href="#id3">Adding assets to nodes</a></li></ul>
+</div>
+<h2 id="user_data_value_graph_styles_overview">
+Overview</h2>
+<p>One of the configurable styles for data value nodes is the icon displayed on the node. The add-on allows you to supply a URL, use a provided icon, or use an image stored as a digital asset. To use a digital asset, you must have the TIBCO EBX® Digital Asset Manager Add-on installed and configured. The following sections show you how to adjust existing configuration settings in the EBX® Digital Asset Manager Add-on.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>If you have not already configured a Drive and a D.A.C. in the TIBCO EBX® Digital Asset Manager Add-on, you can view its product documentation for instructions on completing these tasks.</p></div>
+<h2 id="id2">
+Configuration settings</h2>
+<p>The EBX® Digital Asset Manager Add-on requires that a data model include a specific field data type to attach assets managed by the add-on. The TIBCO EBX® Data Model and Data Visualization Add-on already includes this field in its technical model. The only configuration required in the EBX® Digital Asset Manager Add-on is to specify that a D.A.C. points to the EBX® Data Model and Data Visualization Add-on&#39;s data model and field.</p><p>To configure the D.A.C.:</p><ol>
+<li><p>Open the D.A.C. you want to use to link a Drive with a data value graph&#39;s table configuration:</p><ol>
+<li><p>Select the <strong>Administration</strong> panel and navigate to <em>TIBCO EBX® Digital Asset Manager Add-on</em>.</p></li><li><p>Open the <strong>D.A.C.</strong> group and double-click to open a Digital asset component.</p><p><img alt="/dam-config-1.png" src="./resources/images/dam-config-1.png"></img></p></li></ol>
+</li><li><p>Create a link with the EBX® Data Model and Data Visualization Add-on <strong>Media type</strong> field by setting the following fields:</p><ul>
+<li><p><strong>Data model</strong>: choose <code>Module: ebx-addon-dmdv, path: /WEB-INF/ebx/schema/ebx-addon-dmdv-configuration.xsd</code> from the menu.</p></li><li><p><strong>Field path</strong>: choose <code>/root/dataConfiguration/tableConfiguration/Icon/damaImage</code> from the menu.</p></li></ul>
+<p><img alt="/dam-config-2.png" src="./resources/images/dam-config-2.png"></img></p></li><li><p>Save and close the D.A.C.</p><p>The assets contained in the Drive linked by the D.A.C. are now available to use for icons on graph nodes. The next section describes how to add these assets to nodes.</p></li></ol>
+<h2 id="id3">
+Adding assets to nodes</h2>
+<p>You can add one asset to each graph node. The asset displays in the same format as icons and other custom images.</p><p>To add an asset to a graph node:</p><ol>
+<li><p>Using the graphical editor:</p><ol>
+<li><p>From the <strong>Administration</strong> panel, navigate to <em>TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Configuration</em>.</p></li><li><p>Open a configuration and select <strong>Edit Graph Display</strong>. </p><p><img alt="/dam-display-1.png" src="./resources/images/dam-display-1.png"></img></p></li><li><p>Drag an asset from the <strong>Image</strong> palate and drop on the desired node.</p><p><img alt="/dam-display-2.png" src="./resources/images/dam-display-2.png"></img></p></li><li><p>Save your changes.</p></li></ol>
+</li><li><p>Using the standard configuration options:</p><ol>
+<li><p>From the <strong>Administration</strong> panel, navigate to <em>TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs</em>.</p></li><li><p>Open a table configuration using one of the following methods:</p><ul>
+<li><p>Select <strong>Table configuration</strong> and double-click to open the desired configuration.</p></li><li><p>When viewing a graph configuration select <strong>Edit Graph Display</strong> and double-click a node.</p></li><li><p>When viewing a graph configuration double-click the desired entry under <strong>Tables</strong>.</p></li></ul>
+</li><li><p>Configure the following style options:</p><p><img alt="/dam-display-4.png" src="./resources/images/dam-display-4.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p>Select the <strong>Node style</strong> tab.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p>Set the <strong>Type</strong> option to <strong>Digital asset</strong>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3)</p></td><td class="ebx_definitionListDefinition"><p>Use the <strong>Edit</strong> option to select an existing asset for the node. Alternatively, use the <strong>Upload</strong> option to upload and attach a new asset.</p><p>For more details on using these options, see the TIBCO EBX® Digital Asset Manager Add-on&#39;s product documentation.</p></td></tr>
+</table>
+</li><li><p>Save your changes.</p><p>When users generate a graph from this configuration, the nodes display the attached digital assets.</p></li></ol>
+</li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,2338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX(R) DMA instance [reference=DMDVConfig] on Mon Jun 14 08:44:44 ICT 2021 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd" />
+	<xs:include schemaLocation="urn:ebx:module:ebx-addon-dama:/WEB-INF/ebx/schema/media-type.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:extensions class="com.orchestranetworks.addon.dmdv.schema.extension.DMDVSchemaExtension" />
+			<osd:validation>
+				<validationMessageThreshold>1000</validationMessageThreshold>
+			</osd:validation>
+			<osd:inheritance>
+				<dataSetInheritance>none</dataSetInheritance>
+			</osd:inheritance>
+			<ebxbnd:binding targetDirectory="../addon-dmdv/src-api">
+				<javaPathConstants typeName="com.orchestranetworks.addon.dmdv.DMDVConfigurationPaths">
+					<nodes prefix="" relativeToRoot="false" root="/root" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.addon.dmdv.i18n.xsdSchema.ebx-addon-dmdv-configuration" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dataModelConfiguration" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.dataModelConfiguration" />
+						<xs:appinfo>
+							<osd:defaultView>
+								<displayMode>expanded</displayMode>
+							</osd:defaultView>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="configuration" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.dataModelConfiguration.configuration" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/uuid</primaryKeys>
+											<defaultLabel>${./name}</defaultLabel>
+											<recordForm osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiform.graphmodel.GraphModelConfigurationTableUIForm" />
+										</osd:table>
+										<osd:trigger class="com.orchestranetworks.addon.dmdv.schema.trigger.graphmodel.DataModelConfigurationTableTrigger" />
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="uuid" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+														<hiddenInSearch>true</hiddenInSearch>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.name" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="graphType" minOccurs="1" maxOccurs="1" default="true" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.graphType" />
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:boolean">
+													<xs:enumeration value="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.graphType.enumeration.true" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.graphType.enumeration.false" />
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="dataSource" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.dataSource" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="displayIndataset" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.displayIndataset" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dataModel" minOccurs="0" maxOccurs="1" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.DataModelBean">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.dataModel" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<displayMode>expanded</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="publicationMode" minOccurs="0" maxOccurs="1" default="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.dataModel.publicationMode" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:boolean">
+																<xs:enumeration value="true">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.dataModel.publicationMode.enumeration.true" />
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="false">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.dataModel.publicationMode.enumeration.false" />
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="dataModel" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.dataModel.dataModel" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:constraintEnumeration class="com.orchestranetworks.addon.dmdv.schema.enumeration.GraphModelDataModelEnumeration" />
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="templates" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.templates" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:tableRef>
+															<tablePath>/root/dataModelConfiguration/templates</tablePath>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="selectTableToDisplay" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.selectTableToDisplay" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1" default="1.0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.configuration.version" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="UniqueOn_root_dataModelConfiguration_configuration1ABB7A1C-FB0D-4D51-82CB-DC3D9B467EAC">
+									<xs:selector xpath="." />
+									<xs:field xpath="name" />
+								</xs:unique>
+							</xs:element>
+							<xs:element name="templates" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.dataModelConfiguration.templates" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/uuid</primaryKeys>
+											<defaultLabel>${./name}</defaultLabel>
+											<recordForm osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiform.graphmodel.GraphTemplateTableUIForm" />
+										</osd:table>
+										<osd:trigger class="com.orchestranetworks.addon.dmdv.schema.trigger.graphmodel.TemplatesTableTrigger" />
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="uuid" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.name" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="table" type="tableColor" minOccurs="1" maxOccurs="1" osd:access="RW">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.table" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="tooltip" minOccurs="1" maxOccurs="1" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.Tooltip">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.tooltip" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphTemplateUIColorTooltip</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="text" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.tooltip.text" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="background" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.tooltip.background" />
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="link" minOccurs="1" maxOccurs="1" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.GraphModelLink">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.link" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphTemplateUIColorLink</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.link.label" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="color" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.link.color" />
+															<xs:appinfo>
+																<osd:defaultView />
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="associationLink" minOccurs="1" maxOccurs="1" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.AssociationLink">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.associationLink" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphTemplateUIColorAssociationLink</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="byForeignKey" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.associationLink.byForeignKey" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="byOverALink" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.associationLink.byOverALink" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="byXpathFilter" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.associationLink.byXpathFilter" />
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="synchronization" minOccurs="1" maxOccurs="1" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.Synchronization">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.synchronization" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphTemplateUIColorSynchronization</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="creation" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.synchronization.creation" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="update" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.synchronization.update" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="delete" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.templates.synchronization.delete" />
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="hoverColor" type="xs:string" minOccurs="0" maxOccurs="1" default="" osd:access="RW">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.hoverColor" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphTemplateUIColorHover</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="displayOptionsGroup" minOccurs="0" maxOccurs="1" osd:access="RW">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.displayOptionsGroup" />
+												<xs:appinfo>
+													<osd:defaultView />
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="displayOption" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:constraintEnumeration class="com.orchestranetworks.addon.dmdv.schema.enumeration.DisplayOptionEnumeration" />
+																</osd:otherFacets>
+																<osd:defaultView>
+																	<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																		<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphTemplateUICheckBoxGroup</widgetKey>
+																	</widget>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.updatedDateTime" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1" default="1.0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.templates.version" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="preferences" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.dataModelConfiguration.preferences" />
+									<xs:appinfo>
+										<osd:defaultView>
+											<displayMode>collapsed</displayMode>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="savedGraph" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/name /dataModel /profileName</primaryKeys>
+														<defaultLabel>${./name}</defaultLabel>
+													</osd:table>
+													<osd:defaultView>
+														<hidden>true</hidden>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="profileName" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.profileName" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.name" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dataModel" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.dataModel" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																		<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphModelDataModelUIWidget</widgetKey>
+																	</widget>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="publicationMode" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.publicationMode" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:boolean">
+																<xs:enumeration value="true">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.publicationMode.enumeration.true" />
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="false">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.publicationMode.enumeration.false" />
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="graphModelConfiguration" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.graphModelConfiguration" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/dataModelConfiguration/configuration</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="positionX" type="xs:decimal" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.positionX" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="positionY" type="xs:decimal" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.positionY" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="scale" type="xs:decimal" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.scale" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="assNode" type="xs:string" minOccurs="0" maxOccurs="0">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.assNode" />
+															<xs:appinfo>
+																<osd:association>
+																	<tableRefInverse>
+																		<fieldToSource>/root/dataModelConfiguration/preferences/node/fkSavedGraph</fieldToSource>
+																	</tableRefInverse>
+																</osd:association>
+																<osd:defaultView>
+																	<hiddenInDataServices>true</hiddenInDataServices>
+																	<displayMode>tab</displayMode>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1" default="1.0">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.version" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="sharedPolicy" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.sharedPolicy" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="description" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.LogicalLabelBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.description" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="locale" type="osd:locale" minOccurs="0" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.description.locale" />
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraph.description.label" />
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="node" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/nodePath /fkSavedGraph</primaryKeys>
+													</osd:table>
+													<osd:defaultView>
+														<hidden>true</hidden>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="nodePath" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.nodePath" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="fkSavedGraph" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.fkSavedGraph" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/dataModelConfiguration/preferences/savedGraph</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="logicalLabel" type="logicalLabel" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.logicalLabel" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isExternal" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.isExternal" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isRootNode" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.isRootNode" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isHidden" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.isHidden" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="width" type="xs:decimal" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.width" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="height" type="xs:decimal" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.height" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="positionX" type="xs:decimal" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.positionX" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="positionY" type="xs:decimal" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.positionY" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isExpanded" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.isExpanded" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="nodeSpecification" type="nodeSpecification" minOccurs="1" maxOccurs="1" osd:access="RW">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.nodeSpecification" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<displayMode>expanded</displayMode>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="assProperty" type="xs:string" minOccurs="0" maxOccurs="0">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.node.assProperty" />
+															<xs:appinfo>
+																<osd:association>
+																	<tableRefInverse>
+																		<fieldToSource>/root/dataModelConfiguration/preferences/property/fkNode</fieldToSource>
+																	</tableRefInverse>
+																</osd:association>
+																<osd:defaultView>
+																	<hiddenInDataServices>true</hiddenInDataServices>
+																	<displayMode>tab</displayMode>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="property" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/nodePath /fkNode</primaryKeys>
+													</osd:table>
+													<osd:defaultView>
+														<hidden>true</hidden>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="nodePath" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.nodePath" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="fkNode" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.fkNode" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/dataModelConfiguration/preferences/node</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="logicalLabel" type="logicalLabel" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.logicalLabel" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dataType" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.dataType" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isExternal" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.isExternal" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isExpanded" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.isExpanded" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isCollapseGroup" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.isCollapseGroup" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																	<hiddenInSearch>true</hiddenInSearch>
+																	<hiddenInViews>true</hiddenInViews>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isHidden" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.isHidden" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="parent" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.parent" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="type" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.type" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isInherited" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.isInherited" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="inforInherited" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.inforInherited" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isComputed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.isComputed" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="cardiality" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.cardiality" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="propertySpecification" type="fieldSpecification" minOccurs="1" maxOccurs="1" osd:access="RW">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.property.propertySpecification" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<displayMode>expanded</displayMode>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="savedGraphs" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/uuid</primaryKeys>
+														<defaultLabel>${./name}</defaultLabel>
+														<defaultLabel osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.table.defaultLabel" />
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="uuid" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.name" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="userProfile" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.userProfile" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dataModel" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.dataModel" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																		<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphModelDataModelUIWidget</widgetKey>
+																	</widget>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="publicationMode" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.publicationMode" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:boolean">
+																<xs:enumeration value="true">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.publicationMode.enumeration.true" />
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="false">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.publicationMode.enumeration.false" />
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="externalModel" type="xs:string" minOccurs="0" maxOccurs="unbounded" default="">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.externalModel" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="graphConfiguration" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.graphConfiguration" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/dataModelConfiguration/configuration</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="sharedPolicy" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.sharedPolicy" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="description" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.LogicalLabelBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.description" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="locale" type="osd:locale" minOccurs="0" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.description.locale" />
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataModelConfiguration.preferences.savedGraphs.description.label" />
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="graphJsonData" type="osd:text" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dataConfiguration" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.dataConfiguration" />
+						<xs:appinfo>
+							<osd:defaultView>
+								<displayMode>expanded</displayMode>
+							</osd:defaultView>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="configuration" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.dataConfiguration.configuration" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/uuid</primaryKeys>
+											<defaultLabel>${./name}</defaultLabel>
+											<defaultView>
+												<toolbars>
+													<recordTop>graph-data-config-onrecord</recordTop>
+												</toolbars>
+											</defaultView>
+										</osd:table>
+										<osd:trigger class="com.orchestranetworks.addon.dmdv.schema.trigger.graphdata.DataConfigurationTableTrigger" />
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="uuid" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+														<hiddenInSearch>true</hiddenInSearch>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.name" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="orientation" minOccurs="0" maxOccurs="1" default="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.orientation" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+														<hiddenInSearch>true</hiddenInSearch>
+														<hiddenInViews>true</hiddenInViews>
+														<hiddenInDataServices>true</hiddenInDataServices>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:boolean">
+													<xs:enumeration value="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.orientation.enumeration.true" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.orientation.enumeration.false" />
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="graphOrientation" minOccurs="1" maxOccurs="1" default="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.graphOrientation" />
+												<xs:appinfo>
+													<osd:information />
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:int">
+													<xs:enumeration value="0">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.graphOrientation.enumeration.0" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.graphOrientation.enumeration.1" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="2">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.graphOrientation.enumeration.2" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="3">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.graphOrientation.enumeration.3" />
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="linkRouting" minOccurs="1" maxOccurs="1" default="true" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.linkRouting" />
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:boolean">
+													<xs:enumeration value="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.linkRouting.enumeration.true" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.configuration.linkRouting.enumeration.false" />
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="highlightColor" type="xs:string" minOccurs="1" maxOccurs="1" default="#FF0000" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.highlightColor" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataHighlightColorWidget</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="assScope" type="xs:string" minOccurs="0" maxOccurs="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.assScope" />
+												<xs:appinfo>
+													<osd:association>
+														<tableRefInverse>
+															<fieldToSource>/root/dataConfiguration/scope/fkConfiguration</fieldToSource>
+														</tableRefInverse>
+													</osd:association>
+													<osd:defaultView>
+														<hiddenInDataServices>true</hiddenInDataServices>
+														<displayMode>inline</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="assTableConfiguration" type="xs:string" minOccurs="0" maxOccurs="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.assTableConfiguration" />
+												<xs:appinfo>
+													<osd:association>
+														<tableRefInverse>
+															<fieldToSource>/root/dataConfiguration/tableConfiguration/fkConfiguration</fieldToSource>
+														</tableRefInverse>
+													</osd:association>
+													<osd:defaultView>
+														<hiddenInDataServices>true</hiddenInDataServices>
+														<displayMode>inline</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="assLinkConfiguration" type="xs:string" minOccurs="0" maxOccurs="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.assLinkConfiguration" />
+												<xs:appinfo>
+													<osd:association>
+														<tableRefInverse>
+															<fieldToSource>/root/dataConfiguration/linkConfiguration/fkConfiguration</fieldToSource>
+														</tableRefInverse>
+													</osd:association>
+													<osd:defaultView>
+														<hiddenInDataServices>true</hiddenInDataServices>
+														<displayMode>inline</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1" default="">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.version" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.configuration.updatedDateTime" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="UniqueOn_root_dataConfiguration_configurationA7A50FBE-9039-4FFD-8C7D-1B71F67F7A36">
+									<xs:selector xpath="." />
+									<xs:field xpath="name" />
+								</xs:unique>
+							</xs:element>
+							<xs:element name="scope" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.dataConfiguration.scope" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/fkConfiguration /dataspace</primaryKeys>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="fkConfiguration" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.scope.fkConfiguration" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:tableRef>
+															<tablePath>/root/dataConfiguration/configuration</tablePath>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dataspace" type="osd:dataspaceKey" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.scope.dataspace" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dataset" type="osd:datasetName" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.scope.dataset" />
+												<xs:appinfo>
+													<osd:datasetSet>
+														<dataspaceSelector>/root/dataConfiguration/scope/dataspace</dataspaceSelector>
+														<include>
+															<pattern>.*</pattern>
+														</include>
+													</osd:datasetSet>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="tableConfiguration" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/uuid</primaryKeys>
+											<defaultLabel>${./table} - ${./dataModel}</defaultLabel>
+											<recordForm osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiform.graphdata.GraphDataTableConfigurationUIForm" />
+										</osd:table>
+										<osd:trigger class="com.orchestranetworks.addon.dmdv.schema.trigger.graphdata.TableConfigurationTableTrigger" />
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="uuid" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+														<hiddenInSearch>true</hiddenInSearch>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="fkConfiguration" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.fkConfiguration" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:tableRef>
+															<tablePath>/root/dataConfiguration/configuration</tablePath>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="dataModel" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.dataModel" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:constraintEnumeration class="com.orchestranetworks.addon.dmdv.schema.enumeration.DataModelEnumeration" />
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="table" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.table" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableConfigurationConstraint" />
+														<osd:constraintEnumeration class="com.orchestranetworks.addon.dmdv.schema.enumeration.TableEnumeration" />
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="isStartingPoint" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.isStartingPoint" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="style" type="tableStyle" minOccurs="1" maxOccurs="1" osd:access="RW">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.style" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Icon" minOccurs="0" maxOccurs="1" osd:access="RW">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.Icon" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataIconUIWidget</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="type" minOccurs="1" maxOccurs="1" default="STANDARD">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.Icon.type" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hiddenInViews>true</hiddenInViews>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="STANDARD">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.Icon.type.enumeration.STANDARD" />
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="IMAGE_URL">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.Icon.type.enumeration.IMAGE_URL" />
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="DAMA_IMAGE">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.Icon.type.enumeration.DAMA_IMAGE" />
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="image" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.Icon.image" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																		<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataStandardIconWidget</widgetKey>
+																	</widget>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="url" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.Icon.url" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hiddenInViews>true</hiddenInViews>
+																	<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																		<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataIconURLWidget</widgetKey>
+																	</widget>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="damaImage" type="mediaType" minOccurs="0" maxOccurs="1" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="defaultLabel" minOccurs="0" maxOccurs="1" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.defaultLabel" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataTableLabelUIWidget</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableLabelConditionConstraint" />
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="localizedLabel" minOccurs="0" maxOccurs="unbounded" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.LogicalLabelBean">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.localizedLabel" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.LocaleLabelTableUIWidget</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="locale" type="osd:locale" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.localizedLabel.locale" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.localizedLabel.label" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableLabelConditionConstraint" />
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="programmaticLabel" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.programmaticLabel" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="assLinkConfigurationTargetTable" type="xs:string" minOccurs="0" maxOccurs="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.assLinkConfigurationTargetTable" />
+												<xs:appinfo>
+													<osd:association>
+														<tableRefInverse>
+															<fieldToSource>/root/dataConfiguration/linkConfiguration/targetTable</fieldToSource>
+														</tableRefInverse>
+													</osd:association>
+													<osd:defaultView>
+														<hiddenInDataServices>true</hiddenInDataServices>
+														<displayMode>inline</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="assLinkConfigurationSourceTable" type="xs:string" minOccurs="0" maxOccurs="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.assLinkConfigurationSourceTable" />
+												<xs:appinfo>
+													<osd:association>
+														<tableRefInverse>
+															<fieldToSource>/root/dataConfiguration/linkConfiguration/sourceTable</fieldToSource>
+														</tableRefInverse>
+													</osd:association>
+													<osd:defaultView>
+														<hiddenInDataServices>true</hiddenInDataServices>
+														<displayMode>inline</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="nodeStyle" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<displayMode>collapsed</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="backgroundColor" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.ColorConditionBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.backgroundColor" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.backgroundColor.name" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableStyleNameConstraint" />
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="color" type="xs:string" minOccurs="1" maxOccurs="1" default="#C5E3FD">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.backgroundColor.color" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataCustomColorWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="condition" minOccurs="1" maxOccurs="1" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.backgroundColor.condition" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.ConditionHelperUIWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.backgroundColor.condition.label" />
+																					<xs:appinfo>
+																						<osd:otherFacets>
+																							<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableConditionConstraint" />
+																						</osd:otherFacets>
+																					</xs:appinfo>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="borderStyle" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.NumberConditionBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle.name" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableStyleNameConstraint" />
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="value" minOccurs="1" maxOccurs="1" default="0">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle.value" />
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:int">
+																			<xs:enumeration value="0">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle.value.enumeration.0" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="1">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle.value.enumeration.1" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="2">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle.value.enumeration.2" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="condition" minOccurs="1" maxOccurs="1" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle.condition" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.ConditionHelperUIWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderStyle.condition.label" />
+																					<xs:appinfo>
+																						<osd:otherFacets>
+																							<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableConditionConstraint" />
+																						</osd:otherFacets>
+																						<osd:defaultView />
+																					</xs:appinfo>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="borderWidth" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.NumberConditionBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderWidth" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderWidth.name" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableStyleNameConstraint" />
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="value" minOccurs="1" maxOccurs="1" default="1" osd:checkNullInput="true">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderWidth.value" />
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:int">
+																			<xs:minInclusive value="1" />
+																			<xs:maxInclusive value="4" />
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="condition" minOccurs="1" maxOccurs="1" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderWidth.condition" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.ConditionHelperUIWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderWidth.condition.label" />
+																					<xs:appinfo>
+																						<osd:otherFacets>
+																							<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableConditionConstraint" />
+																						</osd:otherFacets>
+																					</xs:appinfo>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="borderColor" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.ColorConditionBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderColor" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderColor.name" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableStyleNameConstraint" />
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="color" type="xs:string" minOccurs="1" maxOccurs="1" default="#FFFFFF">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderColor.color" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataCustomColorWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="condition" minOccurs="1" maxOccurs="1" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderColor.condition" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.ConditionHelperUIWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.borderColor.condition.label" />
+																					<xs:appinfo>
+																						<osd:otherFacets>
+																							<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableConditionConstraint" />
+																						</osd:otherFacets>
+																					</xs:appinfo>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="labelColor" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.ColorConditionBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.labelColor" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.labelColor.name" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableStyleNameConstraint" />
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="color" type="xs:string" minOccurs="1" maxOccurs="1" default="#000000">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.labelColor.color" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataCustomColorWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="condition" minOccurs="1" maxOccurs="1" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.labelColor.condition" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.ConditionHelperUIWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.labelColor.condition.label" />
+																					<xs:appinfo>
+																						<osd:otherFacets>
+																							<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableConditionConstraint" />
+																						</osd:otherFacets>
+																					</xs:appinfo>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="nodeTemplate" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.tableConfiguration.nodeStyle.nodeTemplate" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.TableNodeTemplateConstraint" />
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="linkConfiguration" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/uuid</primaryKeys>
+											<defaultLabel>${./targetTable} and ${./sourceTable}</defaultLabel>
+											<recordForm osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiform.graphdata.GraphDataLinkConfigurationUIForm" />
+										</osd:table>
+										<osd:trigger class="com.orchestranetworks.addon.dmdv.schema.trigger.graphdata.LinkConfigurationTableTrigger" />
+										<osd:otherFacets>
+											<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.LinkConfigurationTableConstraint" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="uuid" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+														<hiddenInSearch>true</hiddenInSearch>
+														<hiddenInViews>true</hiddenInViews>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="fkConfiguration" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.fkConfiguration" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:tableRef>
+															<tablePath>/root/dataConfiguration/configuration</tablePath>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="relationshipType" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.relationshipType" />
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="line">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.relationshipType.enumeration.line" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="containment">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.relationshipType.enumeration.containment" />
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="linkOrientation" minOccurs="1" maxOccurs="1" default="OneWayRight">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkOrientation" />
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="OneWayLeft">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkOrientation.enumeration.OneWayLeft" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="OneWayRight">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkOrientation.enumeration.OneWayRight" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="TwoWay">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkOrientation.enumeration.TwoWay" />
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="targetTable" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.targetTable" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.AssociationTableConstraint" />
+														<osd:tableRef>
+															<tablePath>/root/dataConfiguration/tableConfiguration</tablePath>
+															<filter>
+																<predicate>./fkConfiguration = ${../fkConfiguration}</predicate>
+															</filter>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="sourceTable" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.sourceTable" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.AssociationTableConstraint" />
+														<osd:tableRef>
+															<tablePath>/root/dataConfiguration/tableConfiguration</tablePath>
+															<filter>
+																<predicate>./fkConfiguration = ${../fkConfiguration}</predicate>
+															</filter>
+														</osd:tableRef>
+													</osd:otherFacets>
+													<osd:defaultView />
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="automaticDisplay" minOccurs="1" maxOccurs="1" default="false" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.automaticDisplay" />
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:boolean">
+													<xs:enumeration value="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.automaticDisplay.enumeration.true" />
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.automaticDisplay.enumeration.false" />
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="contextMenuLabel" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.contextMenuLabel" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.ContextMenuLabelConstraint" />
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.label" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<hidden>true</hidden>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="filter" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.filter" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="defaultLabel" minOccurs="0" maxOccurs="1" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.defaultLabel" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataLinkLabelUIWidget</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.LinkLabelConditionConstraint" />
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="localizedLabel" minOccurs="0" maxOccurs="unbounded" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.LogicalLabelBean">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.localizedLabel" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+															<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.LocaleLabelLinkUIWidget</widgetKey>
+														</widget>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="locale" type="osd:locale" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.localizedLabel.locale" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.localizedLabel.label" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.LinkLabelConditionConstraint" />
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="programmaticLabel" type="xs:string" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.programmaticLabel" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="linkStyleTab" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<displayMode>tab</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="linkStyle" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.GraphDataLinkStyleBean">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle" />
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="condition" minOccurs="0" maxOccurs="1" osd:access="RW" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.condition" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.LinkStyleConditionUIWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.condition.label" />
+																					<xs:appinfo>
+																						<osd:otherFacets>
+																							<osd:constraint class="com.orchestranetworks.addon.dmdv.schema.constraint.LinkConditionConstraint" />
+																						</osd:otherFacets>
+																					</xs:appinfo>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="color" type="xs:string" minOccurs="1" maxOccurs="1" default="#A6AAA9">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.color" />
+																		<xs:appinfo>
+																			<osd:defaultView>
+																				<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																					<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataCustomColorWidget</widgetKey>
+																				</widget>
+																			</osd:defaultView>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="lineStyle" minOccurs="1" maxOccurs="1" default="straight">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.lineStyle" />
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="straight">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.lineStyle.enumeration.straight" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="curve">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.lineStyle.enumeration.curve" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="style" minOccurs="1" maxOccurs="1" default="solid">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.style" />
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="solid">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.style.enumeration.solid" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="dotted">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.style.enumeration.dotted" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																			<xs:enumeration value="dashed">
+																				<xs:annotation>
+																					<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.style.enumeration.dashed" />
+																				</xs:annotation>
+																			</xs:enumeration>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="width" minOccurs="1" maxOccurs="1" default="1" osd:checkNullInput="true">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.linkStyle.width" />
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:int">
+																			<xs:minInclusive value="1" />
+																			<xs:maxInclusive value="4" />
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="programmaticStyle" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.linkStyleTab.programmaticStyle" />
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="path" minOccurs="1" maxOccurs="unbounded" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.GraphDataLinkPathBean">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.path" />
+												<xs:appinfo>
+													<osd:defaultView>
+														<displayMode>expanded</displayMode>
+													</osd:defaultView>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="foreignKey" type="defaultLabel" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.path.foreignKey" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																		<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataLinkPathUIWidget</widgetKey>
+																	</widget>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="isReverseDirection" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.path.isReverseDirection" />
+															<xs:appinfo>
+																<osd:defaultView />
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="conditionalFilter" type="defaultLabel" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.dataConfiguration.linkConfiguration.path.conditionalFilter" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+																		<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.LinkConditionUIWidget</widgetKey>
+																	</widget>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="defaultLabel" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.DefaultLabelBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:defaultView>
+					<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+						<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.ConditionHelperUIWidget</widgetKey>
+					</widget>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fieldSpecification" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.NodeSpecificationBean">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.fieldSpecification" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schemaNodePath" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.fieldSpecification.schemaNodePath" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="homeKey" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.fieldSpecification.homeKey" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="adaptationName" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.fieldSpecification.adaptationName" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isGroupField" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.fieldSpecification.isGroupField" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="logicalLabel" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.LogicalLabelBean">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.logicalLabel" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<hiddenInSearch>textSearchOnly</hiddenInSearch>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="locale" type="osd:locale" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.logicalLabel.locale" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.logicalLabel.label" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nodeSpecification" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.NodeSpecificationBean">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.nodeSpecification" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schemaNodePath" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.nodeSpecification.schemaNodePath" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="homeKey" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.nodeSpecification.homeKey" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="adaptationName" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.nodeSpecification.adaptationName" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isGroupField" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.nodeSpecification.isGroupField" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tableColor" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphmodel.TableColor">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.tableColor" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+					<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+						<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphmodel.GraphTemplateUIColorTable</widgetKey>
+					</widget>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="border" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableColor.border" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="background" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableColor.background" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="text" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableColor.text" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tableStyle" osd:class="com.orchestranetworks.addon.dmdv.schema.bean.graphdata.TableStyle">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+					<widget osd:class="com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.DMDVUIWidgetFactory">
+						<widgetKey>com.orchestranetworks.addon.dmdv.schema.ui.uiwidget.graphdata.GraphDataUITableStyle</widgetKey>
+					</widget>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="border" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableStyle.border" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="background" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableStyle.background" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="text" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableStyle.text" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="borderWidth" minOccurs="1" maxOccurs="1" default="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableStyle.borderWidth" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1" />
+						<xs:maxInclusive value="4" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="borderStyle" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.tableStyle.borderStyle" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:enumeration value="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.tableStyle.borderStyle.enumeration.0" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="1">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.tableStyle.borderStyle.enumeration.1" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="2">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.tableStyle.borderStyle.enumeration.2" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConditionHelperAjaxProcedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.ConditionHelperAjaxProcedure" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DataLinkConditionAjaxProcedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.DataLinkConditionAjaxProcedure" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DataLinkLabelAjaxProcedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.DataLinkLabelAjaxProcedure" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DataLinkPathAjaxProcedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.DataLinkPathAjaxProcedure" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DataTableLabelAjaxProcedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.DataTableLabelAjaxProcedure" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="LinkConfigurationDetailAjaxComponent">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.LinkConfigurationDetailAjaxComponent" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="LinkStyleConditionAjaxProcedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.LinkStyleConditionAjaxProcedure" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="TableConfigurationDetailAjaxComponent">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.dmdv.schema.ajax.TableConfigurationDetailAjaxComponent" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>
+

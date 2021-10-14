@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!--
+
+	Copyright © TIBCO Software Inc. 2001-2021. All rights reserved. 
+
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+ --> 
+ 
+ <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:h="urn:ebx-conf:history_2.0" targetNamespace="urn:ebx-conf:history_2.0"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:element name="records">
+		<xs:annotation>
+			<xs:documentation>The root element contains all the actions (entries)
+				that have been executed.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="entry" type="h:EntryType" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EntryType">
+		<xs:annotation>
+			<xs:documentation>An entry represents a transactional update on the
+				repository.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Describes what/who has created/initiated a unit
+						of work.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="sourceWebUser">
+					<xs:annotation>
+						<xs:documentation>Describes the user and HTTP session who is the
+							source of action.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="login" type="xs:string" />
+						<xs:attribute name="ipAddress" type="xs:string" />
+						<xs:attribute name="sessionId" type="xs:string" />
+						<xs:attribute name="trackingInfo" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="sourceSystem">
+					<xs:annotation>
+						<xs:documentation>Identifies an EBX® internal source of
+							action on the repository.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="trackingInfo" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="Procedure" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="javaClass" type="xs:string" />
+					<xs:attribute name="executionInfo" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="failureCause" type="h:Failure"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="failure" type="h:Failure" minOccurs="0"
+					maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>If the action has failed, describes the reason
+							of
+							the failure.
+					</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="modifyContent" type="h:ChangeUnitType"
+					minOccurs="0" />
+				<xs:element name="copy" type="h:SimpleUnitType"
+					minOccurs="0" />
+				<xs:element name="createInstance" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="h:ChangeUnitType">
+								<xs:attribute name="schema" type="xs:string" />
+								<xs:attribute name="parent" type="xs:string" />
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="createOccurrence" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="h:ChangeUnitType">
+								<xs:attribute name="definitionMode" type="xs:string" />
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="delete" type="h:SimpleUnitType"
+					minOccurs="0" />
+				<xs:element name="modifyHeadParent" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="h:SimpleUnitType">
+								<xs:attribute name="newParent" type="xs:string" />
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="modifyWithExplicitChanges" type="h:ChangeUnitType"
+					minOccurs="0" />
+				<xs:element name="massUpdate" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="modified" type="xs:string"
+								minOccurs="0" maxOccurs="unbounded" />
+							<xs:group ref="h:Values" />
+						</xs:sequence>
+						<xs:attributeGroup ref="h:UnitGroup" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="request" type="xs:string" />
+		<xs:attribute name="branch" type="xs:string" />
+		<xs:attribute name="date" type="xs:dateTime" />
+		<xs:attribute name="entryId" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="SimpleUnitType">
+		<xs:annotation>
+			<xs:documentation>Describes an atomic change on an XML content.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="h:UnitGroup" />
+	</xs:complexType>
+	<xs:complexType name="ChangeUnitType">
+		<xs:annotation>
+			<xs:documentation>Describes an atomic change on an XML content.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:group ref="h:Values" />
+		<xs:attributeGroup ref="h:UnitGroup" />
+	</xs:complexType>
+	<xs:attributeGroup name="UnitGroup">
+		<xs:attribute name="reference" type="xs:string" />
+		<xs:attribute name="contentType" type="xs:string" />
+		<xs:attribute name="xpath" type="xs:string" />
+		<xs:attribute name="uuid" type="xs:string" />
+		<xs:attribute name="revision" type="xs:string" />
+	</xs:attributeGroup>
+	<xs:group name="Values">
+		<xs:sequence>
+			<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="old">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="xs:anyType" />
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="new">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="xs:anyType" />
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="path" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="Failure">
+		<xs:attribute name="javaClass" type="xs:string" />
+		<xs:attribute name="id" type="xs:string" />
+		<xs:attribute name="message" type="xs:string" />
+	</xs:complexType>
+</xs:schema>

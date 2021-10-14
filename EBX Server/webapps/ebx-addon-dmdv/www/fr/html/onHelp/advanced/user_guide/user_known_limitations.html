@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Known limitations</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_known_limitations" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Data Model and Data Visualization Add-on Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_known_limitations.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Data Model and Data Visualization Add-on Documentation</span></div>
+<h1 id="user_known_limitations_topPage">
+Known limitations</h1>
+<p>The EBX® Data Model and Data Visualization Add-on has the following known limitations:</p><ul>
+<li><p>Any saved data model graph based on a duplicated model will refer to the original model and not the duplicated model. Since a saved graph is linked to the XML schema, this behavior is a result of data model duplication not duplicating the schema file name. Embedded models are not affected; only models in modules.</p></li><li><p>If all nodes to expand in a data value graph belong to the same table, the expand service includes the table name. When a table filter is used, the service to expand nodes cannot ascertain the table name to expand. Instead, the following generalized service labels display: <strong>Expand targets</strong>, <strong>Expand sources</strong>, <strong>Expand children</strong>, or <strong>Expand parents</strong>.</p></li><li><p>After running the <strong>Center</strong> service on a table, any of its expanded groups are collapsed.</p></li><li><p>Data model graphs are not automatically refreshed to reflect updates to displayed tables and foreign keys.</p></li><li><p>Orphan groups defined at the root of a data model are not displayed in graphs. However, fields defined at this level do display.</p></li><li><p>After resizing a node on a saved graph, the system still displays the default size for the node.</p></li><li><p>Data value graphs do not automatically refresh to reflect updates to displayed data, or nodes.</p></li><li><p>When using the containment type for a self-referencing node, it does not display in the graph.</p></li><li><p>The template configuration cannot be changed at runtime for custom data model graphs—those created using the Java API.</p></li><li><p>In data value graphs, users can move the graph but not graph nodes.</p></li><li><p>On Firefox 52 ESR, performance issues may occur when trying to display a data model graph that includes many tables.</p></li><li><p>Node position is recalculated after expanding. Therefore, node position may change.</p></li><li><p>When a table in a group is hidden, and the group is collapsed, the table&#39;s link still displays.</p></li><li><p>Graph templates include the option to show hidden fields, but not hidden tables.</p></li><li><p>Full screen mode is not supported on IE10 or Microsoft Edge.</p></li></ul>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

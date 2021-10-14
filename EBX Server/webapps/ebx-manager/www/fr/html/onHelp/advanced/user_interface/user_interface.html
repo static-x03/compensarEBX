@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Interface customization</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_interface" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; User interface</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_interface/user_interface.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface</span></div>
+<h1>
+Interface customization</h1>
+<p>The TIBCO EBX&reg; graphical interface can be customized through various EBX&reg; APIs.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#UICustomDevSummary_Extra">Using EBX&reg; as a Web Component</a></li><li class="toc1"><a href="#UICustomDevSummary_UserService">Adding user services</a></li><li class="toc1"><a href="#id3">Customizing forms</a></li><li class="toc1"><a href="#UICustomDevSummary_UIWidgets">Customizing widgets</a></li><li class="toc1"><a href="#UICustomDevSummary_TableFilter">Customizing table filter</a></li><li class="toc1"><a href="#UICustomDevSummary_LabelRenderer">Customizing record label</a></li><li class="toc1"><a href="#UICustomDevSummary_resourceInclusion">Including CSS and JavaScript</a></li></ul>
+</div>
+<h2 id="UICustomDevSummary_Extra">
+Using EBX&reg; as a Web Component</h2>
+<p>EBX&reg; can be integrated into any application that is accessible through a <a href="../installation/supported_env.html">supported web browser</a>, thanks to the Web Component API.</p><p>A typical use is to integrate EBX&reg; views into an organization&#39;s intranet framework. Web Components can also be invoked from the EBX&reg; user interface using <a href="#UICustomDevSummary_UserService">User services</a>.</p><p>To embed all or part of EBX&reg; in a web page, the HTML tag <code>&lt;iframe&gt;</code> should be used by indicating the URL to EBX&reg;. This URL can be specified either manually or by using the <code>UIHttpManagerComponent</code> API. A single web page may include several iframes that integrate EBX&reg;. It is then possible to create a portal made of tables, forms, hierarchical views, etc., from EBX&reg;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/manager_component_ref.html">Using TIBCO EBX&reg; as a Web Component</a></li></ul>
+</div>
+<h2 id="UICustomDevSummary_UserService">
+Adding user services</h2>
+<p>A user service is an extension of EBX&reg; that provides a graphical user interface (GUI) that allows users to access specific or advanced functions. </p><p>Powerful custom user services can be developed using the same visual components and data validation mechanisms as standard EBX&reg; user interfaces.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_interface/user_services_overview.html">User service overview</a></li></ul>
+</div>
+<h2 id="id3">
+Customizing forms</h2>
+<p> It is possible to override the default layout and behavior of forms in the user interface by using various tools and API. </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="UICustomDevSummary_CustomForms">Custom forms editor</p></td><td class="ebx_definitionListDefinition"><p>It is possible to override the default layout of forms in the user interface by using the &#39;Custom forms&#39; extension in the DMA. This extension provides a graphical editor, which gives the possibility to customize the layout of a form, while having the same components and standard behavior as record forms using the default layout.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/custom_forms.html">Custom forms</a></li></ul>
+</div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="UICustomDevSummary_UIForm">Programmatic form layout</p></td><td class="ebx_definitionListDefinition"><p>It is also possible to use the <code>UIForm</code> API to override the default layout of forms. This API provides the standard input components from EBX&reg;, which give the possibility to customize the layout of a form, while having the same components and standard behavior as record forms using the default layout.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/form/UIForm.html"><code>UIForm</code></a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/form/UIFormPaneWriter.html"><code>UIFormPaneWriter</code></a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/form/widget/UIWidget.html"><code>UIWidget</code></a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/form/UIFormHeader.html"><code>UIFormHeader</code></a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/form/UIFormBottomBar.html"><code>UIFormBottomBar</code></a></li></ul>
+</div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="UICustomDevSummary_UserServiceAsFormLayout">User service as form layout</p></td><td class="ebx_definitionListDefinition"><p>It is also possible to use user services to override the default layout of forms. This API gives the possibility to customize the layout of a form, while having the same components as record forms using the default layout, with a customizable behavior.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/userservice/schema/UserServiceRecordFormFactory.html"><code>UserServiceRecordFormFactory</code></a></li><li><a href="../user_interface/user_services_overview.html">Overview</a></li></ul>
+</div>
+</td></tr>
+</table>
+<h2 id="UICustomDevSummary_UIWidgets">
+Customizing widgets</h2>
+<p>Custom widgets are included in the Java API to allow the development of user interface components for fields or groups of fields. A custom widget (<code>UICustomWidget</code>) allows, for a given node, to control the area where the input or display component is located. This allows having an input and display component that is fully customizable in HTML. The standard components (<code>UIWidgets</code>) are available and can be used. The custom widget can implement several display aspects: input component in the form, display in the form, display in a table cell. If a custom widget writes its own HTML components, it has the possibility to save the value in the database when submitting the form.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/form/widget/UICustomWidget.html"><code>UICustomWidget</code></a></li></ul>
+</div>
+<h2 id="UICustomDevSummary_TableFilter">
+Customizing table filter</h2>
+<p>A table filter allows, for a given table, to create a criteria input form in order to apply a filter to the table view. The <code>UITableFilter</code> API is used to implement a table filter with a custom UI. It provides methods to create a UI that automatically adapts to the underlying data format (for example, by displaying a combo box when applicable).</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UITableFilter.html"><code>UITableFilter</code></a></li><li><a href="../user_datamodel/userdatamodel_elementproperties.html">Properties of data model elements</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UILabelRendererForHierarchy.html"><code>UILabelRendererForHierarchy</code></a></li></ul>
+</div>
+<h2 id="UICustomDevSummary_LabelRenderer">
+Customizing record label</h2>
+<p>EBX&reg; uses a label to display a reference to a given record (for example a foreign key). Labels are also used in the title of a record form and in hierarchical views. This label can be customized in the model using expressions. It is also possible to customize labels using the <code>UILabelRenderer</code> API.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UILabelRenderer.html"><code>UILabelRenderer</code></a></li></ul>
+</div>
+<h2 id="UICustomDevSummary_resourceInclusion">
+Including CSS and JavaScript</h2>
+<p>It is possible to integrate CSS and JavaScript files in each EBX&reg; page by declaring them in the registration module. The inclusion of JavaScript files can be subject to conditions through development depending on the context.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/modules_packaging.html#registration">Module registration</a></li><li><a href="../user_interface/coding_recommendations.html">Development recommendations</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIDependencyRegisterer.html"><code>UIDependencyRegisterer</code></a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

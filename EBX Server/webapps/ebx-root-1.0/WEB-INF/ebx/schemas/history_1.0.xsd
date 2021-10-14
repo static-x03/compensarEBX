@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for historization's definition, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0"
+	xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0"
+		schemaLocation="./common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants
+					typeName="com.orchestranetworks.history.repository.HvmHistory_1_0">
+					<nodes prefix="" root="/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<!-- schema extension -->
+			<osd:extensions
+				class="com.orchestranetworks.history.repository.HvmSchemaExtensions" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.history" />
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- Root -->
+	<xs:element name="history" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.history" />
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="profiles"
+					type="ProfileType" />
+				<xs:element maxOccurs="unbounded" minOccurs="0"
+					name="transactions">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.history.transactions" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/txId</primaryKeys>
+									<relationalModeOnLegacy>HVG_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.history.transactions.table.defaultLabel" />
+								</osd:table>
+								<osd:uiFilter
+									class="com.orchestranetworks.history.repository.HvgDataSpaceUIFilter">
+									<label
+										osd:id="element.history.transactions.uiFilter.HvgDataSpaceUIFilter.label" />
+								</osd:uiFilter>
+								<osd:uiFilter
+									class="com.orchestranetworks.history.repository.HvgUserAndDateUIFilter">
+									<label
+										osd:id="element.history.transactions.uiFilter.HvgUserAndDateUIFilter.label" />
+								</osd:uiFilter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="txId" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>tx_id</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.transactions.txId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="timestamp" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>timestamp</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.transactions.timestamp" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="homeName" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>home_name</osd:mappingInfo>
+										<osd:uiBean
+											class="com.orchestranetworks.history.repository.HvgDataSpaceUIBean" />
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.transactions.homeName" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="homeId" type="xs:integer"
+								osd:category="Hidden">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>home_id</osd:mappingInfo>
+										<osd:uiBean
+											class="com.orchestranetworks.history.repository.HvgDataSpaceUIBean" />
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="userName" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>name</osd:mappingInfo>
+										<osd:uiBean
+											class="com.orchestranetworks.history.repository.HvgUserUIBean" />
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.transactions.userName" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="actionName" osd:access="RW"
+								osd:class="com.orchestranetworks.history.repository.HvgActionBean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.history.transactions.actionName" />
+									<xs:appinfo>
+										<osd:uiBean
+											class="com.orchestranetworks.history.repository.HvgActionUIBean" />
+										<osd:defaultView>
+											<hiddenInSearch>true</hiddenInSearch>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="builtInActionName" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:mappingInfo>built_in_action_name</osd:mappingInfo>
+												</xs:appinfo>
+												<xs:documentation
+													osd:id="element.history.transactions.actionName.builtInActionName" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="procedureName" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:mappingInfo>procedure_name</osd:mappingInfo>
+												</xs:appinfo>
+												<xs:documentation
+													osd:id="element.history.transactions.actionName.procedureName" />
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="executionInfo" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>execution_info</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.transactions.executionInfo" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="modifications" osd:access="RW"
+								osd:class="com.orchestranetworks.history.repository.HvgPerformedModificationsBean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.history.transactions.modifications" />
+									<xs:appinfo>
+										<osd:uiBean
+											class="com.orchestranetworks.history.repository.HvgPerformedModificationsUIBean" />
+										<osd:defaultView>
+											<hiddenInSearch>true</hiddenInSearch>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="performedModifications" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<!-- Dummy column name -->
+													<osd:mappingInfo>1 as dummy</osd:mappingInfo>
+												</xs:appinfo>
+												<xs:documentation
+													osd:id="element.history.transactions.modifications.performedModifications" />
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="sessionInfo" osd:access="RW"
+								osd:class="com.orchestranetworks.history.repository.HvgSessionBean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.history.transactions.sessionInfo" />
+									<xs:appinfo>
+										<osd:defaultView>
+											<hiddenInSearch>true</hiddenInSearch>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="sessionType" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:mappingInfo>session_type</osd:mappingInfo>
+												</xs:appinfo>
+												<xs:documentation
+													osd:id="element.history.transactions.sessionInfo.sessionType" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ipAddress" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:mappingInfo>ip_address</osd:mappingInfo>
+												</xs:appinfo>
+												<xs:documentation
+													osd:id="element.history.transactions.sessionInfo.ipAddress" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="httpId" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:mappingInfo>http_id</osd:mappingInfo>
+												</xs:appinfo>
+												<xs:documentation
+													osd:id="element.history.transactions.sessionInfo.httpId" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="trackingInfo" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:mappingInfo>tracking_info</osd:mappingInfo>
+												</xs:appinfo>
+												<xs:documentation
+													osd:id="element.history.transactions.sessionInfo.trackingInfo" />
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="UUID" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>uuid</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.transactions.UUID" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="rro">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.history.rro" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<relationalModeOnLegacy>RRO_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.history.rro.table.defaultLabel" />
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+
+
+						<xs:sequence>
+							<xs:element name="id" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>id</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.id" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="modeKey">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>mode_key</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.modeKey" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="unique">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.modeKey.enumeration.unique" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="failovermain">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.modeKey.enumeration.failovermain" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="failoverstandby">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.modeKey.enumeration.failoverstandby" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="disabled">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.modeKey.enumeration.disabled" />
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+
+							<xs:element name="hostName" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>host_name</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.hostName" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="hostAddress" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>host_address</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.hostAddress" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="productVersion" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>product_version</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.productVersion" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="insertTime" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>insert_time</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.startTime" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="state">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>state</osd:mappingInfo>
+										<osd:uiBean class="com.orchestranetworks.cce.rdb.rro.RrvStateUIBean" />
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.state" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="D">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.state.enumeration.D" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="O">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.state.enumeration.O" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="N">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.state.enumeration.N" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="S">
+											<xs:annotation>
+												<xs:documentation osd:id="element.history.rro.state.enumeration.S" />
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+
+
+							<xs:element name="startTimeOfOwnershipRequest" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>rro_request_time
+										</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.startTimeOfOwnershipRequest" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="startTimeOfOwnershipHold" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>rro_hold_time
+										</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.startTimeOfOwnershipHold" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="lastHeartBeatTime" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>heart_beat_time</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.lastHeartBeatTime" />
+
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="markedDeadTime" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>marked_dead_time</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.markedDeadTime" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="markedDeadOrigin" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>marked_dead_origin</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/history/rro</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.markedDeadOrigin" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="systemInformation" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>system_info</osd:mappingInfo>
+										<osd:uiBean class="com.orchestranetworks.cce.rdb.rro.RrvSystemInfosUIBean" />
+									</xs:appinfo>
+									<xs:documentation osd:id="element.history.rro.systemInformation" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object definition -->
+	<xs:complexType name="DocumentationType"
+		osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.DocumentationType" />
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation
+						osd:id="complexType.DocumentationType.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale" />
+						<xs:element minOccurs="0" name="label" type="xs:string">
+							<xs:annotation>
+								<xs:documentation
+									osd:id="complexType.DocumentationType.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="description">
+							<xs:annotation>
+								<xs:documentation
+									osd:id="complexType.DocumentationType.localizedDocumentations.description" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Table definition -->
+	<xs:complexType name="ProfileType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ProfileType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/profile</primaryKeys>
+				</osd:table>
+				<osd:trigger
+					class="com.orchestranetworks.history.repository.HvmHistoryTableTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="profile">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProfileType.profile" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="documentation" osd:access="RW"
+				type="DocumentationType">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProfileType.documentation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="branchesConfigurations" osd:access="RW"
+				osd:class="com.orchestranetworks.history.repository.HvmBranchConfiguration">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProfileType.branchesConfigurations" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="branch" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation
+									osd:id="complexType.ProfileType.branchesConfigurations.branch" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration
+											class="com.orchestranetworks.history.repository.HvgHomeConstraintEnumeration" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string" />
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="mode" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation
+									osd:id="complexType.ProfileType.branchesConfigurations.mode" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="root">
+										<xs:annotation>
+											<xs:documentation
+												osd:id="complexType.ProfileType.branchesConfigurations.mode.enumeration.root" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="children">
+										<xs:annotation>
+											<xs:documentation
+												osd:id="complexType.ProfileType.branchesConfigurations.mode.enumeration.children" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="all">
+										<xs:annotation>
+											<xs:documentation
+												osd:id="complexType.ProfileType.branchesConfigurations.mode.enumeration.all" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

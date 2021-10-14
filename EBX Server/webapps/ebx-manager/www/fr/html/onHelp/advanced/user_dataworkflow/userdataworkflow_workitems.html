@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Bons de travail</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="workflow_workitems" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Workflows de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataworkflow/userdataworkflow_workitems.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Workflows de données</span></div>
+<h1>
+Bons de travail</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Pr&eacute;sentation des bons de travail</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">&Eacute;tats d&#39;un bon de travail</a></li></ul>
+</li><li class="toc1"><a href="#id2">Travail sur un bon de travail en tant que participant</a></li><li class="toc1"><a href="#workitem_priorities">Priorit&eacute; de bons de travail</a></li></ul>
+</div>
+<h2 id="id1">
+Pr&eacute;sentation des bons de travail</h2>
+<p>Un bon de travail est une t&acirc;che utilisateur unitaire qui doit &ecirc;tre effectu&eacute;e par un utilisateur humain. Par d&eacute;faut, quand un mod&egrave;le de workflow d&eacute;finit une t&acirc;che utilisateur, les workflows de donn&eacute;es, lanc&eacute;s depuis les publications du mod&egrave;le, g&eacute;n&egrave;rent un bon de travail individuel pour chacun des participants list&eacute;s dans la t&acirc;che utilisateur.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_interface/user_services_overview.html">Overview</a></li></ul>
+</div>
+<h3 id="id1s1">
+&Eacute;tats d&#39;un bon de travail</h3>
+<p>Lorsqu&#39;un bon de travail est &eacute;mis, pendant l&#39;ex&eacute;cution d&#39;un workflow de donn&eacute;es, pour une t&acirc;che utilisateur d&eacute;finie dans le mod&egrave;le, le bon de travail peut prendre plusieurs &eacute;tats&nbsp;:&nbsp;propos&eacute;, allou&eacute;, d&eacute;marr&eacute;, et termin&eacute;.</p><h4>
+Cr&eacute;ation des bons de travail</h4>
+<h5>
+Mode par d&eacute;faut</h5>
+<p>Dans le mode par d&eacute;faut, un seul bon de travail est g&eacute;n&eacute;r&eacute; quelle que soit la liste de profils d&eacute;finis.</p><p>Par d&eacute;faut, si un seul utilisateur est d&eacute;fini dans la liste des profils, le bon de travail cr&eacute;&eacute; est &agrave; l&#39;&eacute;tat <em>allou&eacute;</em>.</p><p>Par d&eacute;faut, dans les autres cas, le bon de travail cr&eacute;&eacute; est &agrave; l&#39;&eacute;tat <em>propos&eacute;</em>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Le comportement par d&eacute;faut, d&eacute;crit ci-dessus, peut &ecirc;tre surcharg&eacute; par une extension programmatique d&eacute;finie dans la t&acirc;che utilisateur. Dans ce cas, les bons de travail peuvent &ecirc;tre g&eacute;n&eacute;r&eacute;s programmatiquement, sans se baser obligatoirement sur la liste des profils de la t&acirc;che utilisateur.</p></div>
+<h5>
+Mode de compatibilit&eacute;</h5>
+<p>Par d&eacute;faut, pour chaque utilisateur d&eacute;fini comme participant de la t&acirc;che utilisateur, le workflow de donn&eacute;es cr&eacute;e un bon de travail &agrave; l&#39;&eacute;tat <em>allou&eacute;</em>.</p><p>Par d&eacute;faut, pour chaque r&ocirc;le d&eacute;fini comme participant de la t&acirc;che utilisateur, le workflow de donn&eacute;es cr&eacute;e un bon de travail &agrave; l&#39;&eacute;tat <em>propos&eacute;</em>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Le comportement par d&eacute;faut, d&eacute;crit ci-dessus, peut &ecirc;tre surcharg&eacute; par une extension programmatique d&eacute;finie dans la t&acirc;che utilisateur. Dans ce cas, les bons de travail peuvent &ecirc;tre g&eacute;n&eacute;r&eacute;s programmatiquement, sans se baser obligatoirement sur la liste des participants de la t&acirc;che utilisateur.</p></div>
+<h4>
+Variations des &eacute;tats des bons de travail</h4>
+<p>Lorsque le bon de travail est &agrave; l&#39;&eacute;tat <em>allou&eacute;</em>, l&#39;utilisateur d&eacute;fini peut directement commencer &agrave; travailler sur le bon de travail allou&eacute; en effectuant l&#39;action &#39;Prendre et d&eacute;marrer&#39;. Le bon de travail passe alors &agrave; l&#39;&eacute;tat <em>d&eacute;marr&eacute;</em>.</p><p>Lorsque le bon de travail est &agrave; l&#39;&eacute;tat <em>propos&eacute;</em>, tout utilisateur ou tout membre des r&ocirc;les auxquels il est propos&eacute; peut prendre le bon de travail en utilisant l&#39;action &#39;Prendre et d&eacute;marrer&#39;. Le bon de travail passe ainsi &agrave; l&#39;&eacute;tat <em>d&eacute;marr&eacute;</em>.</p><p>Avant qu&#39;un utilisateur ait pris le bon de travail propos&eacute;, un gestionnaire des allocations du workflow de donn&eacute;es peut intervenir pour affecter manuellement le bon de travail &agrave; un utilisateur sp&eacute;cifique, passant ainsi le bon de travail &agrave; l&#39;&eacute;tat <em>allou&eacute;</em>. Puis, lorsque l&#39;utilisateur commence &agrave; travailler sur le bon de travail via l&#39;action &#39;D&eacute;marrer le bon de travail&#39;, le bon de travail passe &agrave; l&#39;&eacute;tat <em>d&eacute;marr&eacute;</em>.</p><p>Une fois que l&#39;utilisateur, qui a d&eacute;marr&eacute; le bon de travail, a r&eacute;alis&eacute; l&#39;action demand&eacute;e, l&#39;action terminale &#39;Accepter&#39; ou &#39;Rejeter&#39; place le bon de travail dans l&#39;&eacute;tat <em>termin&eacute;</em>. Lorsqu&#39;un utilisateur termine un bon de travail, le workflow de donn&eacute;es passe automatiquement &agrave; l&#39;&eacute;tape suivante d&eacute;finie dans le mod&egrave;le de workflow.</p><h4 id="workItemStateDiagram">
+Diagramme des &eacute;tats de bon de travail</h4>
+<h5>
+Mode par d&eacute;faut</h5>
+<p><img alt="/userdataworkflow_workitemstates_defaultMode.png" src="../resources/images/user_dataworkflow/userdataworkflow_workitemstates_defaultMode.png"></img></p><h5>
+Mode de compatibilit&eacute;</h5>
+<p><img alt="/userdataworkflow_workitemstates.png" src="../resources/images/user_dataworkflow/userdataworkflow_workitemstates.png"></img></p><h2 id="id2">
+Travail sur un bon de travail en tant que participant</h2>
+<p>Tous les bons de travail disponibles (qui vous sont soit propos&eacute;s, soit allou&eacute;s), sont affich&eacute;s dans votre boîte de r&eacute;ception des bons de travail. Quand vous commencez &agrave; travailler sur un bon de travail, vous pouvez ajouter des commentaires associ&eacute;s qui seront visibles par les administrateurs, les superviseurs du workflow et les autres participants au workflow de donn&eacute;es. Tant que vous &ecirc;tes toujours en train de travailler sur le bon de travail, vous pouvez &eacute;diter ce commentaire.</p><p>Quand vous avez r&eacute;alis&eacute; toutes les actions demand&eacute;es par le bon de travail, vous devez signaler la fin du travail en cliquant soit sur le bouton <strong>Accepter</strong>, soit sur le bouton <strong>Rejeter</strong>. Les libell&eacute;s de ces deux boutons peuvent varier en fonction du contexte du bon de travail</p><p>Pour suivre l&#39;avancement du workflow de donn&eacute;es associ&eacute; au bon de travail qui vous est destin&eacute; dans votre boîte de r&eacute;ception, cliquez sur le bouton &quot;Afficher&quot; <img alt="/ebx_open.png" src="../resources/images/icons/ebx_open.png" class="ebx_appButton"></img> dans la colonne &#39;Workflow de donn&eacute;es&#39; de la table. Une pop-up affichera une vue graphique interactive du workflow de donn&eacute;es jusqu&#39;au moment actuel ainsi que les &eacute;tapes &agrave; venir. Vous pouvez visualiser les d&eacute;tails d&#39;une &eacute;tape en s&eacute;lectionnant l&#39;&eacute;tape.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Si vous interrompez la session actuelle pendant un bon de travail, par exemple en fermant le navigateur ou en d&eacute;connectant, l&#39;&eacute;tat actuel du bon de travail est pr&eacute;serv&eacute;. Quand vous revenez sur le bon de travail, il continue &agrave; partir du m&ecirc;me point.</p></div>
+<h2 id="workitem_priorities">
+Priorit&eacute; de bons de travail</h2>
+<p>Les bons de travail peuvent porter une priorit&eacute;, qui peut &ecirc;tre utile pour trier et filtrer les bons de travail &agrave; compl&eacute;ter. La priorit&eacute; d&#39;un bon de travail est d&eacute;finie au niveau de son workflow de donn&eacute;es, et n&#39;est pas sp&eacute;cifique au bon de travail lui-m&ecirc;me. Par cons&eacute;quent, si le workflow de donn&eacute;es est consid&eacute;r&eacute; comme urgent, tous les bons de travail ouverts associ&eacute;s sont aussi consid&eacute;r&eacute;s comme urgent. Par d&eacute;faut, il y a six niveaux de priorit&eacute;, de &quot;Tr&egrave;s peu prioritaire&quot; &agrave; &quot;Urgent&quot;. Cependant, la repr&eacute;sentation visuelle et le nommage des priorit&eacute;s d&eacute;pendent de la configuration de votre r&eacute;f&eacute;rentiel TIBCO EBX&reg;.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#usertask">t&acirc;che utilisateur (glossaire)</a></li></ul>
+</div>
+<div class="ebx_seealso">
+<h5>
+Concepts apparentés</h5>
+<ul>
+<li><a href="../user_workflowmodel/userworkflowmodel_createimplement.html#step_user">T&acirc;che utilisateur</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Workflows de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX(TM) DMA instance [reference=ebx-addon-tese-search-v2] on Tue Nov 24 18:07:24 ICT 2020 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:validation>
+				<validationMessageThreshold>1000</validationMessageThreshold>
+			</osd:validation>
+			<osd:inheritance>
+				<dataSetInheritance>none</dataSetInheritance>
+			</osd:inheritance>
+			<ebxbnd:binding targetDirectory="../addon-tese/src-api">
+				<javaPathConstants typeName="com.orchestranetworks.addon.tese.model.TeseInformationSearchPaths">
+					<nodes prefix="" relativeToRoot="false" root="/root" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.addon.tese.i18n.xsdSchema.ebx-addon-tese-search-v2" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:information>@administrative</osd:information>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="InformationSearch" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.InformationSearch" />
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Configuration" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.InformationSearch.Configuration" />
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Permission" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.Permission" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/profile</primaryKeys>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="profile" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Permission.profile" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="associateContext" type="xs:string" minOccurs="1" maxOccurs="unbounded" osd:checkNullInput="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Permission.associateContext" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/Context</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Context" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.Context" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/code</primaryKeys>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Context.code" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="customTitle" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Context.customTitle" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="80" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="dataSpace" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Context.dataSpace" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dataSet" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Context.dataSet" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="tables" type="xs:string" minOccurs="1" maxOccurs="unbounded" osd:checkNullInput="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Context.tables" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/Table</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DataModel" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.DataModel" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/schemaLocation</primaryKeys>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="schemaLocation" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.DataModel.schemaLocation" />
+															<xs:appinfo>
+																<osd:defaultView />
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="sensibilityDefaultValue" minOccurs="1" maxOccurs="1" default="70">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.DataModel.sensibilityDefaultValue" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:decimal">
+																<xs:fractionDigits value="1" />
+																<xs:minExclusive value="0" />
+																<xs:maxInclusive value="100" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="associateTable" type="xs:string" minOccurs="0" maxOccurs="0">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.DataModel.associateTable" />
+															<xs:appinfo>
+																<osd:association>
+																	<tableRefInverse>
+																		<fieldToSource>/root/InformationSearch/Configuration/Table/FKDataModel</fieldToSource>
+																	</tableRefInverse>
+																</osd:association>
+																<osd:defaultView>
+																	<hiddenInDataServices>true</hiddenInDataServices>
+																	<displayMode>tab</displayMode>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Table" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/table /FKDataModel</primaryKeys>
+														<defaultLabel>${./table}</defaultLabel>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FKDataModel" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.FKDataModel" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/DataModel</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="table" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.table" />
+															<xs:appinfo>
+																<osd:defaultView />
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Label" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.Label" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="resultsSortedBy" minOccurs="0" maxOccurs="1" default="Scoring">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.resultsSortedBy" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Scoring">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.resultsSortedBy.enumeration.Scoring" />
+																	</xs:annotation>
+																</xs:enumeration>
+																<xs:enumeration value="Field">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.resultsSortedBy.enumeration.Field" />
+																	</xs:annotation>
+																</xs:enumeration>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="resultTemplate" type="resultTemplate" minOccurs="1" maxOccurs="5">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.resultTemplate" />
+															<xs:appinfo>
+																<osd:defaultView />
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="associateField" type="xs:string" minOccurs="0" maxOccurs="0">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Table.associateField" />
+															<xs:appinfo>
+																<osd:association>
+																	<tableRefInverse>
+																		<fieldToSource>/root/InformationSearch/Configuration/Field/FKTable</fieldToSource>
+																	</tableRefInverse>
+																</osd:association>
+																<osd:defaultView>
+																	<hiddenInDataServices>true</hiddenInDataServices>
+																	<displayMode>tab</displayMode>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Field" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/field /FKTable</primaryKeys>
+														<defaultLabel>${./field}</defaultLabel>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FKTable" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.FKTable" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/Table</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.field" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="algorithm" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.algorithm" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/Algorithm</tablePath>
+																		<display>
+																			<pattern>${./code} (${./algorithmName})</pattern>
+																		</display>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="secondaryAlgorithm" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.secondaryAlgorithm" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/Algorithm</tablePath>
+																		<display>
+																			<pattern>${./code} (${./algorithmName})</pattern>
+																		</display>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="bestWord" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.bestWord" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="ValueFilter" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.ValueFilter" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="filterGroup" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.filterGroup" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/filterGroup</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="synonymGroup" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.synonymGroup" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/Semantic/SynonymGroup</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="synonymsProcessingMode" type="xs:string" minOccurs="0" maxOccurs="1" default="EV">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.synonymsProcessingMode" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="checkSynonymInAllGroup" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.checkSynonymInAllGroup" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="lastUpdateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="order" type="xs:int" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Field.order" />
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ValueFilter" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.ValueFilter" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/oid</primaryKeys>
+														<defaultLabel>${./value}</defaultLabel>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="oid" type="xs:int" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.ValueFilter.oid" />
+															<xs:appinfo>
+																<osd:autoIncrement />
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.ValueFilter.value" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="group" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.ValueFilter.group" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/filterGroup</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+											<xs:unique name="UniqueOn_root_InformationSearch_Configuration_ValueFilter62224648-AA4A-4770-9E0E-F350136D556A">
+												<xs:selector xpath="." />
+												<xs:field xpath="value" />
+												<xs:field xpath="group" />
+											</xs:unique>
+										</xs:element>
+										<xs:element name="filterGroup" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.filterGroup" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/oid</primaryKeys>
+														<defaultLabel>${./group}</defaultLabel>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="oid" type="xs:int" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.filterGroup.oid" />
+															<xs:appinfo>
+																<osd:autoIncrement />
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="group" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.filterGroup.group" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="associateFilteredValue" type="xs:string" minOccurs="0" maxOccurs="0">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.filterGroup.associateFilteredValue" />
+															<xs:appinfo>
+																<osd:association>
+																	<tableRefInverse>
+																		<fieldToSource>/root/InformationSearch/Configuration/ValueFilter/group</fieldToSource>
+																	</tableRefInverse>
+																</osd:association>
+																<osd:defaultView>
+																	<hiddenInDataServices>true</hiddenInDataServices>
+																	<displayMode>tab</displayMode>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+											<xs:unique name="UniqueOn_root_InformationSearch_Configuration_filterGroup5FABA7CE-37A6-43D0-9868-B6B033AD2888">
+												<xs:selector xpath="." />
+												<xs:field xpath="group" />
+											</xs:unique>
+										</xs:element>
+										<xs:element name="Algorithm" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.Algorithm" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/code</primaryKeys>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Algorithm.code" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="supportedAlgorithm" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Algorithm.supportedAlgorithm" />
+															<xs:appinfo>
+																<osd:defaultView />
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="labelAndDescription" type="localizableDescription" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Algorithm.labelAndDescription" />
+															<xs:appinfo>
+																<osd:defaultView />
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="inputParameters" type="inputParameters" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Algorithm.inputParameters" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="algorithmName" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:appinfo>
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																	<hiddenInSearch>true</hiddenInSearch>
+																	<hiddenInViews>true</hiddenInViews>
+																	<hiddenInDataServices>true</hiddenInDataServices>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Semantic" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic" />
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Item" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.Item" />
+															<xs:appinfo>
+																<osd:table>
+																	<primaryKeys>/code</primaryKeys>
+																	<defaultLabel>${./code} - ${./name}</defaultLabel>
+																</osd:table>
+															</xs:appinfo>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.Item.code" />
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.Item.name" />
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="SynonymGroup" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.SynonymGroup" />
+															<xs:appinfo>
+																<osd:table>
+																	<primaryKeys>/code</primaryKeys>
+																	<defaultLabel>${./code} - ${./name}</defaultLabel>
+																</osd:table>
+															</xs:appinfo>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.SynonymGroup.code" />
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.SynonymGroup.name" />
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="FKParentGroup" type="xs:string" minOccurs="0" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.SynonymGroup.FKParentGroup" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:tableRef>
+																					<tablePath>/root/InformationSearch/Configuration/Semantic/SynonymGroup</tablePath>
+																				</osd:tableRef>
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="ItemInGroup" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.ItemInGroup" />
+															<xs:appinfo>
+																<osd:table>
+																	<primaryKeys>/FKSynonymGroup /FKSynonym</primaryKeys>
+																</osd:table>
+															</xs:appinfo>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FKSynonymGroup" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.ItemInGroup.FKSynonymGroup" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:tableRef>
+																					<tablePath>/root/InformationSearch/Configuration/Semantic/SynonymGroup</tablePath>
+																				</osd:tableRef>
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="FKSynonym" type="xs:string" minOccurs="1" maxOccurs="1">
+																	<xs:annotation>
+																		<xs:documentation osd:id="element.root.InformationSearch.Configuration.Semantic.ItemInGroup.FKSynonym" />
+																		<xs:appinfo>
+																			<osd:otherFacets>
+																				<osd:tableRef>
+																					<tablePath>/root/InformationSearch/Configuration/Semantic/Item</tablePath>
+																				</osd:tableRef>
+																			</osd:otherFacets>
+																		</xs:appinfo>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Execution" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.InformationSearch.Execution" />
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="UserPreference" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Execution.UserPreference" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/user</primaryKeys>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="user" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.UserPreference.user" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="maxNumberOfHistory" minOccurs="1" maxOccurs="1" default="20">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.UserPreference.maxNumberOfHistory" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:int">
+																<xs:minInclusive value="0" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="displayHistoryByDefault" type="xs:boolean" minOccurs="1" maxOccurs="1" default="true" osd:checkNullInput="true">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.UserPreference.displayHistoryByDefault" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="maximumOfResults" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.UserPreference.maximumOfResults" />
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:int">
+																<xs:minExclusive value="0" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="history" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.InformationSearch.Execution.history" />
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/oid</primaryKeys>
+														<mayCreateRoot>never</mayCreateRoot>
+														<mayDelete>never</mayDelete>
+														<mayDuplicate>never</mayDuplicate>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="oid" type="xs:int" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.history.oid" />
+															<xs:appinfo>
+																<osd:autoIncrement />
+																<osd:defaultView>
+																	<hidden>true</hidden>
+																	<hiddenInViews>true</hiddenInViews>
+																</osd:defaultView>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="lastExecutionTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.history.lastExecutionTime" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="keyword" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.history.keyword" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="numberOfResults" type="xs:int" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.history.numberOfResults" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="user" type="xs:string" minOccurs="1" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.history.user" />
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="dataModel" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.history.dataModel" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/DataModel</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="table" type="xs:string" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation osd:id="element.root.InformationSearch.Execution.history.table" />
+															<xs:appinfo>
+																<osd:otherFacets>
+																	<osd:tableRef>
+																		<tablePath>/root/InformationSearch/Configuration/Table</tablePath>
+																	</osd:tableRef>
+																</osd:otherFacets>
+															</xs:appinfo>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Engine" minOccurs="1" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Configuration" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:appinfo>
+													<osd:table>
+														<primaryKeys>/Source</primaryKeys>
+													</osd:table>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Source" type="xs:string" minOccurs="1" maxOccurs="1" />
+													<xs:element name="Factory" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="extraField" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.extraField" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fieldName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.extraField.fieldName" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fieldValue" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.extraField.fieldValue" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="score" type="xs:decimal" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.extraField.score" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="secondScore" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.extraField.secondScore" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="inputParameters">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.inputParameters" />
+			<xs:appinfo>
+				<osd:defaultView />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.inputParameters.key" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.inputParameters.value" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="localizableDescription" osd:access="RW">
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale" minOccurs="1" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.localizableDescription.localizedDocumentations.locale" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.localizableDescription.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="description" type="osd:text" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.localizableDescription.localizedDocumentations.description" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="resultTemplate">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.resultTemplate" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.resultTemplate.type" />
+					<xs:appinfo>
+						<osd:defaultView />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="DL">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.resultTemplate.type.enumeration.DL" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CL">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.resultTemplate.type.enumeration.CL" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="P">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.resultTemplate.type.enumeration.P" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="H">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.resultTemplate.type.enumeration.H" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" default="" osd:checkNullInput="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.resultTemplate.label" />
+					<xs:appinfo>
+						<osd:defaultView />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="style" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.resultTemplate.style" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

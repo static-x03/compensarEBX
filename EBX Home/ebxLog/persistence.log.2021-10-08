@@ -1,0 +1,38 @@
+2021-10-08 05:53:28,264 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #8000: avgInterval=6723: maxInterval=7208994 ms.
+2021-10-08 08:31:35,698 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #9000: avgInterval=7030: maxInterval=7208994 ms.
+2021-10-08 08:48:20,210 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #10000: avgInterval=6427: maxInterval=7208994 ms.
+2021-10-08 09:05:03,749 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #11000: avgInterval=5934: maxInterval=7208994 ms.
+2021-10-08 09:21:47,063 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #12000: avgInterval=5523: maxInterval=7208994 ms.
+2021-10-08 09:38:30,322 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #13000: avgInterval=5176: maxInterval=7208994 ms.
+2021-10-08 09:52:08,576 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 135 ms.
+2021-10-08 09:52:14,398 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 189 ms.
+2021-10-08 09:52:14,860 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 2 blocs modified in Java Cache; in 188 ms.
+2021-10-08 09:52:14,951 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-08 09:52:22,848 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 6 blocs modified in Java Cache; in 711 ms.
+2021-10-08 09:52:28,474 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 154 ms.
+2021-10-08 09:55:13,554 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #14000: avgInterval=4878: maxInterval=7208994 ms.
+2021-10-08 10:11:56,899 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #15000: avgInterval=4619: maxInterval=7208994 ms.
+2021-10-08 10:28:40,144 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #16000: avgInterval=4393: maxInterval=7208994 ms.
+2021-10-08 10:45:23,361 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #17000: avgInterval=4194: maxInterval=7208994 ms.
+2021-10-08 11:02:08,815 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #18000: avgInterval=4017: maxInterval=7208994 ms.
+2021-10-08 12:09:25,133 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #19000: avgInterval=4018: maxInterval=7208994 ms.
+2021-10-08 12:26:08,748 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #20000: avgInterval=3867: maxInterval=7208994 ms.
+2021-10-08 12:42:52,473 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #21000: avgInterval=3731: maxInterval=7208994 ms.
+2021-10-08 12:59:36,123 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #22000: avgInterval=3607: maxInterval=7208994 ms.
+2021-10-08 13:16:19,830 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #23000: avgInterval=3493: maxInterval=7208994 ms.
+2021-10-08 13:33:03,661 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #24000: avgInterval=3390: maxInterval=7208994 ms.
+2021-10-08 13:49:47,392 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #25000: avgInterval=3294: maxInterval=7208994 ms.
+2021-10-08 13:52:32,887 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 165 ms.
+2021-10-08 13:52:39,893 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 104 ms.
+2021-10-08 13:52:39,991 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-08 13:52:40,751 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 3 blocs modified in Java Cache; in 263 ms.
+2021-10-08 13:52:40,860 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 105 ms.
+2021-10-08 13:52:41,023 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Rebuilding index for: /root/Person of content type=VALUES in dataset Person in snapshot ebx-pvr_wdq2d7ts65_3
+2021-10-08 13:52:41,417 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] *	Index rebuilt for table revision 178 from  scratch complete in 373 ms.
+2021-10-08 13:52:41,633 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] *	Index rebuilt for table revision 179 from 178 complete in 216 ms.
+2021-10-08 13:52:41,920 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] *	Index rebuilt for table revision 182 from 179 complete in 287 ms.
+2021-10-08 13:52:42,231 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] *	Index rebuilt for table revision 184 from 182 complete in 311 ms.
+2021-10-08 13:52:42,231 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Index rebuild for /root/Person of content type=VALUES in dataset Person in snapshot ebx-pvr_wdq2d7ts65_3 complete; took 1209 ms.
+2021-10-08 13:52:42,639 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 3 blocs modified in Java Cache; in 228 ms.
+2021-10-08 13:52:43,019 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 2 blocs modified in Java Cache; in 230 ms.
+2021-10-08 14:47:08,533 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #26000: avgInterval=3300: maxInterval=7208994 ms.

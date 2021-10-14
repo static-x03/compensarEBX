@@ -1,0 +1,1930 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for Simple Workflow, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="../common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="../session_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:extensions class="com.orchestranetworks.workflow.impl.history.WfiHistorySchemaExtensions" />
+			<osd:relationalMode>
+				<dataSpace>ebx-workflow-history</dataSpace>
+				<dataSet>history</dataSet>
+				<tablesPrefix>HWF</tablesPrefix>
+			</osd:relationalMode>
+			<ebxbnd:binding targetDirectory="../_ebx-core-workflow/src">
+				<javaPathConstants typeName="com.orchestranetworks.workflow.impl.history.WfiHPaths">
+					<nodes prefix="" relativeToRoot="false" root="/root" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.workflow_history" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name="Publication" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:annotation>
+                        	<xs:documentation osd:id="element.root.Publication" />
+                          <xs:appinfo>
+															<osd:trigger class="com.orchestranetworks.workflow.impl.history.WfiHistoryPublicationTrigger" />
+                              <osd:table>
+                                <primaryKeys>/id</primaryKeys>
+                                <mayCreateRoot>never</mayCreateRoot>
+                                <mayCreateOverwriting>never</mayCreateOverwriting>
+                                <mayCreateOcculting>never</mayCreateOcculting>
+                                <mayCreateDeriving>never</mayCreateDeriving>
+                                <mayDuplicate>never</mayDuplicate>
+                                <mayDelete>never</mayDelete>
+                              </osd:table>
+                              <osd:defaultView>
+                                <hidden>true</hidden>
+                              </osd:defaultView>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:sequence>
+                          <xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:int">
+                            <xs:annotation>
+                              <xs:documentation osd:id="element.root.Publication.id" />
+                              <xs:appinfo>
+                                <osd:autoIncrement>
+                                  <disableMaxTableCheck>true</disableMaxTableCheck>
+                                </osd:autoIncrement>
+                              </xs:appinfo>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="home" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                              <xs:documentation osd:id="element.root.Publication.home" />
+                              <xs:appinfo>
+                                <osd:transform
+                                  class="com.orchestranetworks.workflow.impl.history.WfiHistoryExport_NodeTransformer" />
+                              </xs:appinfo>
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="25" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="initialName">
+                            <xs:annotation>
+                              <xs:documentation osd:id="element.root.Publication.initialName" />
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="180" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="adaptation">
+                            <xs:annotation>
+                              <xs:documentation osd:id="element.root.Publication.adaptation" />
+                            </xs:annotation>
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="64" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="creationDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                          <xs:annotation>
+                            <xs:documentation osd:id="element.root.Publication.creationDate" />
+                          </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                    <xs:unique name="UniqueOn_root_Publication_1">
+                      <xs:selector xpath="." />
+                      <xs:field xpath="home" />
+                      <xs:field xpath="adaptation" />
+                    </xs:unique>
+                </xs:element>
+				<xs:element name="Process" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.Process" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+									<defaultLabel osd:class="com.orchestranetworks.workflow.impl.history.ui.WfiWorkflowLabelRenderer"/>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>false</hidden>
+								</osd:defaultView>
+ 							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" osd:category="Hidden" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.id" />
+									<xs:appinfo>
+										<osd:autoIncrement>
+											<disableMaxTableCheck>true</disableMaxTableCheck>
+										</osd:autoIncrement>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="graph" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.graph" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiWorkflowGraphFunction" />
+										<osd:uiBean class="com.orchestranetworks.workflow.impl.history.ui.WfiGraphUIBean"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="label" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.label" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiTableRefValueFunction" />
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.history.ui.WfiWorkflowLabelContraintEnumeration"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="description" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.description" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiTableRefValueFunction" />
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.history.ui.WfiWorkflowDescriptionContraintEnumeration"/>
+										</osd:otherFacets>
+										<osd:uiBean class="com.orchestranetworks.workflow.impl.history.ui.WfiTruncateStringUIBean"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element minOccurs="0" name="parent" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.parent" />
+									<xs:appinfo>
+										<osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Process</tablePath>
+                                            </osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>	
+							<xs:element name="creationDate" maxOccurs="1" minOccurs="1" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.creationDate" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="endDate" maxOccurs="1" minOccurs="0" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.endDate" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="endType" maxOccurs="1" minOccurs="0" >
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.endType" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:int">
+										<xs:enumeration value="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Process.endType.enumeration.0" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Process.endType.enumeration.1" />
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>							
+                             <xs:element name="executionProcess" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+									<xs:documentation osd:id="element.root.Process.executionProcess" />
+                                    <xs:appinfo>
+                                    	<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiWorkflowExecutionProcessFunction" />
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>ebx-workflow-execution</branch>
+                                                <container>execution</container>
+                                                <tablePath>/root/execution/process</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>																				
+ 							<xs:element name="creator" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.creator" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Profile</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>	
+							<xs:element name="publication"  osd:category="Hidden" minOccurs="1"  maxOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.publication" />
+									<xs:appinfo>
+										<osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Publication</tablePath>
+                                            </osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="executionId" osd:category="Hidden" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.executionId" />
+								</xs:annotation>
+							</xs:element>	
+					        <xs:element name="executionPublication" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+									<xs:documentation osd:id="element.root.Process.executionPublication" />
+                                    <xs:appinfo>
+                                    	<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiWorkflowExecutionPublicationFunction" />
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <branch>ebx-workflow-execution</branch>
+                                                <container>execution</container>
+                                                <tablePath>/root/processPublished</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>							
+				            <xs:element name="steps" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+ 									<xs:documentation osd:id="element.root.Process.steps" />
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/Step/process</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+ 										<osd:defaultView>
+											<displayMode>tab</displayMode>
+											<tabularView>
+												<column>/id</column>
+												<column>/pNode</column>
+												<column>/iteration</column>
+												<column>/restarted</column>
+												<sort>
+					   								<nodePath>/id</nodePath>
+					   								<isAscending>false</isAscending>
+												</sort>
+											</tabularView>
+										</osd:defaultView>
+                                     </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>	
+                            <xs:element name="events" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Process.events" />
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/root/Event/process</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<displayMode>tab</displayMode>
+											<tabularView>
+												<column>/id</column>
+												<column>/date</column>
+												<column>/eventType</column>
+												<column>/operationType</column>
+												<column>/step</column>
+												<column>/priority</column>
+												<column>/user</column>
+												<sort>
+					   								<nodePath>/id</nodePath>
+					   								<isAscending>true</isAscending>
+												</sort>
+											</tabularView>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+                            </xs:element>							                            						
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="UniqueOn_root_Process_1">
+						<xs:selector xpath="." />
+						<xs:field xpath="publication" />
+						<xs:field xpath="executionId" />
+					</xs:unique>                   					
+				</xs:element>
+                <xs:element name="ProcessDocumentation" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:annotation>
+                       		<xs:documentation osd:id="element.root.ProcessDocumentation" />
+                            <xs:appinfo>
+                                <osd:table>
+                                    <primaryKeys>/process /locale </primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+                               </osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:sequence>
+                            <xs:element name="process" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+ 									<xs:documentation osd:id="element.root.ProcessDocumentation.process" />
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Process</tablePath>
+			                                </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+						<xs:element name="locale" type="osd:locale" minOccurs="1" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation osd:id="element.root.ProcessDocumentation.locale" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" maxOccurs="1" name="lastLabel">
+							<xs:annotation>
+								<xs:documentation osd:id="element.root.ProcessDocumentation.lastLabel" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="360" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" maxOccurs="1" name="lastDescription">
+							<xs:annotation>
+								<xs:documentation osd:id="element.root.ProcessDocumentation.lastDescription" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2147483647" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>		
+                <xs:element name="ProcessComment" maxOccurs="unbounded" minOccurs="0">
+ 				 	<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.ProcessComment"/>
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+				            <xs:element name="id" type="xs:int" minOccurs="1" maxOccurs="1">
+				            	<xs:annotation>
+				 					<xs:documentation osd:id="element.root.ProcessComment.id" />
+				                	<xs:appinfo>
+										<osd:autoIncrement>
+											<disableMaxTableCheck>true</disableMaxTableCheck>
+										</osd:autoIncrement>
+				                    </xs:appinfo>
+								</xs:annotation>
+				            </xs:element>
+				            <xs:element name="mainProcess" type="xs:string" minOccurs="1" maxOccurs="1">
+				                <xs:annotation>
+									<xs:documentation osd:id="element.root.ProcessComment.mainProcess" />
+				                    <xs:appinfo>
+				                        <osd:otherFacets>
+				                            <osd:tableRef>
+				                                <tablePath>/root/Process</tablePath>
+				                            </osd:tableRef>
+				                        </osd:otherFacets>
+				                    </xs:appinfo>
+				                </xs:annotation>
+				            </xs:element>
+							<xs:element name="interaction" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.ProcessComment.interaction" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Interaction</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>				
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="user" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.ProcessComment.user" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Profile</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>								
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="date" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.ProcessComment.date" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="content" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.ProcessComment.content" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2147483647" />
+									</xs:restriction>
+								</xs:simpleType>								
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>	
+                </xs:element>
+				<xs:element name="Step" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.Step" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+									<defaultLabel osd:class="com.orchestranetworks.workflow.impl.history.ui.WfiStepLabelRenderer"/>
+									<index name="StepProcessPNode">/process /pNode</index>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Step.id" />
+									<xs:appinfo>
+										<osd:autoIncrement>
+											<disableMaxTableCheck>true</disableMaxTableCheck>
+										</osd:autoIncrement>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="process" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Step.process" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Process</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="pNode" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Step.pNode" />
+									<xs:appinfo>
+										<osd:otherFacets>
+                                           <osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.history.ui.WfiStepPNodeConstraintEnumeration"/>
+                                        </osd:otherFacets>
+										<osd:uiBean class="com.orchestranetworks.workflow.impl.history.ui.WfiLeftJustifyUIBean"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="iteration" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Step.iteration" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="restarted" default="false" maxOccurs="1" minOccurs="1" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Step.restarted" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="events" maxOccurs="0" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Step.events" />
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/root/Event/step</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<displayMode>tab</displayMode>
+											<tabularView>
+												<column>/id</column>
+												<column>/date</column>
+												<column>/eventType</column>
+												<column>/operationType</column>
+												<column>/priority</column>
+												<column>/user</column>
+												<sort>
+					   								<nodePath>/id</nodePath>
+					   								<isAscending>true</isAscending>
+												</sort>
+											</tabularView>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="UniqueOn_root_StepE3F20008-814A-43C2-8C6D-ED8CE363A7D4">
+						<xs:selector xpath="." />
+						<xs:field xpath="process" />
+						<xs:field xpath="pNode" />
+						<xs:field xpath="iteration" />
+					</xs:unique>
+				</xs:element>
+                <xs:element name="Event" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.Event" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+									<defaultLabel osd:class="com.orchestranetworks.workflow.impl.history.ui.WfiEventLabelRenderer" />
+									<index name="EventStepIdEventType">/step /eventType</index>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.id" />
+									<xs:appinfo>
+										<osd:autoIncrement>
+											<disableMaxTableCheck>true</disableMaxTableCheck>
+										</osd:autoIncrement>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="process" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.process" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Process</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>						
+							<xs:element name="date" maxOccurs="1" minOccurs="1" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.date" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="eventType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.eventType" />
+									<xs:appinfo>
+										<osd:uiBean class="com.orchestranetworks.workflow.impl.history.ui.WfiLeftJustifyUIBean" />
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:int">
+										<xs:enumeration value="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.eventType.enumeration.0" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.eventType.enumeration.1" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="2">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.eventType.enumeration.2" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="3">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.eventType.enumeration.3" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="4">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.eventType.enumeration.4" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="5">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.eventType.enumeration.5" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="6">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.eventType.enumeration.6" />
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="operationType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.operationType" />
+									<xs:appinfo>
+										<osd:uiBean class="com.orchestranetworks.workflow.impl.history.ui.WfiLeftJustifyUIBean" />
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:int">
+										<xs:enumeration value="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.0" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.1" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="2">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.2" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="3">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.3" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="4">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.4" />
+											</xs:annotation>
+										</xs:enumeration>										
+										<xs:enumeration value="11">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.11" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="12">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.12" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="13">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.13" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="14">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.14" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="15">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.15" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="16">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.16" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="21">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.21" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="22">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.22" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="23">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.23" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="24">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.24" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="25">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.25" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="26">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.26" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="27">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.27" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="28">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.28" />
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="40">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.operationType.enumeration.40" />
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="migrationMessage" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.migrationMessage" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiEventMigrationMessageFunction" />
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="step" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.step" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Step</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="priority" maxOccurs="1" minOccurs="0" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.priority" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="user" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.user" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Profile</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="conditionResult" maxOccurs="1" minOccurs="0" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.conditionResult" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiEventConditionResultFunction" />
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>		
+							<xs:element name="subWorkflow" maxOccurs="unbounded" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.subWorkflow" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiEventSubWorkflowFunction" />
+											<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Process</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>		
+							<xs:element name="waitEvent" osd:access="R-" maxOccurs="1" minOccurs="0" osd:class="com.orchestranetworks.workflow.impl.history.bean.WfiEventWaitBean">
+                                <xs:complexType>
+                                    <xs:annotation>
+ 										<xs:documentation osd:id="element.root.Event.waitEvent" />
+ 										<xs:appinfo>
+											<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiEventWaitFunction" />
+										</xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:sequence>
+                                    	<xs:element name="state" osd:access="R-" maxOccurs="1" minOccurs="0" type="xs:string">
+                                    		<xs:annotation>
+                                    			<xs:documentation
+                                    				osd:id="element.root.Event.waitEvent.state" />
+                                    		</xs:annotation>
+                                    	</xs:element>
+                                    	<xs:element name="resumeId" osd:access="R-" maxOccurs="1" minOccurs="0" type="xs:string">
+                                    		<xs:annotation>
+                                    			<xs:documentation
+                                    				osd:id="element.root.Event.waitEvent.resumeId" />
+                                    		</xs:annotation>
+                                    	</xs:element>
+                                    	<xs:element name="forcedResuming" osd:access="R-" maxOccurs="1" minOccurs="0" type="xs:boolean">
+                                    		<xs:annotation>
+                                    			<xs:documentation
+                                    				osd:id="element.root.Event.waitEvent.forcedResuming" />
+                                    		</xs:annotation>
+                                    	</xs:element>
+                                     	<xs:element name="expectedProfile" type="xs:string" maxOccurs="1" minOccurs="0" >
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.waitEvent.expectedProfile" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:tableRef>
+															<tablePath>/root/Profile</tablePath>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>                                    	
+                                    	</xs:element>
+                                       </xs:sequence>                                                                        
+                                </xs:complexType>
+  							</xs:element>
+ 							<xs:element name="workItem" osd:access="R-" maxOccurs="1" minOccurs="0" osd:class="com.orchestranetworks.workflow.impl.history.bean.WfiEventWorkItemBean">
+                                <xs:complexType>
+                                    <xs:annotation>
+ 										<xs:documentation osd:id="element.root.Event.workItem" />
+ 										<xs:appinfo>
+											<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiEventWorkItemFunction" />
+										</xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:sequence>
+                                    	<xs:element name="specificLabel" osd:access="R-" maxOccurs="1"
+                                    		minOccurs="0" type="Label">
+                                    		<xs:annotation>
+                                    			<xs:documentation
+                                    				osd:id="element.root.Event.workItem.specificLabel" />
+                                    			<xs:appinfo>
+                                    				<osd:uiBean
+                                    					class="com.orchestranetworks.workflow.impl.history.ui.WfiLabelUIBean" />
+                                    			</xs:appinfo>
+                                    		</xs:annotation>
+                                    	</xs:element>
+                                    	<xs:element name="itemIndex" osd:access="R-" maxOccurs="1" minOccurs="0" type="xs:int">
+                                    		<xs:annotation>
+                                    			<xs:documentation
+                                    				osd:id="element.root.Event.workItem.itemIndex" />
+                                    		</xs:annotation>
+                                    	</xs:element>
+                                    	<xs:element name="state" osd:access="R-" maxOccurs="1" minOccurs="0" type="WorkItemState">
+                                    		<xs:annotation>
+                                    			<xs:documentation
+                                    				osd:id="element.root.Event.workItem.state" />
+                                    		</xs:annotation>
+                                    	</xs:element>
+                                    	<xs:element name="mdmComponentDecision" osd:access="R-" maxOccurs="1" minOccurs="0" type="InteractionState">
+                                    		<xs:annotation>
+                                    			<xs:documentation
+                                    				osd:id="element.root.Event.workItem.mdmComponentDecision" />
+                                    		</xs:annotation>
+                                    	</xs:element>
+                                    	<xs:element name="offeredTo" type="xs:string" maxOccurs="unbounded" minOccurs="0" >
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.workItem.offeredTo" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:tableRef>
+															<tablePath>/root/Profile</tablePath>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>                                    	
+                                    	</xs:element>
+                                    	<xs:element name="allocatedTo" type="xs:string" maxOccurs="1" minOccurs="0" >
+ 											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.workItem.allocatedTo" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:tableRef>
+															<tablePath>/root/Profile</tablePath>
+														</osd:tableRef>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>                                    	
+                                    	</xs:element>
+                                    	<xs:element name="interactionKey" type="xs:string" maxOccurs="1" minOccurs="0" >
+ 											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.workItem.interactionKey" />
+											</xs:annotation>                                    	
+                                    	</xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+  							</xs:element>
+  							<xs:element name="error" osd:access="R-" maxOccurs="1" minOccurs="0" osd:class="com.orchestranetworks.workflow.impl.history.bean.WfiEventErrorInfoBean">
+                                <xs:complexType>
+                                    <xs:annotation>
+ 										<xs:documentation osd:id="element.root.Event.error" />
+ 										<xs:appinfo>
+											<osd:function class="com.orchestranetworks.workflow.impl.history.function.WfiEventErrorInfoValueFunction" />
+										</xs:appinfo>
+                                   </xs:annotation>
+                                    <xs:sequence>
+										<xs:element name="userMessage" osd:access="R-" maxOccurs="1" minOccurs="0" type="Label">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.error.userErrorMessage" />
+												<xs:appinfo>
+													<osd:uiBean class="com.orchestranetworks.workflow.impl.history.ui.WfiLabelUIBean" />
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>							
+										<xs:element name="adminMessage" osd:access="R-" maxOccurs="1" minOccurs="0" type="Label">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.error.adminErrorMessage" />
+												<xs:appinfo>
+													<osd:uiBean class="com.orchestranetworks.workflow.impl.history.ui.WfiLabelUIBean" />
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>	
+										<xs:element name="errorCode" osd:access="R-" maxOccurs="1" minOccurs="0" type="xs:string">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.error.errorCode" />
+											</xs:annotation>
+										</xs:element>	
+										<xs:element name="stackTrace" osd:access="R-" maxOccurs="1" minOccurs="0" type="osd:text">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Event.error.stackTrace" />
+											</xs:annotation>									
+										</xs:element>	
+							        </xs:sequence>
+                              </xs:complexType>							
+							</xs:element>
+							<xs:element name="dataContextVariables" maxOccurs="0" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Event.dataContextVariables" />
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/root/EventDataContextParameter/event</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<displayMode>tab</displayMode>
+                                            <tabularView>
+                                                <column>/name</column>
+                                                <column>/value</column>
+                                                <sort>
+                                                    <nodePath>/name</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                            </tabularView>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+				            <xs:element name="workItemParameters" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+ 									<xs:documentation osd:id="element.root.Event.workItemParameters" />
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/WorkItemEventParameter/event</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                        <osd:defaultView>
+                                            <displayMode>tab</displayMode>
+                                            <tabularView>
+                                                <column>/isInput</column>
+                                                <column>/name</column>
+                                                <column>/value</column>
+                                                <sort>
+                                                    <nodePath>/isInput</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                               <sort>
+                                                    <nodePath>/name</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                            </tabularView>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>							
+				            <xs:element name="waitParameters" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+ 									<xs:documentation osd:id="element.root.Event.waitParameters" />
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/WaitEventParameter/event</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                        <osd:defaultView>
+                                            <displayMode>tab</displayMode>
+                                            <tabularView>
+                                                <column>/name</column>
+                                                <column>/value</column>
+                                               <sort>
+                                                    <nodePath>/name</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                            </tabularView>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+                <xs:element name="SubWorkflowEventInvocation" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.SubWorkflowEventInvocation" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/event /process</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="event" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.SubWorkflowEventInvocation.event" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="process" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.SubWorkflowEventInvocation.process" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Process</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="WaitEvent" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.WaitEvent" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEvent.id" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="state" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEvent.state" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="20" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="resumeId" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEvent.resumeId" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="40" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="forcedResuming" maxOccurs="1" minOccurs="1" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEvent.forcedResuming" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="expectedProfile" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEvent.expectedProfile" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Profile</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="WaitEventParameter" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.WaitEventParameter" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/event /name</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="event" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEventParameter.event" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEventParameter.name" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="180" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="value" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WaitEventParameter.value" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2147483647" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ConditionEvent" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.ConditionEvent" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayDelete>never</mayDelete>
+									<mayDuplicate>never</mayDuplicate>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+								<osd:information>Evénement de condition</osd:information>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.ConditionEvent.id" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="result" maxOccurs="1" minOccurs="0" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.ConditionEvent.result" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="WorkItemEvent" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.WorkItemEvent" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+								<osd:information />
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEvent.id" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="itemIndex" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEvent.itemIndex" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="state" maxOccurs="1" minOccurs="1" type="WorkItemState">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEvent.state" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="interaction" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEvent.interaction" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Interaction</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>				
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="mdmComponentDecision" maxOccurs="1" minOccurs="0" type="InteractionState">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEvent.mdmComponentDecision" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="allocatedTo" maxOccurs="1" minOccurs="0" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEvent.allocatedTo" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Profile</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EventDataContextParameter" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.EventDataContextParameter" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/event /name</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="event" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventDataContextParameter.event" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventDataContextParameter.name" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="180" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="value" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventDataContextParameter.value" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2147483647" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EventErrorInfo" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.EventErrorInfo" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventErrorInfo.id" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="errorCode" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventErrorInfo.errorCode" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="180" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="stackTrace" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventErrorInfo.stackTrace" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2147483647" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="EventMigrationInfo" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.EventMigrationInfo" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventMigrationInfo.id" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="message" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventMigrationInfo.message" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="180" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="WorkItemEventParameter" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.WorkItemEventParameter" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/event /name /isInput</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="event" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventParameter.event" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventParameter.name" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="180" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="isInput" maxOccurs="1" minOccurs="1" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventParameter.isInput" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="value" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventParameter.value" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2147483647" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="WorkItemEventMessage" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.WorkItemEventMessage" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/locale /event</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="event" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventMessage.event" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/WorkItemEvent</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="locale" maxOccurs="1" minOccurs="1" type="osd:locale">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventMessage.locale" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="specificLabel" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventMessage.specificLabel" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="180" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="WorkItemEventOfferedTo" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.WorkItemEventOfferedTo" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/event /profile</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="event" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventOfferedTo.event" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/WorkItemEvent</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+                            <xs:element name="profile" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.WorkItemEventOfferedTo.profile" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Profile</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>						
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Profile" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.Profile" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+									<defaultLabel osd:class="com.orchestranetworks.workflow.impl.history.ui.WfiProfileLabelRenderer"/>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Profile.id" />
+									<xs:appinfo>
+										<osd:autoIncrement>
+											<disableMaxTableCheck>true</disableMaxTableCheck>
+										</osd:autoIncrement>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Profile.name" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="64" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="UniqueOn_ProfileName">
+						<xs:selector xpath="." />
+						<xs:field xpath="name" />
+					</xs:unique>
+				</xs:element>
+				<xs:element name="EventErrorMessage" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.EventErrorMessage" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/event /locale</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="event" maxOccurs="1" minOccurs="1" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventErrorMessage.event" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Event</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="locale" maxOccurs="1" minOccurs="1" type="osd:locale">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventErrorMessage.locale" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="adminMessage" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventErrorMessage.adminMessage" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2147483647" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="userMessage" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.EventErrorMessage.userMessage" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2147483647" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Interaction" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.root.Interaction" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/id</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+								<osd:defaultView>
+									<hidden>true</hidden>
+								</osd:defaultView>								                                                     
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:int">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Interaction.id" />
+									<xs:appinfo>
+										<osd:autoIncrement>
+											<disableMaxTableCheck>true</disableMaxTableCheck>
+										</osd:autoIncrement>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+								<xs:element name="key" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Interaction.key" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="60" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="UniqueOn_InteractionKey">
+						<xs:selector xpath="." />
+						<xs:field xpath="key" />
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Label" osd:class="com.onwbp.base.text.bean.Label">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale"/>
+						<xs:element minOccurs="0" name="label" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="WorkItemState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="offered">
+				<xs:annotation>
+					<xs:documentation osd:id="WorkItemState.enumeration.offered" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="allocated">
+				<xs:annotation>
+					<xs:documentation osd:id="WorkItemState.enumeration.allocated" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="started">
+				<xs:annotation>
+					<xs:documentation osd:id="WorkItemState.enumeration.started" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="completed">
+				<xs:annotation>
+					<xs:documentation osd:id="WorkItemState.enumeration.completed" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:maxLength value="20" />
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:simpleType name="InteractionState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="accepted">
+				<xs:annotation>
+					<xs:documentation osd:id="InteractionState.enumeration.accepted" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="rejected">
+				<xs:annotation>
+					<xs:documentation osd:id="InteractionState.enumeration.rejected" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="started">
+				<xs:annotation>
+					<xs:documentation osd:id="InteractionState.enumeration.started" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="complete">
+				<xs:annotation>
+					<xs:documentation osd:id="InteractionState.enumeration.complete" />
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:maxLength value="20" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CleanHistoryFromDate">
+		<xs:annotation>
+			<xs:appinfo>
+ 				<osd:service activatedForPaths="/root/Process" class="com.orchestranetworks.workflow.impl.execution.permissions.WfPermissionCleanAWorkflowTable" displayInMenu="true" resourcePath="/wfserviceDispatcher?command=cleanHistoryFromDate">
+					<osd:confirmation disable="true" />
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.CleanHistoryFromDate" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="WfAjaxComponentCleanHistory">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.workflow.impl.execution.ui.WfAjaxComponentCleanHistory" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DwfWorkItemCommentsAjaxComponent">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemCommentsAjaxComponent" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>	
+</xs:schema>

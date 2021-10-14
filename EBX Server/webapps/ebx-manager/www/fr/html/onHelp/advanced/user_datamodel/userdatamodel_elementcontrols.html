@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Contr&ocirc;les sur les &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_controls" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_elementcontrols.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</span></div>
+<h1>
+Contr&ocirc;les sur les &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</h1>
+<p>Apr&egrave;s la cr&eacute;ation d&#39;un &eacute;l&eacute;ment, compl&eacute;tez sa d&eacute;finition avec des contr&ocirc;les suppl&eacute;mentaires.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementproperties.html">Propri&eacute;t&eacute;s des &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</a></li></ul>
+</div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#simple">Contr&ocirc;les simples</a></li><li class="toc1"><a href="#advanced">Contr&ocirc;les avanc&eacute;s</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Propri&eacute;t&eacute;s de validation</a></li></ul>
+</li></ul>
+</div>
+<h2 id="simple">
+Contr&ocirc;les simples</h2>
+<p>Il est possible d&#39;&eacute;tablir des contr&ocirc;les simples sur le contenu d&#39;un champ en d&eacute;finissant des contr&ocirc;les statiques. Les contr&ocirc;les disponibles d&eacute;pendent du type du champ.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Longueur fixe</p></td><td class="ebx_definitionListDefinition"><p>Nombre exact de caract&egrave;res requis pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Longueur minimale</p></td><td class="ebx_definitionListDefinition"><p>Nombre minimum de caract&egrave;res requis pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Longueur maximale</p></td><td class="ebx_definitionListDefinition"><p>Nombre maximum de caract&egrave;res autoris&eacute;s pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Pattern</p></td><td class="ebx_definitionListDefinition"><p>Expression r&eacute;guli&egrave;re &agrave; laquelle la valeur du champ doit &ecirc;tre conforme. Il est interdit de d&eacute;finir un pattern &agrave; la fois sur un champ et sur son type de donn&eacute;e. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Partie d&eacute;cimale</p></td><td class="ebx_definitionListDefinition"><p>Nombre maximum de chiffres autoris&eacute;s dans la partie d&eacute;cimale de la valeur d&#39;un champ de type d&eacute;cimal.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nombre maximum de chiffres</p></td><td class="ebx_definitionListDefinition"><p>Nombre maximum de chiffres composant la valeur d&#39;un champ de type entier ou d&eacute;cimal.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>&Eacute;num&eacute;ration</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit une liste de valeurs possibles pour ce champ. Si une &eacute;num&eacute;ration est d&eacute;finie &agrave; la fois sur ce champ et sur son type de donn&eacute;es, alors une &eacute;num&eacute;ration repr&eacute;sentant l&#39;intersection entre ces deux &eacute;num&eacute;rations sera utilis&eacute;e dans les jeux de donn&eacute;es associ&eacute;s au mod&egrave;le de donn&eacute;es. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Sup&eacute;rieur &agrave; [constante]</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit la valeur minimale autoris&eacute;e pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Inf&eacute;rieur &agrave; [constante]</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit la valeur maximale autoris&eacute;e pour ce champ.</p></td></tr>
+</table>
+<p>Voir <a href="../models/constraints.html#xsdfacets">Facettes XML schema support&eacute;es</a>.</p><h2 id="advanced">
+Contr&ocirc;les avanc&eacute;s</h2>
+<p>Il est possible d&#39;&eacute;tablir des contr&ocirc;les avanc&eacute;s sur le contenu d&#39;un &eacute;l&eacute;ment en d&eacute;finissant des contr&ocirc;les dynamiques contextuels. Les contr&ocirc;les disponibles pour un &eacute;l&eacute;ment d&eacute;pendent de sa nature (table, groupe, etc.) et de son type de donn&eacute;es.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../models/constraints.html#dynamicConstraints">Dynamic constraints</a></li></ul>
+</div>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Contrainte de cl&eacute; &eacute;trang&egrave;re</p></td><td class="ebx_definitionListDefinition"><p></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>         Table</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit la table cibl&eacute;e par la cl&eacute; &eacute;trang&egrave;re. Une cl&eacute; &eacute;trang&egrave;re r&eacute;f&eacute;rence une table dans le m&ecirc;me jeu de donn&eacute;es par d&eacute;faut. Elle peut aussi r&eacute;f&eacute;rencer une table d&#39;un autre jeu de donn&eacute;es du m&ecirc;me espace de donn&eacute;es, ou un jeu de donn&eacute;es d&#39;un autre espace de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Mode</p></td><td class="ebx_definitionListDefinition"><p>Emplacement de la table cibl&eacute;e par la cl&eacute; &eacute;trang&egrave;re.</p><p>&quot;D&eacute;faut&quot;&nbsp;:&nbsp;mod&egrave;le courant.</p><p>&quot;Autre jeu de donn&eacute;es&quot;&nbsp;:&nbsp;jeu de donn&eacute;es qui se trouve dans le m&ecirc;me espace de donn&eacute;es.</p><p>&quot;Autre espace de donn&eacute;es&quot;&nbsp;:&nbsp;jeu de donn&eacute;es appartenant &agrave; un espace de donn&eacute;es diff&eacute;rent.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Table r&eacute;f&eacute;renc&eacute;e</p></td><td class="ebx_definitionListDefinition"><p>Expression XPath indiquant l&#39;emplacement de la table. Par exemple, <code>/racine/MaTable</code>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Jeu de donn&eacute;es r&eacute;f&eacute;renc&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Obligatoire si la table est dans un autre jeu de donn&eacute;es. Le nom unique du jeu de donn&eacute;es contenant la table r&eacute;f&eacute;renc&eacute;e.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Espace de donn&eacute;es r&eacute;f&eacute;renc&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Obligatoire si la table est dans un autre espace de donn&eacute;es. Nom unique de l&#39;espace de donn&eacute;es contenant la table r&eacute;f&eacute;renc&eacute;e.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Libell&eacute;</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit les champs composant un libell&eacute; par d&eacute;faut et des libell&eacute;s localis&eacute;s pour pr&eacute;senter les enregistrements de la table cible.</p><p>Peut aussi sp&eacute;cifier une classe Java qui d&eacute;finit le libell&eacute; programmatiquement quand &quot;Expression XPath&quot; a la valeur &quot;Non&quot;. Cette classe Java doit impl&eacute;menter l&#39;interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/TableRefDisplay.html"><code>TableRefDisplay</code></a> de l&#39;API Java. </p><p><strong>Attention&nbsp;:&nbsp;</strong>Les droits d&#39;acc&egrave;s d&eacute;finis dans les jeux de donn&eacute;es associ&eacute;s ne sont pas appliqu&eacute;s lors de l&#39;affichage des libell&eacute;s. <br/> Les champs habituellement cach&eacute;s &agrave; cause de droits d&#39;acc&egrave;s seront affich&eacute;s dans les libell&eacute;s des enregistrements.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Filtre</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un filtre de cl&eacute; &eacute;trang&egrave;re en utilisant une expression XPath.</p><p>Peut aussi sp&eacute;cifier une classe Java qui impl&eacute;mente l&#39;interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/TableRefFilter.html"><code>TableRefFilter</code></a> de l&#39;API Java.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Sup&eacute;rieur &agrave; [variable]</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un champ qui sp&eacute;cifie la valeur minimale autoris&eacute;e pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Inf&eacute;rieur &agrave; [variable]</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un champ qui sp&eacute;cifie la valeur maximale autoris&eacute;e pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Longueur fixe [dynamique]</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un champ qui sp&eacute;cifie le nombre exact de caract&egrave;res requis pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Longueur minimale [dynamique]</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un champ qui sp&eacute;cifie le nombre minimum de caract&egrave;res requis.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Longueur maximale [dynamique]</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un champ qui sp&eacute;cifie le nombre maximum de caract&egrave;res autoris&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Valeurs exclues</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit une liste de valeurs non autoris&eacute;es pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Plage exclue de valeurs</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit une plage de valeurs non autoris&eacute;es pour ce champ. </p><p><strong>Valeur maximale exclue :</strong> La valeur maximale non autoris&eacute;e pour ce champ.</p><p><strong>Valeur minimale exclue :</strong> La valeur minimale non autoris&eacute;e pour ce champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="constraint"><p>Contrainte sp&eacute;cifique (composant)</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie une ou plusieurs classes Java qui impl&eacute;mentent l&#39;interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/Constraint.html"><code>Constraint</code></a> de l&#39;API Java. Voir <a href="../models/constraints.html#programmaticConstraints">Programmatic constraints</a> pour plus d&#39;informations.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Enum&eacute;ration sp&eacute;cifique (composant)</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie une classe Java pour d&eacute;finir une &eacute;num&eacute;ration. La classe doit d&eacute;finir une liste ordonn&eacute;e de valeurs, en impl&eacute;mentant l&#39;interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintEnumeration.html"><code>ConstraintEnumeration</code></a> de l&#39;API Java.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Enum&eacute;ration aliment&eacute;e par un autre noeud</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie un champ qui d&eacute;finit les valeurs autoris&eacute;es pour cette &eacute;num&eacute;ration. Le champ sp&eacute;cifi&eacute; doit &ecirc;tre une liste ou doit d&eacute;finir une &eacute;num&eacute;ration.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Configuration des espaces de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit quels sont les espaces de donn&eacute;es pouvant &ecirc;tre r&eacute;f&eacute;renc&eacute;s par un champ de type Identifiant d&#39;espaces de donn&eacute;es (osd:dataspaceKey).</p><ul>
+<li><p>Inclusions</p><p>D&eacute;finit les espaces de donn&eacute;es qui peuvent &ecirc;tre r&eacute;f&eacute;renc&eacute;s par ce champ.</p><p><strong>Pattern:</strong>D&eacute;finit une expression r&eacute;guli&egrave;re &agrave; laquelle le nom d&#39;un espace de donn&eacute;es doit &ecirc;tre conforme.</p><p><strong>Type:</strong>D&eacute;finit le type d&#39;espaces de donn&eacute;es (branches ou versions) qui peuvent &ecirc;tre r&eacute;f&eacute;renc&eacute;s par ce champ. Si non d&eacute;finie, cette restriction s&#39;appliquera aux espaces de donn&eacute;es de type branche.</p><p><strong>Inclure les descendants:</strong>D&eacute;finit si les espaces de donn&eacute;es enfants ou descendants sont inclus dans cet ensemble. <br/>Si non d&eacute;finie, cette restriction ne s&#39;appliquera pas aux espaces de donn&eacute;es enfants. <br/>Si &quot;Aucun&quot; alors les enfants et descendants des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini ne sont pas inclus. <br/>Si &quot;Tous les descendants&quot; alors toutes les branches et versions descendantes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. <br/>Si &quot;Toutes les branches descendantes&quot; alors toutes les branches descendantes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. <br/>Si &quot;Toutes les versions descendantes&quot; alors toutes les versions descendantes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. <br/>Si &quot;Branches enfants&quot; alors seules les branches directes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une version, alors les branches qui sont des enfants directs de cette version sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une branche, alors sont incluses les branches qui sont des enfants directs des versions qui sont des enfants directs de cette branche. <br/>Si &quot;Versions enfants&quot; alors seules les versions directes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une branche, alors les versions qui sont des enfants directs de cette branche sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une version, alors sont incluses les versions qui sont des enfants directs des branches qui sont des enfants directs de cette version.</p></li><li><p>Exclusions</p><p>D&eacute;finit les espaces de donn&eacute;es qui ne peuvent pas &ecirc;tre r&eacute;f&eacute;renc&eacute;s par ce champ. Les exclusions sont ignor&eacute;es si la configuration ne d&eacute;finit pas d&#39;inclusion.</p><p><strong>Pattern: </strong>D&eacute;finit une expression r&eacute;guli&egrave;re &agrave; laquelle le nom d&#39;un espace de donn&eacute;es doit &ecirc;tre conforme.</p><p><strong>Type: </strong>D&eacute;finit le type d&#39;espaces de donn&eacute;es (branches ou versions) qui peuvent &ecirc;tre r&eacute;f&eacute;renc&eacute;s par ce champ. Si non d&eacute;finie, cette restriction s&#39;appliquera aux espaces de donn&eacute;es de type branche.</p><p><strong>Inclure les descendants: </strong>D&eacute;finit si les espaces de donn&eacute;es enfants ou descendants sont inclus dans cet ensemble. <br/>Si non d&eacute;finie, cette restriction ne s&#39;appliquera pas aux espaces de donn&eacute;es enfants. <br/>Si &quot;Aucun&quot; alors les enfants et descendants des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini ne sont pas inclus. <br/>Si &quot;Tous les descendants&quot; alors toutes les branches et versions descendantes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. <br/>Si &quot;Toutes les branches descendantes&quot; alors toutes les branches descendantes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. <br/>Si &quot;Toutes les versions descendantes&quot; alors toutes les versions descendantes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. <br/>Si &quot;Branches enfants&quot; alors seules les branches directes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une version, alors les branches qui sont des enfants directs de cette version sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une branche, alors sont incluses les branches qui sont des enfants directs des versions qui sont des enfants directs de cette branche. <br/>Si &quot;Versions enfants&quot; alors seules les versions directes des espaces de donn&eacute;es qui v&eacute;rifient le pattern d&eacute;fini sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une branche, alors les versions qui sont des enfants directs de cette branche sont incluses. Si l&#39;espace de donn&eacute;es qui v&eacute;rifie le pattern est une version, alors sont incluses les versions qui sont des enfants directs des branches qui sont des enfants directs de cette version.</p></li><li><p>Filtre</p><p>D&eacute;finit un filtre pour accepter ou refuser des espaces de donn&eacute;es dans le contexte d&#39;un jeu de donn&eacute;es ou d&#39;un enregistrement. Ce filtre est uniquement utilis&eacute; par le composant de saisie d&eacute;di&eacute; &agrave; ce type de champ. Ce filtre n&#39;est pas utilis&eacute; lors de la validation de ce champ. Des contr&ocirc;les additionnels peuvent &ecirc;tre d&eacute;finis en utilisant une contrainte sp&eacute;cifique (composant). Un filtre est d&eacute;fini par une classe Java qui impl&eacute;mente l&#39;interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/types/dataspace/DataspaceSetFilter.html"><code>DataspaceSetFilter</code></a>. </p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Configuration des jeux de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit quels sont les jeux de donn&eacute;es pouvant &ecirc;tre r&eacute;f&eacute;renc&eacute;s par un champ de type Identifiant de jeux de donn&eacute;es (osd:datasetName).</p><ul>
+<li><p>Inclusions</p><p>D&eacute;finit les jeux de donn&eacute;es qui peuvent &ecirc;tre r&eacute;f&eacute;renc&eacute;s par ce champ.</p><p><strong>Pattern: </strong>D&eacute;finit une expression r&eacute;guli&egrave;re &agrave; laquelle le nom d&#39;un jeu de donn&eacute;es doit &ecirc;tre conforme.</p><p><strong>Inclure les descendants: </strong>D&eacute;finit si les jeux de donn&eacute;es enfants ou descendants sont inclus dans cet ensemble. Si non d&eacute;finie, cette restriction ne s&#39;appliquera pas aux jeux de donn&eacute;es enfants.</p></li><li><p>Exclusions</p><p>D&eacute;finit les jeux de donn&eacute;es qui ne peuvent pas &ecirc;tre r&eacute;f&eacute;renc&eacute;s par ce champ. Les exclusions sont ignor&eacute;es si la configuration ne d&eacute;finit pas d&#39;inclusion.</p><p><strong>Pattern:</strong>D&eacute;finit une expression r&eacute;guli&egrave;re &agrave; laquelle le nom d&#39;un jeu de donn&eacute;es doit &ecirc;tre conforme.</p><p><strong>Inclure les descendants:</strong>D&eacute;finit si les jeux de donn&eacute;es enfants ou descendants sont inclus dans cet ensemble. Si non d&eacute;finie, cette restriction ne s&#39;appliquera pas aux jeux de donn&eacute;es enfants.</p></li><li><p>Filtre</p><p>D&eacute;finit un filtre pour accepter ou refuser des jeux de donn&eacute;es dans le contexte d&#39;un jeu de donn&eacute;es ou d&#39;un enregistrement. Ce filtre est uniquement utilis&eacute; par le composant de saisie d&eacute;di&eacute; &agrave; ce type de champ. Ce filtre n&#39;est pas utilis&eacute; lors de la validation de ce champ. Des contr&ocirc;les additionnels peuvent &ecirc;tre d&eacute;finis en utilisant une contrainte sp&eacute;cifique (composant). Un filtre est d&eacute;fini par une classe Java qui impl&eacute;mente l&#39;interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/types/dataset/DatasetSetFilter.html"><code>DatasetSetFilter</code></a>. </p></li></ul>
+</td></tr>
+</table>
+<h3 id="id2s1">
+Propri&eacute;t&eacute;s de validation</h3>
+<p>Chaque contrainte, except&eacute; celles utilisant une classe Java, peut d&eacute;finir des messages de validation. Il est possible d&#39;associer une s&eacute;v&eacute;rit&eacute; &agrave; ces messages de validation et ils peuvent &ecirc;tre localis&eacute;s en utilisant les propri&eacute;t&eacute;s suivantes :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Validation</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le message de validation et la s&eacute;v&eacute;rit&eacute; associ&eacute;e &agrave; la contrainte.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        S&eacute;v&eacute;rit&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie la s&eacute;v&eacute;rit&eacute; de la contrainte. Les valeurs possibles sont : &quot;Erreur&quot;, &quot;Avertissement&quot;, et &quot;Information&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>               Gestion des erreurs</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le comportement de la contrainte en cas d&#39;erreur de validation. Il est possible d&#39;indiquer que la contrainte doit toujours &ecirc;tre valide pour toute op&eacute;ration (mise &agrave; jour d&#39;un jeu de donn&eacute;es, cr&eacute;ation, mise &agrave; jour et suppression d&#39;un enregistrement), ou lorsqu&#39;un utilisateur soumet un formulaire. Dans ce cas, toutes les saisies ou op&eacute;rations qui rendraient la contrainte invalide seront rejet&eacute;es et les donn&eacute;es seront non modifi&eacute;es. Si cette propri&eacute;t&eacute; n&#39;est pas sp&eacute;cifi&eacute;e, alors la contrainte bloquera uniquement les erreurs lors de la soumission d&#39;un formulaire, sauf dans le cas de mod&egrave;les relationnels o&ugrave; les contraintes de cl&eacute;s &eacute;trang&egrave;res bloquent par d&eacute;faut toutes les erreurs. Cette propri&eacute;t&eacute; est uniquement disponible sur les contr&ocirc;les statiques, valeurs exclues, plage exclue de valeurs et contraintes de cl&eacute;s &eacute;trang&egrave;res. Le caract&egrave;re bloquant pour toutes les op&eacute;rations ne s&#39;applique pas sur les filtres de cl&eacute; &eacute;trang&egrave;re. Une contrainte de cl&eacute; &eacute;trang&egrave;re n&#39;est donc pas bloquante si un enregistrement r&eacute;f&eacute;renc&eacute; existe mais ne r&eacute;pond pas aux crit&egrave;res de filtrage. Il n&#39;est pas possible de d&eacute;finir cette propri&eacute;t&eacute; sur les contraintes structurelles d&eacute;finies dans les mod&egrave;les relationnels. Si cette propri&eacute;t&eacute; est d&eacute;finie sur les contraintes &quot;Longueur fixe&quot;, &quot;Longueur maximum&quot;, &quot;Nombre total de chiffres&quot; et &quot;Partie d&eacute;cimale&quot; dans des mod&egrave;les relationnels, une erreur sera lev&eacute;e lors de la compilation du mod&egrave;le. Le caract&egrave;re bloquant d&#39;une contrainte est ignor&eacute; lors de l&#39;import d&#39;archives. Toutes les contraintes bloquantes, sauf les contraintes dites structurelles, sont d&eacute;sactiv&eacute;es lors de l&#39;import d&#39;archives.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Message</p></td><td class="ebx_definitionListDefinition"><p>Message &agrave; afficher lorsque la valeur de ce champ dans un jeu de donn&eacute;es ne respecte pas cette contrainte. Ce message peut &ecirc;tre localis&eacute;.</p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+Concepts apparentés</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementproperties.html">Propri&eacute;t&eacute;s des &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html">Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

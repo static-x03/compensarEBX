@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - The Configuration domain</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="reference_configuration_domain" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Information Search Add-on Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/reference_configuration_domain.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Information Search Add-on Documentation</span></div>
+<h1 id="reference_configuration_domain_top">
+The Configuration domain</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">The Permission table</a></li><li class="toc2"><a href="#id1s2">The Context table</a></li><li class="toc2"><a href="#ConfiguringSearchCriteriaOnData8fc_19">The Model table</a></li><li class="toc2"><a href="#UsingTableToConfigureSearch1330_20">The Searched tables table</a></li><li class="toc2"><a href="#Fieldb3a_21">The Searched fields table</a></li><li class="toc2"><a href="#FilteredValue1ab1_22">The Filtered value table</a></li><li class="toc2"><a href="#FilteredValueGroup23ab_25">The Filtered value group table</a></li><li class="toc2"><a href="#reference_configuration_domain_algorithms">The Algorithm table</a></li><li class="toc2"><a href="#Synonyme70_33">The Synonym table</a></li><li class="toc2"><a href="#SynonymGroupb70_34">The Synonym group table</a></li><li class="toc2"><a href="#PopulateSynonymGroupc18_35">The Populate synonym group table</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>The <strong>Configuration</strong> domain allows you to:</p><ul>
+<li><p>Create search configurations by pointing the add-on to a location to search.</p></li><li><p>Specify values you want to exclude from search results.</p></li><li><p>Create and modify algorithms.</p></li><li><p>Create synonyms that the add-on can return when no results are found for a particular search term.</p></li></ul>
+<p>To give users access to global search and control which tables they can search, admins create entries in the <strong>Permission</strong> and <strong>Context</strong> tables. Each record in the <strong>Context</strong> table defines one or more tables as a search context. Only tables previously configured in the add-on can be included in a search context. Entries in the <strong>Permission</strong> table associate user profiles with a context. Global search will only be active for a user if they, or a role containing their profile, is associated with at least one context.</p><h3 id="id1s1">
+The Permission table</h3>
+<p>The <strong>Permission</strong> table associates user profiles with search contexts to enable global search for those profiles. The <strong>Context</strong> table lets you control the scope of tables that are searchable by a particular profile.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Profile</p></td><td valign="top"><p>The profile, or role that will be allowed to access global search functionality. Set the search scope for this profile using the <strong>Context</strong> field.</p></td></tr>
+<tr>
+<td valign="top"><p>Context</p></td><td valign="top"><p>The context defines which table(s) will be included when the chosen profile performs a global search.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id1s2">
+The Context table</h3>
+<p>This table allows you to define the scope for a global search. Each context can be linked to a user profile, thereby enabling the global search feature for that profile on the tables defined in the context. Use the <strong>Permission</strong> table to link a profile with one or more contexts.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>A unique identifier for the context. No whitespaces are allowed.</p></td></tr>
+<tr>
+<td valign="top"><p>Custom title</p></td><td valign="top"><p>Use this field to customize the context&#39;s title that will be displayed in the global search screen. If no custom title is defined, or several contexts are defined for a single profile, the title defaults to <strong>Search</strong>. </p></td></tr>
+<tr>
+<td valign="top">Dataspace</td><td valign="top">Dataspace where the search will be executed.</td></tr>
+<tr>
+<td valign="top">Dataset</td><td valign="top">Dataset where the search will be executed.</td></tr>
+<tr>
+<td valign="top">Tables</td><td valign="top">The list of tables included in this context that will be searched during a global search operation. Note that only tables that have been previously configured in the EBX® Information Search Add-on will be available for selection.</td></tr>
+</tbody>
+</table>
+<h3 id="ConfiguringSearchCriteriaOnData8fc_19">
+The Model table</h3>
+<p>The <strong>Model</strong> table allows you to apply search criteria to a data model. These settings affect search behavior for all tables included in the model. As a result, the table&#39;s dataset location does not matter. As long as you have registered a table and configured one or more of its fields, users can execute search. See the <strong>Searched tables</strong> and <strong>Searched fields</strong> tables for more information. </p><p>The table below lists all properties and how those properties are used in the <strong>Model</strong> configuration screen.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Data model</p></td><td valign="top"><p>The data model on which the EBX® Information Search Add-on options on this page apply. These settings apply to all tables based on this data model for which you enable search.</p></td></tr>
+<tr>
+<td valign="top"><p>Sensitivity default value (%)</p></td><td valign="top"><p>Fuzzy search gives a percentage level of the similarity between information and the search criterion. For example, the criterion Jone is considered 73% similar to John. The level from which the information will be considered a relevant search result must be configured carefully. If the sensitivity level is set too high, then some results could be missed. Conversely, if this level is too low then unwanted information could be retrieved.</p><p>This means that the sensitivity value must be tested to check that the results are relevant. You may need to adjust the default sensitivity level-on a case by case basis-depending on the nature of the information on which the search is applied (string, digit, short text, long description, languages, etc.) and the algorithms that are used for the fuzzy search (phonetics, distance).</p><p>By default the value of the sensitivity is set to 70%.</p></td></tr>
+</tbody>
+</table>
+<h3 id="UsingTableToConfigureSearch1330_20">
+The Searched tables table</h3>
+<p>You can use the <strong>Searched tables</strong> table to register tables with the add-on. Keep in mind that all properties related to the sensitivity level of the search and the number of possible results are configured at the data model and field levels. The table configuration should only be used to select which tables inside the data model benefit from the EBX® Information Search Add-on&#39;s functionality.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Data model</p></td><td valign="top"><p>A reference to the data model configured in the <strong>Model</strong> table.</p></td></tr>
+<tr>
+<td valign="top"><p>Table</p></td><td valign="top"><p>A table in the data model. Once a table is configured it benefits from the EBX® Information Search Add-on no matter its location in the datasets.</p></td></tr>
+<tr>
+<td valign="top"><p>Results sorted by</p></td><td valign="top"><p>Defines how the results are displayed:</p><ul>
+<li><p>Scoring order: The result are displayed in order of descending score.</p></li><li><p>Field order: The results are displayed in order of field configuration.</p></li><li><p>Default value: Scoring order</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>Result line template</p></td><td valign="top"><p>Defines how each result will be displayed. Up to five lines can be configured. At least one result line template must be configured.</p></td></tr>
+</tbody>
+</table>
+<h3 id="Fieldb3a_21">
+The Searched fields table</h3>
+<p>In the <strong>Searched fields</strong> table you specify which table fields EBX® Information Search Add-on executes on. You can configure how the search executes by:</p><ul>
+<li><p>Specifying <strong>Primary search algorithm</strong> or a <strong>Secondary search algorithm</strong>.</p></li><li><p>Enabling the <strong>Best word</strong> option.</p></li><li><p>Using a Java class to filter out specific values before the search executes.</p></li></ul>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Table</p></td><td valign="top"><p>A table configured for EBX® Information Search Add-on.</p></td></tr>
+<tr>
+<td valign="top"><p>Field</p></td><td valign="top"><p>A field in the configured table on which EBX® Information Search Add-on executes.</p></td></tr>
+<tr>
+<td valign="top"><p>Primary search algorithm</p></td><td valign="top"><p>The primary algorithm used to execute a fuzzy search. Different algorithms are available to either enforce a phonetics search or a distance search. See the following recommendations:</p><ul>
+<li><p>For name and first name: &quot;Jarowinkler&quot;.</p></li><li><p>For products titles, films names, etc.: &quot;FuzzyFulText&quot; with suitable configuration for the <strong>Similarity</strong> and <strong>Prefix length</strong> properties to get the best expected results.</p></li><li><p>For postal code or similar conventions: &quot;Levenshtein&quot;.</p></li><li><p>For number: Search Number</p></li><li><p>For date: Search Date</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>Secondary search algorithm</p></td><td valign="top"><p>This algorithm executes after the primary algorithm and you can use it to manage records considered a false negative result by the primary algorithm. This works to ensure that no possible record has been missed.</p></td></tr>
+<tr>
+<td valign="top"><p>Best word</p></td><td valign="top"><p>A <strong>Best word</strong> search scores results based solely on how close a word matches the search criteria. It assigns each word a score and returns the word with the best score. This type of search works well when searching fields such as descriptions that contain many words. You can use this option with distance and phonetic algorithms. This option does not work for Search Number, Search Date algorithms. </p><p>For example, using the search criteria &quot;lice&quot; on a table&#39;s Name field could return a result of &quot;Alice&quot;. The basic fuzzy search gives this field a high score because of the similarity between the search criteria and the information contained in the field. If the same search criteria is applied instead to search a descriptive field containing the text &quot;A cartoon character named Alice&quot;, the search score would greatly decrease. This is because the percentage of similarity-or score-is computed using all of the words in the text.</p><p>If set to <strong>Yes</strong>: The search bases a word&#39;s score solely on matching against the criteria. Users can also enclose multiple search terms in double-quotes to force a search on the entire phrase.</p><p>If set to <strong>No</strong> or <strong>Undefined</strong>: The search bases a word&#39;s score on the percentage of similarity between the criteria and the data being searched.</p><p>Default value: No</p></td></tr>
+<tr>
+<td valign="top"><p>Java class value filter</p></td><td valign="top"><p>This property accepts a Java class to define values you want to exclude from a search operation. You can use the add-on&#39;s predefined class (<code>com.orchestranetworks.addon.tese.SearchValueFilter</code>), or create your own custom class. The predefined class gets values to filter from the <strong>Filtered value group</strong> table.</p><p>If you decide to create a custom class, include in the class the values to filter and be sure the class implements the SearchTextNormalize interface. The value filter depends on the record&#39;s fields.</p></td></tr>
+<tr>
+<td valign="top"><p>Filtered value group</p></td><td valign="top"><p>This property allows you to choose a group that contains values to exclude from the search. If you haven&#39;t created a group yet, use the <strong>Filtered value</strong> and <strong>Filtered value group</strong> to do so.</p><p>Note that this property only displays when you use the predefined <code>com.orchestranetworks.addon.tese.SearchValueFilter</code> class in the <strong>Java class value filter</strong> property.</p></td></tr>
+<tr>
+<td valign="top"><p>Synonyms processing mode</p></td><td valign="top"><p>Defines the processing mode for synonyms, you can select from the following options:</p><ul>
+<li><p><strong>Use synonyms for the entire value of the attribute</strong>: Apply synonyms on the entire value of the attribute.</p></li><li><p><strong>Use synonyms for every words of the attribute</strong>: Apply synonyms on every words of the attribute.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>Check synonyms in all groups</p></td><td valign="top"><p>If <strong>Yes</strong>: In addition to the configured group, all the groups with a parent relationship are used to look for the synonyms.</p><p>If <strong>No</strong> or <strong>Undefined</strong>: Records in different child groups cannot be matched with each other.</p><p>Default value: <strong>No</strong></p></td></tr>
+</tbody>
+</table>
+<h3 id="FilteredValue1ab1_22">
+The Filtered value table</h3>
+<p>In the <strong>Filtered value</strong> table you input a value to exclude from a search and assign the value to a group.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Value</p></td><td valign="top"><p>A value to ignore when performing a search.</p></td></tr>
+<tr>
+<td valign="top"><p>Group</p></td><td valign="top"><p>The <strong>Filtered value group</strong> this value is assigned to.</p></td></tr>
+</tbody>
+</table>
+<h3 id="FilteredValueGroup23ab_25">
+The Filtered value group table</h3>
+<p>The <strong>Filtered value group</strong> table allows you to define groups that contain values to exclude from a search. After creating a group, you can use the <strong>Filtered value</strong> table to assign values to the group. For more information, see the <strong>Filtered value group</strong> table.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Group</p></td><td valign="top"><p>Name of the <strong>Filtered value group</strong>.</p></td></tr>
+</tbody>
+</table>
+<h3 id="reference_configuration_domain_algorithms">
+The Algorithm table</h3>
+<p>Algorithm table provides a list of ready-to-use algorithms with [ON] prefix for searching. It is also possible for user to create new algorithms with different parameter values using the supported algorithms.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>A unique name without white spaces.</p></td></tr>
+<tr>
+<td valign="top"><p>Label</p></td><td valign="top"><p>Any naming convention without white spaces can be used to define this property.</p></td></tr>
+<tr>
+<td valign="top"><p>Supported algorithm</p></td><td valign="top"><p>The chosen algorithm from which you can customize its input parameters to create a new algorithm used to search.</p></td></tr>
+<tr>
+<td valign="top"><p>Input parameters</p></td><td valign="top"><p>A list of customized parameters. The available parameters depend on the corresponding <strong>Supported algorithm</strong>.</p></td></tr>
+</tbody>
+</table>
+<h3 id="Synonyme70_33">
+The Synonym table</h3>
+<p>This table allows you to create and store synonyms. After creating synonyms you can create groups, and add synonyms to groups using the <strong>Synonym group</strong> and <strong>Populate synonym group</strong> tables, respectively. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Properties</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention except the prefix [ON] that is reserved for the synonyms provided by the add-on can be used.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name of the synonym.</p></td></tr>
+</tbody>
+</table>
+<h3 id="SynonymGroupb70_34">
+The Synonym group table</h3>
+<p>You can use this table to create a group of synonyms. To add synonyms to groups, use the <strong>Populate synonym group</strong> table. Additionally, you can create a parent or child relationship between groups. On the <strong>Searched fields</strong> configuration, if the <strong>Check synonyms in all groups</strong> is set to <strong>Yes</strong>, all child synonym groups are used to look for a synonym. If set to <strong>No</strong>: only the synonyms in the same group can be used to search.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Properties</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention except the prefix [ON] that is reserved for the synonyms provided by the add-on can be used.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name of the synonym group. The <strong>Synonym by group</strong> data hierarchy view on the <strong>Synonym</strong> table is used to attach the synonyms to a group.</p></td></tr>
+<tr>
+<td valign="top"><p>Parent group</p></td><td valign="top"><p>Groups of synonyms can be arranged through a relationship hierarchy. When you use a synonym group to search a field, you can specify that the add-on looks for synonyms through these relationships.</p></td></tr>
+</tbody>
+</table>
+<h3 id="PopulateSynonymGroupc18_35">
+The Populate synonym group table</h3>
+<p>You can use this table to assign synonyms to desired groups.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Properties</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Synonym group</p></td><td valign="top"><p>A record of the Synonym group table.</p></td></tr>
+<tr>
+<td valign="top"><p>Synonym</p></td><td valign="top"><p>A record of the Synonym table.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

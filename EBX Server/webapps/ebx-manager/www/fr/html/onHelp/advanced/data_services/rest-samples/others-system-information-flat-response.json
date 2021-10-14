@@ -1,0 +1,46 @@
+{
+  "content": {
+    "bootInfoEBX": {
+      "label": "EBX® configuration",
+      "content": {
+        "product.version": {
+          "label": "EBX® product version",
+          "content": "5.8.1 [...] Enterprise Edition"
+        },
+        "product.configuration.file": {
+          "label": "EBX® main configuration file",
+          "content": "System property [ebx.properties=./ebx.properties]"
+        },
+        // others keys
+      }
+    },
+    "repositoryInfo": {
+      "label": "Repository information",
+      "content": {
+        "repository.identity": {
+          "label": "Repository identity",
+          "content": "00905A5753FD"
+        },
+        "repository.label": {
+          "label": "Repository label",
+          "content": "My repository"
+        },
+        // others keys
+      }
+    },
+    "bootInfoVM": {
+      "label": "System information",
+      "content": {
+        "java.home": {
+          "label": "Java installation directory",
+          "content": "C:\\JTools\\jdk1.8.0\\jre"
+        },
+        "java.vendor": {
+          "label": "Java vendor",
+          "content": "Oracle Corporation"
+        },
+        // others keys
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction to D3</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="d3_overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/d3.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+<h1>
+Introduction to D3</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">D3 architecture</a></li><li class="toc2"><a href="#id1s2">Involving third-party systems</a></li><li class="toc2"><a href="#id1s3">Protocols</a></li></ul>
+</li><li class="toc1"><a href="#id2">D3 terminology</a></li><li class="toc1"><a href="#known_limitations">Known limitations</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">General limitations</a></li><li class="toc2"><a href="#id3s2">Broadcast and delivery dataspace limitations</a></li><li class="toc2"><a href="#id3s3">Administration limitations</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>TIBCO EBX&reg; offers the ability to send data from an EBX&reg; instance to other instances. Using a broadcast action, it also provides an additional layer of security and control to the other features of EBX&reg;. It is particularly suitable for situations where data governance requires the highest levels of data consistency, approvals and the ability to rollback.</p><h3 id="id1s1">
+D3 architecture</h3>
+<p>A typical D3 installation consists of one primary node and multiple replica nodes. In the primary node, a Data Steward declares which dataspaces must be broadcast, as well as which user profile is allowed to broadcast them to the replica nodes. The Data Steward also defines delivery profiles, which are groups of one or more dataspaces.</p><p>Each replica node must define from which delivery profile it receives broadcasts.</p><p align="center"><img alt="/overview.png" src="../resources/images/d3/overview.png"></img></p><h3 id="id1s2">
+Involving third-party systems</h3>
+<p>The features of D3 also allow third-party systems to access the data managed in EBX&reg; through data services. Essentially, when a system consumes the data of a delivery dataspace, the data is transparently redirected to the last broadcast snapshot. This ensures a more controlled and reliable view of the managed data.</p><p>Third-party systems can either access data directly through the primary node or through a replica node. Thus, a physical architecture consisting of a primary node and no replica nodes is possible.</p><h3 id="id1s3">
+Protocols</h3>
+<p>If JMS is activated, the conversation between a primary node and a replica node is based on SOAP over JMS, while archive transfer is based on JMS binary messages.</p><p>If JMS is not activated, conversation between a primary node and a replica node is based on SOAP over HTTP(S), while binary archive transfer is based on TCP sockets. If HTTPS is used, make sure that the target node connector is correctly configured by enabling SSL with a trusted certificate.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3_jms_config.html#jms_d3">JMS for distributed data delivery (D3)</a></li></ul>
+</div>
+<h2 id="id2">
+D3 terminology</h2>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>broadcast</p></td><td class="ebx_definitionListDefinition"><p>Send a publication of an official snapshot of data from a primary node to replica nodes. The broadcast transparently and transactionally ensures that the data is transferred to the replica nodes.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>delivery dataspace</p></td><td class="ebx_definitionListDefinition"><p>A delivery dataspace is a dataspace that can be broadcast to authenticated and authorized users using a dedicated action.</p><p>By default, when a data service accesses a delivery dataspace on any node, it is redirected to the last snapshot that was broadcast. See <a href="../engine/d3_broadcast.html#dataServices">Data services</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="deliveryProfile">delivery profile</p></td><td class="ebx_definitionListDefinition"><p>A delivery profile is a logical name that groups one or more delivery dataspaces. Replica nodes subscribe to one or more delivery profiles.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="cluster">cluster delivery mode</p></td><td class="ebx_definitionListDefinition"><p>Synchronization with subscribed replica nodes is performed in a two-phase commit transactional process. This delivery mode is designed to respond to a high volume of queries using load balancing and/or fault tolerance. It ensures the consistency of data in the cluster between replica nodes and their primary node delivery dataspaces. Primary and replica nodes use the same last broadcast snapshots.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="federation">federation delivery mode</p></td><td class="ebx_definitionListDefinition"><p>Synchronization is performed in a single phase, and with each registered replica node independently. This delivery mode is designed to be used with geographically distributed and/or heterogeneous architectures where response time and network availability cannot be guaranteed. At any one time, replica nodes can be at different last broadcast snapshots. The synchronization processes are thus independent of one another and replay of individual replica nodes are performed for certain broadcast failures.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="master">Primary node</p></td><td class="ebx_definitionListDefinition"><p>An instance of EBX&reg; that can define one or more delivery dataspaces, and to which replica nodes can subscribe. A primary node can also act as a regular EBX&reg; server.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="slave">Replica node</p></td><td class="ebx_definitionListDefinition"><p>An instance of EBX&reg; attached to a primary node, in order to receive delivery dataspace broadcasts. Besides update restrictions on delivery dataspaces, the replica node acts as a regular EBX&reg; server.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="hub">Hub node</p></td><td class="ebx_definitionListDefinition"><p>An instance of EBX&reg; acting as both a primary node and a replica node. Primary delivery dataspaces and replica node delivery dataspaces <strong>must</strong> be disjoint.</p></td></tr>
+</table>
+<h2 id="known_limitations">
+Known limitations</h2>
+<h3 id="id3s1">
+General limitations</h3>
+<ul>
+<li><p>Each replica node must have only one primary node.</p></li><li><p>Embedded data models cannot be used in D3 dataspaces. Therefore, it is not possible to create a dataset based on a publication in a D3 dataspace.</p></li><li><p>The compatibility is not assured if at least one replica node product version is different from the primary node.</p></li></ul>
+<h3 id="id3s2">
+Broadcast and delivery dataspace limitations</h3>
+<ul>
+<li><p>Access rights on dataspaces are not broadcast, whereas access rights on datasets are.</p></li><li><p>Dataspace information is not broadcast.</p></li><li><p>If a dataspace and its parent are broadcast, their parent-child relationship will be lost in the replica nodes.</p></li><li><p>Once a snapshot has been broadcast to a replica, subsequent broadcasts of <em>any</em> snapshot with the same name will result in restoring the originally broadcast version of that same name on the replica node. That is, if the original snapshot on the primary node is purged and a new one is created with the same name and subsequently broadcast, then the content of the replica will be restored to that of the previously broadcast snapshot, and not to the latest one of the same name.</p></li><li><p>To guarantee dataspace consistency between D3 nodes, the data model (embedded or packaged in a module) on which the broadcast contents are based, must be the same between the primary node and its replica nodes.</p></li><li><p>On a replica delivery dataspace, if several replica nodes are registered, and if replication is enabled in data models, it will be effective for all nodes. No setting is available to activate/deactivate replication according to D3 nodes.</p></li><li><p>Replication on replica nodes does not take part in the distributed transaction: it is automatically triggered after commit.</p></li></ul>
+<h3 id="id3s3">
+Administration limitations</h3>
+<p>Technical dataspaces cannot be broadcast, thus the EBX&reg; default user directory cannot be synchronized using D3.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

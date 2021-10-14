@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright © TIBCO Software Inc. 2001-2021. All rights reserved.
+
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+ --> 
+ 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" targetNamespace="urn:ebx-schemas:binding_1.0" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:element name="binding">
+		<xs:annotation>
+			<xs:documentation>Defines a set of Java types to generate.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="javaPathConstants" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Defines a Java type to generate.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nodes" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="root" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation>Path to root element (each descendant of this element will be added as a Java constant).</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="prefix" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>All the constants generated for this root element will begin with this prefix string (it may be an empty string).</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="relativeToRoot" type="xs:boolean">
+										<xs:annotation>
+											<xs:documentation>If this field is true then the paths being generated are relative and begin at the root with the 'self' step (./).</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="typeName" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Fully qualified Java type name.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="targetDirectory" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Common root directory of all the Java types that are to be generated for this binding.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

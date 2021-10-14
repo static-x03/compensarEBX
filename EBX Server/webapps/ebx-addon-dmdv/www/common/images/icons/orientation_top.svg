@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="14px" viewBox="0 0 23 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-2" transform="translate(0.000000, -55.000000)" fill="#606060">
+            <g id="Group-5" transform="translate(0.000000, 55.000000)">
+                <g id="Shape" fill-rule="nonzero">
+                    <path d="M7,6.23 C6.58,6.23 6.23,6.58 6.23,7 C6.23,7.42 6.58,7.77 7,7.77 C7.42,7.77 7.77,7.42 7.77,7 C7.77,6.58 7.42,6.23 7,6.23 Z M7,0 C3.15,0 0,3.15 0,7 C0,10.85 3.15,14 7,14 C10.85,14 14,10.85 14,7 C14,3.15 10.85,0 7,0 Z M8.54,8.54 L2.8,11.2 L5.46,5.46 L11.2,2.8 L8.54,8.54 Z"></path>
+                </g>
+                <g id="Group-4" transform="translate(20.000000, 7.500000) rotate(-90.000000) translate(-20.000000, -7.500000) translate(15.000000, 5.000000)">
+                    <rect id="Rectangle-2" x="0" y="2" width="6" height="1"></rect>
+                    <g id="play39" transform="translate(5.000000, 0.000000)">
+                        <path d="M4.91821655,2.4001351 L0.198984577,0.0236476252 C0.144505897,-0.00425664677 0.097703957,-0.00745812839 0.0586223742,0.0140036558 C0.0195407914,0.03546544 0,0.0741203663 0,0.12992891 L0,4.87001889 C0,4.92586695 0.0195407914,4.96452188 0.0586223742,4.98598366 C0.097703957,5.00744545 0.144505897,5.00428349 0.198984577,4.9763397 L4.91821655,2.59985222 C4.97273885,2.57190842 5,2.53854978 5,2.4999739 C5,2.46131897 4.97273885,2.42803937 4.91821655,2.4001351 L4.91821655,2.4001351 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

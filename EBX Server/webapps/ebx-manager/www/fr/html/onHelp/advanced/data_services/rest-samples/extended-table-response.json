@@ -1,0 +1,48 @@
+{
+  "rows": [
+    {
+      "label": "Claude Levi-Strauss",
+      "details": "http://.../root/individu/1",
+      "content": {
+        "id": {
+          "content": 1
+        },
+        ...
+      }
+    },
+    {
+      "label": "Sigmoud Freud",
+      "details": "http://.../root/individu/5",
+      "content": {
+        "id": {
+          "content": 2
+        },
+        ...
+      }
+    },
+    ...
+    {
+      "label": "Alfred Dreyfus",
+      "details": "http://.../root/individu/10",
+      "content": {
+        "id": {
+          "content": 30
+        },
+        ...
+      }
+    }
+  ],
+  "sortCriteria": [
+    {
+      "path": "/name",
+      "order": "lasc"
+    },
+    ...
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../root/individu?pageRecordFilter=./id=9&amp;pageSize=9&amp;pageAction=next",
+    "lastPage": "http://.../root/individu?pageSize=9&amp;pageAction=last"
+  }
+}

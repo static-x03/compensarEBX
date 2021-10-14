@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - Excluding values from search results</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_configuring_filtering" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Information Search Add-on Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_configuring_filtering.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Information Search Add-on Documentation</span></div>
+<h1 id="user_configuring_filtering_top">
+Excluding values from search results</h1>
+<p>The add-on allows you to omit values from search results on a field-by-field basis. Indicate the values you want to omit by:</p><ol>
+<li><p>Creating a list of the values to omit in one of the following ways:</p><ul>
+<li><p>Navigate to <em>Administration &gt; Data quality &amp; analytics &gt; EBX® Information Search Add-on &gt; Configuration</em> and use the <strong>Filtered value</strong> and <strong>Filtered value group</strong> tables to create values and group them together. Use a field&#39;s configuration settings to point to this group. When a user runs a search that includes this field, none of the results specified in the group display.</p></li><li><p>Create your own Java class that implements the <code>SearchTextNormalize</code> interface and lists the values you want to filter.</p></li></ul>
+</li><li><p>Open a field&#39;s configuration settings and in the <strong>Value filter by Java class</strong> enter:</p><ul>
+<li><p><code>com.orchestranetworks.addon.tese.SearchValueFilter</code> (if you used the add-on to create values and groups)</p></li><li><p>The name of your custom class. When using this option, you can save and close out of the configuration.</p></li></ul>
+</li><li><p>Save, but do not close the configuration to display the <strong>Filtered value group</strong> drop-down menu.</p></li><li><p>From the <strong>Filtered value group</strong> menu, select the group of values you want to exclude from this field&#39;s search results.</p><p><img alt="/filter_value_1.png" src="./resources/images/filter_value_1.png"></img></p></li><li><p>Save and close out of the configuration.</p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

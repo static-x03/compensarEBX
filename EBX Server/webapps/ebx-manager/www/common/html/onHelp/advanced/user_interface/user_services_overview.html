@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Overview</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_uiservices" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; User interface &gt; User services</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_interface/user_services_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+<h1 id="overview">
+Overview</h1>
+<p>A user service is an extension to TIBCO EBX&reg; that provides a graphical user interface (GUI) allowing users to access specific or advanced functionalities.</p><p>An API is available allowing the development of powerful custom user services using the same visual components and data validation mechanisms as standard EBX&reg; user interfaces.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#nature">Nature</a></li><li class="toc1"><a href="#id2">Declaration</a></li><li class="toc1"><a href="#id3">Display</a></li><li class="toc1"><a href="#legacyUserServiceDocumentation">Legacy user services</a></li></ul>
+</div>
+<h2 id="nature">
+Nature</h2>
+<p>User services exist in different types called <em>natures</em>. The nature defines the minimal elements (dataspace, dataset, table, record...) that need to be selected to execute the service. The following table lists the available natures.</p><table border="0" cellpadding="5" cellspacing="0">
+<thead>
+<tr>
+<th><p><strong>Nature</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><code>Dataspace</code></td><td valign="top">The nature of a user service that can be launched from the actions menu of a dataspace (branch or snapshot) or from any context where the current selection implies selecting a dataspace.</td></tr>
+<tr>
+<td valign="top"><code>Dataset</code></td><td valign="top">The nature of a user service that can be launched from the actions menu of a dataset or from any context where the current selection implies selecting a dataset.</td></tr>
+<tr>
+<td valign="top"><code>TableView</code></td><td valign="top">The nature of a user service that can be launched from the toolbar of a table, regardless of the selected view, or from any context where the current selection implies selecting a table.</td></tr>
+<tr>
+<td valign="top"><code>Record</code></td><td valign="top">The nature of a user service that can be launched from the toolbar of a record form or from any context where the current selection implies selecting a <em>single</em> record.</td></tr>
+<tr>
+<td valign="top"><code>Hierarchy</code></td><td valign="top">The nature of a user service that can be launched from the toolbar of a table when a hierarchy view is selected.</td></tr>
+<tr>
+<td valign="top"><code>HierarchyNode</code></td><td valign="top">The nature of a user service that can be launched from the menu of a table hierarchy view node. Currently, only <em>record</em> hierarchy nodes are supported.</td></tr>
+<tr>
+<td valign="top"><code>Association</code></td><td valign="top">The nature of a user service that can be launched from the target table view of an association or for any context where the current selection implies selecting the target table view of an association.</td></tr>
+<tr>
+<td valign="top"><code>AssociationRecord</code></td><td valign="top">The nature of a user service that can be launched from the form of a target record of an association node or from any context where the current selection implies selecting a <em>single</em> association target record.</td></tr>
+</tbody>
+</table>
+<h2 id="id2">
+Declaration</h2>
+<p>A user service can be declared at two levels:</p><ul>
+<li><p>Module,</p></li><li><p>Data model.</p></li></ul>
+<p>A service declared by a data model can only be launched when the current selection includes a dataset of this model. The user service cannot be of the <code>Dataspace</code> nature.</p><p>A service declared by a module may be launched for any dataspace or dataset.</p><p>The declaration can add restrictions on selections that are valid for the user service.</p><h2 id="id3">
+Display</h2>
+<p>On the following figure are displayed the functional areas of a user service.</p><p align="left"><img alt="/user_service_display.png" src="../resources/images/user_service/user_service_display.png"></img></p><table width="100%" class="columnsWithSeparator">
+<tbody>
+<tr>
+<td valign="top"><p>A. Header</p><p>B. Form</p></td><td valign="top"><ol>
+<li><p>Breadcrumb</p></li><li><p>Message box button</p></li><li><p>Top toolbar</p></li><li><p>Navigation buttons</p></li><li><p>Help button</p></li><li><p>Close button (pop-ups only)</p></li><li><p>Tabs</p></li><li><p>Form pane (one per tab)</p></li><li><p>Bottom buttons</p></li></ol>
+</td></tr>
+</tbody>
+</table>
+<p>Most areas are optional and customizable. Refer to <a href="../user_interface/user_services_quickstart.html">Quick start</a>, <a href="../user_interface/user_services_implement.html">Implementing a user service</a> and <a href="../user_interface/user_services_declare.html">Declaring a user service</a> for more details.</p><h2 id="legacyUserServiceDocumentation">
+Legacy user services</h2>
+<p>Before the 5.8.0 version, user services were declared in XML and based on Servlet/JSP. Although this type of declaration should no longer be used, the <a href="../user_interface_legacy/ui_services.html">legacy documentation</a> is still available.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - UI – Workflow launcher</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin_workflow_launcher_frontend" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Technical administration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/admin_workflow_launcher_frontend.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+<h1>
+UI – Workflow launcher</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#workflow_launcher_in_data_section">Workflow launcher in data section</a></li><li class="toc1"><a href="#creating_and_setting_a_launcher">Creating and setting a launcher</a></li><li class="toc1"><a href="#activating_workflow_a_launcher">Activating workflow launcher</a></li><li class="toc1"><a href="#id5">Launching a workflow</a></li><li class="toc1"><a href="#adding_workflow_launcher_custom_toolbar">Adding workflow launcher on a custom toolbar</a></li><li class="toc1"><a href="#access_launcher_after_workflow_model_modification">Access a launcher after workflow model modification</a></li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p>A <strong>Workflow Launcher</strong> is a <strong>user service</strong> for <strong>launching workflows in TIBCO EBX&reg;</strong> directly from the data section without passing by the data workflow&#39;s inbox. This feature does not create workflow publications but launches existing ones. It offers several advantages, including the ability to launch workflow publication directly from the <strong>data section</strong> (table view, hierarchy view or record form view). In this way, the user experience is improved by avoiding to the user shifting his attention back and forth between the data section and the data workflow section. Hence, the user can launch a workflow while still focusing on his main task.</p><p>The second advantage is that it allows to launch the same workflow publication from any data selection. Thanks to the <strong>dynamic mapping</strong> of the <a href="../glossary/simple_glossary.html#datacontext">workflow data context</a> with the current data selection. The dynamic mapping offers the possibility to initialize the data context inputs at launch time. Hence, in order to launch the same workflow from n different data selections, it is not longer necessary to duplicate n times the same workflow model with different data selections or to provide an initial user service to configure the data to select. The last solution is a programmatic solution which would solve the previously cited problems, however it is not the ideal solution because it does not fulfill the commitment zero line of code.</p><p>Understanding this feature requires familiarization with the following concepts:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Concept</strong></p></th><th valign="top"><p><strong>Description/Link</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><strong>Workflow model</strong></p></td><td valign="top"><p><a href="../glossary/simple_glossary.html#workflowmodel">See documentation</a></p></td></tr>
+<tr>
+<td valign="top"><p><strong>Data context</strong></p></td><td valign="top"><p><a href="../glossary/simple_glossary.html#datacontext">See documentation</a></p></td></tr>
+<tr>
+<td><p><strong>Workflow publication</strong></p></td><td><p><a href="../glossary/simple_glossary.html#workflowpub">See documentation</a></p></td></tr>
+<tr>
+<td><p><strong>Publication name</strong></p></td><td><p> A unique identifier of a workflow publication</p></td></tr>
+<tr>
+<td><p><strong>Data Workflow</strong></p></td><td><p><a href="../glossary/simple_glossary.html#workflows">See documentation</a></p></td></tr>
+<tr>
+<td><p><strong>Data section</strong></p></td><td><p>Is the <a href="../user_data/userdata_intro.html#ui">data user interface</a> which displays the datasets and tables in EBX. it is accessible from the main header.</p></td></tr>
+<tr>
+<td><p><strong>Workflow launchers dataset</strong></p></td><td><p>It contains two tables <strong>Launchers</strong> and <strong>Activations</strong>. With this dataset the user can <strong>configure</strong> the launchers of workflow publications and <strong>activate</strong> them for a particular user(s) and table(s). It is available in the <strong>Administration area</strong> in a section called <strong>workflow management</strong>.</p></td></tr>
+<tr>
+<td><p><strong>Launcher</strong></p></td><td><p>An entity which is used by the service <strong>workflow launcher</strong> to identify the <strong>workflow publication</strong> to launch and how to initialize its <strong>data context</strong>.</p></td></tr>
+<tr>
+<td><p><strong>Launchers</strong></p></td><td><p>A table in the workflow launchers dataset, each record is a <strong>Launcher</strong> type. In order to be able to launch a workflow publication from a data section, a launcher which points to a workflow publication should be added in this table.</p></td></tr>
+<tr>
+<td><p><strong>Activation</strong></p></td><td><p>An entity which hides or shows the launcher of a workflow publication for a given user profile(s) and for a particular table(s) from the data section.</p></td></tr>
+<tr>
+<td><p><strong>Activations</strong></p></td><td><p>A table in the workflow launchers dataset, each record is an <strong>Activation</strong> type. In order to make a workflow available on the toolbar of a particular table and for a particular user, a record with the corresponding launcher should be created in this table. </p></td></tr>
+<tr>
+<td><p><strong>Dynamic mapping of data context</strong></p></td><td><p>Is the process of initialization of data context input variables when launching a workflow publication. Before, the values of the data context were static defined at modeling phase or set dynamically with Java coding, but now it is possible to set dynamically the values of the data contexts, i.e. at launch time, with zero line of code.</p></td></tr>
+<tr>
+<td><p><strong>Reserved variables for data context</strong></p></td><td><p>A set of reserved variables. These variables define which data selection should be mapped with a data context variable. The possible values are: <strong>${dataspace}</strong>, <strong>${dataset}</strong>, <strong>${table}</strong> and <strong>${record}</strong>. For example, if the value <strong>${table}</strong> is used for a data context variable, this means that this variable will be mapped with the current adaptation table reference, at launch time. </p></td></tr>
+</tbody>
+</table>
+<h2 id="workflow_launcher_in_data_section">
+Workflow launcher in data section</h2>
+<p>As previously stated, workflow launchers are now available directly on the toolbar of tables, records and hierarchies. There are a number of ways to display a workflow launcher on the toolbar of a table in data section. The display depends on the type of the toolbar (default toolbar or custom toolbar in the DMA) and whether or not <a href="../user_datamodel/userdatamodel_extensions.html#filteringPolicy">smart filtering</a> is applied. In the case of default toolbar, the action menu displays all the workflow launchers in a separate submenu called <strong>Workflows</strong> (see the screenshot below).</p><p id="default_display_of_a_workflow_launcher"><img alt="/default_display_of_worfklow_launchers.png" src="../resources/images/workflow_launcher/default_display_of_worfklow_launchers.png" width="720" align="middle"></img></p><p>In the case of a custom toolbar,it is possible to define an action button (see the screenshot below) or action menu item for a particular workflow launcher. And finally, if the smart filtering policy is activated, then all the workflow launchers that are displayed using an action button or action menu item will not appear in the Action menu.</p><p><img alt="/display_workflow_launcher_as_action_button.png" src="../resources/images/workflow_launcher/display_workflow_launcher_as_action_button.png" width="720" align="middle"></img></p><p>In order to display a workflow launcher on a toolbar, first, a <strong>launcher</strong> must be <strong>created</strong> and <strong>configured</strong> (see <a href="./admin_workflow_launcher_frontend.html#creating_and_setting_a_launcher">creating and setting workflow launcher</a> section), then, an <strong>activation</strong> should be <strong>created</strong> for this launcher (see <a href="./admin_workflow_launcher_frontend.html#activating_workflow_a_launcher">activating workflow launcher</a> section). Note that, if the current user has no <a href="../user_workflowmodel/userworkflowmodel_actions.html#permissions_create">rights to launch a workflow publication</a> then the workflow launcher will not be available on the toolbar. Also, if the workflow publication is deleted or if there is any errors or warnings in the configuration or activation of the launcher, then the corresponding workflow launcher will not be available on the toolbar. </p><p>The title and tooltip of the button that will be displayed on the toolbar, are computed in the following order of priority: the custom documentation of the launcher activation is used, otherwise the documentation of the launcher is used. If description is left empty, then the following description is used &quot;This user service will launch a data workflow.&quot;.</p><div class="ebx_note" id="workflow_launcher_in_data_section_record">
+<h5>
+Note</h5>
+<p>Particular attention should be paid for the workflow launchers which are <strong>available on the record form</strong>. Only the <strong>launchers which requires record selection</strong> are displayed on the toolbar of a record form. A workflow launcher which requires record selection is the one for which one of the data context variable is mapped with the reserved variable <strong>${record}</strong> in the configuration of its launcher.</p></div>
+<h2 id="creating_and_setting_a_launcher">
+Creating and setting a launcher</h2>
+<p>A launcher is the entity which is used by the service Workflow Launcher to identify the workflow publication to launch and how to initialize its Data context. In order to create a launcher for a particular workflow publication, first navigate to the administration area, then the workflow management section, select the workflow launchers dataset, select the launchers table, and then add a new record. The second step, is to setup the following fields of the record:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Field name</strong></p></th><th valign="top"><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><strong>Launcher name</strong></p></td><td><p>A unique identifier. It is used to select a launcher in the <a href="./admin_workflow_launcher_frontend.html#activating_workflow_a_launcher">activation phase</a>.</p></td></tr>
+<tr>
+<td><p id="launcher_publication_name"><strong>Workflow publication name</strong></p></td><td><p>Defines the workflow publication that will be launched when the user service &quot;workflow launcher&quot; is executed. The workflow model should be first defined and published to be available in the list.</p></td></tr>
+<tr>
+<td><p><strong>Data context variables</strong></p></td><td><p>This field contains the list of input variables which were defined in the <strong><a href="../user_workflowmodel/userworkflowmodel_actions.html#datacontext">data context configuration</a></strong> phase of a workflow model. Each line is composed of a label, a value, and a toggle button to switch between default and overwritten value (see the screenshot below). The label is the name of the variable set by the user in the data context of the workflow model. </p><p>By default, the value of each variable is the default one set in the <strong>data context</strong>. If the default value field is left empty in the data context, then the value of the variable is set to <strong>undefined</strong>. If the toggle button is set on overwritten value mode, then a wizard is made available on the right of the input field which allows to select a reserved variable.</p><p>When overwriting the value of a data context variable, two options are possibles: the override value may be a <strong>constant</strong> or a <strong>reserved variable</strong>. If a constant is used, then the value of the data context variable will not depend on the entity selection at launch time. However, if a reserved variable is used, such as <strong>${dataspace}</strong>, the value of the corresponding variable will be <strong>mapped</strong> to the <strong>current entity selection</strong>, for example the data context variable which is assigned to <strong>${dataspace}</strong> will be initialized with the <strong>current dataspace</strong> at launch time.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If there are no input variables in the data context of the workflow model, then this field should be hidden. If the workflow publication name field changes then this input is updated automatically and displays a new list of data context.</p></div>
+</td></tr>
+<tr>
+<td><p><strong>Documentation</strong></p></td><td><p>A documentation is composed of a label and a description. The default value of the label is the publication name which is inherited from the field &quot;workflow publication name&quot; and the default value of the description is empty. If the &quot;Publication name&quot; field changes then the documentation will update automatically.&quot;<br/> The label and description can be overridden if needed thanks to the edit button on the right of the documentation widget.&quot;<br/> The value of the documentation will be inherited by the activation. Note that the documentation defined in the activation has a higher priority over the one defined in the launcher.</p></td></tr>
+</tbody>
+</table>
+<p>At the bottom of a launcher record, a table of all activations of the current launcher is displayed (see the section Launcher activations in the screenshot below).</p><p><img alt="/launcher_configuration.png" src="../resources/images/workflow_launcher/launcher_configuration.png" width="720" align="middle"></img></p><h2 id="activating_workflow_a_launcher">
+Activating workflow launcher</h2>
+<p>An activation is the entity which controls the availability of a workflow launcher on a table or record form. In order to display a workflow launcher in a toolbar of a particular table, first <a href="./admin_workflow_launcher_frontend.html#creating_and_setting_a_launcher">create a launcher</a>, then navigate to the administration area, select the workflow management section, select the workflow launchers dataset, select the activations table, and then add a new record. The second step, is to setup the following fields of the record: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Field name</strong></p></th><th valign="top"><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><strong>Launcher</strong></p></td><td><p>A unique identifier of a launcher which is associated to a publication name of the <a href="./admin_workflow_launcher_frontend.html#launcher_publication_name">target workflow publication</a>. This field allows to select the launcher which will be displayed in the data section.</p></td></tr>
+<tr>
+<td><p id="activation_data_model"><strong>Data model</strong></p></td><td><p>The schema reference of a published Data Model. Only schemas that are published and used in Datasets are available.</p></td></tr>
+<tr>
+<td><p><strong>Tables</strong></p></td><td><p>The identifier of a table which will display the workflow launcher. It is possible to select one particular table or &quot;All tables&quot;. This selector displays all tables which are contained in the field <strong><a href="./admin_workflow_launcher_frontend.html#activation_data_model">Data Model</a></strong>.</p></td></tr>
+<tr>
+<td><p><strong>Profiles</strong></p></td><td><p>List of profiles which are allowed to see and launch the workflow launcher in the previously selected tables.</p></td></tr>
+<tr>
+<td><p id="activation_confirmation"><strong>Confirmation</strong></p></td><td><p>This field allows displaying or not a dialog box to confirm launching of a data workflow (see <a href="./admin_workflow_launcher_frontend.html#launch_workflow_confirmation">screenshot about confirmation message</a>. By default this feature is deactivated, in order to display the dialog box, the value &quot;Enabled&quot; should be checked (see screenshot below).</p></td></tr>
+<tr>
+<td><p><strong>Documentation</strong></p></td><td><p>A documentation is composed of a label and a description. The default value of the label and description are inherited from the documentation field of the launcher. This field is used to display the title of the button of the user service in the toolbar. The description is displayed when the user hovers over that button. The documentation of the activation has a higher priority over the one of the launcher. Note that, if the description of the documentation is left empty then the following one is displayed &quot;This user service will launch a data workflow. In the case of the custom toolbar, the value of this field is also used for <strong>action button</strong> and <strong>action menu item</strong> if the documentation field of the <strong>action button</strong> or <strong>action menu item</strong> is left empty.</p></td></tr>
+</tbody>
+</table>
+<p><img alt="/activation.png" src="../resources/images/workflow_launcher/activation.png" width="720" align="middle"></img></p><h2 id="id5">
+Launching a workflow</h2>
+<p>Once a launcher <a href="./admin_workflow_launcher_frontend.html#creating_and_setting_a_launcher">created</a> and <a href="./admin_workflow_launcher_frontend.html#activating_workflow_a_launcher">activated</a> the corresponding workflow launcher becomes available on the toolbar&#39;s action menu. To launch the workflow click on the button of the workflow launchers(see <a href="./admin_workflow_launcher_frontend.html#default_display_of_a_workflow_launcher">screenshot about default display of a workflow launcher</a> ).</p><p>If the option <strong><a href="./admin_workflow_launcher_frontend.html#activation_confirmation">Confirmation</a></strong> is enabled, then a dialog box displays to ask the user the confirmation before launching the selected data workflow (see <a href="./admin_workflow_launcher_frontend.html#launch_workflow_confirmation">screenshot about data workflow launch confirmation</a>). Otherwise, the dialog box does not display and different outcomes are possible:</p><ul>
+<li><p>If the option <strong><a href="../user_workflowmodel/userworkflowmodel_actions.html#synchronousLaunch">automatically open the first step</a></strong> is activated and the user has the <a href="../user_workflowmodel/userworkflowmodel_createimplement.html#step_user_offeredToList">rights to execute the first work item</a> of the workflow, then the workflow launches and the first work item displays directly in the workspace of the Data section. While displaying the work item in the workspace, the origin data selection still displayed on the breadcrumb which allows to the user to maintain an overall contextual awareness (see <a href="./admin_workflow_launcher_frontend.html#Launching_workflow_workItem">screenshot about displaying a work item on the data section</a> ).</p></li><li><p>If the option <strong><a href="../user_workflowmodel/userworkflowmodel_actions.html#synchronousLaunch">automatically open the first step</a></strong> is deactivated and the user has the <a href="../user_workflowmodel/userworkflowmodel_actions.html#permissions_create">rights to launch the workflow</a>, then the workflow is launched and added to the <a href="../user_dataworkflow/userdataworkflow_ui.html#access_inbox">data workflow inbox</a>. An information message informs the user that the workflow has been launched successfully and that it is necessary to go to the <a href="../user_dataworkflow/userdataworkflow_ui.html#access_inbox">inbox of the data workflow section </a> to display and execute the first work item.</p></li><li><p>If the workflow requires record selection (see <a href="./admin_workflow_launcher_frontend.html#workflow_launcher_in_data_section_record">note in the section workflow launcher in data area</a> ), the workflow is launched and displayed if and only if a record is selected otherwise an error message is displayed informing the user that a record should be selected. A record can be selected manually from a table view or automatically when displaying a record form. </p></li><li><p>If more than one record are selected, then a warning message notifies that only one record should be selected.</p></li></ul>
+<p id="launch_workflow_confirmation"><img alt="/launch_confirmation.png" src="../resources/images/workflow_launcher/launch_confirmation.png" width="720" align="middle"></img></p><p id="Launching_workflow_workItem"><img alt="/workItem.png" src="../resources/images/workflow_launcher/workItem.png" width="720" align="middle"></img></p><h2 id="adding_workflow_launcher_custom_toolbar">
+Adding workflow launcher on a custom toolbar</h2>
+<p>The workflow launchers can be made available not only on default toolbar but also on <a href="../user_datamodel/userdatamodel_extensions.html#toolbars">custom toolbar</a>. A workflow launcher can be added on a custom toolbar as an <a href="../user_datamodel/userdatamodel_extensions.html#actionButton">action button</a> or as an <a href="../user_datamodel/userdatamodel_extensions.html#actionMenuItem">action menu item</a> in a <a href="../user_datamodel/userdatamodel_extensions.html#menuGroup">custom menu group</a>. Adding an action button or an action menu item to launch a workflow on a custom toolbar follows a similar procedure as for common user services: first, set the <strong>target</strong> field to <strong>current context</strong> otherwise the user service <strong>workflow launcher</strong> will not be available, then select the user service <strong>workflow launcher</strong>. When the service workflow launcher is selected, a new field <strong>Launcher</strong>, exclusive for workflow launcher user service, appears below the service input field (see <a href="./admin_workflow_launcher_frontend.html#adding_workflow_launcher_custom_toolbar_img">screenshot about adding a workflow launcher on custom toolbar</a> ).</p><p>The field <strong>Launcher</strong> displays the list of launchers that have already been created in the table &quot;Activation/workflow management/workflow launcher/Launchers&quot; (see <a href="./admin_workflow_launcher_frontend.html#creating_and_setting_a_launcher">section about creating and configuring launchers</a>) .&nbsp;Therefore, before adding a workflow launcher in a custom toolbar the launcher should be created and configured for this workflow launcher. </p><p>As for default toolbar, in order to show the workflow launcher on a custom toolbar its launcher should be activated in &quot;Activation/workflow management/workflow launcher/activations&quot;. A quick link to access the activations table of the launchers is displayed on the right of the field <strong>Launcher</strong> (see <a href="./admin_workflow_launcher_frontend.html#adding_workflow_launcher_custom_toolbar_img">screenshot about adding a workflow launcher on custom toolbar</a> )</p><p>The field Label and description displays the label and description inherited from the launcher (see <a href="./admin_workflow_launcher_frontend.html#adding_workflow_launcher_custom_toolbar_img">screenshot about adding a workflow launcher on custom toolbar</a>) ,&nbsp;then if the launcher field changes, the label and description should update automatically. This field can be overridden to customize the label and description of the action button on the toolbar. The label and description that will be displayed on the toolbar, are computed in the following order of priority: the custom value of the field Label and description of the action button is used, if this field is left empty or contains the default label of the launcher, then the label and description of the launcher activation are displayed. If this last one is left empty, then the following description is used &quot;This user service will launch a data workflow.&quot;.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The label and description which are displayed on the toolbar in the data section and the label of the action button in the toolbar tree in the DMA could be different. This is the case when the field &quot;Label and description&quot; of the &quot;action button&quot; is left empty (neither default nor custom label is defined). The label of the &quot;action button&quot; in the toolbar tree in the DMA is inherited from the label of the launcher, however, the label and description on the toolbar in the data section are set to the label and description of the activation of the launcher.</p></div>
+<p id="adding_workflow_launcher_custom_toolbar_img"><img alt="/custom_toolbar.png" src="../resources/images/workflow_launcher/custom_toolbar.png" width="720" align="middle"></img></p><h2 id="access_launcher_after_workflow_model_modification">
+Access a launcher after workflow model modification</h2>
+<p>After <a href="./admin_workflow_launcher_frontend.html#creating_and_setting_a_launcher">creating a launcher</a> which points to a <a href="./admin_workflow_launcher_frontend.html#launcher_publication_name">workflow publication</a>, the workflow model of this publication may be changed and republished. For instance, the data context of the workflow model may be changed: one or more variable data context can be added; one or more variable data context can be removed; the name of a variable can be changed. In this particular case, the launchers which points to this workflow publication should be reviewed and validated (saved) by the user because the data context used by these launchers is no more valid and it should be updated to match the one of the up-to-date workflow publication.</p><p>After republishing a workflow model, the user is notified if any of the workflow launcher points to the current workflow publication and if it should be reviewed. For that purpose, after publishing a workflow model, a preview button is displays allowing a quick access to the launchers in question .&nbsp;Note that if the user has no rights to access the workflow launchers list, then the names of those launchers are displayed .</p><p>When the user access to one of these launchers, via the preview button in the workflow model section or via the Administration section, the persisted data context is replaced with the up-to-date data context of the workflow publication, however the new data context is not yet persisted for the current launcher. In order to update the data context of the launcher, the user should first review the values and then save to accept the new changes (see <a href="./admin_workflow_launcher_frontend.html#launcher_after_republishing_workflow_model_img"> screenshot about accessing a launcher after modification of the data context of the corresponding workflow publication </a>).</p><p id="launcher_after_republishing_workflow_model_img"><img alt="/launcher_after_republishing_workflow_model.png" src="../resources/images/workflow_launcher/launcher_after_republishing_workflow_model.png" width="720" align="middle"></img></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

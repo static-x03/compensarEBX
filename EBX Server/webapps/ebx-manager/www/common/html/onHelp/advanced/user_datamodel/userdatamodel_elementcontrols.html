@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Data validation controls on elements</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_controls" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_elementcontrols.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+<h1>
+Data validation controls on elements</h1>
+<p>After the initial creation of an element, you can set additional controls in order to complete its definition.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementproperties.html">Properties of data model elements</a></li></ul>
+</div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#simple">Simple content validation</a></li><li class="toc1"><a href="#advanced">Advanced content validation</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Validation properties</a></li></ul>
+</li></ul>
+</div>
+<h2 id="simple">
+Simple content validation</h2>
+<p>Using the following static controls on a field, you can establish simple validation rules on its content. The controls available for a given field are dependent on its data type.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Fixed length</p></td><td class="ebx_definitionListDefinition"><p>The exact number of characters required for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Minimum length</p></td><td class="ebx_definitionListDefinition"><p>The minimum number of characters allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Maximum length</p></td><td class="ebx_definitionListDefinition"><p>The maximum number of characters allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Pattern</p></td><td class="ebx_definitionListDefinition"><p>A regular expression pattern that the value of the field must match. It is not possible to simultaneously define a pattern for both a field and its data type.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Decimal places</p></td><td class="ebx_definitionListDefinition"><p>The maximum number of decimal places allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Maximum number of digits</p></td><td class="ebx_definitionListDefinition"><p>The maximum total number of digits allowed for this integer or decimal field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Enumeration</p></td><td class="ebx_definitionListDefinition"><p>Defines a list of predefined possible values for this field. If enumerations are defined in both a field and its type, then the enumeration of this field in associated datasets is replaced by the intersection of these two enumerations.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Greater than [constant]</p></td><td class="ebx_definitionListDefinition"><p>Defines the minimum value allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Less than [constant]</p></td><td class="ebx_definitionListDefinition"><p>Defines the maximum value allowed for this field.</p></td></tr>
+</table>
+<p>See <a href="../models/constraints.html#xsdfacets">XML schema supported facets</a>.</p><h2 id="advanced">
+Advanced content validation</h2>
+<p>Using the following dynamic and contextual controls on an element, you can establish advanced validation rules of its content. The controls available for a given element are dependent on the type of element and its data type, if it has one.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/constraints.html#dynamicConstraints">Dynamic constraints</a></li></ul>
+</div>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Foreign key constraint</p></td><td class="ebx_definitionListDefinition"><p></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Table</p></td><td class="ebx_definitionListDefinition"><p>Defines the table referenced by the foreign key. A foreign key references a table in the same dataset by default. It can also reference a table in another dataset in the same dataspace, or a dataset in a different dataspace.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>               Mode</p></td><td class="ebx_definitionListDefinition"><p>Location of the table referenced by the foreign key.</p><p>&#39;Default&#39;: current data model.</p><p>&#39;Other dataset&#39;: different dataset, in the same dataspace.</p><p>&#39;Other dataspace&#39;: dataset in a different dataspace.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>               Referenced table</p></td><td class="ebx_definitionListDefinition"><p>XPath expression describing the location of the table. For example, <code>/root/MyTable</code>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>               Referenced dataset</p></td><td class="ebx_definitionListDefinition"><p>Required if the table is located in another dataset. The unique name of the dataset containing the referenced table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>               Referenced dataspace</p></td><td class="ebx_definitionListDefinition"><p>Required if the table is located in another dataspace. The unique name of the dataspace containing the referenced table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Label</p></td><td class="ebx_definitionListDefinition"><p>Defines fields to provide the default and localized labels for records in the table. Allows as well to customize the display of the specified label in breadcrumb. </p><p>Can also specify a Java class to set the label programmatically if &#39;XPath expression&#39; is set to &#39;No&#39;. This Java class must implement the <a target="_blank" href="../Java_API/com/orchestranetworks/schema/TableRefDisplay.html"><code>TableRefDisplay</code></a> interface of the Java API.</p><p><strong>Attention: </strong>Access rights defined on associated datasets are not applied when displaying record labels. <br/> Fields that are usually hidden due to access rights restrictions will be displayed in labels.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Filter</p></td><td class="ebx_definitionListDefinition"><p>Defines a foreign key filter using an XPath expression.</p><p>Can also specify a Java class that implements the <a target="_blank" href="../Java_API/com/orchestranetworks/schema/TableRefFilter.html"><code>TableRefFilter</code></a> interface of the Java API.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Greater than [dynamic]</p></td><td class="ebx_definitionListDefinition"><p>Defines a field to provide the minimum value allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Less than [dynamic]</p></td><td class="ebx_definitionListDefinition"><p>Defines a field to provide the maximum value allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Fixed length [dynamic]</p></td><td class="ebx_definitionListDefinition"><p>Defines a field to provide the exact number of characters required for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Minimum length [dynamic]</p></td><td class="ebx_definitionListDefinition"><p>Defines a field to provide the minimum number of characters allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Maximum length [dynamic]</p></td><td class="ebx_definitionListDefinition"><p>Defines a field to provide the maximum number of characters allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Excluded values</p></td><td class="ebx_definitionListDefinition"><p>Defines a list of values that are not allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Excluded segment</p></td><td class="ebx_definitionListDefinition"><p>Defines an inclusive range of values that are not allowed for this field.</p><p><strong>Minimum excluded value:</strong> Lowest value not allowed for this field.</p><p><strong>Maximum excluded value:</strong> Highest value not allowed for this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="constraint"><p>Specific constraint (component)</p></td><td class="ebx_definitionListDefinition"><p>Specifies one or more Java classes that implement the <a target="_blank" href="../Java_API/com/orchestranetworks/schema/Constraint.html"><code>Constraint</code></a> interface of the Java API. See <a href="../models/constraints.html#programmaticConstraints">Programmatic constraints</a> for more information.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Specific enumeration (component)</p></td><td class="ebx_definitionListDefinition"><p>Specifies a Java class to define an enumeration. The class must define an ordered list of values by implementing the <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintEnumeration.html"><code>ConstraintEnumeration</code></a> interface of the Java API.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Enumeration filled by another node</p></td><td class="ebx_definitionListDefinition"><p>Defines the possible values of this enumeration using a reference to another list or enumeration element.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dataspace set configuration</p></td><td class="ebx_definitionListDefinition"><p>Define the dataspaces that can be referenced by a field of the type Dataspace identifier (osd:dataspaceKey). If a configuration is not set, then only opened branches can be referenced by this field by default.</p><ul>
+<li><p>Includes</p><p>Specifies the dataspaces that can be referenced by this field.</p><p><strong>Pattern: </strong>Specifies a pattern that filters dataspaces. The pattern is checked against the name of the dataspaces.</p><p><strong>Type: </strong>Specifies the type of dataspaces that can be referenced by this field. If not defined, this restriction is applied to branches.</p><p><strong>Include descendants: </strong>Specifies if children or descendants of the dataspaces that match the specified pattern are included in the set. <br/>If not defined, this restriction is not applied to child dataspaces. <br/>If &quot;None&quot; then neither children nor descendants of the dataspaces that match the specified pattern are included. <br/>If &quot;All descendants&quot; then all descendants of the dataspaces that match the specified pattern are included. <br/>If &quot;All descendant branches&quot; then all descendant branches of the dataspaces that match the specified pattern are included. <br/>If &quot;All descendant snapshots&quot; then all descendant snapshots of the dataspaces that match the specified pattern are included. <br/>If &quot;Child branches&quot; then only direct branches of the dataspaces that match the specified pattern are included. If the current dataspace is a version, includes the branches that are the direct children of this version; if the current dataspace is a branch, includes the branches that are the direct children of the versions which are children of this branch. <br/>If &quot;Child snapshots&quot; then only direct snapshots of the dataspaces that match the specified pattern are included. If the current dataspace is a branch, includes the snapshots that are the direct children of this branch; if the current dataspace is a version, includes the versions that are the direct children of the branches which are children of this version.</p></li><li><p>Excludes</p><p>Specifies the dataspaces that cannot be referenced by this field. Excludes are ignored if no includes are defined.</p><p><strong>Pattern: </strong>Specifies a pattern that filters dataspaces. The pattern is checked against the name of the dataspaces.</p><p><strong>Type: </strong>Specifies the type of dataspaces that can be referenced by this field. If not defined, this restriction is applied to branches.</p><p><strong>Include descendants: </strong>Specifies if children or descendants of the dataspaces that match the specified pattern are included in the set. <br/>If not defined, this restriction is not applied to child dataspaces. <br/>If &quot;None&quot; then neither children nor descendants of the dataspaces that match the specified pattern are included. <br/>If &quot;All descendants&quot; then all descendants of the dataspaces that match the specified pattern are included. <br/>If &quot;All descendant branches&quot; then all descendant branches of the dataspaces that match the specified pattern are included. <br/>If &quot;All descendant snapshots&quot; then all descendant snapshots of the dataspaces that match the specified pattern are included. <br/>If &quot;Child branches&quot; then only direct branches of the dataspaces that match the specified pattern are included. If the current dataspace is a version, includes the branches that are the direct children of this version; if the current dataspace is a branch, includes the branches that are the direct children of the versions which are children of this branch. <br/>If &quot;Child snapshots&quot; then only direct snapshots of the dataspaces that match the specified pattern are included. If the current dataspace is a branch, includes the snapshots that are the direct children of this branch; if the current dataspace is a version, includes the versions that are the direct children of the branches which are children of this version.</p></li><li><p>Dataspace filter</p><p>Specifies a filter to accept or reject dataspaces in the context of a dataset or a record. This filter is only used in the dedicated input component that is associated to this field. That is, this filter is not used when validating this field. A specific constraint can be used to perform specific controls on this field. A filter is defined by a Java class that implements the <a target="_blank" href="../Java_API/com/orchestranetworks/schema/types/dataspace/DataspaceSetFilter.html"><code>DataspaceSetFilter</code></a> interface of the Java API. </p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dataset set configuration</p></td><td class="ebx_definitionListDefinition"><p>Define the datasets that can be referenced by a field of the type Dataset identifier (osd:datasetName).</p><ul>
+<li><p>Includes</p><p>Specifies the datasets that can be referenced by this field.</p><p><strong>Pattern:</strong>Specifies a pattern that filters datasets. The pattern is checked against the name of the datasets.</p><p><strong>Include descendants: </strong>Specifies if children or descendants of the datasets that match the specified pattern are included in the set.</p></li><li><p>Excludes</p><p>Specifies the datasets that cannot be referenced by this field. Excludes are ignored if no includes are defined.</p><p><strong>Pattern: </strong>Specifies a pattern that filters datasets. The pattern is checked against the name of the datasets.</p><p><strong>Include descendants: </strong>Specifies if children or descendants of the datasets that match the specified pattern are included in the set.</p></li><li><p>Filter</p><p>Specifies a filter to accept or reject datasets in the context of a dataset or record. This filter is only used in the dedicated input component that is associated to this field. That is, this filter is not used when validating this field. A specific constraint can be used to perform specific controls on this field. A filter is defined by a Java class that implements the <a target="_blank" href="../Java_API/com/orchestranetworks/schema/types/dataset/DatasetSetFilter.html"><code>DatasetSetFilter</code></a> interface of the Java API. </p></li></ul>
+</td></tr>
+</table>
+<h3 id="id2s1">
+Validation properties</h3>
+<p>Each constraint not using a specific Java class can define localized validation messages with a severity using the following properties:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Validation</p></td><td class="ebx_definitionListDefinition"><p>Defines a localized validation message with a user-defined severity level.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Severity</p></td><td class="ebx_definitionListDefinition"><p>Defines the severity level of the validation message. Possible values are &#39;Error&#39;, &#39;Warning&#39;, and &#39;Information&#39;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>               Error management policy</p></td><td class="ebx_definitionListDefinition"><p>Specifies the behavior of the constraint when validation errors occur. It is possible to specify that the constraint must always remain valid after an operation (dataset update, record creation, update or deletion), or when a user submits a form. In this case, any input or operation that would violate the constraint will be rejected and the values will remain unchanged. If not specified, the constraint only blocks errors upon form submission by default, except for foreign key constraints in relational data models where errors are prevented for all operations by default. This option is only available upon static controls, exclude values, exclude segment and foreign key constraints. On foreign key constraints the error management policy does not concern filters. That is, a foreign key constraint is not blocking if a referenced record exists but does not satisfy a foreign key filter. In this case updates are not rejected and a validation error occurs. It is not possible to specify an error management policy on structural constraints that are defined in relational data models, when table history or replication is activated. That is, setting this property on fixed length, maximum length, maximum number of digits and decimal place constraints will raise an error at data model compilation because of the underlying RDBMS blocking constraints validation policy. This property is ineffective when importing archives. That is, all blocking constraints, excepted structural constraints, are always disabled when importing archives.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Message</p></td><td class="ebx_definitionListDefinition"><p>Defines the message to display if the value of this field in a dataset does not comply with this constraint. If specifying a custom message, you may optionally provide localized variants.</p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+Related concepts</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementproperties.html">Properties of data model elements</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "content": {
+    "toolStatus": {
+      "content": true,
+      "label": "Open",
+      "selector": "http://.../domain/toolStatus/toolStatus?selector=true"
+    },
+    "toolStatusCloseMessage": {
+      "content": "Access is temporarily forbidden for maintenance."
+    }
+  }
+}

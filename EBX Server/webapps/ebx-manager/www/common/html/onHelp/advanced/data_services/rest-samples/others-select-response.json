@@ -1,0 +1,32 @@
+{
+  "parent": "http://.../BooksByAuthors/members/author0",
+  "content": [
+    {
+      "label": "Germinal",
+      "memberValue": "book1",
+      "isLeaf": true,
+      "member": "http://.../BooksByAuthors/members/author0/members/book1",
+      "details": "http://.../root/books/book1",
+      "members": "http://.../BooksByAuthors/members/author0/members/book1/members",
+      "submembers": null
+    },
+
+    ...
+
+    {
+      "label": "L'Assommoir",
+      "memberValue": "book1008",
+      "isLeaf": true,
+      "member": "http://.../BooksByAuthors/members/author0/members/book1008",
+      "details": "http://.../root/books/book1008",
+      "members": "http://.../BooksByAuthors/members/author0/members/book1008/members",
+      "submembers": null
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../BooksByAuthors/members/author0/members?pageAction=next&amp;pageCursor=book1008",
+    "lastPage": "http://.../BooksByAuthors/members/author0/members?pageAction=last"
+  }
+}

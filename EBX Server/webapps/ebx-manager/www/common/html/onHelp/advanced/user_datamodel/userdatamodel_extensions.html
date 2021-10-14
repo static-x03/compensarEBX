@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Data model extensions</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_extensions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_extensions.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+<h1>
+Data model extensions</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#configuration">Extensions used by the data model</a></li><li class="toc1"><a href="#indexing">Indexing and search strategies</a></li><li class="toc1"><a href="#toolbars">Toolbars</a><ul class="toc2">
+<li class="toc2"><a href="#toolbarStructure">Defining the structure of a toolbar</a></li><li class="toc2"><a href="#delete">Deleting elements</a></li><li class="toc2"><a href="#duplicate">Duplicating existing elements</a></li><li class="toc2"><a href="#move">Moving elements</a></li><li class="toc2"><a href="#associate">Associate with existing tables</a></li><li class="toc2"><a href="#exportToolbars">Exporting the toolbars</a></li><li class="toc2"><a href="#importToolbars">Importing toolbars</a></li></ul>
+</li><li class="toc1"><a href="#entityMappings">Data services</a></li><li class="toc1"><a href="#replication">Replication of data to relational tables</a></li></ul>
+</div>
+<h2 id="configuration">
+Extensions used by the data model</h2>
+<p>On any data model, it is possible to specify some <em>extensions</em> to be used. These extensions will have the capacity to define additional features around the data model and to enrich the current data model after the publication by adding properties and constraints to the data model elements. Data model extensions are displayed in the navigation pane under the section &#39;Extensions&#39;. </p><p> The following extensions are automatically enabled on new data models: </p><ul>
+<li><p><a href="#toolbars">Toolbars</a></p></li><li><p><a href="#entityMappings">Data services</a></p></li><li><p><a href="#replication">Replications</a></p></li><li><p><a href="#indexing">Indexing and search strategies</a></p></li><li><p><a href="../models/custom_forms.html"> Custom forms </a></p></li><li><p><a href="../dsl/function_field_reference.html"> Functions </a></p></li><li><p><a href="../dsl/record_permission_reference.html"> Record permissions </a></p></li></ul>
+<p>Some extensions are optional and defined in dedicated datasets. These extensions can be disabled or enabled through the user interface.</p><p>Optional data model extension can be disabled by selecting the action &#39;Disable extension&#39; from the menu <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> to the left of extension to disable. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>When disabling an extension its dedicated dataset is also deleted and it is not possible to recover it after its deletion </p></div>
+<p>From the down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> to the left of &#39;Extensions&#39; entry in the navigation pane, you can enable an extension by selecting the action &#39;Enable an extension&#39;. This option is only displayed if some extensions are available. When selecting this action a form displays the available data model extensions.</p><p> Once a data model extension is activated then it is displayed under the entry &#39;Extensions&#39; in the navigation pane and can be edited as a regular dataset. That is, the configuration of an extension is embedded in a dedicated dataset that benefits of all EBX&reg; features available on datasets. </p><h2 id="indexing">
+Indexing and search strategies</h2>
+<p>This feature is documented in the chapter <a href="../references/indexing.html">Search</a>.</p><h2 id="toolbars">
+Toolbars</h2>
+<p> A toolbar allows to customize the buttons and menus that are displayed when viewing tables or records in a dataset. The customization of toolbars can be performed in the data model via the &#39;Configuration&#39; section. </p><p>Add a toolbar from the <em>Toolbars</em> section of the navigation pane, by clicking on the arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> located to the right of <em>[ All elements ]</em>, then selecting the <em>Create toolbar</em> option. Follow the creation wizard to create a toolbar. A toolbar defines the following information: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Name</p></td><td class="ebx_definitionListDefinition"><p>Toolbar&#39;s name. The name of the toolbar must be unique in the context of the data model. That is, it is not allowed to create several toolbars with the same name.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Label and description</p></td><td class="ebx_definitionListDefinition"><p>Internationalized labels and descriptions to be displayed to end users.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Default template</p></td><td class="ebx_definitionListDefinition"><p>Allows to create a toolbar with the structure of a default toolbar.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Locations</p></td><td class="ebx_definitionListDefinition"><p>Specifies the locations where the toolbar can be used in associated datasets.</p></td></tr>
+</table>
+<h3 id="toolbarStructure">
+Defining the structure of a toolbar</h3>
+<p>A toolbar can define the following elements:</p><ul>
+<li><p><a href="#actionButton">Action button</a></p></li><li><p><a href="#menuButton">Menu button</a></p></li><li><p><a href="#separator">Separator</a></p></li><li><p><a href="#menuGroup">Menu group</a></p></li><li><p><a href="#actionMenuItem">Action menu item</a></p></li><li><p><a href="#subMenuItem">Sub menu item</a></p></li></ul>
+<p>Add one of these elements under a toolbar or to an existing element by clicking on the arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> located to the right of the existing element, and by selecting a creation option in the menu. Then, follow the creation wizard to create an element. </p><h4 id="actionButton">
+Action button</h4>
+<p>This type of element allows to associate an action to a button in a toolbar. The action will be triggered when the user clicks on the associated button in one of the toolbars. A <em>Action button</em> type element defines the following information: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Service</p></td><td class="ebx_definitionListDefinition"><p>Defines the service that will be executed when the user clicks on the button. It is possible to select a built-in service, or a user service defined in a module or in the current data model. If the &#39;Web component&#39; target is selected, the service will have to be declared as available as a web component for toolbars.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Label and description</p></td><td class="ebx_definitionListDefinition"><p>Internationalized labels and descriptions to be displayed to end users.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Layout</p></td><td class="ebx_definitionListDefinition"><p>Defines how this element will be displayed in datasets using the toolbar. It is possible to display: the icon only, the text only, text with the icon to the left or text with the icon to the right.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Icon</p></td><td class="ebx_definitionListDefinition"><p>Icon to display. It is possible to use an icon to choose from a set of suggested icons, or to refer to an icon using a URL.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Relief</p></td><td class="ebx_definitionListDefinition"><p>Defines how this button will display. The button can be displayed as embossed or flat.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Is highlighted</p></td><td class="ebx_definitionListDefinition"><p>Indicates if the button should be highlighted by default.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> A <em>Action button</em> type element can only be created under a <em>toolbar</em> type element. </p></div>
+<h4 id="menuButton">
+Menu button</h4>
+<p>This type of element allows to define a menu that will be displayed when the user clicks on the associated button in a toolbar. An element of the <em>Menu button</em> type defines the following information: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Label and description</p></td><td class="ebx_definitionListDefinition"><p>Internationalized labels and descriptions to be displayed to end users.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Layout</p></td><td class="ebx_definitionListDefinition"><p>Defines how this element will be displayed in datasets using the toolbar. It is possible to display: the icon only, the text only, text with the icon to the left or text with the icon to the right.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Icon</p></td><td class="ebx_definitionListDefinition"><p>Icon to display. It is possible to use an icon to choose from a set of suggested icons, or to refer to an icon using a URL.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Relief</p></td><td class="ebx_definitionListDefinition"><p>Defines how this button will display. The button can be displayed as embossed or flat.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Is highlighted</p></td><td class="ebx_definitionListDefinition"><p>Indicates if the button should be highlighted by default.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> An element of the <em>Menu button</em> type can only be created under an element of the <em>toolbar</em> type. </p></div>
+<h4 id="separator">
+Separator</h4>
+<p>This type of element allows to insert a separator in the form of spacing between two elements of a toolbar.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> An element of the <em>Separator</em> type can only be created under an element of the <em>toolbar</em> type. </p></div>
+<h4 id="menuGroup">
+Menu group</h4>
+<p>This type of element allows to define a group of elements in a menu. An element of the <em>Menu group</em> type defines the following information: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Label and description</p></td><td class="ebx_definitionListDefinition"><p>Internationalized labels and descriptions to be displayed to end users.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Group type</p></td><td class="ebx_definitionListDefinition"><p>Specifies the type of menu group to create:<br/> - &#39;Local&#39; allows to create an empty fully customizable menu group.<br/> - &#39;Service group&#39; allows to assign an existing service group to this menu group.<br/> - &#39;Menu builder&#39; allows to assign a predefined menu content to this menu group.<br/> Once created, it is not possible to change the type of this menu group.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Service group name</p></td><td class="ebx_definitionListDefinition"><p>Specifies an existing group of services to reuse. A group is declared in a module and can include other groups of services. All services contained in this group will be displayed to end users in associated datasets.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Menu builder name</p></td><td class="ebx_definitionListDefinition"><p>Specifies the predefined menu content to assign to this menu group:<br/> - &#39;Default menu &quot;Actions&quot;&#39; has the same content as the default toolbar &#39;Actions&#39; menu. Standard and custom services are displayed without distinction.<br/> - &#39;Default menu &quot;Actions&quot; (with separator)&#39; has the same menu content as above, but displays differently since standard and custom services are separated (standard services first, then custom services).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Excluded services</p></td><td class="ebx_definitionListDefinition"><p>Indicates the services to exclude from the group of reused services. These services will not be displayed to end users in associated datasets.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Excluded service groups</p></td><td class="ebx_definitionListDefinition"><p>Indicates the groups to exclude from the group of services to reuse. Services in excluded groups will not be displayed to end users in associated datasets.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="filteringPolicy"><p>Filtering policy</p></td><td class="ebx_definitionListDefinition"><p>In case of &quot;Smart filtering&quot;, services that are configured in direct access, i.e. via an action button or an action menu item, will be removed from the automatic generation of this group.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> An element of the <em>Menu group</em> type can only be created under the following elements: </p></div>
+<ul>
+<li><p>Menu button</p></li><li><p>Sub menu item</p></li></ul>
+<h4 id="actionMenuItem">
+Action menu item</h4>
+<p>This type of element allows to associate an action to a menu item in a toolbar. The action will be triggered when the user clicks on the corresponding item in a menu. An element of the <em>Action menu item</em> type defines the following information: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Label and description</p></td><td class="ebx_definitionListDefinition"><p>Internationalized labels and descriptions to be displayed to end users.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Service</p></td><td class="ebx_definitionListDefinition"><p>Defines the service that will be executed when the user clicks on the button. It is possible to select a built-in service, or a user service defined in a module or in the current data model. If the &#39;Web component&#39; target is selected, the service will have to be declared as available as a web component for toolbars.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> An element of the <em>Action menu item</em> type can only be created under a <em>Menu group</em> type element.</p></div>
+<h4 id="subMenuItem">
+Sub menu item</h4>
+<p>This type of element allows to add a sub menu to a toolbar menu. Un <em>Sub menu item</em> defines the following information: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Label and description</p></td><td class="ebx_definitionListDefinition"><p>Internationalized labels and descriptions to be displayed to end users.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> An element of the <em>Sub menu item</em> type can only be created under an element of the Menu group type.</p></div>
+<h3 id="delete">
+Deleting elements</h3>
+<p>All the elements of a toolbar can be deleted from it by using the arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> located to the right of the element to be deleted.</p><p>If an element containing other elements is deleted, then the deletion is recursively performed on all elements located below the deleted element.</p><h3 id="duplicate">
+Duplicating existing elements</h3>
+<p>To duplicate an element, click on the arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> located to the right of the element to duplicate. Specify the name and properties of the duplicated element. All the source element properties are duplicated.</p><p>The duplicated element is added on the same level than the original element, in the final position. When an element containing other elements is duplicated, all the sub-elements are duplicated with their properties.</p><h3 id="move">
+Moving elements</h3>
+<p>In order to move an element, click on the arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> and select the moving option to be used.</p><h3 id="associate">
+Associate with existing tables</h3>
+<p>To associate a toolbar with existing tables, click on the arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> located to the right of the toolbar and select the option <em>Associate to tables</em>. This service allows to set the toolbar has the default toolbar of several tables in one shot. To do so, specify the target locations of the toolbar and select the tables or complex data types, that define table properties, to be associated with the toolbar.</p><h3 id="exportToolbars">
+Exporting the toolbars</h3>
+<p>It is possible to export the toolbars defined in the model into an XML document. To do so, select the <em>XML export</em> option available in the <em>Actions</em> menu of the &#39;Toolbars&#39; section. Follow the wizard to export the toolbars. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>A selection of toolbars can be exported by selecting in the &#39;Toolbars&#39; section the toolbars to be exported and then by selecting the <em>XML export</em> option available in the <em>Actions</em> menu. The toolbars can also be exported by using the data model export service. It can be found in the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>Data model &#39;Actions&#39;</strong></a> menu in the navigation pane. </p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_actions.html#xsdImportExport">Data model import and export</a></li></ul>
+</div>
+<h3 id="importToolbars">
+Importing toolbars</h3>
+<p>It is possible to import existing toolbars from an XML document. To do so, select the <em>XML import</em> option available in the <em>Actions</em> menu of the &#39;Toolbars&#39; section. Then follow the wizard to import the toolbars. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> The toolbars can also be imported by using the data model import service accessible via the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>Data model &#39;Actions&#39;</strong></a> menu in the navigation pane. </p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_actions.html#xsdImportExport">Data model import and export</a></li></ul>
+</div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementproperties.html#toolbars"> Use of toolbars</a></li></ul>
+</div>
+<h2 id="entityMappings">
+Data services</h2>
+<p>It is possible to refer to tables in Data Service operations using unique names instead of their paths by defining suffixes for WSDL operations. A WSDL suffix is the association between a table path and a name.</p><p>To define a WSDL suffix through the user interface, create a new record in the &#39;Data services&#39; table under the data model configuration in the navigation pane. A record of this table defines the following properties:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Table path</p></td><td class="ebx_definitionListDefinition"><p>Specifies the path of the table in the current data model that is to be referred by the WSDL operation suffix.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>WSDL operation suffix</p></td><td class="ebx_definitionListDefinition"><p>This name is used to suffix all the operation names of the concerned table. If undefined for a given table, the last element of the table path is used instead. This name must be unique in the context of this data model.</p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/entityMappings.html">Data services</a></li></ul>
+</div>
+<h2 id="replication">
+Replication of data to relational tables</h2>
+<p>In any data model, it is possible to define <em>replication units</em> for data in the repository to be mirrored to dedicated relational tables. These relational tables then enable direct access to the data by SQL requests and views.</p><p>To define a replication unit through the user interface, create a new record in the &#39;Replications&#39; table under the extensions&#39; section in the navigation pane. Each replication unit record is associated with a particular dataset in a given dataspace. A single replication unit can cover multiple tables, as long as they are in the same dataset. A replication unit defines the following information:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Name</p></td><td class="ebx_definitionListDefinition"><p>Name of the replication unit. This name identifies a replication unit in the current data model. It must be unique.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dataspace</p></td><td class="ebx_definitionListDefinition"><p>Specifies the dataspace relevant to this replication unit. It cannot be a snapshot or a relational dataspace.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dataset</p></td><td class="ebx_definitionListDefinition"><p>Specifies the dataset relevant to this replication unit.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Refresh policy</p></td><td class="ebx_definitionListDefinition"><p>Specifies the data synchronization policy. The possible policies are:</p><ul>
+<li><p><strong>On commit</strong>: The replicated table content in the database is always up to date with respect to its source table. Every transaction that updates the EBX&reg; source table triggers the corresponding insert, update, and delete statements on the replicated table.</p></li><li><p><strong>On demand</strong>: The replicated table in the database is only updated when an explicit refresh operation is performed.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Tables</p></td><td class="ebx_definitionListDefinition"><p>Specifies the tables in the data model to be replicated in the database.</p><p><strong>Table path</strong>: Specifies the path of the table in the current data model that is to be replicated to the database.</p><p><strong>Table name in database</strong>: Specifies the name of the table in the database to which the data will be replicated. This name must be unique amongst all replications units.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Aggregated lists</p></td><td class="ebx_definitionListDefinition"><p>Specifies the properties of the aggregated lists in the table that are replicated in the database.</p><p><strong>Path</strong>: Specifies the path of the aggregated list in the table that is to be replicated to the database.</p><p><strong>Table name in database</strong>: Specifies the name of the table in the database to which the data of the aggregated list will be replicated. This name must be unique amongst all replications units.</p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/replication.html">Replication</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html">table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

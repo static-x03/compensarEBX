@@ -1,0 +1,3995 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for Simple Workflow, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.workflow_types" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="../common_1.0.xsd" />
+	<!--
+		******************************************************************************
+		Workflow definition types
+		******************************************************************************
+	-->
+	<xs:simpleType name="positiveInteger">
+  		<xs:restriction base="xs:int">
+   			<xs:minInclusive value="0"/>
+  		</xs:restriction>
+ 	</xs:simpleType>
+	<xs:complexType name="ProcessDefinition">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="moduleName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.moduleName" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ModuleEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataContext">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.dataContext" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="variable" type="VariableDeclarationForProcess">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinition.dataContext.variable" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="viewsCustomization" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="workItems" osd:access="RW" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems" />
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="slot01" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot01" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot02" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot02" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot03" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot03" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot04" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot04" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot05" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot05" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot06" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot06" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot07" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot07" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot08" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot08" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot09" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot09" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="slot10" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.ProcessDefinition.viewsCustomization.workItems.slot10" />
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanMappingInboxViewsCustomization"/>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="notificationProcessCreation" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.definition.WfbNotificationProcess">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessCreation" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="profiles" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessCreation.profiles" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+											<includeRoles>true</includeRoles>
+											<includesUser>true</includesUser>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="notificationMailId" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessCreation.notificationMailId" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="notificationProcessTermination" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.definition.WfbNotificationProcessTermination">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessTermination" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="notifyProcessCreator" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessTermination.notifyProcessCreator" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="profiles" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessTermination.profiles" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+											<includeRoles>true</includeRoles>
+											<includesUser>true</includesUser>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="notificationMailId" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessTermination.notificationMailId" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="notificationProcessInError" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.definition.WfbNotificationProcess">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessInError" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="profiles" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessCreation.profiles" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+											<includeRoles>true</includeRoles>
+											<includesUser>true</includesUser>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="notificationMailId" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.ProcessDefinition.notificationProcessCreation.notificationMailId" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="priority" minOccurs="0" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.priority" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.PriorityEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="quickLaunching" minOccurs="0" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.quickLaunching" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="synchronousLaunching" minOccurs="0" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.synchronousLaunching" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="1" minOccurs="0" name="workflowTrigger" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.workflowTrigger" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.WorkflowTriggerBeanEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="permissionsOnInstances" type="PermissionsOnInstances" />
+			<xs:element maxOccurs="1" minOccurs="0" name="actionPermissions" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinition.actionPermissions" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ActionPermissionsOnWorkflowEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcessDefinitionPublished">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ProcessDefinitionPublished" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/homeKey /adaptationReference</primaryKeys>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.workflow.impl.execution.WfiProcessDefinitionPublishedTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="name">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.workflow.impl.util.CheckPublicationName" />
+						</osd:otherFacets>
+					</xs:appinfo>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.name" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="180" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="initialName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.initialName" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="180" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="state">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.state" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="available">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinitionPublished.state.enumeration.available"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="unavailable">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinitionPublished.state.enumeration.unavailable"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="homeKey">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.homeKey" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nextProcessId" type="xs:int" default="0" osd:category="Hidden" />
+			<xs:element name="parent" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.parent" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/processPublished</tablePath>
+								<display>
+									<pattern>${./dwfPublicationLabel}</pattern>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="adaptationReference">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.adaptationReference" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="64" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="userReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.userReference" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.UIUserReferenceAvatarBeanEditor"/>
+							<osd:otherFacets>
+								<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+									<includeRoles>false</includeRoles>
+									<includesUser>true</includesUser>
+								</osd:constraintEnumeration>
+							</osd:otherFacets>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" minOccurs="0" osd:access="RW" type="Documentation">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfActions" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.dwfActions" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfActionsValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationActionsBeanEditor"/>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfWorkflowModel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.dwfWorkflowModel" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationWorkflowModelConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfWorkflowModelDescription" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.dwfWorkflowModelDescription" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationDescriptionImplBeanEditor"/>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationDescriptionConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.dwfPublicationLabel" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationLabelConstraintEnumeration">
+								<nameDisplayed>false</nameDisplayed>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationLabelAndName" type="xs:string" osd:category="Hidden">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationLabelConstraintEnumeration">
+								<nameDisplayed>true</nameDisplayed>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfCreationDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.dwfCreationDate" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfCreationDateValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSnapshotLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.dwfSnapshotLabel" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationSnapshotLabelConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSnapshotDescription" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessDefinitionPublished.dwfSnapshotDescription" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationSnapshotDescriptionImplBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfPublicationSnapshotDescriptionConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VariableDeclarationForProcess" osd:class="com.orchestranetworks.workflow.impl.definition.WfbVariableDeclarationForProcess">
+		<xs:sequence>
+			<xs:element minOccurs="1" name="name" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableDeclarationForProcess.name" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.workflow.impl.util.DataContextUniqueNameConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:Name">
+						<xs:maxLength value="180" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="defaultValue" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableDeclarationForProcess.defaultValue" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="inputParameter" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableDeclarationForProcess.inputParameter" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="outputParameter" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableDeclarationForProcess.outputParameter" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PNode" >
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PNode" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/idInProcess</primaryKeys>
+					<defaultLabel osd:class="com.orchestranetworks.workflow.impl.definition.ui.WfLabelRendererPNode" />
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+					<defaultView>
+						<toolbars>
+							<hierarchyViewTop>WfsStepHierarchyTop</hierarchyViewTop>
+						</toolbars>
+					</defaultView>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.workflow.impl.definition.WfsPNodeTrigger" />
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.workflow.impl.util.CheckPNodeConstraint" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="1" name="idInProcess" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PNode.idInProcess" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="documentation" osd:access="RW" type="Documentation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PNode.documentation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="firstInProcess" type="xs:boolean" />
+			<xs:element minOccurs="0" name="hiddenInGraphicalView" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PNode.hiddenInGraphicalView"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="executionModeOfNextStep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PNode.executionModeOfNextStep"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ExecutionModeOfNextStepEnumerationConstraint">
+								<evaluationMode>dynamic</evaluationMode>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="userTask" type="UserTaskDefinition" />
+			<xs:element minOccurs="0" name="scriptTask" type="ScriptTaskDefinition" />
+			<xs:element minOccurs="0" name="condition" type="Condition" />
+			<xs:element minOccurs="0" name="waitTask" type="WaitTaskDefinition" />
+			<xs:element minOccurs="0" name="subWorkflowsInvocation" type="SubWorkflowsInvocation" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PLink">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PLink" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/fromNode /toNode</primaryKeys>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>always</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>always</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>always</mayDelete>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fromNode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PLink.fromNode" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//definition/pnode</tablePath>
+								<!-- <documentationPath>./documentation</documentationPath> -->
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="toNode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PLink.toNode" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//definition/pnode</tablePath>
+								<!-- <documentationPath>./documentation</documentationPath> -->
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="role">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="other" />
+						<xs:enumeration value="ifTrue" />
+						<xs:enumeration value="ifFalse" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PCoordinate">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PCoordinate" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/objectPk</primaryKeys>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>always</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>always</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>always</mayDelete>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="objectPk" type="xs:string">
+			</xs:element>
+			<xs:element name="type">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="link" />
+						<xs:enumeration value="node" />
+						<xs:enumeration value="end" />
+						<xs:enumeration value="start" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="coordinate" type="xs:string">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserTaskDefinition" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.definition.WfbUserTask">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.UserTaskDefinition" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanUserTaskDefinition" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="version" osd:category="Hidden" type="xs:int" />
+			<xs:element minOccurs="0" name="offerPolicy" osd:class="com.orchestranetworks.workflow.impl.definition.WfbOfferPolicy">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy" />
+					<xs:appinfo>
+						<!--
+							<osd:uiBean
+							class="com.orchestranetworks.workflow.editor.UIAssignment"/>
+						-->
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="profiles" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.profiles" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+											<includeRoles>true</includeRoles>
+											<includesUser>true</includesUser>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="offeredToProfiles" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.offeredToProfiles" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+											<includeRoles>true</includeRoles>
+											<includesUser>true</includesUser>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="offeredToNotificationMail" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.offeredToNotificationMail" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="allocatedToNotificationMail" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.allocatedToNotificationMail" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="deallocatedToNotificationMail" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.deallocatedToNotificationMail" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="workItemDeletedNotificationMail" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.workItemDeletedNotificationMail" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="userTaskCompleteNotificationMail" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.userTaskCompleteNotificationMail" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="workItemAllocatedToAnotherUserNotificationMail" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.workItemAllocatedToAnotherUserNotificationMail" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element maxOccurs="1" minOccurs="0" name="mailCC" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.offerPolicy.mailCC" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+											<includeRoles>true</includeRoles>
+											<includesUser>true</includesUser>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="followUp" osd:class="com.orchestranetworks.workflow.impl.definition.WfbFollowUp">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserTaskDefinition.followUp" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanUserTaskDefinitionFollowUp"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="offeredToFollowUp" type="positiveInteger">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.followUp.offeredToFollowUp" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="allocatedToFollowUp" type="positiveInteger">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.followUp.allocatedToFollowUp" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="administratorNotificationRequired" type="xs:boolean" default="true" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.followUp.administratorNotificationRequired" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="threshold" osd:class="com.orchestranetworks.workflow.impl.definition.WfbThreshold">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserTaskDefinition.threshold" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanUserTaskDefinitionThreshold"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="absoluteThreshold" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.absoluteThreshold" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="relativeThreshold" osd:class="com.orchestranetworks.workflow.impl.definition.WfbRelativeThreshold">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold" />
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element minOccurs="0" name="duration" type="positiveInteger">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.duration" />
+										</xs:annotation>
+									</xs:element>
+									<xs:element minOccurs="0" name="unit">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.unit" />
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="h">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.unit.enumeration.h" />
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="d">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.unit.enumeration.d" />
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="m">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.unit.enumeration.m" />
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element minOccurs="0" name="reference">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.reference" />
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="userTaskBeginning">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.reference.enumeration.userTaskBeginning" />
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="processInstanceBeginning">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.relativeThreshold.reference.enumeration.processInstanceBeginning" />
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="warningMail" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.onwbp.base.text.bean.ConstraintEnumerationRefInExternalAdaptationWithLocalizedLabel">
+											<adaptation>configuration</adaptation>
+											<tablePath>/root/configuration/notificationMessage</tablePath>
+											<pathToDocumentation>./documentation</pathToDocumentation>
+											<displayKey>true</displayKey>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.warningMail" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="notificationFrequency" type="xs:int">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.threshold.notificationFrequency" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="1" name="administratorNotificationRequired" type="xs:boolean" default="true" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id ="complexType.UserTaskDefinition.threshold.administratorNotificationRequired" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="1" name="action" type="ComponentInvocationDefinitions">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanUserTaskDefinitionService" />
+					</xs:appinfo>
+					<xs:documentation osd:id="complexType.UserTaskDefinition.action" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="bean" type="JavaBeanSpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserTaskDefinition.bean" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="termination" osd:class="com.orchestranetworks.workflow.impl.definition.WfbUserTaskTermination">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserTaskDefinition.termination" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="completionStrategy">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.termination.completionStrategy" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="allWorkItemsAccepted">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.termination.completionStrategy.enumeration.allWorkItemsAccepted" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="allWorkItemsCompleted">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.termination.completionStrategy.enumeration.allWorkItemsCompleted" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="anyWorkItemsAccepted">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.termination.completionStrategy.enumeration.anyWorkItemsAccepted" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="halfWorkItemsAccepted">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.termination.completionStrategy.enumeration.halfWorkItemsAccepted" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="allWorkItemsAcceptedButOne">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.termination.completionStrategy.enumeration.allWorkItemsAcceptedButOne" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="allWorkItemsAcceptedOrAnyRejected">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.UserTaskDefinition.termination.completionStrategy.enumeration.allWorkItemsAcceptedOrAnyRejected" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="rejectionThreshold" type="positiveInteger">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserTaskDefinition.termination.rejectionThreshold" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SubWorkflowsInvocation" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.definition.WfbSubWorkflowsInvocation">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.SubWorkflowsInvocation" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanSubWorkflowsInvocation" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mode" default="static" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SubWorkflowsInvocation.mode" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="static">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SubWorkflowsInvocation.mode.static" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="dynamic">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SubWorkflowsInvocation.mode.dynamic" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="staticSubWorkflowsInvocation" osd:access="RW" minOccurs="0" osd:class="com.orchestranetworks.workflow.impl.definition.WfbStaticSubWorkflowsInvocation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanSubWorkflowsInvocation_StaticMode" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="invocations" minOccurs="1" maxOccurs="unbounded" osd:class="com.orchestranetworks.workflow.impl.definition.WfbStaticSubWorkflowInvocation">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="model" minOccurs="1" type="xs:string" osd:checkNullInput="true">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.model"/>
+											<xs:appinfo>
+												<osd:otherFacets>
+													<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.WorkflowModelsConstraintEnumeration" />
+												</osd:otherFacets>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="foregroundSubworkflow" minOccurs="0" type="xs:boolean" default="false" >
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.isForegroundSubworkflow"/>
+											<xs:appinfo>
+												<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanSubworkflowInvocation_ForegroundProperty" />
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="documentation" minOccurs="0" type="Documentation">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.documentation"/>
+										</xs:annotation>
+									</xs:element>
+									<xs:element maxOccurs="unbounded" minOccurs="0" name="inputMapping">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.inputMapping"/>
+										</xs:annotation>
+										<xs:complexType osd:class="com.orchestranetworks.schema.extensions.JBSPropertyBean">
+											<xs:sequence>
+												<xs:element minOccurs="1" name="paramName" type="xs:Name" osd:checkNullInput="true">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.inputMapping.paramName"/>
+														<xs:appinfo>
+															<osd:otherFacets>
+																<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.MappingSubworkflowDataContextEnumerationConstraint" />
+															</osd:otherFacets>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element minOccurs="1" name="paramValue" type="xs:string" osd:checkNullInput="true">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.inputMapping.paramValue"/>
+														<xs:appinfo>
+															<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanSubworkflowInvocation_InputParameterValue" />
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element maxOccurs="unbounded" minOccurs="0" name="outputMapping">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.outputMapping"/>
+										</xs:annotation>
+										<xs:complexType osd:class="com.orchestranetworks.schema.extensions.JBSPropertyBean">
+											<xs:sequence>
+												<xs:element minOccurs="1" name="paramName" type="xs:Name" osd:checkNullInput="true">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.outputMapping.paramName"/>
+														<xs:appinfo>
+															<osd:otherFacets>
+																<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.OutputDataContextEnumerationConstraint" />
+															</osd:otherFacets>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element minOccurs="1" name="paramValue" type="xs:string" osd:checkNullInput="true">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.SubWorkflowsInvocation.staticSubWorkflowsInvocation.invocations.outputMapping.paramValue"/>
+														<xs:appinfo>
+															<osd:otherFacets>
+																<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.MappingSubworkflowDataContextEnumerationConstraint" />
+															</osd:otherFacets>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dynamicSubWorkflowsInvocation" osd:access="RW" minOccurs="0" osd:class="com.orchestranetworks.workflow.impl.definition.WfbDynamicSubWorkflowsInvocation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SubWorkflowsInvocation.dynamicSubWorkflowsInvocation" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanSubWorkflowsInvocation_DynamicMode" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dependencies" minOccurs="1" maxOccurs="unbounded" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SubWorkflowsInvocation.dynamicSubWorkflowsInvocation.dependencies"/>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.WorkflowModelsConstraintEnumeration" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="className" minOccurs="1" type="xs:string" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SubWorkflowsInvocation.dynamicSubWorkflowsInvocation.className"/>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.SubWorkflowsInvocationBeansConstraintEnumeration" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ScriptTaskDefinition" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.definition.WfbScriptTask">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ScriptTaskDefinition" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanConfigurationOneElement" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="1" name="bean" osd:checkNullInput="true" type="JavaBeanSpecInputOutput">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ScriptTaskDefinition.bean" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Condition" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.definition.WfbCondition">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Condition" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanConfigurationOneElement" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="1" name="bean" osd:checkNullInput="true" type="JavaBeanSpecInputOutput">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Condition.bean" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaitTaskDefinition" osd:access="RW"  osd:class="com.orchestranetworks.workflow.impl.definition.WfbWaitTask">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.WaitTaskDefinition" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanWaitTask" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="className" type="xs:string" minOccurs="1" osd:checkNullInput="true" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitTaskDefinition.className" />
+						<xs:appinfo>
+							<osd:otherFacets>
+								<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.WaitTaskBeansConstraintEnumeration" />
+							</osd:otherFacets>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resumptionProfile" type="xs:string" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitTaskDefinition.resumptionProfile" />
+						<xs:appinfo>
+							<osd:otherFacets>
+								<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+									<includeRoles>true</includeRoles>
+									<includesUser>true</includesUser>
+								</osd:constraintEnumeration>
+							</osd:otherFacets>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentInvocationDefinitions" osd:class="com.orchestranetworks.workflow.impl.definition.WfbComponentInvocation">
+		<xs:sequence>
+			<xs:element default="false" name="enableReject" osd:checkNullInput="true" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.enableReject" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element default="true" name="enableConfirmationRequest" osd:checkNullInput="true" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.enableConfirmationRequest" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="customizedAcceptLabel" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.customizedAcceptLabel" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="customizedAcceptConfirmationMessage" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.customizedAcceptConfirmationMessage" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="customizedRejectLabel" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.customizedRejectLabel" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="customizedRejectConfirmationMessage" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.customizedRejectConfirmationMessage" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="1" minOccurs="0" name="serviceDeclarationKey" osd:checkNullInput="true" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.serviceDeclarationKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ServiceDeclarationsEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="1" name="enableComment" type="xs:boolean" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.enableComment" />
+					</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="commentStrategyCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.commentStrategyCode" />
+						<xs:appinfo>
+							<osd:otherFacets>
+								<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.CommentStrategyEnumerationConstraint" />
+							</osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="input" type="ComponentInputDefinitions">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.input" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="output" type="ComponentOutputDefinitions">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationDefinitions.output" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentInputDefinitions" osd:class="com.orchestranetworks.workflow.impl.definition.WfbComponentInput">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="parameters" type="VariableValueInput" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentOutputDefinitions" osd:class="com.orchestranetworks.workflow.impl.definition.WfbComponentOutput">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="parameters" type="VariableValueOutput" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentInvocationExecutions" osd:class="com.orchestranetworks.workflow.impl.definition.WfbComponentInvocation">
+		<xs:sequence>
+			<xs:element name="interactionKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInvocationExecutions.interactionKey" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="input" type="ComponentInputExecutions">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="output" type="ComponentOutputExecutions">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentInputExecutions" osd:class="com.orchestranetworks.workflow.impl.definition.WfbComponentInput">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="parameters" type="VariableValue">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentInputExecutions.parameters" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentOutputExecutions" osd:class="com.orchestranetworks.workflow.impl.definition.WfbComponentOutput">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="parameters" type="VariableValue">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComponentOutputExecutions.parameters" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PermissionsOnInstances" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PermissionsOnInstances" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanWorkflowPermissions" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="administrate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.administrate" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="disable" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.disable" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="unpublish" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.unpublish" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="terminateProcess" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.terminateProcess" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="restartToken" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.restartToken" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="resumeProcess" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.resumeProcess" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="create" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.create" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="allocate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.allocate" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="allocateOnly" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.allocateOnly" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="deallocate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.deallocate" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="reallocate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.reallocate" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="view" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.view" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="viewCompletedWorkflow" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.viewCompletedWorkflow" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="creatorIsViewer" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PermissionsOnInstances.creatorIsViewer" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+
+
+
+
+		******************************************************************************
+		Workflow execution types
+		******************************************************************************
+	-->
+	<xs:complexType name="ProcessExecution">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ProcessExecution" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/publication /id</primaryKeys>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+				</osd:table>
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.workflow.impl.util.ProcessExecutionConstraint" />
+				</osd:otherFacets>
+				<osd:trigger class="com.orchestranetworks.workflow.impl.execution.WfiProcessInstanceTrigger"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="1" name="publication" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.publication" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.WfiTableRefPublicationEditor"/>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/processPublished</tablePath>
+								<display>
+									<pattern>${./dwfPublicationLabelAndName}</pattern>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.id" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="userDocumentation" type="Documentation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.userDocumentation" />
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="creator" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.creator" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.UIUserReferenceAvatarBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>false</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="state">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.state" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="A">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessExecution.state.enumeration.A" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="T">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessExecution.state.enumeration.T" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lastUpdate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.lastUpdate" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.TimeOfLastModificationValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parent" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.parent" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.WfiTableRefProcessInstanceBeanEditor"/>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/execution/process</tablePath>
+								<display>
+									<pattern>${./dwfLabel}</pattern>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="priority" minOccurs="0" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.priority" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.ui.UIPriority"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.PriorityEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="processToken" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.processToken"/>
+					<xs:appinfo>
+						<osd:association>
+							<tableRefInverse>
+								<fieldToSource>//token/process</fieldToSource>
+							</tableRefInverse>
+						</osd:association>
+						<osd:defaultView>
+							<hiddenInDataServices>true</hiddenInDataServices>
+							<displayMode>link</displayMode>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="dwfProcessInstanceCurrentUser" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfProcessInstanceCurrentUser" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceCurrentUserValueFunction"/>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.UIUserReferenceAvatarBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>false</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="currentSubWorkflows" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.currentSubWorkflows" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//execution/process</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+						<osd:defaultView>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="0" minOccurs="0" name="workItems" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.workItems" />
+					<xs:appinfo>
+						<osd:select>
+							<xpath>/root/execution/workItem[process/publication =
+								${../publication} and process/id = ${../id}]</xpath>
+						</osd:select>
+						<osd:defaultView>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataContext"  osd:access="RW" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dataContext" />
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="variable" type="VariableValue">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessExecution.dataContext.variable" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="subWorkflowName" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.subWorkflowName" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isForegroundSubworkflow" minOccurs="0" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.isForegroundSubworkflow" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="branchesToCloseOnTermination" minOccurs="0" maxOccurs="unbounded" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.branchesToCloseOnTermination" />
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="branchesToDeleteOnTermination" minOccurs="0" maxOccurs="unbounded" type="xs:string">
+					<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.branchesToDeleteOnTermination" />
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="classForTest" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+   							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.label" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceLabelConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfDescription" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.description" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceDescriptionImplBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceDescriptionConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfGraphicalView" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfGraphicalView" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceGraphicalViewBeanEditor"/>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfDiagramView" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfDiagramView"/>
+					<xs:appinfo>
+						<osd:function
+							class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction"/>
+						<osd:uiBean
+							class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceDiagramViewBeanEditor"/>
+						<osd:defaultView>
+							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfActions" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfActions" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfActionsValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceActionsBeanEditor"/>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationInitialName"  minOccurs="0" maxOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.initialPublicationName" />
+					<xs:appinfo>
+						<osd:function linkedField="/publication/initialName" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationCreationDate"  minOccurs="0" maxOccurs="0" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.publicationCreationDate" />
+					<xs:appinfo>
+						<osd:function linkedField="/publication/dwfCreationDate" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationState" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfPublicationState" />
+						<xs:appinfo>
+							<osd:function linkedField="/publication/state" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="available">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinitionPublished.state.enumeration.available"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="unavailable">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinitionPublished.state.enumeration.unavailable"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dwfCreationDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfCreationDate" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfCreationDateValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfTokenCurrentStep" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfTokenCurrentStep" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceTokenCurrentStepConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfTokenState" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfTokenState" />
+						<xs:appinfo>
+						<osd:function linkedField="/processToken/state"/>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceTokenStateBeanEditor"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="toExecute">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.toExecute"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="executing">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.executing"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="user">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.user"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="error">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.error"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="finished">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.finished"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="waiting">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.waiting"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="waitingForEvent">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.waitingForEvent"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="dwfTokenErrorMessage" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfTokenErrorMessage" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceTokenErrorMessageBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfProcessInstanceTokenErrorMessageConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot01" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot01" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot02" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot02" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot03" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot03" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot04" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot04" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot05" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot05" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot06" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot06" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot07" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot07" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot08" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot08" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot09" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot09" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot10" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessExecution.dwfSpecificSlot10" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaitingProcessInstance">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.WaitingProcessInstance"/>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/process</primaryKeys>
+					<defaultLabel>${./process}</defaultLabel>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="process" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.process" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//execution/process</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resumeId" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.resumeId" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="creationDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.creationDate" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.TimeOfCreationValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastUpdateDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.lastUpdateDate" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.TimeOfLastModificationValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="state" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.state" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.WaitingProcessIntanceStateConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="1" default="false" name="expectedProfile" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.expectedProfile" />
+						<xs:appinfo>
+							<osd:otherFacets>
+								<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+									<includeRoles>true</includeRoles>
+									<includesUser>true</includesUser>
+								</osd:constraintEnumeration>
+							</osd:otherFacets>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="1" default="false" name="isForcedResuming" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.isForcedResuming" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="outputMapping" type="ParameterValue" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WaitingProcessInstance.outputMapping" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Token">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Token" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/process /ref</primaryKeys>
+					<defaultLabel>${./process} ${./ref}</defaultLabel>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="process" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Token.process" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//execution/process</tablePath>
+								<!-- XXX specific labeling class ?????? -->
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ref">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Token.ref" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element default="toExecute" name="state">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Token.state" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="toExecute">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.toExecute"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="executing">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.executing"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="user">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.user"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="error">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.error"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="finished">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.finished"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="waiting">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.waiting"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="waitingForEvent">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.state.enumeration.waitingForEvent"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="tokenError" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.execution.WfiTokenError">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Token.tokenError" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="reasonError" type="Label">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Token.tokenError.reasonError" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pnode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Token.pnode" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastUserTaskPNode" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Token.lastUserTaskPNode" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="eventId" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Token.eventId" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WorkItem">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.WorkItem" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/pnode /token /itemIndex</primaryKeys>
+					<!-- Issue #4527 -->
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+					<recordForm  osd:class="com.orchestranetworks.workflow.impl.execution.ui.views.WorkItemLayoutFacade"/>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.workflow.impl.execution.WfiWorkItemTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pnode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.pnode" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="token" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.token" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//execution/token</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="itemIndex" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.itemIndex" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="publication" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.publication" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.WfiTableRefPublicationEditor"/>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/processPublished</tablePath>
+								<display>
+									<pattern>${./dwfPublicationLabelAndName}</pattern>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationInitialName"  minOccurs="0" maxOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.initialPublicationName" />
+					<xs:appinfo>
+						<osd:function linkedField="/publication/initialName"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationCreationDate"  minOccurs="0" maxOccurs="0" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.publicationCreationDate" />
+					<xs:appinfo>
+						<osd:function linkedField="/publication/dwfCreationDate" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="process" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.process" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.WfiWorkItemProcessInstanceValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.WfiTableRefProcessInstanceBeanEditor"/>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//execution/process</tablePath>
+								<display>
+									<pattern>${./dwfLabel}</pattern>
+								</display>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element minOccurs="0" name="offeredTo" type="xs:string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.offeredTo" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemOfferedToBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>true</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="allocatedTo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.allocatedTo" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.UIUserReferenceAvatarBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>false</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="state">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.state" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="offered">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.state.enumeration.offered" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="allocated">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.state.enumeration.allocated" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="started">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.state.enumeration.started" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="completed">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.state.enumeration.completed" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="error">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.state.enumeration.error" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="interaction" type="ComponentInvocationExecutions">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.interaction" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.startDate" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="completionDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.completionDate" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="specificLabel" type="Label" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.specificLabel" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="closed" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.closed" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="error" osd:access="RW" osd:class="com.orchestranetworks.workflow.impl.execution.WfiWorkItemError">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.error" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="state">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:defaultView>
+   										<hiddenInViews>true</hiddenInViews>
+									</osd:defaultView>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="offered">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.WorkItem.error.state.enumeration.offered" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="allocated">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.WorkItem.error.state.enumeration.allocated" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="started">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.WorkItem.error.state.enumeration.started" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="completed">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.WorkItem.error.state.enumeration.completed" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="reasonLabel" type="Label">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.error.reasonLabel" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="followUp">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.followUp" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="lastWarning" type="xs:date">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.followUp.lastWarning" />
+								<xs:appinfo>
+									<osd:defaultView>
+   										<hiddenInViews>true</hiddenInViews>
+									</osd:defaultView>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="count" type="xs:int">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.followUp.count" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="threshold">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.threshold" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="lastWarning" type="xs:date">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.threshold.lastWarning" />
+								<xs:appinfo>
+									<osd:defaultView>
+   										<hiddenInViews>true</hiddenInViews>
+									</osd:defaultView>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="count" type="xs:int">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.WorkItem.threshold.count" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dwfActions" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfActions" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfActionsValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemActionsBeanEditor"/>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfGraphicalView" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfGraphicalView" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemGraphicalViewBeanEditor"/>
+						<osd:defaultView>
+							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfDiagramView" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfDiagramView"/>
+					<xs:appinfo>
+						<osd:function
+							class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction"/>
+						<osd:uiBean
+							class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemDiagramViewBeanEditor"/>
+						<osd:defaultView>
+							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfPublicationState" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfPublicationState" />
+						<xs:appinfo>
+							<osd:function linkedField="/publication/state" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="available">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinitionPublished.state.enumeration.available"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="unavailable">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ProcessDefinitionPublished.state.enumeration.unavailable"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dwfWorkItemLabel" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfWorkItemLabel" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemLabelConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfWorkItemDescription" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfWorkItemDescription" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfAdaptationPrimaryKeyValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemDescriptionImplBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemDescriptionConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfCreationDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfCreationDate" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfCreationDateValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfWorkItemPriority" type="xs:int" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfPriority" />
+					<xs:appinfo>
+						<osd:function linkedField="/process/priority"/>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.ui.UIPriority"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.PriorityEnumerationConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" maxOccurs="0" name="dwfWorkflowCreator" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfWorkflowCreator" />
+					<xs:appinfo>
+						<osd:function linkedField="/process/creator"/>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.UIUserReferenceAvatarBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>false</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfComments" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfComments" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemCommentsValueFunction"/>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemCommentsBeanEditor"/>
+						<osd:defaultView>
+							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemCommentsEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfDeadlineDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfDeadlineDate" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemDeadlineDateValueFunction" />
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemDeadlineDateBeanEditor"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot01" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot01" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot02" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot02" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot03" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot03" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot04" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot04" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot05" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot05" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot06" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot06" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot07" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot07" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot08" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot08" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot09" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot09" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dwfSpecificSlot10" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.WorkItem.dwfSpecificSlot10" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemBusinessDataSlotValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VariableValue" osd:class="com.orchestranetworks.workflow.impl.definition.WfbVariableValue">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValue.name" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:Name">
+						<xs:maxLength value="180" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="value" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValue.value" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VariableValueOutput" osd:class="com.orchestranetworks.workflow.impl.definition.WfbVariableValue">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValueOutput.name" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:Name">
+						<xs:maxLength value="180" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="value" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValueOutput.value" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.OutputDataContextEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VariableValueInput" osd:class="com.orchestranetworks.workflow.impl.definition.WfbVariableValue">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValueInput.name" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:Name">
+						<xs:maxLength value="180" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="value" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValueInput.value" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParameterValue" osd:class="com.orchestranetworks.workflow.impl.util.ParametersUtil$ParameterValue">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ParameterValue.name" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:Name">
+						<xs:maxLength value="180" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="value" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ParameterValue.value" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcessComment">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ProcessComment"/>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+            <xs:element name="id" type="xs:int" minOccurs="1" maxOccurs="1">
+            	<xs:annotation>
+ 					<xs:documentation osd:id="complexType.ProcessComment.id" />
+                	<xs:appinfo>
+						<osd:autoIncrement>
+							<disableMaxTableCheck>true</disableMaxTableCheck>
+						</osd:autoIncrement>
+                    </xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+            <xs:element name="mainProcess" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessComment.mainProcess" />
+                    <xs:appinfo>
+                        <osd:otherFacets>
+                            <osd:tableRef>
+                                <tablePath>/root/execution/process</tablePath>
+                            </osd:tableRef>
+                        </osd:otherFacets>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="interactionKey" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessComment.interactionKey" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="user" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessComment.user" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ProfileEnumerationConstraint">
+								<includeRoles>false</includeRoles>
+								<includesUser>true</includesUser>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessComment.date" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="content" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProcessComment.content" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="History">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.History" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/token /id</primaryKeys>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="token" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.token" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//execution/token</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.id" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iteration" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.iteration" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.date" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.status" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="info">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.status.enumeration.info" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="error">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.status.enumeration.error" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="restartToken">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.status.enumeration.restartToken" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="forceTermination">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.status.enumeration.forceTermination" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="errorCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.errorCode" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="errorReason" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.errorReason" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="adminMessage" type="Label" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.errorReason.adminMessage" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="userMessage" type="Label" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.errorReason.userMessage" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="printStackTrace" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.errorReason.printStackTrace" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="process" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//execution/process</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+					<xs:documentation osd:id="complexType.History.process" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pNode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.pNode" />
+					<xs:appinfo />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tokenState">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.tokenState" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="toExecute">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.tokenState.enumeration.toExecute" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="executing">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.tokenState.enumeration.executing" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="user">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.tokenState.enumeration.user" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="error">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.tokenState.enumeration.error" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="finished">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.tokenState.enumeration.finished" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="pNodeDocumentation" osd:access="RW" type="Documentation" />
+			<xs:element minOccurs="0" name="dataContext">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.dataContext" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="variable" type="VariableValue">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.dataContext.variable" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="user" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.user" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="priority" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.priority" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="script" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.script" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="className" type="xs:string" />
+						<xs:element name="stateString">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.script.stateString" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="initialized">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.script.stateString.enumeration.initialized" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="executed">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.script.stateString.enumeration.executed" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="error">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.script.stateString.enumeration.error" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="condition" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.condition" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="className" type="xs:string" />
+						<xs:element name="stateString">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.condition.stateString" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="initialized">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.condition.stateString.enumeration.initialized" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="executed">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.condition.stateString.enumeration.executed" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="error">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.condition.stateString.enumeration.error" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="evaluationResult" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.condition.evaluationResult" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="workItem" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.workItem" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="primaryKey" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.primaryKey" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="workItemState">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.workItemState" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="offered">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.workItem.workItemState.enumeration.offered" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="allocated">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.workItem.workItemState.enumeration.allocated" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="started">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.workItem.workItemState.enumeration.started" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="completed">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.workItem.workItemState.enumeration.completed" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="error">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.workItem.workItemState.enumeration.error" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="itemIndex" type="xs:int">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.itemIndex" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="allocatedTo" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.allocatedTo" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="offeredTo" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.offeredTo" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="specificLabel" type="Label">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.specificLabel" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="mdmComponentDecision" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.mdmComponentDecision" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="comment" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.comment" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="commentLastModificationDate" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.commentLastModificationDate" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="interaction" type="ComponentInvocationExecutions">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.workItem.interaction" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="subWorkflowsInvocation" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.subWorkflowsInvocation" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="state" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.subWorkflowsInvocation.state" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="launched">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.subWorkflowsInvocation.state.enumeration.launched" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="completed">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.History.subWorkflowsInvocation.state.enumeration.completed" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="className" minOccurs="0" type="xs:string" >
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.subWorkflowsInvocation.className" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="subWorkflows" minOccurs="0" maxOccurs="unbounded" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.subWorkflowsInvocation.subWorkflows" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:tableRef>
+												<tablePath>//execution/process</tablePath>
+										</osd:tableRef>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="waitTask" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.waitTask" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="className" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.waitTask.className"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="state" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.waitTask.state"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.WaitTaskStateConstraintEnumeration"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="resumeId" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.waitTask.resumeId"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="expectedProfile" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.waitTask.resumeId"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="forcedResuming" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.waitTask.forcedResuming"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="parametersValue" type="ParameterValue" maxOccurs="unbounded" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.waitTask.parametersValue"/>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="comment" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.comment" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+
+
+
+
+		******************************************************************************
+		Workflow configuration types
+		******************************************************************************
+	-->
+	<xs:complexType name="SMTPConfiguration">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.SMTPConfiguration" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ebxConfigurationStatus">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SMTPConfiguration.ebxConfigurationStatus" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.workflow.impl.configuration.WfcSMTPValueFunction" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="running">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SMTPConfiguration.ebxConfigurationStatus.enumeration.running" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="stopped">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SMTPConfiguration.ebxConfigurationStatus.enumeration.stopped" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="emailFrom" type="osd:email">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SMTPConfiguration.emailFrom" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="urlDefinition" osd:access="RW" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SMTPConfiguration.urlDefinition" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.workflow.impl.configuration.ui.WfUIBeanMailUrlDefinition" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="url" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SMTPConfiguration.urlDefinition.url" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<!-- osd:access="RW" -->
+	</xs:complexType>
+	<xs:complexType name="ViewsCustomizationConfiguration">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="defaultModelingValues">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="quickLaunching" type="xs:boolean" default="false" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues.quickLaunching" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="automaticallyOpenTheFirstStep" type="xs:boolean" default="false" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues.automaticallyOpenTheFirstStep" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="progressStrategyForUserTask" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues.progressStrategyForUserTask" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ExecutionModeOfNextStepEnumerationConstraint">
+											<evaluationMode>valuesWithoutCriteria</evaluationMode>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="progressStrategyForSubworkflowsInvocation" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues.progressStrategyForSubworkflowsInvocation" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ExecutionModeOfNextStepEnumerationConstraint">
+											<evaluationMode>valuesWithoutCriteria</evaluationMode>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="progressStrategyForScriptTask" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues.progressStrategyForScriptTask" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ExecutionModeOfNextStepEnumerationConstraint">
+											<evaluationMode>valuesWithoutCriteria</evaluationMode>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="progressStrategyForCondition" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues.progressStrategyForCondition" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.ExecutionModeOfNextStepEnumerationConstraint">
+											<evaluationMode>allValues</evaluationMode>
+										</osd:constraintEnumeration>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="hiddenInGraphicalViewForScriptTask" type="xs:boolean" default="false" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.defaultModelingValues.hiddenInGraphicalViewForScriptTask" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="workItems" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="labelSlot01" type="Label" osd:access="RW" >
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot01" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot02" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot02" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot03" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot03" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot04" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot04" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot05" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot05" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot06" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot06" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot07" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot07" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot08" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot08" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot09" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot09" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="labelSlot10" type="Label" osd:access="RW">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ViewsCustomizationConfiguration.workItems.labelSlot10" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TemporalTaskConfiguration">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TemporalTaskConfiguration" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="intervalForCheck">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TemporalTaskConfiguration.intervalForCheck" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="inboxCounterConfig" type="InboxCounterConfig" osd:access="RW" ></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InboxCounterConfig">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TemporalTaskConfiguration.inboxCounterConfig" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="inboxCounterCacheExpiry" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TemporalTaskConfiguration.inboxCounterCacheExpiry" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="inboxCounterRefreshPeriodicityOnUI" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TemporalTaskConfiguration.inboxCounterRefreshPeriodicityOnUI" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PrioritiesConfiguration">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PrioritiesConfiguration" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="defaultPriority" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PrioritiesConfiguration.defaultPriority" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.PriorityEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="priorities" type="Priority" maxOccurs="unbounded" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Priority">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Priority" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/level</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="level" type="xs:int" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Priority.level" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" type="Documentation" minOccurs="0"/>
+			<xs:element name="priorityIcon" type="PriorityIcon" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PriorityIcon" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PriorityIcon" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.ui.UIPriorityIcon"></osd:uiBean>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="builtInIcon" type="xs:string" minOccurs="0"></xs:element>
+			<xs:element name="specificIcon" type="xs:anyURI" minOccurs="0">
+			  <xs:annotation>
+			  	<xs:documentation osd:id="complexType.PriorityIcon.specificIcon" />
+			  </xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NotificationMessage">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.NotificationMessage" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+					<defaultLabel osd:class="com.orchestranetworks.workflow.impl.configuration.ui.WfLabelRendererNotificationMessage" />
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NotificationMessage.id" />
+					<xs:appinfo>
+						<osd:autoIncrement />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" type="Documentation" />
+			<xs:element name="message" type="DocumentationForMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NotificationMessage.message" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NotificationMessage.type" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="text">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.NotificationMessage.type.enumeration.text" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="html">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.NotificationMessage.type.enumeration.html" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TechnicalConfiguration">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TechnicalConfiguration" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Mail" type="SMTPConfiguration" />
+			<xs:element minOccurs ="0" name="ViewsCustomization" type="ViewsCustomizationConfiguration"/>
+			<xs:element minOccurs="0" name="PrioritiesConfigurationSection" type="PrioritiesConfiguration" />
+			<xs:element minOccurs="0" name="TemporalTask" type="TemporalTaskConfiguration" />
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+
+
+
+
+		******************************************************************************
+		Basic types
+		******************************************************************************
+	-->
+	<xs:complexType name="JavaBeanSpec" osd:access="RW" osd:class="com.orchestranetworks.schema.extensions.JBSJavaBeanSpec">
+		<xs:annotation>
+			<xs:appinfo>
+				<!--
+					<osd:uiBean
+					class="com.orchestranetworks.dma.ui.JavaBeanSpecUIBean"/>
+				-->
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="osdClass" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpec.osdClass" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.workflow.impl.util.ClassExistenceConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="param">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpec.param" />
+				</xs:annotation>
+				<!-- osd:class="com.orchestranetworks.dma.beans.ParameterBean"-->
+				<xs:complexType osd:class="com.orchestranetworks.schema.extensions.JBSPropertyBean">
+					<xs:sequence>
+						<xs:element name="paramName" type="xs:string" minOccurs="1" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.JavaBeanSpec.param.paramName" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<!--
+											<osd:constraintEnumeration
+											class="com.orchestranetworks.dma.function.ParameterNameBeanEnumeration"/>
+										-->
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="paramValue" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.JavaBeanSpec.param.paramValue" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<!--osd:class="com.orchestranetworks.dma.beans.JavaBeanSpec"-->
+	</xs:complexType>
+	<xs:complexType name="JavaBeanSpecInputOutput" osd:access="RW" osd:class="com.orchestranetworks.schema.extensions.JBSJavaBeanSpec">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.workflow.impl.definition.ui.WfUIBeanScriptOrConditionAction" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="library" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpecInputOutput.library" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="1" name="osdClass" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.JavaClassEnumerationConstraint" />
+							<osd:constraint class="com.orchestranetworks.workflow.impl.util.CheckLocationForNotDefinedClass" />
+						</osd:otherFacets>
+					</xs:appinfo>
+					<xs:documentation osd:id="complexType.JavaBeanSpecInputOutput.osdClass" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="param">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpecInputOutput.param" />
+				</xs:annotation>
+				<!-- osd:class="com.orchestranetworks.dma.beans.ParameterBean"-->
+				<xs:complexType osd:class="com.orchestranetworks.schema.extensions.JBSPropertyBean">
+					<xs:sequence>
+						<xs:element name="paramName" type="xs:string" />
+						<xs:element minOccurs="0" name="paramValue" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="outputMappingParam">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpecInputOutput.outputMappingParam" />
+				</xs:annotation>
+				<!-- osd:class="com.orchestranetworks.dma.beans.ParameterBean"-->
+				<xs:complexType osd:class="com.orchestranetworks.schema.extensions.JBSPropertyBean">
+					<xs:sequence>
+						<xs:element name="paramName" type="xs:string" />
+						<xs:element minOccurs="0" name="paramValue" type="xs:Name">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.workflow.impl.util.OutputDataContextEnumerationConstraint" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Documentation" osd:access="RW" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Documentation" />
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription" >
+					<checkLabelMaxLength>true</checkLabelMaxLength>
+				</osd:uiBean>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Documentation.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:appinfo>
+									<osd:defaultView>
+   										<hiddenInSearch>true</hiddenInSearch>
+									</osd:defaultView>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="label">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Documentation.localizedDocumentations.label" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="180" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="description">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Documentation.localizedDocumentations.description" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentationForMessage" osd:access="RW" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.DocumentationForMessage" />
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription">
+					<checkLabelMaxLength>true</checkLabelMaxLength>
+				</osd:uiBean>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DocumentationForMessage.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale" />
+						<xs:element minOccurs="0" name="label" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationForMessage.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="description">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationForMessage.localizedDocumentations.description" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Label" osd:class="com.onwbp.base.text.bean.Label">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabel" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Label.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Label.localizedDocumentations.locale" />
+								<xs:appinfo>
+									<osd:defaultView>
+										<hiddenInSearch>true</hiddenInSearch>
+									</osd:defaultView>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="label">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Label.localizedDocumentations.label" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="180" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

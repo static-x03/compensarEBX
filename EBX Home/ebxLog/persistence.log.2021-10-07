@@ -1,0 +1,74 @@
+2021-10-07 06:14:15,527 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #5000: avgInterval=9369: maxInterval=7204978 ms.
+2021-10-07 07:18:22,560 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #6000: avgInterval=8449: maxInterval=7204978 ms.
+2021-10-07 07:35:07,780 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #7000: avgInterval=7385: maxInterval=7204978 ms.
+2021-10-07 07:51:51,719 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #8000: avgInterval=6587: maxInterval=7204978 ms.
+2021-10-07 08:08:35,521 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #9000: avgInterval=5967: maxInterval=7204978 ms.
+2021-10-07 08:25:19,300 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #10000: avgInterval=5471: maxInterval=7204978 ms.
+2021-10-07 08:42:03,087 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #11000: avgInterval=5064: maxInterval=7204978 ms.
+2021-10-07 08:58:46,668 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #12000: avgInterval=4726: maxInterval=7204978 ms.
+2021-10-07 09:15:30,449 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #13000: avgInterval=4440: maxInterval=7204978 ms.
+2021-10-07 09:32:14,116 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #14000: avgInterval=4194: maxInterval=7204978 ms.
+2021-10-07 09:48:58,085 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #15000: avgInterval=3981: maxInterval=7204978 ms.
+2021-10-07 10:05:43,003 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #16000: avgInterval=3795: maxInterval=7204978 ms.
+2021-10-07 10:22:26,585 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #17000: avgInterval=3631: maxInterval=7204978 ms.
+2021-10-07 10:25:28,005 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 101 ms.
+2021-10-07 10:39:10,227 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #18000: avgInterval=3485: maxInterval=7204978 ms.
+2021-10-07 10:55:53,760 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #19000: avgInterval=3355: maxInterval=7204978 ms.
+2021-10-07 11:12:37,430 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #20000: avgInterval=3237: maxInterval=7204978 ms.
+2021-10-07 11:29:20,998 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #21000: avgInterval=3131: maxInterval=7204978 ms.
+2021-10-07 11:46:04,632 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #22000: avgInterval=3034: maxInterval=7204978 ms.
+2021-10-07 12:02:48,239 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #23000: avgInterval=2946: maxInterval=7204978 ms.
+2021-10-07 12:19:31,702 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #24000: avgInterval=2865: maxInterval=7204978 ms.
+2021-10-07 12:24:08,713 MDT INFO   log.persistence 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 12:36:15,132 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #25000: avgInterval=2790: maxInterval=7204978 ms.
+2021-10-07 12:52:58,489 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #26000: avgInterval=2721: maxInterval=7204978 ms.
+2021-10-07 13:14:17,266 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #27000: avgInterval=2668: maxInterval=7204978 ms.
+2021-10-07 13:31:01,211 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #28000: avgInterval=2609: maxInterval=7204978 ms.
+2021-10-07 14:17:48,690 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #29000: avgInterval=2615: maxInterval=7204978 ms.
+2021-10-07 14:56:45,537 MDT ERROR  log.persistence 1155 [ebx-rro-4-unique] Error while rolling back before close. Another error while closing connection might occur.	exception=org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-196]
+2021-10-07 14:56:45,802 MDT INFO   log.persistence 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+2021-10-07 14:56:59,339 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:57:01,446 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Starting repository ownership heart beat thread on entry: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Not owner.
+2021-10-07 14:57:10,494 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #10: avgInterval=904: maxInterval=1013 ms.
+2021-10-07 14:57:20,534 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #20: avgInterval=954: maxInterval=1013 ms.
+2021-10-07 14:57:21,206 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 919 ms.
+2021-10-07 14:57:21,714 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-07 14:57:21,803 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-07 14:57:22,133 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 233 ms.
+2021-10-07 14:57:22,633 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 105 ms.
+2021-10-07 14:57:24,472 MDT INFO   log.persistence 1155 [ebx-boot] Committed 4 blocs modified in Java Cache; in 234 ms.
+2021-10-07 14:57:25,178 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 111 ms.
+2021-10-07 14:57:25,600 MDT INFO   log.persistence 1155 [ebx-boot] Committed 5 blocs modified in Java Cache; in 421 ms.
+2021-10-07 14:57:26,650 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 1043 ms.
+2021-10-07 14:57:26,832 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-07 15:00:21,178 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #200: avgInterval=998: maxInterval=1013 ms.
+2021-10-07 15:00:26,308 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 4 blocs modified in Java Cache; in 571 ms.
+2021-10-07 15:00:27,175 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 333 ms.
+2021-10-07 15:00:27,249 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 68 ms.
+2021-10-07 15:00:27,321 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 68 ms.
+2021-10-07 15:00:27,495 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 169 ms.
+2021-10-07 15:00:27,563 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 64 ms.
+2021-10-07 15:03:41,920 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #400: avgInterval=1001: maxInterval=1013 ms.
+2021-10-07 15:07:02,641 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #600: avgInterval=1001: maxInterval=1013 ms.
+2021-10-07 15:10:23,361 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #800: avgInterval=1002: maxInterval=1013 ms.
+2021-10-07 15:13:44,100 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #1000: avgInterval=1002: maxInterval=1013 ms.
+2021-10-07 15:30:28,729 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #2000: avgInterval=1003: maxInterval=1014 ms.
+2021-10-07 15:47:12,247 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #3000: avgInterval=1003: maxInterval=1014 ms.
+2021-10-07 16:03:55,713 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #4000: avgInterval=1003: maxInterval=1014 ms.
+2021-10-07 16:09:58,541 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 2 blocs modified in Java Cache; in 156 ms.
+2021-10-07 16:10:36,402 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-07 16:10:52,120 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 92 ms.
+2021-10-07 16:11:33,655 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-07 16:15:11,682 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-07 16:15:34,712 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-07 16:16:02,789 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-07 16:17:10,582 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 2 blocs modified in Java Cache; in 144 ms.
+2021-10-07 16:17:39,516 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-07 16:18:29,292 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 103 ms.
+2021-10-07 16:19:03,683 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 2 blocs modified in Java Cache; in 192 ms.
+2021-10-07 16:19:21,874 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-07 16:20:03,279 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-07 16:20:39,128 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #5000: avgInterval=1003: maxInterval=1014 ms.
+2021-10-07 16:20:44,211 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 99 ms.
+2021-10-07 17:13:53,720 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #6000: avgInterval=1368: maxInterval=1093116 ms.
+2021-10-07 18:50:38,307 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #7000: avgInterval=2002: maxInterval=1093116 ms.

@@ -1,0 +1,3 @@
+2021-10-07 12:24:08,648 MDT INFO   log.wbp.ebx-root-1.0.main 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 14:56:45,791 MDT INFO   log.wbp.ebx-root-1.0.main 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+2021-10-07 14:57:01,405 MDT INFO   log.wbp.ebx-root-1.0.main 1155 [ebx-boot] **** Server Started (logVersion=1.4) ****

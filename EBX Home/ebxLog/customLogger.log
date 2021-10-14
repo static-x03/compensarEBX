@@ -1,0 +1,77 @@
+2021-10-07 14:56:45,798 INFO  [customLogging] Properties from : - /Users/ananth/Documents/Work/Clients/Compensar/compensar-mdm-workspace/EBX Home/ebx.properties
+2021-10-07 14:56:45,798 INFO  [customLogging] ==================================================================
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.license ==> Z2IUT-6K3BO-4ZC6U-25FYI
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.workflow.activation ==> true
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.home ==> 
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.site.name ==> name@domain.com
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.webapps.directory.externalResources ==> 
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.resource.exclude ==> m:CVS/*:
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.servlet.http.path ==> ebx/
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.servlet.https.path ==> ebx/
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.externalResources.useLocalUrl ==> true
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.externalResources.http.path ==> 
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.externalResources.https.path ==> 
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.schema.location.prefix ==> http://schema.orchestranetworks.com/
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.logs.directory ==> ${ebx.home}/ebxLog
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.repository.directory ==> ${ebx.home}/ebxRepository
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.module.undeployedModules ==> ebx-addon-dama
+2021-10-07 14:56:45,799 INFO  [customLogging] thisfile.checks.intervalInSeconds ==> 1
+2021-10-07 14:56:45,799 INFO  [customLogging] frontEnd.debugMode ==> false
+2021-10-07 14:56:45,799 INFO  [customLogging] backend.mode ==> development
+2021-10-07 14:56:45,799 INFO  [customLogging] templates.checksIfUpdated ==> true
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.d3.mode ==> 
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.d3.delivery.profiles ==> 
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.d3.master.username ==> 
+2021-10-07 14:56:45,799 INFO  [customLogging] ebx.d3.master.password ==> 
+2021-10-07 14:56:45,800 INFO  [customLogging] ebx.d3.slave.username ==> 
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.d3.slave.password ==> 
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.d3.master.url ==> 
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.d3.slave.url ==> 
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.jms.d3.activate ==> false
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.persistence.timeout ==> 10000
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.persistence.table.prefix ==> 
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.persistence.factory ==> h2.server
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.persistence.url ==> jdbc:h2:${ebx.repository.directory}/h2/repository;MVCC=TRUE
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.persistence.user ==> sa
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.persistence.password ==> 
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.manager.import.commit.threshold ==> 100
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.validation.constraints.messages.threshold ==> 0
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.temp.directory ==> ${java.io.tmpdir}
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.history.xmlaudittrail.activated ==> false
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.rootCategory ==> INFO
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.kernel ==> INFO, Console, ebxFile:kernel
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.persistence ==> INFO, ebxFile:persistence
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.setup ==> INFO, Console, ebxFile:kernel
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.validation ==> INFO, Console, ebxFile:validation
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.mail ==> INFO, Console, ebxFile:mail
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.frontEnd ==> INFO, Console, ebxFile:kernel
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.frontEnd.incomingRequest ==> INFO
+2021-10-07 14:56:45,801 INFO  [customLogging] ebx.log4j.category.log.frontEnd.requestHistory ==> INFO
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.frontEnd.UIComponentInput ==> INFO
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.clientSide ==> INFO, Console, ebxFile:client
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.fsm ==> INFO, Console, ebxFile:fsm
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.fsm.dispatch ==> INFO
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.fsm.pageHistory ==> INFO
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.monitoring ==> INFO, ebxFile:monitoring
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.wbp ==> FATAL, Console
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.workflow ==> INFO, Console, ebxFile:workflow
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.d3 ==> INFO, ebxFile:d3
+2021-10-07 14:56:45,802 INFO  [customLogging] ebx.log4j.category.log.dataServices ==> [INFO, ebxFile:dataservices, INFO, ebxFile:dataServices]
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.category.log.request ==> INFO, ebxFile:request
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.category.log.restServices ==> INFO, ebxFile:dataservices
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.category.log.addon.tese ==> INFO
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.category.log.addon.daqa ==> INFO
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.Console.Threshold ==> DEBUG
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.Console ==> com.onwbp.org.apache.log4j.ConsoleAppender
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.Console.layout ==> com.onwbp.org.apache.log4j.PatternLayout
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.Console.layout.ConversionPattern ==> ${log.defaultConversionPattern}
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.kernelMail.Threshold ==> ERROR
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.kernelMail ==> com.onwbp.org.apache.log4j.net.SMTPAppender
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.kernelMail.To ==> name@domain.com
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.kernelMail.From ==> ebx-admin-${ebx.site.name}
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.kernelMail.Subject ==> EBX Error on Site ${ebx.site.name} (VM ${ebx.vm.id})
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.kernelMail.layout ==> com.onwbp.org.apache.log4j.PatternLayout
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.log4j.appender.kernelMail.layout.ConversionPattern ==> **Site ${ebx.site.name} (VM${ebx.vm.id})**%n${log.defaultConversionPattern}
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.hierarchy.dimension.incomplete_ternary_join_link_allowed ==> true
+2021-10-07 14:56:45,804 INFO  [customLogging] ebx.operation.duplicate.compatibilityWithVersionsBefore561 ==> true
+2021-10-07 14:56:45,805 INFO  [customLogging] **** Server Stopped (logVersion=1.4) ****

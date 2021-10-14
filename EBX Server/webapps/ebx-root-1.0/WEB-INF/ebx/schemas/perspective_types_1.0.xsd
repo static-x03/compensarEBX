@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX(R) DMA instance [reference=Perspective] on Mon Jan 05 08:09:08 CET 2015 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="./session_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.perspective" />
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- Root is needed to be able to use current
+	Ajax components by another schema. Without
+	root setup of current schema is not fully performed. -->
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Types definitions -->
+	<xs:complexType name="DocumentationType" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.ui.perspective.internal.PpvUILabelDescriptionBeanEditor" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" maxOccurs="unbounded" minOccurs="0" osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="locale" maxOccurs="1" minOccurs="0" type="osd:locale" />
+						<xs:element name="label" maxOccurs="1" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="description" maxOccurs="1" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.description" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="propertiesType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.properties" />
+			<xs:appinfo>
+				<osd:trigger class="com.orchestranetworks.ui.perspective.internal.PpvPerspectiveInstanceTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="activated" default="false" maxOccurs="1" minOccurs="1" type="xs:boolean" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.properties.activated" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="perspectiveType" maxOccurs="1" minOccurs="1" osd:category="Hidden">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.properties.perspectiveType" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Advanced" />
+						<xs:enumeration value="Simplified" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>			
+			<xs:element name="allowedProfiles" maxOccurs="unbounded" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.properties.allowedProfiles" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.perspective.internal.PpvProfileEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="allowedDevices" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.properties.allowedDevices" />
+					<xs:appinfo>
+						<osd:otherFacets>
+              <osd:constraintEnumeration class="com.orchestranetworks.device.DeviceEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+			<xs:element name="defaultSelection" maxOccurs="1" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.properties.defaultSelection" />
+					<xs:appinfo>
+                                   	<osd:uiBean class="com.orchestranetworks.ui.perspective.internal.PpvUIActionMenuItemForeignKeyBeanEditor"/>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//menuItem</tablePath>
+								<filter>
+									<predicate>./type = 'action'</predicate>
+								</filter>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="menuItemType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.menuItem" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+					<defaultLabel osd:class="com.orchestranetworks.ui.perspective.internal.PpvUIMenuItemLabelRenderer" />
+					<recordForm osd:class="com.orchestranetworks.ui.perspective.internal.PpvUIMenuItemForm" />
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.ui.perspective.internal.PpvMenuItemTableTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.id" />
+					<xs:appinfo>
+						<osd:autoIncrement />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.name"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-zA-Z_][-a-zA-Z0-9_.]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="type" maxOccurs="1" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.type" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration osd:label="Section" value="section">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.type.enumeration.section" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration osd:label="Group" value="group">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.type.enumeration.group" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration osd:label="Action" value="action">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.type.enumeration.action" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="label" maxOccurs="1" minOccurs="0" osd:access="RW" type="DocumentationType">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.label" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parent" maxOccurs="1" minOccurs="0" osd:checkNullInput="true" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.parent" />
+					<xs:appinfo>
+					    <osd:uiBean class="com.orchestranetworks.ui.perspective.internal.PpvUIParentMenuItemBeanEditor"/>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.ui.perspective.internal.PpvMenuItemParentConstraint" />
+							<osd:tableRef>
+								<tablePath>//menuItem</tablePath>
+								<filter osd:class="com.orchestranetworks.ui.perspective.internal.PpvParentMenuItemFilter"/>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="order" maxOccurs="1" minOccurs="0" type="xs:int">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="allowedDevices" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.allowedDevices" />
+					<xs:appinfo>
+						<osd:otherFacets>
+              <osd:constraintEnumeration class="com.orchestranetworks.device.DeviceEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+            </xs:element>
+			<xs:element name="hasTopSeparator" default="true" maxOccurs="1" minOccurs="1" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.hasTopSeparator" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="icon" maxOccurs="1" minOccurs="0" osd:access="RW">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.menuItem.icon" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.ui.perspective.internal.PpvUIIconBeanEditor" />
+							<osd:defaultView>
+								<displayMode>expanded</displayMode>
+							</osd:defaultView>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="type" default="css" maxOccurs="1" minOccurs="1" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.icon.type" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration osd:label="Standard" value="css">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.icon.type.enumeration.css" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration osd:label="Image URL" value="url">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.icon.type.enumeration.url" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="reference" maxOccurs="1" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.icon.reference" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="action" maxOccurs="1" minOccurs="0" osd:access="RW">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.menuItem.action" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.ui.perspective.internal.PpvUIActionBeanEditor" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="type" maxOccurs="1" minOccurs="1" osd:checkNullInput="true" default="S">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.action.type" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration osd:label="Service" value="S">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.type.enumeration.service" />
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration osd:label="Component" value="C">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.type.enumeration.component" />
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="serviceKey" maxOccurs="1" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.action.serviceKey" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.ui.perspective.internal.PpvServiceKeyEnumeration" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="modulePath" maxOccurs="1" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.action.modulePath" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="componentPath" maxOccurs="1" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.menuItem.action.componentPath" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="serviceParameters" maxOccurs="unbounded" minOccurs="0" osd:access="RW">
+							<xs:complexType>
+								<xs:annotation>
+									<xs:documentation osd:id="complexType.menuItem.action.serviceParameters" />
+								</xs:annotation>
+								<xs:sequence>
+									<xs:element name="name" maxOccurs="1" minOccurs="1" type="xs:Name">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.serviceParameters.name" />
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="value" maxOccurs="1" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.serviceParameters.value" />
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="componentParameters" maxOccurs="unbounded" minOccurs="0" osd:access="RW">
+							<xs:complexType>
+								<xs:annotation>
+									<xs:documentation osd:id="complexType.menuItem.action.componentParameters" />
+								</xs:annotation>
+								<xs:sequence>
+									<xs:element name="name" maxOccurs="1" minOccurs="1" type="xs:Name">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.componentParameters.name" />
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="type" maxOccurs="1" minOccurs="1" osd:checkNullInput="true" default="string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.componentParameters.type" />
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration osd:label="String" value="string">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.menuItem.action.componentParameters.type.enumeration.string" />
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration osd:label="Double" value="double">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.menuItem.action.componentParameters.type.enumeration.double" />
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration osd:label="Boolean" value="boolean">
+													<xs:annotation>
+														<xs:documentation osd:id="complexType.menuItem.action.componentParameters.type.enumeration.boolean" />
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="value" maxOccurs="1" minOccurs="0" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.componentParameters.value" />
+											<xs:appinfo>
+												<osd:otherFacets>
+													<osd:constraint class="com.orchestranetworks.ui.perspective.internal.PpvComponentParameterValueConstraint" />
+												</osd:otherFacets>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="componentPermissions" maxOccurs="unbounded" minOccurs="0" osd:access="RW">
+							<xs:complexType>
+								<xs:annotation>
+									<xs:documentation osd:id="complexType.menuItem.action.componentPermissions" />
+								</xs:annotation>
+								<xs:sequence>
+									<xs:element name="profile" maxOccurs="1" minOccurs="1" type="xs:string" osd:checkNullInput="true">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.componentPermissions.profile" />
+											<xs:appinfo>
+												<osd:otherFacets>
+													<osd:constraintEnumeration class="com.orchestranetworks.ui.perspective.internal.PpvProfileEnumeration" />
+												</osd:otherFacets>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="restriction" maxOccurs="1" minOccurs="1" type="xs:boolean">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.menuItem.action.componentPermissions.restriction" />
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectionOnClose" maxOccurs="1" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.menuItem.selectionOnClose" />
+					<xs:appinfo>
+	                                 	<osd:uiBean class="com.orchestranetworks.ui.perspective.internal.PpvUIActionMenuItemForeignKeyBeanEditor"/>
+						<osd:otherFacets>
+								<osd:tableRef>
+								<tablePath>//menuItem</tablePath>
+								<filter>
+									<predicate>(./type = 'action') and (./id != ${../id})</predicate>
+								</filter>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Ajax components -->
+	<xs:complexType name="com.orchestranetworks.ui.perspective.internal.PpvUIActionAjaxComponent">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.ui.perspective.internal.PpvUIActionAjaxComponent" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	
+</xs:schema>
+

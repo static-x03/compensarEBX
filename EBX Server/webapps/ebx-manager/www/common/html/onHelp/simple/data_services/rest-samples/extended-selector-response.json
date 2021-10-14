@@ -1,0 +1,15 @@
+{
+  "rows": [
+    {
+      "content": "F",
+      "label": "feminine"
+    },
+    {
+      "content": "M",
+      "label": "masculine"
+    }
+  ],
+  "pagination": {
+    "nextPage": null
+  }
+}

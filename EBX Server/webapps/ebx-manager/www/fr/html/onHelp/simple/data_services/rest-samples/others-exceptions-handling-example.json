@@ -1,0 +1,15 @@
+{
+  "code": 999,               // JSON Number, HTTP status code
+  "errors": [
+    {
+      "level": "...",        // JSON String, severity level (optional)
+      "rowIndex": 999,       // JSON Number, request row index (optional)
+      "userCode": "...",     // JSON String, user code (optional)
+      "message": "...",      // JSON String, message
+      "blocksCommit": "...", // JSON String, Type of blocking constraints (optional)
+      "details": "...",      // JSON String, URL (optional)
+      "pathInRecord": "...", // JSON String, Path in record (optional)
+      "pathInDataset": "..." // JSON String, Path in dataset (optional)
+    }
+  ]
+}

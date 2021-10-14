@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Reference data domain</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_reference_data_group_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_reference_data_group.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</span></div>
+<h1>
+Reference data domain</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_reference_data_group_top">Function</a><ul class="toc2">
+<li class="toc2"><a href="#ApplicationType680_67">Application type</a></li><li class="toc2"><a href="#PredefinedApplicationType1fa8_68">Predefined Application type</a></li><li class="toc2"><a href="#DataTypeff_69">Data type</a></li><li class="toc2"><a href="#MappingType21b4_70">Mapping type</a></li><li class="toc2"><a href="#PredefinedMappingType1336_71">Predefined Mapping type</a></li><li class="toc2"><a href="#TransformationFunctiona05_72">Transformation function</a></li><li class="toc2"><a href="#PredefinedTransformationFunctionda1_73">Predefined Transformation function</a></li><li class="toc2"><a href="#id1s8">SQL data source</a></li><li class="toc2"><a href="#id1s9">JNDI data source</a></li><li class="toc2"><a href="#ref_reference_data_date_time_pattern">Date time pattern</a></li><li class="toc2"><a href="#ref_reference_data_validator">Validator</a></li><li class="toc2"><a href="#ref_reference_data_style_pref">Style preference</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_reference_data_group_top">
+Function</h2>
+<p>The <strong>Reference data</strong> domain stores values used by other configuration options.</p><h3 id="ApplicationType680_67">
+Application type</h3>
+<p>The current version of the add-on manages the following types: Default SQL, SQL, CSV, Excel, Default XML, XML and EBX.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Code of the application type.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>Name of the application type.</p></td></tr>
+</tbody>
+</table>
+<h3 id="PredefinedApplicationType1fa8_68">
+Predefined Application type</h3>
+<p>The add-on provides these predefined Application types.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Application type</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>EBX</p></td><td valign="top"><p>An EBX type application is referenced through a dataset. Its tables and fields are described through an EBX® path.</p></td></tr>
+<tr>
+<td valign="top"><p>Default XML</p></td><td valign="top"><p>A &#39;Default XML&#39; type application relies on default XML paths automatically created by the add-on when an Export XML process executes.</p></td></tr>
+<tr>
+<td valign="top"><p>XML</p></td><td valign="top"><p>An XML type application relies on user-defined XML path declarations.</p></td></tr>
+<tr>
+<td valign="top"><p>Default SQL</p></td><td valign="top"><p>A &#39;Default SQL&#39; type application relies on default SQL paths automatically created by the add-on when an Export SQL process executes.</p></td></tr>
+<tr>
+<td valign="top">SQL</td><td valign="top">A defined configuration is required. The <strong>Generate models</strong> service can be used to look up SQL channels and generate tables and fields for the configuration. Note, that SQL functionality is currently limited to the Default SQL application type.</td></tr>
+<tr>
+<td valign="top">CSV</td><td valign="top">A CSV application relies on defined paths that correspond to an external CSV file.</td></tr>
+<tr>
+<td valign="top">Excel</td><td valign="top">An Excel application relies on defined paths that correspond to an external Excel file.</td></tr>
+</tbody>
+</table>
+<h3 id="DataTypeff_69">
+Data type</h3>
+<p>This table references all the possible data type of a field.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Code of the data type.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>Name of the data type.</p></td></tr>
+</tbody>
+</table>
+<h3 id="MappingType21b4_70">
+Mapping type</h3>
+<p>The mapping types that the add-on can use.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Code of the mapping type.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>Name of the mapping type.</p></td></tr>
+<tr>
+<td valign="top"><p>Description</p></td><td valign="top"><p>Description of the mapping type.</p></td></tr>
+</tbody>
+</table>
+<h3 id="PredefinedMappingType1336_71">
+Predefined Mapping type</h3>
+<p>The add-on provides this predefined Mapping type.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Mapping type</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Direct</p></td><td valign="top"><p>The mapping between the source and target fields is executed in a direct way: the target value is equal to the source value. There is no aggregation and/or split of fields values.</p></td></tr>
+<tr>
+<td valign="top"><p>Split</p></td><td valign="top"><p>The source field is split into two or more target fields.</p></td></tr>
+<tr>
+<td valign="top"><p>Aggregate</p></td><td valign="top"><p>Two or more source fields are aggregated to one target field.</p></td></tr>
+</tbody>
+</table>
+<h3 id="TransformationFunctiona05_72">
+Transformation function</h3>
+<p>During data mapping, the data value can be transformed before moving to the target application. A portfolio of predefined functions is delivered with the add-on and you can enrich it with bespoke functions. An API allows you to develop these new functions.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Code of the transformation function.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>Name of the transformation function.</p></td></tr>
+<tr>
+<td valign="top"><p>Java class</p></td><td valign="top"><p>Java class of the transformation function.</p></td></tr>
+<tr>
+<td valign="top"><p>Description</p></td><td valign="top"><p>Description of the transformation function.</p></td></tr>
+<tr>
+<td valign="top"><p>Input data</p></td><td valign="top"><p>List of input data used by the transformation function.</p></td></tr>
+<tr>
+<td valign="top"><p>Output data</p></td><td valign="top"><p>List of output data provided by the transformation function.</p></td></tr>
+<tr>
+<td valign="top"><p>Is aggregation</p></td><td valign="top"><p>If set to &#39;Yes&#39;: the transformation function is used for aggregating fields and will be available when the mapping type = &#39;Aggregate&#39;.</p></td></tr>
+<tr>
+<td valign="top"><p>Is bidirectional</p></td><td valign="top"><p>If set to &#39;Yes&#39;: the transformation function can be executed in bidirectional mode. This means that the configuration from T1 to T2 tables is runnable for T2 to T1.</p></td></tr>
+<tr>
+<td valign="top"><p>Parameters </p></td><td valign="top"><p>List of parameters that allow you to configure and adapt the behavior of the transformation function.</p></td></tr>
+</tbody>
+</table>
+<h3 id="PredefinedTransformationFunctionda1_73">
+Predefined Transformation function</h3>
+<p>The add-on provides these predefined Mapping types.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Transformation function</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>No export</p></td><td valign="top"><p>The source field value is not exported.</p></td></tr>
+<tr>
+<td valign="top"><p>No import</p></td><td valign="top"><p>The source field value is not imported.</p></td></tr>
+<tr>
+<td valign="top"><p>No transfer</p></td><td valign="top"><p>The source field value is not transferred.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id1s8">
+SQL data source</h3>
+<p>The <strong>SQL data source</strong> table allows you to associate an EBX® data model with an external SQL database table or view. This allows users to import and export between the two components.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Code of the SQL data source.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>Name of the SQL data source. If you want to use a connection configured in the <strong>JNDI data source</strong> table, enter the value from that table&#39;s <strong>Name</strong> property.</p></td></tr>
+<tr>
+<td valign="top"><p>Data model </p></td><td valign="top"><p>Stores the information schema location of a data model in EBX®. Each data model is configured to a JNDI Data Source of EBX®. </p></td></tr>
+<tr>
+<td valign="top"><p>Table name pattern</p></td><td valign="top"><p>A string that specifies a table naming pattern. When importing or exporting SQL, the add-on will only allow users to select from tables or views whose names match this pattern.</p></td></tr>
+<tr>
+<td valign="top"><p>Schema name pattern </p></td><td valign="top"><p>A string that specifies a schema naming pattern. When importing or exporting SQL, the add-on will only allow users to select from tables or views whose names match this pattern.</p></td></tr>
+<tr>
+<td valign="top"><p>Description</p></td><td valign="top"><p>Description of the SQL data source. </p></td></tr>
+</tbody>
+</table>
+<h3 id="id1s9">
+JNDI data source</h3>
+<p>The <strong>JNDI data source</strong> Specifies the configuration used when establishing a connection to an external database. Creating the connection via this table alleviates the need to create the configuration in your application server.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Code of the JNDI data source.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>Name of the JNDI data source. This name must be unique as you need to use it in the <strong>SQL data source</strong> table to associate this connection information with a data model.</p></td></tr>
+<tr>
+<td valign="top"><p>URL</p></td><td valign="top"><p>A valid database URL in the form: jdbc:subprotocol:subname.</p></td></tr>
+<tr>
+<td valign="top"><p>User</p></td><td valign="top"><p>The database user on whose behalf the connection is being made. These permissions will be granted to each EBX® user that accesses this data source.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_reference_data_date_time_pattern">
+Date time pattern</h3>
+<p>Stores the date or date/time pattern string for the import and export processes.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Pattern</p></td><td valign="top"><p>Stores a string that specifies the date or date/time pattern.</p></td></tr>
+<tr>
+<td valign="top">Mode</td><td valign="top"><p>Stores the mode of date or date/time or time pattern string. Available values are: Default CSV pattern, Default Excel pattern, Default time pattern and Common pattern (use for customer date or datetime).</p></td></tr>
+<tr>
+<td valign="top">Type</td><td valign="top"><p>Stores the type of date or date/time or time pattern string. Available values are: Date pattern, Time pattern and Date time pattern.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_reference_data_validator">
+Validator</h3>
+<p>Stores references to Java classes used to validate imported, or transferred data.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>A unique identifier for this validator.</p></td></tr>
+<tr>
+<td valign="top">Java class</td><td valign="top"><p>This property specifies the Java class used to validate data on import, or transfer.</p></td></tr>
+<tr>
+<td valign="top">Label and description</td><td valign="top">An optional label and description for this validator.</td></tr>
+</tbody>
+</table>
+<h3 id="ref_reference_data_style_pref">
+Style preference</h3>
+<p>This table contains all style configurations such as font type and color.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top"><p>Row position</p></td><td valign="top"><p>Row position of element on which the style is applied.</p></td></tr>
+<tr>
+<td valign="top">Column position</td><td valign="top"><p>Column position of element on which the style is applied.</p></td></tr>
+<tr>
+<td valign="top">Font name</td><td valign="top"><p>Font name of the style.</p></td></tr>
+<tr>
+<td valign="top">Font size</td><td valign="top"><p>Font size of the style.</p></td></tr>
+<tr>
+<td valign="top">Bold style</td><td valign="top"><p>Font weight of the style.</p></td></tr>
+<tr>
+<td valign="top">Italic style</td><td valign="top"><p>Font has italic style if value is set to True.</p></td></tr>
+<tr>
+<td valign="top">Underlined style</td><td valign="top"><p>Text will be underlined if value is set to True.</p></td></tr>
+<tr>
+<td valign="top">Font color</td><td valign="top"><p>Font color of the style.</p></td></tr>
+<tr>
+<td valign="top">Background color</td><td valign="top"><p>Background color of the style.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

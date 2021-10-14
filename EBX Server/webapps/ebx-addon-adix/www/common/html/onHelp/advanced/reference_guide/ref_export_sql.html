@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - SQL export options</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_export_sql_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Export Options</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_export_sql.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Export Options</span></div>
+<h1>
+SQL export options</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_export_sql_top">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#ref_export_sql_config_page">Simulation page</a></li><li class="toc2"><a href="#ref_export_sql_results_page">Results page</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_export_sql_top">
+Overview</h2>
+<p>The sections below describe the pages and options you will be presented with when importing from an external database:</p><ul>
+<li><p>Configuration page—The options here determine basic configuration information including selection of the table, or view to import from.</p></li><li><p>Column mapping—This page allows you to map the columns from tables to those in the database.</p></li><li><p>Results page—This page shows you the import results.</p></li></ul>
+<h3 id="ref_export_sql_config_page">
+Simulation page</h3>
+<p>This screen allows you to select an external database location to export to and select a Java class used to map columns. The options include:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Options</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Import mode</p></td><td valign="top"><ul>
+<li><p><strong>Update or insert</strong>: If a record with the same primary key already exists in the target table, it is updated. Otherwise, a new record is inserted.</p></li><li><p><strong>Replace all content</strong>: All existing data in the table will be deleted before importing the data.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>SQL table or view</p></td><td valign="top"><p>Allows you to choose from external database tables or views based on the data source names which are declared in the configuration.</p></td></tr>
+<tr>
+<td valign="top">Mapping Java class</td><td valign="top"><p>Displays all pre-defined SQL java classes used to map columns.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_export_sql_results_page">
+Results page</h3>
+<p>This page provides an overview of results from an import. From this page you can exit, or start a new import.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

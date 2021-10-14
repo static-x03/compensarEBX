@@ -1,0 +1,1 @@
+TransformationCatalog.add(new NumToWeekdayTransformationDefinition());

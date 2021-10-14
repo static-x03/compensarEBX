@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Supported XPath syntax</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="technical_ref_xpath" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Integration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/xpath_ref.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Integration</span></div>
+<h1>
+Supported XPath syntax</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Example expressions</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Absolute path</a></li><li class="toc2"><a href="#id2s2">Relative paths</a></li><li class="toc2"><a href="#id2s3">Root and descendant paths</a></li><li class="toc2"><a href="#id2s4">Table paths with predicates</a></li><li class="toc2"><a href="#id2s5">Complex predicates</a></li></ul>
+</li><li class="toc1"><a href="#syntaxSpecifications">Syntax specifications for XPath expressions</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Overview</a></li><li class="toc2"><a href="#id3s2">Predicate specification</a></li><li class="toc2"><a href="#tableRef">Extraction of foreign keys</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>The XPath notation used in TIBCO EBX&reg; must conform to the <em>abbreviated syntax</em> of the <a href="https://www.w3.org/TR/xpath-10">XML Path Language (XPath) Version 1.0</a> standard, with certain restrictions. This document details the abbreviated syntax that is supported.</p><h2 id="id2">
+Example expressions</h2>
+<p>The general XPath expression is:</p><blockquote><p><em>path[predicate]</em></p></blockquote><h3 id="id2s1">
+Absolute path</h3>
+<blockquote><p><code>/library/books/</code></p></blockquote><h3 id="id2s2">
+Relative paths</h3>
+<blockquote><p><code>./Author</code></p><p><code>../Title</code></p></blockquote><h3 id="id2s3">
+Root and descendant paths</h3>
+<blockquote><p><code>//books</code></p></blockquote><h3 id="id2s4">
+Table paths with predicates</h3>
+<blockquote><p><code>../../books/[author_id = 0101 and (publisher = &#39;harmattan&#39;)]</code></p><p><code>/library/books/[not(publisher = &#39;dumesnil&#39;)]</code></p></blockquote><h3 id="id2s5">
+Complex predicates</h3>
+<blockquote><p><code>starts-with(col3,&#39;xxx&#39;) and ends-with(col3,&#39;yyy&#39;) and osd:is-not-null(./col3))</code></p><p><code>contains(col3 ,&#39;xxx&#39;) and ( not(col1=100) and date-greater-than(col2,&#39;2007-12-30&#39;) )</code></p></blockquote><h2 id="syntaxSpecifications">
+Syntax specifications for XPath expressions</h2>
+<h3 id="id3s1">
+Overview</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Expression</strong></p></th><th><p><strong>Format</strong></p></th><th><p><strong>Example</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>XPath expression</p></td><td><p><em>&lt;container path&gt;</em>[<em>predicate</em>]</p></td><td><p><code>/books[title=&#39;xxx&#39;]</code></p></td></tr>
+<tr>
+<td><p><em>&lt;container path&gt;</em></p></td><td><p><em>&lt;absolute path&gt;</em> or <em>&lt;relative path&gt;</em></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;absolute path&gt;</em></p></td><td><p><code>/a/b</code> or <code>//b</code></p></td><td><p><code>//books</code></p></td></tr>
+<tr>
+<td><p><em>&lt;relative path&gt;</em></p></td><td><p><code>../../b</code>, <code>./b</code> or <code>b</code></p></td><td><p><code>../../books</code></p></td></tr>
+</tbody>
+</table>
+<h3 id="id3s2">
+Predicate specification</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Expression</strong></p></th><th><p><strong>Format</strong></p></th><th><p><strong>Notes/Example</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><em>&lt;predicate&gt; </em></p></td><td><p>Example: A and (B or not(C)) A,B,C: <em>&lt;atomic expression&gt;</em></p></td><td><p> Composition of: logical operators parentheses, not() and atomic expressions. </p></td></tr>
+<tr>
+<td><p><em>&lt;atomic expression&gt;</em></p></td><td><p><em>&lt;path&gt;&lt;comparator&gt;&lt;criterion&gt;</em> or method(<em>&lt;path&gt;</em>,<em>&lt;criterion&gt;</em>)</p></td><td><p><code>royalty = 24.5</code></p><p><code> starts-with(title, &#39;Johnat&#39;)</code></p><p><code>booleanValue = true</code></p></td></tr>
+<tr>
+<td><p><em>&lt;path&gt;</em></p></td><td><p><em>&lt;relative path&gt; or osd:label(&lt;relative path&gt;)</em></p></td><td><p>Relative to the table that contains it:</p><p><code>../authorstitle</code></p></td></tr>
+<tr>
+<td><p><em>&lt;comparator&gt;</em></p></td><td><p><em>&lt;boolean comparator&gt;</em>, <em>&lt;numeric comparator&gt;</em> or <em>&lt;string comparator&gt;</em></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;boolean comparator&gt;</em></p></td><td><p><code>=</code> or <code>!=</code></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;numeric comparator&gt;</em></p></td><td><p><code>=</code> ,&nbsp;<code>!=</code> ,&nbsp;<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, or <code>&gt;=</code></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;string comparator&gt;</em></p></td><td><p><code>=</code></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;method&gt;</em></p></td><td><p><em>&lt;date method&gt;</em>, <em>&lt;string method&gt;</em>, <code>osd:is-null</code> method or <code>osd:is-not-null</code> method</p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;date, time &amp; dateTime method&gt;</em></p></td><td><p><code>date-less-than</code>, <code>date-equal</code> or <code>date-greater-than</code></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;string method&gt;</em></p></td><td><p><code>matches</code>, <code>starts-with</code>, <code>ends-with</code>, <code>contains</code>, <code>osd:is-empty</code>, <code>osd:is-not-empty</code>, <code>osd:is-empty-or-nil</code>, <code>osd:is-neither-empty-nor-nil</code>, <code>osd:is-equal-case-insensitive</code>, <code>osd:starts-with-case-insensitive</code>, <code>osd:ends-with-case-insensitive</code>, <code>osd:contains-case-insensitive</code>, <code>osd:contains-record-label</code></p>, or <code>osd:search</code></td><td></td></tr>
+<tr>
+<td><p><em>&lt;criterion&gt;</em></p></td><td><p><em>&lt;boolean criterion&gt;</em>, <em>&lt;numeric criterion&gt;</em>, <em>&lt;string criterion&gt;</em>, <em>&lt;date criterion&gt;</em>, <em>&lt;time criterion&gt;</em>, or <em>&lt;dateTime criterion&gt;</em></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;boolean criterion&gt;</em></p></td><td><p><code>true</code> ,&nbsp;<code>false</code></p></td><td></td></tr>
+<tr>
+<td><p><em>&lt;numeric criterion&gt;</em></p></td><td><p>An integer or a decimal</p></td><td><p><code>-4.6</code></p></td></tr>
+<tr>
+<td><p><em>&lt;string criterion&gt;</em></p></td><td><p>Quoted character string</p></td><td><p><code>&#39;azerty&#39;</code></p></td></tr>
+<tr>
+<td><p><em>&lt;date criterion&gt;</em></p></td><td><p>Quoted and formatted as &#39;yyyy-MM-dd&#39;</p></td><td><p><code>&#39;2007-12-31&#39;</code></p></td></tr>
+<tr>
+<td><p><em>&lt;time criterion&gt;</em></p></td><td><p>Quoted and formatted as &#39;HH:mm:ss&#39; or &#39;HH:mm:ss.SSS&#39;</p></td><td><p><code>&#39;11:55:00&#39;</code></p></td></tr>
+<tr>
+<td><p><em>&lt;dateTime criterion&gt;</em></p></td><td><p>Quoted and formatted as &#39;yyyy-MM-ddTHH:mm:ss&#39; or &#39;yyyy-MM-ddTHH:mm:ss.SSS&#39;</p></td><td><p><code>&#39;2007-12-31T11:55:00&#39;</code></p></td></tr>
+</tbody>
+</table>
+<h4 id="formula">
+XPath 1.0 formula</h4>
+<p>It is possible to use an XPath 1.0 formula in the criterion value part of an atomic predicate expression (right-hand side).</p><p>For example, instead of <code>[./a=3]</code>, you may use the expression <code>[./a=(floor(./d)+ 2.0)]</code>.</p><h4 id="label">
+Predicate on label</h4>
+<p>The <code>osd:label()</code> function can be applied to the path portion of the atomic predicate, in order to resolve the predicate on the label instead of the value. In this case, only string operators and string criteria can be used, i.e. <code>ends-with(osd:label(./price),&#39;99&#39;)</code>.</p><p>A predicate on label is localized, so the criterion must be expressed in the same locale as the predicate-filtered request. For example: <code>request.setLocale(Locale.FRENCH); request.setXPathFilter(&quot;osd:label(./delivery_date)=&#39;30/12/2014&#39;&quot;);</code></p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>It is forbidden to use the <code>osd:label</code> function if the right part of the predicate is a contextual value.</p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the <code>osd:label</code> function is used in a data model, for example on a selection or in the filter predicate of a table reference node, the default locale of the data model (as defined in its module declaration) must be used for the criterion format (even though this is generally not recommended).</p></div>
+<h4>
+Contextual values</h4>
+<p>For predicates that are relative to a selected node, the criterion value (that is, the right-hand side of the predicate) can be replaced with a contextual path using the syntax <code>${&lt;relative-path&gt;}</code> where <em>&lt;relative-path&gt;</em> is the location of the element relative to the selected node.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>When calling a method, the criterion is the second parameter, and the first parameter cannot be a relative value.</p></div>
+<h4>
+Aggregated lists</h4>
+<p>For predicates on aggregated lists, the predicate returns <code>true</code> regardless of the comparator if one of the list elements verifies the predicate.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Special attention must be paid to the comparator <code>!=</code>. For example, for an aggregated list, <code>./list != &#39;a&#39;</code> is not the same as <code>not(./list = &#39;a&#39;)</code>. Where the list contains the elements <code>(e1,e2,..)</code>, the first predicate is equivalent to <code>e1 != &#39;a&#39; or e2 != &#39;a&#39; ...</code>, while the second is equivalent to <code>e1 != &#39;a&#39; and e2 != &#39;a&#39; ...</code>.</p></div>
+<h4>
+&#39;Null&#39; values</h4>
+<p>Null values must be explicitly treated in a predicate using the operators <code>osd:is-null</code> and <code>osd:is-not-null</code>.</p><p>For example, <code>/root/products[./price&lt;100]</code> or <code>/root/products[./price!=100]</code> will not return any products whose prices are not set (<code>null</code>). For the latter case to return unset values as well, the predicate must instead be: <code>/root/products[./price!=100 or osd:is-null(./price)]</code>.</p><h4>
+How to manage single and double quotes in literal expressions</h4>
+<p>By default, a literal expression is delimited by single quotes (<code>&#39;</code>). If the literal expression contains single quotes and no double quotes, the expression must be delimited by double quotes (<code>&quot;</code>). If the literal expression contains both single and double quotes, the single quotes must be doubled.</p><p><strong>Examples of using <code>encodeLiteralStringWithDelimiters</code></strong></p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Value of Literal Expression</p></th><th valign="top"><p><strong>Result of this method</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>Coeur</code></p></td><td valign="top"><code>&#39;Coeur&#39;</code></td></tr>
+<tr>
+<td valign="top"><p><code>Coeur d&#39;Alene</code></p></td><td valign="top"><code>&quot;Coeur d&#39;Alene&quot;</code></td></tr>
+<tr>
+<td valign="top"><p><code>He said: &quot;They live in Coeur d&#39;Alene&quot;.</code></p></td><td valign="top"><code>&#39;He said: &quot;They live in Coeur d&#39;&#39;Alene&quot;.&#39;</code></td></tr>
+</tbody>
+</table>
+<h3 id="tableRef">
+Extraction of foreign keys</h3>
+<p>The standard XPath syntax has been extended so as to extract the value of any targeted primary key field.</p><h4>
+Example</h4>
+<p>If the table <code>/root/tableA</code> has an <code>osd:tableRef</code> field named &#39;fkB&#39; whose target is <code>/root/tableB</code> and the primary key of <code>tableB</code> has two fields, <code>id</code> of type <code>xs:int</code> and <code>date</code> of type <code>xs:date</code>, then the following expressions would be valid:</p><ul>
+<li><p><code>/root/tableA[ fkB = &#39;123|2008-01-21&#39; ]</code>, where the string &quot;123|2008-01-21&quot; is a representation of the entire primary key value.</p></li><li><p><code>/root/tableA[ fkB/id = 123 and date-equal(fkB/date, &#39;2008-01-21&#39;) ]</code>, where this predicate is a more efficient equivalent to the one in the previous example.</p></li><li><p><code>/root/tableA[ fkB/id &gt;= 123 ]</code>, where any number operator could be used, as the targeted primary key field is of type <code>xs:int</code>.</p></li><li><p><code>/root/tableA[ date-greater-than( ./fkB/date,&nbsp;&#39;2007-01-01&#39; ) ]</code>, where any date operator could be used, as the targeted primary key field is of type <code>xs:date</code>;</p></li><li><p><code>/root/tableA[ fkB = &quot;&quot; ]</code> is not valid as the targeted primary key has two columns.</p></li><li><p><code>/root/tableA[ osd:is-null(fkB) ]</code> checks if a foreign key is <code>null</code> (not defined).</p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Integration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

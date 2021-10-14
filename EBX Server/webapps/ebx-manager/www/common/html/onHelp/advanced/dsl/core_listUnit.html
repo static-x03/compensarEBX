@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Unit core.list</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dsl.core.listUnit" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/core_listUnit.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+<h1>
+Unit core.list</h1>
+<p>Script unit that provides methods to create and update lists.</p><table>
+<thead>
+<tr>
+<th align="left" valign="top">Methods</th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><a href="#functionofltItemTypegtvalueItemTypevalueItemType___listltItemTypegt">function of&lt;ItemType&gt;(value: ItemType [, value: ItemType]...): list&lt;ItemType&gt;</a></p><p>Creates a list with the elements passed as parameters.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionisEmptyvaluelistltItemTypegtboolean">function isEmpty(value: list&lt;ItemType&gt;): boolean</a></p><p>Returns <code>true</code> if value is null or a zero size list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functioncontainsvalueslistltItemTypegtelementItemTypeboolean">function contains(values: list&lt;ItemType&gt;, element: ItemType): boolean</a></p><p>Returns <code>true</code> if <code>values</code> list contains an <code>element</code>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functioncontainsAllvalueslistltItemTypegtelementItemTypeboolean">function containsAll(values: list&lt;ItemType&gt;, element: ItemType): boolean</a></p><p>Returns <code>true</code> if <code>values</code> list contains all <code>elements</code>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#procedureaddvalueslistltItemTypegtelementItemType">procedure add(values: list&lt;ItemType&gt;, element: ItemType)</a></p><p>Add an <code>element</code> to <code>values</code> list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionremovevalueslistltItemTypegtelementItemTypeboolean">function remove(values: list&lt;ItemType&gt;, element: ItemType):&nbsp;boolean</a></p><p>Remove the first occurrence of an <code>element</code> from <code>values</code> list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#procedureaddAllvalueslistltItemTypegtelementslistltItemTypegtboolean">procedure addAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</a></p><p>Add all <code>elements</code> to <code>values</code> list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionremoveAllvalueslistltItemTypegtelementslistltItemTypegtboolean">function removeAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</a></p><p>Remove all <code>elements</code> from <code>values</code> list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionretainAllvalueslistltItemTypegtelementslistltItemTypegtboolean">function retainAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</a></p><p>Retains only the elements in the <code>values</code> list that are contained in the <code>elements</code>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionindexOfvalueslistltItemTypegtelementItemType">function indexOf(values: list&lt;ItemType&gt;, element: ItemType)</a></p><p>Return the index of the first occurrence of <code>element</code> in <code>values</code> list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionlastIndexOfvalueslistltItemTypegtelementItemType">function lastIndexOf(values: list&lt;ItemType&gt;, element: ItemType)</a></p><p>Return the index of the last occurrence of <code>element</code> in <code>values</code> list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionsubListltItemTypegtvalueslistltItemTypegtstartIndexdecimalendIndexdecimallistltItemTypegt">function subList&lt;ItemType&gt;(values: list&lt;ItemType&gt;, startIndex: decimal, endIndex: decimal): list&lt;ItemType&gt;</a></p><p>Returns a new list that contains a subsequence of elements from <code>values</code> list.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#proceduresortvalueslistltItemTypegt">procedure sort(values: list&lt;ItemType&gt;)</a></p><p>Sorts the specified <code>values</code> list into ascending order, according to the natural ordering of its elements.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#procedurereverseSortvalueslistltItemTypegt">procedure reverseSort(values: list&lt;ItemType&gt;)</a></p><p>Sorts the specified <code>values</code> list into descending order, according to the natural ordering of its elements.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#procedurereversevalueslistltItemTypegt">procedure reverse(values: list&lt;ItemType&gt;)</a></p><p>Reverses the order of elements in <code>values</code>.</p></td></tr>
+</tbody>
+</table>
+<p></p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#functionofltItemTypegtvalueItemTypevalueItemType___listltItemTypegt">function of&lt;ItemType&gt;(value: ItemType [, value: ItemType]...): list&lt;ItemType&gt;</a></li><li class="toc1"><a href="#functionisEmptyvaluelistltItemTypegtboolean">function isEmpty(value: list&lt;ItemType&gt;): boolean</a></li><li class="toc1"><a href="#functioncontainsvalueslistltItemTypegtelementItemTypeboolean">function contains(values: list&lt;ItemType&gt;, element: ItemType): boolean</a></li><li class="toc1"><a href="#functioncontainsAllvalueslistltItemTypegtelementItemTypeboolean">function containsAll(values: list&lt;ItemType&gt;, element: ItemType): boolean</a></li><li class="toc1"><a href="#procedureaddvalueslistltItemTypegtelementItemType">procedure add(values: list&lt;ItemType&gt;, element: ItemType)</a></li><li class="toc1"><a href="#functionremovevalueslistltItemTypegtelementItemTypeboolean">function remove(values: list&lt;ItemType&gt;, element: ItemType):&nbsp;boolean</a></li><li class="toc1"><a href="#procedureaddAllvalueslistltItemTypegtelementslistltItemTypegtboolean">procedure addAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</a></li><li class="toc1"><a href="#functionremoveAllvalueslistltItemTypegtelementslistltItemTypegtboolean">function removeAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</a></li><li class="toc1"><a href="#functionretainAllvalueslistltItemTypegtelementslistltItemTypegtboolean">function retainAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</a></li><li class="toc1"><a href="#functionindexOfvalueslistltItemTypegtelementItemType">function indexOf(values: list&lt;ItemType&gt;, element: ItemType)</a></li><li class="toc1"><a href="#functionlastIndexOfvalueslistltItemTypegtelementItemType">function lastIndexOf(values: list&lt;ItemType&gt;, element: ItemType)</a></li><li class="toc1"><a href="#functionsubListltItemTypegtvalueslistltItemTypegtstartIndexdecimalendIndexdecimallistltItemTypegt">function subList&lt;ItemType&gt;(values: list&lt;ItemType&gt;, startIndex: decimal, endIndex: decimal): list&lt;ItemType&gt;</a></li><li class="toc1"><a href="#proceduresortvalueslistltItemTypegt">procedure sort(values: list&lt;ItemType&gt;)</a></li><li class="toc1"><a href="#procedurereverseSortvalueslistltItemTypegt">procedure reverseSort(values: list&lt;ItemType&gt;)</a></li><li class="toc1"><a href="#procedurereversevalueslistltItemTypegt">procedure reverse(values: list&lt;ItemType&gt;)</a></li></ul>
+</div>
+<h2 id="functionofltItemTypegtvalueItemTypevalueItemType___listltItemTypegt">
+function of&lt;ItemType&gt;(value: ItemType [, value: ItemType]...): list&lt;ItemType&gt;</h2>
+<p>Creates a list with the elements passed as parameters. All elements must be of same type. </p><p></p><p> Example:</p><p></p><pre class="brush: text; toolbar: false; gutter: false;">
+
+uses core.list as list;
+
+function getCities(): list&lt;string&gt;
+begin
+  return list.of('Paris', 'Bruxelles', 'Berlin');
+end
+</pre>
+<p></p><p><strong>Function Types :</strong></p><p>ItemType: the type of an item of the returned list. Is optional if at least one value is specified.</p><p><strong>Parameters :</strong></p><p>value: an item to add to the list. All items must be of same type.</p><p><strong>Return :</strong></p><p>the new list. It is updatable.</p><h2 id="functionisEmptyvaluelistltItemTypegtboolean">
+function isEmpty(value: list&lt;ItemType&gt;): boolean</h2>
+<p>Returns <code>true</code> if value is null or a zero size list.</p><p><strong>Parameters :</strong></p><p>values: an input list.</p><p><strong>Return :</strong></p><p><code>true</code> if <code>value</code> is null or a zero size list, or else <code>false</code>. Never returns null.</p><h2 id="functioncontainsvalueslistltItemTypegtelementItemTypeboolean">
+function contains(values: list&lt;ItemType&gt;, element: ItemType): boolean</h2>
+<p>Returns <code>true</code> if <code>values</code> list contains an <code>element</code>.</p><p><strong>Parameters :</strong></p><p>values: the input list. Contents must be of the same kind then <code>element</code>.</p><p>element: the input element to look for. Must be of the same kind than <code>values</code>&gt; contents.</p><p><strong>Return :</strong></p><p><code>true</code> if <code>value</code> contains the <code>element</code> else <code>false</code>.</p><p> Returns <code>null</code> if values is null.</p><h2 id="functioncontainsAllvalueslistltItemTypegtelementItemTypeboolean">
+function containsAll(values: list&lt;ItemType&gt;, element: ItemType): boolean</h2>
+<p>Returns <code>true</code> if <code>values</code> list contains all <code>elements</code>.</p><p><strong>Parameters :</strong></p><p>values: the input list. Contents must be of the same kind then <code>element</code>.</p><p>elements: the input elements to look for. Must be of the same kind than <code>values</code>&gt;.</p><p><strong>Return :</strong></p><p><code>true</code> if <code>value</code> contains all <code>elements</code> else <code>false</code>.</p><p> Returns <code>null</code> if any parameters is null.</p><h2 id="procedureaddvalueslistltItemTypegtelementItemType">
+procedure add(values: list&lt;ItemType&gt;, element: ItemType)</h2>
+<p>Add an <code>element</code> to <code>values</code> list.</p><p><strong>Parameters :</strong></p><p>values: the input list.</p><p>element: the input element to add. Its type must be compatible with the type of the list.</p><h2 id="functionremovevalueslistltItemTypegtelementItemTypeboolean">
+function remove(values: list&lt;ItemType&gt;, element: ItemType):&nbsp;boolean</h2>
+<p>Remove the first occurrence of an <code>element</code> from <code>values</code> list.</p><p><strong>Parameters :</strong></p><p>values: the input list.</p><p>element: the input element to add. Its type must be compatible with the type of the list.</p><p><strong>Return :</strong></p><p><code>true</code> if <code>values</code> list contents was modified by this call else <code>false</code>.</p><h2 id="procedureaddAllvalueslistltItemTypegtelementslistltItemTypegtboolean">
+procedure addAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</h2>
+<p>Add all <code>elements</code> to <code>values</code> list.</p><p><strong>Parameters :</strong></p><p>values: the input list.</p><p>elements: the elements to add. The element type must be compatible with the type of the list.</p><p><strong>Return :</strong></p><p><code>true</code> after <code>values</code> list contents was modified by this call else <code>false</code>.</p><h2 id="functionremoveAllvalueslistltItemTypegtelementslistltItemTypegtboolean">
+function removeAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</h2>
+<p>Remove all <code>elements</code> from <code>values</code> list.</p><p><strong>Parameters :</strong></p><p>values: the input list.</p><p>elements: the elements to remove. The element type must be compatible with the type of the list.</p><p><strong>Return :</strong></p><p><code>true</code> if <code>values</code> list contents was modified by this call else <code>false</code>.</p><h2 id="functionretainAllvalueslistltItemTypegtelementslistltItemTypegtboolean">
+function retainAll(values: list&lt;ItemType&gt;, elements: list&lt;ItemType&gt;):&nbsp;boolean</h2>
+<p>Retains only the elements in the <code>values</code> list that are contained in the <code>elements</code>. In other words, removes from the <code>values</code> list all of its elements that are not contained in the <code>elements</code>.</p><p><strong>Parameters :</strong></p><p>values: the input list.</p><p>elements: the elements to retain. The element type must be compatible with the type of the list.</p><p><strong>Return :</strong></p><p><code>true</code> if <code>values</code> list contents was modified by this call else <code>false</code>.</p><h2 id="functionindexOfvalueslistltItemTypegtelementItemType">
+function indexOf(values: list&lt;ItemType&gt;, element: ItemType)</h2>
+<p>Return the index of the first occurrence of <code>element</code> in <code>values</code> list.</p><p><strong>Parameters :</strong></p><p>values: the input list.</p><p>element: the input element to look for. Its type must be compatible with the type of the list.</p><p><strong>Return :</strong></p><p>the index of the first occurrence of <code>element</code> in <code>values</code> list or <code>null</code> if not found.</p><h2 id="functionlastIndexOfvalueslistltItemTypegtelementItemType">
+function lastIndexOf(values: list&lt;ItemType&gt;, element: ItemType)</h2>
+<p>Return the index of the last occurrence of <code>element</code> in <code>values</code> list.</p><p><strong>Parameters :</strong></p><p>values: the input list.</p><p>element: the input element to look for.</p><p><strong>Return :</strong></p><p>the index of the last occurrence of <code>element</code> in <code>values</code> list or <code>null</code> if not found.</p><h2 id="functionsubListltItemTypegtvalueslistltItemTypegtstartIndexdecimalendIndexdecimallistltItemTypegt">
+function subList&lt;ItemType&gt;(values: list&lt;ItemType&gt;, startIndex: decimal, endIndex: decimal): list&lt;ItemType&gt;</h2>
+<p>Returns a new list that contains a subsequence of elements from <code>values</code> list.</p><p> The subList start from the specified startIndex and extends to the endIndex of the input list.</p><p><strong>Function Types :</strong></p><p>ItemType: the type of an item of the returned list. It is optional.</p><p><strong>Parameters :</strong></p><p>values: the input list</p><p>startIndex: the input start index. Must be a positive integer or zero.</p><p>endIndex: the input end index. Must be a positive integer or zero.</p><p><strong>Return :</strong></p><p>the new list or null if any parameter is null.</p><h2 id="proceduresortvalueslistltItemTypegt">
+procedure sort(values: list&lt;ItemType&gt;)</h2>
+<p>Sorts the specified <code>values</code> list into ascending order, according to the natural ordering of its elements. Does nothing if <code>values</code> is null or a zero size list.</p><p><strong>Parameters :</strong></p><p>values: the input list to sort</p><h2 id="procedurereverseSortvalueslistltItemTypegt">
+procedure reverseSort(values: list&lt;ItemType&gt;)</h2>
+<p>Sorts the specified <code>values</code> list into descending order, according to the natural ordering of its elements. Does nothing if <code>values</code> is null or a zero size list.</p><p><strong>Parameters :</strong></p><p>values: the input list to sort.</p><h2 id="procedurereversevalueslistltItemTypegt">
+procedure reverse(values: list&lt;ItemType&gt;)</h2>
+<p>Reverses the order of elements in <code>values</code>. Does nothing if <code>values</code> is null or a zero size list.</p><p><strong>Parameters :</strong></p><p>values: the input list to reverse.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

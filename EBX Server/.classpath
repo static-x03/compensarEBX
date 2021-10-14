@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Tomcat"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/adminpermissionsutil.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/ebx.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/EBX%20Server/webapps/ebx-manager.war!/www/common/html/onHelp/advanced/Java_API"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="shared/lib/ebx-addons.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/EBX%20Server/shared/lib/ebx-addon-javadoc.zip!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="shared/lib/activation.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/h2-1.4.196.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/log4j-1.2.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-exec-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-lang3-3.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-logging.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-validator-1.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-collections4-4.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-compress-1.19.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/dom4j-2.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/poi-4.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/poi-ooxml-4.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/poi-ooxml-schemas-4.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/xmlbeans-3.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/esapi-2.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/joda-time-2.9.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/opensaml-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/openws-1.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/xmlsec-2.0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/xmltooling-1.4.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/javax.jms-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/slf4j-api-1.7.21.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/slf4j-simple-1.7.22.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-beanutils-1.9.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-configuration2-2.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-cli-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-codec-1.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/httpclient-4.5.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/httpcore-4.4.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/commons-text-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/xml-apis-1.4.01.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/javax.mail-1.5.6.jar"/>
+	<classpathentry kind="lib" path="shared/lib/javax.mail.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/ebx-lz4.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/json-simple-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/json.jar"/>
+	<classpathentry exported="true" kind="lib" path="shared/lib/xml-apis-1.4.01-sources.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

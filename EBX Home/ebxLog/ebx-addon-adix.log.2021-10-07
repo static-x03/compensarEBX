@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+EBX(R) Data Exchange Add-on - version 3.0.2 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------
+2021-10-07 12:24:08,716 MDT INFO   log.wbp.ebx-addon-adix.main 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 14:56:45,804 MDT INFO   log.wbp.ebx-addon-adix.main 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+------------------------------------------------------------------------
+EBX(R) Data Exchange Add-on - version 3.0.2 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------
+2021-10-07 14:57:06,222 MDT INFO   log.wbp.ebx-addon-adix.main 1155 [ebx-boot] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:57:06,223 MDT INFO   log.wbp.ebx-addon-adix.main 1155 [ebx-boot] **** EBX(R) Data Exchange Add-on - version 3.0.2 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------
+EBX(R) Data Exchange Add-on - version 3.0.2 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------

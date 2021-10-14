@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Unit core.string</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dsl.core.stringUnit" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/core_stringUnit.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+<h1>
+Unit core.string</h1>
+<p>Script unit that provides string manipulation functions.</p><table>
+<thead>
+<tr>
+<th align="left" valign="top">Methods</th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><a href="#functionisEmptyvaluestringboolean">function isEmpty(value: string): boolean</a></p><p>Returns <code>true</code> if value is null or a zero length string.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionrightvaluestringindexdecimalstring">function right(value: string, index: decimal): string</a></p><p>Returns a new string that contains the right characters from <code>value</code> string.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionsubstringvaluestringstartIndexdecimalendIndexdecimalstring">function substring(value: string, startIndex: decimal, endIndex: decimal): string</a></p><p>Returns a new string that contains a subsequence of characters from <code>value</code> string.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoUpperCasevaluestringstring">function toUpperCase(value: string): string</a></p><p>Returns a new string with all characters from input <code>value</code> string to upper case.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoLowerCasevaluestringstring">function toLowerCase(value: string): string</a></p><p>Returns a new string with all characters from input <code>value</code> string to lower case.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionreplaceAllvaluestringpatternstringreplacementstringstring">function replaceAll(value: string, pattern: string, replacement: string): string</a></p><p>Returns a new string with all <code>pattern</code> occurrences in input <code>value</code> string replaced with <code>replacement</code>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionreplaceFirstvaluestringpatternstringreplacementstringstring">function replaceFirst(value: string, pattern: string, replacement: string): string</a></p><p>Returns a new string with the first pattern occurrence in input <code>value</code> string replaced with replacement.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionstartsWithvaluestringprefixstringboolean">function startsWith(value: string, prefix: string): boolean</a></p><p>Returns <code>true</code> if a <code>value</code> string starts with a prefix.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionendsWithvaluestringsuffixstringboolean">function endsWith(value: string, suffix: string): boolean</a></p><p>Returns <code>true</code> if a <code>value</code> string ends with a suffix.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functioncontainsvaluestringsearchStringstringboolean">function contains(value: string, searchString: string): boolean</a></p><p>Returns <code>true</code> if a <code>value</code> string contains a <code>searchString</code>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionjoinseparatorstringsubstringstring___string">function join(separator: string [, substring: string]...): string</a></p><p>Returns a new string compose of all input substrings separated by as separator string.</p></td></tr>
+</tbody>
+</table>
+<p></p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#functionisEmptyvaluestringboolean">function isEmpty(value: string): boolean</a></li><li class="toc1"><a href="#functionrightvaluestringindexdecimalstring">function right(value: string, index: decimal): string</a></li><li class="toc1"><a href="#functionsubstringvaluestringstartIndexdecimalendIndexdecimalstring">function substring(value: string, startIndex: decimal, endIndex: decimal): string</a></li><li class="toc1"><a href="#functiontoUpperCasevaluestringstring">function toUpperCase(value: string): string</a></li><li class="toc1"><a href="#functiontoLowerCasevaluestringstring">function toLowerCase(value: string): string</a></li><li class="toc1"><a href="#functionreplaceAllvaluestringpatternstringreplacementstringstring">function replaceAll(value: string, pattern: string, replacement: string): string</a></li><li class="toc1"><a href="#functionreplaceFirstvaluestringpatternstringreplacementstringstring">function replaceFirst(value: string, pattern: string, replacement: string): string</a></li><li class="toc1"><a href="#functionstartsWithvaluestringprefixstringboolean">function startsWith(value: string, prefix: string): boolean</a></li><li class="toc1"><a href="#functionendsWithvaluestringsuffixstringboolean">function endsWith(value: string, suffix: string): boolean</a></li><li class="toc1"><a href="#functioncontainsvaluestringsearchStringstringboolean">function contains(value: string, searchString: string): boolean</a></li><li class="toc1"><a href="#functionjoinseparatorstringsubstringstring___string">function join(separator: string [, substring: string]...): string</a></li></ul>
+</div>
+<h2 id="functionisEmptyvaluestringboolean">
+function isEmpty(value: string): boolean</h2>
+<p>Returns <code>true</code> if value is null or a zero length string.</p><p><strong>Parameters :</strong></p><p>value: a string value.</p><p><strong>Return :</strong></p><p><code>true</code> if <code>value</code> is null or a zero length string, or else <code>false</code>. Never returns null.</p><h2 id="functionrightvaluestringindexdecimalstring">
+function right(value: string, index: decimal): string</h2>
+<p>Returns a new string that contains the right characters from <code>value</code> string.</p><p> The staring starts from the specified index and extends to the end of the string.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p>index: the input start index. Must be a integer greater or equal to zero and less than the length of the string.</p><p><strong>Return :</strong></p><p>the new string or null if any parameter is null.</p><h2 id="functionsubstringvaluestringstartIndexdecimalendIndexdecimalstring">
+function substring(value: string, startIndex: decimal, endIndex: decimal): string</h2>
+<p>Returns a new string that contains a subsequence of characters from <code>value</code> string.</p><p> The sub string start from the specified startIndex and extends to the endIndex of the input string.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p>startIndex: the input start index. Must be a integer greater or equal to zero and less than the length of the string.</p><p>endIndex: the input end index. Must be a integer greater or equal to startIndex and less than the length of the string.</p><p><strong>Return :</strong></p><p>the new string or null if any parameter is null.</p><h2 id="functiontoUpperCasevaluestringstring">
+function toUpperCase(value: string): string</h2>
+<p>Returns a new string with all characters from input <code>value</code> string to upper case.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p><strong>Return :</strong></p><p>the upper cased string or null if parameter is null.</p><h2 id="functiontoLowerCasevaluestringstring">
+function toLowerCase(value: string): string</h2>
+<p>Returns a new string with all characters from input <code>value</code> string to lower case.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p><strong>Return :</strong></p><p>the lower cased string or null if parameter is null.</p><h2 id="functionreplaceAllvaluestringpatternstringreplacementstringstring">
+function replaceAll(value: string, pattern: string, replacement: string): string</h2>
+<p>Returns a new string with all <code>pattern</code> occurrences in input <code>value</code> string replaced with <code>replacement</code>.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p>pattern: the string pattern (regex) to replace</p><p>replacement: the replacement string</p><p><strong>Return :</strong></p><p>the new string or null if parameter is null.</p><h2 id="functionreplaceFirstvaluestringpatternstringreplacementstringstring">
+function replaceFirst(value: string, pattern: string, replacement: string): string</h2>
+<p>Returns a new string with the first pattern occurrence in input <code>value</code> string replaced with replacement.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p>pattern: the string pattern (regex) to replace</p><p>replacement: the replacement string</p><p><strong>Return :</strong></p><p>the new string or null if parameter is null.</p><h2 id="functionstartsWithvaluestringprefixstringboolean">
+function startsWith(value: string, prefix: string): boolean</h2>
+<p>Returns <code>true</code> if a <code>value</code> string starts with a prefix.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p>prefix: the input prefix to look for</p><p><strong>Return :</strong></p><p><code>true</code> if <code>value</code> starts with <code>prefix</code> or else <code>false</code>.</p><p> Returns <code>null</code> if any parameters is null.</p><h2 id="functionendsWithvaluestringsuffixstringboolean">
+function endsWith(value: string, suffix: string): boolean</h2>
+<p>Returns <code>true</code> if a <code>value</code> string ends with a suffix.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p>prefix: the input suffix to look for</p><p><strong>Return :</strong></p><p><code>true</code> if <code>value</code> ends with <code>suffix</code> or else <code>false</code>.</p><p> Returns <code>null</code> if any parameters is null.</p><h2 id="functioncontainsvaluestringsearchStringstringboolean">
+function contains(value: string, searchString: string): boolean</h2>
+<p>Returns <code>true</code> if a <code>value</code> string contains a <code>searchString</code>.</p><p><strong>Parameters :</strong></p><p>value: the input string</p><p>searchString: the input searchString to look for</p><p><strong>Return :</strong></p><p><code>true</code> if <code>value</code> contains the <code>searchString</code> or else <code>false</code>.</p><p> Returns <code>null</code> if any parameters is null.</p><h2 id="functionjoinseparatorstringsubstringstring___string">
+function join(separator: string [, substring: string]...): string</h2>
+<p>Returns a new string compose of all input substrings separated by as separator string.</p><p><strong>Parameters :</strong></p><p>separator: the input separator string</p><p>substring: a substring to add to the result string. All element must be string.</p><p><strong>Return :</strong></p><p>a new string compose of all input substrings separated by the separator input.</p><p> If any parameters is null or no substrings is provided return null.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

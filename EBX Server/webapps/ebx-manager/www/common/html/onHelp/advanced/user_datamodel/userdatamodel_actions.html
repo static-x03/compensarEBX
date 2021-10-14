@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Working with an existing data model</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_actions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_actions.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+<h1>
+Working with an existing data model</h1>
+<p>Once your data model has been created, you can perform a number of actions that are available from the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>data model &#39;Actions&#39;</strong></a> menu in the workspace.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#validation">Validating a data model</a></li><li class="toc1"><a href="#xsdImportExport">Data model import and export</a></li><li class="toc1"><a href="#duplicate_model">Duplicating a data model</a></li><li class="toc1"><a href="#deletion">Deleting a data model</a></li></ul>
+</div>
+<h2 id="validation">
+Validating a data model</h2>
+<p>To validate a data model at any time, select <strong>Actions &gt; Validate</strong> from the navigation pane. The generated report provides the results of the validation. From the validation report, you have the option to update the reported validation status by clicking the <strong>Revalidate</strong> button, or to click the <strong>Reinitialize validation report</strong> button to clear the current validation report associated with the data model in order to be able to rerun a full validation from scratch.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The validation process checks basic data model integrity, but more complex checks are only performed at publication time. More messages may be reported when you try to publish your data model.</p></div>
+<p>See <a href="../references/performance.html#validation">Validation</a> for detailed information on incremental data validation.</p><h2 id="xsdImportExport">
+Data model import and export</h2>
+<p>TIBCO EBX&reg; includes built-in data model services to import from and export to XML Schema Document (XSD) files or to archive files (zip). Imports and exports can be performed from the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>data model &#39;Actions&#39;</strong></a> menu of the target data model in the navigation pane. An import or export is always performed in the context of a single data model. That is, during imports, the structure of the target data model is completely replaced with the content of the imported data model (XSD or archive). Similarly, during exports, the entire data model is included in the XSD or archive file.</p><p>When importing a data model, the corresponding XSD file must be well-formed and must comply with EBX&reg; validation rules. If this document declares resources that are located in a module, the module must also be declared in the configuration of the data model. If the module has not been declared, you will not be able to import the data model. See <a href="../user_datamodel/userdatamodel_configuring.html#configuration">Data model properties</a> for more information on declaring modules.</p><p>To perform an import select &#39;Import data model&#39; from the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>data model &#39;Actions&#39;</strong></a> menu of the data model into which you are importing.</p><p>You can import an XML Schema Document (XSD) or an archive (zip file) from the local file system. To do so, click the &#39;From a local document&#39; button in the import wizard and follow the next step:</p><ul>
+<li><p><strong>Document name:</strong> path on the local file system of the XSD or archive file to import. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>When importing an archive it must contain only one XML Schema Document (XSD) at its root. XML documents related to data model extensions must also be located at the root of the archive. These XML documents are automatically imported if they comply with the naming of the extensions supported and registered in EBX&reg;. </p></div>
+</li></ul>
+<p>You can also import a data model in an XSD that is packaged in a module. The import of a data model in XSD format from a module uses the following properties:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Module</p></td><td class="ebx_definitionListDefinition"><p>Module in which the data model is packaged.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Module path</p></td><td class="ebx_definitionListDefinition"><p>Path to the module containing the data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Source path</p></td><td class="ebx_definitionListDefinition"><p>Path to Java source used to configure business objects and rules.</p><p>This property is required if the data model being imported defines programmatic elements.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Model</p></td><td class="ebx_definitionListDefinition"><p>The data model in the module to import.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Imported XSD files must be encoded in &#39;UTF-8&#39;. Exported XSD files are always encoded in &#39;UTF-8&#39;.</p></div>
+<p>To perform an export select &#39;Export data model&#39; from the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>data model &#39;Actions&#39;</strong></a> menu of the data model you want to export.</p><h2 id="duplicate_model">
+Duplicating a data model</h2>
+<p>To duplicate a data model, select &#39;Duplicate&#39; from the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>data model &#39;Actions&#39;</strong></a> menu for that data model. You must give the new data model a name that is unique in the repository.</p><h2 id="deletion">
+Deleting a data model</h2>
+<p>To delete a data model, select &#39;Delete&#39; from the <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>data model &#39;Actions&#39;</strong></a> menu for that data model. When you delete a data model, all of its existing publications will remain and continue to be accessible to their associated datasets. If you recreate a new data model with the same name as one that was previously deleted, the new data model will be reassociated with all the existing publications in the repository. At publication time of the new data model, you will have the opportunity to confirm the replacement of an existing publication.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only an administrator can clean up the publications of deleted data models in the &#39;Administration&#39; area.</p></div>
+<p>See <a href="../user_datamodel/userdatamodel_publish.html">Publishing data models</a> for more information on the publication process.</p><p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html">table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<project name="customer-mdm" default="package" basedir=".">
+
+	<description>
+        Builds and bundles a war file for the module.
+    </description>
+
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="webapp.name" value="customer-mdm" />
+	<property name="webapp.dir" location="WebContent" />
+	<property name="build" location="${webapp.dir}/WEB-INF/classes" />
+	<property name="package.name" value="${webapp.name}.war" />
+	<property name="dist" location="deploy" />
+	<property name="package.file" value="${dist}/${package.name}" />
+
+	<tstamp prefix="build-info">
+		<format property="current-date" pattern="YYYY.MM.dd" locale="en" />
+		<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
+	</tstamp>
+
+	<path id="project.class.path">
+		<fileset dir="../EBX Server/shared/lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../Tomcat/apache-tomcat/lib">
+			<include name="*.jar" />
+		</fileset>
+		
+		<!-- 
+			Below setting not needed today, however, if used in the future,
+			uncomment to include webapp jar files
+		-->
+		<!--
+		<fileset dir="./${webapp.dir}/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+		-->
+	</path>
+
+	<!-- 
+		Create the build directory structure used by compile 
+	-->
+	<target name="init" depends="clean">
+		<mkdir dir="${build}" />
+	</target>
+
+	<!-- 
+		Compile the java code from ${src} into ${build} 
+	-->
+	<target name="compile" depends="init" description="compile the source">
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${build}">
+		   <fileset dir="${src}" includes="**/*.properties"/>
+		</copy>
+	</target>
+
+	<!-- 
+		Delete the ${build} and ${dist} directory trees 
+	-->
+	<target name="clean" description="clean up">
+
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<!-- 
+		With all resources in place, create the war file 
+	-->
+	<target name="package" depends="compile">
+		<mkdir dir="${dist}" />
+		<echo>=== PACKAGING ===</echo>
+		<war destfile="${package.file}" webxml="${webapp.dir}/WEB-INF/web.xml" basedir="${webapp.dir}" manifest="${webapp.dir}/META-INF/MANIFEST.MF"/>
+	</target>
+</project>

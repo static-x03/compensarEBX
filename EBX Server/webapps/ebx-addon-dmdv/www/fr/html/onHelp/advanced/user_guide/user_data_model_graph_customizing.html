@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Changing display and configuration options</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_model_graph_customizing" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data model graphs</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_model_graph_customizing.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data model graphs</span></div>
+<h1 id="user_data_model_customizing_topPage">
+Changing display and configuration options</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_data_model_customizing_overview">Overview</a></li><li class="toc1"><a href="#user_data_model_customize_configuration">Creating and editing graph configurations</a></li><li class="toc1"><a href="#user_data_model_customize_templates">Working with graph templates</a></li></ul>
+</div>
+<h2 id="user_data_model_customizing_overview">
+Overview</h2>
+<p>If you have access to the EBX® <strong>Administration</strong> area, you can create and edit data model graph configurations and templates. Configurations determine which model the add-on renders when users generate graphs. The add-on can generate graphs of EBX® data models and models from external sources. Templates are applied to configurations to determine the look and feel of generated graphs. These topics are discussed further in the following sections:</p><ul>
+<li><p><a href="#user_data_model_customize_configuration">Creating and editing graph configurations</a></p></li><li><p><a href="#user_data_model_customize_templates">Working with graph templates</a></p></li></ul>
+<h2 id="user_data_model_customize_configuration">
+Creating and editing graph configurations</h2>
+<p>When creating or editing a data model graph configuration, the available options depend on the <strong>Graph type</strong> setting. Select the <strong>Schema</strong> option to base the generated graph on an EBX® model. Choose <strong>Custom</strong> to generate a graph from an external data source. </p><p>When set to <strong>Schema</strong>, the <strong>Data model</strong> group displays and allows you to: </p><ul>
+<li><p>Choose the model associated with this configuration using the <strong>Publication mode</strong> and <strong>Data model</strong> fields.</p></li><li><p>Select the template used by the configuration.</p></li><li><p>Specify whether users can select which tables display when generating the graph.</p></li></ul>
+<img alt="/data_model_graph_configuration.png" src="./resources/images/data_model_graph_configuration.png"></img><p>If you set the <strong>Graph type</strong> to <strong>Custom</strong>, you must supply the fully qualified path to a Java class. To make the graph accessible to users from the <strong>Actions</strong> menu, enable the <strong>Display in dataset</strong> property. See <a href="../developer_guide/dev_external_model.html">Generating a model graph from an external source</a> for information.</p><img alt="/data_model_custom_graph_configuration.png" src="./resources/images/data_model_custom_graph_configuration.png"></img><h2 id="user_data_model_customize_templates">
+Working with graph templates</h2>
+<p>You can create and edit templates that determine how generated graphs display. Editable features include color choices and visibility of graph components. Note that when users view a data model graph, they can edit the template applied to the graph. Any saved changes apply only to the graph they are viewing and not the default template. Additionally, these changes only last for the duration of the user&#39;s current session. After logging out, changes are reverted. </p><img alt="/data_model_graph_template.png" src="./resources/images/data_model_graph_template.png"></img></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

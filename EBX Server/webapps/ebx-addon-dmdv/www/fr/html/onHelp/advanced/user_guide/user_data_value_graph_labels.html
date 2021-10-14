@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Customizing labels</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_labels" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_labels.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</span></div>
+<h1 id="user_data_value_graph_labels_topPage">
+Customizing labels</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_data_value_graph_overview">Overview</a></li><li class="toc1"><a href="#user_data_value_graph_generate">Where to setup customization and examples</a></li></ul>
+</div>
+<h2 id="user_data_value_graph_overview">
+Overview</h2>
+<p>The add-on gives you full control over the labels that display on data value graph nodes and relationships. Administrators can configure the following label types for nodes and links:</p><ul>
+<li><p>Default: You can enter text to use for the default labels. Alternatively, you can select the wizard icon to choose from related data model elements. Labels based on model elements dynamically update based on changes to the associated value.</p></li><li><p>Localized: This type of label leverages EBX®&#39;s data model localization feature. As with the default label you can enter text, or specify dynamically updated model elements.</p></li><li><p>Programmatic: You can point to a Java class that defines how labels display. </p></li></ul>
+<p>You can use a combination of a fixed label and XPath for default and localized labels. However, programmatic labels override the other label types. So when you define a programmatic label, it is the only label that displays. If you choose not to specify a label, each graph element&#39;s default label displays. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>When nodes are filtered out or hidden due to permissions, the hidden node labels do not display. For instance, a label configuration may specify that nodes from table A display their own label and the label linked from table B. However, if table B is hidden, only table A&#39;s label displays.</p></div>
+<p>A maximum of three lines display on node labels. Once the maximum is reached, <strong>...</strong> displays and the full label can be viewed by hovering your mouse over the label.</p><h2 id="user_data_value_graph_generate">
+Where to setup customization and examples</h2>
+<p>Administrators can configure label settings in the following locations:</p><ul>
+<li><p>Node labels: <em>Administration &gt; User interface &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Table configuration</em>. The following image shows an example of combining model elements and text so that the label shows which assembly plant supplies a particular store:</p><p><img alt="/node-labels-1.png" src="./resources/images/node-labels-1.png"></img></p></li><li><p>Link labels: <em>Administration &gt; User interface &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Link configuration</em>. The following example shows a link label defined with plain text that is too long to display. You can hover your mouse over the link to display the full label. By right-clicking the link and selecting <strong>Show link details</strong> you can view the full label along with other details.</p><p><img alt="/link_label_1.png" src="./resources/images/link_label_1.png"></img></p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>When there are multiple links between a source and target, no label displays. However, users can right-click and open the link details to view all labels.</p></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

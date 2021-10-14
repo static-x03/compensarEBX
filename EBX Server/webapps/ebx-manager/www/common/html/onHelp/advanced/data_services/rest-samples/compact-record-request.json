@@ -1,0 +1,22 @@
+{
+  "gender": {
+    "key": "M"
+  },
+  "lastName": "Chopin",
+  "lastName-en": "Chopin",
+  "firstName": "Fryderyk",
+  "firstName-en": "Fr&eacute;d&eacute;ric",
+  "birthDate": "1810-03-01",
+  "deathDate": "1849-10-17",
+  "jobs": [
+    {
+      "key": "CM"
+    },
+    {
+      "key": "PI"
+    }
+  ],
+  "infos": [
+    "https://en.wikipedia.org/wiki/Chopin"
+  ]
+}

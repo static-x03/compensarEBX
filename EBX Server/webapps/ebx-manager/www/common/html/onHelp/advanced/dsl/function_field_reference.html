@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Function field</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="Function_field" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/function_field_reference.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting</span></div>
+<h1>
+Function field</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#_introduction">Introduction</a></li><li class="toc1"><a href="#_lexical_structure">Lexical structure</a><ul class="toc2">
+<li class="toc2"><a href="#_introduction_2">Introduction</a></li><li class="toc2"><a href="#_character_set">Character set</a></li><li class="toc2"><a href="#_character_case_sensitivity">Character case sensitivity</a></li><li class="toc2"><a href="#_comments">Comments</a></li><li class="toc2"><a href="#_keywords">Keywords</a></li></ul>
+</li><li class="toc1"><a href="#_identifiers">Identifiers</a><ul class="toc2">
+<li class="toc2"><a href="#identifiers">Unquoted identifier</a></li><li class="toc2"><a href="#_quoted_identifiers">Quoted identifiers</a></li></ul>
+</li><li class="toc1"><a href="#_types">Types</a><ul class="toc2">
+<li class="toc2"><a href="#_simple_types">Simple types</a></li><li class="toc2"><a href="#_complex_types">Complex types</a></li><li class="toc2"><a href="#_list_types">List types</a></li><li class="toc2"><a href="#_mutable_and_immutable_types">Mutable and immutable types</a></li><li class="toc2"><a href="#_keyword_typeof">Keyword typeof</a></li></ul>
+</li><li class="toc1"><a href="#_literals">Literals</a><ul class="toc2">
+<li class="toc2"><a href="#_string_literal">String literal</a></li><li class="toc2"><a href="#_decimal_or_integer_literal">Decimal or integer literal</a></li><li class="toc2"><a href="#_timestamp_literal">Timestamp literal</a></li><li class="toc2"><a href="#_date_literal">Date literal</a></li><li class="toc2"><a href="#_time_literal">Time literal</a></li><li class="toc2"><a href="#_boolean_literal">Boolean literal</a></li><li class="toc2"><a href="#_null_literal">Null literal</a></li></ul>
+</li><li class="toc1"><a href="#_operators">Operators</a><ul class="toc2">
+<li class="toc2"><a href="#_precedence">Precedence</a></li><li class="toc2"><a href="#_arithmetic_operators">Arithmetic operators</a></li><li class="toc2"><a href="#_string_concatenation_operator">String concatenation operator</a></li><li class="toc2"><a href="#_boolean_operators">Boolean operators</a></li><li class="toc2"><a href="#_comparison_operators">Comparison operators</a></li><li class="toc2"><a href="#_built_in_and_unit_functions">Built-in and unit functions</a></li></ul>
+</li><li class="toc1"><a href="#_assignments">Assignments</a></li><li class="toc1"><a href="#_statement_blocks">Statement blocks</a></li><li class="toc1"><a href="#_variables_and_constants">Variables and constants</a><ul class="toc2">
+<li class="toc2"><a href="#_introduction_3">Introduction</a></li><li class="toc2"><a href="#_assignment_statements">Assignment statements</a></li><li class="toc2"><a href="#_declaration_with_type_detection">Declaration with type detection</a></li><li class="toc2"><a href="#_explicit_type_definition">Explicit type definition</a></li><li class="toc2"><a href="#_scope">Scope</a></li><li class="toc2"><a href="#_complex_variables">Complex variables</a></li><li class="toc2"><a href="#_multi_valued_fields">Multi-valued fields</a></li></ul>
+</li><li class="toc1"><a href="#_predefined_variables">Predefined variables</a><ul class="toc2">
+<li class="toc2"><a href="#_introduction_4">Introduction</a></li><li class="toc2"><a href="#_record">Record</a></li><li class="toc2"><a href="#_root">Root</a></li><li class="toc2"><a href="#_dataspace">Dataspace</a></li><li class="toc2"><a href="#_dataset">Dataset</a></li></ul>
+</li><li class="toc1"><a href="#_functions_and_procedures">Functions and procedures</a><ul class="toc2">
+<li class="toc2"><a href="#function_or_procedure">Functions</a></li><li class="toc2"><a href="#_exported_function">Exported function</a></li><li class="toc2"><a href="#_procedures">Procedures</a></li><li class="toc2"><a href="#_parameters">Parameters</a></li></ul>
+</li><li class="toc1"><a href="#_if_statement">If statement</a><ul class="toc2">
+<li class="toc2"><a href="#_if_then_statements">&quot;If then&quot; statements</a></li><li class="toc2"><a href="#_if_then_else_statements">&quot;If then else&quot; statements</a></li></ul>
+</li><li class="toc1"><a href="#_loops">Loops</a><ul class="toc2">
+<li class="toc2"><a href="#_for_in_do_loops">&quot;For in do&quot; loops</a></li><li class="toc2"><a href="#_while_do_loops">&quot;While do&quot; loops</a></li></ul>
+</li><li class="toc1"><a href="#_units">Units</a></li><li class="toc1"><a href="#_logging_and_debugging">Logging and debugging.</a></li><li class="toc1"><a href="#_initial_script">Initial script</a></li></ul>
+</div>
+<h2 id="_introduction">
+Introduction</h2>
+<p>Use the function DSL (Domain Specific Language) to define a function fieldfunction field.</p><p>This DSL is a procedural and strongly statically typed language.</p><p>To create and modify a function field, use the <a href="../user_datamodel/userdatamodel_intro.html">Data Model Assistant (DMA)</a>.</p><p>The Data Model Assistant (DMA) includes a script editor that provides contextual code completion.</p><h2 id="_lexical_structure">
+Lexical structure</h2>
+<h3 id="_introduction_2">
+Introduction</h3>
+<p>A script has following structure:</p><pre class="brush: text; toolbar: false; gutter: false;">
+&lt;unit usage statement 1&gt;
+&lt;unit usage statement 2&gt;
+...
+&lt;unit usage statement N&gt;
+
+&lt;function or procedure definition 1&gt;
+&lt;function or procedure definition 2&gt;
+...
+&lt;function or procedure definition M&gt;</pre>
+<p>For more information, see <a href="#unit_usage">Unit</a> and <a href="#function_or_procedure">function and procedure</a>.</p><p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// This field returns the full address for current record.
+export function getValue(): string
+begin
+  var address := record.FirstName | ' ' | record.LastName;
+
+  for street in record.OfficeAddress.Street do
+  begin
+    address |= '\n' | street;
+  end;
+
+  address |= '\n' | record.OfficeAddress.ZipCode | ' ' | record.OfficeAddress.City;
+  address |= '\n' | record.OfficeAddress.Country;
+
+  return address;
+end</pre>
+<h3 id="_character_set">
+Character set</h3>
+<p>The Unicode character set is supported.</p><h3 id="_character_case_sensitivity">
+Character case sensitivity</h3>
+<p>The DSL is case-sensitive.</p><h3 id="_comments">
+Comments</h3>
+<p>A single line comment extends from <strong>//</strong> to the end of the current line:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// This is a comment
+if record.LastName = 'Doe' then // This is another comment.
+  return true;</pre>
+<p>A multi-line comment extends from <strong>/*</strong> and ends with <strong>*/</strong>:</p><pre class="brush: text; toolbar: false; gutter: false;">
+/* This is an example of a multi-line
+   comment */
+if record.isActive then
+  return false;</pre>
+<h3 id="_keywords">
+Keywords</h3>
+<p>The reserved keywords are: <strong>and</strong>, <strong>or</strong>, <strong>not</strong>, <strong>uses</strong>, <strong>as</strong>, <strong>export</strong>, <strong>typeof</strong>, <strong>mutable</strong>, <strong>immutable</strong>, <strong>unmodifiable</strong>, <strong>function</strong>, <strong>procedure</strong>, <strong>const</strong>, <strong>var</strong>, <strong>if</strong>, <strong>then</strong>, <strong>else</strong>, <strong>for</strong>, <strong>while</strong>, <strong>in</strong>, <strong>do</strong>, <strong>begin</strong>, <strong>end</strong>, <strong>return</strong>, <strong>true</strong>, <strong>false</strong>, <strong>null</strong>.</p><p>Reserved keywords cannot be used as plain (unquoted) identifiers.</p><h2 id="_identifiers">
+Identifiers</h2>
+<h3 id="identifiers">
+Unquoted identifier</h3>
+<p>An <strong>unquoted identifier</strong> is an unlimited-length sequence of letters, digits, or underscore (<strong>_</strong>). The first character must be a letter or an underscore.</p><p>Valid letters are <strong>a</strong> to <strong>z</strong> and <strong>A</strong> to <strong>Z</strong>. Valid digits are <strong>0</strong> to <strong>9</strong>.</p><p>An unquoted identifier may not be equal to a reserved keyword.</p><h3 id="_quoted_identifiers">
+Quoted identifiers</h3>
+<p>A quoted identifier is an unlimited length of any Unicode character except double quote (<strong>&quot;</strong>).</p><p>Quoted identifiers <strong>must</strong> be used surrounded by double quotes.</p><p>An unquoted identifier can be used surrounded by double quotes.This means that identifier &quot;a_name&quot; is equal to a_name.</p><p>Quoted identifiers can be reserved keywords.</p><h2 id="_types">
+Types</h2>
+<h3 id="_simple_types">
+Simple types</h3>
+<p>The following simple types are supported:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Type</strong></th><th align="left" valign="top"><strong>Keyword</strong></th><th align="left" valign="top"><strong>Properties</strong></th><th align="left" valign="top"><strong>EBX&reg; corresponding types</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>boolean</p></td><td align="left" valign="top"></td><td align="left" valign="top"><p>xs:boolean</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Decimal (unlimited precision)</p></td><td align="left" valign="top"><p>decimal</p></td><td align="left" valign="top"></td><td align="left" valign="top"><p>xs:decimal</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Integer (32 bits)</p></td><td align="left" valign="top"><p>int</p></td><td align="left" valign="top"></td><td align="left" valign="top"><p>xs:int</p><p>xs:integer</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>String</p></td><td align="left" valign="top"><p>string</p></td><td align="left" valign="top"></td><td align="left" valign="top"><p>xs:string</p><p>xs:Name</p><p>osd:text</p><p>osd:html</p><p>osd:email</p><p>osd:password<sup>
+1</sup>
+</p><p>osd:color</p><p>osd:dataspaceKey</p><p>osd:datasetName</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Timestamp (millisecond precision and without time-zone)</p></td><td align="left" valign="top"><p>timestamp</p></td><td align="left" valign="top"><p>year</p><p>month (1 to 12)</p><p>day (1 to 31)</p><p>hour (0 to 23)</p><p>minute (0 to 59)</p><p>second (0.000 to 59.999)</p></td><td align="left" valign="top"><p>xs:dateTime</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Date (without time-zone)</p></td><td align="left" valign="top"><p>date</p></td><td align="left" valign="top"><p>year</p><p>month (1 to 12)</p><p>day (1 to 31)</p></td><td align="left" valign="top"><p>xs:date</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Time (millisecond precision)</p></td><td align="left" valign="top"><p>time</p></td><td align="left" valign="top"><p>hour (0 to 23)</p><p>minute (0 to 59)</p><p>second (0.000 to 59.999)</p></td><td align="left" valign="top"><p>xs:time</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Locale</p></td><td align="left" valign="top"><p>locale</p></td><td align="left" valign="top"></td><td align="left" valign="top"><p>osd:locale</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>URI (Uniform Resource Identifier )</p></td><td align="left" valign="top"><p>uri</p></td><td align="left" valign="top"></td><td align="left" valign="top"><p>xs:anyURI</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Resource</p></td><td align="left" valign="top"><p>resource</p></td><td align="left" valign="top"></td><td align="left" valign="top"><p>osd:resource</p></td></tr>
+</tbody>
+</table>
+<p><sup>
+1</sup>
+ It is not possible to define a function field for type <strong>osd:password</strong>.</p><h3 id="_complex_types">
+Complex types</h3>
+<p>A complex type is the type of a group (complex) node defined in an EBX&reg; schema.</p><p>For more information, see the chapter <a href="#complex_variables">complex variables</a></p><p>Reference to a schema node’s type (for example, when you declare a function parameter or a variable) implies using <a href="#keyword_typeof">keyword typeof</a>.</p><h3 id="_list_types">
+List types</h3>
+<p>The DSL supports lists. Declare a list by using the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+list&lt;item_type&gt;</pre>
+<p>Declare an unmodifiable list by using following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+unmodifiable list&lt;item_type&gt;</pre>
+<p>An item cannot be added, removed, or replaced if the list is unmodifiable. An item of the list might or might not be modifiable, depending on its type.</p><p>Use indexed notation to set or get a value. (The first index is 0):</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Set first value of cities.
+cities[0] := 'Paris';
+
+// Get the second item of cities.
+return cities[1];</pre>
+<p>An index can be any expression of decimal type. Convert the index value to an integer by dropping the fractional part.</p><p>A get expression returns null if the index is null, negative, or out of range.</p><p>A set expression reports an error at runtime if the index is null, negative, or out of range.</p><p>The property <strong>size</strong> returns the size of the list:</p><pre class="brush: text; toolbar: false; gutter: false;">
+var size := cities.size;</pre>
+<p>You can iterate a list. For more information, see <a href="#for_in_do">for loops</a>.</p><p><strong>Multi-value schema fields</strong></p><p>Schema fields that are multi-valued are considered of list type.</p><p>A multi-valued schema field is a field that has its maximum number of values (maxOccurs) greater than one or set to &quot;unbounded&quot;.</p><p>Indexed notation is used to access or set a value. The first index is 0. In the following example, record field &#39;OfficeAddress/street&#39; is multi-valued:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Return the second line of the street part of the address.
+return OfficeAddress.street[1].</pre>
+<p>The <strong>typeof</strong> keyword can be used with multi-valued fields (see chapter <a href="#keyword_typeof">keyword typeof</a>).</p><h3 id="_mutable_and_immutable_types">
+Mutable and immutable types</h3>
+<p>You cannot modify an immutable complex or list object.</p><p>You can modify a mutable complex or list object, but other constraints may apply that can prevent modifying some attributes of an object.</p><p>A simple type is always immutable.</p><p>You can assign a mutable value to a variable or a return value of a compatible immutable type, but assigning an immutable value to a mutable variable or a return value generates an error at compile time.</p><h3 id="_keyword_typeof">
+Keyword typeof</h3>
+<p id="keyword_typeof">Use the keyword <strong>typeof</strong> to specify a type depending on a field or variable. You can use this keyword preceded by the keyword <strong>mutable</strong> or <strong>immutable</strong>.</p><p>For example, to reference the type of record field <strong>OfficeAddress</strong>, use the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+typeof record.OfficeAddress</pre>
+<p>By default, the type of a record field is always immutable. You can specify a mutable type using following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+mutable typeof record.OfficeAddress</pre>
+<p>If a field is multi-valued, it is considered a list. You can reference the type of an item of the list using following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+typeof record.Addresses[*]</pre>
+<p>You can use the keyword &#39;mutable&#39; on types that have a <strong>mutable</strong> form:</p><pre class="brush: text; toolbar: false; gutter: false;">
+mutable typeof record.Addresses[*]</pre>
+<p>If the type does not have a mutable form, then the keyword is simply ignored. This is the case for simple types.</p><p>===</p><h2 id="_literals">
+Literals</h2>
+<h3 id="_string_literal">
+String literal</h3>
+<p>String literals can be any sequence of Unicode characters surrounded by single quotes. The following table displays characters that need to be replaced by an escape sequence:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Character</strong></th><th align="left" valign="top"><strong>Escape sequence</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>Tab</p></td><td align="left" valign="top"><p>\t</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Backspace</p></td><td align="left" valign="top"><p>\b</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>New line</p></td><td align="left" valign="top"><p>\n</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Carriage return</p></td><td align="left" valign="top"><p>\r</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Form feed</p></td><td align="left" valign="top"><p>\f</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Single quote</p></td><td align="left" valign="top"><p>\&#39;</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Backlash</p></td><td align="left" valign="top"><p>\\</p></td></tr>
+</tbody>
+</table>
+<p>Specify a character by using a Unicode escape sequence that has format <strong>\uXXXX</strong>, where XXXX is the hexadecimal code of the Unicode character.</p><p><strong>Examples</strong></p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Value</strong></th><th align="left" valign="top"><strong>Syntax</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>O’Harra</p></td><td align="left" valign="top"><p><strong>&#39;O\&#39;Harra&#39;</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p>No&euml;l</p></td><td align="left" valign="top"><p><strong>&#39;No\u00EBl&#39;</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p>&eacute;t&eacute;</p></td><td align="left" valign="top"><p><strong>&#39;\u00e9\u00E9&#39;</strong></p></td></tr>
+</tbody>
+</table>
+<p><strong>Note</strong></p><p>An invalid escape or Unicode sequence generates an error at compile time.</p><h3 id="_decimal_or_integer_literal">
+Decimal or integer literal</h3>
+<p>The following decimal formats are supported:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Format</strong></th><th align="left" valign="top"><strong>Examples</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>Integer</p></td><td align="left" valign="top"><p>546</p><p>-67</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Floating point</p></td><td align="left" valign="top"><p>54.987</p><p>-433.876</p><p>0.00054</p><p>-0.0032</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Exponent notation</p></td><td align="left" valign="top"><p>34.654e-5</p><p>-45E+65</p><p>1.543e23</p></td></tr>
+</tbody>
+</table>
+<h3 id="_timestamp_literal">
+Timestamp literal</h3>
+<p>Timestamp literals have the format <strong>dt(yyyy-MM-dd hh:mm:ss.sss)</strong>.</p><p>Seconds are optional. When they are not specified, 0 is assumed. Seconds can have fractions up to millisecond precision.</p><p>Any dates that are not valid in the Gregorian calendar generate errors at compile time.</p><p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+dt(2010-01-02 00:00:00.000)
+dt(2019-2-3 12:56:7)
+dt(2019-2-3 12:56:7.5)
+dt(2019-5-7 1:6)</pre>
+<h3 id="_date_literal">
+Date literal</h3>
+<p>Date literals have the format <strong>d(yyyy-MM-dd)</strong>.</p><p>Any dates that are not valid in the Gregorian calendar generate errors at compile time.</p><p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+d(2010-01-02)
+d(2019-2-3)
+dt(2019-5-7)</pre>
+<h3 id="_time_literal">
+Time literal</h3>
+<p>Time literals have the format <strong>t(hh:mm:ss.sss)</strong>.</p><p>Seconds are optional. When they are not specified, 0 is assumed. Seconds can have fractions up to millisecond precision.</p><p>Invalid times generate an error at compile time.</p><p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+t(00:00:00)
+t(12:56:7)
+t(12:56:7.5)
+t(1:6)</pre>
+<h3 id="_boolean_literal">
+Boolean literal</h3>
+<p>A Boolean literal is either the keyword <strong>true</strong> or the keyword <strong>false</strong>.</p><h3 id="_null_literal">
+Null literal</h3>
+<p>A null literal is the keyword <strong>null</strong>.</p><p>Use this literal only in the following situations:</p><ul>
+<li><p>To set a variable or field,</p></li><li><p>As a return value.</p></li></ul>
+<p><strong>Note</strong></p><p>It is not possible to use this keyword to test if a variable or a field is <strong>null</strong>. Instead, use the function <strong>isNull()</strong>.</p><h2 id="_operators">
+Operators</h2>
+<h3 id="_precedence">
+Precedence</h3>
+<p>By default, operation evaluation order is based on precedence and associativity. Use parentheses to explicitly indicate the order of evaluation.</p><p>The following table shows all operators, from highest to lowest precedence, and their associativity:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Precedence Level</strong></th><th align="left" valign="top"><strong>Operator</strong></th><th align="left" valign="top"><strong>Operand type</strong></th><th align="left" valign="top"><strong>Result type</strong></th><th align="left" valign="top"><strong>Associativity</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>9</p></td><td align="left" valign="top"><p>[](access to an element of a list)</p><p>. (access to fields)</p><p>() (parenthesis)</p></td><td align="left" valign="top"><p>List index must be a decimal.</p></td><td align="left" valign="top"><p>Can be any type.</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>8</p></td><td align="left" valign="top"><p>not</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"></td></tr>
+<tr>
+<td align="left" valign="top"><p>7</p></td><td align="left" valign="top"><p>*</p><p>/</p></td><td align="left" valign="top"><p>Decimal</p></td><td align="left" valign="top"><p>Decimal</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>6</p></td><td align="left" valign="top"><p>+</p><p>-</p></td><td align="left" valign="top"><p>Decimal</p></td><td align="left" valign="top"><p>Decimal</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>5</p></td><td align="left" valign="top"><p>| (string concatenation)</p></td><td align="left" valign="top"><p>String</p></td><td align="left" valign="top"><p>String</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>4</p></td><td align="left" valign="top"><p>&lt;</p><p>&lt;=</p><p>&gt;</p><p>&gt;=</p></td><td align="left" valign="top"><p>String, Decimal, timestamp, date, time (3).</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>Not associative.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>3</p></td><td align="left" valign="top"><p>=</p><p>&lt;&gt;</p></td><td align="left" valign="top"><p>String, decimal, timestamp, date, time, boolean (3).</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"></td></tr>
+<tr>
+<td align="left" valign="top"><p>2</p></td><td align="left" valign="top"><p>and</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>1</p></td><td align="left" valign="top"><p>or</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+</tbody>
+</table>
+<h3 id="_arithmetic_operators">
+Arithmetic operators</h3>
+<p>All arithmetic operators (<strong>*</strong>, <strong>/</strong>, <strong>+</strong> and <strong>-</strong>) are evaluated in decimal with 34 digits precision (IEEE 754R Decimal128 format). Result is <strong>null</strong> if any operand is <strong>null</strong>.</p><p>A decimal value is automatically converted when assigned to an <strong>int</strong> type variable. An error occurs if the value cannot be converted because it is not an integer, is greater than 2147483647, or is less than -2147483648.</p><h3 id="_string_concatenation_operator">
+String concatenation operator</h3>
+<p>The string concatenation operator (<strong>|</strong>) operands can be of any type and are automatically converted to a string before concatenation. The <strong>null</strong> value is replaced by the empty string.</p><p>The string concatenation operator (<strong>|</strong>) replaces all null operands by the empty string before executing the concatenation.</p><h3 id="_boolean_operators">
+Boolean operators</h3>
+<p>Boolean operators use thread-value logic.</p><p>The truth table for the <strong>and</strong> operator is as follows:</p><table>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>And</strong></p></td><td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p><strong>null</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>null</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>false</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>null</strong></p></td><td align="left" valign="top"><p>null</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>null</p></td></tr>
+</tbody>
+</table>
+<p>The truth table for the <strong>or</strong> operator is as follows:</p><table>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>Or</strong></p></td><td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p><strong>null</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>true</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>null</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>null</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>null</p></td><td align="left" valign="top"><p>null</p></td></tr>
+</tbody>
+</table>
+<h3 id="_comparison_operators">
+Comparison operators</h3>
+<p>A comparison operator (<strong>&lt;</strong>, <strong>&lt;=</strong>, <strong>&gt;</strong>, <strong>=&gt;</strong>, <strong>=</strong> and <strong>&lt;&gt;</strong>) compares two operands of same type. Variables of ìnt&#39; type are always converted to <strong>decimal</strong> before comparison.</p><p>The returned value of a comparator is of <strong>boolean</strong> type. This value is <strong>true</strong> or <strong>false</strong> only if all operands are not <strong>null</strong>. It is <strong>null</strong> if any of its operand is <strong>null</strong>.</p><h3 id="_built_in_and_unit_functions">
+Built-in and unit functions</h3>
+<p>Built-in and unit functions usually return <strong>null</strong> if a parameter is <strong>null</strong>.</p><p>There can be exceptions, so be sure to read the <a href="../dsl/script_unit_api.html">API documentation</a>.</p><h2 id="_assignments">
+Assignments</h2>
+<p>The following table shows all assignment operators:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Operator</strong></th><th align="left" valign="top"><strong>Operand type</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>:=</p></td><td align="left" valign="top"><p>Can be used with any type.</p></td><td align="left" valign="top"><p>Standard assignment.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>|=</p></td><td align="left" valign="top"><p>string</p></td><td align="left" valign="top"><p>a |= b is equivalent to a := a | b</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>+=</p></td><td align="left" valign="top"><p>decimal</p></td><td align="left" valign="top"><p>a += b is equivalent to a := a + b</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>-=</p></td><td align="left" valign="top"><p>decimal</p></td><td align="left" valign="top"><p>a -= b is equivalent to a := a - b</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>*=</p></td><td align="left" valign="top"><p>decimal</p></td><td align="left" valign="top"><p>a *= b is equivalent to a := a * b</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>/=</p></td><td align="left" valign="top"><p>decimal</p></td><td align="left" valign="top"><p>a /= b is equivalent to a := a / b</p></td></tr>
+</tbody>
+</table>
+<h2 id="_statement_blocks">
+Statement blocks</h2>
+<p id="statement_block">A statement block is used to group multiple statements. It starts by the keyword <strong>begin</strong> and ends with the keyword <strong>end</strong>. Most statements need to be terminated by a <strong>;</strong>:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  statement_1;
+  statement_2;
+end</pre>
+<p>A statement block can contain one or more statement blocks that can also contain statement blocks:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  statement_1;
+  begin
+    statement_2_1;
+    statement_2_3;
+    begin
+      statement_3_1;
+      statement_3_2;
+    end
+  end
+  statement_3;
+end</pre>
+<h2 id="_variables_and_constants">
+Variables and constants</h2>
+<h3 id="_introduction_3">
+Introduction</h3>
+<p>Any statement in a block can declare a variable or a constant.</p><p>A variable or a constant always has a type that is fixed when the variable is declared.</p><p>A value can be assigned to a variable using the assignment operator <strong>:=</strong>.</p><p>Its is an error to assign a value of the wrong type to a variable, or to change the value of a constant after its declaration.</p><h3 id="_assignment_statements">
+Assignment statements</h3>
+<p></p><h3 id="_declaration_with_type_detection">
+Declaration with type detection</h3>
+<p>A variable or constant type can be detected automatically if initialized when declared. This feature is called type inference.</p><p>Syntax for a variable is:</p><pre class="brush: text; toolbar: false; gutter: false;">
+var variable_name := a_value;</pre>
+<p>The syntax for a constant is:</p><pre class="brush: text; toolbar: false; gutter: false;">
+const const_name := a_value;</pre>
+<p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  var firstName := 'John';        // Variable of type string.
+  var age := 30;                  // Variable of type decimal.
+  var address := record.address;  // Variable of an immutable complex.
+
+  const MAX_AGE := 100;              // Decimal constant.
+  const DEFAULT_COUNTRY := 'France'; // String constant.
+end</pre>
+<p><strong>Note</strong></p><p>A constant is not necessarily immutable.</p><h3 id="_explicit_type_definition">
+Explicit type definition</h3>
+<p>It is possible to explicitly specify the variable’s type.</p><p>The syntax for a variable is:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Following variable initial value is null.
+var variable_1_name : variable_1_type;
+
+// Value a_value must be compatible with type variable_1_type.
+var variable_2_name : variable_1_type := a_value;</pre>
+<p>The syntax for a constant is:</p><pre class="brush: text; toolbar: false; gutter: false;">
+const const_name : variable_1_type := a_value;</pre>
+<p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  var firstName : string;
+  firstName := 'John';
+
+  var age : decimal;
+  age := 30;
+  var address : typeof record.address;
+  address := record.address;
+
+  const MAX_AGE : decimal := 100;
+  const DEFAULT_COUNTRY : string := 'France';
+end</pre>
+<p>Variables that are not initialized have a null value:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  var firstName : string;
+  if isNull(fistName) then
+     do_something(); // Statement will be executed.
+end</pre>
+<p>The following statements have errors:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  // Following will not compile because variable is not initialized and no type
+  // is defined.
+  var firstName;
+  // Following will not compile because variable type is decimal and value is
+  // a string.
+  var age : decimal := 'test';
+end</pre>
+<h3 id="_scope">
+Scope</h3>
+<p>A variable or constant scope spans from its declaration to the end of the statement block where it was declared:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  var firstName := 'John';
+  var lastName := 'Doe';
+
+  begin
+    // Following is OK because firstName and lastName are visible.
+    var fullName := firstName | ' ' | lastName;
+    ....
+  end
+
+  // Following will NOT compile because fullName is out of the scope.
+  var message := 'Please contact ' | fullName;
+end</pre>
+<p>A variable with same name cannot exist in same block or sub blocks:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  var firstName := 'John';
+
+  begin
+    var firstName := 'Bob'; // Error! Variable already declared.
+    ....
+  end
+end</pre>
+<p>The following is correct:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  begin
+    var firstName := 'Bob';
+    ....
+  end
+  // The following is not an error, because block where previous variable was
+  // declared is ended.
+  var firstName := 'John';
+end</pre>
+<h3 id="_complex_variables">
+Complex variables</h3>
+<p id="complex_variables">Variable or constants of complex type can be declared using type detection or <a href="#keyword_typeof">typeof keyword</a>.</p><p>Dot notation is used to access fields of a variable of complex type.</p><p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Declaration using type detection.
+var address1 := record.OfficeAddress;
+
+// Declaration using typeof notation.
+var address2 : typeof record.OfficeAddress;
+address2 := address1;</pre>
+<p>Each step (parts separated by a dot) is an <a href="#identifiers">identifier</a>. This means that following quoted notation can be used for any step:</p><pre class="brush: text; toolbar: false; gutter: false;">
+var city := record."OfficeAddress".City;</pre>
+<p>This is useful for steps equal to a reserved keyword or using characters, such as the minus character (<strong>-</strong>) or dot (<strong>.</strong>), that are not compatible with unquoted identifiers.</p><p>At runtime, any step can evaluate to <strong>null</strong>. In this case the full field expression evaluates to <strong>null</strong>.</p><h3 id="_multi_valued_fields">
+Multi-valued fields</h3>
+<p>Multi-valued fields are treated as ordered lists. Index notation <strong>[index]</strong> is used to access an item of the list. Indexes are 0 based (first index is 0).</p><p>In the following example, the field &quot;Address&quot; is multivalued:</p><pre class="brush: text; toolbar: false; gutter: false;">
+var city := record.Address[1].City;</pre>
+<p>If an index is out of bound, the indexed expression will return <strong>null</strong>. In this case the full field expression evaluates to <strong>null</strong>.</p><p>An index may be a decimal expression. Only the integer part of the expression will be used.</p><h2 id="_predefined_variables">
+Predefined variables</h2>
+<h3 id="_introduction_4">
+Introduction</h3>
+<p>Predefined variables allow access to the context. These contextual variables are constant and of an immutable complex type.</p><h3 id="_record">
+Record</h3>
+<p>The predefined variable <strong>record</strong> is available only if the current script is for a function field of a table. It allows read-only access to the current record.</p><p>Its fields are defined by the current EBX&reg; schema.</p><p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Returns the full name.
+export function getValue(): string
+begin
+	return record.FirstName | ' ' | record.LastName;
+end</pre>
+<h3 id="_root">
+Root</h3>
+<p>The predefined variable <strong>root</strong> is available only if the current script is for a function instance field of a dataset. It provides read-only access to the instance fields of current datasets.</p><p>Its fields are defined by the current EBX&reg; schema.</p><p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Returns information on current dataset data.
+export function getValue(): string
+begin
+	return root.City | ' ' | root.Region;
+end</pre>
+<h3 id="_dataspace">
+Dataspace</h3>
+<p>The predefined variable <strong>dataspace</strong> provides access to information on the current dataspace.</p><p>This variable has following fields:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Name</strong></th><th align="left" valign="top"><strong>Type</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>name</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The name of the dataspace. Since the dataspace namespace and the snapshot namespace are independent, the returned string is only an identifier in the context of one of the namespaces. For a global dataspace or snapshot identifier, use field <strong>id</strong>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>id</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The persistent identifier of a dataspace or snapshot. Compared to <strong>name</strong>, this identifier additionally specifies whether this id is for a dataspace or a snapshot.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>isSnapshot</strong></p></td><td align="left" valign="top"><p><strong>boolean</strong></p></td><td align="left" valign="top"><p>Is <strong>true</strong> if dataspace is a snapshot and <strong>false</strong> if dataspace is a branch.</p></td></tr>
+</tbody>
+</table>
+<p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Returns details on the current dataspace.
+export function getValue(): string
+begin
+  if dataspace.isSnapshot then
+    return 'Snapshot: ' |  dataspace.name;
+  else
+    return 'Branch: ' |  dataspace.name;
+end</pre>
+<h3 id="_dataset">
+Dataset</h3>
+<p>The predefined variable <strong>dataset</strong> provides access to information on the current dataset.</p><p>This variable has the following fields:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Name</strong></th><th align="left" valign="top"><strong>Type</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>name</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The name of the dataset</p></td></tr>
+</tbody>
+</table>
+<p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Returns the current dataset name.
+export function getValue(): string
+begin
+  return dataset.name;
+end</pre>
+<h2 id="_functions_and_procedures">
+Functions and procedures</h2>
+<h3 id="function_or_procedure">
+Functions</h3>
+<p>Functions are methods that return a value.</p><p>A function with no parameters has the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+function function_name(): return_value_type
+begin
+  ....
+  return a_value;
+end</pre>
+<p>A function with parameters has the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+function function_name(
+  parameter_1 : parameter_1_type,
+  parameter_2 : parameter_2_type...): return_value_type
+begin
+  ....
+  return a_value;
+end</pre>
+<p>The last statement of a function must always be a return statement. The function can include as many return statement as necessary.</p><p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+function getFullName(firstName: string, lastName: string): string
+begin
+  if isNull(firstName) then
+    return lastName;
+
+  return firstName | ' ' | lastName;
+end</pre>
+<p>It is illegal to return a value different from the one declared:</p><pre class="brush: text; toolbar: false; gutter: false;">
+function getValue(): string
+begin
+    return 0; // Error! Return type is decimal, not string.
+end</pre>
+<h3 id="_exported_function">
+Exported function</h3>
+<p>An exported function can be called directly by EBX&reg;.</p><p>Only one exported function is allowed per script. Its signature (name, and return type) depends on the type of the function field.</p><p>For the field of a record, definition must be similar to:</p><pre class="brush: text; toolbar: false; gutter: false;">
+export function getValue(): typeof record.&lt;path&gt;
+begin
+	...
+end</pre>
+<p>For the field of a dataset, definition must be similar to:</p><pre class="brush: text; toolbar: false; gutter: false;">
+export function getValue(): typeof root.&lt;path&gt;
+begin
+	...
+end</pre>
+<p>When a function field is first edited, EBX&reg; provides an <a href="#initial_script">initial script</a> with the correct definition of the exported function.</p><h3 id="_procedures">
+Procedures</h3>
+<p>Procedures are methods that do not return a value.</p><p>A procedure with no parameters has the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+procedure procedure_name()
+begin
+  ....
+end</pre>
+<p>A procedure with parameters has the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+procedure procedure_name(
+  parameter_1 : parameter_1_type,
+  parameter_2 : parameter_2_type...)
+begin
+  ....
+end</pre>
+<p>A procedure cannot have a return statement, but the function can include as many return statements as necessary. A procedure statement cannot return a value.</p><h3 id="_parameters">
+Parameters</h3>
+<p>Simple type parameters are passed by value. This means that a function or a procedure receives a copy of the original value.</p><p>Complex and list types are passed by reference. This means that a function or a procedure receives the original object. If the function or procedure modifies the object, the original one is modified.</p><h2 id="_if_statement">
+If statement</h2>
+<h3 id="_if_then_statements">
+&quot;If then&quot; statements</h3>
+<p>An &quot;if then&quot; statement has the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if condition-expression then
+  then-statement</pre>
+<p>The condition expression must evaluate to a boolean type.</p><p>The &#39;then&#39; statement can be a <a href="#statement_block">statement block</a>.</p><h3 id="_if_then_else_statements">
+&quot;If then else&quot; statements</h3>
+<p>An &quot;if then else&quot; statement has following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if condition-expression then
+  then-statement
+else
+  else-statement</pre>
+<p>The condition expression must be of boolean type.</p><p>A &#39;then&#39; or &#39;else&#39; statement can be a <a href="#statement_block">statement block</a>.</p><p><strong>Note</strong></p><p>Expression:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if condition-expression then
+  statements-a;
+else
+  statements-b;</pre>
+<p><strong>Cannot</strong> be equivalent to:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if not condition-expression then
+  statements-b;
+else
+  statements-a;</pre>
+<p>Indeed, if the expression is null, the <strong>else</strong> statement is executed in both cases.</p><h2 id="_loops">
+Loops</h2>
+<h3 id="_for_in_do_loops">
+&quot;For in do&quot; loops</h3>
+<p id="for_in_do">A &quot;for in do&quot; loop statement is used to select each item of a list and execute a block statement. It has following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+for item_variable_name in list do
+begin
+  statement_a;
+  statement_b;
+  ...
+end</pre>
+<p>The block statement is executed once for each value of the list. At each iteration, the read-only item variable takes a value of the list in the order of the list.</p><p>The name of the item variable must be unique in the current scope or an error will be generated at compile time.</p><p>If a single statement must be executed for each item, the following simpler syntax can be used:</p><pre class="brush: text; toolbar: false; gutter: false;">
+for item_variable_name in list do statement;</pre>
+<p>The following example iterates a list of complex:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Concatenate all city addresses in a single string.
+var cities := '';
+for address in record.Addresses do
+begin
+  if cities &lt;&gt; '' then cities |= ', ';
+  cities |= address.city;
+end</pre>
+<h3 id="_while_do_loops">
+&quot;While do&quot; loops</h3>
+<p>A &quot;while do&quot; loop statement is used to execute a statement block until a condition is <strong>true</strong>. It has following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+while condition do
+begin
+  statement_a;
+  statement_b;
+  ...
+end</pre>
+<p>If a single statement must be executed, the following simpler syntax can be used:</p><pre class="brush: text; toolbar: false; gutter: false;">
+while condition do statement_a;</pre>
+<p>The following example calculates factorial of a value:</p><pre class="brush: text; toolbar: false; gutter: false;">
+function factorial(value : decimal): decimal
+begin
+ var factorial := value;
+ while(value &gt; 1) do
+ begin
+   value -= 1;
+   factorial *= value;
+ end
+ return factorial;
+end</pre>
+<h2 id="_units">
+Units</h2>
+<p>EBX&reg; provides an API that is packaged in &quot;units&quot;.</p><p>A unit can define multiple function or procedures.</p><p id="unit_usage">Except for the default one, a unit must be declared before usage. The declaration must be at the top of the script and must follow these types of syntaxes:</p><pre class="brush: text; toolbar: false; gutter: false;">
+uses package_name.unit_name_a;
+uses package_name.unit_name_b as alias_b;</pre>
+<p>Currently, <strong>package_name</strong> is always <strong>core</strong>. A unit alias must be unique in a script.</p><p>Methods can be referenced using following syntaxes:</p><pre class="brush: text; toolbar: false; gutter: false;">
+value1 := package_name.unit_name_a.function_a();
+value2 := package_name.unit_name_a.function_b(parameter1, parameter2);
+
+value3 := alias_a.function_c();
+value4 := alias_a.function_d(parameter1, parameter2);
+
+package_name.unit_name_a.procedure_a();
+package_name.unit_name_a.procedure_b(parameter1, parameter2);
+
+alias_a.procedure_c();
+alias_a.procedure_d(parameter1, parameter2);</pre>
+<p>The following example uses the <strong>core.list</strong> unit to create a list:</p><pre class="brush: text; toolbar: false; gutter: false;">
+uses core.list as list;
+
+export function getValue(): typeof record.Cities
+begin
+  return list.of('Paris', 'Bruxelles', 'Berlin');
+end</pre>
+<p>For details on the provided units, see the <a href="../dsl/script_unit_api.html">API Documentation</a>.</p><h2 id="_logging_and_debugging">
+Logging and debugging.</h2>
+<p>The unit <a href="../dsl/script_unit_api.html">unit.log</a> provides a function that can be used to log a message.</p><p>A message logged by scripts can be viewed using <strong>Administration&gt;Repository management&gt;Scripting</strong> EBX&reg; menu.</p><p>Another useful feature is that if a runtime encounters an error while executing a script, it is usually logged with the line in the script where the error occurred.</p><h2 id="_initial_script">
+Initial script</h2>
+<p id="initial_script">When a new function field is created using the <a href="../user_datamodel/userdatamodel_intro.html">DMA</a>, an initial script is created.</p><p>The following example is a script created for a field of type string:</p><pre class="brush: text; toolbar: false; gutter: false;">
+export function getValue(): string
+begin
+	return 'A string value';
+end</pre>
+<p>The exported function signature (name, and return type) depends on the field’s type and should not be changed.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,1150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Custom forms</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_custom_forms" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Data model</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/custom_forms.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+<h1>
+Custom forms</h1>
+<p>This chapter details how custom forms are defined and managed by TIBCO EBX&reg;. </p><div class="ebx_seealso">
+<h5>
+Related concepts</h5>
+<ul>
+<li><a href="../user_interface/user_interface.html">Interface customization</a></li></ul>
+</div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Access</a></li><li class="toc1"><a href="#id2">Forms and components</a></li><li class="toc1"><a href="#id3">The editor</a></li><li class="toc1"><a href="#blocks">Blocks</a><ul class="toc2">
+<li class="toc2"><a href="#custom_forms_block_integer_operator">Arithmetic operator</a></li><li class="toc2"><a href="#custom_forms_block_array">Array</a></li><li class="toc2"><a href="#custom_forms_block_array_item">Array item</a></li><li class="toc2"><a href="#custom_forms_block_boolean_operator">Boolean operator</a></li><li class="toc2"><a href="#custom_forms_block_checkbox">Check box</a></li><li class="toc2"><a href="#custom_forms_block_checkbox_group">Check box group</a></li><li class="toc2"><a href="#custom_forms_block_node_children">Children</a></li><li class="toc2"><a href="#custom_forms_block_choose">Choose</a></li><li class="toc2"><a href="#custom_forms_block_button_close">Close button</a></li><li class="toc2"><a href="#custom_forms_block_color_picker">Color picker</a></li><li class="toc2"><a href="#custom_forms_block_combo_box">Combo box</a></li><li class="toc2"><a href="#custom_forms_block_integer_comparator">Comparator</a></li><li class="toc2"><a href="#custom_forms_block_comparator">Comparison</a></li><li class="toc2"><a href="#custom_forms_block_array_concat">Concatenate arrays</a></li><li class="toc2"><a href="#custom_forms_block_constant">Constant</a></li><li class="toc2"><a href="#custom_forms_block_content_title">Content title</a></li><li class="toc2"><a href="#custom_forms_block_is_creating_record">Creating record?</a></li><li class="toc2"><a href="#custom_forms_block_custom_action_bar">Custom action bar</a></li><li class="toc2"><a href="#custom_forms_block_date_time_input">Date time input</a></li><li class="toc2"><a href="#custom_forms_block_declare">Declare</a></li><li class="toc2"><a href="#custom_forms_block_default_action_bar">Default action bar</a></li><li class="toc2"><a href="#custom_forms_block_default_toolbar">Default toolbar</a></li><li class="toc2"><a href="#custom_forms_block_is_duplicating_record">Duplicating record?</a></li><li class="toc2"><a href="#custom_forms_block_expand_collapse">Expand/Collapse</a></li><li class="toc2"><a href="#custom_forms_block_flow">Flow</a></li><li class="toc2"><a href="#custom_forms_block_for_each">For each</a></li><li class="toc2"><a href="#custom_forms_block_form">Form</a></li><li class="toc2"><a href="#custom_forms_block_form_definition">Form definition</a></li><li class="toc2"><a href="#custom_forms_block_form_group">Form group</a></li><li class="toc2"><a href="#custom_forms_block_form_row">Form row</a></li><li class="toc2"><a href="#custom_forms_block_form_parameter">Form parameter</a></li><li class="toc2"><a href="#custom_forms_block_get">From...get</a></li><li class="toc2"><a href="#custom_forms_block_function">Function</a></li><li class="toc2"><a href="#custom_forms_block_call">Function call</a></li><li class="toc2"><a href="#custom_forms_block_argument">Function call argument</a></li><li class="toc2"><a href="#custom_forms_block_parameter">Function parameter</a></li><li class="toc2"><a href="#custom_forms_block_grid">Grid</a></li><li class="toc2"><a href="#custom_forms_block_grid_element">Grid element</a></li><li class="toc2"><a href="#custom_forms_block_if">If</a></li><li class="toc2"><a href="#custom_forms_block_input_parameter">Input parameter</a></li><li class="toc2"><a href="#custom_forms_block_is_in_role">In role?</a></li><li class="toc2"><a href="#custom_forms_block_label">Label</a></li><li class="toc2"><a href="#custom_forms_block_localized">Localized</a></li><li class="toc2"><a href="#custom_forms_block_message">Message</a></li><li class="toc2"><a href="#custom_forms_block_button_next">Next button</a></li><li class="toc2"><a href="#custom_forms_block_node">Node</a></li><li class="toc2"><a href="#custom_forms_block_nomenclature_item">Nomenclature item</a></li><li class="toc2"><a href="#custom_forms_block_not">Not</a></li><li class="toc2"><a href="#custom_forms_block_object">Object</a></li><li class="toc2"><a href="#custom_forms_block_otherwise">Otherwise</a></li><li class="toc2"><a href="#custom_forms_block_paragraph_title">Paragraph title</a></li><li class="toc2"><a href="#custom_forms_block_password">Password</a></li><li class="toc2"><a href="#custom_forms_block_button_previous">Previous button</a></li><li class="toc2"><a href="#custom_forms_block_object_property">Property</a></li><li class="toc2"><a href="#custom_forms_block_radio_button">Radio button</a></li><li class="toc2"><a href="#custom_forms_block_radio_button_group">Radio button group</a></li><li class="toc2"><a href="#custom_forms_block_button_revert">Revert button</a></li><li class="toc2"><a href="#custom_forms_block_button_save">Save button</a></li><li class="toc2"><a href="#custom_forms_block_button_save_and_close">Save and close button</a></li><li class="toc2"><a href="#custom_forms_block_tab">Tab</a></li><li class="toc2"><a href="#custom_forms_block_tab_container">Tab container</a></li><li class="toc2"><a href="#custom_forms_block_text_input">Text input</a></li><li class="toc2"><a href="#custom_forms_block_toolbar_named">Toolbar named</a></li><li class="toc2"><a href="#custom_forms_block_variable">Variable</a></li><li class="toc2"><a href="#custom_forms_block_when">When</a></li><li class="toc2"><a href="#custom_forms_block_widget">Widget</a></li><li class="toc2"><a href="#custom_forms_block_with">With</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Access</h2>
+<p> To access it, go to: Data Models &gt; Extensions &gt; Custom forms &gt; Forms </p><p><img alt="/access_custom.png" src="../resources/images/custom_forms/access_custom.png"></img></p><p> Click on the [+] button to create a form. </p><p><img alt="/add_form.png" src="../resources/images/custom_forms/add_form.png"></img></p><p> Name your new form and indicate the table on which it will be available. </p><p><img alt="/name_form.png" src="../resources/images/custom_forms/name_form.png"></img></p><p> Pressing the &quot;Save&quot; button will redirect you to the layout designer. </p><p><img alt="/display_form.png" src="../resources/images/custom_forms/display_form.png"></img></p><h2 id="id2">
+Forms and components</h2>
+<p> Both forms and components can be created in the &#39;Custom forms&#39; data model extension. </p><ul>
+<li><p><strong>A form describes the layout of a record.</strong> It can access contextual information such as the record or the input parameters. When creating a form, the user is asked to provide its target table. Once created, <strong>it can be declared as the default form of the table</strong> either in the &#39;Default form&#39; table of the extension, or in the &#39;Extensions&#39; tab of the target table. Forms that are not the default for their table will not be used. </p></li><li><p><strong>A component is a reusable fragment</strong> that can be shared between forms and other components. Unlike forms, components don&#39;t have access to contextual information. If such information is needed, it must be provided explicitly by its caller. </p></li></ul>
+<h2 id="id3">
+The editor</h2>
+<p>A form or component is just an imbrication of blocks. Blocks can represent a concrete graphical element or some piece of logic, allowing to have different layouts based on conditions like permissions, language, etc. </p><p>The workspace contains the description of the form, inside a predefined root block. Any block that is not connected to this root is grayed out, to mark it as inactive. <strong>To move a block</strong>, it must be dragged and dropped. Dragging a block also drags the blocks connected below it. If only one block has to be moved, hold the control key before clicking on it. <strong>Right-clicking</strong> on a block in the workspace also shows a list of options such as expand/collapse, comment, help, etc. </p><p>The toolbox on the left displays a list of categories. By clicking on a category, the blocks it contains are displayed. Some categories have a related &#39;Template&#39; section. This section provides some combinations of the blocks of the section and can be considered as useful shortcuts or samples. </p><p>On the bottom right of the screen are the &#39;Preview&#39; and &#39;Configure preview&#39; buttons. These can be used to see what the form will look like.</p><p><img alt="/overview.png" src="../resources/images/custom_forms/overview.png" align="middle"></img></p><h2 id="blocks">
+Blocks</h2>
+<p>Here is the list of all the blocks that appear in the toolbox.</p><h3 id="custom_forms_block_integer_operator">
+Arithmetic operator</h3>
+<p>Operations on two integers.</p><p><img alt="/block_integer_operator.png" src="../resources/images/custom_forms/block_integer_operator.png" align="middle"></img></p><h3 id="custom_forms_block_array">
+Array</h3>
+<p>A list of items.</p><p><img alt="/block_array.png" src="../resources/images/custom_forms/block_array.png" align="middle"></img></p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_array_item">Array item</a></li></ul>
+</div>
+<h3 id="custom_forms_block_array_item">
+Array item</h3>
+<p>Adapter to make expression blocks into arrays.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_array">Array</a></li></ul>
+</div>
+<h3 id="custom_forms_block_boolean_operator">
+Boolean operator</h3>
+<p>Operations on two booleans.</p><p><img alt="/block_boolean_operator.png" src="../resources/images/custom_forms/block_boolean_operator.png" align="middle"></img></p><h3 id="custom_forms_block_checkbox">
+Check box</h3>
+<p>Displays the checkbox widget.</p><p><img alt="/block_checkbox.png" src="../resources/images/custom_forms/block_checkbox.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+<tr>
+<td valign="top"><p><code>label enabled?</code></p></td><td valign="top"><p> If set, indicates if the item label is to be added next to the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>index</code></p></td><td valign="top"><p> The index for this enumeration item. </p></td></tr>
+<tr>
+<td valign="top"><p><code>specific nomenclature</code></p></td><td valign="top"><p> If set, overrides the model-driven nomenclature. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_checkbox_group">
+Check box group</h3>
+<p>Displays the checkbox group widget.</p><p><img alt="/block_checkbox_group.png" src="../resources/images/custom_forms/block_checkbox_group.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+<tr>
+<td valign="top"><p><code>columns number</code></p></td><td valign="top"><p> If set, defines the number of columns to use for the layout of the checkboxes. </p></td></tr>
+<tr>
+<td valign="top"><p><code>specific nomenclature</code></p></td><td valign="top"><p> If set, overrides the model-driven nomenclature. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_node_children">
+Children</h3>
+<p>Returns the list of the children of the given node.</p><p><img alt="/block_node_children.png" src="../resources/images/custom_forms/block_node_children.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The complex node from which to extract children. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_choose">
+Choose</h3>
+<p>A block returning the content of one of its inner &#39;when&#39;/&#39;otherwise&#39; blocks.</p><p><img alt="/block_choose.png" src="../resources/images/custom_forms/block_choose.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p>A list of &#39;when&#39; blocks and optionally a final &#39;otherwise&#39; block.</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_when">When</a></li><li><a href="#custom_forms_block_otherwise">Otherwise</a></li></ul>
+</div>
+<h3 id="custom_forms_block_button_close">
+Close button</h3>
+<p>Standard &#39;Close&#39; button.</p><p><img alt="/block_button_close.png" src="../resources/images/custom_forms/block_button_close.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> If set, overrides the default label. </p></td></tr>
+<tr>
+<td valign="top"><p><code>default?</code></p></td><td valign="top"><p> Indicates if this is the action to trigger when pressing &#39;Enter&#39;. Only one button should be the default one. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_color_picker">
+Color picker</h3>
+<p>Displays the color picker widget.</p><p><img alt="/block_color_picker.png" src="../resources/images/custom_forms/block_color_picker.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_combo_box">
+Combo box</h3>
+<p>Displays the combo box widget.</p><p><img alt="/block_combo_box.png" src="../resources/images/custom_forms/block_combo_box.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+<tr>
+<td valign="top"><p><code>create button displayable?</code></p></td><td valign="top"><p> If set, defines if the create button should be displayed when the underlying node is a foreign key. </p></td></tr>
+<tr>
+<td valign="top"><p><code>preview button displayable?</code></p></td><td valign="top"><p> If set, defines if the preview button should be displayed when the underlying node is a foreign key. </p></td></tr>
+<tr>
+<td valign="top"><p><code>number of entries displayed on a page</code></p></td><td valign="top"><p> If set, defines the number of entries on each page of the drop-down list. </p></td></tr>
+<tr>
+<td valign="top"><p><code>width of the combo box</code></p></td><td valign="top"><p> If set, defines the width of the combo box. </p></td></tr>
+<tr>
+<td valign="top"><p><code>advanced selector available?</code></p></td><td valign="top"><p> If set, defines if the advanced selector should be displayed when the underlying node is a foreign key. </p></td></tr>
+<tr>
+<td valign="top"><p><code>view name to use with the advanced selector</code></p></td><td valign="top"><p> If set, defines the name of the published view that will be used in the combo-box selection of the associated foreign key field. </p></td></tr>
+<tr>
+<td valign="top"><p><code>specific nomenclature</code></p></td><td valign="top"><p> If set, overrides the model-driven nomenclature. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_integer_comparator">
+Comparator</h3>
+<p>Compares two integers.</p><p><img alt="/block_integer_comparator.png" src="../resources/images/custom_forms/block_integer_comparator.png" align="middle"></img></p><h3 id="custom_forms_block_comparator">
+Comparison</h3>
+<p>Compares strings, numbers or booleans.</p><p><img alt="/block_comparator.png" src="../resources/images/custom_forms/block_comparator.png" align="middle"></img></p><h3 id="custom_forms_block_array_concat">
+Concatenate arrays</h3>
+<p>Returns the concatenation of the given arrays.</p><p><img alt="/block_array_concat.png" src="../resources/images/custom_forms/block_array_concat.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>arrays</code></p></td><td valign="top"><p> A list of arrays. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_constant">
+Constant</h3>
+<p>A constant value. Depending on the context, this value may be interpreted as text, boolean or number.</p><p><img alt="/block_constant.png" src="../resources/images/custom_forms/block_constant.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>value</code></p></td><td valign="top"><p> Text, boolean or number. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_content_title">
+Content title</h3>
+<p>Display the workspace content title.</p><p><img alt="/block_content_title.png" src="../resources/images/custom_forms/block_content_title.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> The text to display. </p></td></tr>
+<tr>
+<td valign="top"><p><code>horizontal alignment</code></p></td><td valign="top"><p> The horizontal alignment of the element. If set, accepted values are: &#39;start&#39;, &#39;end&#39;, &#39;center&#39;. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_is_creating_record">
+Creating record?</h3>
+<p>Returns a boolean indicating if the form is displayed in the context of a record creation or duplication.</p><p><img alt="/block_is_creating_record.png" src="../resources/images/custom_forms/block_is_creating_record.png" align="middle"></img></p><h3 id="custom_forms_block_custom_action_bar">
+Custom action bar</h3>
+<p>A custom action bar.</p><p><img alt="/block_custom_action_bar.png" src="../resources/images/custom_forms/block_custom_action_bar.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>start</code></p></td><td valign="top"><p> A list of &#39;Button&#39;s to display on the left of the action bar. </p></td></tr>
+<tr>
+<td valign="top"><p><code>middle</code></p></td><td valign="top"><p> A list of &#39;Button&#39;s to display on the center of the action bar. </p></td></tr>
+<tr>
+<td valign="top"><p><code>end</code></p></td><td valign="top"><p> A list of &#39;Button&#39;s to display on the right of the action bar. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_date_time_input">
+Date time input</h3>
+<p>Displays the date/time input.</p><p><img alt="/block_date_time_input.png" src="../resources/images/custom_forms/block_date_time_input.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+<tr>
+<td valign="top"><p><code>date picker button displayable?</code></p></td><td valign="top"><p> Indicates if the button opening the date picker is displayed (read/write mode only). </p></td></tr>
+<tr>
+<td valign="top"><p><code>now button displayed?</code></p></td><td valign="top"><p> Indicates if the button setting the date to the current time is displayed (read/write mode only). </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_declare">
+Declare</h3>
+<p>The declaration of a variable, in a &#39;with&#39; block.</p><p><img alt="/block_declare.png" src="../resources/images/custom_forms/block_declare.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>The name of the variable. Must be unique for a given &#39;with&#39; block.</p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p>The value of the variable, which will be returned by &#39;var&#39; blocks referencing this.</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_with">With</a></li></ul>
+</div>
+<h3 id="custom_forms_block_default_action_bar">
+Default action bar</h3>
+<p>The default action bar.</p><p><img alt="/block_default_action_bar.png" src="../resources/images/custom_forms/block_default_action_bar.png" align="middle"></img></p><h3 id="custom_forms_block_default_toolbar">
+Default toolbar</h3>
+<p>The model-driven toolbar.</p><p><img alt="/block_default_toolbar.png" src="../resources/images/custom_forms/block_default_toolbar.png" align="middle"></img></p><h3 id="custom_forms_block_is_duplicating_record">
+Duplicating record?</h3>
+<p>Returns a boolean indicating if the form is displayed in the context of a record duplication.</p><p><img alt="/block_is_duplicating_record.png" src="../resources/images/custom_forms/block_is_duplicating_record.png" align="middle"></img></p><h3 id="custom_forms_block_expand_collapse">
+Expand/Collapse</h3>
+<p>Displays its content inside an expand/collapse block.</p><p><img alt="/block_expand_collapse.png" src="../resources/images/custom_forms/block_expand_collapse.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> Label displayed next to the arrow. </p></td></tr>
+<tr>
+<td valign="top"><p><code>collapsed?</code></p></td><td valign="top"><p> Indicates if the group is initially collapsed or not. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> A list of components to be collapsible. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_flow">
+Flow</h3>
+<p>Displays its content in a fluid manner. If the elements don&#39;t fit in one row or column, they will wrap to start a new one.</p><p><img alt="/block_flow.png" src="../resources/images/custom_forms/block_flow.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>direction</code></p></td><td valign="top"><p> &#39;horizontal&#39; or &#39;vertical&#39;, indicates in which direction to queue its content. </p></td></tr>
+<tr>
+<td valign="top"><p><code>item spacing</code></p></td><td valign="top"><p> The space between elements, in pixels. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> A list of elements to display either horizontally or vertically. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_for_each">
+For each</h3>
+<p>Returns an array that is made of the result of the &#39;body&#39; function, applied on each item of the &#39;of&#39; array.</p><p><img alt="/block_for_each.png" src="../resources/images/custom_forms/block_for_each.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>item</code></p></td><td valign="top"><p> The name of the variable containing the current item. </p></td></tr>
+<tr>
+<td valign="top"><p><code>array</code></p></td><td valign="top"><p> The array containing the items to transform. </p></td></tr>
+<tr>
+<td valign="top"><p><code>return</code></p></td><td valign="top"><p> What to return for the current item. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_form">
+Form</h3>
+<p>Standard table-like layout with labels on the left side and values on the right side.</p><p><img alt="/block_form.png" src="../resources/images/custom_forms/block_form.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> A list of &#39;Form row&#39;, &#39;Form group&#39; or nodes. Nodes will result in model driven display, &#39;Form row&#39; and &#39;Form group&#39; allow to display custom content. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_form_row">Form row</a></li><li><a href="#custom_forms_block_form_group">Form group</a></li></ul>
+</div>
+<h3 id="custom_forms_block_form_definition">
+Form definition</h3>
+<p>Actual definition of a form.</p><p><img alt="/block_form_definition.png" src="../resources/images/custom_forms/block_form_definition.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>toolbar</code></p></td><td valign="top"><p> Definition of the toolbar displayed on top of the form. </p></td></tr>
+<tr>
+<td valign="top"><p><code>action bar</code></p></td><td valign="top"><p> Definition of the action bar displayed below the form. </p></td></tr>
+<tr>
+<td valign="top"><p><code>help URL</code></p></td><td valign="top"><p> URL of the help page. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> The content of the layout. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_form_group">
+Form group</h3>
+<p>Inside a &#39;Form&#39;, displays a collapsible group of items.</p><p><img alt="/block_form_group.png" src="../resources/images/custom_forms/block_form_group.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> If set, the group label, description and content will be model driven. </p></td></tr>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> The label of the group. May override the model driven label if a node and a label are set. </p></td></tr>
+<tr>
+<td valign="top"><p><code>description</code></p></td><td valign="top"><p> The description of the group. May override the model driven description if a node and a description are set. </p></td></tr>
+<tr>
+<td valign="top"><p><code>open?</code></p></td><td valign="top"><p> Indicates if the group is initially open. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> A list of &#39;Form row&#39;, &#39;Form group&#39; or nodes. Nodes will result in model driven display, &#39;Form row&#39; and &#39;Form group&#39; allow to display custom content. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_form">Form</a></li><li><a href="#custom_forms_block_form_row">Form row</a></li></ul>
+</div>
+<h3 id="custom_forms_block_form_row">
+Form row</h3>
+<p>Inside a &#39;Form&#39; or a &#39;Form group&#39;, displays a row, that is basically a label and a value.</p><p><img alt="/block_form_row.png" src="../resources/images/custom_forms/block_form_row.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> If set, the label, description and content will be model driven. </p></td></tr>
+<tr>
+<td valign="top"><p><code>display label?</code></p></td><td valign="top"><p> Indicates if the label should be displayed. If set to false in a &#39;Form&#39; the content will span over both the label and content area. </p></td></tr>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> The label of the row. May override the model driven label if a node and a label are set. </p></td></tr>
+<tr>
+<td valign="top"><p><code>description</code></p></td><td valign="top"><p> The description of the row. May override the model driven label if a node and a label are set. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> The content to be displayed next to the label. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_form">Form</a></li><li><a href="#custom_forms_block_form_group">Form group</a></li></ul>
+</div>
+<h3 id="custom_forms_block_form_parameter">
+Form parameter</h3>
+<p>The &#39;record&#39; is the node representing the displayed record. &#39;current page&#39; is a number (1 by default) representing the displayed page. This value can be changed by the &#39;Previous&#39; and &#39;Next&#39; buttons.</p><p><img alt="/block_form_parameter.png" src="../resources/images/custom_forms/block_form_parameter.png" align="middle"></img></p><h3 id="custom_forms_block_get">
+From...get</h3>
+<p>Extract a value from an object or a node.</p><p>&lt;from &quot;node&quot; get &quot;path/to/value&quot;&gt; is equivalent to &lt;var &quot;node/path/to/value&quot;&gt;</p><p><img alt="/block_get.png" src="../resources/images/custom_forms/block_get.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>from</code></p></td><td valign="top"><p> Base object or node, from which to extract data. </p></td></tr>
+<tr>
+<td valign="top"><p><code>get</code></p></td><td valign="top"><p> Path of the data to extract, inside the object in &#39;from&#39;. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_function">
+Function</h3>
+<p>The definition of an anonymous function. A function makes use of its parameters in its body to return a result.</p><p><img alt="/block_function.png" src="../resources/images/custom_forms/block_function.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>parameters</code></p></td><td valign="top"><p> List of &#39;param&#39; blocks, defining the parameters accepted by this function. </p></td></tr>
+<tr>
+<td valign="top"><p><code>body</code></p></td><td valign="top"><p> Body describing the result of the function, using its parameters. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_parameter">Function parameter</a></li><li><a href="#custom_forms_block_call">Function call</a></li></ul>
+</div>
+<h3 id="custom_forms_block_call">
+Function call</h3>
+<p>Calls a function by setting actual values to its parameters.</p><p><img alt="/block_call.png" src="../resources/images/custom_forms/block_call.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>function</code></p></td><td valign="top"><p> The function to call. </p></td></tr>
+<tr>
+<td valign="top"><p><code>args</code></p></td><td valign="top"><p> The arguments to pass to the function. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_argument">Function call argument</a></li><li><a href="#custom_forms_block_function">Function</a></li></ul>
+</div>
+<h3 id="custom_forms_block_argument">
+Function call argument</h3>
+<p>Actual value to pass to the parameter of the called function.</p><p><img alt="/block_argument.png" src="../resources/images/custom_forms/block_argument.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p> The name of the parameter. </p></td></tr>
+<tr>
+<td valign="top"><p><code>value</code></p></td><td valign="top"><p> The actual value to pass the the parameter. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_call">Function call</a></li></ul>
+</div>
+<h3 id="custom_forms_block_parameter">
+Function parameter</h3>
+<p>This is the declaration of a parameter of a function.</p><p><img alt="/block_parameter.png" src="../resources/images/custom_forms/block_parameter.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p> The name of the parameter. </p></td></tr>
+<tr>
+<td valign="top"><p><code>mandatory?</code></p></td><td valign="top"><p> Indicates if this parameter must be provided by the caller. </p></td></tr>
+<tr>
+<td valign="top"><p><code>default value</code></p></td><td valign="top"><p> If set, this is the default value taken by this parameter if the caller does not provide one. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_function">Function</a></li></ul>
+</div>
+<h3 id="custom_forms_block_grid">
+Grid</h3>
+<p>A layout allowing to place components in a grid with coordinates.</p><p><img alt="/block_grid.png" src="../resources/images/custom_forms/block_grid.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>item spacing</code></p></td><td valign="top"><p> Space between elements, in pixels. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> A list of &#39;Grid element&#39;s, which specify where to display their content. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_grid_element">Grid element</a></li></ul>
+</div>
+<h3 id="custom_forms_block_grid_element">
+Grid element</h3>
+<p>Inside a &#39;Grid&#39;, specifies the location of its content.</p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>row</code></p></td><td valign="top"><p> The row where the element starts. Minimum value is 1. </p></td></tr>
+<tr>
+<td valign="top"><p><code>column</code></p></td><td valign="top"><p> The column where the element starts. Minimum value is 1. </p></td></tr>
+<tr>
+<td valign="top"><p><code>width</code></p></td><td valign="top"><p> The width of the element, in grid cells. Minimum value is 1. </p></td></tr>
+<tr>
+<td valign="top"><p><code>height</code></p></td><td valign="top"><p> The height of the element, in grid cells. Minimum value is 1. </p></td></tr>
+<tr>
+<td valign="top"><p><code>vertical alignment</code></p></td><td valign="top"><p> The vertical alignment of the element. If set, accepted values are: &#39;start&#39;, &#39;end&#39;, &#39;center&#39;. </p></td></tr>
+<tr>
+<td valign="top"><p><code>horizontal alignment</code></p></td><td valign="top"><p> The horizontal alignment of the element. If set, accepted values are: &#39;start&#39;, &#39;end&#39;, &#39;center&#39;. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> The content inside the cell. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_grid">Grid</a></li></ul>
+</div>
+<h3 id="custom_forms_block_if">
+If</h3>
+<p>A block returning either the content of &#39;then&#39;, or the content &#39;else&#39;, based on the result of the test.</p><p><img alt="/block_if.png" src="../resources/images/custom_forms/block_if.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>test</code></p></td><td valign="top"><p>A test determining which value to return. This must be a boolean value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>then</code></p></td><td valign="top"><p>The value returned if the test is true.</p></td></tr>
+<tr>
+<td valign="top"><p><code>else</code></p></td><td valign="top"><p>The value returned if the test is false.</p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_input_parameter">
+Input parameter</h3>
+<p>Returns the raw value of an input parameter.</p><p><img alt="/block_input_parameter.png" src="../resources/images/custom_forms/block_input_parameter.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p> The parameter name. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_is_in_role">
+In role?</h3>
+<p>Returns a boolean indicating if the current user has the requested role.</p><p><img alt="/block_is_in_role.png" src="../resources/images/custom_forms/block_is_in_role.png" align="middle"></img></p><h3 id="custom_forms_block_label">
+Label</h3>
+<p>Displays the label of the given node.</p><p><img alt="/block_label.png" src="../resources/images/custom_forms/block_label.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the label. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_localized">
+Localized</h3>
+<p>Block which result depends on the user locale.</p><p><img alt="/block_localized.png" src="../resources/images/custom_forms/block_localized.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>[locale]</code></p></td><td valign="top"><p>Each parameter relates to a locale. The result of the block will be the one corresponding to the locale of the current user.</p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_message">
+Message</h3>
+<p>Formats the given text by replacing java-like {0}, {1}, etc. placeholders by the argument at the given index.</p><p><img alt="/block_message.png" src="../resources/images/custom_forms/block_message.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>pattern</code></p></td><td valign="top"><p> Text with placeholders ({0}, {1}, etc.) which will be replaced by the given arguments. </p></td></tr>
+<tr>
+<td valign="top"><p><code>arguments</code></p></td><td valign="top"><p> The list of values which will replace the placeholders in the pattern. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_button_next">
+Next button</h3>
+<p>A button which will increment the &#39;current page&#39; value by one.</p><p><img alt="/block_button_next.png" src="../resources/images/custom_forms/block_button_next.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> If set, overrides the default label. </p></td></tr>
+<tr>
+<td valign="top"><p><code>default?</code></p></td><td valign="top"><p> Indicates if this is the action to trigger when pressing &#39;Enter&#39;. Only one button should be the default one. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_node">
+Node</h3>
+<p>Overrides the definition of an existing node.</p><p><img alt="/block_node.png" src="../resources/images/custom_forms/block_node.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>base</code></p></td><td valign="top"><p> The node to override. </p></td></tr>
+<tr>
+<td valign="top"><p><code>mandatory?</code></p></td><td valign="top"><p> If set, overrides the mandatory indicator of the base node. </p></td></tr>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> If set, overrides the label of the node. </p></td></tr>
+<tr>
+<td valign="top"><p><code>description</code></p></td><td valign="top"><p> If set, overrides the label of the node. </p></td></tr>
+<tr>
+<td valign="top"><p><code>widget</code></p></td><td valign="top"><p> If set, overrides the default widget of the node. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_nomenclature_item">
+Nomenclature item</h3>
+<p>A nomenclature item is a (key, label) pair.</p><p><img alt="/block_nomenclature_item.png" src="../resources/images/custom_forms/block_nomenclature_item.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>value</code></p></td><td valign="top"><p> The value of the item. </p></td></tr>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> The label of the item. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_not">
+Not</h3>
+<p>Returns the inverse of the given boolean.</p><p><img alt="/block_not.png" src="../resources/images/custom_forms/block_not.png" align="middle"></img></p><h3 id="custom_forms_block_object">
+Object</h3>
+<p>An object composed of a list of (key, value) pairs.</p><p><img alt="/block_object.png" src="../resources/images/custom_forms/block_object.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> A list of &#39;property&#39; blocks. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_object_property">Property</a></li></ul>
+</div>
+<h3 id="custom_forms_block_otherwise">
+Otherwise</h3>
+<p>Final choice in a &#39;choose&#39; block. Will be returned if no &#39;when&#39; case matched.</p><p><img alt="/block_otherwise.png" src="../resources/images/custom_forms/block_otherwise.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p>The value to return if no &#39;when&#39; case matched.</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_choose">Choose</a></li></ul>
+</div>
+<h3 id="custom_forms_block_paragraph_title">
+Paragraph title</h3>
+<p>Display a paragraph title.</p><p><img alt="/block_paragraph_title.png" src="../resources/images/custom_forms/block_paragraph_title.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> The text to display. </p></td></tr>
+<tr>
+<td valign="top"><p><code>horizontal alignment</code></p></td><td valign="top"><p> The horizontal alignment of the element. If set, accepted values are: &#39;start&#39;, &#39;end&#39;, &#39;center&#39;. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_password">
+Password</h3>
+<p>Displays the input password widget.</p><p><img alt="/block_password.png" src="../resources/images/custom_forms/block_password.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_button_previous">
+Previous button</h3>
+<p>A button which will decrement the &#39;current page&#39; value by one.</p><p><img alt="/block_button_previous.png" src="../resources/images/custom_forms/block_button_previous.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> If set, overrides the default label. </p></td></tr>
+<tr>
+<td valign="top"><p><code>default?</code></p></td><td valign="top"><p> Indicates if this is the action to trigger when pressing &#39;Enter&#39;. Only one button should be the default one. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_object_property">
+Property</h3>
+<p>A property of an object.</p><p><img alt="/block_object_property.png" src="../resources/images/custom_forms/block_object_property.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p> Name of the property. Must be unique for a given object. </p></td></tr>
+<tr>
+<td valign="top"><p><code>value</code></p></td><td valign="top"><p> Value of the property. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_radio_button">
+Radio button</h3>
+<p>Displays a radio button widget.</p><p><img alt="/block_radio_button.png" src="../resources/images/custom_forms/block_radio_button.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+<tr>
+<td valign="top"><p><code>label enabled?</code></p></td><td valign="top"><p> If set, indicates if the item label is to be added next to the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>index</code></p></td><td valign="top"><p> The index for this enumeration item. </p></td></tr>
+<tr>
+<td valign="top"><p><code>specific nomenclature</code></p></td><td valign="top"><p> If set, overrides the model-driven nomenclature. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_radio_button_group">
+Radio button group</h3>
+<p>Displays the radio button group widget.</p><p><img alt="/block_radio_button_group.png" src="../resources/images/custom_forms/block_radio_button_group.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+<tr>
+<td valign="top"><p><code>columns number</code></p></td><td valign="top"><p> If set, defines the number of columns to use for the layout of the radio buttons. </p></td></tr>
+<tr>
+<td valign="top"><p><code>specific nomenclature</code></p></td><td valign="top"><p> If set, overrides the model-driven nomenclature. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_button_revert">
+Revert button</h3>
+<p>Standard &#39;Revert&#39; button.</p><p><img alt="/block_button_revert.png" src="../resources/images/custom_forms/block_button_revert.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> If set, overrides the default label. </p></td></tr>
+<tr>
+<td valign="top"><p><code>default?</code></p></td><td valign="top"><p> Indicates if this is the action to trigger when pressing &#39;Enter&#39;. Only one button should be the default one. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_button_save">
+Save button</h3>
+<p>Standard &#39;Save&#39; button.</p><p><img alt="/block_button_save.png" src="../resources/images/custom_forms/block_button_save.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> If set, overrides the default label. </p></td></tr>
+<tr>
+<td valign="top"><p><code>default?</code></p></td><td valign="top"><p> Indicates if this is the action to trigger when pressing &#39;Enter&#39;. Only one button should be the default one. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_button_save_and_close">
+Save and close button</h3>
+<p>Standard &#39;Save and close&#39; button.</p><p><img alt="/block_button_save_and_close.png" src="../resources/images/custom_forms/block_button_save_and_close.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>label</code></p></td><td valign="top"><p> If set, overrides the default label. </p></td></tr>
+<tr>
+<td valign="top"><p><code>default?</code></p></td><td valign="top"><p> Indicates if this is the action to trigger when pressing &#39;Enter&#39;. Only one button should be the default one. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_tab">
+Tab</h3>
+<p>A tab, inside a &#39;Tab container&#39;.</p><p><img alt="/block_tab.png" src="../resources/images/custom_forms/block_tab.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> If present, the tab title, description and content will be model driven. </p></td></tr>
+<tr>
+<td valign="top"><p><code>title</code></p></td><td valign="top"><p> The title of the tab. May override the model driven title if a node and a title are set. </p></td></tr>
+<tr>
+<td valign="top"><p><code>description</code></p></td><td valign="top"><p> The description of the tab. May override the model driven description if a node and a description are set. </p></td></tr>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> The content of the tab. May override the model driven content if a node and a content are set. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_tab_container">Tab container</a></li></ul>
+</div>
+<h3 id="custom_forms_block_tab_container">
+Tab container</h3>
+<p>A container of tabs, which displays a list of tab names and one active tab.</p><p><img alt="/block_tab_container.png" src="../resources/images/custom_forms/block_tab_container.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>content</code></p></td><td valign="top"><p> A list of &#39;Tab&#39;s. </p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_tab">Tab</a></li></ul>
+</div>
+<h3 id="custom_forms_block_text_input">
+Text input</h3>
+<p>Displays the text input widget.</p><p><img alt="/block_text_input.png" src="../resources/images/custom_forms/block_text_input.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+<tr>
+<td valign="top"><p><code>height</code></p></td><td valign="top"><p> If set, defines the height of the widget, in pixels. </p></td></tr>
+<tr>
+<td valign="top"><p><code>width</code></p></td><td valign="top"><p> If set, defines the width of the widget, in pixels. </p></td></tr>
+<tr>
+<td valign="top"><p><code>multiline?</code></p></td><td valign="top"><p> If set, defines if the widget spans over multiple lines. </p></td></tr>
+<tr>
+<td valign="top"><p><code>background</code></p></td><td valign="top"><p> If set, defines the background color, in hexadecimal format. </p></td></tr>
+<tr>
+<td valign="top"><p><code>foreground</code></p></td><td valign="top"><p> If set, defines the foreground color, in hexadecimal format. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_toolbar_named">
+Toolbar named</h3>
+<p>The toolbar having the specified name.</p><p><img alt="/block_toolbar_named.png" src="../resources/images/custom_forms/block_toolbar_named.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p> The name of the toolbar to display. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_variable">
+Variable</h3>
+<p>A reference to a variable declared by a &#39;with...declare&#39; block. A path is also accepted if the variable is an object or a node.</p><p><img alt="/block_variable.png" src="../resources/images/custom_forms/block_variable.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>expression</code></p></td><td valign="top"><p> A reference to a variable declared by a &#39;with...declare&#39; block. A path is also accepted if the variable is an object or a node. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_when">
+When</h3>
+<p>A choice in a &#39;choose&#39; block. If the test is true, the &#39;then&#39; content will be returned, otherwise the next block will be tested.</p><p><img alt="/block_when.png" src="../resources/images/custom_forms/block_when.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>when</code></p></td><td valign="top"><p>A boolean test indicating if this case should be resolved.</p></td></tr>
+<tr>
+<td valign="top"><p><code>then</code></p></td><td valign="top"><p>If the test is true, this value will be returned.</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_choose">Choose</a></li></ul>
+</div>
+<h3 id="custom_forms_block_widget">
+Widget</h3>
+<p>Displays the default widget.</p><p><img alt="/block_widget.png" src="../resources/images/custom_forms/block_widget.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>node</code></p></td><td valign="top"><p> The node for which to display the widget. </p></td></tr>
+<tr>
+<td valign="top"><p><code>readonly?</code></p></td><td valign="top"><p> Indicates if the widget should be in readonly mode. </p></td></tr>
+</tbody>
+</table>
+<h3 id="custom_forms_block_with">
+With</h3>
+<p>Declares variables that can be used in its &#39;return&#39; statement.</p><p><img alt="/block_with.png" src="../resources/images/custom_forms/block_with.png" align="middle"></img></p><h4>
+Parameters</h4>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Input</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>variables</code></p></td><td valign="top"><p>A list of &#39;declare&#39; blocks.</p></td></tr>
+<tr>
+<td valign="top"><p><code>return</code></p></td><td valign="top"><p>The value to return. The variables declared in the &#39;variables&#39; statement can be used here, with &#39;var&#39; blocks.</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#custom_forms_block_declare">Declare</a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Quick start</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_uiservices_quick" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; User interface &gt; User services</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_interface/user_services_quickstart.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+<h1 id="quickstart">
+Quick start</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Main classes</a></li><li class="toc1"><a href="#id2">Hello world</a></li></ul>
+</div>
+<h2 id="id1">
+Main classes</h2>
+<p>The minimum requirement is to implement two classes, one for the service declaration and one for the implementation itself.</p><h2 id="id2">
+Hello world</h2>
+<p>The sample is a dataset user service that simply displays a &quot;hello&quot; message, it can be launched from the action menu of a dataset:</p><p align="left"><img alt="/user_service_hello_world.png" src="../resources/images/user_service/user_service_hello_world.png"></img></p><p>The service implementation class must implement the interface <code>UserService&lt;DatasetEntitySelection&gt;</code>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+/**
+ * This service displays hello world!
+ */
+public class HelloWordService implements UserService&lt;DatasetEntitySelection>
+{
+	public HelloWordService()
+	{
+	}
+
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;DatasetEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		// Set bottom bar
+		UIButtonSpecNavigation closeButton = aConfigurator.newCloseButton();
+		closeButton.setDefaultButton(true);
+		aConfigurator.setLeftButtons(closeButton);
+
+		// Set content callback
+		aConfigurator.setContent(this::writeHelloWorld);
+	}
+
+	private void writeHelloWorld(
+		UserServicePaneContext aPaneContext, 
+		UserServicePaneWriter aWriter)
+	{
+		// Display Hello World!
+
+		aWriter.add("&lt;div ");
+		aWriter.addSafeAttribute("class", UICSSClasses.CONTAINER_WITH_TEXT_PADDING);
+		aWriter.add(">");
+		aWriter.add("Hello World!");
+		aWriter.add("&lt;/div>");	
+	}
+
+	@Override
+	public void setupObjectContext(
+		UserServiceSetupObjectContext&lt;DatasetEntitySelection> aContext,
+		UserServiceObjectContextBuilder aBuilder)
+	{
+		// No context yet.
+	}
+
+	@Override
+	public void validate(UserServiceValidateContext&lt;DatasetEntitySelection> aContext)
+	{
+		// No custom validation is necessary.
+	}
+
+	@Override
+	public UserServiceEventOutcome processEventOutcome(
+		UserServiceProcessEventOutcomeContext&lt;DatasetEntitySelection> aContext,
+		UserServiceEventOutcome anEventOutcome)
+	{
+		// By default do not modify the outcome.
+		return anEventOutcome;
+	}
+}
+</pre>
+<p>The declaration class must implement the interface <code>UserServiceDeclaration.OnDataset</code>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+/**
+ * Declaration for service hello world!
+ */
+public class HelloWorldServiceDeclaration implements UserServiceDeclaration.OnDataset
+{
+	// The service key identifies the user service. 
+	private static final ServiceKey serviceKey = ServiceKey.forName("HelloWorld");
+	
+	public HelloWorldServiceDeclaration()
+	{
+	}
+	
+	@Override
+	public ServiceKey getServiceKey()
+	{
+		return serviceKey;
+	}
+
+	@Override
+	public UserService&lt;DatasetEntitySelection> createUserService()
+	{
+		// Creates an instance of the user service.
+		return new HelloWordService();
+	}
+
+	@Override
+	public void defineActivation(ActivationContextOnDataset aContext)
+	{
+		// The service is activated for all datasets instanciated with
+		// the associated data model (see next example).
+	}
+
+	@Override
+	public void defineProperties(UserServicePropertiesDefinitionContext aContext)
+	{
+		// This label is displayed in menus that can execute the user service.
+		aContext.setLabel("Hello World Service");
+	}
+
+	@Override
+	public void declareWebComponent(WebComponentDeclarationContext aContext)
+	{
+	}
+}
+</pre>
+<p>In this sample, the user service is registered by a data model. The data model needs to define a schema extension that implements the following code:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomSchemaExtensions implements SchemaExtensions
+{
+	@Override
+	public void defineExtensions(SchemaExtensionsContext aContext)
+	{
+		// Register the service.
+		aContext.registerUserService(new HelloWorldServiceDeclaration());
+	}
+}</pre>
+<p>For details on the declaration of schema extensions, see <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaExtensions.html"><code>SchemaExtensions</code></a>.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

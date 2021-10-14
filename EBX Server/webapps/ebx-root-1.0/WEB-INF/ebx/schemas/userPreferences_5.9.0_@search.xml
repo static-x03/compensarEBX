@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/userPreferences_5.9.0.xsd, iid=01E]
+ -->
+<search>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/userPreferences/configuration</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/userPreferences/displayDensity</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/userPreferences/lastWorkingHome</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/usersFavoritePerspectives/perspective</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/usersFavoriteViews/activity</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/usersFavoriteViews/schemaKey</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/usersFavoriteViews/tablePath</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/preferences/usersFavoriteViews/userReference</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+</search>

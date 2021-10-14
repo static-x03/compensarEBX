@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Unit core.date</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dsl.core.dateUnit" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/core_dateUnit.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+<h1>
+Unit core.date</h1>
+<p>Script unit that provides date functions.</p><table>
+<thead>
+<tr>
+<th align="left" valign="top">Methods</th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddYearsvaluedateyearsdecimaldate">function addYears(value: date, years: decimal): date</a></p><p>Adds years to a date.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddMonthsvaluedatemonthsdecimaldatetime">function addMonths(value: date, months: decimal): datetime</a></p><p>Adds months to a date.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddDaysvaluedatedaysdecimaldate">function addDays(value: date, days: decimal): date</a></p><p>Adds days to a date.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionfromDatetimevaluedatetimedate">function fromDatetime(value: datetime): date</a></p><p>Converts a date and time to a date.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiondaysstartValuedateendValuedatedecimal">function days(startValue: date, endValue: date): decimal</a></p><p>Returns the number of days between two dates.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionsecondsstartValuedateendValuedatedecimal">function seconds(startValue: date, endValue: date): decimal</a></p><p>Returns the number of seconds between two dates.</p></td></tr>
+</tbody>
+</table>
+<p></p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#functionaddYearsvaluedateyearsdecimaldate">function addYears(value: date, years: decimal): date</a></li><li class="toc1"><a href="#functionaddMonthsvaluedatemonthsdecimaldatetime">function addMonths(value: date, months: decimal): datetime</a></li><li class="toc1"><a href="#functionaddDaysvaluedatedaysdecimaldate">function addDays(value: date, days: decimal): date</a></li><li class="toc1"><a href="#functionfromDatetimevaluedatetimedate">function fromDatetime(value: datetime): date</a></li><li class="toc1"><a href="#functiondaysstartValuedateendValuedatedecimal">function days(startValue: date, endValue: date): decimal</a></li><li class="toc1"><a href="#functionsecondsstartValuedateendValuedatedecimal">function seconds(startValue: date, endValue: date): decimal</a></li></ul>
+</div>
+<h2 id="functionaddYearsvaluedateyearsdecimaldate">
+function addYears(value: date, years: decimal): date</h2>
+<p>Adds years to a date.</p><p><strong>Parameters :</strong></p><p>value: the input date</p><p>years: the number of years to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date or null if any parameter is null.</p><h2 id="functionaddMonthsvaluedatemonthsdecimaldatetime">
+function addMonths(value: date, months: decimal): datetime</h2>
+<p>Adds months to a date.</p><p><strong>Parameters :</strong></p><p>value: the input date</p><p>months: the number of months to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date or null if any parameter is null.</p><h2 id="functionaddDaysvaluedatedaysdecimaldate">
+function addDays(value: date, days: decimal): date</h2>
+<p>Adds days to a date.</p><p><strong>Parameters :</strong></p><p>value: the input date</p><p>months: the number of days to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date or null if any parameter is null.</p><h2 id="functionfromDatetimevaluedatetimedate">
+function fromDatetime(value: datetime): date</h2>
+<p>Converts a date and time to a date. The input time part is ignored.</p><p><strong>Parameters :</strong></p><p>value: the input date and time</p><p><strong>Return :</strong></p><p>the new date or null if parameter is null.</p><h2 id="functiondaysstartValuedateendValuedatedecimal">
+function days(startValue: date, endValue: date): decimal</h2>
+<p>Returns the number of days between two dates.</p><p><strong>Parameters :</strong></p><p>startValue: the input start date</p><p>endValue: the input end date</p><p><strong>Return :</strong></p><p>the number of days or null if any parameter is null.</p><h2 id="functionsecondsstartValuedateendValuedatedecimal">
+function seconds(startValue: date, endValue: date): decimal</h2>
+<p>Returns the number of seconds between two dates.</p><p><strong>Parameters :</strong></p><p>startValue: the input start date inclusive</p><p>endValue: the input end date exclusive</p><p><strong>Return :</strong></p><p>the number of seconds or null if any parameter is null.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

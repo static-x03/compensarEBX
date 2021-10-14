@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebx="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" targetNamespace="urn:ebx-schemas:format_1.0" elementFormDefault="qualified">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="common_1.0.xsd"/>
+	<xs:element name="FormattingPolicy" type="fmt:FormattingPolicy"/>
+	<xs:complexType name="Format">
+		<xs:attribute name="stringForNull" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="BooleanFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:attribute name="valueIfInputStringNull" type="xs:boolean" use="optional"/>
+				<xs:attribute name="trueString" type="xs:string" use="optional"/>
+				<xs:attribute name="falseString" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IntFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:attribute name="valueIfInputStringNull" type="xs:integer" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DecimalFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:sequence>
+					<xs:element name="outputObject" minOccurs="0">
+						<xs:complexType>
+							<xs:all>
+								<xs:element name="OutputBigDecimalConverter" minOccurs="0">
+									<xs:complexType>
+										<xs:attribute name="fractionDigits" type="xs:integer" use="optional"/>
+										<xs:attribute name="roundingMode" use="optional">
+											<xs:simpleType>
+												<xs:restriction base="xs:NMTOKEN">
+													<xs:enumeration value="ROUND_CEILING"/>
+													<xs:enumeration value="ROUND_DOWN"/>
+													<xs:enumeration value="ROUND_FLOOR"/>
+													<xs:enumeration value="ROUND_HALF_EVEN"/>
+													<xs:enumeration value="ROUND_HALF_UP"/>
+													<xs:enumeration value="ROUND_UNNECESSARY"/>
+													<xs:enumeration value="ROUND_HALF_DOWN"/>
+													<xs:enumeration value="ROUND_UP"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="stringConverterPatternSubstitution" minOccurs="0">
+									<xs:complexType>
+										<xs:attribute name="pattern" type="xs:string" use="required"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="stringConverterFirstLetterToUpperCase" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="stringConverterLowerCase" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="stringConverterProperCase" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="stringConverterUpperCase" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="valueIfInputStringNull" type="xs:decimal" use="optional"/>
+				<xs:attribute name="isDefault" type="xs:boolean" use="optional"/>
+				<xs:attribute name="pattern" type="xs:string" use="optional"/>
+				<xs:attribute name="locale" type="ebx:locale" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StringFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:sequence>
+					<xs:element name="inputString" minOccurs="0">
+						<xs:complexType>
+							<xs:all>
+								<xs:element name="patternSubstitution" minOccurs="0">
+									<xs:complexType>
+										<xs:attribute name="pattern" type="xs:string" use="optional"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="toUpperCase" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="toLowerCase" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="toProperCase" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="replaceWhiteSpace" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="whiteSpaceCollapse" minOccurs="0">
+									<xs:complexType/>
+								</xs:element>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="valueIfInputStringNull" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GenericDateFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:attribute name="pattern" type="xs:string" use="optional"/>
+				<xs:attribute name="locale" type="ebx:locale" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DateFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:GenericDateFormat">
+				<xs:attribute name="valueIfInputStringNull" type="xs:date" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DateTimeFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:GenericDateFormat">
+				<xs:attribute name="valueIfInputStringNull" type="xs:dateTime" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TimeFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:GenericDateFormat">
+				<xs:attribute name="valueIfInputStringNull" type="xs:time" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnyURIFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:attribute name="valueIfInputStringNull" type="xs:anyURI" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LocaleFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:attribute name="valueIfInputStringNull" type="ebx:locale" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ResourceFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:Format">
+				<xs:attribute name="valueIfInputStringNull" type="ebx:resource" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FormattingPolicy">
+		<xs:all>
+			<xs:element name="boolean" type="fmt:BooleanFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:boolean' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:boolean'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="int" type="fmt:IntFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:int' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:int'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="decimal" type="fmt:DecimalFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:decimal' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:decimal'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="string" type="fmt:StringFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:string' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:string'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="fmt:DateFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:date' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:date'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateTime" type="fmt:DateTimeFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:dateTime' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:dateTime'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="fmt:TimeFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:time' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:time'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="anyURI" type="fmt:AnyURIFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'xs:anyURI' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'xs:anyURI'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locale" type="fmt:LocaleFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'ebx:locale' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'ebx:locale'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resource" type="fmt:ResourceFormat">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default format for 'ebx:resource' instances</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Format par défaut pour les types 'ebx:resource'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="listSeparator">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Default separator used for formatting multiple occurrences lists.</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Séparateur par défaut pour le formattage des listes multi-occurencées.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="value" type="xs:string" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

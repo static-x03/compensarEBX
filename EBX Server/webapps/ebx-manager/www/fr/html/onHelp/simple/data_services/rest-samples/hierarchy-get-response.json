@@ -1,0 +1,6 @@
+{
+  "members": "http://localhost:8080/ebx-dataservices/rest/.../dataset/Vpns/BooksByauthors/members",
+  "orphans": "http://localhost:8080/ebx-dataservices/rest/.../dataset/Vpns/BooksByAuthors/orphans/0"
+}
+
+

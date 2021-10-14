@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Extending TIBCO EBX&reg; internationalization</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="i18n_extended" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Localization</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/i18n_extended.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Localization</span></div>
+<h1>
+Extending TIBCO EBX&reg; internationalization</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview of the native EBX&reg; localization</a></li><li class="toc1"><a href="#id2">Extending EBX&reg; user interface localization</a><ul class="toc2">
+<li class="toc2"><a href="#addLocale">Adding a new locale</a></li></ul>
+</li><li class="toc1"><a href="#i18n_extended_resolution">Localized resources resolution</a></li><li class="toc1"><a href="#id4">Known limitations</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Non extendable materials</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview of the native EBX&reg; localization</h2>
+<p>By default, the EBX&reg; built-in user interface is provided in English (en-US) and French (fr-FR).</p><p>Localization consists of a formatting policy and a set of message files (resource bundle): </p><ul>
+<li><p>For English, localization is provided by a formatting policy and a set of message files with no locale defined,</p></li></ul>
+<ul>
+<li><p>For French, localization is provided by a formatting policy and a set of message files with locale set to &quot;fr&quot;.</p></li></ul>
+<p>EBX&reg; provides an option to add locales in order to extend the localization of the user interface and to internationalize the documentation of data models and associated services.</p><h2 id="id2">
+Extending EBX&reg; user interface localization</h2>
+<p>EBX&reg; supports the localization of its user interface into any compatible language and region.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Currently, Latin &amp; Cyrillic characters are supported. Locales that use other character sets may be usable, but are not supported.</p></div>
+<h3 id="addLocale">
+Adding a new locale</h3>
+<p>In order to add a new locale, the following steps must be followed:</p><ul>
+<li><p>Declare the new locale in the EBX&reg; main configuration file. For example:</p><p><span class="highlight">ebx.locales.available=en-US, fr-FR, xx</span></p><ul>
+<li><p>The first locale is always considered the default.</p></li><li><p>The built-in locales, en-US and fr-FR, can be removed if required.</p></li></ul>
+<p>See <a href="../installation/properties.html#locales">Configuring EBX&reg; localization</a>.</p></li><li><p>Deploy the following files in the EBX&reg; class-path:</p><ul>
+<li><p>A formatting policy file, named <code>com.orchestranetworks.i18n.frontEndFormattingPolicy_xx.xml</code>,</p></li><li><p>A set of localized message files (*_xx.mxml) in a resource bundle.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>The files must be ending with &quot;.mxml&quot;. </p></div>
+<p> A complete template set of files is available <a href="../resources/i18n/i18n_xx.zip">here</a>.</p></li></ul>
+<h2 id="i18n_extended_resolution">
+Localized resources resolution</h2>
+<p>Since version 5.7.0, localized resources are resolved on a locale-proximity base, with the following lookup mechanism:</p><ul>
+<li><p>resourceName + &quot;_&quot; + language + &quot;_&quot; + country + &quot;_&quot; + variant + &quot;.mxml&quot;</p></li><li><p>resourceName + &quot;_&quot; + language + &quot;_&quot; + country + &quot;.mxml&quot;</p></li><li><p>resourceName + &quot;_&quot; + language + &quot;.mxml&quot;</p></li><li><p>resourceName + &quot;.mxml&quot;</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>The resolution is done at the localized message level. It is therefore possible to define one or more files for a locale that only includes messages for which specific localization is required.</p></div>
+<h2 id="id4">
+Known limitations</h2>
+<h3 id="id4s1">
+Non extendable materials</h3>
+<p>Localization of the following cannot be extended:</p><ul>
+<li><p>EBX&reg; product documentation,</p></li><li><p>EBX&reg; HTML editor and viewer.</p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Localization</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

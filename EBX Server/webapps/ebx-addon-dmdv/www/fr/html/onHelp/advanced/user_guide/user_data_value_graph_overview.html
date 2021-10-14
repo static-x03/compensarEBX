@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Overview</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs</span></div>
+<h1 id="user_sample_topPage">
+Overview</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">What are data value graphs?</a><ul class="toc2">
+<li class="toc2"><a href="#default_graphs">Default graphs</a></li><li class="toc2"><a href="#configured_graphs">Configured graphs</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+What are data value graphs?</h2>
+<p>A data value graph is a visual representation of how data values relate to each other. A graph can display relationships between data in the same table, different tables, and even tables from multiple data models. By default, you can view a graph of <a href="#default_graphs">selected data values</a>. Additionally, you can choose a <a href="#configured_graphs">data value graph configuration</a> created by an administrator to display a customized graph of selected data values. See the sections below for more details on each graph type.</p><h3 id="default_graphs">
+Default graphs</h3>
+<p>A default data value graph requires no advance configuration. Default graphs display data values in colored boxes and use arrows to represent the relationships between the data values. The following image provides an example of a default data value graph:</p><img alt="/data-value-graph-default.png" src="./resources/images/data-value-graph-default.png"></img><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_data_value_graph_generating.html">Generating data value graphs</a></li><li><a href="../user_guide/user_default_data_value_graph_using.html">Using data value graphs</a></li></ul>
+</div>
+<h3 id="configured_graphs">
+Configured graphs</h3>
+<p>Administrators can create configurations to determine which values and relationships can display. They also configure how the add-on renders these relationships by assigning a display type to each one. The table below provides examples of the available display types. To display a graph, users select one or more values in a table and run the table&#39;s <strong>Display data using configuration</strong> service. Note that this service is available only from tables included in a configuration.</p><p>The following table outlines the available relationship display types:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Type</p></th><th><p>Example and description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>As Lines</p></td><td><p>As shown in the following image when you set the display to lines, values display in rectangular nodes and lines between nodes represent relationships.</p><p><img alt="/lineage_example.png" src="./resources/images/lineage_example.png" width="400"></img></p></td></tr>
+<tr>
+<td valign="top"><p>As Containers</p></td><td><p>As shown in the following image containers show a parent/child relationship as nodes within nodes. Outer nodes are the parents of the smaller, inner nodes.</p><p><img alt="/containment_example.png" src="./resources/images/containment_example.png"></img></p></td></tr>
+</tbody>
+</table>
+<p><a href="../user_guide/user_tutorial_intro.html">The sample tutorial</a> provides detailed configuration instructions. You can follow the tutorial step-by-step, or feel free to use the generalized instructions in the <a href="../user_guide/user_data_value_graph_config_overview.html">Configuring graphs</a> chapter to create your own configuration.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_data_value_graph_config_overview.html">Configuring graphs</a></li><li><a href="../user_guide/user_data_value_graph_generating.html">Generating data value graphs</a></li><li><a href="../user_guide/user_data_value_graph_using.html">Using configured data value graphs</a></li></ul>
+</div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

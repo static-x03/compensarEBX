@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - User operations</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="UserOperations_dynamicDataModeling" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Dynamic Data Modeling &gt; User Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=ddm_userguide/UserOperations_dynamicDataModeling.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Dynamic Data Modeling &gt; User Guide</span></div>
+<h1 id="UserOperations_dynamicDataModeling_topPage">
+User operations</h1>
+<p>The <strong>Dynamic data modeling</strong> feature allows you to generate and export an XSD file containing a data model by importing its structure from a supported file type (XML, Excel and DDL). This section describes the operations used to generate this file. All user operations are available from the <strong>Dynamic data modeling</strong> dataset under the <strong>Administration</strong> tab.</p><p>You can refer to the second part of this user guide for a full description of all available options.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#UsingTheGenerateFromFileServiceToImport5d3_3">Using the Generate from file service to import</a><ul class="toc2">
+<li class="toc2"><a href="#GeneratingADataModelFromExcel15cf_4">Generating a data model from Excel</a></li><li class="toc2"><a href="#GeneratingADataModelFromXmlFormat207a_7">Generating a data model from XML format</a></li><li class="toc2"><a href="#GeneratingADataModelFromDdlFormat339_8">Generating a data model from DDL format</a></li></ul>
+</li><li class="toc1"><a href="#CreatingAnXsdFileWithTheGenerateXsdService840_9">Creating an XSD file with the &#39;Generate XSD&#39; service</a></li></ul>
+</div>
+<h2 id="UsingTheGenerateFromFileServiceToImport5d3_3">
+Using the Generate from file service to import</h2>
+<p>Before importing a file that defines a data model&#39;s structure, you must create a record in the <strong>Data model</strong> table that allows you to provide a name and description for a data model configuration. From this record, you can specify a file to import using the <strong>Generate from file</strong> service, as shown below.</p><p align="center"><img alt="/gen_service_1.png" src="./resources/pictures/gen_service_1.png"></img></p><p align="center"><img alt="/gen_service_2.png" src="./resources/pictures/gen_service_2.png"></img></p><p>The data format of the imported file is automatically identified by the service. The following formats are supported and discussed in further detail in the following sections: Excel, XML and DDL (SQL).</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If you execute the <strong>Generate from file</strong> service on an existing <strong>Data model</strong> record, all your previous descriptions are erased. </p></div>
+<h3 id="GeneratingADataModelFromExcel15cf_4">
+Generating a data model from Excel</h3>
+<p>The first four cells in the first row of the spreadsheet allow the service to automatically detect the worksheet tab&#39;s layout. Data contained in an Excel file can be arranged in one of the following two ways:</p><ul>
+<li><p>Either a declaration of the data model structure.</p></li><li><p>Or a snapshot of actual data values—from which the data model structure is interpreted.</p></li></ul>
+<p>All generated table and field names are normalized by replacing special characters using the underscore (&#39;_&#39;) character.</p><h4 id="UsingAnExcelLayoutContainingADataModelsStructure6ea_5">
+Using an Excel layout containing a data model&#39;s structure</h4>
+<p>An Excel input file is considered as a data model structure layout when the first four cells of the first row contain exactly properties: <strong>Data type</strong>, <strong>Field name</strong>, <strong>Is primary key</strong>, and <strong>Group path</strong>. You can change the order of these properties in the input file. Once the tab&#39;s layout is determined, <strong>Data modeler</strong> execute generating data model based on this structure. Each worksheet tab in the file corresponds to a table. Thus, the tab&#39;s name provides the table name and each row defines a data model field with properties as declared in four columns. The list of possible <strong>Datatype</strong> values is defined in the <strong>Data type mapping</strong> table. If you leave <strong>Data type</strong> blank, it defaults to <code><strong>String</strong></code>. The default value of Group path is <code><strong>/root</strong></code>.</p><p align="center"><img alt="/gen_model_2.png" src="./resources/pictures/gen_model_2.png"></img></p><p>The figure below shows the result of the generation based on the previous spreadsheet example:</p><p align="center"><img alt="/gen_model_1.png" src="./resources/pictures/gen_model_1.png"></img></p><h4 id="UsingAnExcelLayoutContainingDataValues9b6_6">
+Using an Excel layout containing data values</h4>
+<p>When a spreadsheet contains a set of actual data values—not just a data model outline—the add-on can ascertain data model structure. Each worksheet tab of the spreadsheet corresponds to one table to generate. The name of the worksheet tab becomes the table name in the data model. The first row in the spreadsheet gives the names of every field (one field per column). Systematically, the first cell value is considered the primary key. You cannot have duplicate names in the list of the fields.</p><p>All generated fields default to the String data type due to the inability to detect types during generation. Once imported, you can change the data types manually before generating the XSD file by editing the values in the field&#39;s <strong>Type</strong> property.</p><p align="center"><img alt="/100000000000027C00000051FC4013C3.png" src="./resources/pictures/100000000000027C00000051FC4013C3.png" width="584"></img></p><p>The figure below shows the result of the generation based on the previous spreadsheet example:</p><p align="center"><img alt="/gen_model_3.png" src="./resources/pictures/gen_model_3.png"></img></p><h3 id="GeneratingADataModelFromXmlFormat207a_7">
+Generating a data model from XML format</h3>
+<p>You can import an XML file to generate the data model. The <strong>Generate from file</strong> service allows you to decide which elements of the XML file correspond to the tables, groups and fields you want to obtain.</p><p align="center"><img alt="/gen_model_xml.png" src="./resources/pictures/gen_model_xml.png"></img></p><p>All generated fields default to the <strong>String</strong> data type due to the inability to detect types during generation. Once imported, you can change the data types manually before generating the XSD file by editing the values in the <strong>Field</strong> table&#39;s <strong>Type</strong> field.</p><p>The figure below shows the result of the generation based on the previous XML example:</p><p align="center"><img alt="/gen_model_xml_1.png" src="./resources/pictures/gen_model_xml_1.png"></img></p><p>All fields at the same level as the selected table element are ignored in the generated data model. Since the <strong>Data modeler</strong> does not support to generate a field outside of a table.</p><h3 id="GeneratingADataModelFromDdlFormat339_8">
+Generating a data model from DDL format</h3>
+<p>You can generate the data model from a DDL description (SQL statements). The following example uses a DDL file that declares a table named <strong>EBX_DDS</strong>.</p><p><img alt="/gen_model_ddl.png" src="./resources/pictures/gen_model_ddl.png"></img></p><p>Please refer to appendixes A and B to get the list of supported SQL statements and Databases.</p><h2 id="CreatingAnXsdFileWithTheGenerateXsdService840_9">
+Creating an XSD file with the &#39;Generate XSD&#39; service</h2>
+<p>After importing a data model&#39;s structure, you can execute the <strong>Generate XSD</strong> service to obtain the XSD file compliant with EBX®.</p><p>This service is located on the <strong>Data model</strong> table as highlighted below.</p><p align="center"><img alt="/gen_xsd.png" src="./resources/pictures/gen_xsd.png"></img></p><p>Here is an example of an XSD file generated from a data model. This XSD file is imported into EBX® to obtain the actual data model.</p><p align="center"><img alt="/gen_xsd_1.png" src="./resources/pictures/gen_xsd_1.png"></img></p><p>You can author the data model in the <strong>DMA (Data modeler Assistant)</strong> to adapt it depending on your needs. In case you re-generate the corresponding XSD all these adaptations will be lost.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:fmt="urn:ebx-schemas:formattingPolicy_1.0"
+	targetNamespace="urn:ebx-schemas:formattingPolicy_1.0"
+	elementFormDefault="qualified">
+	<xs:element name="formattingPolicy" type="fmt:FormattingPolicy" />
+	<xs:complexType name="IntFormat">
+		<xs:attribute name="pattern" type="xs:string" use="optional">
+		   <!-- This attribute has become optional since 5.8.0  -->
+        </xs:attribute>
+		<xs:attribute name="groupingSeparator" type="xs:string" use="optional">
+		   <!-- This is a new optional attribute since 5.8.0  -->
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="DecimalFormat">
+		<xs:attribute name="pattern" type="xs:string" use="optional">
+		   <!-- This attribute has become optional since 5.8.0  -->
+		</xs:attribute>
+		<xs:attribute name="decimalSeparator" type="xs:string" use="optional">
+		   <!-- This is a new optional attribute since 5.8.0  -->
+		</xs:attribute>
+		<xs:attribute name="groupingSeparator" type="xs:string" use="optional">
+		   <!-- This is a new optional attribute since 5.8.0  -->
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="GenericDateFormat">
+		<xs:attribute name="pattern" type="xs:string" use="required" />
+	</xs:complexType>
+	<xs:complexType name="DateFormat">
+		<xs:complexContent>
+      <xs:extension base="fmt:GenericDateFormat">
+        <xs:attribute name="yearPlaceholder" type="xs:string" use="optional"/>
+        <xs:attribute name="monthPlaceholder" type="xs:string" use="optional"/>
+        <xs:attribute name="dayPlaceholder" type="xs:string" use="optional"/>
+      </xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DateTimeFormat">
+		<xs:complexContent>
+			<xs:extension base="fmt:GenericDateFormat" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TimeFormat">
+		<xs:complexContent>
+      <xs:extension base="fmt:GenericDateFormat">
+        <xs:attribute name="hour24Placeholder" type="xs:string" use="optional"/>
+        <xs:attribute name="hour12Placeholder" type="xs:string" use="optional"/>
+        <xs:attribute name="minutePlaceholder" type="xs:string" use="optional"/>
+        <xs:attribute name="secondPlaceholder" type="xs:string" use="optional"/>
+        <xs:attribute name="amPmPlaceholder" type="xs:string" use="optional"/>
+      </xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FormattingPolicy">
+		<xs:all>
+			<xs:element name="int" type="fmt:IntFormat" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Default format for 'xs:int' instances
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="decimal" type="fmt:DecimalFormat"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Default format for 'xs:decimal' instances
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="fmt:DateFormat"
+				minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Default format for 'xs:date' instances
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateTime" type="fmt:DateTimeFormat"
+				minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Default format for 'xs:dateTime' instances
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="time" type="fmt:TimeFormat"
+				minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Default format for 'xs:time' instances
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

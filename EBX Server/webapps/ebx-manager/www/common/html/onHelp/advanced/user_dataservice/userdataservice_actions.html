@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Generating data service WSDLs</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ds_actions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data services</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataservice/userdataservice_actions.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data services</span></div>
+<h1>
+Generating data service WSDLs</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#data">Generating a WSDL for operations on data</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Operations on datasets</a></li><li class="toc2"><a href="#id1s2">Operations on tables</a></li></ul>
+</li><li class="toc1"><a href="#dataspace">Generating a WSDL for dataspace operations</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Operations on dataspaces</a></li></ul>
+</li><li class="toc1"><a href="#workflow">Generating a WSDL for data workflow operations</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Operations on data workflows</a></li></ul>
+</li><li class="toc1"><a href="#lineage">Generating a WSDL for lineage</a></li><li class="toc1"><a href="#admin_administration">Generating a WSDL for administration</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Operations for administration</a></li></ul>
+</li><li class="toc1"><a href="#admin_directory">Generating a WSDL to modify the default directory</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Operations on the default directory</a></li></ul>
+</li></ul>
+</div>
+<h2 id="data">
+Generating a WSDL for operations on data</h2>
+<p>To generate a WSDL for accessing data, select &#39;Data&#39; in the navigation panel in the <strong>Data Services</strong> area, then follow through the steps of the wizard:</p><ol>
+<li><p>Choose whether the WSDL will be for operations at the dataset level or at the table level.</p></li><li><p>Identify the dataspace and dataset on which the operations will be run</p></li><li><p>Select the tables on which the operations are authorized, as well as the operations permitted.</p></li><li><p>Download the generated WSDL file by clicking the button <strong>Download WSDL</strong>.</p></li></ol>
+<h3 id="id1s1">
+Operations on datasets</h3>
+<p>The following operations can be performed using the WSDL generated for operations at the dataset level:</p><ul>
+<li><p>Select dataset content for a dataspace or snapshot.</p></li><li><p>Get dataset changes between dataspaces or snapshots</p></li><li><p>Replication unit refresh</p></li></ul>
+<h3 id="id1s2">
+Operations on tables</h3>
+<p>The following operations, if selected, can be performed using the WSDL generated for operations at the table level:</p><ul>
+<li><p>Insert record(s)</p></li><li><p>Select record(s)</p></li><li><p>Update record(s)</p></li><li><p>Delete record(s)</p></li><li><p>Count record(s)</p></li><li><p>Get changes between dataspace or snapshot</p></li><li><p>Get credentials</p></li><li><p>Run multiple operations on tables in the dataset</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_wsdl.html#buildFromWSDLConnector">WSDL download from HTTP protocol</a></li><li><a href="../data_services/dataservices_execution.html#dataModel">Operations generated from a data model</a></li></ul>
+</div>
+<h2 id="dataspace">
+Generating a WSDL for dataspace operations</h2>
+<p>To generate a WSDL for dataspace-level operations, selecting &#39;Dataspace&#39; in the navigation panel of the <strong>Data Services</strong> area. The generated WSDL is generic to all dataspaces, thus no additional information is required.</p><p>Download the generated WSDL file by clicking the button <strong>Download WSDL</strong>.</p><h3 id="id2s1">
+Operations on dataspaces</h3>
+<p>The following operations can be performed using the WSDL generated for operations at the dataspace level:</p><ul>
+<li><p>Create a dataspace</p></li><li><p>Close a dataspace</p></li><li><p>Create a snapshot</p></li><li><p>Close a snapshot</p></li><li><p>Merge a dataspace</p></li><li><p>Lock a dataspace</p></li><li><p>Unlock a dataspace</p></li><li><p>Validate a dataspace or a snapshot</p></li><li><p>Validate a dataset</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_wsdl.html#buildFromWSDLConnector">WSDL download from HTTP protocol</a></li><li><a href="../data_services/dataservices_execution.html#repository">Operations on datasets and dataspaces</a></li></ul>
+</div>
+<h2 id="workflow">
+Generating a WSDL for data workflow operations</h2>
+<p>To generate a WSDL to control data workflows, select &#39;Data workflow&#39; from the <strong>Data Services</strong> area. The generated WSDL is not specific to any particular workflow publication, thus no additional information is required.</p><p>Download the generated WSDL file by clicking the button <strong>Download WSDL</strong>.</p><h3 id="id3s1">
+Operations on data workflows</h3>
+<ul>
+<li><p>Start a data workflow</p></li><li><p>Resume a data workflow</p></li><li><p>End a data workflow</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_wsdl.html#buildFromWSDLConnector">WSDL download from HTTP protocol</a></li><li><a href="../data_services/dataservices_execution.html#workflow">Operations on data workflows</a></li></ul>
+</div>
+<h2 id="lineage">
+Generating a WSDL for lineage</h2>
+<p>To generate a WSDL for lineage, select &#39;Lineage&#39; from the <strong>Data Services</strong> area. It will be based on authorized profiles that have been defined by an administrator in the &#39;Lineage&#39; section of the <strong>Administration</strong> area.</p><p>The operations available for accessing tables are the same as for <a href="#data">WSDL for operations on data</a>.</p><p>Steps for generating the WSDL for lineage are as follows:</p><ol>
+<li><p>Select the profile whose permissions will be used. The selected user or role must be authorized for use with lineage by an administrator.</p></li><li><p>Identify the dataspace and dataset on which the operations will be run</p></li><li><p>Select the tables on which the operations are authorized, as well as the operations permitted.</p></li><li><p>Download the generated WSDL file by clicking the button <strong>Download WSDL</strong>.</p></li></ol>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_dataservice/userdataservice_intro.html#lineage">Lineage</a></li></ul>
+</div>
+<h2 id="admin_administration">
+Generating a WSDL for administration</h2>
+<p><em>This action is only available to administrators.</em></p><p>To generate a WSDL for:</p><ul>
+<li><p>managing the user interface</p></li><li><p>getting system information</p></li></ul>
+<p> select &#39;Administration&#39; from the <strong>Data Services</strong> area.</p><h3 id="id5s1">
+Operations for administration</h3>
+<ul>
+<li><p>Close user interface</p></li><li><p>Open user interface</p></li><li><p>Get system information</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_wsdl.html#buildFromWSDLConnector">WSDL download from HTTP protocol</a></li><li><a href="../data_services/dataservices_execution.html#userInterface">User interface operations</a></li><li><a href="../data_services/dataservices_execution.html#systemInformation">System information operation</a></li></ul>
+</div>
+<h2 id="admin_directory">
+Generating a WSDL to modify the default directory</h2>
+<p><em>This action is only available to administrators, and only if using the default directory.</em></p><p>To generate a WSDL to update the default directory, select &#39;Directory&#39; from the <strong>Data Services</strong> area.</p><h3 id="id6s1">
+Operations on the default directory</h3>
+<p>The operations available for accessing tables are the same as for <a href="#data">WSDL for operations on data</a>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_wsdl.html#buildFromWSDLConnector">WSDL download from HTTP protocol</a></li><li><a href="../data_services/dataservices_execution.html#directory">Directory services</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data services</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

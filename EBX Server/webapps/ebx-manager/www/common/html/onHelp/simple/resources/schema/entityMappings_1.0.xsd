@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	Copyright © TIBCO Software Inc. 2001-2021. All rights reserved. 
+
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+ --> 
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:emd="urn:ebx-schemas:entityMappings_1.0" targetNamespace="urn:ebx-schemas:entityMappings_1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <xs:element name="entityMappings">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">
+                Defines the entity mappings available in a data model.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="table" type="emd:TableMapping" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="tablePathUniqueness">
+            <xs:selector xpath="table"/>
+            <xs:field xpath="path"/>
+        </xs:unique>
+        <xs:unique name="entityNameUniqueness">
+            <xs:selector xpath="table"/>
+            <xs:field xpath="entityName"/>
+        </xs:unique>
+    </xs:element>
+    <xs:complexType name="TableMapping">
+        <xs:sequence>
+            <xs:element name="path" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en-US">
+                        Absolute path of the table in the data model.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entityName" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en-US">
+                        Name associated to the specified table.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-zA-Z_][a-zA-Z0-9_]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

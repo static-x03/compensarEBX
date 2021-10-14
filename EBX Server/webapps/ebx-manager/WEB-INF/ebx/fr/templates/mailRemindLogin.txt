@@ -1,0 +1,9 @@
+[[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIRepositoryTitle]] - Confidentiel
+
+Votre code d'accès confidentiel :
+
+- identifiant : [[display:login]]
+- mot de passe : [[display:password]]
+
+
+[[include:^mailCopyrightDisclosure.txt]]

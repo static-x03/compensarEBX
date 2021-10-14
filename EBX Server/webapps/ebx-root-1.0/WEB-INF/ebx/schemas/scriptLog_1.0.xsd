@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		 2001-2021
+
+		******************************************************************************
+		EBX(R) schema.
+		This schema is not meant for modifications.
+		Any modification done on this document can prevent the
+		execution of EBX(R) software.
+		******************************************************************************
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0"
+  xmlns:osd="urn:ebx-schemas:common_1.0">
+  <xs:import namespace="urn:ebx-schemas:common_1.0"
+    schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+  <xs:import namespace="urn:ebx-schemas:session_1.0"
+    schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+  <xs:annotation>
+    <xs:appinfo>
+      <osd:extensions class="com.orchestranetworks.dsl.log.schema.ScriptLogExtensions"/>
+      <osd:validation>
+        <validationMessageThreshold>1000</validationMessageThreshold>
+      </osd:validation>
+      <osd:inheritance>
+        <dataSetInheritance>none</dataSetInheritance>
+      </osd:inheritance>
+      <ebxbnd:binding targetDirectory="../_ebx/src">
+        <javaPathConstants typeName="com.orchestranetworks.dsl.log.schema.ScriptLogPaths">
+          <nodes prefix="" relativeToRoot="false" root="/root"/>
+        </javaPathConstants>
+      </ebxbnd:binding>
+      <osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.scriptLog"/>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="root" osd:access="--">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="log" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation osd:id="element.root.log"/>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Function" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation osd:id="element.root.log.Function"/>
+                  <xs:appinfo>
+                    <osd:table>
+                      <primaryKeys>/id</primaryKeys>
+                    </osd:table>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="id" type="xs:int" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.id"/>
+                        <xs:appinfo>
+                          <osd:autoIncrement/>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="datetime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.datetime"/>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="level" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.level"/>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                          <xs:enumeration value="0">
+                            <xs:annotation>
+                              <xs:documentation
+                                osd:id="element.root.log.Function.level.enumeration.0"/>
+                            </xs:annotation>
+                          </xs:enumeration>
+                          <xs:enumeration value="1">
+                            <xs:annotation>
+                              <xs:documentation
+                                osd:id="element.root.log.Function.level.enumeration.1"/>
+                            </xs:annotation>
+                          </xs:enumeration>
+                          <xs:enumeration value="2">
+                            <xs:annotation>
+                              <xs:documentation
+                                osd:id="element.root.log.Function.level.enumeration.2"/>
+                            </xs:annotation>
+                          </xs:enumeration>
+                          <xs:enumeration value="3">
+                            <xs:annotation>
+                              <xs:documentation
+                                osd:id="element.root.log.Function.level.enumeration.3"/>
+                            </xs:annotation>
+                          </xs:enumeration>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="dataspace" type="osd:dataspaceKey" minOccurs="1"
+                      maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.dataspace"/>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dataset" type="osd:datasetName" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.dataset"/>
+                        <xs:appinfo>
+                          <osd:datasetSet>
+                            <dataspaceSelector>/root/log/Function/dataspace</dataspaceSelector>
+                            <include>
+                              <pattern>.*</pattern>
+                              <includeDescendants>allDescendants</includeDescendants>
+                            </include>
+                          </osd:datasetSet>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="path" type="xs:string" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.path"/>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="line" type="xs:int" minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.line"/>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="message" type="xs:string" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation osd:id="element.root.log.Function.message"/>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

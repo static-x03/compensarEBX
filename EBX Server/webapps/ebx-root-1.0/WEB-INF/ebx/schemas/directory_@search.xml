@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/directory.xsd, iid=01B]
+ -->
+<search>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/comments</field>
+        <searchStrategy>@Text</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/faxNumber</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/firstName</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/jobFunction</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/lastName</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/mobilePhoneNumber</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/officePhoneNumber</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/user/salutation</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/roles/documentation/localizedDocumentations/description</field>
+        <searchStrategy>@Text</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/directory/roles/documentation/localizedDocumentations/label</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+</search>

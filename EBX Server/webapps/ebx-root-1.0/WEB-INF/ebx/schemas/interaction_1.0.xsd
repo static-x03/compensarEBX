@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for Simple Workflow, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./_reserved/common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<!-- schema - java binding  -->
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.interactions.InteractionPaths">
+					<nodes prefix="" root="/root/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:extensions class="com.orchestranetworks.interactions.InteractionSchemaExtensions" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.interaction" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.root" />
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="interactions" type="InteractionType">
+					<xs:annotation>
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/domain /idInDomain</primaryKeys>
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="InteractionType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.InteractionType" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="domain" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.domain" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="idInDomain" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.idInDomain" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="user" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.user" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.schema.definition.UserReferenceConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastUpdate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.lastUpdate" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="state">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.state" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="accepted">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.InteractionType.state.enumeration.accepted" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="rejected">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.InteractionType.state.enumeration.rejected" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="started">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.InteractionType.state.enumeration.started" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="complete">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.InteractionType.state.enumeration.complete" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="inputParameters" type="VariableValue">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.inputParameters" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="internalParameters" type="VariableValue">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.internalParameters" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="outputParameters" type="VariableValue">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.outputParameters" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="1" minOccurs="0" name="comment" type="xs:string" osd:category="Hidden">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.comment" />
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>				
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="commentLastModificationDate" type="xs:dateTime" osd:category="Hidden">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.InteractionType.commentLastModificationDate" />
+					<xs:appinfo>
+						<osd:defaultView>
+   							<hiddenInSearch>true</hiddenInSearch>
+							<hiddenInViews>true</hiddenInViews>
+						</osd:defaultView>
+					</xs:appinfo>				
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VariableValue" osd:class="com.orchestranetworks.interactions.InteractionHelper$ParameterValue">
+		<xs:sequence>
+			<xs:element name="name" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValue.name" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="value" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.VariableValue.value" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Clean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/interactions" class="com.orchestranetworks.interactions.InteractionPermissionClean" resourcePath="/wfserviceDispatcher?command=cleanInteraction" />
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.Clean" />
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,19 @@
+{
+  "content": [
+    {
+      "member": "http://.../BooksByAuthors/members/author105"
+    },
+    {
+      "member": "http://.../BooksByAuthors/members/author345"
+    },
+
+    ...
+
+    {
+      "member": "http://../BooksByAuthors/members/author0/members/book32"
+    },
+    {
+      "member": "http://../BooksByAuthors/members/author5/members/book65"
+    }
+  ]
+}

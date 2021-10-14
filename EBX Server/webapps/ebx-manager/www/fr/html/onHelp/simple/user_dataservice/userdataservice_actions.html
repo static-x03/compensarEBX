@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - G&eacute;n&eacute;ration de WSDL pour services de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ds_actions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Services de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataservice/userdataservice_actions.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Services de données</span></div>
+<h1>
+G&eacute;n&eacute;ration de WSDL pour services de donn&eacute;es</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#data">G&eacute;n&eacute;rer un WSDL pour acc&eacute;der aux donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Op&eacute;rations disponibles sur un jeu de donn&eacute;es</a></li><li class="toc2"><a href="#id1s2">Op&eacute;rations disponibles sur une table d&#39;un jeu de donn&eacute;es</a></li></ul>
+</li><li class="toc1"><a href="#dataspace">G&eacute;n&eacute;rer un WSDL pour acc&eacute;der &agrave; un espace de donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Op&eacute;rations disponibles sur un espace de donn&eacute;es</a></li></ul>
+</li><li class="toc1"><a href="#workflow">G&eacute;n&eacute;rer un WSDL pour contr&ocirc;ler un workflow de donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Op&eacute;rations disponibles pour contr&ocirc;ler un workflow de donn&eacute;es</a></li></ul>
+</li><li class="toc1"><a href="#lineage">G&eacute;n&eacute;rer un WSDL pour un lignage</a></li></ul>
+</div>
+<h2 id="data">
+G&eacute;n&eacute;rer un WSDL pour acc&eacute;der aux donn&eacute;es</h2>
+<p>La g&eacute;n&eacute;ration de WSDL pour l&#39;acc&egrave;s aux donn&eacute;es est disponible en s&eacute;lectionnant &#39;Donn&eacute;es&#39; dans la section &#39;Services de donn&eacute;es&#39;.</p><p>Les &eacute;tapes de la g&eacute;n&eacute;ration d&#39;un WSDL sont les suivantes :</p><ol>
+<li><p>S&eacute;lectionner si le WSDL sera utilis&eacute; pour des op&eacute;rations sur un jeu de donn&eacute;es ou sur une table.</p></li><li><p>Identifier l&#39;espace de donn&eacute;es et le jeu de donn&eacute;es cibl&eacute;s par les op&eacute;rations.</p></li><li><p>S&eacute;lectionner les tables sur lesquelles les op&eacute;rations sont autoris&eacute;es, ainsi que les op&eacute;rations permises.</p></li><li><p>T&eacute;l&eacute;charger le fichier WSDL g&eacute;n&eacute;r&eacute; en cliquant sur le bouton &#39;T&eacute;l&eacute;charger le WSDL&#39;.</p></li></ol>
+<h3 id="id1s1">
+Op&eacute;rations disponibles sur un jeu de donn&eacute;es</h3>
+<p>Les op&eacute;rations suivantes sur les jeux de donn&eacute;es sont disponibles en utilisant le WSDL g&eacute;n&eacute;r&eacute; :</p><ul>
+<li><p>S&eacute;lectionner les donn&eacute;es d&#39;un jeu de donn&eacute;es pour un espace de donn&eacute;es ou une image.</p></li><li><p>R&eacute;cup&eacute;rer les changements du jeu de donn&eacute;es entre espaces de donn&eacute;es ou images</p></li><li><p>Actualiser une unit&eacute; de r&eacute;plication en base de donn&eacute;es</p></li></ul>
+<h3 id="id1s2">
+Op&eacute;rations disponibles sur une table d&#39;un jeu de donn&eacute;es</h3>
+<p>Si s&eacute;lectionn&eacute;es, les op&eacute;rations suivantes sur les tables sont disponibles en utilisant le WSDL g&eacute;n&eacute;r&eacute; :</p><ul>
+<li><p>S&eacute;lectionner un (ou plusieurs) enregistrement(s)</p></li><li><p>Ins&eacute;rer un (ou plusieurs) enregistrement(s)</p></li><li><p>Mettre &agrave; jour un (ou plusieurs) enregistrement(s)</p></li><li><p>Supprimer un (ou plusieurs) enregistrement(s)</p></li><li><p>Compter des enregistrements</p></li><li><p>R&eacute;cup&eacute;rer les changements entre espaces de donn&eacute;es ou images</p></li><li><p>Obtenir les droits d&#39;acc&egrave;s</p></li></ul>
+<h2 id="dataspace">
+G&eacute;n&eacute;rer un WSDL pour acc&eacute;der &agrave; un espace de donn&eacute;es</h2>
+<p>La g&eacute;n&eacute;ration de WSDL pour la manipulation d&#39;un espace de donn&eacute;es est accessible en s&eacute;lectionnant &#39;Espace de donn&eacute;es&#39; dans la section &#39;Services de donn&eacute;es&#39;. Le WSDL g&eacute;n&eacute;r&eacute; n&#39;est pas sp&eacute;cifique &agrave; un espace de donn&eacute;es et aucune information n&#39;est requise. Il peut &ecirc;tre t&eacute;l&eacute;charg&eacute; gr&acirc;ce au bouton <strong>T&eacute;l&eacute;charger le WSDL</strong>.</p><h3 id="id2s1">
+Op&eacute;rations disponibles sur un espace de donn&eacute;es</h3>
+<p>Les op&eacute;rations suivantes sur les espaces de donn&eacute;es sont disponibles en utilisant le WSDL g&eacute;n&eacute;r&eacute; :</p><ul>
+<li><p>Cr&eacute;er un espace de donn&eacute;es</p></li><li><p>Cr&eacute;er une image</p></li><li><p>Fermer un espace de donn&eacute;es</p></li><li><p>Fermer une image</p></li><li><p>Fusionner un espace de donn&eacute;es</p></li><li><p>Valider un espace de donn&eacute;es ou une image</p></li><li><p>Valider un jeu de donn&eacute;es</p></li><li><p>Verrouiller un espace de donn&eacute;es</p></li><li><p>D&eacute;verrouiller un espace de donn&eacute;es</p></li></ul>
+<h2 id="workflow">
+G&eacute;n&eacute;rer un WSDL pour contr&ocirc;ler un workflow de donn&eacute;es</h2>
+<p>La g&eacute;n&eacute;ration d&#39;un WSDL pour le contr&ocirc;le d&#39;un workflow est accessible en s&eacute;lectionnant &#39;Workflow de donn&eacute;es&#39; dans la section &#39;Services de donn&eacute;es&#39;. Le WSDL g&eacute;n&eacute;r&eacute; n&#39;est pas sp&eacute;cifique &agrave; une publication de workflow et aucune information n&#39;est requise. Il peut &ecirc;tre t&eacute;l&eacute;charg&eacute; gr&acirc;ce au bouton <strong>T&eacute;l&eacute;charger le WSDL</strong>.</p><h3 id="id3s1">
+Op&eacute;rations disponibles pour contr&ocirc;ler un workflow de donn&eacute;es</h3>
+<p>Les op&eacute;rations suivantes sur les espaces de donn&eacute;es sont disponibles en utilisant le WSDL g&eacute;n&eacute;r&eacute; :</p><ul>
+<li><p>D&eacute;marrer un workflow</p></li><li><p>R&eacute;veiller un workflow</p></li><li><p>Terminer un workflow</p></li></ul>
+<h2 id="lineage">
+G&eacute;n&eacute;rer un WSDL pour un lignage</h2>
+<p>La g&eacute;n&eacute;ration d&#39;un WSDL pour un lignage est accessible en s&eacute;lectionnant &#39;Lignage&#39; dans la section &#39;Services de donn&eacute;es&#39;, sous r&eacute;serve que des profils aient &eacute;t&eacute; autoris&eacute;s par un profil administrateur dans <em>Administration &gt; Lignage</em>.</p><p>Les WSDL g&eacute;n&eacute;r&eacute;s pour acc&eacute;der aux tables sont les m&ecirc;mes que ceux utilis&eacute;s pour la <a href="#data">g&eacute;n&eacute;ration d&#39;un WSDL d&#39;acc&egrave;s aux donn&eacute;es</a>.</p><p>Les &eacute;tapes de la g&eacute;n&eacute;ration de ce WSDL sont les suivantes :</p><ol>
+<li><p>S&eacute;lectionner un r&ocirc;le ou un utilisateur, dont les permissions seront appliqu&eacute;es. Un r&ocirc;le ou un utilisateur doit &ecirc;tre autoris&eacute; &agrave; &ecirc;tre utilis&eacute; pour le lignage par un administrateur.</p></li><li><p>Identifier l&#39;espace de donn&eacute;es et le jeu de donn&eacute;es cibl&eacute;s par les op&eacute;rations.</p></li><li><p>S&eacute;lectionner les tables sur lesquelles les op&eacute;rations sont autoris&eacute;es, ainsi que les op&eacute;rations permises.</p></li><li><p>T&eacute;l&eacute;charger le fichier WSDL g&eacute;n&eacute;r&eacute; en cliquant sur le bouton <strong>T&eacute;l&eacute;charger le WSDL</strong>.</p></li></ol>
+<div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_dataservice/userdataservice_intro.html#lineage">Lignage</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Services de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

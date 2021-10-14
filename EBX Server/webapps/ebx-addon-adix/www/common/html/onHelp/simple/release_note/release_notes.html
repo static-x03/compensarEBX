@@ -1,0 +1,846 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - All release notes</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="releasenotes" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Release Notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=release_note/release_notes.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Release Notes</span></div>
+<h1>
+All release notes</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Version 3.0.2</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">New features</a></li><li class="toc2"><a href="#id1s2">Changes in Functionality</a></li><li class="toc2"><a href="#id1s3">Closed Issues</a></li><li class="toc2"><a href="#id1s4">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id2">Version 3.0.1</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Updates</a></li><li class="toc2"><a href="#id2s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id3">Version 3.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">New and updated behavior</a></li><li class="toc2"><a href="#id3s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id4">Version 2.7.7</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id5">Version 2.7.6</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Product updates</a></li><li class="toc2"><a href="#id5s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id6">Version 2.7.5</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id7">Version 2.7.4</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">Updates</a></li><li class="toc2"><a href="#id7s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id8">Version 2.7.3</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">New and updated behavior</a></li><li class="toc2"><a href="#id8s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id9">Version 2.7.2</a><ul class="toc2">
+<li class="toc2"><a href="#id9s1">New and updated behavior</a></li><li class="toc2"><a href="#id9s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id10">Version 2.7.1</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">Updated behavior</a></li><li class="toc2"><a href="#id10s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id11">Version 2.7.0</a><ul class="toc2">
+<li class="toc2"><a href="#id11s1">New features and updates</a></li><li class="toc2"><a href="#id11s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id12">Version 2.6.4</a><ul class="toc2">
+<li class="toc2"><a href="#id12s1">Updates and enhancements</a></li><li class="toc2"><a href="#id12s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id13">Version 2.6.3</a><ul class="toc2">
+<li class="toc2"><a href="#id13s1">Updates and enhancements</a></li><li class="toc2"><a href="#id13s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id14">Release Notes 2.6.2</a><ul class="toc2">
+<li class="toc2"><a href="#id14s1">Updates and enhancements</a></li><li class="toc2"><a href="#id14s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id15">Release Notes 2.6.1</a><ul class="toc2">
+<li class="toc2"><a href="#id15s1">Updates and enhancements</a></li><li class="toc2"><a href="#id15s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id16">Release Notes 2.6.0</a><ul class="toc2">
+<li class="toc2"><a href="#id16s1">Featured updates</a></li><li class="toc2"><a href="#bug_fixes_GA_260">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id17">Release Notes 2.5.1</a><ul class="toc2">
+<li class="toc2"><a href="#bug_fixes_GA_250">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id18">Release Notes 2.5.0</a><ul class="toc2">
+<li class="toc2"><a href="#id18s1">New features and enhancements</a></li><li class="toc2"><a href="#id18s2">Java API</a></li><li class="toc2"><a href="#id18s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id19">Release Note 2.4.9</a><ul class="toc2">
+<li class="toc2"><a href="#bug_fixes_GA_249">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id20">Release Note 2.4.8</a><ul class="toc2">
+<li class="toc2"><a href="#bug_fixes_GA_248">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id21">Release Note 2.4.7</a><ul class="toc2">
+<li class="toc2"><a href="#id21s1">Latest updates</a></li></ul>
+</li><li class="toc1"><a href="#id22">Release Note 2.4.6</a><ul class="toc2">
+<li class="toc2"><a href="#id22s1">Latest updates</a></li><li class="toc2"><a href="#API">Java API</a></li><li class="toc2"><a href="#bug_fixes_GA_246">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id23">Release Note 2.4.5</a><ul class="toc2">
+<li class="toc2"><a href="#bug_fixes_GA_245">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id24">Release Note 2.4.4</a><ul class="toc2">
+<li class="toc2"><a href="#bug_fixes_GA_244">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id25">Release Note 2.4.3</a><ul class="toc2">
+<li class="toc2"><a href="#bug_fixes_GA_243">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id26">Release Note 2.4.2</a><ul class="toc2">
+<li class="toc2"><a href="#new_features_GA_242">New features</a></li><li class="toc2"><a href="#import_export_config_GA_242">EBX® Data Exchange Add-on configuration Import/Export</a></li><li class="toc2"><a href="#read_only_pk_GA_242">Importing when a table&#39;s PK is read-only</a></li><li class="toc2"><a href="#java_api_GA_242">Java API</a></li><li class="toc2"><a href="#bug_fixes_GA_242">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id27">Release Note 2.4.0</a><ul class="toc2">
+<li class="toc2"><a href="#id27s1">Overview of features and enhancements</a></li><li class="toc2"><a href="#generate_constant_values">Generating constant values</a></li><li class="toc2"><a href="#model_generation">Generating models</a></li><li class="toc2"><a href="#data_transfer_enhancements">Data transfer enhancements</a></li><li class="toc2"><a href="#java_api">Java API</a></li><li class="toc2"><a href="#bug_fixes">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id28">Release Note 2.3.2</a><ul class="toc2">
+<li class="toc2"><a href="#id28s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id29">Release Note 2.3.1</a><ul class="toc2">
+<li class="toc2"><a href="#id29s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id30">Release Note 2.3.0</a><ul class="toc2">
+<li class="toc2"><a href="#id30s1">New features</a></li><li class="toc2"><a href="#id30s2">Java API</a></li><li class="toc2"><a href="#id30s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id31">Release Note 2.2.7</a><ul class="toc2">
+<li class="toc2"><a href="#id31s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id32">Release Note 2.2.6</a><ul class="toc2">
+<li class="toc2"><a href="#id32s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id33">Release Note 2.2.5</a><ul class="toc2">
+<li class="toc2"><a href="#id33s1">New features</a></li><li class="toc2"><a href="#id33s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id34">Release Note 2.2.4</a><ul class="toc2">
+<li class="toc2"><a href="#id34s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id35">Release Note 2.2.3</a><ul class="toc2">
+<li class="toc2"><a href="#id35s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id36">Release Note 2.2.2</a><ul class="toc2">
+<li class="toc2"><a href="#id36s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id37">Release Note 2.2.1</a><ul class="toc2">
+<li class="toc2"><a href="#id37s1">New features</a></li><li class="toc2"><a href="#id37s2">Java API</a></li><li class="toc2"><a href="#id37s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id38">Release Note 2.2.0</a><ul class="toc2">
+<li class="toc2"><a href="#id38s1">New features</a></li><li class="toc2"><a href="#id38s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id39">Release Note 2.1.9</a><ul class="toc2">
+<li class="toc2"><a href="#id39s1">New features</a></li><li class="toc2"><a href="#id39s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id40">Release Note 2.1.8</a><ul class="toc2">
+<li class="toc2"><a href="#id40s1">New features</a></li><li class="toc2"><a href="#id40s2">Java API</a></li><li class="toc2"><a href="#id40s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id41">Release Note 2.1.7</a><ul class="toc2">
+<li class="toc2"><a href="#id41s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id42">Release Note 2.1.6</a><ul class="toc2">
+<li class="toc2"><a href="#id42s1">New features</a></li><li class="toc2"><a href="#id42s2">Java API</a></li><li class="toc2"><a href="#id42s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id43">Release Note 2.1.5</a><ul class="toc2">
+<li class="toc2"><a href="#id43s1">New features</a></li><li class="toc2"><a href="#id43s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id44">Release Note 2.1.4</a><ul class="toc2">
+<li class="toc2"><a href="#id44s1">New features</a></li><li class="toc2"><a href="#id44s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id45">Release Note 2.1.3</a><ul class="toc2">
+<li class="toc2"><a href="#id45s1">New features</a></li><li class="toc2"><a href="#id45s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id46">Release Note 2.1.2 fix 002</a><ul class="toc2">
+<li class="toc2"><a href="#id46s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id47">Release Note 2.1.2 fix 001</a><ul class="toc2">
+<li class="toc2"><a href="#id47s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id48">Release Note 2.1.2</a><ul class="toc2">
+<li class="toc2"><a href="#id48s1">New features</a></li><li class="toc2"><a href="#id48s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id49">Release Note 2.1.1</a><ul class="toc2">
+<li class="toc2"><a href="#id49s1">New features</a></li><li class="toc2"><a href="#id49s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id50">Release Note 2.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id50s1">New features</a></li><li class="toc2"><a href="#id50s2">Java API</a></li><li class="toc2"><a href="#id50s3">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id51">Release Note 2.0.11</a><ul class="toc2">
+<li class="toc2"><a href="#id51s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id52">Release Note 2.0.10</a><ul class="toc2">
+<li class="toc2"><a href="#id52s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id53">Release Note 2.0.9</a><ul class="toc2">
+<li class="toc2"><a href="#id53s1">Memory usage improvements</a></li></ul>
+</li><li class="toc1"><a href="#id54">Release Note 2.0.8</a><ul class="toc2">
+<li class="toc2"><a href="#id54s1">New updates</a></li></ul>
+</li><li class="toc1"><a href="#id55">Release Note 2.0.7</a><ul class="toc2">
+<li class="toc2"><a href="#id55s1">New updates</a></li><li class="toc2"><a href="#bug_Adix_2.0.7">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id56">Release Note 2.0.6</a><ul class="toc2">
+<li class="toc2"><a href="#id56s1">New updates</a></li></ul>
+</li><li class="toc1"><a href="#id57">Release Note 2.0.5</a><ul class="toc2">
+<li class="toc2"><a href="#bug_Adix_2.0.5">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id58">Release Note 2.0.4</a><ul class="toc2">
+<li class="toc2"><a href="#bug_Adix_2.0.4">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id59">Release Note 2.0.3</a><ul class="toc2">
+<li class="toc2"><a href="#bug_Adix_2.0.3">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id60">Release Note 2.0.2</a><ul class="toc2">
+<li class="toc2"><a href="#bug_Adix_2.0.2">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id61">Release Note 2.0.1</a><ul class="toc2">
+<li class="toc2"><a href="#id61s1">New updates</a></li><li class="toc2"><a href="#bug_Adix_2.0.1">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id62">Release Note 2.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id62s1">New updates</a></li></ul>
+</li><li class="toc1"><a href="#id63">Release Note 1.3.0</a><ul class="toc2">
+<li class="toc2"><a href="#id63s1">New updates</a></li></ul>
+</li><li class="toc1"><a href="#id64">Release Note 1.2.1</a><ul class="toc2">
+<li class="toc2"><a href="#id64s1">New updates</a></li></ul>
+</li><li class="toc1"><a href="#id65">Release Note 1.2.0</a><ul class="toc2">
+<li class="toc2"><a href="#id65s1">New updates</a></li><li class="toc2"><a href="#id65s2">Known limitations</a></li></ul>
+</li><li class="toc1"><a href="#id66">Release Note 1.1.2</a><ul class="toc2">
+<li class="toc2"><a href="#id66s1">New updates</a></li><li class="toc2"><a href="#bug_Adix">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id67">Release Note 1.1.1</a><ul class="toc2">
+<li class="toc2"><a href="#id67s1">New updates</a></li></ul>
+</li><li class="toc1"><a href="#id68">Release Note 1.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id68s1">New updates</a></li></ul>
+</li><li class="toc1"><a href="#id69">Release Note 1.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id69s1">Known limitations</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Version 3.0.2</h2>
+<p><em>Released: July 2021</em></p><h3 id="id1s1">
+New features</h3>
+<p>This release includes an updated trademark.</p><h3 id="id1s2">
+Changes in Functionality</h3>
+<p>This release includes no updated functionality.</p><h3 id="id1s3">
+Closed Issues</h3>
+<p>This release includes no closed issues.</p><h3 id="id1s4">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Association object and selection node are not supported.</p></li><li><p>Data lineage.</p></li><li><p>Graphical view of the data mapping configurations.</p></li><li><p><strong>Split of string</strong> transformation function is not supported for a multi-valued string field.</p></li><li><p>Data transfer between complex terminal nodes is possible only if they use the same Java Bean.</p></li><li><p>You can not export data from multiple complex nodes in EBX® that when there is at least one complex node with multiple occurrences. </p></li><li><p>You can not import data from multiple complex nodes in an XML file when there is at least one complex node with multiple occurrences. </p></li><li><p><strong>Split of data</strong> works for terminal nodes only.</p></li></ul>
+<p>SQL export:</p><ul>
+<li><p>You can only export data from EBX® to the selected columns in the same tables of a view which is joined by multiple tables.</p></li><li><p>The add-on doesn&#39;t support exporting SQL with the <strong>Replace all content</strong> mode to a view which is joined by multiple tables.</p></li><li><p>Checking mandatory fields of a view in SQL database is not supported.</p></li><li><p>The export still executes normally and shows an error message from database when no privilege granted.</p></li><li><p>Exporting data from multi-valued fields and multi-valued groups is not supported.</p></li><li><p>You can not export data from EBX® to a view in PostgreSQL database.</p></li><li><p>Exporting data from EBX® to an auto-increment column in SQL Server is not supported because the <strong>IDENTITY_INSERT</strong> property is always set to <code><strong></strong>OFF</code>.</p></li></ul>
+<p>SQL import:</p><ul>
+<li><p>Checking privileges for a view in PostgreSQL is not supported.</p></li></ul>
+<p>Dynamic data modeling:</p><ul>
+<li><p>Foreign key statements in the DDL file are not managed.</p></li></ul>
+<h2 id="id2">
+Version 3.0.1</h2>
+<p><strong>Released: June 2021</strong></p><h3 id="id2s1">
+Updates</h3>
+<p>A warning is now provided when discrepancies exist between preference settings and an import&#39;s source file.</p><h3 id="id2s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-3420]</strong> An error prevents the <strong>Generate from file</strong> service from being executed when generating a model using the <strong>Excel 2007</strong> option.</p></li><li><p><strong>[ADIX-3421]</strong> Users cannot select an export preference after creating an existing preference during a Excel/CSV file export operation.</p></li><li><p><strong>[ADIX-3422]</strong> The defined column name of foreign key fields is not displayed after exporting a CSV file.</p></li><li><p><strong>[ADIX-3424]</strong> The string to decimal number conversion transformation does not work.</p></li><li><p><strong>[ADIX-3425]</strong> [Transfer] The result screen displays incorrect information when transferring data from many tables to one table in the same data model.</p></li><li><p><strong>[ADIX-3426]</strong> Formula values cannot be imported.</p></li><li><p><strong>[ADIX-3427]</strong> Java classes of drivers always get loaded without checking first.</p></li><li><p><strong>[ADIX-3428]</strong> The <strong>Data file sample</strong> displays incorrectly when importing a CSV file into a table.</p></li><li><p><strong>[ADIX-3429]</strong> When using the split transformation function to export CSV, a redundant separator character is included in the exported file.</p></li><li><p><strong>[ADIX-3430]</strong> On a record that contains separator characters, enumeration labels are not enclosed by delimiters (double quotes).</p></li><li><p><strong>[ADIX-3431]</strong> The data of a multi-valued field which contains a separator character is not enclosed by double quotes after being exported to CSV.</p></li><li><p><strong>[ADIX-3432]</strong> Importing Excel ignores boolean values in the XLS file.</p></li><li><p><strong>[ADIX-3433]</strong> The <strong>Concatenate strings</strong>, <strong>Aggregate of integer numbers</strong>, and <strong>Aggregate of decimal numbers</strong> transformation functions do not work on multiple value fields when executing Export Excel or CSV.</p></li><li><p><strong>[ADIX-3435]</strong> When exporting Excel, data is exported under the wrong column on a table that has a list group with a Foreign key field.</p></li><li><p><strong>[ADIX-3436]</strong> A redundant button displays in the <strong>Data file sample</strong> screen when importing a CSV file.</p></li><li><p><strong>[ADIX-3437]</strong> An incorrect message displays when exporting Excel (2003, 2007) with no header.</p></li><li><p><strong>[ADIX-3438]</strong> The Data file sample displays incorrectly when importing a CSV file.</p></li><li><p><strong>[ADIX-3441]</strong> The exported Excel and CSV files always display the old name field instead of the new one.</p></li></ul>
+<h2 id="id3">
+Version 3.0.0</h2>
+<p><strong>Released: March 2021</strong></p><h3 id="id3s1">
+New and updated behavior</h3>
+<p>This release includes the following updates:</p><ul>
+<li><p>This version of the add-on has been updated to ensure compatibility with the TIBCO EBX® 6.0.0 GA release.</p></li><li><p>Data export and transfer operations were adapted to ensure consistent results. As an example, in previous versions, data might get modified by another user before the operation completed. This would result in the exported or transferred data containing the modifications. This is no longer the case. The data will be in the same state as when the operation was initiated.</p></li><li><p>When importing, an error message now displays to prevent the incorrect configuration of line return or separator characters.</p></li><li><p>When importing or exporting using the Excel format, the add-on now defaults to the Excel 2007 option.</p></li><li><p>The readability was improved for validation error messages that display during data transfer. The messages now display the label of the record they refer to, which can help you locate and fix the issue.</p></li><li><p>You can now define multiple SQL connections for the same data model.</p></li><li><p>The cross reference feature was optimized.</p></li><li><p>Depending on your deployment environment&#39;s resources, you might have issues using the <strong>Insert only</strong> mode when importing a large volume of data. If this issue occurs, use any of the other import modes. Additionally, the results screen will not display the number of updated and unchanged records when using this import mode.</p></li><li><p>The <strong>Disable write access lock</strong> option was removed from the add-on. The corresponding APIs were deprecated and calling the any of the following will result in an <code>UnsupportedOperationException</code> being thrown:</p><ul>
+<li><p><code>ExportConfigurationSpec</code> interface.</p></li><li><p><code>FileExportConfigurationSpec</code>, <code>SQLExportConfigurationSpec</code> and <code>DataExchangeExportSpec</code> classes.</p></li></ul>
+</li><li><p>Updates to import modes:</p><ul>
+<li><p><strong>Update or insert</strong>: the results screen will not display the number of updated and unchanged records when using this import mode.</p></li><li><p>Use of the <strong>Insert only</strong> mode is not recommended when importing a large volume of data.</p></li></ul>
+</li></ul>
+<h3 id="id3s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-3110]</strong> An Excel/CSV import operation cannot be executed if the complex foreign key field contains special characters.</p></li><li><p><strong>[ADIX-3117]</strong> Transformation function parameters are lost after duplicating it.</p></li><li><p><strong>[ADIX-3121]</strong> [All browsers] The <strong>No</strong> mode of the <strong>Disable write access log</strong> field is not aligned with others on the <strong>Configuration</strong> screen when exporting XML.</p></li><li><p><strong>[ADIX-3123]</strong> An incorrect import result displays when importing an Excel file with the import type as <strong>Import sheets sequentially</strong> after running a Simulation.</p></li><li><p><strong>[ADIX-3128]</strong> An error occurs at the second time when exporting CSV/Excel on workflow and using an invalid preference.</p></li><li><p><strong>[ADIX-3130]</strong> Newly mapped fields are not exported after exporting an Excel file using a preference created from the add-on configuration settings.</p></li><li><p><strong>[ADIX-3131]</strong> Users can set export Foreign/Primary key with permalink and without Export label on the add-on configuration settings.</p></li><li><p><strong>[ADIX-3134]</strong> The <strong>Undefined</strong> value is displayed on the <strong>User profile</strong> field and an exception occurs in the log file if the <strong>Owner</strong> is not defined on the <strong>Application interface preference</strong> record.</p></li><li><p><strong>[ADIX-3135]</strong> The table name is incorrect when generating a model using a CSV file.</p></li><li><p><strong>[ADIX-3136]</strong> An incorrect error occurs when importing CSV using the preference and navigating to the <strong>Mapping column</strong> screen.</p></li><li><p><strong>[ADIX-3140]</strong> Table mappings display incorrectly after removing a table path from the preference when importing Excel at the dataset level.</p></li><li><p><strong>[ADIX-3142]</strong> Services created in the EBX displays incorrectly in the exported Excel file after exporting permissions.</p></li><li><p><strong>[ADIX-3150]</strong> An Excel file cannot be imported at the dataset level after clicking on the <strong>Table mapping</strong>/<strong>Column mapping</strong> link.</p></li><li><p><strong>[ADIX-3152]</strong> The <strong>Disable write access lock</strong> field displays twice in the <strong>Configuration</strong> screen after defining global permissions in an Excel/CSV export operation.</p></li><li><p><strong>[ADIX-3161]</strong> A JavaScript error occurs after pressing Import/Export SQL with no field mapping.</p></li><li><p><strong>[ADIX-3164]</strong> The error message &quot;Service not available for the content&quot; displays when exporting an XML file at the dataset level after accessing a table of this dataset.</p></li><li><p><strong>[ADIX-3173]</strong> A redundant button is displayed on the <strong>File and Preference selection</strong> screen when running the Import Excel/CSV service after setting permission.</p></li><li><p><strong>[ADIX-3214]</strong> A redundant text is displayed on the <strong>Configuration</strong> screen when running the Export XML service after setting permissions.</p></li><li><p><strong>[ADIX-3219]</strong> An exception occurs during CSV import when the previous CSV import operation was interrupted.</p></li><li><p><strong>[ADIX-3230]</strong> The foreign key field is still mapped in the <strong>Mapping column</strong> screen when exporting/importing CSV/Excel using the created preference from the add-on configuration.</p></li><li><p><strong>[ADIX-3242]</strong> A Javascript error occurs when clicking on the <strong>Preview</strong> button of data file sample in Excel import operation at the dataset level.</p></li><li><p><strong>[ADIX-3247]</strong> Parameter of the <strong>Constant value</strong> transformation function is changed after updating a preference in Excel/CSV export operation.</p></li><li><p><strong>[ADIX-3252]</strong> The data sample is displayed incorrectly when importing a CSV file into a table if the data contains more than one separator character.</p></li><li><p><strong>[ADIX-3256]</strong> The <strong>Disable write access lock</strong> field can be modified in the <strong>Configuration</strong> screen although the global permission is &quot;read-only&quot; in an XML export operation.</p></li><li><p><strong>[ADIX-3257]</strong> The target field and target table in the warning message are wrong after exporting/importing Excel/CSV using a transformation function that contains an invalid parameter.</p></li><li><p><strong>[ADIX-3273]</strong> A deadlock occurs when the Excel/CSV export includes related data.</p></li><li><p><strong>[ADIX-3293]</strong> All selected records are not exported successfully when exporting Excel or CSV and the <strong>Export related data</strong> mode is enabled.</p></li><li><p><strong>[ADIX-3320]</strong> An unexpected error occurs after deleting the <strong>Mode</strong> field in the <strong>Date time pattern</strong> table.</p></li><li><p><strong>[ADIX-3352]</strong> A CSV file cannot be imported into a table after stopping the simulation process.</p></li></ul>
+<h2 id="id4">
+Version 2.7.7</h2>
+<p><strong>Released: February 2021</strong></p><h3 id="id4s1">
+Bug fixes</h3>
+<p><strong>[ADIX-3370]</strong> The import results are not correct when using the <strong>Import CSV</strong> service.</p><h2 id="id5">
+Version 2.7.6</h2>
+<p><strong>Released: January 2021</strong></p><h3 id="id5s1">
+Product updates</h3>
+<p>The add-on no longer supports the Document Type Definition declaration in XML files. If this causes an exception, the add-on will inform you that this declaration is not allowed.</p><h3 id="id5s2">
+Bug fixes</h3>
+<p><strong>[ADIX-3334]</strong> An unexpected exception occurs when selecting the <strong>Import XML</strong> service.</p><h2 id="id6">
+Version 2.7.5</h2>
+<p><strong>Release Date: October 20, 2020</strong></p><h3 id="id6s1">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-2938]</strong> A deadlock occurs when an Excel or CSV export includes related data.</p></li><li><p><strong>[ADIX-3006]</strong> A blocking screen displays during a CSV import operation if the separator and delimiter are different from the imported file.</p></li><li><p><strong>[ADIX-3195]</strong> An unexpected exception occurs while exporting a subset of columns to CSV or Excel.</p></li></ul>
+<h2 id="id7">
+Version 2.7.4</h2>
+<p><strong>Release Date: September 18, 2020</strong></p><h3 id="id7s1">
+Updates</h3>
+<p>This release contains the following updates:</p><ul>
+<li><p>Support has been updated for the JDK11 library.</p></li><li><p>The JQuery library was updated to version 3.5.0.</p></li><li><p>The Apache POI library was updated to version 4.1.2.</p></li></ul>
+<h3 id="id7s2">
+Bug fixes</h3>
+<p><strong>[ADIX-3308]</strong> An invalid Excel file is displayed incorrectly after being imported using the <strong>Download file of invalid data</strong> mode.</p><h2 id="id8">
+Version 2.7.3</h2>
+<p><strong>Release Date: June 23, 2020</strong></p><h3 id="id8s1">
+New and updated behavior</h3>
+<p>This release includes the following updates:</p><ul>
+<li><p>Data in hidden fields in the DaqaMetaData group can now be transferred.</p></li><li><p>The steps in the API documentation that describe how to create an SQL field mapper for import and export were updated.</p></li><li><p>Support has been updated for the JDK8 and JDK11 libraries. Additionally, the log4j library version 1.2.17 was removed.</p></li></ul>
+<h3 id="id8s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-3216]</strong> An error message is not shown when trying to export more records than Excel can handle.</p></li><li><p><strong>[ADIX-3221]</strong> Excel import and export fails to export a table with one million records.</p></li><li><p><strong>[ADIX-3224]</strong> The progress value is not displayed on the progress bar when exporting CSV or Excel.</p></li></ul>
+<h2 id="id9">
+Version 2.7.2</h2>
+<p><strong>Release Date: April 20, 2020</strong></p><h3 id="id9s1">
+New and updated behavior</h3>
+<p>This release includes the following updates:</p><ul>
+<li><p>The add-on now includes the progress of import operations in its log.</p></li><li><p>Performance has been improved when importing from a CSV file.</p></li></ul>
+<h3 id="id9s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-188]</strong> A validation operation on the add-on&#39;s <strong>Field</strong> table does not catch errors.</p></li><li><p><strong>[ADIX-219]</strong> Import from a spreadsheet fails when a sheet&#39;s name includes a space at the end.</p></li><li><p><strong>[ADIX-225]</strong> When importing CSV or Excel, the current preference cannot be removed after navigating to the previous step from the <strong>Simulation</strong> screen.</p></li><li><p><strong>[ADIX-1428]</strong> A field with default view defined as hidden should not be exported.</p></li><li><p><strong>[ADIX-2119]</strong> The <strong>Import</strong> button does not perform the default submit action.</p></li><li><p><strong>[ADIX-2849]</strong> When importing or exporting Excel or CSV, a transformation function is not created when creating a new preference based on an existing preference.</p></li><li><p><strong>[ADIX-2960]</strong> Add-on services do not return users to the correct location.</p></li><li><p><strong>[ADIX-2980]</strong> Data transfer operations do not complete.</p></li><li><p><strong>[ADIX-2997]</strong> A transformation function is removed after updating a preference.</p></li><li><p><strong>[ADIX-2998]</strong> Newly added table columns are not available to map in existing preferences.</p></li><li><p><strong>[ADIX-3002]</strong> An exception occurs when importing Excel at the dataset level and updating or creating a preference.</p></li><li><p><strong>[ADIX-3005]</strong> The preference is not updated after modifying the mapping column under a multi-valued group during an Excel import operation.</p></li><li><p><strong>[ADIX-3050]</strong> When importing or exporting using a preference, selecting the <strong>Remove current preference</strong> label does not select its checkbox.</p></li><li><p><strong>[ADIX-3126]</strong> The add-on&#39;s performance was slow when importing a CSV file.</p></li><li><p><strong>[ADIX-3129]</strong> A field cannot be mapped if it is both a primary key and foreign key and its permission is set to Read-only.</p></li><li><p><strong>[ADIX-3141]</strong> Groups that contain an association do not display when mapping.</p></li><li><p><strong>[ADIX-3159]</strong> A <code>NullPointerException</code> occurs while exporting a dataset&#39;s permissions.</p></li></ul>
+<h2 id="id10">
+Version 2.7.1</h2>
+<p><strong>Release Date: December 10, 2019</strong></p><h3 id="id10s1">
+Updated behavior</h3>
+<p>When using the <strong>Validate imported records only</strong> option, the add-on only validates records included in the import. This update can improve performance as previously the entire table was validated and results were filtered to only show those related to imported records.</p><h3 id="id10s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-3014]</strong> The validation message cannot be seen in the comment of an Excel 2007 file after exporting using the <strong>Include validation messages</strong> mode.</p></li><li><p><strong>[ADIX-3071]</strong> Data is exported to the wrong column when using the option to export foreign key labels.</p></li></ul>
+<h2 id="id11">
+Version 2.7.0</h2>
+<p><strong>Release Date: November 8, 2019</strong></p><h3 id="id11s1">
+New features and updates</h3>
+<p>The new features and updates for this release are described below:</p><ul>
+<li><p><a href="#updates-270">Updates and enhancements</a></p></li><li><p><a href="#api-270">API Updates</a></p></li></ul>
+<h4 id="updates-270">
+Updates and enhancements</h4>
+<p>This release contains the following updates and enhancements:</p><ul>
+<li><p>For Excel and CSV, the <strong>Update and insert</strong> import mode has been renamed to <strong>Update or insert</strong>.</p></li><li><p>Administrators can now use permission settings to determine access rights to import, export, and transfer screens. Additionally, they can specify the type of import modes accessible to users. For example, they could set permissions so that a profile can only access the <strong>Update or insert</strong> option and not the <strong>Replace all</strong> option.</p></li><li><p>The add-on now offers fine-grained control over how configuration and preference data can be imported and exported. When importing, administrators can now choose the scope of configuration data to import, as well as specify that only preference data from a specific profile gets imported.</p></li><li><p>The new <strong>Export preference</strong> service allows export of configuration data related to selected preferences. The service is accessible from the <strong>Application interface preference</strong> table.</p></li><li><p>If a user has made adjustments to import settings and not saved a preference, a prompt now displays to inform them that they can save settings as a preference.</p></li><li><p>Dataset permissions data can now be exported to an Excel file.</p></li></ul>
+<h4 id="api-270">
+API Updates</h4>
+<p>API updates included in this release provide the:</p><ul>
+<li><p>methods to get a <code>PrimaryKey</code> set that identifies records in the <strong>Application interface preference</strong> table. See <code>ApplicationInterfaceConfigurationFactory</code> in the Java API documentation for more information.</p></li><li><p>methods to export the records in the <strong>Application interface preference</strong> table and the related data from other tables to an XML file. See <code>ExportDataExchangeConfigurationSpec</code> in the Java API documentation for more information.</p></li><li><p>methods to import add-on configuration data from an XML file based on the specified preference owner and import scope. See <code>ImportDataExchangeConfigurationSpec</code> and <code>ImportScope</code> in the Java API documentation for more information.</p></li><li><p>context to get the <code>com.orchestranetworks.addon.dex.DataExchangeSpec</code> from the configuration declared in the add-on&#39;s dataset. See <code>DataExchangeHelper</code>, <code>DataExchangeHelperContext</code>, <code>CSVExportDataExchangeHelperContext</code>, <code>CSVImportDataExchangeHelperContext</code>, <code>SpreadsheetExportDataExchangeHelperContext</code> and <code>SpreadsheetImportDataExchangeHelperContext</code> in the Java API documentation for more information.</p></li></ul>
+<h3 id="id11s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-2745]</strong> Associations under a group still get handled while exporting Excel.</p></li><li><p><strong>[ADIX-2752]</strong> Remove error messages regarding new records cannot be imported when importing data with the &quot;Update only&quot;/&quot;Insert only&quot; mode.</p></li><li><p><strong>[ADIX-2754]</strong> Missing error message on import result screen.</p></li><li><p><strong>[ADIX-2901]</strong> Nested groups are exported improperly under XML format.</p></li><li><p><strong>[ADIX-2955]</strong> When re-importing from CSV using a preference where the separator is a single quote character and the delimiter a double quote, the separator is not imported correctly.</p></li><li><p><strong>[ADIX-3017]</strong> An unexpected exception occurs while exporting data under Excel format.</p></li></ul>
+<h2 id="id12">
+Version 2.6.4</h2>
+<p><strong>Release Date: September 3, 2019</strong></p><h3 id="id12s1">
+Updates and enhancements</h3>
+<p>This release contains the following updates and enhancements:</p><ul>
+<li><p>During the simulation phase of Excel and CSV import you can now:</p><ul>
+<li><p>Use the <strong>Validate imported records only</strong> option to specify whether the validation report runs only on imported records, or also includes all records in the target table.</p></li><li><p>Skip the detailed validation report.</p></li></ul>
+</li><li><p>For Excel import and export, multi-valued complex fields are now supported.</p></li><li><p>During CSV export, when an exported field includes the same character used as a separator, the add-on now automatically uses double quotes as escape characters to ensure data integrity.</p></li><li><p>The option to specify whether the <code>handleNewContext()</code> method executes on import or transfer is now available. The new <strong>Allow transient record context management</strong> property can be accessed from the <em>Administration &gt; Integration &gt; TIBCO EBX® Data Exchange Add-on &gt; Additional configuration &gt; Import preference</em> table.</p></li></ul>
+<h3 id="id12s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-367]</strong> Preference does not get an updated starting position when importing Excel.</p></li><li><p><strong>[ADIX-2896]</strong> Columns can be missing or exported in an incorrect order when exporting from a custom table view.</p></li><li><p><strong>[ADIX-2898]</strong> The simulation progress bar should display the status when getting the validation report.</p></li><li><p><strong>[ADIX-2972]</strong> When re-importing from CSV using a preference where the separator is a single quote character and the delimiter a double quote, the separator is not imported correctly.</p></li></ul>
+<h2 id="id13">
+Version 2.6.3</h2>
+<p><strong>Release Date: June 20, 2019</strong></p><h3 id="id13s1">
+Updates and enhancements</h3>
+<p>This release contains the following updates and enhancements:</p><ul>
+<li><p>When exporting Excel using preferences, you now have the option of adding or removing tables in the main configuration screen.</p></li><li><p>For Excel export, the <strong>Preference</strong> field is now located at the top of the main configuration screen.</p></li><li><p>Export of fields that are enumerations has been enhanced. See the section below for more details.</p></li><li><p>An API to return a <code>CommonApplication</code> using the application&#39;s Universal Name is now available.</p></li><li><p>After selecting a preference, the <strong>Export</strong> and <strong>Mapping</strong> buttons are now displayed. This allows an export to be performed without having to navigate through each screen.</p></li></ul>
+<h4>
+Enumeration export enhancements</h4>
+<p>The add-on allows you to include enumerations in CSV and Excel exports of tables, or individual records. The following describes behavior for each supported export type:</p><ul>
+<li><p><strong>Excel</strong> export: On the main configuration page, the add-on presents you with the following options under <strong>Export enumerations</strong>:</p><ul>
+<li><p><strong>Export label</strong>: The export includes an additional column for the enumeration field&#39;s label.</p><p><img alt="/export_enums_label.png" src="./resources/images/export_enums_label.png"></img></p></li><li><p><strong>Export static enumerations</strong>: The enumeration column will contain a drop-down list of enumeration values defined in the data model.</p><p><img alt="/export_enums_static.png" src="./resources/images/export_enums_static.png"></img></p></li><li><p>When you select both options, the exported columns both have drop-down lists of their available values.</p></li><li><p>If you leave both options unchecked, the exported column includes only the enumeration value defined in the data model.</p></li></ul>
+</li><li><p><strong>CSV</strong> export: The exported file will include a dedicated column with the enumeration value&#39;s labels.</p><p><img alt="/export_enums_csv_label.png" src="./resources/images/export_enums_csv_label.png"></img></p></li></ul>
+<h3 id="id13s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-2677]</strong> When exporting CSV, static enumerations on integer fields are not properly exported.</p></li><li><p><strong>[ADIX-2680]</strong> An unexpected exception occurs when importing Excel.</p></li><li><p><strong>[ADIX-2682]</strong> A <code>NullPointerException</code> occurs when starting EBX®.</p></li></ul>
+<h2 id="id14">
+Release Notes 2.6.2</h2>
+<p><strong>Release Date: January 18, 2019 </strong></p><h3 id="id14s1">
+Updates and enhancements</h3>
+<p>This release contains the following updates and enhancements:</p><ul>
+<li><p>As part of an effort to improve overall user experience, the file and preference selection pages have been combined for Excel and CSV import.</p></li><li><p>Dynamic Data Modeling services can now be invoked via the API.</p></li></ul>
+<h3 id="id14s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[ADIX-573]</strong> A temporary exported file is created when there are no records to export via the API.</p></li><li><p><strong>[ADIX-2663]</strong> An error occurs when using a constant transformation to transfer data on a primary key field with no source field.</p></li></ul>
+<h2 id="id15">
+Release Notes 2.6.1</h2>
+<p><strong>Release Date: December 14, 2018 </strong></p><h3 id="id15s1">
+Updates and enhancements</h3>
+<p>This release contains the following updates and enhancements:</p><ul>
+<li><p>The add-on can now automatically handle line break characters when importing and exporting.</p></li><li><p>The add-on no longer displays warning messages pertaining to write permission for hidden or read-only fields, associations, and selection nodes.</p></li><li><p>The option to export ignored fields as blank columns now defaults to <strong>No</strong>.</p></li></ul>
+<h3 id="id15s2">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[36460]</strong> Service labels are duplicated in workflows.</p></li><li><p><strong>[36461]</strong> Transformation functions do not get applied on foreign key fields when using a preference.</p></li><li><p><strong>[36462]</strong> Errors are logged at the debug level.</p></li><li><p><strong>[36463]</strong> When importing Excel at the dataset level, nothing happens when selecting the <strong>Import</strong> button.</p></li><li><p><strong>[36720]</strong> When importing or exporting Excel/CSV, an exception is raised in the log when loading the <strong>Extensions</strong> drop-down list.</p></li></ul>
+<h2 id="id16">
+Release Notes 2.6.0</h2>
+<p><strong>Release Date: October 26, 2018 </strong></p><h3 id="id16s1">
+Featured updates</h3>
+<p>The EBX® Data Exchange Add-on has undergone significant updates to ensure compatibility with the EBX® 5.9.0 GA release.</p><h3 id="bug_fixes_GA_260">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[33698]</strong> An incorrect result is returned when importing a string that contains only numbers and starts with zero.</p></li><li><p><strong>[35697]</strong> An unexpected error occurs when creating a new preference during an Excel import operation.</p></li><li><p><strong>[36030]</strong> A javascript error occurs when exporting an empty XML file.</p></li><li><p><strong>[36041]</strong> The add-on crashes when exporting a large number of records in the Excel format.</p></li><li><p><strong>[36051]</strong> The number of unmatched fields is wrong after running the <strong>Auto data mapping</strong> service.</p></li><li><p><strong>[36085]</strong> An unexpected exception occurs when transferring data using a Validator.</p></li></ul>
+<h2 id="id17">
+Release Notes 2.5.1</h2>
+<p><strong>Release Date: July 17, 2018 </strong></p><h3 id="bug_fixes_GA_250">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[33926]</strong> An unexpected exception occurs when running the simulation.</p></li><li><p><strong>[33951]</strong> The template for tables is not applied when exporting Excel and ignoring all columns.</p></li><li><p><strong>[33952]</strong> Technical error is not displayed when running simulation of importing CSV into table which has a read-only primary key.</p></li><li><p><strong>[33953]</strong> Validation error at table level is not displayed in the Simulation result screen when importing Excel/CSV file.</p></li><li><p><strong>[33955]</strong> An unexpected error occurs when creating a new preference during a CSV/Excel import/export operation.</p></li><li><p><strong>[33957]</strong> An unexpected error occurs when exporting CSV file after importing an archive file in EBX® Data Exchange Add-on dataset.</p></li></ul>
+<h2 id="id18">
+Release Notes 2.5.0</h2>
+<p><strong>Release Date: July 4, 2018 </strong></p><h3 id="id18s1">
+New features and enhancements</h3>
+<p>The new features and enhancements in this release are highlighted in the following sections:</p><ul>
+<li><p><a href="#rel_notes_250_validation_messages">Inclusion of validation messages in Excel export</a></p></li><li><p><a href="#rel_notes_250_sql_data_source">Simplified SQL data source connections</a></p></li><li><p><a href="#rel_notes_250_transfer_options">Enhanced data transfer options</a></p></li><li><p><a href="#rel_notes_250_column_mapping">Updated table and column mapping screen features</a></p></li><li><p><a href="#rel_notes_250_trans_function">Improved transformation function features</a></p></li><li><p><a href="#rel_notes_250_related_data">New functionality to export related data</a></p></li><li><p><a href="#rel_notes_250_default_options_permissions">Addition of default options and preference permissions settings</a></p></li><li><p><a href="#rel_notes_250_additional_updates">Additional improvements</a></p></li></ul>
+<h4 id="rel_notes_250_validation_messages">
+Inclusion of validation messages in Excel export</h4>
+<p>You can now include validation messages when exporting to Excel. In the exported file, the add-on highlights fields and rows containing messages. If a message applies to a table, the add-on creates a new sheet in the exported file and appends &quot;-MSG&quot; to the name. See <a href="../user_guide/user_export_overview.html#user_export_validation_messages">Including messages in exported files</a> for more details. The image below shows an example of how messages display in an exported file:</p><img alt="/export_include_messages_sample.png" src="./resources/images/export_include_messages_sample.png"></img><h4 id="rel_notes_250_sql_data_source">
+Simplified SQL data source connections</h4>
+<p>Administrators can now create a connection to an SQL data source without having to manually define the connection information in the application server. Connection settings can be configured using the new <strong>JNDI data source</strong> table located under <em>Administration &gt; Integration &gt; EBX® Data Exchange Add-on &gt; Reference data</em>. For further instructions, see <a href="../user_guide/user_connecting_sql_datasource.html">Connecting to an SQL data source</a>.</p><h4 id="rel_notes_250_transfer_options">
+Enhanced data transfer options</h4>
+<p>You can now select multiple target tables when transferring data. Additionally, the new <strong>Stop and rollback on error</strong> option allows you to specify behavior when errors occur during transfer. When you enable this option and errors are encountered during transfer, the add-on cancels all transfers in progress and rolls back any transferred data. When the option is disabled and errors are encountered, the add-on only cancels transfers for the tables where errors occurred and completes any remaining transfers.</p><h4 id="rel_notes_250_column_mapping">
+Updated table and column mapping screen features</h4>
+<p>As highlighted in the following image:</p><ul>
+<li><p>All tables, columns, unmapped tables, and unmapped columns can be linked and unlinked with a single click.</p></li><li><p>Fields that are part of a complex type are now grouped. Each group can also be linked and unlinked without having to select individual fields.</p></li></ul>
+<img alt="/column-screen.png" src="./resources/images/column-screen.png"></img><h4 id="rel_notes_250_trans_function">
+Improved transformation function features</h4>
+<p>The following enhancements have been made to transformation functions:</p><ul>
+<li><p>Transformation function parameter values now display in the <strong>Field mapping transformation</strong> table.</p></li><li><p>You can now use fields of all data types with a cross reference transformation function. If the source and target data types are different:</p><ul>
+<li><p>The <em>source</em> field and the field used to lookup the desired value (located in the cross-referenced table) must be the same data type.</p></li><li><p>The field containing the replacement value (located in the cross-referenced table) and the <em>target</em> field must be the same data type.</p></li></ul>
+</li></ul>
+<h4 id="rel_notes_250_related_data">
+New functionality to export related data</h4>
+<p>To help you locate data linked to specific records, the add-on now allows you to include related data when exporting to:</p><ul>
+<li><p>CSV: The add-on exports a ZIP file containing individual CSV files. One file contains the export&#39;s source data. The remaining files—one for each table—contain the related data.</p></li><li><p>Excel: The add-on exports a single Excel file. The first sheet in the file contains the export&#39;s source data. Each additional sheet—one for each table—contains the related data.</p></li></ul>
+<p>The option to export related data is only available when exporting from the table level, or individual records. For more information, see <a href="../user_guide/user_export_overview.html#user_export_related_data">Exporting related data</a>.</p><h4 id="rel_notes_250_default_options_permissions">
+Addition of default options and preference permissions settings</h4>
+<p>Administrators can now set the default selections and preference permissions for each import and export operations. When users perform an import/export, they can still change selections if needed, or load available preferences.</p><h4 id="rel_notes_250_additional_updates">
+Additional improvements</h4>
+<p>This release contains the following additional improvements:</p><ul>
+<li><p>Business rules can now be checked when simulating CSV or Excel import.</p></li><li><p>When opening an existing, or creating a new <strong>Table mapping</strong> record, the <strong>Field mapping</strong> tab displays to provide quick access to field mappings.</p></li><li><p>The UI has been updated when importing and exporting Excel at the dataset level.</p></li></ul>
+<h3 id="id18s2">
+Java API</h3>
+<p>Additions to the API included in this release allow you to:</p><ul>
+<li><p>Generate table and application mappings for import and export of Excel and CSV formats. See <code>CSVTableGeneration</code>,<code>SpreadsheetTableGeneration</code>, <code>CSVExportApplicationMappingHelper</code>, <code>CSVImportApplicationMappingHelper</code>, <code>SpreadsheetExportApplicationMappingHelper</code> and <code>SpreadsheetImportApplicationMappingHelper</code> in the Java API documentation for more information.</p></li><li><p>Get the table declared in the EBX® Data Exchange Add-on configuration. See <code>TableHelper</code>, <code>TableHelperSpec</code> and <code>TableHelperFactory</code> in the Java API documentation for more information.</p></li><li><p>Export related data when exporting to Excel or CSV formats. See <code>FileExportConfigurationSpec</code> in the Java API documentation for more information.</p></li><li><p>Define the JNDI configuration used for SQL import and export without requiring application server configuration. See <code>JNDIDataSource</code>, <code>SQLExportConfigurationSpec</code> and <code>SQLImportConfigurationSpec</code> in the Java API documentation for more information.</p></li><li><p>Export validation messages when exporting to Excel. See <code>SpreadsheetExportConfigurationSpec</code> in the Java API documentation for more information.</p></li><li><p>Stop a data transfer in progress when errors occur and rollback all data. See <code>TransferConfigurationSpec</code> in the Java API documentation for more information.</p></li><li><p>Export tables with a prepared list of each table&#39;s records, or table filter. See <code>DataExchangeExportTableSpec</code>, <code>DataExchangeExportTableSpecBuilder</code> and <code>DataExchangeService</code> in the Java API documentation for more information.</p></li></ul>
+<h3 id="id18s3">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p><strong>[23544]</strong> A record cannot be imported if the length of a field value violates min/max length with a specific error management policy enabled.</p></li><li><p><strong>[30567]</strong> The parameter value of a transformation function cannot be deleted.</p></li><li><p><strong>[30993]</strong> The date and date-time formats in the configuration are not applied when using a preference to export CSV.</p></li><li><p><strong>[31716]</strong> Incorrect behavior occurs when the correct cross reference transformation function is not used to import CSV.</p></li><li><p><strong>[31775]</strong> An incorrect result screen displays when importing an Excel file containing a constraint violation at the dataset level.</p></li><li><p><strong>[32020]</strong> An incorrect warning displays when importing from a CSV file using an incorrect cross reference.</p></li><li><p><strong>[32027]</strong> [IE11] Data transfer cannot be executed due to an incorrect validation warning.</p></li><li><p><strong>[32074]</strong> [IE11] A java script error displays when exporting a CSV/Excel file and selecting an item in the &#39;Mapping column&#39; screen.</p></li><li><p><strong>[32088]</strong> The transformation function defined for a recursive foreign key is not shown when exporting Excel.</p></li><li><p><strong>[32262]</strong> The tooltip for the mapping of a foreign key is not shown when exporting/importing CSV/Excel on a table or data set.</p></li><li><p><strong>[32360]</strong> A warning is not displayed when using an aggregate mapping type without any transformation function during CSV/Excel export.</p></li><li><p><strong>[32368]</strong> The invalid request error is shown during a CSV/Excel export operation if the target field name of a &#39;No source field&#39; is changed.</p></li><li><p><strong>[32377]</strong> An unexpected error occurs when exporting a CSV file and updating a preference.</p></li><li><p><strong>[32421]</strong> An unexpected error occurs when re-creating a deleted preference during a CSV export operation.</p></li><li><p><strong>[32479]</strong> The error message includes the wrong content when importing from CSV using an extension and &#39;Validate data before transforming data&#39; is un-checked.</p></li><li><p><strong>[32581]</strong> Cannot import XLSX file without the &quot;Shared String Tables&quot; package part.</p></li><li><p><strong>[32698]</strong> The wrong error message displays when generating a CSV file if the same character is set in the &#39;Delimiter&#39; and &#39;Separator&#39; fields.</p></li><li><p><strong>[32707]</strong> An unexpected error occurs when a preference containing undefined fields is used to export Excel files.</p></li><li><p><strong>[32709]</strong> A spelling mistake can be found in the description of the &#39;Refresh hierarchical views&#39; service.</p></li><li><p><strong>[32716]</strong> An incorrect error displays when running the &#39;Generate models&#39; service on the Excel application type.</p></li><li><p><strong>[32718]</strong> The tooltip on the &#39;Generate models&#39; service contains insufficient information.</p></li><li><p><strong>[32742]</strong> The wrong message displays when deleting a record staring with [ON] in the &#39;Transformation function&#39; table.</p></li><li><p><strong>[32753]</strong> The wrong warning is raised when users run bi-directional transfer using the constant value transformation function.</p></li><li><p><strong>[32786]</strong> The display of multi-value group is not consistent when users export Excel at the table and data set levels.</p></li><li><p><strong>[32840]</strong> After stopping the &#39;Import Excel&#39; service, the error message&#39;s display is inconsistent between the dataset and table levels.</p></li><li><p><strong>[32894]</strong> If a dataset contains some tables with the same label, users should be able to choose a table to export to XML from this dataset.</p></li><li><p><strong>[32899]</strong> The &#39;EBX® Data Exchange Add-on export XML&#39; screen is not refreshed after navigating to another dataset.</p></li><li><p><strong>[33072]</strong> Some field values in a transformation function are incorrect.</p></li><li><p><strong>[33153]</strong> An error occurs when running the &#39;Report data mapping&#39; service after selecting a record on the &#39;Table mapping&#39; table.</p></li><li><p><strong>[33519]</strong> An unexpected error occurs when exporting default XML file using &#39;No source field&#39;.</p></li><li><p><strong>[33525]</strong> The order of data is wrong when importing XML from multiple source fields to one target field.</p></li><li><p><strong>[33568]</strong> Data cannot be imported into a time/date time data type field when using &#39;No source field&#39; during an Excel/CSV import/export.</p></li><li><p><strong>[33588]</strong> [IE11] The table name is wrong when importing CSV and creating a new preference.</p></li><li><p><strong>[33726]</strong> The validator declared in the EBX® Data Exchange Add-on dataset does not get applied when importing Excel/CSV using a preference.</p></li><li><p><strong>[33747]</strong> An unexpected exception occurs when launching Excel export/import in a multi-process environment.</p></li><li><p><strong>[33748]</strong> An Excel/CSV import operation cannot be executed if the composite foreign key field contains special characters.</p></li><li><p><strong>[33792]</strong> The EBX® Data Exchange Add-on&#39;s &#39;Import XML&#39; service does not work properly.</p></li></ul>
+<h2 id="id19">
+Release Note 2.4.9</h2>
+<p><strong>Release Date: June 8, 2018 </strong></p><h3 id="bug_fixes_GA_249">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p id="bug_33297"><strong>[33297]</strong> An unexpected exception occurs when displaying the mapping column screen.</p></li></ul>
+<h2 id="id20">
+Release Note 2.4.8</h2>
+<p><strong>Release Date: May 23, 2018 </strong></p><h3 id="bug_fixes_GA_248">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p id="bug_31779"><strong>[31779]</strong> Users cannot import a CSV/Excel/XML file that contains a null string field after setting length constraint for this field.</p></li><li><p id="bug_32669"><strong>[32669]</strong> If any of a record&#39;s fields that have a specified minimum length are empty or null in the source file, the record will not be imported.</p></li><li><p id="bug_32799"><strong>[32799]</strong> The add-on does not retain the date format selected in the mapping configuration when importing a CSV file.</p></li></ul>
+<h2 id="id21">
+Release Note 2.4.7</h2>
+<p><strong>Release Date: May 2, 2018 </strong></p><h3 id="id21s1">
+Latest updates</h3>
+<p>The EBX® Data Exchange Add-on import now relies on the commit threshold value set in ebx.properties. If left undefined, the threshold value defaults to 100.</p><h2 id="id22">
+Release Note 2.4.6</h2>
+<p><strong>Release Date: April 20, 2018 </strong></p><h3 id="id22s1">
+Latest updates</h3>
+<p>This release of the EBX® Data Exchange Add-on simplifies preference loading by consolidating functionality. You now use only the <strong>Preference</strong> drop-down menu to specify preferences for Excel and CSV import and export. The new behavior also applies to workflows.</p><img alt="/combined-preferences.png" src="./resources/images/combined-preferences.png"></img><h3 id="API">
+Java API</h3>
+<p>It is now possible to get the procedure context of an ongoing transaction when importing. See <code>com.orchestranetworks.addon.dex.transformation.TransformationExecutionContext</code> in the Java API documentation for more information.</p><h4>
+Backwards compatibility</h4>
+<p>The <code>getImportPreference</code> and <code>setImportPreference</code> methods are no longer used. Export mapping based on an import mapping preference is no longer supported. The mapping defined in the export preference is used instead. See <code>AdixExportSpec</code> in the Java API documentation for more information.</p><h3 id="bug_fixes_GA_246">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p id="bug_31789"><strong>[31789]</strong> When importing CSV, the add-on always performs data validation prior to transformation.</p></li><li><p id="bug_32182"><strong>[32182]</strong> Incorrect table labels display on the mapping column screen.</p></li></ul>
+<h2 id="id23">
+Release Note 2.4.5</h2>
+<p><strong>Release Date: April 6, 2018 </strong></p><h3 id="bug_fixes_GA_245">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p id="bug_32019"><strong>[32019]</strong> Performance has been improved when exporting data that includes foreign keys to Excel or CSV files.</p></li></ul>
+<h2 id="id24">
+Release Note 2.4.4</h2>
+<p><strong>Release Date: March 28, 2018 </strong></p><h3 id="bug_fixes_GA_244">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p id="bug_31874"><strong>[31874]</strong> To improve performance during SQL import, the Java class should be loaded less frequently when converting the data type from SQL.</p></li></ul>
+<h2 id="id25">
+Release Note 2.4.3</h2>
+<p><strong>Release Date: March 16, 2018 </strong></p><h3 id="bug_fixes_GA_243">
+Bug fixes</h3>
+<p>This release includes the following bug fixes:</p><ul>
+<li><p id="bug_31283"><strong>[31283]</strong> In Excel and CSV import, the mapping of computed foreign key fields has been disabled.</p></li><li><p id="bug_31356"><strong>[31356]</strong> An unexpected exception occurs when exporting Excel.</p></li><li><p id="bug_31664"><strong>[31664]</strong> NullPointerException is thrown when using API to transfer data.</p></li></ul>
+<h2 id="id26">
+Release Note 2.4.2</h2>
+<p><strong>Release Date: January 31, 2018</strong></p><h3 id="new_features_GA_242">
+New features</h3>
+<p>This release contains the following new features and bug fixes:</p><ul>
+<li><p><a href="#import_export_config_GA_242">EBX® Data Exchange Add-on configuration Import/Export</a></p></li><li><p><a href="#read_only_pk_GA_242">Importing when a table&#39;s PK is read-only</a></p></li><li><p><a href="#java_api_GA_242">Java API</a></p></li><li><p><a href="#bug_fixes_GA_242">Bug fixes</a></p></li></ul>
+<h3 id="import_export_config_GA_242">
+EBX® Data Exchange Add-on configuration Import/Export</h3>
+<p>You can now import and export entire EBX® Data Exchange Add-on configurations using the following services:</p><ul>
+<li><p><strong>Export XML</strong>: Exports all table records from the EBX® Data Exchange Add-on dataset to an XML file.</p></li><li><p><strong>Import XML</strong>: Imports data from an XML file to the EBX® Data Exchange Add-on dataset.</p></li></ul>
+<p>As shown below, the services are available to administrators from the EBX® Data Exchange Add-on dataset <strong>Actions</strong> menu:</p><p><img alt="/import_export_configuration.png" src="./resources/images/import_export_configuration.png"></img></p><p>For more information, see <a href="../reference_guide/ref_services.html#ref_services_import_export_configuration">Importing and Exporting EBX® Data Exchange Add-on configuration</a>.</p><h3 id="read_only_pk_GA_242">
+Importing when a table&#39;s PK is read-only</h3>
+<p>The following list outlines improved behavior when importing to a table that has a read-only primary key:</p><ul>
+<li><p>When importing CSV/Excel: If you map the primary key field, you can use the <strong>Update only</strong> and <strong>Update and insert</strong> modes. When using these modes records are updated normally, but an error is displayed if the import attempts to add a new record to the target table.</p></li><li><p>When importing from SQL/XML and transferring data: You can use the <strong>Update or insert</strong> mode to update records on import/transfer. Note that you will not be able to import/transfer new records to the target table.</p></li></ul>
+<h3 id="java_api_GA_242">
+Java API</h3>
+<p>It is now possible to import and export EBX® Data Exchange Add-on configurations from/to an XML file. See <code>DataExchangeConfigurationService</code> in the Java API documentation for more information.</p><h3 id="bug_fixes_GA_242">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_30231"><strong>[27717]</strong> Unclear warning messages display when transferring data from a dataset containing tables that have the same label.</p></li><li><p><strong>[30249]</strong> CSV/ Excel import using a preference causes the &#39;Password&#39; and &#39;Computed value&#39; fields to not display in a user-friendly manner.</p></li><li><p><strong>[30476]</strong> Exporting to CSV is not possible when an ignored column mapping contains an invalid date/date-time/time pattern.</p></li><li><p><strong>[30530]</strong> Some semi-colons are redundant in a file containing incorrect data when importing CSV.</p></li><li><p><strong>[30550]</strong> When working with Excel, a table that has been ignored does not display in the &#39;Mapping column&#39; screen after being remapped.</p></li><li><p><strong>[30555]</strong> An unexpected exception occurs when creating a new field mapping with the &#39;Ignored field&#39; set to &#39;Yes&#39; in the configuration.</p></li><li><p><strong>[30562]</strong> CSV/ Excel import using a preference causes the primary key field mapping in the Mapping column screen to not display in a user-friendly manner.</p></li><li><p><strong>[30627]</strong> Import of Excel using a preference without table mappings and field mappings results in an incorrect screen and a javascript error.</p></li><li><p><strong>[30698]</strong> After setting a composite foreign key to ignored, its mapping is still shown during an Excel/CSV import operation.</p></li><li><p><strong>[30726]</strong> Incorrect behavior occurs when importing Excel with an invalid primary key value.</p></li><li><p><strong>[30751]</strong> The column configuration is not applied when generating the model of an Excel file.</p></li><li><p><strong>[30752]</strong> Incorrect behavior occurs when exporting several tables to Excel with the &#39;Load import mapping&#39; option activated.</p></li><li><p><strong>[30754]</strong> An incorrect error message is raised when exporting many tables to Excel using the &#39;Load import mapping&#39; preference.</p></li></ul>
+<h2 id="id27">
+Release Note 2.4.0</h2>
+<p><strong>Release Date: December 15, 2017</strong></p><h3 id="id27s1">
+Overview of features and enhancements</h3>
+<p>The following list contains features and enhancements for EBX® Data Exchange Add-on version 2.4.0. You can use the links provided for more detailed descriptions of the larger features.</p><ul>
+<li><p><a href="#generate_constant_values">Generating constant values</a></p></li><li><p><a href="#model_generation">Generating models</a></p></li><li><p><a href="#data_transfer_enhancements">Data transfer enhancements</a></p></li><li><p>When exporting SQL, or transferring data, you can now use the <strong>Include computed values</strong> option to specify whether to include the source&#39;s computed values.</p></li><li><p>Preferences and permissions have been consolidated into the EBX® Data Exchange Add-on administration area.</p></li><li><p>A <strong>Snapshot</strong> input parameter is now included for export and transfer data services in workflows and perspectives.</p></li><li><p>You can now define table mappings for Excel export and field mappings for Excel and CSV export.</p></li><li><p>During Excel export you can now choose whether ignored fields are included in the export. If included, the add-on exports them as blank columns in the spreadsheet.</p></li><li><p><a href="#bug_fixes">Bug fixes</a></p></li></ul>
+<h3 id="generate_constant_values">
+Generating constant values</h3>
+<p>A new transformation function allows you to populate a column&#39;s fields with a pre-defined value on import, export, or transfer. This allows you to set a specific value to a target field even when there is no mapped source field.</p><p>In the image below, the add-on automatically inserted a pre-defined value in the table&#39;s <em>leadSource</em> column during import. This column did not exist in the source spreadsheet. See the <a href="../user_guide/user_mapping_generate_constant_values.html"><em>User Guide &gt; Generating constant values</em></a> for more information and step by step instructions that demonstrate a use case.</p><p><img alt="/constant_value_result.png" src="./resources/images/constant_value_result.png"></img></p><h3 id="model_generation">
+Generating models</h3>
+<p>In EBX® Data Exchange Add-on, models are required for user-defined and auto-generated mappings. Previously, administrators were required to manually create models for Excel and CSV type applications. This process has been greatly simplified and the add-on can now automatically generate models from a supplied file.</p><p>Suppose an administrator needed to create a configuration that uses a transformation function during Excel import. The following provides a high-level outline of the simplified process:</p><ul>
+<li><p>Create applications and their types corresponding to the EBX® table and Excel file.</p></li><li><p>For each application type, run the <strong>Generate models</strong> service. When run for Excel, just provide the file location and basic configuration information.</p><p align="left"><img alt="/gen-model-example.png" src="./resources/images/gen-model-example.png"></img></p></li><li><p>Map the tables, fields, and supply the transformation information.</p></li></ul>
+<h3 id="data_transfer_enhancements">
+Data transfer enhancements</h3>
+<p>This release includes the following new features and enhancements to data transfer functionality:</p><ul>
+<li><p><a href="#transfer_any_table">Transfer data to/from any table</a></p></li><li><p><a href="#record_filtering">Filtering records</a></p></li><li><p><a href="#api_updates">API Updates</a></p></li></ul>
+<h4 id="transfer_any_table">
+Transfer data to/from any table</h4>
+<p>A previous limitation prevented you from transferring data between tables within the same dataset. This limitation has been removed and you can transfer data between all tables in the repository (of course, mapping configuration requirements and permission constraints still apply). The following describes behavior when transferring data within the same table:</p><ul>
+<li><p>The default behavior is that data will be replaced. For example, a business need may require an update of values in a table field to all uppercase letters. In this instance, data transfer could be used in conjunction with a transformation function to update the values.</p></li><li><p>When the table has an auto-incremented primary key, you can choose to duplicate the data rather than replace it.</p></li></ul>
+<h4 id="record_filtering">
+Filtering records</h4>
+<p>When transferring data between tables, you may only want to transfer a subset of records. Data transfer now supplies this functionality. As shown below, you can select the records you want to transfer in the tabular and hierarchical views:</p><p align="left"><img alt="/transfer-selected.png" src="./resources/images/transfer-selected.png"></img></p><h4 id="api_updates">
+API Updates</h4>
+<p>When transferring data using the API, you can now retrieve information such as source and target record primary keys. Additionally, the API now allows you to filter records during transfer. See the API documentation for examples.</p><h3 id="java_api">
+Java API</h3>
+<ul>
+<li><p>It is now possible to specify the characters used to signify the end of a CSV line. See <code>CSVImportConfigurationSpec</code> and <code>LineReturnCharacters</code> in the Java API documentation for more information.</p></li><li><p>It is now possible to export ignored fields as blank columns. See <code>SpreadsheetExportConfigurationSpec</code> in the Java API documentation for more information.</p></li><li><p>It is now possible to transfer computed values from source to target tables. See <code>TransferConfigurationSpec</code> in the Java API documentation for more information.</p></li><li><p>It is now possible to specify the configuration used for an EBX® reference field. See <code>EBXLinkField</code> in the Java API documentation for more information.</p></li><li><p>It is now possible to define possible field attributes. See <code>FieldAttribute</code> in the Java API documentation for more information.</p></li><li><p>It is now possible to create a field with the NO_SOURCE_FIELD field attribute. See <code>CSVField</code>, <code>EBXField</code>, <code>SpreadsheetField</code>, <code>SQLField</code> and <code>XMLField</code> in the Java API documentation for more information.</p></li><li><p>It is now possible to return a list of the targeted deleted records&#39; primary keys before data transfer, and a map between source and target record primary keys for created or updated records in the transfer result. See <code>TransferResult</code> in the Java API documentation for more information.</p></li><li><p>Provides the necessary context for integrating EBX® Data Exchange Add-on services. See <code>DataExchangeServiceContext</code> and <code>DataExchangeServiceContextFactory</code> in the Java API documentation for more information.</p></li></ul>
+<h3 id="bug_fixes">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_23598"><strong>[23598]</strong> A CSV formatted file cannot be imported when it uses the line feed character for line breaks.</p></li><li><p id="bug_27417"><strong>[27417]</strong> There is a spelling mistake in the field label on the Transfer data configuration screen.</p></li><li><p id="bug_27436"><strong>[27436]</strong> An unexpected error occurs when exporting XML using an invalid parameter in the &#39;Split of string&#39; transformation function.</p></li><li><p id="bug_27555"><strong>[27555]</strong> When importing CSV using a transformer the result is not as expected.</p></li><li><p id="bug_27638"><strong>[27638]</strong> During CSV and Excel import or export data is incorrectly imported/exported in certain scenarios.</p></li><li><p id="bug_27657"><strong>[27657]</strong> There is an unclear warning message when transferring data with some hidden/read-only fields.</p></li><li><p id="bug_27675"><strong>[27675]</strong> Incorrect behavior occurs when transferring data from one field under a terminal node.</p></li><li><p id="bug_27702"><strong>[27702]</strong> An exception occurs in the log file when running import/export SQL using a workflow.</p></li><li><p id="bug_28902"><strong>[28902]</strong> Import Excel fails when the file extension is in uppercase.</p></li><li><p id="bug_29258"><strong>[29258]</strong> The correct result is not achieved when exporting Excel with a specific access rule.</p></li><li><p id="bug_29338"><strong>[29338]</strong> Users are redirected to the wrong screen when importing Excel with multiple tables using the &#39;Import sheets sequentially&#39; mode.</p></li><li><p id="bug_29463"><strong>[29463]</strong> A CSV file that contains only a primary key cannot be imported into a table with an auto-increment primary key.</p></li><li><p id="bug_29622"><strong>[29622]</strong> Excel and CSV files cannot be imported after stopping the import simulation.</p></li><li><p id="bug_29640"><strong>[29640]</strong> An incorrect result screen displays when users who do not have delete permissions at the dataset level import multiple tables from Excel.</p></li></ul>
+<h2 id="id28">
+Release Note 2.3.2</h2>
+<p><strong>Release Date: November 10, 2017</strong></p><h3 id="id28s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_27655"><strong>[27655]</strong> Data cannot be imported from an Excel file at the dataset level when splitting data between tables.</p></li><li><p id="bug_29311"><strong>[29311]</strong> An unexpected exception occurs when importing Excel from one to many tables using the &#39;Import sheets sequentially&#39; mode.</p></li></ul>
+<h2 id="id29">
+Release Note 2.3.1</h2>
+<p><strong>Release Date: September 20, 2017</strong></p><h3 id="id29s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_28338"><strong>[28338]</strong> Fields under non-terminal nodes are not mapped in the Import SQL mapping column configuration screen.</p></li></ul>
+<h2 id="id30">
+Release Note 2.3.0</h2>
+<p><strong>Release Date: August 3, 2017</strong></p><h3 id="id30s1">
+New features</h3>
+<ul>
+<li><p>The add-on&#39;s architecture has been updated and includes a common, unified API. Additionally, this version has been optimized for improved performance.</p></li></ul>
+<h3 id="id30s2">
+Java API</h3>
+<ul>
+<li><p>It is now possible to use the common API for all import, export and transfer services. See <code>com.orchestranetworks.addon.dex</code> in the Java API for more information.</p></li></ul>
+<h3 id="id30s3">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_24772"><strong>[24772]</strong> In EBX® Data Exchange Add-on configuration the path of EBX® application is specified by the data model.</p></li><li><p id="bug_25618"><strong>[25618]</strong> The tab name of the &#39;Object Class&#39; table under the &#39;EBX® Data Exchange Add-on&#39; configuration is incorrectly displayed.</p></li><li><p id="bug_25977"><strong>[25977]</strong> The defined modes on &#39;EBX® Data Exchange Add-on export XML&#39; screen are not refreshed after canceling Export XML from the dataset level.</p></li><li><p id="bug_25984"><strong>[25984]</strong> There are inconsistent behaviors when exporting XML between table and dataset levels on a child dataset which has occulted records.</p></li><li><p id="bug_25985"><strong>[25985]</strong> A incorrect warning message is displayed when transferring data containing a computed field.</p></li><li><p id="bug_25987"><strong>[25987]</strong> A warning message is duplicated when transferring data containing a hidden primary key.</p></li><li><p id="bug_26036"><strong>[26036]</strong> Spelling mistakes are found in the error message when transferring the data without a mapping configuration.</p></li><li><p id="bug_26288"><strong>[26288]</strong> The number of processed records is incorrect when running the &#39;Validate models&#39; service after generating the model.</p></li><li><p id="bug_26347"><strong>[26347]</strong> An incorrect error message is raised when exporting XML using the &#39;by default&#39; mode at the dataset level.</p></li><li><p id="bug_26361"><strong>[26361]</strong> After changing the mapping type of field mappings, then transferring data, an error occurs.</p></li><li><p id="bug_26562"><strong>[26562]</strong> Exporting Excel with &#39;Load import mapping&#39; leads to an incorrect result.</p></li><li><p id="bug_26643"><strong>[26643]</strong> There is an incorrect behavior in exporting CSV with the &#39;Primary key Export label&#39; mode when the PK field is located at the end of the table.</p></li><li><p id="bug_26683"><strong>[26683]</strong> An unexpected exception occurs when using &#39;Field mapping transformation&#39; of a complex terminal node.</p></li><li><p id="bug_26685"><strong>[26685]</strong> There is a spelling mistake in the warning message in transferring data using the &#39;No transfer&#39; function.</p></li><li><p id="bug_26751"><strong>[26751]</strong> There is an unclear error message on the configuration screen in importing CSV when the list separator is null or empty.</p></li><li><p id="bug_26767"><strong>[26767]</strong> A CSV file can be imported if there is a unmapped field on the &#39;Mapping column&#39; screen.</p></li><li><p id="bug_26837"><strong>[26837]</strong> The incorrect source field is loaded when using the &#39;Used as target&#39; tab in the EBX® Data Exchange Add-on dataset.</p></li><li><p id="bug_26865"><strong>[26865]</strong> Transferring data with the Split mapping type and some hidden or read-only additional fields leads to incorrect behavior.</p></li><li><p id="bug_26866"><strong>[26866]</strong> No warning message is displayed in transferring data when using an Aggregate mapping type and a hidden additional field.</p></li><li><p id="bug_26869"><strong>[26869]</strong> An incorrect warning message is displayed when exporting data in XML format with hidden fields.</p></li><li><p id="bug_26888"><strong>[26888]</strong> There is a spelling mistake in the warning message when transferring data between terminal nodes without using Java Bean class.</p></li><li><p id="bug_26940"><strong>[26940]</strong> An incorrect error message is displayed in transferring data when using a wrong transformation function.</p></li><li><p id="bug_27014"><strong>[27014]</strong> An error occurs if you cancel the import process when importing Excel sheets by sequence.</p></li><li><p id="bug_27284"><strong>[27284]</strong> When launched from a workflow, the &#39;Import SQL&#39; service fails if using a JBoss server.</p></li></ul>
+<h2 id="id31">
+Release Note 2.2.7</h2>
+<p><strong>Release Date: July 6, 2017</strong></p><h3 id="id31s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_26847"><strong>[26847]</strong> With JBoss 6.x and above, an exception occurs when looking up the datasource in JNDI context.</p></li></ul>
+<h2 id="id32">
+Release Note 2.2.6</h2>
+<p><strong>Release Date: May 19, 2017</strong></p><h3 id="id32s1">
+New features</h3>
+<ul>
+<li><p>It is now possible to export and transfer data on a snapshot.</p></li></ul>
+<h2 id="id33">
+Release Note 2.2.5</h2>
+<p><strong>Release Date: April 18, 2017</strong></p><h3 id="id33s1">
+New features</h3>
+<ul>
+<li><p>It is now possible to import the number values as displayed in the cell while importing Excel.</p></li></ul>
+<h3 id="id33s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_24773"><strong>[24773]</strong> A white page is shown during Import XML.</p></li><li><p id="bug_24775"><strong>[24775]</strong> Auto increment primary key should be ignored when &#39;Check empty or null primary key&#39; is activated in the XML import with default mode.</p></li></ul>
+<h2 id="id34">
+Release Note 2.2.4</h2>
+<p><strong>Release Date: March 31, 2017</strong></p><h3 id="id34s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_25031"><strong>[25031]</strong> When importing CSV or Excel, it is not possible to map a group&#39;s fields if group permissions are not Read-Write.</p></li></ul>
+<h2 id="id35">
+Release Note 2.2.3</h2>
+<p><strong>Release Date: February 23, 2017</strong></p><h3 id="id35s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_24431"><strong>[24431]</strong> The method getOccurrentContext always returns ValueContext with values retrieved from a file.</p></li></ul>
+<h2 id="id36">
+Release Note 2.2.2</h2>
+<p><strong>Release Date: January 23, 2017</strong></p><h3 id="id36s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_21814"><strong>[21814]</strong> Users without the permission to create records cannot use the EBX® Data Exchange Add-on import services.</p></li></ul>
+<h2 id="id37">
+Release Note 2.2.1</h2>
+<p><strong>Release Date: December 16, 2016</strong></p><h3 id="id37s1">
+New features</h3>
+<ul>
+<li><p>It is now possible to lock or unlock the dataspace while exporting.</p></li><li><p>You can now transfer data from many source tables to many target tables.</p></li></ul>
+<h3 id="id37s2">
+Java API</h3>
+<ul>
+<li><p>It is now possible to disable the write access lock on the dataspace while executing SQL/XML export. See <code>DataExchangeExportSpec</code> in the Java API for more information.</p></li><li><p>It is now possible to transfer from many source tables to many target tables via API. See <code>DataExchangeTransferSpec</code> and <code>TableMapping</code> in the Java API for more information.</p></li></ul>
+<h3 id="id37s3">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_23078"><strong>[23078]</strong> Record is deselected on UI after cancelling an export.</p></li></ul>
+<h2 id="id38">
+Release Note 2.2.0</h2>
+<p><strong>Release Date: November 18, 2016</strong></p><h3 id="id38s1">
+New features</h3>
+<ul>
+<li><p>Data can be imported from or exported to an external SQL database via a JNDI data source using default mapping.</p></li><li><p>Creation and modification privileges can be defined on a profile&#39;s preferences.</p></li></ul>
+<h3 id="id38s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_21865"><strong>[21865]</strong> An incorrect number of total records to be exported is displayed in the progress bar.</p></li><li><p id="bug_22220"><strong>[22220]</strong> All fields of a table are exported when executing &#39;XML export&#39; on a tabular view.</p></li><li><p id="bug_22838"><strong>[22838]</strong> No error message displays when creating an Excel or CSV application type.</p></li></ul>
+<h2 id="id39">
+Release Note 2.1.9</h2>
+<p><strong>Release Date: October 12, 2016</strong></p><h3 id="id39s1">
+New features</h3>
+<ul>
+<li><p>The new &#39;Include the reference sheet&#39; option is available during the Excel export at the dataset level to determine whether the reference sheet &#39;Reference table mapping&#39; will be added to the end of an Excel file. This sheet contains information such as the sheet name, table label and table path that was used to detect the mapping between sheets and tables at import time.</p></li><li><p>The new &#39;Include computed values&#39; option is available to determine whether the computed values must be included during an Excel or CSV export.</p></li></ul>
+<h3 id="id39s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_22158"><strong>[22158]</strong> Data import cannot be done when the primary key field of the imported file contains special characters.</p></li></ul>
+<h2 id="id40">
+Release Note 2.1.8</h2>
+<p><strong>Release Date: August 4, 2016</strong></p><h3 id="id40s1">
+New features</h3>
+<ul>
+<li><p>The new &#39;Use language&#39; option is available to determine whether the language and corresponding number format policy are applied during CSV export.</p></li></ul>
+<h3 id="id40s2">
+Java API</h3>
+<ul>
+<li><p>It is possible to set the specific locale when executing Excel or CSV export via the API using the filter data function. See <code>ExportDataAccessSpec</code> in the Java API for more information.</p></li></ul>
+<h3 id="id40s3">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_21108"><strong>[21108]</strong> Import CSV works improperly when importing a line which only contains separators.</p></li><li><p id="bug_21189"><strong>[21189]</strong> Cannot import Excel or CSV when there is a hidden table which links two additional tables.</p></li><li><p id="bug_21205"><strong>[21205]</strong> Error message displays when user cancels or closes the Excel import process at the dataset level.</p></li><li><p id="bug_21222"><strong>[21222]</strong> Cannot import an Excel file without style.</p></li></ul>
+<h2 id="id41">
+Release Note 2.1.7</h2>
+<p><strong>Release Date: July 8, 2016</strong></p><h3 id="id41s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_20965"><strong>[20965]</strong> When the &#39;Check empty or null primary keys&#39; option is disabled, primary and foreign key field mappings cannot be ignored.</p></li><li><p id="bug_20982"><strong>[20982]</strong> A foreign key field cannot be exported if its source record does not exist.</p></li><li><p id="bug_21003"><strong>[21003]</strong> Export works improperly when the dataset&#39;s default policy is set to &#39;Hidden&#39;.</p></li></ul>
+<h2 id="id42">
+Release Note 2.1.6</h2>
+<p><strong>Release Date: June 10, 2016</strong></p><h3 id="id42s1">
+New features</h3>
+<ul>
+<li><p><strong>Import Excel, CSV, XML file and transfer data</strong></p><p>The primary key mapping and its data validation are handled by the new &#39;Check empty or null primary keys&#39; property.</p></li></ul>
+<h3 id="id42s2">
+Java API</h3>
+<ul>
+<li><p>The new methods <code>getRepository</code>, <code>getSession</code>, <code>getSourceTable</code> and <code>getReferencedTable</code> for transforming data before exporting Excel or CSV are added to the <code>TransformContextForExport</code> interface.</p></li><li><p>The new methods <code>getRepository</code>, <code>getSession</code>, <code>getReferencedTable</code> and <code>getValueInSpreadsheet</code> for transforming data before importing Excel or CSV are added to the <code>TransformContextForImport</code> interface.</p></li><li><p>The method <code>getTargetTable</code> has been removed from the <code>TransformContextForExport</code> interface.</p></li><li><p>The Javadoc of the method <code>getTargetTable</code> is updated on the <code>TransformContextForImport</code> interface.</p></li></ul>
+<h3 id="id42s3">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_20270"><strong>[20270]</strong> The number formats do not comply with EBX® formatting policies when exporting CSV.</p></li><li><p id="bug_20587"><strong>[20587]</strong> Improved French error messages when using EBX® Data Exchange Add-on to import CSV/Excel.</p></li><li><p id="bug_20689"><strong>[20689]</strong> The value of a hidden field is transferred between two datasets that share the same model.</p></li><li><p id="bug_20691"><strong>[20691]</strong> A hidden additional field is still aggregated when transferring data.</p></li><li><p id="bug_20762"><strong>[20762]</strong> DDM works improperly when the column name in the SQL script includes the word &#39;go&#39;.</p></li></ul>
+<h2 id="id43">
+Release Note 2.1.5</h2>
+<p><strong>Release Date: May 19, 2016</strong></p><h3 id="id43s1">
+New features</h3>
+<ul>
+<li><p><strong>Import Excel, CSV, XML file and transfer data</strong></p><p>Null and empty values in the imported file are handled by the new &#39;Ignore the empty or null values&#39; property.</p></li><li><p><strong>Documentation improvement</strong></p><p>Add JavaDoc for TransformerDefinition constructor.</p><p>Add sample for Transformer.</p></li></ul>
+<h3 id="id43s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_19755"><strong>[19755]</strong> DDM does not work properly when EBX® has more than two locales.</p></li><li><p id="bug_20121"><strong>[20121]</strong> The &#39;Import CSV&#39; service does not work properly when the imported value contains separator character.</p></li></ul>
+<h2 id="id44">
+Release Note 2.1.4</h2>
+<p><strong>Release Date: March 18, 2016</strong></p><h3 id="id44s1">
+New features</h3>
+<ul>
+<li><p>Ability to filter data when executing the Excel or CSV export via the API.</p></li></ul>
+<h3 id="id44s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_19516"><strong>[19516]</strong> The source file is not released after being imported using &#39;import CSV&#39; via the API.</p></li></ul>
+<h2 id="id45">
+Release Note 2.1.3</h2>
+<p><strong>Release Date: February 26, 2016</strong></p><h3 id="id45s1">
+New features</h3>
+<ul>
+<li><p>Preferences can be defined as parameters in the user task declaration when importing or exporting Excel/CSV.</p></li></ul>
+<h3 id="id45s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_19157"><strong>[19157]</strong> When it is declared in the &#39;Extension&#39; table, the Transformation Java class does not load on the import configuration screen.</p></li><li><p id="bug_19239"><strong>[19239]</strong> [All browsers] Some labels on the export and import Excel/CSV configuration screens overlap when the language is set to French.</p></li></ul>
+<h2 id="id46">
+Release Note 2.1.2 fix 002</h2>
+<p><strong>Release Date: January 18, 2016</strong></p><h3 id="id46s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_19077"><strong>[19077]</strong> The pre-loading and pre-validation on three dataspaces of &#39;EBX® Data Exchange Add-on&#39; must be disabled upon start-up time.</p></li></ul>
+<h2 id="id47">
+Release Note 2.1.2 fix 001</h2>
+<p><strong>Release Date: January 11, 2016</strong></p><h3 id="id47s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_18993"><strong>[18993]</strong> Disable the pre-loading and pre-validation on EBX® Data Exchange Add-on dataset at the start-up time of EBX®.</p></li></ul>
+<h2 id="id48">
+Release Note 2.1.2</h2>
+<p><strong>Release Date: December 11, 2015</strong></p><h3 id="id48s1">
+New features</h3>
+<ul>
+<li><p><strong>Excel/CSV import and export</strong></p><p>The CSV import and export feature has been improved and been brought into alignment with EBX® behavior. It can now use a list separator to separate values in a list.</p><p>The CSV import feature now works with simple field lists, simple foreign key lists and complex foreign key lists.</p><p>The Excel import feature can now work with complex foreign key lists.</p></li><li><p><strong>Validator</strong></p><p>A Java class can be used to specify criteria and validate data being imported, or transferred.</p></li></ul>
+<h3 id="id48s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_17936"><strong>[17936]</strong> The wrong source field is filtered when using the &#39;Used as target&#39; tab.</p></li><li><p id="bug_17946"><strong>[17946]</strong> The &#39;Split of string&#39; transformation function failed when source data contains special characters.</p></li></ul>
+<h2 id="id49">
+Release Note 2.1.1</h2>
+<p><strong>Release Date: October 14, 2015</strong></p><h3 id="id49s1">
+New features</h3>
+<h4>
+User interface improvements</h4>
+<ul>
+<li><p><strong>Export Excel format</strong></p><p>A new option allows you to select and export all tables in the current dataset.</p><p>Table template options now display in tabs on the &#39;Export Excel&#39; configuration screen, unless you are exporting a dataset.</p></li><li><p><strong>Import Excel and CSV formats</strong></p><p>The &#39;Import Excel&#39; configuration screen contains a new option that allows you to remove redundant characters in the imported file&#39;s header.</p><p>The &#39;Import Excel&#39; and &#39;Import CSV&#39; configuration screens contain a new option to use case-sensitive comparison in matching the imported file&#39;s header with the field label.</p><p>The &#39;Ignore&#39; button is now in front of the column mapping drop-down lists.</p><p>The &#39;Starting position of table content&#39; group&#39;s borders on the mapping page were removed to match the existing format. Additionally, its location was changed to the top of the screen.</p><p>The &#39;Simulation&#39; result screen is fixed to a specific height.</p></li></ul>
+<h3 id="id49s2">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_17633"><strong>[17633]</strong> String value is trimmed if there are leading or trailing spaces or line breaks when exporting Excel 2007.</p></li></ul>
+<h2 id="id50">
+Release Note 2.1.0</h2>
+<p><strong>Release Date: August 24, 2015</strong></p><h3 id="id50s1">
+New features</h3>
+<ul>
+<li><p><strong>Transformation functions</strong></p><p>Transformation functions are used to adapt data values during exchange. They are now defined in a portfolio. This portfolio is fed from a publication of functions done by an API. At configuration time, you can customize the functions without any bespoke development. The Add-on provides you with pre-defined transformation functions (aggregate, split, concatenate, etc.) which you can enrich using the API.</p><p>New transformation functions such as &#39;split&#39;, &#39;aggregation&#39; and &#39;conversion&#39; are now available to drive the export, import and transfer processes.</p><p>A new transformation function called &#39;Cross-reference&#39; is available to replace a source code field value with another value during export, import or transfer.</p></li><li><p><strong>Data transfer</strong></p><p>When a data mapping can be reused in both directions for data transfer (&#39;source to target&#39; and &#39;target to source&#39;) you no longer need to duplicate the configuration.</p><p>A new option allows you to deactivate all triggers and constraints on tables during a data transfer.</p></li><li><p><strong>XML format</strong></p><p>The &#39;EBX® Data Exchange Add-on&#39; header included by the add-on in exported XML files is now optional. You can export and import XML data without using this header.</p><p>A new option allows you to deactivate all triggers and constraints on tables during XML import.</p></li><li><p><strong>Excel – CSV formats</strong></p><p>A new UI option is available that determines whether the &#39;Validate data before transforming data&#39; option is active for Excel and CSV data formats.</p></li><li><p><strong>Data mapping configuration</strong></p><p>Export, import and transfer of multi-occurs complex data type is now possible.</p><p>A new service called &#39;Clean all configurations&#39; allows you to remove all the data mapping configurations to get an empty repository.</p><p>A new service called &#39;Clean unused paths&#39; allows you to clean up all deprecated paths in the &#39;Path&#39; table.</p><p>A new service called &#39;Report data mapping&#39; is now available to get a report on the data mapping between source and target applications. This service is located on the &#39;Table mapping&#39; and &#39;Field mapping&#39; tables.</p><p>New &#39;Data Hierarchy&#39; views are now available on the &#39;Table&#39; and &#39;Field&#39; tables to get a clearer view of the data model structure by &#39;Application → Table → Field&#39;. A new service called &#39;Refresh hierarchical views&#39; allows you to initialize these views in case you already have an existing data mapping configuration (located on the &#39;Table&#39; table).</p></li><li><p><strong>Dynamic Data Modeling</strong></p><p>You can now generate an EBX® Data Model from XML and DDL files.</p><p>There is a new option to automatically generate values for table and field labels when importing from an Excel file.</p></li></ul>
+<h3 id="id50s2">
+Java API</h3>
+<ul>
+<li><p>API for data transfer and export XML is enriched to enable the use of a data filter. In this version, the filters are available at the API level only. In the next version, it will be possible to configure filters at the administration level.</p><p>See <code>DataExchangeExportSpec</code> and <code>DataExchangeTransferSpec</code> in the Java API for more information.</p></li><li><p>The method <code>addErrorMessage</code> and <code>setErrorMessages</code> have been removed from the class <code>DataExchangeExportResult</code> .</p></li></ul>
+<h3 id="id50s3">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_17386"><strong>[17386]</strong> No error message displays when exporting a CSV or Excel file with an existing export preference.</p></li></ul>
+<h2 id="id51">
+Release Note 2.0.11</h2>
+<p><strong>Release Date: July 9, 2015</strong></p><h3 id="id51s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_17023"><strong>[17023]</strong> When importing an xlsx file, if a function is presented on a cell of type String, the import fails due to an <code>exception</code> .</p></li></ul>
+<h2 id="id52">
+Release Note 2.0.10</h2>
+<p><strong>Release Date: June 29, 2015</strong></p><h3 id="id52s1">
+Bug fixes</h3>
+<ul>
+<li><p id="bug_16854"><strong>[16854]</strong> A <code>NullPointerException</code> may occur with some Excel files containing more than 32,767 lines.</p></li></ul>
+<h2 id="id53">
+Release Note 2.0.9</h2>
+<p><strong>Release Date: May 6, 2015</strong></p><h3 id="id53s1">
+Memory usage improvements</h3>
+<ul>
+<li><p>The Excel import and export for Excel 2007 have been improved in order to be able to manage hundreds of thousands of records.</p></li></ul>
+<h2 id="id54">
+Release Note 2.0.8</h2>
+<p><strong>Release Date: April 27, 2015</strong></p><h3 id="id54s1">
+New updates</h3>
+<ul>
+<li><p>It is now possible to import file with the extension is in upper-case such as XLSX.</p></li></ul>
+<h2 id="id55">
+Release Note 2.0.7</h2>
+<p><strong>Release Date: March 17, 2015</strong></p><h3 id="id55s1">
+New updates</h3>
+<ul>
+<li><p>New UI option to force the import of data by making disable all triggers and constraints.</p></li><li><p>Improve error messages in importing data.</p></li><li><p>It is now possible to import records by ignoring mandatory foreign keys.</p></li><li><p>It is now possible to ignore mandatory columns in the data mapping configuration.</p></li><li><p>When a field is not mapped, the import data process is not stopped and raised a warning.</p></li></ul>
+<h3 id="bug_Adix_2.0.7">
+Bug Fixes</h3>
+<ul>
+<li><p id="bug_14491"><strong>[14491]</strong> Error messages are not written to error file in case of violating triggers or constraints.</p></li><li><p id="bug_14864"><strong>[14864]</strong> Import excel on dataset level has failed when a table sheet in excel file has no data to import.</p></li><li><p id="bug_14918"><strong>[14918]</strong> In case the option &#39;Download invalid data&quot; is activated, the download error file does not contain the header in case of errors.</p></li></ul>
+<h2 id="id56">
+Release Note 2.0.6</h2>
+<p><strong>Release Date: February 12, 2015</strong></p><h3 id="id56s1">
+New updates</h3>
+<ul>
+<li><p>Add the ability to choose the first line/column of the file to import when importing an Excel file in multiple tables.</p></li></ul>
+<h2 id="id57">
+Release Note 2.0.5</h2>
+<p><strong>Release Date: January 26, 2015</strong></p><h3 id="bug_Adix_2.0.5">
+Bug Fixes</h3>
+<ul>
+<li><p id="bug_13150"><strong>[13150]</strong> Support for ignoring the mapping of an auto increment primary key field.</p></li></ul>
+<h2 id="id58">
+Release Note 2.0.4</h2>
+<p><strong>Release Date: December 8, 2014</strong></p><h3 id="bug_Adix_2.0.4">
+Bug Fixes</h3>
+<ul>
+<li><p id="bug_13642"><strong>[13642]</strong> File is corrupted when exporting in Excel 2007 format.</p></li></ul>
+<h2 id="id59">
+Release Note 2.0.3</h2>
+<p><strong>Release Date: December 4, 2014</strong></p><h3 id="bug_Adix_2.0.3">
+Bug Fixes</h3>
+<ul>
+<li><p id="bug_13580"><strong>[13580]</strong> Trailing zero are added when importing a number into a string field.</p></li><li><p id="bug_13484"><strong>[13484]</strong> When exporting a String column, the column in Excel is not typed as &quot;text&quot; but is instead &quot;general&quot;.</p></li></ul>
+<h2 id="id60">
+Release Note 2.0.2</h2>
+<p><strong>Release Date: November 19, 2014</strong></p><h3 id="bug_Adix_2.0.2">
+Bug Fixes</h3>
+<ul>
+<li><p id="bug_13470"><strong>[13470]</strong> Identical labels on different columns may lead to incorrect preferences loading.</p></li></ul>
+<h2 id="id61">
+Release Note 2.0.1</h2>
+<p><strong>Release Date: October 10, 2014</strong></p><h3 id="id61s1">
+New updates</h3>
+<ul>
+<li><p>Support for exporting enumeration in the data model as an enumeration also in Excel file.</p></li></ul>
+<h3 id="bug_Adix_2.0.1">
+Bug Fixes</h3>
+<ul>
+<li><p id="bug_12897"><strong>[12897]</strong> &quot;An unexpected exception occurred&quot; is shown on result screen when executing import data from an Excel file.</p><p>User has an Excel file that contains data of a dataset then executes Import Excel service to import data from this file to another dataset, there is a &quot;An unexpected exception occurred&quot; message shown on result screen.</p></li><li><p id="bug_12947"><strong>[12947]</strong> Scientific formatted cells are not well integrated at import if the target column has a String type.</p><p>If the value of a cell is a big number (for example 9121323656454) with a scientific format, when it is mapped into a String column, the import result will be the scientific formatted value (9,E+12) instead of the &quot;real&quot; value.</p></li></ul>
+<h2 id="id62">
+Release Note 2.0.0</h2>
+<p><strong>Release Date: September 12, 2014</strong></p><h3 id="id62s1">
+New updates</h3>
+<ul>
+<li><p><strong>User&#39;s operations for XML import-export and data transfer </strong></p><p>Export and Import in XML based on a &#39;by default&#39; data mapping.</p><p>Export and Import in XML based on a user-defined data mapping.</p><p>Data transfer between EBX® tables relying on the same data model.</p><p>Data transfer between EBX® tables relying on different data models and based on a user-defined data mapping.</p></li><li><p><strong>Extended operations to manage user-defined data mapping configuration </strong></p><p>These operations are located in the EBX® Data Exchange Add-on&#39;s configuration dataset. They are used by IT specialists to create and maintain user-defined data mapping configurations between source and target applications. These configurations allow end-users to import, export and transfer data.</p><p>Creation of the application portfolio for XML and EBX types.</p><p>From an EBX type application, automatic generation of the Tables, Fields, Object Classes and Properties declaration.</p><p>From an XML type application, automatic generation of the Tables and Fields declaration with XML paths (based on an XML sample that is provided as input parameter of the operation).</p><p>Automatic detection of any misaligned items between a data mapping configuration and its underling EBX® application.</p><p>Automatic data mapping configuration between two EBX type applications sharing the same Object Class and Property items.</p></li></ul>
+<h2 id="id63">
+Release Note 1.3.0</h2>
+<p><strong>Release Date: December 16, 2013</strong></p><h3 id="id63s1">
+New updates</h3>
+<ul>
+<li><p>Support for transforming data before the processing an export to file or a data import.</p></li><li><p>Display a progress bar when importing data from a file into the repository or exporting data to file.</p></li><li><p>Support for importing a non-mandatory complex foreign key with empty data.</p></li></ul>
+<h2 id="id64">
+Release Note 1.2.1</h2>
+<p><strong>Release Date: October 3, 2013</strong></p><h3 id="id64s1">
+New updates</h3>
+<ul>
+<li><p>Support for defining and exporting a template to an Excel file.</p></li></ul>
+<h2 id="id65">
+Release Note 1.2.0</h2>
+<p><strong>Release Date: August 5, 2013</strong></p><h3 id="id65s1">
+New updates</h3>
+<ul>
+<li><p>The option &#39;Only string&#39; has been added for specifying a delimiter that is only applied for string data types when importing or exporting CSV files.</p></li><li><p>Support for exporting a hyperlink of data type <code>anyURI</code> to an Excel file.</p></li></ul>
+<h3 id="id65s2">
+Known limitations</h3>
+<p>This version contains the following known limitations:</p><ul>
+<li><p>Not support for exporting a record to a CSV/Excel file in a hierarchy view.</p></li></ul>
+<h2 id="id66">
+Release Note 1.1.2</h2>
+<p><strong>Release Date: June 11, 2013</strong></p><h3 id="id66s1">
+New updates</h3>
+<ul>
+<li><p>Support for exporting to Excel 2007 files (.xlsx).</p></li><li><p>Support for exporting the labels of the imported file columns when using &quot;import preferences&quot;.</p></li></ul>
+<h3 id="bug_Adix">
+Bug Fixes</h3>
+<ul>
+<li><p id="bug_6938"><strong>[6938]</strong> No header included in exports of empty tables.</p><p>Even though the header option is selected, the add-on exports an empty spreadsheet tab for empty tables. The headers should still be exported for empty tables so that import options that take the header into account are not affected just because the table has no rows of data.</p></li><li><p id="bug_6939"><strong>[6939]</strong> Delimiters should not be required for CSV exports.</p><p>When exporting tables to CSV, the delimiter field is required. The default character is a quotation mark. This should not be required, as it is not necessarily desirable to have a delimiter surrounding each field. By default, there should be no delimiter, as that is how built-in CSV exports work.</p></li><li><p id="bug_6940"><strong>[6940]</strong> Fields of type <code>dateTime</code> cannot be formatted.</p><p>Dates can be formatted for CSV export, but fields of type <code>dateTime</code> cannot. Both types should have customizable formats.</p></li><li><p id="bug_6941"><strong>[6941]</strong> CSV exports add extra separator characters at the end of lines.</p><p>When performing a CSV export of a table, each row ends with a separator character. This is not consistent with what the built-in CSV export does, where there are only separators between fields. For example, <code>field1;field2;</code> is currently exported instead of <code>field1;field2</code> .</p></li></ul>
+<h2 id="id67">
+Release Note 1.1.1</h2>
+<p><strong>Release Date: April 11, 2013</strong></p><h3 id="id67s1">
+New updates</h3>
+<ul>
+<li><p>Support for inputting non-predefined date formats when importing from and exporting to CSV files.</p></li><li><p>Support for exporting to an Excel file using the mapping information from import preferences.</p></li><li><p>Support for saving export configurations for reuse in subsequent exports.</p></li></ul>
+<h2 id="id68">
+Release Note 1.1.0</h2>
+<p><strong>Release Date: February 25, 2013</strong></p><p>In this version, the import and export features have been updated to be more user-friendly. When exporting the labels of primary or foreign keys to Excel, it is now possible to also define a hyperlink to the underlying record. The export of multiple tables to an Excel file and the import of multiple sheets from an Excel file are now supported.</p><h3 id="id68s1">
+New updates</h3>
+<ul>
+<li><p>Export of the labels of primary or foreign keys to Excel and CSV files.</p></li><li><p>Export of permalinks for primary or foreign keys to Excel files.</p></li><li><p>Support for export of multiple tables to an Excel file.</p></li><li><p>Support for the import of multiple sheets from an Excel file.</p></li><li><p>Support for generating a CSV/ Excel file that contains records with errors during import of CSV/ Excel files. The user can download this file at the end of the import.</p></li><li><p>When exporting, the labelling of foreign keys has been enhanced.</p></li><li><p>Fix for the former limitation:</p><p><em>When exporting an empty table or importing a file with a simulation error and not selecting the option &#39;Import only valid records&#39;, the waiting animation is not displayed properly. </em></p></li></ul>
+<h2 id="id69">
+Release Note 1.0.0</h2>
+<p><strong>Release Date: October 31, 2012</strong></p><h3 id="id69s1">
+Known limitations</h3>
+<p>This version contains the following known limitations:</p><ul>
+<li><p>When two columns have the same name and have same type of validation error, only the first invalid column is included in the validation report message.</p></li><li><p>When exporting an empty table or importing a file with a simulation error and not selecting the option &#39;Import only valid records&#39;, the waiting animation is not displayed properly.</p></li><li><p>The user interface has the same known browser limitations as EBX®.</p><p>See the section <strong>Administration Guide &gt;Installation &amp; configuration &gt; Supported environments &gt; Browsing environments </strong> in the main EBX® documentation for more information.</p></li></ul>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Add-on Services</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_services_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_services.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide</span></div>
+<h1>
+Add-on Services</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_services_overview">Overview</a></li><li class="toc1"><a href="#ref_services_import_export_configuration">Importing and Exporting EBX® Data Exchange Add-on configuration</a></li><li class="toc1"><a href="#ref_services_application_type">Application type services</a></li><li class="toc1"><a href="#ServiceCleanAllConfiguration8e7_43">Service: Clean all configuration</a></li><li class="toc1"><a href="#ServiceCleanUnusedPaths2550_44">Service: Clean unused paths</a></li></ul>
+</div>
+<h2 id="ref_services_overview">
+Overview</h2>
+<p>This section describes EBX® Data Exchange Add-on services.</p><h2 id="ref_services_import_export_configuration">
+Importing and Exporting EBX® Data Exchange Add-on configuration</h2>
+<p>You can import and export all configuration options contained in a EBX® Data Exchange Add-on dataset from and to an XML file. As shown below, these services are accessed from the EBX® Data Exchange Add-on dataset <strong>Actions</strong> menu. For more detailed instructions on migrating configuration settings, see <a href="../user_guide/user_migration_overview.html">Migration overview</a>.</p><p><img alt="/import_export_configuration.png" src="./resources/images/import_export_configuration.png"></img></p><p>The following points highlight features of the services.:</p><ul>
+<li><p><strong>Export XML</strong>: All table records (including hidden tables) will be exported to an XML file. You can specify whether the file is indented to improve readability and whether to omit XML comments that describe data location and export date. After you set these options and click <strong>Export</strong>, the add-on prompts you for a save location.</p></li><li><p><strong>Import XML</strong>: All triggers and constraints are disabled during the import process. You can validate after import. If an error occurs during import, the process stops and an error message is displayed. On the import screen you can select the import mode. <strong>Update or insert</strong>—If a record in a target table has the same primary key as an imported record, it is updated. Otherwise, new records are inserted. <strong>Replace all content</strong>—All existing table data is deleted prior to import. </p></li></ul>
+<h2 id="ref_services_application_type">
+Application type services</h2>
+<p>In order to manage user-defined data mapping configurations, a portfolio of services is available depending on the application type. These services are located on the <strong>Application by type</strong> table in the <strong>TIBCO EBX® Data Exchange Add-on</strong> dataspace under the EBX® <strong>Administration</strong> tab.</p><p><img alt="/app_type_service.png" src="./resources/images/app_type_service.png"></img></p><p>The creation of user-defined data mapping configurations requires IT skills. Based on these configurations, end-users can export, import and transfer the data easily, all the technical aspects of data mapping configuration are hidden from them.</p><p>The table below gives a short description of the services available to manage the user-defined data mapping configurations.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Services applied to an Application of type</p></th><th valign="top"><p>Default XML</p></th><th valign="top"><p>XML </p></th><th>CSV/Excel</th><th valign="top"><p>EBX</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Delete data mapping</p></td><td colspan="3" valign="top"><p>Physical deletion of all Tables, Fields and related data mapping (Tables: Version, Interface Application, Table mapping, Field mapping, Table mapping preference, Field mapping preference, Field mapping transformation and Path ) for the Application.</p><p>For an EBX type application, the Object class, Property and related tables (Object Class by Application, Property by Object Class) are also removed.</p></td><td></td></tr>
+<tr>
+<td valign="top"><p>Generate models</p></td><td valign="top"><p>N/A</p></td><td valign="top"><p>Tables and Fields are declared as XML Tags.</p><p>The generation is based on a sample XML file that must be provided as input data.</p></td><td>Tables and Fields are declared as column names. The generation is based on a sample CSV/Excel file that must be provided as input data.</td><td valign="top"><p>Tables and Fields are declared as an EBX® path.</p><p>Object classes and Properties can also be generated to get the semantic data model.</p><p>The generation is based on a dataspace - dataset corresponding to the Application.</p></td></tr>
+<tr>
+<td valign="top"><p>Delete models</p></td><td valign="top"><p>N/A</p></td><td valign="top"><p>N/A</p></td><td></td><td valign="top"><p>Logical deletion of Object class and Property type items-if not used by another application. Logical deletion of all application Tables and Fields. The logical deletion is registered by using the property &#39;Is removed&#39;</p></td></tr>
+<tr>
+<td valign="top"><p>Purge removed information</p></td><td valign="top"><p>N/A</p></td><td valign="top"><p>N/A</p></td><td></td><td valign="top"><p>Physical deletion of the items that are tagged &#39;Is removed&#39; = &#39;Yes&#39; by the &#39;Delete models&#39; service. All data mappings that refer to the deleted items are also physically removed.</p></td></tr>
+<tr>
+<td valign="top"><p>Validate models</p></td><td valign="top"><p>N/A</p></td><td valign="top"><p>N/A</p></td><td></td><td valign="top"><p>Checks if the configuration is still updated with the EBX®&#39; data model. All unaligned Tables and Fields are then modified by changing the &#39;Is removed&#39; property into the value &#39;Yes&#39;</p></td></tr>
+<tr>
+<td valign="top"><p>Auto data mapping</p></td><td valign="top"><p>N/A</p></td><td valign="top"><p>N/A</p></td><td></td><td valign="top"><p>Automatically configures the data mapping between two EBX® applications sharing the same Object class and property items.</p></td></tr>
+</tbody>
+</table>
+<p align="center">Table 7: Services on &#39;Application by type&#39; table</p><h2 id="ServiceCleanAllConfiguration8e7_43">
+Service: Clean all configuration</h2>
+<p>This service is located at the <strong>TIBCO EBX® Data Exchange Add-on</strong> dataset level and allows you to remove all data mapping configurations and get an empty EBX® Data Exchange Add-on repository.</p><p align="center"><img alt="/clean_all.png" src="./resources/images/clean_all.png"></img></p><h2 id="ServiceCleanUnusedPaths2550_44">
+Service: Clean unused paths</h2>
+<p>This service is located at the <strong>Path</strong> table level and allows you to remove all unused paths that have been declared in the data mapping repository.</p><p align="center"><img alt="/clean_unused_paths.png" src="./resources/images/clean_unused_paths.png"></img></p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

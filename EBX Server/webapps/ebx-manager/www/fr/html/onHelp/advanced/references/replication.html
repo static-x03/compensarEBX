@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Replication</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_replication" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Persistence</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/replication.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Persistence</span></div>
+<h1>
+Replication</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#overview">Overview</a></li><li class="toc1"><a href="#howto">Configuring replication</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Enabling replication</a></li><li class="toc2"><a href="#disable">Disabling replication on a specific field or group</a></li></ul>
+</li><li class="toc1"><a href="#sqlAccess">Accessing a replica table using SQL</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Finding the replica table in the database</a></li><li class="toc2"><a href="#sqlAccessRestrictions">Access restrictions</a></li><li class="toc2"><a href="#sqlRead">SQL reads</a></li></ul>
+</li><li class="toc1"><a href="#replicationRefresh">Requesting an &#39;onDemand&#39; replication refresh</a></li><li class="toc1"><a href="#limitations">Impact and limitations of replication</a><ul class="toc2">
+<li class="toc2"><a href="#validation">Validation</a></li><li class="toc2"><a href="#limitationsDataModel">Data model restrictions for replicated tables</a></li><li class="toc2"><a href="#id5s3">Database configuration</a></li><li class="toc2"><a href="#id5s4">Distributed data delivery (D3)</a></li><li class="toc2"><a href="#id5s5">Other limitations of replication</a></li></ul>
+</li></ul>
+</div>
+<h2 id="overview">
+Overview</h2>
+<p>Data stored in the TIBCO EBX&reg; repository can be mirrored to dedicated relational tables to enable direct access to the data by SQL requests and views.</p><p>Like history, this data replication is transparent to end-users and client applications. Certain actions trigger automatic changes to the replica in the database:</p><ul>
+<li><p>Activating replication at the model-level updates the database schema by automatically executing the necessary DDL statements.</p></li><li><p>Data model evolutions that impact replicated tables, such as creating a new column, also automatically update the database schema using DDL statements.</p></li><li><p>When using the &#39;onCommit&#39; refresh mode: updating data in the EBX&reg; repository triggers the associated inserts, updates, and deletions on the replica database tables.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/history.html">History</a></li><li><a href="../references/datamodel_evolutions.html">Data model evolutions</a></li><li><a href="../engine/repository_administration.html">Repository administration</a></li></ul>
+</div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p><em>replicated table</em>: refers to a primary data table that has been replicated</p><p><em>replica table</em> (or <em>replica</em>): refers to a database table that is the target of the replication</p></p></div>
+<h2 id="howto">
+Configuring replication</h2>
+<h3 id="id2s1">
+Enabling replication</h3>
+<p>To define a <em>replication unit</em> on a data model, use the element <code>osd:replication</code> under the elements <code>annotation/appinfo</code>. Each replication unit specifies tables in a single dataset in a specific dataspace.</p><p>The nested elements are as follows:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Element</strong></p></th><th valign="top"><p><strong>Description</strong></p></th><th valign="top"><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Name of the replication unit. This name identifies a replication unit in the current data model. It must be unique.</p></td><td align="center" valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>dataSpace</code></p></td><td valign="top"><p>Specifies the dataspace relevant to this replication unit. It cannot be a snapshot or a relational dataspace.</p></td><td align="center" valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>dataSet</code></p></td><td valign="top"><p>Specifies the dataset relevant to this replication unit.</p></td><td align="center" valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p id="refresh"><code>refresh</code></p></td><td valign="top"><p>Specifies the data synchronization policy. The possible policies are:</p><ul>
+<li><p><code>onCommit</code>: The replica table content in the database is always up to date with respect to its source table. Every transaction that updates the EBX&reg; source table triggers the corresponding insert, update, and delete statements on the replica table.</p></li><li><p><code>onDemand</code>: The replication of specified tables is only done when an explicit refresh operation is performed. See <a href="#replicationRefresh">Requesting an &#39;onDemand&#39; replication refresh</a>.</p></li></ul>
+</td><td align="center" valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>table/path</code></p></td><td valign="top"><p>Specifies the path of the table in the current data model that is to be replicated to the database.</p></td><td align="center" valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>table/nameInDatabase</code></p></td><td valign="top"><p>Specifies the name of the table in the database to which the data will be replicated. This name must be unique amongst all replications units.</p></td><td align="center" valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>table/element/path</code></p></td><td valign="top"><p>Specifies the path of the aggregated list in the table that is to be replicated to the database.</p></td><td align="center" valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>table/element/nameInDatabase</code></p></td><td valign="top"><p>Specifies the name of the table in the database to which the data of the aggregated list will be replicated. This name must be unique amongst all replications units.</p></td><td align="center" valign="top"><p>Yes</p></td></tr>
+</tbody>
+</table>
+<p>For example:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:schema>
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:replication>
+				&lt;name>ProductRef&lt;/name>
+				&lt;dataSpace>ProductReference&lt;/dataSpace>
+				&lt;dataSet>productCatalog&lt;/dataSet>
+				&lt;refresh>onCommit&lt;/refresh>
+				&lt;table>
+					&lt;path>/root/domain1/tableA&lt;/path>
+					&lt;nameInDatabase>PRODUCT_REF_A&lt;/nameInDatabase>
+				&lt;/table>
+				&lt;table>
+					&lt;path>/root/domain1/tableB&lt;/path>
+					&lt;nameInDatabase>PRODUCT_REF_B&lt;/nameInDatabase>
+					&lt;element>
+						&lt;path>/retailers&lt;/path>
+						&lt;nameInDatabase>PRODUCT_REF_B_RETAILERS&lt;/nameInDatabase>
+					&lt;/element>
+				&lt;/table>
+			&lt;/osd:replication>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:schema></pre>
+<p>Notes:</p><ul>
+<li><p>See <a href="#limitationsDataModel">Data model restrictions for replicated tables</a></p></li><li><p>If, at data model compilation, the specified dataset and/or dataspace does not exist in the current repository, a warning is reported, but the replica table is created in the database. Once the specified dataspace and dataset are created, the replication becomes active.</p></li><li><p>At data model compilation, if a table replication is removed, or if some of the above properties has changed, the replica table is dropped from the database, and then recreated with the new definition if needed.</p></li></ul>
+<h3 id="disable">
+Disabling replication on a specific field or group</h3>
+<p>For a replicated table, the default behavior is to replicate all its supported elements (see <a href="#limitationsDataModel">Data model restrictions for replicated tables</a>).</p><p>It is possible to disable replication for a specific field or group, either through the data model assistant, or by editing the underlying data model.</p><p>To disable the replication of a field or group by editing the data model, use the element <code>osd:replication</code> with the attribute <code>disable=&quot;true&quot;</code>.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="longDescription" type="xs:string">
+    &lt;xs:annotation>
+        &lt;xs:appinfo>
+            &lt;osd:replication disable="true" />
+        &lt;/xs:appinfo>
+    &lt;/xs:annotation>
+&lt;/xs:element></pre>
+<p>To disable the replication of a field or group through the data model assistant, use the <code>Replication</code> property in the <code>Advanced properties</code> of the element.</p><p>When this property is defined on a group, replication is disabled recursively for all its descendents. Once a group disables replication, it is not possible to specifically re-enable replication on a descendant.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>If the table containing the field or group is not replicated, this property will not have any effect.</p><p>It is not possible to disable replication for primary key fields.</p></p></div>
+<h2 id="sqlAccess">
+Accessing a replica table using SQL</h2>
+<p>This section describes how to directly access a replica table using SQL.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/history.html#sqlAccess">SQL access to history</a></li></ul>
+</div>
+<h3 id="id3s1">
+Finding the replica table in the database</h3>
+<p>For every replicated EBX&reg; table, a corresponding table is generated in the RDBMS. Using the EBX&reg; user interface, you can find the name of this database table by clicking on the documentation pane of the table.</p><h3 id="sqlAccessRestrictions">
+Access restrictions</h3>
+<p>The replica database tables must only be directly accessed in read-only mode. It is the responsibility of the database administrator to block write-access to all database users except the one that EBX&reg; uses.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#privileges">Rules for the database access and user privileges</a></li></ul>
+</div>
+<h3 id="sqlRead">
+SQL reads</h3>
+<p>Direct SQL reads are possible in well-managed, preferably short-lived transactions. However, for such accesses, EBX&reg; permissions are not taken into account. As a result, applications given the privilege to perform reads must be trusted through other authentication processes and permissions.</p><h2 id="replicationRefresh">
+Requesting an &#39;onDemand&#39; replication refresh</h2>
+<p>The &#39;onDemand&#39; refresh policy requires an explicit request to refresh the replicated table data.</p><p>There are several ways to request a replication refresh:</p><ul>
+<li><p id="userInterface"><strong>User interface</strong>: In the dataset actions menu, use the action &#39;Refresh replicas&#39; under the group &#39;Replication&#39; to launch the replication refresh wizard.</p></li><li><p id="DataServices"><strong>Data services</strong>: Use the replication refresh data services operation. See <a href="../data_services/dataservices_execution.html#replicationRefresh">Replication refresh</a> for data services for more information.</p></li><li><p id="API"><strong>Java API</strong>: Call the <a target="_blank" href="../Java_API/com/orchestranetworks/service/extensions/ReplicationUnit.html#performRefresh-com.orchestranetworks.service.Session-"><code>ReplicationUnit.performRefresh</code></a> methods in the <code>ReplicationUnit</code> API to launch a refresh of the replication unit.</p></li></ul>
+<h2 id="limitations">
+Impact and limitations of replication</h2>
+<p>The replication feature has some known limitations and side-effects, which are listed below. If using replication, it is strongly recommended to read this section carefully and to contact TIBCO Software Inc. support in case of questions.</p><p>See <a href="../installation/supported_env.html#databases">Supported databases</a> for the databases for which replication is supported.</p><h3 id="validation">
+Validation</h3>
+<p>Some EBX&reg; data model constraints become blocking constraints when replication is enabled. For more information, see <a href="../references/persistence_overview.html#structuralConstraints">Structural constraints</a>.</p><h3 id="limitationsDataModel">
+Data model restrictions for replicated tables</h3>
+<p>Some restrictions apply to data models containing tables that are replicated:</p><ul>
+<li><p><a href="../references/persistence_overview.html#mappedRestrictions">Data model restrictions due to mapped mode</a></p></li><li><p>Dataset inheritance is not supported for the &#39;onCommit&#39; refresh policy if the specified dataset is not a root dataset or has not yet been created. See <a href="../references/inheritance.html#dataSetInheritance">dataset inheritance</a> for more information.</p></li><li><p>Field inheritance is also only supported for the &#39;onDemand&#39; refresh policy. This means that, at data model compilation, an error is reported if the refresh mode is &#39;onCommit&#39; and the table to be replicated has an inherited field. See <a href="../references/inheritance.html#ina">inherited fields</a> for more information.</p></li><li><p>Computed values are ignored.</p></li><li><p>Limitations exist for two types of aggregated lists: aggregated lists under another aggregated list, and aggregated lists under a terminal group. Data models that contain such aggregated lists can be used, however these lists will be ignored (not replicated).</p></li><li><p>User-defined attributes are not supported. A compilation error is raised if they are included in a replication unit.</p></li></ul>
+<p>Data model evolutions may also be constrained by the underlying RDBMS, depending on the data already contained in the concerned tables.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/datamodel_evolutions.html">Data model evolutions</a></li></ul>
+</div>
+<h3 id="id5s3">
+Database configuration</h3>
+<p>The refresh operation is optimized to transmit only the rows of the source table that have been modified (with respect to creation and deletion) since the last refresh. However, depending on the volume of data exchanged, this can be an intensive operation, requiring large transactions. In particular, the first refresh operation can concern a large number of rows. It is necessary for the database to be configured properly to allow such transactions to run under optimal conditions.</p><p>For instance, with Oracle:</p><ul>
+<li><p>It is mandatory for the bulk of all replica tables in a replication unit to fit into the &#39;UNDO&#39; tablespace.</p></li><li><p>It is recommended to provide enough space in the buffer cache to allow those transactions to run with minimal disk access.</p></li><li><p>It is recommended to provision &#39;REDO&#39; log groups big enough to avoid those transactions to wait for the &#39;db_writer&#39; process.</p></li></ul>
+<h3 id="id5s4">
+Distributed data delivery (D3)</h3>
+<p>Replication is available on both D3 primary and replica delivery dataspaces. On the primary dataspace, the replication behavior is the same as in a standard semantic dataspace, but on replica dataspaces, the replicated content is that of the last broadcast snapshot.</p><p>In a replica delivery dataspace, some restrictions occur:</p><ul>
+<li><p>The refresh policy defined in the data model has no influence on the behavior described above: replication always happens on snapshot.</p></li><li><p>The action item <code>Refresh replicas</code> is not available.</p></li><li><p>It is not allowed to invoke the <a target="_blank" href="../Java_API/com/orchestranetworks/service/extensions/ReplicationUnit.html#performRefresh-com.orchestranetworks.service.Session-"><code>ReplicationUnit.performRefresh</code></a> method.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3.html">D3 overview</a></li></ul>
+</div>
+<h3 id="id5s5">
+Other limitations of replication</h3>
+<ul>
+<li><p><a href="../installation/supported_env.html#databases">Limitations of supported databases</a></p></li><li><p>For inheritance, a replica record field cannot hold the &quot;inherit value&quot; flag (<code>AdaptationValue.INHERIT_VALUE</code>). It only holds the inherited value in such cases. More generally, it is not possible to distinguish inheriting state from overwriting state.</p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Persistence</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

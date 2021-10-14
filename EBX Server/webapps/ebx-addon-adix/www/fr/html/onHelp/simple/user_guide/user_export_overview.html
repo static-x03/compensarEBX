@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Exporting data</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_export_overview_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; User Guide &gt; Getting Started with Data Exchange</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_export_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; User Guide &gt; Getting Started with Data Exchange</span></div>
+<h1>
+Exporting data</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_export_overview_top">Export overview</a></li><li class="toc1"><a href="#user_export_csv">Exporting to CSV</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Separator behavior</a></li></ul>
+</li><li class="toc1"><a href="#user_export_excel">Exporting to Excel</a><ul class="toc2">
+<li class="toc2"><a href="#user_export_excel_table">Exporting from a table</a></li><li class="toc2"><a href="#user_export_excel_dataset">Exporting from a dataset</a></li><li class="toc2"><a href="#user_export_validation_messages">Including messages in exported files</a></li></ul>
+</li><li class="toc1"><a href="#user_export_sql">SQL export</a></li><li class="toc1"><a href="#user_export_xml">XML export</a></li><li class="toc1"><a href="#user_export_related_data">Exporting related data</a></li><li class="toc1"><a href="#id7">Enumeration export options</a></li></ul>
+</div>
+<h2 id="user_export_overview_top">
+Export overview</h2>
+<p>Depending on what format you are exporting to, the add-on presents you with slightly different options. In most cases you will see a configuration page, and mapping pages. The sections below cover options relevant to each export format type:</p><ul>
+<li><p><a href="#user_export_csv">Exporting to CSV</a></p></li><li><p><a href="#user_export_excel">Exporting to Excel</a></p></li><li><p><a href="#user_export_sql">SQL export</a></p></li><li><p><a href="#user_export_xml">XML export</a></p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>When exporting XML or Excel, you can export multi-valued complex fields. All levels of a complex field can be exported to XML. However, only the first level can be exported to an Excel file.</p></div>
+<h2 id="user_export_csv">
+Exporting to CSV</h2>
+<p>You can run the <strong>Export CSV</strong> service from a table&#39;s <strong>Actions</strong> menu. The add-on only exports a single table&#39;s contents at a time. You only need to edit configuration settings and create column mappings. The settings in the configuration page determine the exported file&#39;s structure. For example, you can specify which separators and date formats to use. Also, you can load preferences that automatically setup the configuration and mapping. Additionally, you can select a Java class to transform data on export. </p><p><img alt="/export_csv_mapping_page.png" src="./resources/images/export_csv_mapping_page.png"></img></p><h3 id="id2s1">
+Separator behavior</h3>
+<p>Exported CSV files use new lines (line feed and carriage return) to separate records. When configuring CSV export you can use the following options to define how the exported file separates fields and encapsulates values:</p><ul>
+<li><p>The <strong>Separator</strong> option defines the character used to separate fields, or columns. The following example shows how the default option of a semicolon separates fields:</p><pre class="brush: text; toolbar: false; gutter: false;">
+pk1;Salary
+1;50,000
+</pre>
+</li><li><p>The <strong>Delimiter</strong> option allows you to specify a character to encapsulate field values. As shown below, the exported file adds this character—a pipe character in this case—to the beginning and end of the field value:</p><pre class="brush: text; toolbar: false; gutter: false;">
+|pk1|;|Salary|
+|1|;|50,000|
+</pre>
+</li></ul>
+<p>A conflict would occur when an exported field includes the same character used as a separator. However, the add-on automatically uses double quotes as escape characters to ensure data integrity. The following sample shows a scenario where a comma is specified as the separator character and appears in the Salary field&#39;s value:</p><pre class="brush: text; toolbar: false; gutter: false;">
+pk1,Salary
+1,"50,000"
+</pre>
+<p>You can use the <strong>Delimiter</strong> option to override default behavior. As shown below, the delimiter marks the start and end of each field eliminating the necessity of escape characters:</p><pre class="brush: text; toolbar: false; gutter: false;">
+|pk1|,|Salary|
+|1|,|50,000|
+</pre>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>The add-on imports correctly from exported files where data values include the defined separator. These files also display correctly in spreadsheet programs. However, if you define a delimiter and view the file in a spreadsheet program, the display might not reflect the actual data structure.</p></div>
+<h2 id="user_export_excel">
+Exporting to Excel</h2>
+<p>You can run the <strong>Export Excel</strong> service from a dataset, or table <strong>Actions</strong> menu. Running the service from a dataset allows you to export data from multiple tables to multiple sheets in the Excel file. When you run the service from a table, you can select records to export, or export all table contents. The following sections provide more information on the options available depending on how you execute the export operation:</p><ul>
+<li><p><a href="#user_export_excel_table">Exporting from a table</a></p></li><li><p><a href="#user_export_excel_dataset">Exporting from a dataset</a></p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>If invalid foreign keys exist, they will be included in the export and highlighted in the Excel file.</p></div>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>To avoid issues during export of a large Excel file, please use only the default options and do not activate the <strong>Include validation messages</strong>, <strong>Export related data</strong>, or <strong>Export permalink for the primary or foreign key</strong> options.</p></div>
+<h3 id="user_export_excel_table">
+Exporting from a table</h3>
+<p>When you export from a table, you can select the records to include in the export, or export all table content. Just select the records before running the service if you only want to export a few. The configuration page allows you to determine the exported file&#39;s structure, load preferences, and select a Java class for data transformation. As shown in the following image, you can also create a table template to customize look and feel of the exported file. Once configuration is complete, use the mapping page to determine how and which source table columns map to the target file columns and choose whether to save a preference.</p><p><img alt="/export_excel_config_table_template.png" src="./resources/images/export_excel_config_table_template.png"></img></p><h3 id="user_export_excel_dataset">
+Exporting from a dataset</h3>
+<p>In addition to the options available when exporting from a table, you can choose one or more tables from the dataset to export. The add-on exports each table into a separate sheet in the Excel file.</p><p><img alt="/export_excel_select_tables.png" src="./resources/images/export_excel_select_tables.png"></img></p><p>After selecting the tables to export the add-on presents you with two pages that allow you to map which sheet the tables are exported to and the source table columns with the target sheet columns. As shown below the column mapping page uses tabs to indicate which table/sheet you are mapping.</p><p><img alt="/export_excel_column_mapping.png" src="./resources/images/export_excel_column_mapping.png"></img></p><h3 id="user_export_validation_messages">
+Including messages in exported files</h3>
+<p>You can include validation messages in exported Excel files. The add-on highlights fields and rows containing messages using: red for error, orange for warning, and blue for information. If a message applies to a table, the add-on creates a new sheet in the exported file and appends &quot;-MSG&quot; to the name. </p><p>As shown below, select the level(s) of messages to include in the export. Note that exporting messages forces validation for all tables included in the export.</p><img alt="/export_include_messages.png" src="./resources/images/export_include_messages.png"></img><p>The following image shows an example of how messages are included in an exported Excel file:</p><img alt="/export_include_messages_sample.png" src="./resources/images/export_include_messages_sample.png"></img><h2 id="user_export_sql">
+SQL export</h2>
+<p>The following steps demonstrate how to use the <strong>Export SQL</strong> service:</p><ol>
+<li><p>From a table&#39;s <strong>Actions</strong> menu, select the <strong>Export SQL</strong> service, the <strong>Configuration</strong> screen displays.</p><p><img alt="/sql_export_1.png" src="./resources/images/sql_export_1.png"></img></p></li><li><p>From a table&#39;s <strong>Actions</strong> menu, select the <strong>Export SQL</strong> service, the configuration screen displays as shown below:</p><p><img alt="/sql_export_2.png" src="./resources/images/sql_export_2.png"></img></p></li><li><p>Choose an external database table from the <strong>SQL table or view</strong> drop-down list and select the Java class used to map columns. Once you&#39;ve finished the configuration, click <strong>Mapping</strong> to display the column mapping screen.</p><p><img alt="/sql_export_3.png" src="./resources/images/sql_export_3.png"></img></p></li></ol>
+<p>The image below shows the result of exporting to the Customers table on the external database.</p><p><img alt="/sql_export_4.png" src="./resources/images/sql_export_4.png"></img></p><p><img alt="/10000000000002DE000000D66C2DDE38.png" src="./resources/images/10000000000002DE000000D66C2DDE38.png"></img></p><h2 id="user_export_xml">
+XML export</h2>
+<p>If the table is not defined in the data mapping configuration when you attempt to export to XML, <strong>Default XML format</strong> displays as the only available target application. This default format, provided by the add-on, allows you to easily get an XML file and doesn&#39;t require a specific data mapping configuration.</p><p>If a field name has to be renamed when exporting to an XML file, or another instance arises where data in the source and target differ, you have to specify a data mapping configuration. In these types of cases, other target applications display as options (see the rest of this user guide).</p><p align="center"><img alt="/export_xml_default.png" src="./resources/images/export_xml_default.png" width="584"></img></p><p>When the <strong>Use header</strong> option is used, the exported XML file contains a standard header with the following data:</p><ul>
+<li><p>The name of the application. By default, this is the name of the dataset in which the table is located (a timestamps value is also added to build the name).</p></li><li><p>The version that has been selected during the export configuration. If no specific version was specified, this will be blank.</p></li><li><p>The export date.</p></li><li><p>The type of the XML export, either <strong>Default XML</strong> or <strong>XML</strong> when a user-defined data mapping configuration is used.</p></li></ul>
+<p align="center"><img alt="/10000000000001E700000157881AEC3C.png" src="./resources/images/10000000000001E700000157881AEC3C.png"></img></p><h2 id="user_export_related_data">
+Exporting related data</h2>
+<p>To help you locate data linked to specific records, the add-on allows you to export related data when exporting to:</p><ul>
+<li><p>CSV: The add-on exports a ZIP file containing individual CSV files. One file contains the export&#39;s source data. The remaining files—one for each table—contain the related data.</p></li><li><p>Excel: The add-on exports a single Excel file. The first sheet in the file contains the export&#39;s source data. Each additional sheet—one for each table—contains the related data.</p></li></ul>
+<p>The option to export related data is only available when exporting an individual record, or from a table. To include related data in a CSV or Excel export, use the following checkboxes for the <strong>Export related data</strong> property on the export&#39;s configuration screen:</p><ul>
+<li><p><strong>From referenced tables:</strong> to include data referenced by the selected record(s). Note that this may include data from external tables.</p></li><li><p><strong>From tables that reference the selected record:</strong> to include data from tables that hold a relationship to the selected record.</p></li></ul>
+<p>The following images highlights the options when exporting Excel:</p><img alt="/export_related_records.png" src="./resources/images/export_related_records.png"></img><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The export only includes data on which you have sufficient permissions.</p></div>
+<h2 id="id7">
+Enumeration export options</h2>
+<p>The add-on allows you to include enumerations in CSV and Excel exports of tables, or individual records. As highlighted below, the options are available from the main configuration page (the image shows Excel export, CSV only includes the <strong>Export label</strong> option):</p><img alt="/export_enums_main_config.png" src="./resources/images/export_enums_main_config.png"></img><p>The following describes behavior for each supported export type:</p><ul>
+<li><p><strong>Excel</strong> export: On the main configuration page, the add-on presents you with the following options under <strong>Export enumerations</strong>:</p><ul>
+<li><p><strong>Export label</strong>: The export includes an additional column for the enumeration field&#39;s label.</p><p><img alt="/export_enums_label.png" src="./resources/images/export_enums_label.png"></img></p></li><li><p><strong>Export static enumerations</strong>: The the enumeration column will contain a drop-down list of enumeration values defined in the data model.</p><p><img alt="/export_enums_static.png" src="./resources/images/export_enums_static.png"></img></p></li><li><p>When you select both options, the exported columns both have drop-down lists of their available values. </p></li><li><p>If you leave both options unchecked, the exported column includes only the enumeration value defined in the data model.</p></li></ul>
+</li><li><p><strong>CSV</strong> export: The exported file will include a dedicated column with the enumeration value&#39;s labels.</p><p><img alt="/export_enums_csv_label.png" src="./resources/images/export_enums_csv_label.png"></img></p></li></ul>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

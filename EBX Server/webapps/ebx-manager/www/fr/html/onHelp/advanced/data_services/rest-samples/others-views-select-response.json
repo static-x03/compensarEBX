@@ -1,0 +1,13 @@
+{
+  "content": [
+    {
+      "details": "http://.../data/v1/Bebx-directory/ebx-directory/directory/users?viewPublication=custom-directory",
+      "label": "My custom directory view",
+      "viewPublication": "custom-directory",
+      "viewType": "SimpleTabular"
+    },
+    {
+      ...
+    }
+  ]
+}

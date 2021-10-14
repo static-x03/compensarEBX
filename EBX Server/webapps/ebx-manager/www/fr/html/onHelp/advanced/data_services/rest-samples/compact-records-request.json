@@ -1,0 +1,20 @@
+[
+  {
+    "gender": {
+      "key": "M"
+    },
+    "lastName": "Saint-Sa&euml;ns",
+    "firstName": "Camille",
+    "birthDate": "1835-10-09",
+    ...
+  },
+  {
+    "gender": {
+      "key": "M"
+    },
+    "lastName": "Debussy",
+    "firstName": "Claude",
+    "birthDate": "1862-10-22",
+    ...
+  }
+]

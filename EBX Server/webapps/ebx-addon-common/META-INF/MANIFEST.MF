@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.14
+Created-By: TIBCO Software Inc.
+Implementation-Title: Web application 'ebx-addon-common' of common
+Bundle-Version: 5.1.0.1009
+EBX-Version: 6.0.1
+Implementation-Version: 3.0.0 [1009] at 2021/07/05 11:41:59 [ICT]
+Implementation-Vendor: TIBCO Software Inc.
+

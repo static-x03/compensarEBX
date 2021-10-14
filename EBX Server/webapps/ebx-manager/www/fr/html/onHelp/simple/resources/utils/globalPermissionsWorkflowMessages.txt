@@ -1,0 +1,21 @@
+<!-- 
+	New messages in coreSchemas_XX.mxml since 5.5.0 fix E
+ -->
+<entry key="GlobalPermissionsSchemaDefinition.globalPermissionsTable.dataWorkflow.launchers.description">
+	If 'Yes', displays Workflow launchers entry in the user interface to the selected profile. Otherwise, hides the entry.
+</entry>
+<entry key="GlobalPermissionsSchemaDefinition.globalPermissionsTable.dataWorkflow.launchers.label">
+	Display Workflow launchers entry
+</entry>
+<entry key="GlobalPermissionsSchemaDefinition.globalPermissionsTable.dataWorkflow.monitoring.description">
+	If 'Yes', displays Monitoring entry in the user interface to the selected profile. Otherwise, hides the entry.
+</entry>
+<entry key="GlobalPermissionsSchemaDefinition.globalPermissionsTable.dataWorkflow.monitoring.label">
+	Display Monitoring entry
+</entry>
+<entry key="GlobalPermissionsSchemaDefinition.globalPermissionsTable.dataWorkflow.completedWorkflows.description">
+	If 'Yes', displays Completed workflows entry in the user interface to the selected profile. Otherwise, hides the entry.
+</entry>
+<entry key="GlobalPermissionsSchemaDefinition.globalPermissionsTable.dataWorkflow.completedWorkflows.label">
+	Display Completed workflows entry
+</entry>

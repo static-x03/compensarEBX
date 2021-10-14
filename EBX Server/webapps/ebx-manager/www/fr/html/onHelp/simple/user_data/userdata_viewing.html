@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Visualisation des donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="data_views" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Jeux de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/userdata_viewing.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+<h1>
+Visualisation des donn&eacute;es</h1>
+<p> TIBCO EBX&reg; propose diff&eacute;rentes mani&egrave;res de lister les enregistrements. Ce chapitre pr&eacute;sente comment trier, rechercher, et afficher les enregistrements de diff&eacute;rentes mani&egrave;res, et selon diff&eacute;rents profils d&#39;utilisateurs, gr&acirc;ce au concept de &#39;Vues&#39;. </p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Menu &#39;Vue&#39;</a></li><li class="toc1"><a href="#sort">Tri des donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Tri par colonne</a></li></ul>
+</li><li class="toc1"><a href="#quicksearch">Recherche rapide</a><ul class="toc2">
+<li class="toc2"><a href="#quicksearchoperators">Caract&egrave;res sp&eacute;ciaux</a></li></ul>
+</li><li class="toc1"><a href="#searchfilters">Recherche et filtrage des donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Recherche sur un champ</a></li><li class="toc2"><a href="#severitySearch">Recherche sur validation</a></li><li class="toc2"><a href="#specificSearch">Recherches sp&eacute;cifiques sur tables</a></li></ul>
+</li><li class="toc1"><a href="#custom">Vues</a><ul class="toc2">
+<li class="toc2"><a href="#description">Description d&#39;une vue</a></li><li class="toc2"><a href="#simple">Vue tabulaire simple</a></li><li class="toc2"><a href="#hierarchies">Vues hi&eacute;rarchiques</a></li><li class="toc2"><a href="#sharing">Partage de vues</a></li><li class="toc2"><a href="#publication">Publication de vue</a></li></ul>
+</li><li class="toc1"><a href="#views_management">Gestion des vues</a><ul class="toc2">
+<li class="toc2"><a href="#preferred_views">G&eacute;rer les vues recommand&eacute;es</a></li><li class="toc2"><a href="#view_menu_toolbar">Barre d&#39;outils des vues</a></li></ul>
+</li><li class="toc1"><a href="#gridedit">&Eacute;dition tabulaire</a><ul class="toc2">
+<li class="toc2"><a href="#gridedit_copyPaste">Copier/coller</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Menu &#39;Vue&#39;</h2>
+<p>Le menu d&eacute;roulant &#39;Vue&#39; permet d&#39;acc&eacute;der facilement aux diff&eacute;rentes vues disponibles et aux fonctionnalit&eacute;s de gestion des vues.</p><p>Les vues sont g&eacute;r&eacute;es directement via une barre d&#39;outils, disponible au survol des vues affich&eacute;es dans le menu : <a href="#view_menu_toolbar">Barre d&#39;outils des vues</a>.</p><p>Les vues peuvent &eacute;galement &ecirc;tre regroup&eacute;es. L&#39;administrateur doit avoir, au pr&eacute;alable, d&eacute;fini des groupes dans la table &#39;Groupes de vues&#39; de la section &#39;Configuration des vues&#39;. L&#39;utilisateur peut ainsi d&eacute;finir une vue comme appartenant &agrave; un groupe dans le champ &#39;Groupe de la vue&#39; lors de la cr&eacute;ation ou de la modification d&#39;une vue. Voir <a href="#description">Description d&#39;une vue</a> pour plus d&#39;informations.</p><h2 id="sort">
+Tri des donn&eacute;es</h2>
+<p>Les crit&egrave;res de tri contr&ocirc;lent l&#39;ordre dans lequel les enregistrements sont pr&eacute;sent&eacute;s.</p><p>Utilisez le bouton &#39;S&eacute;lection et tri&#39; en haut &agrave; gauche de la table pour d&eacute;finir des crit&egrave;res de tri sp&eacute;cifiques.</p><p>Il y a deux types de tri :</p><ul>
+<li><p>le tri par pertinence, utilis&eacute; lors de la <a href="#quicksearch">recherche rapide</a>,</p></li><li><p>le tri par colonne.</p></li></ul>
+<h3 id="id2s1">
+Tri par colonne</h3>
+<p> La boîte de dialogue &#39;Crit&egrave;res de tri&#39;, propose : </p><ul>
+<li><p>sur la gauche, la liste des colonnes tri&eacute;es,</p></li><li><p>sur la droite, la liste des colonnes non tri&eacute;es.</p></li></ul>
+<p> Utilisez les boutons fl&egrave;ches   ←   →   pour faire basculer les colonnes d&#39;une liste &agrave; une autre. </p><p> Utilisez les boutons fl&egrave;ches   ↑   ↓   pour changer l&#39;ordre de priorit&eacute; de la colonne. </p><p> Pour changer l&#39;ordre de tri d&#39;une colonne, utilisez le bouton &#39;ASC&#39; (croissant) ou &#39;DESC&#39; (d&eacute;croissant) qui apparaît au survol. </p><h2 id="quicksearch">
+Recherche rapide</h2>
+<p><img alt="/6.0.0-QuickSearch.png" src="../resources/images/releasenotes/6.0.0-QuickSearch.png"></img></p><p> La recherche rapide est utilis&eacute;e pour trouver facilement un r&eacute;sultat dans une vue tabulaire ou hi&eacute;rarchique. </p><p> Elle ne fait pas de diff&eacute;rence entre les majuscules et les minuscules. Elle permet de rechercher en une seule fois plusieurs termes (s&eacute;par&eacute;s par des espaces). Par d&eacute;faut, les enregistrements trouv&eacute;s sont tri&eacute;s par pertinence. </p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../references/indexing.html">Search</a></li></ul>
+</div>
+<h3 id="quicksearchoperators">
+Caract&egrave;res sp&eacute;ciaux</h3>
+<p> La recherche rapide propose des caract&egrave;res sp&eacute;ciaux pour pr&eacute;ciser votre recherche. </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>+</code>...   <em>obligatoire</em></p></td><td class="ebx_definitionListDefinition"><p> Rend obligatoire la pr&eacute;sence du mot dans le r&eacute;sultat. Interdit au moteur de recherche d&#39;&eacute;carter ce mot de la recherche. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Fonctionne avec <strong><code>+&quot;</code></strong>phrase<strong><code>&quot;</code></strong> ou <strong><code>+(</code></strong>groupe<strong><code>)</code></strong>. </p></div>
+<p><em>Exemple :</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
++flute +bach</pre>
+<p> ↳ Trouve des r&eacute;sultats avec obligatoirement <em>flute</em> et obligatoirement <em>bach</em>. Les r&eacute;sultats avec seulement <em>flute</em> ou seulement <em>bach</em> seront ignor&eacute;s. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>-</code>...   <em>sauf</em></p></td><td class="ebx_definitionListDefinition"><p> Exclut le mot du r&eacute;sultat. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Fonctionne avec <strong><code>-&quot;</code></strong>phrase<strong><code>&quot;</code></strong> ou <strong><code>-(</code></strong>groupe<strong><code>)</code></strong>. </p></div>
+<p><em>Exemple :</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+bach -flute</pre>
+<p> ↳ Trouve des r&eacute;sultats avec <em>bach</em>, mais sans <em>flute</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> ...<code>~</code>   <em>approx</em></p></td><td class="ebx_definitionListDefinition"><p> Pr&eacute;cise que la recherche peut changer 2 caract&egrave;res du mot pour le trouver. </p><p> Pour permettre le changement d&#39;un seul caract&egrave;re, utiliser <strong><code>~1</code></strong>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Fonctionne avec <strong><code>&quot;</code></strong>phrase<strong><code>&quot;~</code></strong>, pour changer <em>2 mots</em> de la phrase. </p></div>
+<p><em>Exemple :</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+handel~</pre>
+<p> ↳ Trouve des r&eacute;sultats avec un mot qui est <em>handel</em>, &agrave; 2 lettres pr&egrave;s. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>?</code>   <em>joker simple</em></p></td><td class="ebx_definitionListDefinition"><p> Remplace un caract&egrave;re inconnu. </p><p><em>Exemple :</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+?uttle</pre>
+<p> ↳ Trouve des r&eacute;sultats avec un mot commen&ccedil;ant par n&#39;importe quel caract&egrave;re, et finissant par <em>uttle</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>*</code>   <em>joker &eacute;tendu</em></p></td><td class="ebx_definitionListDefinition"><p> Remplace plusieurs caract&egrave;res inconnus. </p><p><em>Exemple :</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+rachmanino*</pre>
+<p> ↳ Trouve des r&eacute;sultats avec un mot commen&ccedil;ant par <em>rachmanino</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>&quot;</code>...<code>&quot;</code>   <em>phrase</em></p></td><td class="ebx_definitionListDefinition"><p> Recherche la correspondance exacte de la phrase. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Peut &ecirc;tre entour&eacute;e de   <strong><code>+</code></strong>   <strong><code>-</code></strong>   <strong><code>~</code></strong> . </p></div>
+<p><em>Exemple :</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+"Johann Sebastian Bach"</pre>
+<p> ↳ Trouve des r&eacute;sultats contenant exactement <em>Johann Sebastian Bach</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>(</code>...<code>)</code>   <em>groupe</em></p></td><td class="ebx_definitionListDefinition"><p> Permet de grouper des mots pour leur appliquer un caract&egrave;re sp&eacute;cial <strong><code>+</code></strong> ou <strong><code>-</code></strong>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Les groupes de groupes sont autoris&eacute;s. </p></div>
+<p><em>Exemple :</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+bach +(flute piano)</pre>
+<p> ↳ Trouve des r&eacute;sultats avec &eacute;ventuellment <em>bach</em>, et obligatoirement <em>flute</em> ou <em>piano</em>. </p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Ces caract&egrave;res sp&eacute;ciaux peuvent &eacute;galement &ecirc;tre utilis&eacute;s dans le moteur de recherche de la documentation. </p></div>
+<h2 id="searchfilters">
+Recherche et filtrage des donn&eacute;es</h2>
+<p> Le panneau de recherche est cach&eacute; par d&eacute;faut, et accessible par l&#39;ic&ocirc;ne <img alt="/Open Search Pane.svg" src="../resources/images/symbols/Open Search Pane.svg"></img> situ&eacute;e &agrave; droite de la recherche rapide dans la barre d&#39;outils de la table ou de la vue hi&eacute;rarchique. </p><p> La recherche rapide et les lignes des crit&egrave;res se cumulent pour pr&eacute;ciser la recherche. Cela donne des r&eacute;sultats de plus en plus restreints. </p><p> Il est possible de d&eacute;sactiver une ligne de crit&egrave;re en la d&eacute;cochant. Les crit&egrave;res d&eacute;sactiv&eacute;s ne sont pas conserv&eacute;s lors d&#39;une sauvegarde. </p><p> Le bouton &#39;poubelle&#39; <img alt="/Trash.svg" src="../resources/images/symbols/Trash.svg"></img> &agrave; la fin de la ligne de chaque crit&egrave;re supprime d&eacute;finitivement le crit&egrave;re. </p><p> Pour sauvegarder le filtre appliqu&eacute; &agrave; une recherche, utiliser le bouton &#39;Sauvegarder&#39;. La sauvegarde prend en compte la recherche rapide et tous les crit&egrave;res actifs. </p><p> Pour rappeler un filtre sauvegard&eacute;, utiliser le bouton &#39;Charger&#39;. Le chargement remplace la recherche rapide et tout le panneau de crit&egrave;res. Cliquez sur le bouton &#39;Appliquer&#39; pour lancer la nouvelle recherche. </p><p> Lorsqu&#39;une vue est appliqu&eacute;e, elle garantit que son affichage soit conforme &agrave; sa configuration. Tous les crit&egrave;res existants du panneau de recherche sont donc retir&eacute;s. La vue peut contenir un ensemble de crit&egrave;res de recherche, qui sont appliqu&eacute;s en m&ecirc;me temps que la vue. </p><p> Certains op&eacute;rateurs (tel que &#39;correspond &agrave;&#39;) permettent d&#39;utiliser les expressions r&eacute;guli&egrave;res Lucene. Voir <a href="https://lucene.apache.org/core/8_6_3/core/org/apache/lucene/util/automaton/RegExp.html"> sp&eacute;cifications techniques des expressions r&eacute;guli&egrave;res de Lucene</a> pour plus d&#39;informations. </p><h3 id="id4s1">
+Recherche sur un champ</h3>
+<p> Tous les champs cherchables sont disponibles. </p><h3 id="severitySearch">
+Recherche sur validation</h3>
+<p> Dans la s&eacute;lection du crit&egrave;re, les crit&egrave;res de validation affichent les enregistrements dans la derni&egrave;re validation effectu&eacute;e. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Cette recherche s&#39;applique seulement aux enregistrements de tables qui ont d&eacute;j&agrave; &eacute;t&eacute; valid&eacute;s en s&eacute;lectionnant <em>Actions &gt; Valider</em> au niveau de la table dans l&#39;espace de travail, ou au niveau du jeu de donn&eacute;es dans le panneau de navigation. </p></div>
+<p> Pour filtrer sur le niveau de s&eacute;v&eacute;rit&eacute; (ind&eacute;pendant du message), utiliser le crit&egrave;re de validation S&eacute;v&eacute;rit&eacute;. Les niveaux de s&eacute;v&eacute;rit&eacute; disponibles sont &#39;Erreurs&#39;, &#39;Avertissements&#39; et &#39;Informations&#39;. </p><p> Pour filtrer sur le contenu du message (ind&eacute;pendant du niveau de s&eacute;v&eacute;rit&eacute;), utiliser le crit&egrave;re de validation Message. </p><h3 id="specificSearch">
+Recherches sp&eacute;cifiques sur tables</h3>
+<p>Afin d&#39;assurer la r&eacute;tro-compatibilit&eacute; pour les filtres programmatiques, la fonctionnalit&eacute; de recherche et filtrage des enregistrements reste op&eacute;rationnelle et accessible par l&#39;ic&ocirc;ne <img alt="/ebx_funnel.png" src="../resources/images/symbols/ebx_funnel.png"></img> de l&#39;espace de travail. L&#39;ic&ocirc;ne et la fonctionnalit&eacute; sont disponibles uniquement s&#39;il existe au moins un filtre programmatique. </p><p>Pour chaque table, le mod&egrave;le peut sp&eacute;cifier des filtres suppl&eacute;mentaires pour la recherche. </p><h2 id="custom">
+Vues</h2>
+<p>Il est possible de personnaliser l&#39;affichage des tables dans EBX&reg; en fonction de l&#39;utilisateur cible. Il existe deux types de vues&nbsp;:&nbsp;<a href="#simple">tabulaire</a> et <a href="#hierarchies">hi&eacute;rarchique</a>. </p><p>Une vue est cr&eacute;&eacute;e en s&eacute;lectionnant <em>Vue &gt; Cr&eacute;er une nouvelle vue</em> dans l&#39;espace de travail. Pour appliquer une vue, la s&eacute;lectionner dans <em>Vue &gt; nom de la vue </em>.</p><p>Deux modes avanc&eacute;s de visualisation sont disponibles &agrave; la cr&eacute;ation d&#39;une nouvelle vue :</p><ul>
+<li><p>&#39;Vue tabulaire simple&#39;&nbsp;:&nbsp;une vue tabulaire qui permet de trier et filtrer les enregistrements affich&eacute;s ;</p></li><li><p>&#39;Vue hi&eacute;rarchique&#39;&nbsp;:&nbsp;une arborescence qui lie les donn&eacute;es de diff&eacute;rentes tables en utilisant leurs relations. </p></li></ul>
+<h3 id="description">
+Description d&#39;une vue</h3>
+<p>Lors de la cr&eacute;ation ou de la modification d&#39;une vue, la premi&egrave;re page permet de d&eacute;finir les informations g&eacute;n&eacute;rales concernant la vue.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Documentation</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; et description localis&eacute;s associ&eacute;s &agrave; la vue.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Propri&eacute;taire</p></td><td class="ebx_definitionListDefinition"><p>Nom du propri&eacute;taire de la vue, pouvant &agrave; ce titre la g&eacute;rer et la modifier. (Seulement disponible pour les administrateurs et le propri&eacute;taire du jeu de donn&eacute;es)</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Partager avec</p></td><td class="ebx_definitionListDefinition"><p>Autres profils pouvant utiliser cette vue depuis le menu &#39;Vue&#39;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mode de vue</p></td><td class="ebx_definitionListDefinition"><p>Vue tabulaire simple ou vue hi&eacute;rarchique.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Groupe de la vue</p></td><td class="ebx_definitionListDefinition"><p>Groupe d&#39;appartenance de cette vue (le cas &eacute;ch&eacute;ant).</p></td></tr>
+</table>
+<h3 id="simple">
+Vue tabulaire simple</h3>
+<p>Les vues tabulaires simples offrent la possibilit&eacute; de d&eacute;finir des crit&egrave;res pour filtrer les enregistrements et de s&eacute;lectionner les colonnes &agrave; afficher.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Colonnes affich&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie, &agrave; l&#39;aide de fl&egrave;ches, les colonnes de la table &agrave; afficher dans la vue.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Colonnes tri&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie l&#39;ordre d&#39;affichage des colonnes et indique si les enregistrements de chaque colonne sont tri&eacute;s par ordre croissant ou d&eacute;croissant. Voir <a href="#sort">Tri des donn&eacute;es</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Filtre</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit les crit&egrave;res utilis&eacute;s pour filtrer les enregistrements.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="customTabularView_gridedit">Limite de pagination</p></td><td class="ebx_definitionListDefinition"><p>Force une limite au nombre d&#39;enregistrements visibles.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>&Eacute;dition tabulaire</p></td><td class="ebx_definitionListDefinition"><p>Si activ&eacute;e, les utilisateurs de cette vue pourront basculer en &eacute;dition tabulaire afin d&#39;&eacute;diter des enregistrements directement depuis la vue tabulaire.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>D&eacute;sactiver la cr&eacute;ation et la duplication</p></td><td class="ebx_definitionListDefinition"><p>Si &#39;Oui&#39;, les utilisateurs de cette vue ne pourront ni cr&eacute;er ni dupliquer d&#39;enregistrement depuis l&#39;&eacute;dition tabulaire.</p></td></tr>
+</table>
+<h3 id="hierarchies">
+Vues hi&eacute;rarchiques</h3>
+<p>Une hi&eacute;rarchie est une arborescence permettant de pr&eacute;senter les relations existant entre les tables. Elle peut &ecirc;tre structur&eacute;e sur plusieurs niveaux, appel&eacute;s niveaux de dimension. En outre, il est possible de d&eacute;finir des filtres sur des niveaux afin de filtrer les enregistrements.</p><h4 id="dimension">
+Dimension d&#39;une hi&eacute;rarchie</h4>
+<p>Une dimension d&eacute;finit une d&eacute;pendance dans la hi&eacute;rarchie. Par exemple, une dimension pourrait &ecirc;tre pr&eacute;cis&eacute;e pour afficher des produits par cat&eacute;gorie. Plusieurs dimensions peuvent &ecirc;tre d&eacute;finies pour une vue hi&eacute;rarchique.</p><h4 id="configuration">
+Options de configuration d&#39;une vue hi&eacute;rarchique</h4>
+<p>Ce formulaire permet de configurer les options d&#39;une vue hi&eacute;rarchique.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Afficher les enregistrements dans une nouvelle fen&ecirc;tre</p></td><td class="ebx_definitionListDefinition"><p>Si &#39;Oui&#39;, une nouvelle fen&ecirc;tre sera ouverte pour afficher l&#39;enregistrement. Sinon, il sera affich&eacute; dans une nouvelle page de la fen&ecirc;tre courante.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Hi&eacute;rarchie &eacute;lagu&eacute;e</p></td><td class="ebx_definitionListDefinition"><p>Si &#39;Oui&#39;, les noeuds de la hi&eacute;rarchie qui n&#39;ont pas d&#39;enfants et qui n&#39;appartiennent pas &agrave; la table cible ne seront pas affich&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Afficher les orphelins</p></td><td class="ebx_definitionListDefinition"><p>Si &#39;Oui&#39;, les noeuds de la hi&eacute;rarchie qui n&#39;ont pas de parent seront affich&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Afficher le noeud racine</p></td><td class="ebx_definitionListDefinition"><p>Si &#39;Non&#39;, le noeud racine de la hi&eacute;rarchie sera exclu de la vue.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute; du noeud racine</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; localis&eacute; du noeud racine de la hi&eacute;rarchie.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Barre d&#39;outils au dessus de la hi&eacute;rarchie</p></td><td class="ebx_definitionListDefinition"><p>Permet de positionner la barre d&#39;outils en haut de la vue hi&eacute;rarchique.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Afficher les enfants des noeuds recherch&eacute;s</p></td><td class="ebx_definitionListDefinition"><p>Dans le cas r&eacute;cursif, quand un filtre de recherche est appliqu&eacute;, d&eacute;finit si doivent &ecirc;tre affich&eacute;s les noeuds enfants des noeuds v&eacute;rifiant le filtre.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Retirer les noeuds racines r&eacute;cursifs sans enfants</p></td><td class="ebx_definitionListDefinition"><p>Dans le cas r&eacute;cursif, quand un filtre de recherche est appliqu&eacute; ou lorsque le mode est &#39;&eacute;lagu&eacute;&#39;, permet de ne pas afficher les noeuds racines sans enfants.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>D&eacute;tecter les cycles</p></td><td class="ebx_definitionListDefinition"><p>Dans le cas r&eacute;cursif, autorise la d&eacute;tection et l&#39;affichage des noeuds appartenant &agrave; un cycle, en choisissant comme racine le plus ancien noeud du cycle. Limite : ne fonctionne pas en mode recherche ou &eacute;lagu&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>D&eacute;tecter les feuilles</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;tecter si un membre est une feuille ou non. La d&eacute;tection des feuilles est tr&egrave;s co&ucirc;teuse pour les gros volumes de donn&eacute;es. Il est donc recommand&eacute; de d&eacute;sactiver cette option quand la requ&ecirc;te prend beaucoup de temps pour afficher la vue hi&eacute;rarchique. Cette propri&eacute;t&eacute; est toujours d&eacute;sactiv&eacute;e pour les membres parents d&#39;orphelins.</p></td></tr>
+</table>
+<p><strong>Libell&eacute;s</strong></p><p>Pour chaque niveau de dimension faisant r&eacute;f&eacute;rence &agrave; une autre table, il est possible de d&eacute;finir les libell&eacute;s localis&eacute;s pour les noeuds correspondants dans la hi&eacute;rarchie. Utiliser l&#39;assistant pour s&eacute;lectionner les champs utilis&eacute;s dans les d&eacute;finitions des libell&eacute;s.</p><p><strong>Filtre</strong></p><p>L&#39;&eacute;diteur de crit&egrave;res permet de d&eacute;finir un filtre d&#39;enregistrement pour la vue.</p><p><strong>Strat&eacute;gie de tri</strong></p><p>Pour chaque niveau de dimension, il est possible de choisir l&#39;une des strat&eacute;gies de tri suivantes :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Par d&eacute;faut </p></td><td class="ebx_definitionListDefinition"><p>Les noeuds sont tri&eacute;s par libell&eacute; par ordre alphab&eacute;tique </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Tri par colonne </p></td><td class="ebx_definitionListDefinition"><p>Les noeuds sont tri&eacute;s par colonne(s) s&eacute;lectionn&eacute;e(s). L&#39;ordre de tri (croissant/d&eacute;croissant) peut &ecirc;tre d&eacute;fini pour chaque colonne. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="hierarchyOrdering">Tri par champ d&#39;ordonnancement </p></td><td class="ebx_definitionListDefinition"><p>Les noeuds sont tri&eacute;s par ordre de champ num&eacute;rique masqu&eacute;, ce qui permet &agrave; l&#39;utilisateur de modifier dynamiquement l&#39;ordre des noeuds fr&egrave;res dans la vue hi&eacute;rarchique. Cette strat&eacute;gie est uniquement disponible si il y a au moins un champ num&eacute;rique &#39;Masqu&eacute;&#39; dans la table.</p><p>Afin de pouvoir d&eacute;placer les noeuds dans la vue hi&eacute;rarchique, il est n&eacute;cessaire de d&eacute;signer un champ d&#39;ordonnancement &eacute;ligible, d&eacute;fini dans la table sur laquelle la vue hi&eacute;rarchique s&#39;applique. Un champ d&#39;ordonnancement doit avoir le type de donn&eacute;es &#39;Entier&#39; et doit avoir une visibilit&eacute; par d&eacute;faut &agrave; &#39;Masqu&eacute;&#39; dans les propri&eacute;t&eacute;s avanc&eacute;es dans la d&eacute;finition du mod&egrave;le de donn&eacute;es.</p><p>Des actions de positionnement sur chaque noeud sont alors possibles, &agrave; moins que le champ d&#39;ordonnancement ne soit en lecture seule ou qu&#39;un filtre ne soit d&eacute;fini sur la hi&eacute;rarchie.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Ne pas d&eacute;finir un champ qui a pour objet de contenir les donn&eacute;es comme noeud d&#39;ordonnancement, puisque les donn&eacute;es seront &eacute;cras&eacute;es dans la vue hi&eacute;rarchique.</p></div>
+</td></tr>
+</table>
+<h4 id="hierarchyActions">
+Actions sur un noeud de hi&eacute;rarchie</h4>
+<p>Chaque noeud d&#39;une vue hi&eacute;rarchique poss&egrave;de un menu correspondant<img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> qui offre des actions contextuelles. </p><p>Les noeuds terminaux peuvent &ecirc;tre d&eacute;tach&eacute;s de leur parent en s&eacute;lectionnant l&#39;option &#39;D&eacute;tacher du parent&#39;. L&#39;enregistrement devient ainsi un noeud orphelin dans l&#39;arborescence, rang&eacute; sous un conteneur portant le nom &#39;non d&eacute;fini&#39;.</p><p>Les noeuds terminaux peuvent aussi changer de noeud parent, gr&acirc;ce &agrave; l&#39;option &#39;Attacher &agrave; un autre parent&#39;. Si, selon le mod&egrave;le de donn&eacute;es, un noeud peut avoir plusieurs parents, le noeud sera &agrave; la fois sous le parent d&#39;origine et rajout&eacute; &eacute;galement sous le nouveau parent. Sinon, le noeud terminal sera d&eacute;plac&eacute; sous le nouveau noeud parent.</p><h3 id="sharing">
+Partage de vues</h3>
+<p>Les utilisateurs disposant de la permission &#39;Partager des vues&#39; sur une vue ont la possibilit&eacute; de d&eacute;finir quels utilisateurs peuvent s&eacute;lectionner cette vue depuis leur menu &#39;Vue&#39;.</p><p>Pour cela, il suffit d&#39;ajouter des profils dans le champ &#39;Partager avec&#39; de l&#39;&eacute;cran de configuration de la vue.</p><h3 id="publication">
+Publication de vue</h3>
+<p>Les utilisateurs disposant de la permission &#39;Publier des vues&#39; peuvent publier les vues qui apparaissent dans leur menu &#39;Vue&#39;.</p><p>Une vue publi&eacute;e devient accessible &agrave; tous les utilisateurs via les composants Web, les t&acirc;ches utilisateur du workflow, les services de donn&eacute;es et les perspectives. Pour publier une vue, cliquez sur le bouton &#39;Editer&#39; disponible au survol d&#39;une vue pr&eacute;sente dans le menu &#39;Vue&#39; et remplissez le champ &#39;Nom de publication&#39;. </p><h2 id="views_management">
+Gestion des vues</h2>
+<h3 id="preferred_views">
+G&eacute;rer les vues recommand&eacute;es</h3>
+<p>Le propri&eacute;taire d&#39;un jeu de donn&eacute;es peut d&eacute;finir des vues recommand&eacute;es pour chaque profil cible.</p><p>Quand un utilisateur se connecte sans sp&eacute;cifier de vue, la vue recommand&eacute;e — si elle existe — s&#39;applique. Sinon, la vue par d&eacute;faut s&#39;affiche. L&#39;action &#39;G&eacute;rer les vues recommand&eacute;es&#39; permet de d&eacute;finir les r&egrave;gles d&#39;attribution des vues recommand&eacute;es par utilisateur et par r&ocirc;le. </p><p>Les actions disponibles sur les vues recommand&eacute;es sont les suivantes : changer l&#39;ordre d&#39;attribution des r&egrave;gles, ajouter une r&egrave;gle, &eacute;diter une r&egrave;gle, supprimer une r&egrave;gle existante.</p><p>Pour un utilisateur donn&eacute;, les vues recommand&eacute;es sont &eacute;valu&eacute;es en fonction du profil de l&#39;utilisateur&nbsp;:&nbsp;la r&egrave;gle appliqu&eacute;e sera la premi&egrave;re de la liste qui correspond au profil de l&#39;utilisateur. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>La fonctionnalit&eacute; &#39;G&eacute;rer les vues recommand&eacute;es&#39; est uniquement accessible au propri&eacute;taire du jeu de donn&eacute;es.</p></div>
+<h3 id="view_menu_toolbar">
+Barre d&#39;outils des vues</h3>
+<p>La barre d&#39;outils pr&eacute;sente dans le menu &#39;Vue&#39; permet d&#39;acc&eacute;der aux actions suivantes&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Editer</p></td><td class="ebx_definitionListDefinition"><p>Cliquez sur le bouton &#39;Editer&#39; dans la barre d&#39;outils pr&eacute;sente sur la ligne de la vue cibl&eacute;e pour acc&eacute;der au formulaire d&#39;&eacute;dition de la vue.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dupliquer</p></td><td class="ebx_definitionListDefinition"><p>Pour dupliquer la vue, cliquez sur le bouton &#39;Dupliquer&#39; dans la barre d&#39;outils pr&eacute;sente sur la ligne de la vue cibl&eacute;e. Un formulaire apparaît, pr&eacute;-rempli &agrave; partir des valeurs de la vue dupliqu&eacute;e.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Supprimer</p></td><td class="ebx_definitionListDefinition"><p>Cliquez sur le bouton &#39;Supprimer&#39; dans la barre d&#39;outils pr&eacute;sente sur la ligne de la vue cibl&eacute;e pour supprimer la vue.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>D&eacute;finir cette vue comme ma favorite</p></td><td class="ebx_definitionListDefinition"><p>Cliquez sur le bouton &#39;D&eacute;finir cette vue comme ma favorite&#39; dans la barre d&#39;outils pr&eacute;sente sur la ligne de la vue cibl&eacute;e. La vue favorite sera automatiquement appliqu&eacute;e lors de l&#39;acc&egrave;s &agrave; la table. En cliquant une nouvelle fois sur le bouton, la vue courante ne sera plus la vue favorite de l&#39;utilisateur.</p></td></tr>
+</table>
+<h2 id="gridedit">
+&Eacute;dition tabulaire</h2>
+<p>La fonctionnalit&eacute; d&#39;&eacute;dition tabulaire permet de modifier les donn&eacute;es dans une vue table. Elle est accessible en cliquant sur le bouton <img alt="/editButton.png" src="../resources/images/icons/editButton.png"></img>.</p><p>L&#39;acc&egrave;s &agrave; l&#39;&eacute;dition tabulaire &agrave; partir d&#39;une vue table n&eacute;cessite que la fonctionnalit&eacute; ait &eacute;t&eacute; pr&eacute;alablement activ&eacute;e dans la configuration de la vue.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="#customTabularView_gridedit">&Eacute;dition tabulaire</a></li></ul>
+</div>
+<h3 id="gridedit_copyPaste">
+Copier/coller</h3>
+<p> Le copier/coller d&#39;une cellule vers une autre cellule de la m&ecirc;me table s&#39;effectue gr&acirc;ce au menu <em>&Eacute;dition</em>. Il est aussi possible d&#39;utiliser le raccourci clavier associ&eacute; <em>Ctrl+C</em> et <em>Ctrl+V</em>. </p><p> Ce syst&egrave;me n&#39;utilise pas le presse-papier natif du syst&egrave;me d&#39;exploitation mais un m&eacute;canisme interne. Copier une cellule et la coller dans un fichier externe ne fonctionnera donc pas. Inversement, coller une valeur dans une cellule de la table ne fonctionnera pas non plus. </p><p> Tous les champs de type simple utilisant les composants int&eacute;gr&eacute;s sont support&eacute;s, sauf : </p><ul>
+<li><p> les cl&eacute;s &eacute;trang&egrave;res pointant vers des champs qui ne sont pas des chaînes de caract&egrave;res ; </p></li><li><p> les &eacute;numerations qui ne sont pas des chaînes de caract&egrave;res. </p></li></ul>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html">Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Application domain</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_app_group_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_application_group.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</span></div>
+<h1>
+Application domain</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_app_group_top">Function</a><ul class="toc2">
+<li class="toc2"><a href="#Application2073_48">Application</a></li><li class="toc2"><a href="#ApplicationByType6c1_49">Application by type</a></li><li class="toc2"><a href="#Version26dd_50">Version</a></li><li class="toc2"><a href="#ref_app_interface_preference">Application interface preference</a></li><li class="toc2"><a href="#Interface4ce_51">Interface</a></li><li class="toc2"><a href="#ObjectClassByApplication156d_52">Object class by Application</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_app_group_top">
+Function</h2>
+<p>The <strong>Application</strong> domain contains the declaration of every application that is involved in the data flow (import, export, transfer) managed by the TIBCO EBX® Data Exchange Add-on.</p><h3 id="Application2073_48">
+Application</h3>
+<p>An application is used as a source and/or target in the execution of a data flow process (import, export or data transfer).</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Universal name</p></td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top"><p>Logical name</p></td><td valign="top"><p>The logical name is automatically provided by the add-on to ensure a unique identification.</p></td></tr>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top"><p>Last modification date</p></td><td valign="top"><p>Date of the last modification applied to the application.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ApplicationByType6c1_49">
+Application by type</h3>
+<p>An application can be associated with one or many of the following types: Default SQL, SQL, CSV, Excel, Default XML, XML and EBX.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Application</p></td><td valign="top"><p>The reference to an application.</p></td></tr>
+<tr>
+<td valign="top"><p>Application type</p></td><td valign="top"><p>The type of the application.</p></td></tr>
+<tr>
+<td valign="top"><p>Application path</p></td><td valign="top"><p>When this is an EBX type application, the path gives the dataspace and dataset.</p></td></tr>
+</tbody>
+</table>
+<h3 id="Version26dd_50">
+Version</h3>
+<p>An application can be associated to a version. This version is used as documentation included in the exported data file when the targeted format can integrate it (this is the case in XML as app info tag). It has no impact on the data mapping configuration management.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top"><p>Version</p></td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top"><p>Application by type</p></td><td valign="top"><p>The reference to an application with its type.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_app_interface_preference">
+Application interface preference</h3>
+<p>The preferences here store option values of an Application interface. These option values can be retrieved during import and export. The preferences are available from the <strong>Load application mapping preferences</strong> dropdown list (Import) and <strong>Application mapping preferences</strong> dropdown list (Export).</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top">Code</td><td valign="top"><p>Code of an application interface configuration.</p></td></tr>
+<tr>
+<td valign="top">Name</td><td valign="top"><p>Specific name of the application interface configuration object.</p></td></tr>
+<tr>
+<td valign="top">Application interface</td><td valign="top"><p>Description of a mapping between two applications.</p></td></tr>
+<tr>
+<td valign="top">Selected table&#39;s paths</td><td valign="top"><p>The selected tables that will be exported or imported.</p></td></tr>
+<tr>
+<td valign="top">First row contains header</td><td valign="top"><p>Imported or exported file with header or no header.</p></td></tr>
+<tr>
+<td valign="top">File encoding</td><td valign="top"><p>Specifies the character encoding to use. The default is UTF-8.</p></td></tr>
+<tr>
+<td valign="top">Import mode</td><td valign="top"><p>Modes of import such as update and insert, update only, insert only and replace all content.</p></td></tr>
+<tr>
+<td valign="top">Separator</td><td valign="top"><p>Describing separator option to use for importing/ exporting CSV file such as commas, semicolon, space, tab and other (in case of inputting a character that is customized by user).</p></td></tr>
+<tr>
+<td valign="top">Separator character</td><td valign="top"><p>Describing a character separator in case of choosing &quot;other&quot; option when selecting a separator.</p></td></tr>
+<tr>
+<td valign="top">List separator</td><td valign="top"><p>Specifies the separator to use for values lists.</p></td></tr>
+<tr>
+<td valign="top">List separator character</td><td valign="top"><p>Specifies the separator to use for values lists in case of using &quot;Other&quot; option.</p></td></tr>
+<tr>
+<td valign="top">Line return</td><td valign="top">Type of line return used in this preference.</td></tr>
+<tr>
+<td valign="top">Delimiter character</td><td valign="top"><p>The character that is used to mark the beginning and end of a cell in the CSV file.</p></td></tr>
+<tr>
+<td valign="top">Delimiter for string only</td><td valign="top"><p>The delimiter is only used for string data types.</p></td></tr>
+<tr>
+<td valign="top">Download file of invalid data</td><td valign="top"><p>Export all records with errors in their data rows to a downloadable file.</p></td></tr>
+<tr>
+<td valign="top">Save as type</td><td valign="top"><p>Specific type of the exported Excel file includes: xls or xlsx.</p></td></tr>
+<tr>
+<td valign="top">Primary key label</td><td valign="top"><p>Add an information column with the label of the primary key in exported file.</p></td></tr>
+<tr>
+<td valign="top">Primary key permalink</td><td valign="top"><p>Add an information column with the hyperlink for the primary key in the exported file.</p></td></tr>
+<tr>
+<td valign="top">Foreign key label</td><td valign="top"><p>Add an information column with the label of the foreign key in the exported file.</p></td></tr>
+<tr>
+<td valign="top">Foreign key permalink</td><td valign="top"><p>Add an information column with the hyperlink of the foreign key in the exported file.</p></td></tr>
+<tr>
+<td valign="top">Export mapping mode</td><td valign="top"><p>Export all columns of table based on their order or on the mapping defined by the selected import preference.</p></td></tr>
+<tr>
+<td valign="top">Force import</td><td valign="top"><p>Specifies that all triggers and constraints are disabled when this option is activated. Otherwise, all triggers and constraints are enabled.</p></td></tr>
+<tr>
+<td valign="top">Number format</td><td valign="top"><p>The character used to denote a decimal.</p></td></tr>
+<tr>
+<td valign="top">Ignore the empty or null values</td><td valign="top"><p>By default, the existing record is not updated with null and empty cell values from the imported file.</p></td></tr>
+<tr>
+<td valign="top">Check empty or null primary keys</td><td valign="top"><p>The add-on verifies that all primary keys are mapped and validates the data before importing. If you disable this option, the add-on does not perform this verification.</p></td></tr>
+<tr>
+<td valign="top">Validate data before transformation</td><td valign="top">Determines whether data is validated before the transformation.</td></tr>
+<tr>
+<td valign="top">Transformer Java class</td><td valign="top"><p>Stores the path of the old transformer class (from Adix).</p></td></tr>
+<tr>
+<td valign="top">Validator Java class</td><td valign="top"><p>Stores the path of the old validator class (from Adix).</p></td></tr>
+<tr>
+<td valign="top">Remove redundant characters</td><td valign="top"><p>Replace all line-breaks and continuous space characters in the Excel header with a single space character during matching.</p></td></tr>
+<tr>
+<td valign="top">Use case-sensitive comparison</td><td valign="top"><p>Differentiate between lower-case and upper-case when matching the imported file&#39;s column header with the field&#39;s label in EBX®.</p></td></tr>
+<tr>
+<td valign="top">Include computed values</td><td valign="top"><p>Specifies whether computed values must be included in the export.</p></td></tr>
+<tr>
+<td valign="top">Export static enumerations</td><td valign="top"><p>The exported file will contain enumerations matching the one in the data model. Warning: it leads to increase the size of the file.</p></td></tr>
+<tr>
+<td valign="top">Include reference sheet</td><td valign="top"><p>You can add a reference sheet called &#39;Reference table mapping&#39; at the end of the Excel file. This sheet contains metadata such as the sheet name, the table label and the table path used to detect the mapping between sheets and tables upon import.</p></td></tr>
+<tr>
+<td valign="top">Date format</td><td valign="top"><p>Specify the format of date values in the CSV exported file.</p></td></tr>
+<tr>
+<td valign="top">Date/time format</td><td valign="top"><p>Specify the format of date/time values in the CSV exported file.</p></td></tr>
+<tr>
+<td valign="top">Force precision as displayed</td><td valign="top"><p>Specifies the accuracy of numbers when importing Excel. </p><p>If set to &#39;Yes&#39;: The displayed value of numbers in each cell will be read and imported. If set to &#39;No&#39;: The accuracy value of numbers in each cell will be read and imported. Default value: &#39;No&#39;. This feature is only applied to the Number format cells (Number is used for general display of numbers). For the other format cells, the accuracy value in each cell will be read and imported.</p></td></tr>
+<tr>
+<td valign="top"><p>Export the ignored field as a blank column</p></td><td valign="top"><p>If the option is activated, the ignored field will be exported as a blank column. Otherwise, the ignored field will not be exported. This option is only available on Excel export. Default value: &#39;Yes&#39;.</p></td></tr>
+<tr>
+<td valign="top"><p>Info message export</p></td><td valign="top"><p>The exported file will contain any information level validation messages.</p></td></tr>
+<tr>
+<td valign="top"><p>Warning message export</p></td><td valign="top"><p>The exported file will contain any warning level validation messages.</p></td></tr>
+<tr>
+<td valign="top"><p>Error message export</p></td><td valign="top"><p>The exported file will contain any error level validation messages.</p></td></tr>
+<tr>
+<td valign="top"><p>From referenced tables</p></td><td valign="top"><p>Include details of records referenced in the current export (might include records from external tables).</p></td></tr>
+<tr>
+<td valign="top"><p>From tables that reference the selected record</p></td><td valign="top"><p>Include data from external tables that reference the selected record.</p></td></tr>
+<tr>
+<td valign="top"><p>Owner</p></td><td valign="top"><p>Specifies the owner user created preference.</p></td></tr>
+<tr>
+<td valign="top"><p>Restriction policy</p></td><td valign="top"><p>If ‘Restriction policy’ value is ‘Yes’, the minimum permissions of these restricted rules are applied. If ‘Restriction policy’ value is ‘No’, the maximum permissions of all matching rules are applied.</p></td></tr>
+<tr>
+<td valign="top">Permissions group</td></tr>
+<tr>
+<td valign="top"><p>User profile</p></td><td valign="top"><p>The profile impacted by the permission settings.</p></td></tr>
+<tr>
+<td valign="top"><p>Use the preference</p></td><td valign="top"><p>Determines whether the specified profile can use the preference. If disabled, the preference will be hidden from the profile.</p></td></tr>
+<tr>
+<td valign="top"><p>Modify the preference</p></td><td valign="top"><p>Determines whether the specified profile can modify the preference. </p></td></tr>
+<tr>
+<td valign="top"><p>Delete the preference</p></td><td valign="top"><p>Determines whether the specified profile can delete the preference.</p></td></tr>
+</tbody>
+</table>
+<h3 id="Interface4ce_51">
+Interface</h3>
+<p>An interface allows data to flow between two applications.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Source application</p></td><td valign="top"><p>Reference to the application with its type playing the role of the source.</p></td></tr>
+<tr>
+<td valign="top"><p>Target application</p></td><td valign="top"><p>Reference to the application with its type playing the role of the target.</p></td></tr>
+<tr>
+<td valign="top"><p>Description</p></td><td valign="top"><p>Description of the interface.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ObjectClassByApplication156d_52">
+Object class by Application</h3>
+<p>An application can hold one to many Object Class items. You can use the Object Class to create the relationship between a Table in the Data model and its related item in the Semantic model. Several tables can be linked to the same Object Class.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Application</p></td><td valign="top"><p>Reference to an application.</p></td></tr>
+<tr>
+<td valign="top"><p>Object class</p></td><td valign="top"><p>Reference to an Object Class.</p></td></tr>
+<tr>
+<td valign="top"><p>Description</p></td><td valign="top"><p>Description of the relation between the application and the Object Class.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

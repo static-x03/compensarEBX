@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Solving with a data value graph</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_tutorial_start" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Getting started tutorial</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_tutorial_config.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Getting started tutorial</span></div>
+<h1 id="user_tutorial_start_topPage">
+Solving with a data value graph</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_tutorial_value_graph_overview">Overview</a></li><li class="toc1"><a href="#id2">Steps</a><ul class="toc2">
+<li class="toc2"><a href="#creating_graph_configuration">Creating a graph configuration</a></li><li class="toc2"><a href="#creating_table_configuration">Creating table configurations</a></li><li class="toc2"><a href="#creating_link_configuration">Adding link configurations</a></li><li class="toc2"><a href="#generating_data_value_graph">Locating the problem and sharing results</a></li></ul>
+</li></ul>
+</div>
+<h2 id="user_tutorial_value_graph_overview">
+Overview</h2>
+<p>This part of the tutorial will give you hands on experience creating a data value graph configuration. It demonstrates how add-on configuration options translate to generated graphs. If you would prefer more generic, high-level instructions, see <a href="../user_guide/user_data_value_graph_config_overview.html">Configuring graphs</a>.</p><p>We will use our generated graph to prove which factory is producing the defective parts. Additionally, we will export a graph showing our findings to share with management.</p><h2 id="id2">
+Steps</h2>
+<p>The following sections describe how to create a data value graph configuration and export a generated graph:</p><ul>
+<li><p><a href="#creating_graph_configuration">Creating a graph configuration</a></p></li><li><p><a href="#creating_table_configuration">Creating table configurations</a></p></li><li><p><a href="#creating_link_configuration">Adding link configurations</a></p></li><li><p><a href="#generating_data_value_graph">Locating the problem and sharing results</a></p></li></ul>
+<h3 id="creating_graph_configuration">
+Creating a graph configuration</h3>
+<p>To begin, let&#39;s create a configuration that determines the data and relationships included in the graph, and how this information displays.</p><p>Navigate to <em>Administration &gt; User interface &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Configuration</em> and create a new record. Leave the <strong>Orientation</strong> property at its default of <strong>Left-to-right</strong>. After saving, but not closing, the page displays the following configuration sections required for graph generation: <strong>Scope</strong>, <strong>Tables</strong>, and <strong>Links</strong>.</p><p><img alt="/data-value-graph-config.png" src="./resources/images/data-value-graph-config.png"></img></p><p><strong>More about graph configurations:</strong> Data value graph configurations act as a container for graph settings. The settings determine accessibility, content, and how content displays. When multiple graph configurations include the same table, users can choose the configuration used to generate a graph. Although not demonstrated in this tutorial, a <em>Scope</em> restricts the dataset from which users can access the configuration.</p><h3 id="creating_table_configuration">
+Creating table configurations</h3>
+<p>We now need to decide which tables contain the data relevant to the supply chain issue (described in the tutorial&#39;s <a href="../user_guide/user_tutorial_setup.html">Prerequisites and setup</a>), and link them with our graph configuration. To accomplish this, we will create <em>table configurations</em> that associate tables with our graph configuration. To create the table configurations:</p><ol>
+<li><p>On the configuration page, click the <img alt="/create_icon.png" src="./resources/images/create_icon.png" width="12"></img> icon in the <strong>Tables</strong> group to create a new record.</p></li><li><p>Choose the table using the <strong>Data model</strong> and <strong>Table</strong> fields. When creating the Store table, be sure to set the <strong>Allow generation from selected table</strong> property to <strong>Yes</strong>. This setting determines whether we can generate a data value graph from the table&#39;s <strong>Actions</strong> menu. When disabled, the option does not display as a menu option. </p></li><li><p>Optionally, change each table&#39;s style and icon. These features make it easier to differentiate between elements in the generated graphs.</p></li><li><p>Save and close. We will repeat the process for each table in the tutorial&#39;s sample data model. When finished, your <strong>Tables</strong> section should resemble the following:</p></li></ol>
+<p><img alt="/data-value-graph-table-config.png" src="./resources/images/data-value-graph-table-config.png"></img></p><h3 id="creating_link_configuration">
+Adding link configurations</h3>
+<p>The data model graph generated in the previous chapter of the tutorial shows us which relationships we need to drill into to find the origin of the problem. By adding these foreign key relationships to the graph configuration, we determine which data values display. This will allow us to trace the supply chain to find the source of the defective parts. All we have to do is use <em>link configurations</em> to tell the add-on which relationships to include.</p><p><strong>What are link configurations?</strong> Each link configuration:</p><ul>
+<li><p>uses paths in the data model to identify one or more foreign key relationships.</p></li><li><p>defines the type of component the add-on uses to show this relationship when users generate a graph. The settings allow relationships to display as lines, or as parent and child containers (more on this below).</p></li><li><p>sets the context for the relationship by indicating which table—linked by the foreign key—is the:</p><ul>
+<li><p>Parent or child: when setting the display type to <em>container</em>, nodes containing data values are nested within each other—parent nodes are rendered as the larger, outer nodes and children nodes within these.</p></li><li><p>Target or source: when using <em>line</em> for the display type, nodes containing data values are linked by lines with an arrow that indicates relationship direction.</p></li></ul>
+</li><li><p>specifies the data value graph configuration to which these settings apply. This setting also determines which tables are available to link.</p></li></ul>
+<p>By referring to the data model graph generated earlier, we quickly see which relationships are needed. The following table summarizes the link configuration settings required to trace the defective parts to their originating factories. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Relationship type</p></th><th><p>Relationship and label</p></th><th valign="top"><p>Foreign Key Path</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><strong>Lines</strong></p></td><td><ul>
+<li><p><strong>Target/Parent table</strong>: Assembly Plants</p></li><li><p><strong>Source/Child table</strong>: Factories</p></li><li><p><strong>Label</strong>: Supplied By</p></li></ul>
+<p></p></td><td valign="top"><p>/root/plants/supplier</p></td></tr>
+<tr>
+<td valign="top"><p><strong>Containers</strong></p></td><td><ul>
+<li><p><strong>Target/Parent table</strong>: Assembly Plants</p></li><li><p><strong>Source/Child table</strong>: Stores</p></li><li><p><strong>Label</strong>: Supplied By</p></li></ul>
+</td><td valign="top"><p>/root/store/supplier</p></td></tr>
+</tbody>
+</table>
+<p>For each row in the table above, we will create a link configuration record populated with the row&#39;s values:</p><ol>
+<li><p>Create a new record in the <strong>Links</strong> group.</p></li><li><p>We can reference the exported data model graph to determine which links should be used. Alternatively, the table above lists the configuration settings. When entering the foreign key path, use the wizard as shown in the following image:</p><p><img alt="/select_links.png" src="./resources/images/select_links.png"></img></p></li><li><p>Repeat the first two steps to add the second link configuration and populate it with the correct table values.</p></li><li><p>Be sure to save and close all configuration records.</p></li></ol>
+<p>When finished, your <strong>Links</strong> configuration section should look like the following:</p><p><img alt="/data-value-graph-link-config.png" src="./resources/images/data-value-graph-link-config.png"></img></p><h3 id="generating_data_value_graph">
+Locating the problem and sharing results</h3>
+<p>Now, it&#39;s time to follow the data trail. We can generate and share our graph by navigating to the Supply Chain dataset in EBX® and:</p><ul>
+<li><p>Opening the Store table and selecting the records to display in the graph. The reports received about the returns have only been coming from stores A and B, but we would like to include all stores in the report to management; just to back up our findings. So, we will select all records in the Store table.</p></li><li><p>From the table&#39;s <strong>Actions</strong> menu, select <em>Visualization &gt; Display data using configuration</em>. Note that if multiple configurations existed for this table, this is where we could choose which to display.</p><p><img alt="/generate_value_graph_tutorial.png" src="./resources/images/generate_value_graph_tutorial.png"></img></p></li></ul>
+<p>Once the graph has rendered, we can follow the data to discover the source of faulty components. Right-click the Store D node and expand Assembly Plants, then click the related assembly plant and expand its factories. We will repeat this process for Store B and A. As the following image shows, stores A and B are supplied by the Eastern and Midwest plants, respectively. This means the faulty parts must originate in the Northern Factory—the only factory to supply these plants. Congratulations, on discovering the source! Only one thing remains.</p><p><img alt="/data-value-graph-sample.png" src="./resources/images/data-value-graph-sample.png"></img></p><p>We can share our findings by simply clicking <strong>Export</strong> to download a PDF or PNG that we can include in our report to management.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

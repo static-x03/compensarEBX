@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright © TIBCO Software Inc. 2001-2021. All rights reserved. 
+
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:usd="urn:ebx-schemas:userServices_1.0" targetNamespace="urn:ebx-schemas:userServices_1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+	<xs:element name="services">
+		<xs:annotation>
+			<xs:documentation xml:lang="en-US">
+				Defines the UI services available in a data model.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+					<xs:element name="service" type="usd:ServiceType" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ServiceType">
+		<xs:sequence>
+			<xs:element name="documentation" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Defines the labels and descriptions for the service.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="label" type="xs:string" minOccurs="1"/>
+						<xs:element name="description" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute ref="xml:lang" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="resourcePath" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Defines the absolute module path to the JSP or servlet.
+						Examples: /services/test.jsp or /test
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="permissions" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Defines the permissions for the service.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<!-- Java bean parameters -->
+						<xs:any namespace="##any" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="class" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="activation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Defines the activation for the service.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="onDataModel" minOccurs="0">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="path" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="en-US">
+ 												Attribute that specifies where the UI service will be available.
+ 											</xs:documentation>
+										</xs:annotation>	
+									</xs:element>
+									<xs:element name="pathRegExp" type="xs:string" minOccurs="1">
+										<xs:annotation>
+											<xs:documentation xml:lang="en-US">
+ 												The UI service will be available on all nodes whose
+ 												full path in the data model match the regular expression	.
+ 											</xs:documentation>
+										</xs:annotation>	
+									</xs:element>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>		
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="group" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Specifies the group of the service.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="displayInMenu" minOccurs="0" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Specifies if the service is displayed in service menus.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="orderInMenu" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Specifies the position of this service according to all the services defined in the module.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="confirmation" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="label" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:simpleContent>
+     							 	<xs:extension base="xs:string">
+										<xs:attribute ref="xml:lang" use="optional"/>
+     								 </xs:extension>
+    							</xs:simpleContent>
+							</xs:complexType>		
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="disable" type="xs:boolean" use="optional"/>		
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="defaultPermission" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Specifies the default permission of the service.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="enabled" />
+						<xs:enumeration value="disabled" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="en-US">
+					Name of the service.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

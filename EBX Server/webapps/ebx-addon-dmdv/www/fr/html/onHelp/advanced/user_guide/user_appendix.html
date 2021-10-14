@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Appendix</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_appendix" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_appendix.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide</span></div>
+<h1>
+Appendix</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_appendix_top">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#user_appendix_data_model">Data model</a></li><li class="toc2"><a href="#user_appendix_table_data">Table data</a></li></ul>
+</li></ul>
+</div>
+<h2 id="user_appendix_top">
+Overview</h2>
+<p>This appendix contains the file content to follow along with the sample tutorial. The <a href="../user_guide/user_tutorial_setup.html">Prerequisites and setup</a> chapter provides instructions for setting up your environment to match the sample. Use the links below to jump to the corresponding content:</p><ul>
+<li><p><a href="#user_appendix_data_model">Data model</a></p></li><li><p><a href="#user_appendix_table_data">Table data</a></p></li></ul>
+<h3 id="user_appendix_data_model">
+Data model</h3>
+<p>The following contains the example code for the sample tutorial data model. Follow this link to return to the <a href="../user_guide/user_tutorial_setup.html">Prerequisites and setup</a> instructions.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8"?>
+
+&lt;!--XML schema generated from EBX™5 DMA instance [reference=basicSupplyChain] on Tue Jun 19 17:23:43 MDT 2018 by user [admin].-->
+&lt;xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
+&lt;xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+&lt;xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+&lt;xs:element name="root" osd:access="--">
+&lt;xs:complexType>
+&lt;xs:sequence>
+&lt;xs:element name="factories" minOccurs="0" maxOccurs="unbounded">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Factories&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;xs:appinfo>
+&lt;osd:table>
+&lt;primaryKeys>/factory &lt;/primaryKeys>
+&lt;/osd:table>
+&lt;/xs:appinfo>
+&lt;/xs:annotation>
+&lt;xs:complexType>
+&lt;xs:sequence>
+&lt;xs:element name="factory" type="xs:string" minOccurs="1" maxOccurs="1">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Factory Name&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;/xs:annotation>
+&lt;/xs:element>
+&lt;/xs:sequence>
+&lt;/xs:complexType>
+&lt;/xs:element>
+&lt;xs:element name="plants" minOccurs="0" maxOccurs="unbounded">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Assembly Plants&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;xs:appinfo>
+&lt;osd:table>
+&lt;primaryKeys>/plantName &lt;/primaryKeys>
+&lt;/osd:table>
+&lt;/xs:appinfo>
+&lt;/xs:annotation>
+&lt;xs:complexType>
+&lt;xs:sequence>
+&lt;xs:element name="plantName" type="xs:string" minOccurs="1" maxOccurs="1">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Plant Name&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;/xs:annotation>
+&lt;/xs:element>
+&lt;xs:element name="supplier" type="xs:string" minOccurs="0" maxOccurs="1">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Supplier&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;xs:appinfo>
+&lt;osd:otherFacets>
+&lt;osd:tableRef>
+&lt;tablePath>/root/factories&lt;/tablePath>
+&lt;/osd:tableRef>
+&lt;/osd:otherFacets>
+&lt;/xs:appinfo>
+&lt;/xs:annotation>
+&lt;/xs:element>
+&lt;/xs:sequence>
+&lt;/xs:complexType>
+&lt;/xs:element>
+&lt;xs:element name="store" minOccurs="0" maxOccurs="unbounded">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Stores&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;xs:appinfo>
+&lt;osd:table>
+&lt;primaryKeys>/storeName &lt;/primaryKeys>
+&lt;/osd:table>
+&lt;/xs:appinfo>
+&lt;/xs:annotation>
+&lt;xs:complexType>
+&lt;xs:sequence>
+&lt;xs:element name="storeName" type="xs:string" minOccurs="1" maxOccurs="1">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Store Name&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;/xs:annotation>
+&lt;/xs:element>
+&lt;xs:element name="supplier" type="xs:string" minOccurs="0" maxOccurs="1">
+&lt;xs:annotation>
+&lt;xs:documentation xml:lang="en-US">
+&lt;osd:label>Supplier&lt;/osd:label>
+&lt;/xs:documentation>
+&lt;xs:appinfo>
+&lt;osd:otherFacets>
+&lt;osd:tableRef>
+&lt;tablePath>/root/plants&lt;/tablePath>
+&lt;/osd:tableRef>
+&lt;/osd:otherFacets>
+&lt;/xs:appinfo>
+&lt;/xs:annotation>
+&lt;/xs:element>
+&lt;/xs:sequence>
+&lt;/xs:complexType>
+&lt;/xs:element>
+&lt;/xs:sequence>
+&lt;/xs:complexType>
+&lt;/xs:element>
+&lt;/xs:schema>
+</pre>
+<p>Follow this link to return to the <a href="../user_guide/user_tutorial_setup.html">Prerequisites and setup</a> instructions.</p><h3 id="user_appendix_table_data">
+Table data</h3>
+<p>The sample table data below is for the Assembly Plants table.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8" ?>
+&lt;!--XML content generated for /root/plants in data set basicSupplyChain in data space Reference on 2018-07-31T07:38:51.649 by user [admin].-->
+&lt;root>
+	&lt;plants>
+		&lt;plantName>Eastern Plant&lt;/plantName>
+		&lt;supplier>Northern Factory&lt;/supplier>
+	&lt;/plants>
+	&lt;plants>
+		&lt;plantName>Midwest Plant&lt;/plantName>
+		&lt;supplier>Northern Factory&lt;/supplier>
+	&lt;/plants>
+	&lt;plants>
+		&lt;plantName>Western Plant&lt;/plantName>
+		&lt;supplier>Southern Factory&lt;/supplier>
+	&lt;/plants>
+&lt;/root>
+</pre>
+<p>The sample table data below is for the Factories table.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8" ?>
+&lt;!--XML content generated for /root/factories in data set basicSupplyChain in data space Reference on 2018-07-31T07:39:18.494 by user [admin].-->
+&lt;root>
+	&lt;factories>
+		&lt;factory>Northern Factory&lt;/factory>
+	&lt;/factories>
+	&lt;factories>
+		&lt;factory>Southern Factory&lt;/factory>
+	&lt;/factories>
+&lt;/root>
+</pre>
+<p>The sample table data below is for the Stores table.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8" ?>
+&lt;!--XML content generated for /root/store in data set basicSupplyChain in data space Reference on 2018-07-31T07:39:56.654 by user [admin].-->
+&lt;root>
+	&lt;store>
+		&lt;storeName>Store A&lt;/storeName>
+		&lt;supplier>Eastern Plant&lt;/supplier>
+	&lt;/store>
+	&lt;store>
+		&lt;storeName>Store B&lt;/storeName>
+		&lt;supplier>Midwest Plant&lt;/supplier>
+	&lt;/store>
+	&lt;store>
+		&lt;storeName>Store C&lt;/storeName>
+		&lt;supplier>Western Plant&lt;/supplier>
+	&lt;/store>
+	&lt;store>
+		&lt;storeName>Store D&lt;/storeName>
+		&lt;supplier>Western Plant&lt;/supplier>
+	&lt;/store>
+&lt;/root>
+</pre>
+<p>Follow this link to return to the <a href="../user_guide/user_tutorial_setup.html">Prerequisites and setup</a> instructions.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

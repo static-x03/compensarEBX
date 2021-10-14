@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:ebx-schemas:module_3.0 http://schema.orchestranetworks.com/internal/module_3.0.xsd">
+	<name>ebx-addon-common</name>
+	<publicPath>ebx-addon-common</publicPath>
+</module>

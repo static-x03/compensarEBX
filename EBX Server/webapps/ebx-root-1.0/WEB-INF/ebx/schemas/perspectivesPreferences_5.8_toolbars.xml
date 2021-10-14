@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <toolbarNode>
+        <id>9</id>
+        <type>TOOLBAR</type>
+        <ordering>0</ordering>
+        <toolbar>
+            <name>recommendedPerspectivesToolbar</name>
+            <location>TABLE_VIEW_TOP</location>
+        </toolbar>
+    </toolbarNode>
+    <toolbarNode>
+        <id>10</id>
+        <parent>9</parent>
+        <type>ACTION_BUTTON</type>
+        <ordering>0</ordering>
+        <actionButton>
+            <service>
+                <serviceKey>manageRecommendedPerspectives</serviceKey>
+            </service>
+            <display>
+                <layout>TEXT_ONLY</layout>
+                <icon>
+                    <type>css</type>
+                    <reference>ebx_Wizard</reference>
+                </icon>
+                <relief>EMBOSSED</relief>
+                <highlightedButton>true</highlightedButton>
+            </display>
+        </actionButton>
+    </toolbarNode>
+</root>

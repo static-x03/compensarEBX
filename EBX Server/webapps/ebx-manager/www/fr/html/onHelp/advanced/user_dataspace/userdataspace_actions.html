@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Actions sur les espaces de donn&eacute;es existants</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dataspace" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Espaces de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataspace/userdataspace_actions.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Espaces de données</span></div>
+<h1>
+Actions sur les espaces de donn&eacute;es existants</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#information">Informations de l&#39;espace de donn&eacute;es</a></li><li class="toc1"><a href="#permissions">Permissions sur un espace de donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Permissions g&eacute;n&eacute;rales</a></li><li class="toc2"><a href="#id2s2">Actions possibles</a></li></ul>
+</li><li class="toc1"><a href="#merge">Fusion d&#39;un espace de donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#startMerge">Initiation d&#39;une fusion</a></li><li class="toc2"><a href="#id3s2">Revue et acceptation des changements</a></li><li class="toc2"><a href="#mergePolicy">Finalisation d&#39;une fusion</a></li><li class="toc2"><a href="#id3s4">Abandon d&#39;une fusion</a></li></ul>
+</li><li class="toc1"><a href="#compare_dataspace">Comparaison d&#39;un espace de donn&eacute;es</a></li><li class="toc1"><a href="#validate">Validation d&#39;un espace de donn&eacute;es</a></li><li class="toc1"><a href="#id6">Archives d&#39;espaces de donn&eacute;es</a><ul class="toc2">
+<li class="toc2"><a href="#export">Export d&#39;une archive</a></li><li class="toc2"><a href="#import">Importer une archive</a></li></ul>
+</li><li class="toc1"><a href="#closing">Fermeture d&#39;un espace de donn&eacute;es</a></li></ul>
+</div>
+<h2 id="information">
+Informations de l&#39;espace de donn&eacute;es</h2>
+<p>Certaines propri&eacute;t&eacute;s associ&eacute;es &agrave; un espace de donn&eacute;es peuvent &ecirc;tre modifi&eacute;es en s&eacute;lectionnant <strong>Actions &gt; Information</strong> dans l&#39;espace de travail de la section Espaces de Donn&eacute;es.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Documentation</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; et description localis&eacute;s associ&eacute;s &agrave; l&#39;espace de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Strat&eacute;gie de chargement</p></td><td class="ebx_definitionListDefinition" id="loadingStrategy"><p><em>Seul l&#39;administrateur a le droit de modifier cette option.</em></p><ul>
+<li><p><strong>Chargement et d&eacute;chargement sur demande :</strong> le principal avantage de cette strat&eacute;gie est de permettre de lib&eacute;rer de la m&eacute;moire si n&eacute;cessaire. L&#39;inconv&eacute;nient est que cela implique un co&ucirc;t de chargement quand on acc&egrave;de &agrave; une ressource pour la premi&egrave;re fois depuis le d&eacute;marrage du serveur, ou si elle a &eacute;t&eacute; d&eacute;charg&eacute;e entre-temps. Ce mode est utilis&eacute; par d&eacute;faut.</p></li><li><p><strong>Chargement forc&eacute; :</strong> ce mode est particuli&egrave;rement recommand&eacute; pour les espaces de donn&eacute;es et images utilis&eacute;s de fa&ccedil;on intensive, ou exigeants en termes de temps de r&eacute;ponse. </p></li><li><p><strong>Chargement forc&eacute; et pr&eacute;-validation :</strong> ce mode est particuli&egrave;rement recommand&eacute; pour les espaces de donn&eacute;es et images utilis&eacute;s de fa&ccedil;on intensive ou exigeants en termes de temps de r&eacute;ponse, et pour lesquels le processus de validation peut &ecirc;tre long.</p></li></ul>
+<p><strong>Note :</strong> Toute modification de la strat&eacute;gie de chargement requiert un red&eacute;marrage du serveur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Politique de fusion</p></td><td class="ebx_definitionListDefinition" id="mergePolicyProperty"><p>La politique de fusion des espaces de donn&eacute;es enfants ne s&#39;applique qu&#39;aux fusions initi&eacute;es par un utilisateur. Elle ne s&#39;applique pas aux fusions programmatiques, telles que celles initi&eacute;es par les scripts de workflow.</p><p>Les politiques possibles sont :</p><ul>
+<li><p><strong>Autoriser des erreurs de validation dans le r&eacute;sultat :</strong> c&#39;est la politique par d&eacute;faut. Un espace de donn&eacute;es enfant peut &ecirc;tre fusionn&eacute; quelle que soit la validit&eacute; du r&eacute;sultat de cette fusion.</p></li><li><p><strong>Fusion pr&eacute;-validante :</strong> un espace de donn&eacute;es enfant ne peut &ecirc;tre fusionn&eacute; que si le r&eacute;sultat de la fusion est valide.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Propri&eacute;taire</p></td><td class="ebx_definitionListDefinition"><p>L&#39;utilisateur poss&eacute;dant l&#39;espace de donn&eacute;es et qui est autoris&eacute; &agrave; en modifier les informations et les permissions. Le propri&eacute;taire d&#39;un espace de donn&eacute;es n&#39;est pas obligatoirement son cr&eacute;ateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Tri des espaces enfants</p></td><td class="ebx_definitionListDefinition" id="childSortPolicy"><p>D&eacute;finit l&#39;ordre d&#39;affichage des espaces de donn&eacute;es enfants dans l&#39;arbre des espaces de donn&eacute;es. Si la valeur n&#39;est pas d&eacute;finie, l&#39;ordre d&eacute;fini par le parent est pris en compte. La valeur par d&eacute;faut est &quot;par libell&eacute;&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Changement de propri&eacute;taire</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit si le propri&eacute;taire de l&#39;espace de donn&eacute;es a le droit de modifier l&#39;attribut &quot;Propri&eacute;taire&quot;. Si la valeur est &quot;Non habilit&eacute;&quot;, seul l&#39;administrateur a le droit d&#39;effectuer cette modification.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Changement des permissions</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit si le propri&eacute;taire de l&#39;espace de donn&eacute;es a le droit de modifier les permissions de l&#39;espace de donn&eacute;es. Si la valeur est &quot;Non habilit&eacute;&quot;, seul l&#39;administrateur a le droit d&#39;effectuer cette modification.</p></td></tr>
+</table>
+<h2 id="permissions">
+Permissions sur un espace de donn&eacute;es</h2>
+<h3 id="id2s1">
+Permissions g&eacute;n&eacute;rales</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Identifiant de l&#39;espace de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Indique l&#39;espace de donn&eacute;es auquel les permissions vont &ecirc;tre appliqu&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>S&eacute;lection du profil</p></td><td class="ebx_definitionListDefinition"><p>Indique le profil concern&eacute; par la permission d&eacute;finie.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Restriction d&#39;acc&egrave;s</p></td><td class="ebx_definitionListDefinition"><p>Indique si la permission d&eacute;finie restreint les permissions affect&eacute;es &agrave; un utilisateur donn&eacute; par des politiques d&eacute;finies pour d&#39;autres profils.</p><p>Voir <a href="../references/permissions.html#restrictionpolicy">Restriction d&#39;acc&egrave;s</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Permissions d&#39;acc&egrave;s &agrave; l&#39;espace de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Indique la permission globale d&#39;acc&egrave;s &agrave; l&#39;espace de donn&eacute;es.</p><p><strong>Lecture seule</strong></p><ul>
+<li><p>Permet de visualiser l&#39;espace de donn&eacute;es et son image, et de voir les espaces de donn&eacute;es enfants selon les droits s&#39;appliquant &agrave; chacun d&#39;eux.</p></li><li><p>Permet de visualiser le contenu de l&#39;espace de donn&eacute;es sans pouvoir le modifier, &agrave; condition que les droits s&#39;appliquant au contenu en autorisent l&#39;acc&egrave;s.</p></li></ul>
+<p><strong>Ecriture</strong></p><ul>
+<li><p>Permet de visualiser l&#39;espace de donn&eacute;es et son image, et de voir les espaces de donn&eacute;es enfants selon les droits s&#39;appliquant &agrave; chacun d&#39;eux.</p></li><li><p>Permet de modifier le contenu de l&#39;espace de donn&eacute;es, &agrave; condition que les droits s&#39;appliquant au contenu en autorisent l&#39;acc&egrave;s.</p></li></ul>
+<p><strong>Non visible</strong></p><ul>
+<li><p>Ni l&#39;espace de donn&eacute;es, ni ses images ne peuvent &ecirc;tre vus.</p></li><li><p>A partir d&#39;un espace de donn&eacute;es enfant, l&#39;espace de donn&eacute;es courant est visible sans toutefois pouvoir &ecirc;tre s&eacute;lectionn&eacute;.</p></li><li><p>Le contenu de l&#39;espace de donn&eacute;es n&#39;est pas accessible.</p></li><li><p>Aucune action ne peut &ecirc;tre effectu&eacute;e sur l&#39;espace de donn&eacute;es.</p></li></ul>
+</td></tr>
+</table>
+<h3 id="id2s2">
+Actions possibles</h3>
+<p>Les utilisateurs peuvent &ecirc;tre autoris&eacute;s &agrave; effectuer les actions suivantes :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Cr&eacute;er un espace de donn&eacute;es enfant</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut cr&eacute;er un espace de donn&eacute;es enfant.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Cr&eacute;er une image</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut cr&eacute;er une image de l&#39;espace de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Initier une fusion</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut fusionner un espace de donn&eacute;es avec son parent.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Exporter une archive</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut exporter l&#39;espace de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Importer une archive</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut importer dans l&#39;espace de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Fermer un espace de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut fermer l&#39;espace de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Fermer une image</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut fermer les images de l&#39;espace de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Droits sur les services</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie les permissions d&#39;acc&egrave;s aux services.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Permissions des espaces de donn&eacute;es enfants &agrave; la cr&eacute;ation</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie les permissions d&#39;acc&egrave;s aux espaces de donn&eacute;es enfants cr&eacute;&eacute;s &agrave; partir de l&#39;espace de donn&eacute;es courant.</p></td></tr>
+</table>
+<h2 id="merge">
+Fusion d&#39;un espace de donn&eacute;es</h2>
+<p>Quand le travail dans un espace de donn&eacute;es est termin&eacute;, il est possible d&#39;effectuer une fusion unidirectionnelle de l&#39;espace de donn&eacute;es vers son espace de donn&eacute;es parent. Le processus de fusion est le suivant :</p><ol>
+<li><p>l&#39;espace de donn&eacute;es parent et l&#39;espace de donn&eacute;es enfant sont verrouill&eacute;s pour tous les utilisateurs, except&eacute; l&#39;utilisateur qui a initi&eacute; la fusion ainsi que les utilisateurs administrateurs. Les verrous sont maintenus pendant la dur&eacute;e de la fusion. Ainsi, les contenus des deux espaces de donn&eacute;es peuvent &ecirc;tre lus, mais ne peuvent pas &ecirc;tre modifi&eacute;s.</p><p><strong>Note :</strong> en plus de s&#39;appliquer aux modifications directes sur l&#39;espace de donn&eacute;es, cette restriction s&#39;applique &eacute;galement aux autres fusions des autres espaces de donn&eacute;es enfants. Ainsi, il est impossible de fusionner d&#39;autres espaces de donn&eacute;es enfants tant que la fusion en cours n&#39;est pas termin&eacute;e.</p></li><li><p>les changements qui ont &eacute;t&eacute; effectu&eacute;s dans l&#39;espace de donn&eacute;es depuis sa cr&eacute;ation sont int&eacute;gr&eacute;s dans l&#39;espace de donn&eacute;es parent ;</p></li><li><p>l&#39;espace de donn&eacute;es enfant est ferm&eacute; ;</p></li><li><p>l&#39;espace de donn&eacute;es parent est d&eacute;verrouill&eacute;.</p></li></ol>
+<h3 id="startMerge">
+Initiation d&#39;une fusion</h3>
+<p>Suivez ces &eacute;tapes pour initier la fusion d&#39;un espace de donn&eacute;es avec son espace de donn&eacute;es parent :</p><ol>
+<li><p>s&eacute;lectionnez l&#39;espace de donn&eacute;es &agrave; fusionner dans le panneau de navigation de la section Espaces de donn&eacute;es ;</p></li><li><p>dans l&#39;espace de travail, s&eacute;lectionnez <strong>Fusionner l&#39;espace de donn&eacute;es</strong> dans le menu <strong>Actions</strong>.</p></li></ol>
+<h3 id="id3s2">
+Revue et acceptation des changements</h3>
+<p>Avant la fusion d&eacute;finitive, s&eacute;lectionnez les changements survenus dans l&#39;espace de donn&eacute;es enfant (source) qui doivent &ecirc;tre fusionn&eacute;s dans l&#39;espace de donn&eacute;es parent (cible).</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Cette &eacute;tape de revue n&#39;existe pas pour une fusion faite &agrave; travers un service de donn&eacute;es ou un service programmatique&nbsp;:&nbsp;pour les fusions automatis&eacute;es, tous les changements dans l&#39;espace de donn&eacute;es enfant remplacent les donn&eacute;es dans l&#39;espace de donn&eacute;es parent.</p></div>
+<p>Pendant la fusion, un &eacute;cran de comparaison r&eacute;capitule tous les changements devant &ecirc;tre revus. Deux colonnes de <em>listes de changements</em> sont affich&eacute;es, prenant en compte les changements des comparaisons d&#39;espaces de donn&eacute;es suivantes :</p><ul>
+<li><p>l&#39;espace de donn&eacute;es enfant par rapport &agrave; son image initiale ;</p></li><li><p>l&#39;espace de donn&eacute;es parent par rapport &agrave; l&#39;image initiale de l&#39;espace de donn&eacute;es enfant.</p></li></ul>
+<p>Par d&eacute;faut, tous les changements d&eacute;tect&eacute;s sont s&eacute;lectionn&eacute;s pour la fusion. Pour exclure un changement de la fusion, d&eacute;s&eacute;lectionnez-le. Les changements relatifs aux diff&eacute;rents &eacute;l&eacute;ments sont visibles en les s&eacute;lectionnant dans le panneau de navigation.</p><p>Afin de d&eacute;tecter les conflits, la fusion implique l&#39;espace de donn&eacute;es courant, l&#39;image initiale et l&#39;espace de donn&eacute;es parent. En effet, les donn&eacute;es peuvent avoir &eacute;t&eacute; modifi&eacute;es &agrave; la fois dans l&#39;espace de donn&eacute;es courant et dans son parent.</p><p>Le processus de fusion concerne aussi les droits d&#39;acc&egrave;s aux tables. Il faut &eacute;galement passer en revue les modifications des permissions pour d&eacute;cider si elles seront incluses dans la fusion.</p><p>Lorsque vous avez choisi les changements &agrave; fusionner, vous devez cliquer sur le bouton <strong>Marquer les diff&eacute;rences comme revues</strong> pour indiquer que vous avez verifi&eacute; les changements dans le p&eacute;rim&egrave;tre actuel. Tous les changements doivent &ecirc;tre revus pour effectuer la fusion.</p><h4>
+Types de modifications</h4>
+<p>Le processus de fusion consid&egrave;re les op&eacute;rations suivantes comme des modifications &agrave; &eacute;valuer :</p><ul>
+<li><p>la cr&eacute;ation d&#39;un enregistrement ou d&#39;un jeu de donn&eacute;es ;</p></li><li><p>la modification de toute entit&eacute; ;</p></li><li><p>la suppression d&#39;un enregistrement, d&#39;un jeu de donn&eacute;es, ou de la valeur d&#39;un noeud ;</p></li><li><p>la modification des permissions d&#39;une table.</p></li></ul>
+<h4>
+Types de conflits</h4>
+<p>Cette interface de revue affiche &eacute;galement les conflits d&eacute;tect&eacute;s. Des conflits peuvent survenir quand une entit&eacute; contient des modifications dans l&#39;espace de donn&eacute;es source et l&#39;espace de donn&eacute;es cible.</p><p>Les conflits sont cat&eacute;goris&eacute;s comme suit :</p><ul>
+<li><p> conflit de cr&eacute;ation d&#39;un enregistrement ou d&#39;un jeu de donn&eacute;es, </p></li><li><p> conflit de modification de toute entit&eacute;, </p></li><li><p> conflit de suppression d&#39;un enregistrement ou d&#39;un jeu de donn&eacute;es, </p></li><li><p> tout autre conflit. </p></li></ul>
+<h3 id="mergePolicy">
+Finalisation d&#39;une fusion</h3>
+<p>Lorsque tous les changements ont &eacute;t&eacute; v&eacute;rifi&eacute;s et que ceux &agrave; inclure dans le r&eacute;sultat de la fusion ont &eacute;t&eacute; choisis, cliquez sur le bouton <strong>Fusionner &gt;&gt;</strong> dans le panneau de navigation.</p><p>En fonction de la politique de fusion de l&#39;espace de donn&eacute;es parent, le processus de finalisation peut diff&eacute;rer. Par d&eacute;faut, une fusion peut &ecirc;tre effectu&eacute;e m&ecirc;me si le r&eacute;sultat de la fusion contient des erreurs de validation. En revanche, l&#39;administrateur de l&#39;espace de donn&eacute;es parent peut configurer la politique de fusion pour que les fusions de ses espaces de donn&eacute;es enfants soient finalis&eacute;es uniquement si le r&eacute;sultat ne contient pas d&#39;erreur de validation.</p><p>Si la politique de fusion pr&eacute;-validante est utilis&eacute;e, un espace de donn&eacute;es d&eacute;di&eacute; est d&#39;abord cr&eacute;&eacute; pour accueillir le contenu de la fusion. S&#39;il est valide, cet espace de donn&eacute;es est automatiquement fusionn&eacute; avec l&#39;espace de donn&eacute;es parent.</p><p>Dans le cas contraire, si des erreurs de validation sont d&eacute;tect&eacute;es dans l&#39;espace de donn&eacute;es d&eacute;di&eacute;, seuls seront accessibles l&#39;espace de donn&eacute;es d&#39;origine et l&#39;espace de donn&eacute;es d&eacute;di&eacute; contenant le r&eacute;sultat de la fusion, nomm&eacute; &quot;[fusion] &lt;<em>nom de l&#39;espace de donn&eacute;es enfant</em>&gt;&quot;. Les options suivantes sont alors propos&eacute;es dans le menu de l&#39;espace de travail <strong> Actions &gt; Fusion en cours</strong>&nbsp;:&nbsp;</p><ul>
+<li><p><strong>Abandonner la fusion</strong>&nbsp;:&nbsp;cette action abandonne la fusion en cours et restitue l&#39;espace de donn&eacute;es enfant dans son &eacute;tat pr&eacute;c&eacute;dant la fusion.</p></li><li><p><strong>Poursuivre la fusion</strong>&nbsp;:&nbsp;cette action permet de tenter de nouveau la fusion apr&egrave;s avoir effectu&eacute; les corrections n&eacute;cessaires dans l&#39;espace de donn&eacute;es de fusion d&eacute;di&eacute;.</p></li></ul>
+<h4 id="setmergepolicy">
+Configuration de la politique de fusion d&#39;un espace de donn&eacute;es</h4>
+<p>En tant qu&#39;administrateur d&#39;un espace de donn&eacute;es, il est possible, &agrave; travers l&#39;interface utilisateur, d&#39;interrompre la finalisation des fusions de ses espaces de donn&eacute;es enfants si le r&eacute;sultat contient des erreurs de validation. Pour ce faire, cliquez sur <strong>Actions &gt; Informations</strong> dans l&#39;espace de travail de l&#39;espace de donn&eacute;es parent. Sur la page des informations de cet espace de donn&eacute;es, positionnez la <strong>Politique de fusion des enfants</strong> &agrave; &quot;Fusion pr&eacute;-validante&quot;. Cette politique de fusion sera appliqu&eacute;e pour toutes les fusions des espaces de donn&eacute;es enfants avec l&#39;espace de donn&eacute;es parent ainsi param&eacute;tr&eacute;.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Si la fusion est effectu&eacute;e &agrave; travers un composant web, le comportement pour la politique de fusion est le m&ecirc;me&nbsp;;&nbsp;la politique d&eacute;finie par l&#39;espace de donn&eacute;es parent sera automatiquement utilis&eacute;e lors de la fusion des modifications de l&#39;espace de donn&eacute;es enfant. Cependant, cette politique n&#39;est pas appliqu&eacute;e pour les fusions programmatiques. Elle est donc ignor&eacute;e pour les t&acirc;ches automatiques des workflows de donn&eacute;es.</p></div>
+<div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="#mergePolicy">Politique de fusion</a></li></ul>
+</div>
+<h3 id="id3s4">
+Abandon d&#39;une fusion</h3>
+<p>Une fusion est effectu&eacute;e dans le contexte d&#39;une session utilisateur et doit &ecirc;tre achev&eacute;e en une seule op&eacute;ration. Si vous d&eacute;cidez de ne pas poursuivre la fusion apr&egrave;s l&#39;avoir initi&eacute;e, cliquez sur le bouton <strong>Annuler</strong> afin d&#39;abandonner l&#39;op&eacute;ration.</p><p>Si vous naviguez vers une autre page pendant une fusion, celle-ci sera abandonn&eacute;e mais les verrous sur l&#39;espace de donn&eacute;es parent et l&#39;espace de donn&eacute;es enfant seront maintenus. Il faudra les d&eacute;verrouiller dans la section <strong>Espaces de Donn&eacute;es</strong>.</p><p>Pour d&eacute;verrouiller un espace de donn&eacute;es, s&eacute;lectionnez l&#39;espace de donn&eacute;es dans le panneau de navigation, et cliquez sur le bouton <strong>D&eacute;verrouiller</strong> dans l&#39;espace de travail. Si vous effectuez le d&eacute;verrouillage depuis l&#39;espace de donn&eacute;es enfant, les deux espaces de donn&eacute;es seront d&eacute;verrouill&eacute;s. Si vous effectuez le d&eacute;verrouillage depuis l&#39;espace de donn&eacute;es parent, lui seul sera d&eacute;verrouill&eacute;, vous devrez donc aussi effectuer un d&eacute;verrouillage de l&#39;espace de donn&eacute;es enfant.</p><h2 id="compare_dataspace">
+Comparaison d&#39;un espace de donn&eacute;es</h2>
+<p>Il est possible de comparer le contenu d&#39;un espace de donn&eacute;es &agrave; celui d&#39;un autre espace de donn&eacute;es ou &agrave; une image dans le r&eacute;f&eacute;rentiel. Pour effectuer une comparaison, ouvrez l&#39;espace de donn&eacute;es dans le panneau de navigation, puis s&eacute;lectionnez <strong>Actions &gt; Comparer</strong> dans l&#39;espace de travail. L&#39;assistant permet de choisir un autre espace de donn&eacute;es ou une image &agrave; comparer avec l&#39;espace de donn&eacute;es courant.</p><p>Pour une comparaison plus rapide, qui ignore les champs avec une valeur h&eacute;rit&eacute;e ou calcul&eacute;e, s&eacute;lectionnez le filtre &quot;Valeurs persistantes seulement&quot;.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../references/builtin.html#compare">Compare contents</a></li></ul>
+</div>
+<h2 id="validate">
+Validation d&#39;un espace de donn&eacute;es</h2>
+<p>Le contenu d&#39;un espace de donn&eacute;es peut &ecirc;tre valid&eacute; globalement en utilisant le service de validation au niveau de l&#39;espace de donn&eacute;es. Ce service est accessible en s&eacute;lectionnant <strong>Actions &gt; Validation</strong> dans l&#39;espace de travail.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Ce service est propos&eacute; uniquement si l&#39;utilisateur a la permission de valider tous les jeux de donn&eacute;es contenus dans l&#39;espace de donn&eacute;es.</p></div>
+<h2 id="id6">
+Archives d&#39;espaces de donn&eacute;es</h2>
+<h3 id="export">
+Export d&#39;une archive</h3>
+<p>Le contenu d&#39;un espace de donn&eacute;es peut &ecirc;tre export&eacute; dans une archive en s&eacute;lectionnant <strong>Actions &gt; Export</strong> dans le panneau de navigation. L&#39;archive est sauvegard&eacute;e sur le syst&egrave;me de fichiers du serveur, o&ugrave; seul un administrateur peut la r&eacute;cup&eacute;rer.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Voir <a href="../engine/repository_administration.html#archive">Archives directory</a> dans le Guide d&#39;administration.</p></div>
+<p>Pour r&eacute;aliser un export, les informations suivantes sont requises:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom du fichier archive</p></td><td class="ebx_definitionListDefinition"><p>Nom de l&#39;archive export&eacute;e.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Type d&#39;export</p></td><td class="ebx_definitionListDefinition"><p>Obligatoire.</p><p>Le type d&#39;export par d&eacute;faut est &quot;Contenu complet de l&#39;espace de donn&eacute;es&quot;. Il permet d&#39;exporter l&#39;ensemble des donn&eacute;es s&eacute;lectionn&eacute;es dans l&#39;archive.</p><p>Il peut &ecirc;tre utile d&#39;inclure uniquement les diff&eacute;rences entre l&#39;espace de donn&eacute;es et son image initiale dans l&#39;archive. Il existe deux types d&#39;export qui incluent un delta&nbsp;:&nbsp;&quot;Mises &agrave; jour avec leur contenu complet&quot; et &quot;Mises &agrave; jour seules&quot;. Le premier exporte l&#39;&eacute;tat actuel de l&#39;espace de donn&eacute;es ainsi que le delta qui contient les diff&eacute;rences entre l&#39;&eacute;tat actuel de l&#39;espace de donn&eacute;es et l&#39;image initiale. Le second exporte uniquement le delta qui contient les diff&eacute;rences entre l&#39;&eacute;tat actuel de l&#39;espace de donn&eacute;es et l&#39;image initiale. Les deux options affichent une page de comparaison, sur laquelle il est possible de s&eacute;lectionner les diff&eacute;rences &agrave; inclure dans le delta. Les diff&eacute;rences sont d&eacute;tect&eacute;es au niveau table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Jeu de donn&eacute;es &agrave; exporter</p></td><td class="ebx_definitionListDefinition"><p>Jeux de donn&eacute;es de cet espace de donn&eacute;es &agrave; exporter. Pour chaque jeu de donn&eacute;es, il est possible de sp&eacute;cifier si les donn&eacute;es, les permissions et les informations doivent &ecirc;tre export&eacute;es.</p></td></tr>
+</table>
+<h3 id="import">
+Importer une archive</h3>
+<p>Le contenu d&#39;une archive peut &ecirc;tre import&eacute; dans un espace de donn&eacute;es en s&eacute;lectionnant <strong>Actions &gt; Import</strong>.</p><p>Si l&#39;archive s&eacute;lectionn&eacute;e ne contient pas de delta, l&#39;&eacute;tat actuel de l&#39;espace de donn&eacute;es sera remplac&eacute; par le contenu de l&#39;archive.</p><p>Si l&#39;archive s&eacute;lectionn&eacute;e se compose d&#39;un contenu complet et d&#39;un delta, vous pouvez choisir d&#39;appliquer le delta afin de fusionner les diff&eacute;rences incluses. Un &eacute;cran de comparaison sera affich&eacute;, depuis lequel les diff&eacute;rences &agrave; fusionner peuvent &ecirc;tre s&eacute;lectionn&eacute;es.</p><p>Si l&#39;archive s&eacute;lectionn&eacute;e contient uniquement un delta, il est possible de s&eacute;lectionner les diff&eacute;rences &agrave; fusionner dans un &eacute;cran de comparaison.</p><h2 id="closing">
+Fermeture d&#39;un espace de donn&eacute;es</h2>
+<p>Si un espace de donn&eacute;es n&#39;est plus utilis&eacute;, il peut &ecirc;tre ferm&eacute;. D&egrave;s qu&#39;il est ferm&eacute;, l&#39;espace de donn&eacute;es n’apparaîtra plus dans la section <strong>Espaces de Donn&eacute;es</strong> de l&#39;interface utilisateur, et ne sera plus accessible.</p><p>Un administrateur peut rouvrir un espace de donn&eacute;es ferm&eacute;, tant que celui-ci n&#39;a pas encore &eacute;t&eacute; purg&eacute; du r&eacute;f&eacute;rentiel.</p><p>Pour fermer un espace de donn&eacute;es, s&eacute;lectionnez <strong>Actions &gt; Fermer l&#39;espace de donn&eacute;es</strong>.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#closing_dataspaces">Closing unused dataspaces and snapshots</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Espaces de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

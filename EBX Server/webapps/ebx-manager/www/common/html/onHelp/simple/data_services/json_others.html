@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Others</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="json_others" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/json_others.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Others</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#id2">Global structure</a><ul class="toc2">
+<li class="toc2"><a href="#request">JSON Request body</a></li><li class="toc2"><a href="#response">JSON Response body</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p> The <a href="../data_services/json_extended.html">Extended</a> and <a href="../data_services/json_compact.html">Compact</a> JSON formats can handle most of the use cases, however some operations and REST categories require specific formats like the followings. </p><h2 id="id2">
+Global structure</h2>
+<h3 id="request">
+JSON Request body</h3>
+<p> The Request body is represented by a JSON <code>Object</code> whose content varies according to the operation and the category. </p><h4 id="authCategoryRequest">
+Auth category</h4>
+<p> The request body holds several properties directly placed in the root JSON <code>Object</code>. </p><ul>
+<li><p id="tokenCreateRequest"><strong>Token creation</strong></p><p> Specifies the <code>login</code> and <code>password</code> to use for an authentication token creation attempt. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "login": "...",                  // JSON String
+  "password": "..."                // JSON String
+}</pre>
+<p> Specifies the <code>specific</code> attribute, to activate the user authentication against the HTTP request, for an authentication token creation attempt. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "specific": true                 // JSON Boolean
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#authTokenCreation">Create token operation</a></li></ul>
+</div>
+</li><li><p id="changePasswordRequest"><strong>Password change</strong></p><p> Specifies the <code>login</code>, <code>password</code> and <code>passwordNew</code> to use for the password change. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "login": "...",            // JSON String
+  "password": "...",         // JSON String
+  "passwordNew": "..."       // JSON String
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#authChangePassword">Change password operation</a></li></ul>
+</div>
+</li></ul>
+<h3 id="response">
+JSON Response body</h3>
+<p> The response body is represented by a JSON <code>Object</code> whose content depends on the operation and the category. </p><h4 id="authCategoryResponse">
+Auth category</h4>
+<p> The response body contains several properties directly placed in the root JSON <code>Object</code>. </p><ul>
+<li><p id="tokenCreateResponse"><strong>Token creation</strong></p><p>Contains the token value and its type.</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "accessToken": "...",            // JSON String
+  "tokenType": "..."               // JSON String
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#authTokenCreation">Create token operation</a></li></ul>
+</div>
+</li></ul>
+<h4>
+Data category</h4>
+<h5 id="viewsSearchResponse">
+Look up table views</h5>
+<p>The response body contains a <code>content</code> property holding a JSON <code>Array</code>, itself composed by JSON <code>Object</code>s with the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>details</code></p></td><td><p><code>String</code></p></td><td><p>Corresponds to the view access URL.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>label</code></p></td><td><p><code>String</code></p></td><td><p>View&#39;s label.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>viewPublication</code></p></td><td><p><code>String</code></p></td><td><p>Published view&#39;s name.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#viewPublication"> Table <code>viewPublication</code> parameter </a></li></ul>
+</div>
+</td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>viewType</code></p></td><td><p><code>String</code></p></td><td><p>Enumeration whose value corresponds to one of the following:</p><ul>
+<li><p><code>SimpleTabular</code>: Simple tabular view. </p></li><li><p><code>Hierarchy</code>: Hierarchical view. </p></li></ul>
+</td><td><p>Yes</p></td></tr>
+</tbody>
+</table>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "content": [
+    {
+      "details": "http://.../data/v1/Bebx-directory/ebx-directory/directory/users?viewPublication=custom-directory",
+      "label": "My custom directory view",
+      "viewPublication": "custom-directory",
+      "viewType": "SimpleTabular"
+    },
+    {
+      ...
+    }
+  ]
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#lookupViews">Look up table views operation</a></li></ul>
+</div>
+<h5 id="dataspacesResponse">
+Beta feature: Dataspaces selection</h5>
+<p>The returned response body contains dataspaces in a <code>rows</code> JSON <code>Array</code> property, where each inner JSON <code>Object</code> corresponds to a dataspace with the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>label</code></p></td><td><p><code>String</code></p></td><td><p>Documentation label in the current locale.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>description</code></p></td><td><p><code>String</code></p></td><td><p>Documentation description in the current locale.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>details</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace&#39;s REST resource URL.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>information</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace&#39;s information REST resource URL.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>key</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace or snapshot formatted key.</p><p>Format: <code>[BV][a-zA-Z0-9_:.\-\|]{1,33}</code> and percentage encoded afterward. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>isSelectAllowed</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies if the dataspace can be selected, according to the user&#39;s permissions. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>hasChildren</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies if the dataspace has children, according to the user&#39;s permissions. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Not applicable for <strong> snapshots</strong>. </p></div>
+</td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>children</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace&#39;s children REST resource URL. If <code>hasChildren</code> property key value is <code>false</code> then the returned value is <code>null</code>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Not applicable for <strong> snapshots</strong>. </p></div>
+</td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>snapshots</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace&#39;s snapshots REST resource URL.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Not applicable for <strong> snapshots</strong>. </p></div>
+</td><td><p>Yes</p></td></tr>
+</tbody>
+</table>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "label": "Master Data - Reference",
+      "description": "Reference dataspace in EBX.",
+      "details": "http://.../data/v1/BReference",
+      "information": "http://.../data/v1/BReference:information",
+      "key": "BReference",
+      "closed": false,
+      "isSelectAllowed": true,
+      "hasChildren": true,
+      "children": "http://.../data/v1/BReference:children",
+      "snapshots": "http://.../data/v1/BReference:snapshots"
+    },
+    {
+      // An other dataspace
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": null,
+    "lastPage": null
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_common.html#pagination">Pagination</a></li><li><a href="../data_services/dataservices_rest_v1.html#dataspaceSelect">Beta feature: Select dataspaces or snapshots</a></li></ul>
+</div>
+<h5 id="dataspaceInformationResponse">
+Beta feature: Dataspace information</h5>
+<p>The response body contains a <code>content</code> JSON <code>Object</code> property, holding the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>content</code></p></td><td><p><code>Object</code></p></td><td><p>Corresponds to the dataspace or the snapshot information.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>key</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace or snapshot formatted key value.</p><p>Format: <code>[BV][a-zA-Z0-9_:.\-\|]+</code> limited to 33 characters maximum. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>documentation</code></p></td><td><p><code>Array</code> of JSON <code>Object</code></p></td><td><p>Corresponds to the localized documentation with a JSON <code>Object</code> by locale. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>locale</code></p></td><td><p><code>String</code></p></td><td><p>Documentation locale (nested under the <code>documentation</code> property). </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>label</code></p></td><td><p><code>String</code></p></td><td><p>Documentation label (nested under the <code>documentation</code> property). </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>description</code></p></td><td><p><code>String</code></p></td><td><p>Documentation description (nested under the <code>documentation</code> property). </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>closed</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies if the dataspace is closed.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>locked</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies if the dataspace is locked.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Not applicable for <strong> snapshots</strong>. </p></div>
+</td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>parent</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the parent dataspace or snapshot formatted key value.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>administration</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies if the dataspace or the snapshot is an administration one. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>owner</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the owner profile.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>creator</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the creator profile.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>creationDate</code></p></td><td><p><code>Date</code></p></td><td><p>Specifies the creation date.</p></td><td><p>Yes</p></td></tr>
+</tbody>
+</table>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "content": {
+    "key": "BReference",
+    "documentation": [
+      {
+        "locale": "en-US",
+        "label": "Master Data - Reference",
+        "description": "Reference dataspace in EBX."
+      },
+      {
+        "locale": "fr-FR",
+        "label": "Données - Référence",
+        "description": "Espace de données référence de EBX."
+      }
+    ],
+    "closed": false,
+    "locked": false,
+    "parent": null,
+    "administration": false,
+    "relationalMode": false,
+    "owner": "Badministrator",
+    "creator": "Badministrator",
+    "creationDate": "2019-04-28T19:49:04.838"
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#dataspaceSelect">Beta feature: Select dataspaces or snapshots</a></li></ul>
+</div>
+<h5 id="dataspaceCreateChild">
+Beta feature: Dataspace child or snapshot creation </h5>
+<p>The response body contains a <code>content</code> JSON <code>Object</code> property, holding the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>key</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace or snapshot formatted key value.</p><p>Format: <code>[BV][a-zA-Z0-9_:.\-\|]+</code> limited to 33 characters maximum. </p><p>The default value is a timestamp.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>owner</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the owner profile.</p><p>Default value is <code>null</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>documentation</code></p></td><td><p><code>Array</code> of JSON <code>Object</code></p></td><td><p>Corresponds to the localized documentation with a JSON <code>Object</code> by locale. </p><p>Default value is <code>null</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>locale</code></p></td><td><p><code>String</code></p></td><td><p>Documentation locale (nested under the <code>documentation</code> property). </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>label</code></p></td><td><p><code>String</code></p></td><td><p>Documentation label (nested under the <code>documentation</code> property). </p><p>Default value is <code>null</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>description</code></p></td><td><p><code>String</code></p></td><td><p>Documentation description (nested under the <code>documentation</code> property). </p><p>Default value is <code>null</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p><code>dataspaceKeyToCopyPermissionsFrom</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the dataspace&#39;s formatted key value from which to copy permissions. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Not applicable for <strong>snapshots</strong> creation. </p></div>
+</td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "content": {
+    "key": "BMyData",
+    "owner": "Beveryone",
+    "documentation": [
+      {
+        "locale": "en-US",
+        "label": "My dataspace",
+        "description": "This space contains my data"
+      }
+    ],
+    "dataspaceKeyToCopyPermissionsFrom": "BReference"
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#dataspaceCreate">Beta feature: Create a child dataspace or a snapshot</a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

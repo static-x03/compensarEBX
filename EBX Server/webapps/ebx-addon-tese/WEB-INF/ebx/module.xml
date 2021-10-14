@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="urn:ebx-schemas:module_3.1 http://schema.orchestranetworks.com/internal/module_3.1.xsd">
+	<name>ebx-addon-tese</name>
+	<publicPath>ebx-addon-tese</publicPath>
+	<services>
+		<service name="Search">
+			<resourcePath>/Search</resourcePath>
+			<displayInMenu>false</displayInMenu>
+			<instanceActivation>
+				<scope>
+					<onInstance />
+					<permission class="com.orchestranetworks.addon.tese.search.SearchServicesPermissions" />
+				</scope>
+			</instanceActivation>
+			<globalActivation>
+				<workflow />
+				<perspective />
+			</globalActivation>
+			<documentation id="services.Search" />
+			<confirmation disable="true" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="services.Search.properties.branch" />
+				  	<wizards>
+						<wizard type="dataSpace" />
+				  	</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="services.Search.properties.instance" />
+				  	<wizards>
+						<wizard type="com.orchestranetworks.addon.tese.util.DatasetUIInputTextWizardList" />
+						<wizard type="dataContext" />
+				  	</wizards>
+				</property>
+				<property name="searchTemplate" input="true">
+					<documentation id="services.Search.properties.searchTemplate" />
+					<wizards>
+						<wizard type="com.orchestranetworks.addon.tese.util.SearchTemplateTextWizardList" />
+						<wizard type="dataContext" />
+					</wizards>	
+				</property>
+				<property name="trackingInfo" input="true">
+		  			<documentation id="services.tese.properties.trackingInformation" />
+				</property>				
+			</properties>
+		</service>
+		<service name="TargetedSearch">
+			<resourcePath>/Search</resourcePath>
+			<displayInMenu>false</displayInMenu>
+			<homeActivation>
+				<branch/>
+				<permission class="com.orchestranetworks.addon.tese.search.SearchServicesPermissions"></permission>
+			</homeActivation>
+			<globalActivation>
+				<workflow />
+				<perspective />
+			</globalActivation>
+			<documentation id="services.TargetedSearch" />
+			<confirmation disable="true" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="services.Search.properties.branch" />
+				  	<wizards>
+						<wizard type="dataSpace" />
+				  	</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+		  			<documentation id="services.tese.properties.trackingInformation" />
+				</property>	
+			</properties>
+		</service>
+	</services>
+</module>

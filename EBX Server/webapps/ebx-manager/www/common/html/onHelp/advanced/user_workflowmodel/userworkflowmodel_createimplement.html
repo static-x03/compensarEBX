@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Creating and implementing a workflow model</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="wm_wm" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Workflow models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_workflowmodel/userworkflowmodel_createimplement.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Workflow models</span></div>
+<h1>
+Creating and implementing a workflow model</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#creation">Creating a workflow model</a></li><li class="toc1"><a href="#step">Implementing the steps</a><ul class="toc2">
+<li class="toc2"><a href="#progressStrategy">Progress strategy of the next step</a></li><li class="toc2"><a href="#hiddenInGraphicalView">Hidden in progress view</a></li></ul>
+</li><li class="toc1"><a href="#step_user">User tasks</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Mode</a></li><li class="toc2"><a href="#id3s2">List of profiles</a></li><li class="toc2"><a href="#id3s3">Service</a></li><li class="toc2"><a href="#termination">Configuration</a></li></ul>
+</li><li class="toc1"><a href="#step_script">Script tasks</a><ul class="toc2">
+<li class="toc2"><a href="#workflow.scriptTask.library">Library script tasks</a></li><li class="toc2"><a href="#id4s2">Specific script tasks</a></li></ul>
+</li><li class="toc1"><a href="#step_condition">Conditions</a><ul class="toc2">
+<li class="toc2"><a href="#workflow.condition.library">Library conditions</a></li><li class="toc2"><a href="#id5s2">Specific conditions</a></li></ul>
+</li><li class="toc1"><a href="#subworkflows">Sub-workflow invocations</a></li><li class="toc1"><a href="#waitTasks">Wait tasks</a></li><li class="toc1"><a href="#workflowdiagram">Editing the workflow diagram</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">About</a></li><li class="toc2"><a href="#actions">Actions</a></li><li class="toc2"><a href="#view">View</a></li><li class="toc2"><a href="#buttons">Buttons</a></li><li class="toc2"><a href="#id8s5">Edit</a></li><li class="toc2"><a href="#features">Features</a></li></ul>
+</li></ul>
+</div>
+<h2 id="creation">
+Creating a workflow model</h2>
+<p>A new workflow model can be created in the <strong>Workflow Models</strong> area. The only required information at creation is a name that is unique in the repository.</p><p>The steps of the workflow model are initialized with a single transition. In order to fully implement the workflow model, you must define the sequence of steps beyond this initial transition.</p><h2 id="step">
+Implementing the steps</h2>
+<p>A workflow model defines steps that correspond to different operations that must be performed on data, and associated conditions. The following types of steps exist:</p><ul>
+<li><p>User task</p></li><li><p>Script task</p></li><li><p>Condition</p></li><li><p>Sub-workflow invocation</p></li><li><p>Wait task</p></li></ul>
+<p id="datacontext">A data context is linked to each data workflow. This data context can be used to define variables that can be used as input and output variables in the steps of the workflow.</p><h3 id="progressStrategy">
+Progress strategy of the next step</h3>
+<p>For each step type (excluding user task with multiple work items), a property is available to define which progress strategy has to be applied for the next step. Upon step completion, this strategy is evaluated in order to define the navigation when the workflow is executed. By default, the progress strategy is set to &#39;Display the work items table&#39;. In that case, after the step has been executed, the work items table (work items inbox or monitoring &gt; work items) is automatically displayed, in order to select the following work item.</p><p>Another strategy can be selected: &#39;Automatically open the next step&#39;. This strategy allows the user to keep working on this workflow and to directly execute the next step. If, following to this execution, a work item is reached and the connected user can start it, then the work item is automatically opened (if several work items are reached, the first created is opened). Otherwise, the next step progress strategy is evaluated. If no work item has been reached, the work items table will be displayed.</p><p>This strategy is used to execute several steps in a row without going back to the work items inbox.</p><p>There are some limitations that will lead to disregard this strategy. In that case, the work items table is automatically displayed. This property will be disregarded when: the current step is a user task with more than one work item. </p><p>In the case of conditions, two other strategies are available: &#39;If true, automatically open the next step&#39; and &#39;If false, automatically open the next step&#39;. These strategies allow choosing which strategy will be applied according to the condition result.</p><p> In the case of sub-workflows invocation, a dedicated property « Foreground sub-workflow » is available to precise the progress strategy. For the previous progress strategy « Open directly the next step », a foreground sub-workflow must be selected. Only the steps and associated progress strategy included in this foreground sub-workflow will be evaluated. Please note the following specific rules about the foreground sub-workflow property : </p><ul>
+<li><p> If only one sub-workflow is launched, it is automatically considered in the foreground, </p></li><li><p> The foreground sub-workflow property will be ignored if the previous step has not selected the progress strategy « Automatically open the next step », </p></li><li><p> When all the sub-workflow are completed, and if the last completed sub-workflow is the foreground one, then the progress strategy defined on the sub-workflow invocation step is evaluated: if the progress strategy is « automatically open the next step », the next step can be opened without displaying the inbox. In all cases, the progress strategy of the last step of the sub-workflow is always ignored. </p></li></ul>
+<h3 id="hiddenInGraphicalView">
+Hidden in progress view</h3>
+<p>For each step type, a property is available to define which steps must be hidden in the workflow progress view by default.</p><p>If this property is enabled, the step will be automatically hidden in the workflow progress view for non-administrator users (neither built-in administrator nor workflow administrator). Hidden steps can be displayed on demand.</p><h2 id="step_user">
+User tasks</h2>
+<p>User tasks are steps that involve actions to be performed by human users. Their labels and descriptions can be localized.</p><h3 id="id3s1">
+Mode</h3>
+<p> For backward compatibility reasons, two user task modes are available: the default mode and the legacy mode.</p><p>By default, a user task generates a single work item. This mode offers more features, such as offering a work item to a list of profiles or directly displaying the avatars in the workflow progress view.</p><p>In the legacy mode, a user task can generate several work items.</p><p> By default, the user task creation service is hidden in legacy mode. To display it, a property should be enabled in the <code>ebx.properties</code> file. For more information, see <a href="../installation/properties.html#ebx.workflow.userTask.legacyMode.activation">Disabling user task legacy mode</a>. </p><h3 id="id3s2">
+List of profiles</h3>
+<p>The definition of the profiles of a user task may vary depending on the user task mode.</p><h4 id="step_user_offeredToList">
+[Default] Offered to the following profiles</h4>
+<p>The defined profiles are the roles or the users to whom the user task is being offered. When executing the user task, a single work item is generated. If a single user is defined, the work item is automatically assigned to this user. If a role is defined, the work item is offered to the members of the role. If several users and roles are defined, the work item is offered simultaneously to these users and to the members of these roles.</p><h4>
+[Legacy mode] Participants</h4>
+<p>The participants are the roles or the users to whom the user task is intended. By default, when executing the user task, a work item is generated by profile. If a profile refers to a user instead of a role, the work item is directly allocated to that user. If a profile is a role, the work item is offered to the members of the role.</p><h4>
+For more information</h4>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#extension">Extension</a></li></ul>
+</div>
+<h3 id="id3s3">
+Service</h3>
+<p>TIBCO EBX&reg; includes the following built-in services:</p><ul>
+<li><p>Access a dataspace</p></li><li><p>Access data (default service)</p></li><li><p>Access the dataspace merge view</p></li><li><p>Compare contents</p></li><li><p>Create a new record</p></li><li><p>Duplicate a record.</p></li><li><p>Export data to a CSV file</p></li><li><p>Export data to an XML file</p></li><li><p>Import data from a CSV file</p></li><li><p>Import data from an XML file</p></li><li><p>Merge a dataspace</p></li><li><p>Validate a dataspace, a snapshot or a dataset</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/builtin.html">EBX&reg; built-in services</a></li></ul>
+</div>
+<h3 id="termination">
+Configuration</h3>
+<h4 id="enableReject">
+Main options &gt; Enable reject</h4>
+<p>By default, only the <em>accept</em> action is offered to the user when saving a decision.</p><p>It is possible to also allow users to reject the work item by setting this field to &#39;Yes&#39;.</p><h4 id="enableConfirmationRequest">
+Main options &gt; Enable confirmation request</h4>
+<p>By default, a confirmation request is displayed after user task execution when the user saves the decision by clicking the &#39;Accept&#39; or &#39;Reject&#39; button.</p><p>To disable this confirmation prompt, set this field to &#39;Yes&#39;.</p><h4 id="commentsEnabled">
+Main options &gt; Enable comments</h4>
+<p>By default, comments are enabled. When a work item is open, a &#39;Comments&#39; button is displayed and allows the user to enter a comment.</p><p>It is possible to hide this &#39;Comments&#39; button by setting this property to <em>No</em>.</p><h4 id="commentsRequired">
+Main options &gt; Comments required</h4>
+<p>By default, it is optional to submit a comment associated with a work item.</p><p>It is possible to require the user to enter a comment before saving the decision by setting this field to the desired validation criteria. Comments can be set to be always required, required only if the work item has been accepted, or required only if the work item has been rejected.</p><h4 id="customizedLabels">
+Main options &gt; Customized labels</h4>
+<p>When the user task is run, the user can accept or reject the work item by clicking the corresponding button. In the workflow model, it is possible for a user task to define a customized label and confirmation message for these two buttons. This can be used to adapt the buttons to a more specific context.</p><h4>
+[Legacy mode] Termination &gt; Task termination criteria</h4>
+<p>A single user task could be assigned to multiple <em>participants</em> and thus generate multiple work items during workflow execution. When defining a user task in the workflow model, you can select one of the predefined methods for determining whether the user task is finished, based on the statuses of its component work items. When the user task&#39;s exit requirement has been satisfied, the data workflow will move on to the next step defined in its model. </p><p>For example, for the case of a user task where a product record needs to be approved, you could designate three potential participants. The task termination criteria can specify whether the product record needs to be approved by all three users, or only the first user to respond.</p><p>The default user task termination criteria is &#39;When all work items have been accepted.&#39;</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If you specify a service extension overriding the method <code>UserTask.handleWorkItemCompletion</code> to handle the determination of the user task&#39;s completion, it is up to the developer of the extension to verify from within their code that the task termination criteria defined through the user interface has been met. See <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/UserTask.html#handleWorkItemCompletion-com.orchestranetworks.workflow.UserTaskWorkItemCompletionContext-"><code>UserTask.handleWorkItemCompletion</code></a> in the JavaDoc for more information</p></div>
+<h4 id="rejectTolerance">
+[Legacy mode] Termination &gt; Reject tolerance</h4>
+<p>By default, if a user rejects a work item during workflow execution, the user task is placed into an error state and the workflow progress is halted. When the user task is in an error state, a workflow administrator must intervene by replaying the step where the error occurred in order to continue the workflow execution. </p><p>In order to change this default behavior, it is possible to define a certain number of work item rejections to tolerate. While within the limit of tolerated rejections, no error will occur and it is the task termination criteria that determines when to end the user task.</p><p>The following task termination criteria automatically tolerate all rejections:</p><ul>
+<li><p>&#39;When all work items have been either accepted or rejected&#39;</p></li><li><p>&#39;Either when all work items have been accepted, or as soon as one work item has been rejected&#39;</p></li></ul>
+<h4 id="extension">
+Extension</h4>
+<p>A custom class can be specified in order for the task to behave dynamically in the context of a given data workflow. For example, this can be used to create work items or complete user tasks differently than the default behavior.</p><p>The specified rule is a JavaBean that must extend the <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/UserTask.html"><code>UserTask</code></a> class.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>If a rule is specified and the <code>handleWorkItemCompletion</code> method is overridden, the completion strategy is no longer automatically checked. The developer must check for completion within this method.</p></div>
+<h4 id="notification">
+Notification</h4>
+<p>A notification email can be sent to users when specific events occur. For each event, you can specify a content template.</p><p>It is possible to define a monitor profile that will receive all emails that are sent in relation to the user task.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Generic message templates</a></li></ul>
+</div>
+<h4 id="reminder">
+Reminder</h4>
+<p>Reminder emails for outstanding offered or allocated work items can be periodically sent to the concerned users. The recipients of the reminder are the users to whom the work item is offered or allocated, as well as the recipients on copy.</p><p>The content of the reminder emails is determined by the current state of the work item. That is, if the work item is offered, the notification will use the &quot;Offered work items&quot; template; if the work item is allocated, the notification will use the &quot;Allocated work items&quot; template.</p><h4 id="deadline">
+Deadline</h4>
+<p>Each user task can have a completion deadline. If this date passes and associated works items are not completed, a notification email is sent to the concerned users. This same notification email will then be sent daily until the task is completed.</p><p>There are two deadline types: </p><ul>
+<li><p><em>Absolute deadline</em>: A calendar date.</p></li><li><p><em>Relative deadline</em>: A duration in hours, days or months. The duration is evaluated based on the reference date, which is the beginning of the user task or the beginning of the workflow. </p></li></ul>
+<h2 id="step_script">
+Script tasks</h2>
+<p>Script tasks are automatic tasks that are performed without human user involvement.</p><p>Two types of script tasks exist, which, once defined, can be used in workflow model steps:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Library script task</p></td><td class="ebx_definitionListDefinition"><p>EBX&reg; includes a number of built-in library script tasks, which can be used as-is.</p><p>Any additional library script tasks must be declared in a <code>module.xml</code> file. A library script task must define its label, description and parameters. When a user selects a library script task for a step in a workflow model, its associated parameters are displayed dynamically.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Specific script task</p></td><td class="ebx_definitionListDefinition"><p>Specifies a Java class that performs custom actions. The associated class must belong to the same module as the workflow model. Its labels and descriptions are not displayed dynamically to users in workflow models.</p></td></tr>
+</table>
+<p><a href="../models/modules_packaging.html">Packaging TIBCO EBX&reg; modules</a></p><h3 id="workflow.scriptTask.library">
+Library script tasks</h3>
+<p>EBX&reg; includes the following built-in library script tasks:</p><ul>
+<li><p>Create a dataspace</p></li><li><p>Create a snapshot</p></li><li><p>Merge a dataspace</p></li><li><p>Import an archive</p></li><li><p>Close a dataspace</p></li><li><p>Set a data context variable</p></li><li><p>Send an email</p></li><li><p>Delete records (Note: this script can remove several records)</p></li></ul>
+<p>Library script tasks are classes that extend the class <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTaskBean.html"><code>ScriptTaskBean</code></a>. Besides the built-in library script tasks, additional library script tasks can be defined for use in workflow models. Their labels and descriptions can be localized.</p><p>The method <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTaskBean.html#executeScript-com.orchestranetworks.workflow.ScriptTaskBeanContext-"><code>ScriptTaskBean.executeScript</code></a> is called when the data workflow reaches the corresponding step. </p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>The method <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTaskBean.html#executeScript-com.orchestranetworks.workflow.ScriptTaskBeanContext-"><code>ScriptTaskBean.executeScript</code></a> must not create any threads because the data workflow moves on as soon as the method is executed. Each operation in this method must therefore be synchronous.</p></div>
+<p>See the <a href="../workflow/workflowmodel.html#scriptTaskBean">example</a>.</p><p>It is possible to dynamically set variables of the library script task if its implementation follows the Java Bean specification. Variables must be declared as parameters of the bean of the library script task in <code>module.xml</code>. The workflow data context is not accessible from a Java bean.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Some built-in library script tasks are marked as &quot;deprecated&quot; because they are not compatible with internationalization. It is recommended to use the new script tasks that are compatible with internationalization.</p></div>
+<h3 id="id4s2">
+Specific script tasks</h3>
+<p>Specific script tasks are classes that extend the class <a href="../workflow/workflowmodel.html#scriptTask">Sample of ScriptTask</a>.</p><p>The method <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTask.html#executeScript-com.orchestranetworks.workflow.ScriptTaskContext-"><code>ScriptTask.executeScript</code></a> is called when the data workflow reaches the corresponding step.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>The method <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTask.html#executeScript-com.orchestranetworks.workflow.ScriptTaskContext-"><code>ScriptTask.executeScript</code></a> must not create any threads because the data workflow moves on as soon as the method is executed. Each operation in this method must therefore be synchronous.</p></div>
+<p>See the <a href="../workflow/workflowmodel.html#scriptTask">example</a>.</p><p>It is not possible to dynamically set the variables of the bean for specific script tasks. However, the workflow data context is accessible from the Java bean.</p><h2 id="step_condition">
+Conditions</h2>
+<p>Conditions are decision steps in workflows.</p><p>Two types of conditions exist, which, once defined, can be used in workflow model steps:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Library condition</p></td><td class="ebx_definitionListDefinition"><p> EBX&reg; includes a number of built-in library conditions, which can be used as-is.</p><p>Any additional library script tasks must be declared in a <code>module.xml</code> file. A library condition must define its label, description and parameters. When a user selects a library condition for a step in a workflow model, its associated parameters are displayed dynamically.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Specific condition</p></td><td class="ebx_definitionListDefinition"><p>Specifies a Java class that implements a custom condition. The associated class must belong to the same module as the workflow model. Its labels and descriptions are not displayed dynamically to users in workflow models. </p></td></tr>
+</table>
+<p><a href="../models/modules_packaging.html">Packaging TIBCO EBX&reg; modules</a></p><h3 id="workflow.condition.library">
+Library conditions</h3>
+<p>EBX&reg; includes the following built-in library conditions:</p><ul>
+<li><p>Dataspace modified?</p></li><li><p>Data valid?</p></li><li><p>Last user task accepted?</p></li><li><p>Value null or empty?</p></li><li><p>Values equals?</p></li></ul>
+<p>Library conditions are classes that extend the class <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ConditionBean.html"><code>ConditionBean</code></a>. Besides the built-in library conditions, additional library conditions can be defined for use in workflow models. Their labels and descriptions can be localized.</p><p>See the <a href="../workflow/workflowmodel.html#conditionBean">example</a>.</p><p>It is possible to dynamically set variables of the library condition if its implementation follows the Java Bean specification. Variables must be declared as parameters of the bean of the library condition in <code>module.xml</code>. The workflow data context is not accessible from a Java bean.</p><h3 id="id5s2">
+Specific conditions</h3>
+<p>Specific conditions are classes that extend the class <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/Condition.html"><code>Condition</code></a>.</p><p>See the <a href="../workflow/workflowmodel.html#condition">example</a>.</p><p>It is not possible to dynamically set the variables of the bean for specific conditions. However, the workflow data context is accessible from the Java bean.</p><h2 id="subworkflows">
+Sub-workflow invocations</h2>
+<p>Sub-workflow invocation steps in workflow models put the current workflow into a waiting state and invoke one or more workflows.</p><p>It is possible to include another workflow model definition in the current workflow by invoking it alone in a sub-workflow invocation step.</p><p>If multiple sub-workflows are invoked by a single step, they are run concurrently, in parallel. All sub-workflows must be terminated before the original workflow continues onto the next step. The label and description of each sub-workflow can be localized. </p><p> The property « Foreground sub-workflow » is useful to precise the progress strategy when several sub-workflows are launched. If the previous step progress strategy is « directly open the next step », this property defines which sub-workflow should be considered in the foreground (only one sub-workflow can hold this behavior). Only the work items which have been generated in this foreground sub-workflow will be able to be opened automatically without passing by the inbox. If only one sub-workflow is defined, this property is ignored (the single sub-workflow is automatically considered in the foreground). For further information, refer to the progress strategy:&nbsp;<a href="#progressStrategy">Progress strategy of the next step</a></p><p>Two types of sub-workflow invocations exist:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Static</p></td><td class="ebx_definitionListDefinition"><p>Defines one or more sub-workflows to be invoked each time the step is reached in a data workflow. For each sub-workflow, it is possible to set its localized labels and descriptions, as well as the input and output variable mappings in its data context.</p><p>This mode is useful when the sub-workflows to be launched and the output mappings are predetermined.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dynamic</p></td><td class="ebx_definitionListDefinition"><p>Specifies a Java class that implements a custom sub-workflow invocation. All workflows that could be potentially invoked as sub-workflows by the code must be declared as dependencies.</p><p>The workflow data context is directly accessible from the Java bean.</p><p>Dynamic sub-workflow invocations must be declared in a <code>module.xml</code> file.</p><p>This mode is useful when the launch of sub-workflows is conditional (for example, if it depends on a data context variable), or when the output mapping depends on the execution of the sub-workflows.</p></td></tr>
+</table>
+<h2 id="waitTasks">
+Wait tasks</h2>
+<p>Wait task steps in workflow models put the current workflow into a waiting state until a specific event is received.</p><p>When a wait task is reached, the workflow engine generates a unique resume identifier associated with the wait task. This identifier will be required to resume the wait task, and as a consequence the associated workflow.</p><p>A wait task specifies which profile is authorized to resume the wait task; and a Java class that implements a wait task bean: <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/WaitTaskBean.html"><code>WaitTaskBean</code></a>.</p><p> The workflow data context is directly accessible from the Java bean.</p><p>Wait task beans must be declared in a <code>module.xml</code> file.</p><p>First, the wait task bean is called when the workflow starts waiting. At this time, the generated resume identifier is available to call a web service for example. Then, the wait task bean is called when the wait task is resumed. In this way, the data context may be updated according to the received parameters.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The built-in administrator always has the right to resume a workflow.</p></div>
+<h2 id="workflowdiagram">
+Editing the workflow diagram</h2>
+<h3 id="id8s1">
+About</h3>
+<p>A workflow model is displayed in a BPMN-like editable diagram. </p><p>This view provides full editing capabilities and can help modelers have a clear view of the workflow model they are designing.</p><p>Please also note that, although the diagram is derived from BPMN standards, it is not a strict representation of BPMN since EBX&reg; workflow concepts are slightly different.</p><h4 id="diagramsave">
+Saving the layout</h4>
+<p>It is possible to save the modified layout. Please note that this is not a user-based save: it will be shared by all the users.</p><h3 id="actions">
+Actions</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Export as PNG</p></td><td class="ebx_definitionListDefinition"><p>Creates a PNG image.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Export as SVG</p></td><td class="ebx_definitionListDefinition"><p>Creates an SVG image.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Export as PDF</p></td><td class="ebx_definitionListDefinition"><p>Creates a PDF document from the workflow model.</p></td></tr>
+</table>
+<h3 id="view">
+View</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Layout &gt; Default layout</p></td><td class="ebx_definitionListDefinition"><p>Applies the default layout to the diagram.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Display &gt; Show/Hide grid</p></td><td class="ebx_definitionListDefinition"><p>Shows the grid if the grid is not visible, hides it otherwise.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Display &gt; Zoom In</p></td><td class="ebx_definitionListDefinition"><p>A zoom in is executed on the diagram. To go faster you can use &quot;Ctrl, Up mouse wheel&quot; with the mouse pointing the diagram boundary.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Display &gt; Zoom Out</p></td><td class="ebx_definitionListDefinition"><p>A zoom out is executed on the diagram. To go faster you can use &quot;Ctrl, Down mouse wheel&quot; with the mouse pointing the diagram boundary.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Plan view &gt; Hierarchy</p></td><td class="ebx_definitionListDefinition"><p>Shows the hierarchical view of a given workflow model if enabled.</p></td></tr>
+</table>
+<h3 id="buttons">
+Buttons</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Save layout</p></td><td class="ebx_definitionListDefinition"><p>Saves the current layout.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Save layout and close</p></td><td class="ebx_definitionListDefinition"><p>Saves the current layout and closes the service.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Revert</p></td><td class="ebx_definitionListDefinition"><p>Reverts changes and reloads a previously saved layout.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Close</p></td><td class="ebx_definitionListDefinition"><p>Closes the service.</p></td></tr>
+</table>
+<h3 id="id8s5">
+Edit</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Create</p></td><td class="ebx_definitionListDefinition"><p>Hovering over a link or selecting it, makes &#39;+&#39; appear. It is used to create a new step.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Delete</p></td><td class="ebx_definitionListDefinition"><p>DEL</p><p>Pressing &#39;DEL&#39; key will remove the selected node.</p><p>Please note that this action cannot be undone.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Node toolbar</p></td><td class="ebx_definitionListDefinition"><p>Hovering on a node or directly selecting it makes a toolbar appear. It is used to either:</p><ul>
+<li><p>Edit a step.</p></li><li><p>Remove a step.</p></li><li><p>Duplicate a step.</p></li><li><p>Relink to an existing step.</p></li><li><p>Show or hide in progress view.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Edit a node</p></td><td class="ebx_definitionListDefinition"><p>Double click on a node in order to quick edit a step.</p></td></tr>
+</table>
+<h3 id="features">
+Features</h3>
+<p>The diagram view offers useful additional features </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Undo last action</p></td><td class="ebx_definitionListDefinition"><p>CTRL + Z</p><p>Please note that it cannot be done after the following actions: </p><ul>
+<li><p>Create/Remove/Edit/Duplicate a step</p></li><li><p>Relink</p></li><li><p>Show/Hide in progress view</p></li><li><p>Revert</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Zoom in/Zoom out.</p></td><td class="ebx_definitionListDefinition"><p>Mouse middle button then mouse wheel / CTRL then mouse wheel. Also see <a href="#view">View</a></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Multiple selection</p></td><td class="ebx_definitionListDefinition"><p>Click on the nodes or links selected holding down the CTRL button / Draw a selection rectangle (you will need to hold down the left click for 1 second before drawing the area).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Customizing links drawing</p></td><td class="ebx_definitionListDefinition"><p>When clicking on a link, you can either move the segments by dragging the squares which appear on the corners, or separate a specific segment by moving the circle in the middle.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Edit a step</p></td><td class="ebx_definitionListDefinition"><p>Double clicking on a step will display an edition form.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Overview</p></td><td class="ebx_definitionListDefinition"><p>A panel is now available with a miniature workflow diagram view which can be used to navigate within it. This panel can be collapsed, expanded and dragged inside the area allocated for the workflow diagram view. </p></td></tr>
+</table>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html">table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Workflow models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

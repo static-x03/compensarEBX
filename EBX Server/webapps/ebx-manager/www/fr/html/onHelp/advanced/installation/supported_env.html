@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Supported environments</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="installation_conf" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=installation/supported_env.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+<h1>
+Supported environments</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#clientEnv">Browsing environment</a><ul class="toc2">
+<li class="toc2"><a href="#browsers">Supported web browsers</a></li><li class="toc2"><a href="#resolution">Screen resolution</a></li><li class="toc2"><a href="#id1s3">Refreshing pages</a></li><li class="toc2"><a href="#id1s4">&quot;Previous&quot; and &quot;Next&quot; buttons</a></li><li class="toc2"><a href="#browconf">Browser configuration</a></li><li class="toc2"><a href="#id1s6">Limitations</a></li></ul>
+</li><li class="toc1"><a href="#applicationServers">Supported application servers</a></li><li class="toc1"><a href="#databases">Supported databases</a></li></ul>
+</div>
+<h2 id="clientEnv">
+Browsing environment</h2>
+<h3 id="browsers">
+Supported web browsers</h3>
+<p>The TIBCO EBX&reg; web interface supports the following browsers:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Microsoft Edge chromium</p></td><td class="ebx_definitionListDefinition"><p>As Microsoft Edge chromium is updated frequently and it is not possible to deactivate automatic updates, TIBCO Software Inc. only tests and makes the best effort to support the latest version available.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Microsoft Edge</p></td><td class="ebx_definitionListDefinition"><p>Minimum supported version is 44</p><p>Compatibility mode is not supported.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Microsoft Internet Explorer 11</p></td><td class="ebx_definitionListDefinition"><p>Compatibility mode is not supported.</p><p><strong>Performance limitations:</strong> page loading with IE11 is two times slower. This issue is observed when forms have many input components, and particularly many multi-occurrence groups.</p><p><strong>Graphical layout:</strong> graphical rendering in IE11 can slightly differ from other browsers (for example, the alignment of some labels, icons and other components can be off by a few pixels).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mozilla Firefox ESR 68 (see details)</p></td><td class="ebx_definitionListDefinition"><p>As Mozilla Firefox is updated frequently, TIBCO Software Inc. only fully supports version ESR 68. See <a href="https://www.mozilla.org/en-US/firefox/organizations/faq/">Mozilla Firefox ESR</a> for more details.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Google Chrome</p></td><td class="ebx_definitionListDefinition"><p>As Google Chrome is updated frequently and it is not possible to deactivate automatic updates, TIBCO Software Inc. only tests and makes the best effort to support the latest version available.</p></td></tr>
+</table>
+<h3 id="resolution">
+Screen resolution</h3>
+<p>The minimum screen resolution for EBX&reg; is 1024x768.</p><h3 id="id1s3">
+Refreshing pages</h3>
+<p>Browser page refresh is not supported by EBX&reg;. When a page refresh is performed, the last user action is re-executed, and therefore could result in potential issues. It is thus imperative to use the action buttons and links offered by EBX&reg; instead of refreshing the page.</p><h3 id="id1s4">
+&quot;Previous&quot; and &quot;Next&quot; buttons</h3>
+<p>Browser&#39;s previous and next page buttons are not supported by EBX&reg;. When navigating through page history, an obsolete user action is re-executed, and therefore could result in potential issues. It is thus imperative to use the action buttons and links offered by EBX&reg; rather than browser&#39;s buttons.</p><h3 id="browconf">
+Browser configuration</h3>
+<p>The following features must be activated in the browser configuration for the user interface to work properly:</p><ul>
+<li><p>JavaScript</p></li><li><p>Ajax</p></li><li><p>Pop-ups</p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Avoid using any browser extensions or plug-ins, as they could interfere with the proper functioning of EBX&reg;. </p></div>
+<h3 id="id1s6">
+Limitations</h3>
+<p>Some browsers may have a limitation on the number of iframes that can be embedded. If this is the case, it limits to the number of items that can be pushed in the breadcrumb. Please check the browser documentation for more details. </p><h2 id="applicationServers">
+Supported application servers</h2>
+<p>EBX&reg; supports the following configurations:</p><ul>
+<li><p>Java Runtime Environment: JRE 8 or 11, which necessarily includes the limitations specified by the Java Virtual Machine implementation vendor. For example, for JRE and JDK 8, Oracle states that they are &quot;not updated with the latest security patches and are not recommended for use in production&quot;. See <a href="https://www.oracle.com/java/technologies/oracle-java-archive-downloads.html"> Oracle Java Archive site </a>. </p></li><li><p>Any Java application server that complies with the Servlet 3.0 up to 5.0 except, for example Tomcat 7.0 up to 10.0 except, WebSphere Application Server 8.5.5 or higher, WebLogic Application Server 14c or higher, JBoss EAP 6.0 or higher. See <a href="./deploy_on_jee.html#examples">Java EE deployment overview</a>.</p></li><li><p>The application server must support the JSON Processing 1.1 (<a href="https://www.jcp.org/en/jsr/detail?id=374">JSR 374</a>) or allows the uses of the one embedded in the <code>ebx.jar</code> library. For example Tomcat does not provide any libraries to support this specification (only the embedded one can be use), WebSphere Application Server allows to reverse the classloading system (making the embedded one a priority), WebLogic Application Server 14c or higher supports this specification, JBoss EAP allows to include or exclude the available libraries.</p></li><li><p>The application server must use UTF-8 encoding for HTTP query strings from EBX&reg;. This can be set at the application server level.</p><p>For example, on Tomcat, you can set the server to always use the UTF-8 encoding, by setting <code>URIEncoding</code> to &#39;UTF-8&#39; on the <code>&lt;Connector&gt;</code> in the <code>server.xml</code> configuration file. Alternatively, you can set the server to use the encoding of the request body by setting the parameter <code>useBodyEncodingForURI</code> to &#39;true&#39; in <code>server.xml</code>.</p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>Limitations apply regarding clustering and hot deployment/undeployment: </p><p>Clustering: EBX&reg; does not include a cache synchronization mechanism, thus it cannot be deployed into a cluster of active instances. See <a href="../engine/repository_administration.html#architecture">Technical architecture</a> for more information. </p><p>Hot deployment/undeployment: EBX&reg; does not support hot deployment/undeployment of web applications registered as EBX&reg; modules, or of EBX&reg; built-in web applications.</p></li><li><p>WebSphere Application Server&#39;s Java SDKs under version 8.0.4.10 are incompatible with the embedded Apache Calcite 1.26.0 third-party library. It is highly recommended to use the latest Java SDK available and compatible with the application server.</p></li></ul>
+</p></div>
+<h2 id="databases">
+Supported databases</h2>
+<p>The EBX&reg; repository supports the Relational Database Management Systems listed below; with suitable JDBC drivers. It is important to follow the database vendor recommendations and update policies regarding the database itself, as well as the JDBC driver.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Oracle Database 12c or higher.</p></td><td class="ebx_definitionListDefinition"><p>The distinction of <code>null</code> values encounters certain limitations. On simple <code>xs:string</code> elements, Oracle does not support the distinction between empty strings and <code>null</code> values. See <a href="../models/constraints.html#distinguishNullFromEmptyString">Empty string management</a> for more information.</p><p>The user with which EBX&reg; connects to the database requires the following privileges:</p><ul>
+<li><p>CREATE SESSION,</p></li><li><p>CREATE TABLE,</p></li><li><p>ALTER SESSION,</p></li><li><p>CREATE SEQUENCE,</p></li><li><p>A non-null quota on its default tablespace.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>PostgreSQL 9.6 or higher.</p></td><td class="ebx_definitionListDefinition"><p>The user with which EBX&reg; connects to the database needs the CONNECT privilege on the database hosting the EBX&reg; repository. Beyond this, the default privileges on the public schema of this database are suitable.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Amazon Aurora PostgreSQL 2.3 (compatible with PostgreSQL 10.7) or higher.</p></td><td class="ebx_definitionListDefinition"><p>The comments in the above section for PostgreSQL apply.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>SAP HANA Database 2.0 or Higher.</p></td><td class="ebx_definitionListDefinition"><p>When using SAP HANA Database as the underlying database, certain schema evolutions are not supported. It is, for example, impossible to reduce the length of a column; this is a limitation of HANA, as mentioned in the SQL reference guide: &quot;For row table, only increasing the size of VARCHAR and NVARCHAR type column is allowed.&quot;</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Microsoft SQL Server 2012 SP4 or higher.</p></td><td class="ebx_definitionListDefinition"><p>When used with Microsoft SQL Server, EBX&reg; uses the default database collation to compare and sort strings stored in the database. This applies to strings used in the data model definition, as well as data stored in relational and history tables. The default database collation can be specified when the database is created. Otherwise, the database engine server collation is used. To avoid naming conflicts or unexpected behaviors, a case- and accent-sensitive collation as the default database collation must be used (the collation name is suffixed by &quot;CS_AS&quot; or the collation is binary).</p><p>The default setting to enforce transaction isolation on SQL Server follows a pessimistic model. Rows are locked to prevent any read/write concurrent accesses. This may cause liveliness issues for mapped tables (history or relational). To avoid such issues, it is recommended to activate <a href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/snapshot-isolation-in-sql-server">snapshot isolation</a> on your SQL Server database. </p><p>The user with which EBX&reg; connects to the database requires the following privileges:</p><ul>
+<li><p>CONNECT, SELECT and CREATE TABLE on the database hosting the EBX&reg; repository,</p></li><li><p>ALTER, CONTROL, UPDATE, INSERT, DELETE on its default schema.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Microsoft Azure SQL Database</p></td><td class="ebx_definitionListDefinition"><p>EBX&reg; has been qualified on Microsoft Azure SQL Database v12 (12.00.700), and is regularly tested to verify compatibility with the current version of the Azure database service.</p><p>When used with Microsoft Azure SQL, EBX&reg; uses the default database collation to compare and sort strings stored in the database. This applies to strings used in the data model definition, as well as data stored in relational and history tables. The default database collation can be specified when the database is created. Otherwise, the database engine server collation is used. To avoid naming conflicts or unexpected behaviors, a case- and accent-sensitive collation as the default database collation must be used (the collation name is suffixed by &quot;CS_AS&quot; or the collation is binary).</p><p>The user with which EBX&reg; connects to the database requires the following privileges:</p><ul>
+<li><p>CONNECT, SELECT and CREATE TABLE on the database hosting the EBX&reg; repository,</p></li><li><p>ALTER, CONTROL, UPDATE, INSERT, DELETE on its default schema.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>H2 v1.4.196 or higher.</p></td><td class="ebx_definitionListDefinition"><p>H2 is not supported for production environments.</p><p>The default H2 database settings do not allow consistent reads when records are modified.</p></td></tr>
+</table>
+<p>For other relational databases, please contact the Support team at <a href="https://support.tibco.com">https://support.tibco.com</a>.</p><div class="ebx_attention" id="sqlAccess">
+<h5>
+Attention</h5>
+<p>In order to guarantee the integrity of the EBX&reg; repository, it is strictly forbidden to perform direct modifications to the database (for example, using direct SQL writes).</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/repository_administration.html">Repository administration</a></li><li><a href="../installation/deploy_on_jee.html#dataSource">Data source of the EBX&reg; repository</a></li><li><a href="../installation/properties.html#ebxPersistence">Configuring the EBX&reg; repository</a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

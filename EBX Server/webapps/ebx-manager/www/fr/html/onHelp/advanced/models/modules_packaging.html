@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Packaging TIBCO EBX&reg; modules</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin_modules" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Introduction</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/modules_packaging.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Introduction</span></div>
+<h1>
+Packaging TIBCO EBX&reg; modules</h1>
+<p>An EBX&reg; module is a standard Java EE web application, packaging various resources such as XML Schema documents, Java classes and static resources.</p><p>Since EBX&reg; modules are web applications they benefit from features such as class-loading isolation, WAR or EAR packaging, and Web resources exposure. </p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#structure">Module structure</a></li><li class="toc1"><a href="#declaration">Module declaration</a></li><li class="toc1"><a href="#registration">Module registration</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Deployment descriptor example</a></li><li class="toc2"><a href="#id3s2">Registration example</a></li></ul>
+</li><li class="toc1"><a href="#packaged_resources">Packaged resources</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Directory structure</a></li><li class="toc2"><a href="#id4s2">Example</a></li></ul>
+</li></ul>
+</div>
+<h2 id="structure">
+Module structure</h2>
+<p>An EBX&reg; module contains the following files:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>/WEB-INF/ebx/module.xml</code></p></td><td class="ebx_definitionListDefinition"><p>This mandatory document defines the main properties and services of the module. See <a href="#declaration">Module declaration</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>/WEB-INF/web.xml</code></p></td><td class="ebx_definitionListDefinition"><p> This is the standard Java EE deployment descriptor. It can perform the registration of the EBX&reg; module when the application server is launched. See <a href="#registration">Module registration</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>/META-INF/MANIFEST.MF</code></p></td><td class="ebx_definitionListDefinition"><p>Optional. If present, EBX&reg; reports the &#39;Implementation-Title&#39; and &#39;Implementation-Version&#39; values to <em>Administration &gt; Technical configuration &gt; Modules and data models</em>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>/www/</code></p></td><td class="ebx_definitionListDefinition"><p>This optional directory contains all packaged resources, which are accessible via public URL. See <a href="#packaged_resources">Packaged resources</a>.</p></td></tr>
+</table>
+<p>Required files for Oracle WebLogic server:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>/WEB-INF/weblogic.xml</code></p></td><td class="ebx_definitionListDefinition"><p> WebLogic deployment descriptor file which activates the <code>prefer-web-inf-classes</code> policy, such as the following:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app">
+  &lt;container-descriptor>
+    &lt;prefer-web-inf-classes>true&lt;/prefer-web-inf-classes>
+  &lt;/container-descriptor>
+&lt;/weblogic-web-app>
+</pre>
+<p> See <a href="https://docs.oracle.com/en/middleware/standalone/weblogic-server/14.1.1.0/wbapp/weblogic_xml.html"> weblogic.xml Deployment Descriptor Elements </a> for more information. </p></td></tr>
+</table>
+<h2 id="declaration">
+Module declaration</h2>
+<p> A module is declared using the document <code>/WEB-INF/ebx/module.xml</code>. For example:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;module xmlns="urn:ebx-schemas:module_2.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:ebx-schemas:module_2.4 http://schema.orchestranetworks.com/module_2.4.xsd">
+	&lt;name>moduleTest&lt;/name>
+&lt;/module>
+</pre>
+<p>See the <a target="_blank" href="../resources/schema/module_2.4.xsd">associated schema</a> for documentation about each property. The main properties are as follows:</p><table cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Element</strong></p></th><th valign="top"><p><strong>Description</strong></p></th><th align="center" valign="top"><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Defines the unique identifier of the module in the server instance. The module name usually corresponds to the name of the web application (the name of its directory).</p></td><td align="center" valign="top"><p>Yes.</p></td></tr>
+<tr>
+<td valign="top"><p><code>publicPath</code></p></td><td valign="top"><p>Defines a path other than the module&#39;s name identifying the web application in public URLs. This path is added to the URL of external resources of the module when computing absolute URLs. If this field is not defined, the public path is the module&#39;s <code>name</code>, defined above.</p></td><td align="center" valign="top"><p>No.</p></td></tr>
+<tr>
+<td valign="top"><p><code>services</code></p></td><td valign="top"><p>Declares user services using the legacy API. See <a href="../user_interface_legacy/ui_services.html#configuration">Declaration and configuration</a> of legacy user services. From the version 5.8.0, it is strongly advised to use the <a href="../user_interface/user_services_overview.html">new user services</a>.</p></td><td align="center" valign="top"><p>No.</p></td></tr>
+<tr>
+<td valign="top"><p><code>beans</code></p></td><td valign="top"><p>Declares reusable Java bean components. See the <a href="../workflow/workflowmodel.html">workflow package</a>.</p></td><td align="center" valign="top"><p>No.</p></td></tr>
+<tr>
+<td valign="top"><p><code>ajaxComponents</code></p></td><td valign="top"><p>Declares Ajax components. See <a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIAjaxComponent.html#declareInModule">Declaring an Ajax component in a module</a> in the Java API. </p></td><td align="center" valign="top"><p>No.</p></td></tr>
+</tbody>
+</table>
+<h2 id="registration">
+Module registration</h2>
+<p>In order to be identifiable by EBX&reg;, a module must be registered at runtime when the application server is launched. For a web application, every EBX&reg; module must:</p><ul>
+<li><p>contain a Java class with the annotation <code>@WebListener</code> extending the class <a target="_blank" href="../Java_API/com/orchestranetworks/module/ModuleRegistrationListener.html"><code>ModuleRegistrationListener</code></a>. </p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p> When using the <code>@WebListener</code> annotation, ensure that the application server is configured to activate the servlet 3.0 annotation scanning for the web application. See <a href="https://www.jcp.org/en/jsr/detail?id=315"><code>JSR 315</code>: JavaTM Servlet 3.0 Specification</a> for more information. </p></div>
+</li></ul>
+<p>or:</p><ul>
+<li><p>contain a Servlet extending the class <a target="_blank" href="../Java_API/com/orchestranetworks/module/ModuleRegistrationServlet.html"><code>ModuleRegistrationServlet</code></a>; </p></li><li><p>make a standard declaration of this servlet in the deployment descriptor <code>/WEB-INF/web.xml</code>;</p></li><li><p>ensure that this servlet will be registered at server startup by adding the following standard element to the deployment descriptor: <code>&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</code>. </p></li></ul>
+<p>Additional recommendations and information:</p><ul>
+<li><p>The method <code>handleRepositoryStartup</code> in <a target="_blank" href="../Java_API/com/orchestranetworks/module/ModuleRegistrationServlet.html"><code>ModuleRegistrationServlet</code></a> allows setting the logger associated with the module and defining additional behavior such as common JavaScript and CSS resources.</p></li><li><p>The specific class extending <code>ModuleRegistrationServlet</code> must be located in the web application (under <code>/WEB-INF/classes</code> or <code>/WEB-INF/lib</code>; due to the fact that this class is internally used as a hook to the application&#39;s class-loader, to load Java classes used by the data models associated with the module).</p></li><li><p> The application server startup process is asynchronous and web applications / EBX&reg; modules are discovered dynamically. The EBX&reg; repository initialization depends on this process and will wait for the registration of all used modules up to an unlimited amount of time. As a consequence, if a used module is not deployed for any reason, it must be declared in the EBX&reg; main configuration file. For more information, see the property <a href="../installation/properties.html#undeployedModules">Declaring modules as undeployed</a>. </p></li><li><p>All module registrations and unregistrations are logged in the <code>log.kernel</code> category.</p></li><li><p>If an exception occurs while loading a module, the cause is written in the application server log.</p></li><li><p>Once the servlet is out of service, the module is unregistered and the data models and associated datasets become unavailable. Note that hot deployment/undeployment is <a href="../installation/supported_env.html#applicationServers">not supported</a>.</p></li></ul>
+<h3 id="id3s1">
+Deployment descriptor example</h3>
+<p> Here is an example of a Java EE deployment descriptor (<code>/WEB-INF/web.xml</code>): </p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;web-app xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                          https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_0.xsd"
+      version="3.0">
+	&lt;servlet>
+	   &lt;servlet-name>InitEbxServlet&lt;/servlet-name>
+	   &lt;servlet-class>com.foo.RegisterServlet&lt;/servlet-class>
+	   &lt;load-on-startup>1&lt;/load-on-startup>
+	&lt;/servlet>
+&lt;/web-app>
+</pre>
+<h3 id="id3s2">
+Registration example</h3>
+<p>Here is an implementation example of the <code>ModuleRegistrationServlet</code>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+package com.foo;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import com.onwbp.base.repository.*;
+/**
+  */
+public class RegisterServlet extends ModuleRegistrationServlet
+{
+
+	public void handleRepositoryStartup(ModuleContextOnRepositoryStartup aContext)
+		throws OperationException
+	{
+		// Perform module-specific initializations here
+		...
+		
+		// Declare custom resources here
+		aContext.addExternalStyleSheetResource(MyCompanyResources.COMMON_STYLESHEET_URL);
+		aContext.addExternalJavaScriptResource(MyCompanyResources.COMMON_JAVASCRIPT_URL);
+		
+		aContext.addPackagedStyleSheetResource("myModule.css");
+		aContext.addPackagedJavaScriptResource("myModule.js");
+		
+	}
+	
+	public void handleRepositoryShutdown()
+	{
+		// Release resources of the current module when the repository is shut down here
+		...
+	}
+	
+		public void destroyBeforeUnregisterModule()
+	{
+		// Perform operations when this servlet is being taken out of service here
+		...
+	}
+
+}
+</pre>
+<h2 id="packaged_resources">
+Packaged resources</h2>
+<p>The packaged resources are files and documents that can be directly accessed from client browsers and can be managed and specified either as <code>osd:resource</code> fields or via the Java API. They have various types and can also be localized.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/ResourceType.html"><code>ResourceType</code></a></li><li><a href="./types.html#oresource">Type <code>osd:resource</code></a></li></ul>
+</div>
+<h3 id="id4s1">
+Directory structure</h3>
+<p>The packaged resources must be located under the following directory structure:</p><ol>
+<li><p>On the first level, the directory <code>/www/</code> must be located at the root of the module (web application).</p></li><li><p>On the second level, the directory must specify the localization. It can be:</p><ul>
+<li><p><code>common/</code> should contain all the resources to be used by default, either because they are locale-independent or as the default localization (in EBX&reg;, the default localization is <code>en</code>, namely English);</p></li><li><p><code>{lang}/</code> when localization is required for the resources located underneath, with <code>{lang}</code> to be replaced by the actual locale code; it should correspond to the locales supported by EBX&reg;; for more information, see <a href="../installation/properties.html#locales">Configuring EBX&reg; localization</a>.</p></li></ul>
+</li><li><p>On the third level, the directory must specify the resource type. It can be:</p><ul>
+<li><p><code>jscripts/</code> for JavaScript resources;</p></li><li><p><code>stylesheets/</code> for Cascading Style Sheet (CSS) resources;</p></li><li><p><code>html/</code> for HTML resources;</p></li><li><p><code>icons/</code> for icon typed resources;</p></li><li><p><code>images/</code> for image typed resources.</p></li></ul>
+</li></ol>
+<h3 id="id4s2">
+Example</h3>
+<p>In this example, the image <code>logoWithText.jpg</code> is the only resource that is localized:</p><pre class="brush: plain; toolbar: false; gutter: false;">
+/www
+ ├── common
+ │   ├── images
+ │   │   ├── myCompanyLogo.jpg
+ │   │   └── logoWithText.jpg
+ │   ├── jscripts
+ │   │   └── myCompanyCommon.js
+ │   └── stylesheets
+ │       └── myCompanyCommon.css
+ ├── de
+ │   └── images
+ │       └── logoWithText.jpg
+ └── fr
+     └── images
+         └── logoWithText.jpg
+</pre>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Introduction</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

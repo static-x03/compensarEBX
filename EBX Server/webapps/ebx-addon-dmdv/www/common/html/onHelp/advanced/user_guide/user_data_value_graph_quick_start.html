@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Quick start</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_quick_start" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_quick_start.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs</span></div>
+<h1 id="user_sample_topPage">
+Quick start</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Creating a graph</a></li><li class="toc1"><a href="#id3">Preview pane features</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>The add-on has a drag-and-drop enabled configuration editor. The editor allows you to create new, or edit existing data value graph configurations. Of course, you can choose to create and edit configuration options manually. However, using the editor provides the following advantages:</p><ul>
+<li><p>You get immediate visual feedback on changes to the configuration.</p></li><li><p>The add-on automatically handles the creation of settings required to add tables, create links to display relationships, and setting options to customize display.</p></li><li><p>The editor is accessible from a table even when no graph exists. This prevents you from having to navigate in EBX® to the <strong>Administration</strong> panel in the <strong>Advanced perspective</strong> to create a new graph.</p></li></ul>
+<h2 id="id2">
+Creating a graph</h2>
+<p>The following describes how to use the editor to create a data value and relationship graph:</p><ol>
+<li><p>Create a configuration using one of the following methods:</p><ol>
+<li><p>From a table: select one or more records and from the <strong>Actions</strong> menu choose <em>Visualization &gt; Display data using configuration</em>. In the window that displays, select <strong>Create Configuration</strong>.</p><p><img alt="/create-config-1.png" src="./resources/images/create-config-1.png"></img></p></li><li><p>From the <strong>Administration</strong> panel: Navigate to <em>TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Configuration</em>. Select the &#39;+&#39; icon to create a new configuration.</p><p><img alt="/create-config-2.png" src="./resources/images/create-config-2.png"></img></p></li><li><p>Fill in the required fields and select <strong>Save</strong>. For more details about the fields and options, hover over the label and select the &#39;?&#39; icon to see its tooltip.</p><p><img alt="/create-config-3.png" src="./resources/images/create-config-3.png"></img></p></li></ol>
+</li><li><p>Use the editor to choose data models and add tables:</p><ol>
+<li><p>Enter the editor by selecting <strong>Edit Graph Display</strong>.</p><p><img alt="/editor-config-1.png" src="./resources/images/editor-config-1.png"></img></p></li><li><p>In the <strong>List of data models</strong> sidebar, add one or more data models to the configuration:</p><p><img alt="/editor-config-2.png" src="./resources/images/editor-config-2.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p>Select the &#39;+&#39; icon to add an entry to the list of data models.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p>Use the menu to select the desired data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3)</p></td><td class="ebx_definitionListDefinition"><p>Use these icons to display a graph of the selected data model, or remove this model from the list, respectively.</p></td></tr>
+</table>
+</li><li><p>Drag tables to the <strong>Preview</strong> pane.</p><p>These are the tables that contain the data you want to display when the graph is generated. To generate this graph it must be accessible from one of the included table&#39;s <strong>Actions</strong> menu after choosing <em>Visualization &gt; Display data using configuration</em>. By default, this is the first table you add to the graph. You can change this by exiting the editor and adjusting each table&#39;s <strong>Allow generation from selected table</strong> setting.</p><p><img alt="/editor-config-3.png" src="./resources/images/editor-config-3.png"></img></p></li></ol>
+</li><li><p>Create relationships between tables:</p><ul>
+<li><p><strong>Display as lines:</strong> In the <strong>Preview</strong> pane, hover over a table and drag one of its connection points to a point on another table.</p><p><img alt="/editor-config-4.png" src="./resources/images/editor-config-4.png"></img></p></li><li><p><strong>Display as containers:</strong> In the <strong>Preview</strong> pane, drag one table onto another. The table you drag and add becomes a child of the other node. </p><p><img alt="/editor-config-4a.png" src="./resources/images/editor-config-4a.png"></img></p></li></ul>
+</li><li><p>Optionally, customize display:</p><ol>
+<li><p>From the <strong>Icon</strong> sidebar, drag an icon to a table node in the <strong>Preview</strong> pane.</p><p><img alt="/editor-config-5.png" src="./resources/images/editor-config-5.png"></img></p></li><li><p>Change node and line appearance:</p><p><img alt="/editor-config-6.png" src="./resources/images/editor-config-6.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) </p></td><td class="ebx_definitionListDefinition"><p>Select a link and use the options in the <strong>Link Style</strong> sidebar to adjust link display.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p>Select a node and use the options in the <strong>Node Style</strong> sidebar to alter the node display.</p></td></tr>
+</table>
+</li></ol>
+</li><li><p>Save and close.</p></li></ol>
+<h2 id="id3">
+Preview pane features</h2>
+<p>The following actions are available in the <strong>Preview</strong> pane:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Create links</p></td><td class="ebx_definitionListDefinition"><p>Hover your mouse over a table node and drag one of its connection points to create a link between tables.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Remove tables and links</p></td><td class="ebx_definitionListDefinition"><p>Select the table or link and click the &#39;x&#39; icon to delete.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>View table configuration details</p></td><td class="ebx_definitionListDefinition"><p>Double-click to view and edit table configuration details.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>View link configuration details</p></td><td class="ebx_definitionListDefinition"><p>For links displayed as lines, double-click the line.</p><p>For links displayed as containers, double-click the link icon on the table node.</p></td></tr>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

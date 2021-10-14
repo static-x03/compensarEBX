@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - API Overview</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=developer_guide/dev_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</span></div>
+<h1>
+API Overview</h1>
+<p>The TIBCO EBX® Data Model and Data Visualization Add-on&#39;s API provides extensive access to features and functionality. Using the API, you can generate graphs from sources outside of TIBCO EBX®, customize graph look and feel, provide user access to graphs from custom services, and implement custom filters. The following table shows you where to locate samples that can assist your own implementation:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Topic</p></th><th><p>Sample information and location</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Generating custom data model graphs from external sources and editing templates to customize look and feel.</p></td><td><p>After an administrator uses the add-on&#39;s UI to associate the custom graph with a configuration record, users can select the graph when they run the add-on&#39;s <strong>Generate custom graph</strong> service. See <a href="../developer_guide/dev_external_model.html">Generating a model graph from an external source</a> for more details.</p></td></tr>
+<tr>
+<td valign="top"><p>Writing a custom service from which users can generate a custom data model graph.</p></td><td><p>See <a href="../developer_guide/dev_external_model.html#dev_external_model_custom_service">Generating from a service</a> for more details.</p></td></tr>
+<tr>
+<td valign="top"><p>Generating an existing data value and relationship graph for display in a UI tab.</p></td><td><p>When users open a record included in the graph&#39;s configuration, they can view the graph by selecting the corresponding tab. See <a href="../developer_guide/dev_data_value_relationship.html">Data value and relationship graph options</a> for more details.</p></td></tr>
+<tr>
+<td valign="top"><p>Writing a custom service from which users can generate an existing data value and relationship graph.</p></td><td><p>Users can select the records to display in the graph and run the custom service from the table&#39;s <strong>Actions</strong> menu. See <a href="../developer_guide/dev_data_value_relationship.html#dev_data_value_relationship_custom_service">Displaying a graph from a custom service</a> for more information.</p></td></tr>
+<tr>
+<td valign="top"><p>Creating a custom filter for data value and relationship graphs.</p></td><td><p>The filter can remove nodes that should not display by removing the corresponding relationships. See <a href="../developer_guide/dev_data_value_relationship.html#dev_data_value_relationship_filter">Filtering data values and relationships</a> for more details.</p></td></tr>
+<tr>
+<td valign="top"><p>Implementing node templates to customize data value graph nodes.</p></td><td><p>You can create templates that determine the look and feel of data value graph nodes. The functionality becomes available to users after an administrator links the custom node template implementation with a graph configuration. See <a href="../developer_guide/dev_node_template_overview.html">Node templates</a> for more details.</p></td></tr>
+<tr>
+<td valign="top"><p>Writing a service that displays a default data value and relationship graph.</p></td><td><p>A default data value and relationship graph requires no configuration. Users can select one or more records and generate the graph. This sample code demonstrates how to write your own service to accomplish this and how to make some minor customizations.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "validation": [
+    {
+      "level": "error",
+      "message": "Field 'Value' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/value"
+    },
+    {
+      "level": "error",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    },
+    {
+      "level": "warning",
+      "message": "Value 'AD150' is prohibited.",
+      "blocksCommit": "never",
+      "pathInRecord": "/code"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+.fullscreen-on-btn{
+	background: url(../images/icons/fullscreen-on.svg) no-repeat;
+}
+
+.fullscreen-off-btn{
+	background: url(../images/icons/fullscreen-off.svg) no-repeat;
+}
+
+.fullscreen-off-btn{
+	background: url(../images/icons/fullscreen-off.svg) no-repeat;
+}
+
+.zoom-in-btn{
+	background: url(../images/icons/zoom-in.svg) no-repeat;
+}
+
+.zoom-out-btn{
+	background: url(../images/icons/zoom-out.svg) no-repeat;
+}
+
+.view-config-btn{
+	background: url(../images/icons/drag-icon.svg) no-repeat;
+}
+.add-new-model {
+	background: url(../images/icons/Plussmall.svg) no-repeat;
+}
+.arrow-right {
+	background: url(../images/icons/Arrow-right.svg) no-repeat;
+}
+.arrow-down {
+	background: url(../images/icons/Arrow-down.svg) no-repeat;
+}
+.bin {
+	background: url(../images/icons/Bin.svg) no-repeat;
+}
+.data-model-graph {
+	background: url(../images/icons/FAB-data-model-graph.svg) no-repeat;
+}
+.data-model-graph-inactive {
+	background: url(../images/icons/inactive_graph.svg) no-repeat;
+}
+.undo-btn {
+	background: url(../images/icons/undo.svg) no-repeat;
+}
+
+.settings-btn{
+	background: url(../images/icons/settings.svg) no-repeat;
+}
+
+.orient-bottom-btn{
+	background: url(../images/icons/orientation_bottom.svg) no-repeat;
+	width: 56px;
+    height: 25px;
+    background-position: center;
+    background-size: contain;
+}
+
+.orient-top-btn{
+	background: url(../images/icons/orientation_top.svg) no-repeat;
+	width: 56px;
+    height: 25px;
+    background-position: center;
+    background-size: contain;
+}
+
+.orient-left-btn{
+	background: url(../images/icons/orientation_left.svg) no-repeat;
+	width: 56px;
+    height: 25px;
+    background-position: center;
+    background-size: contain;
+}
+
+.orient-right-btn{
+	background: url(../images/icons/orientation_right.svg) no-repeat;
+	width: 56px;
+    height: 25px;
+    background-position: center;
+    background-size: contain;
+}

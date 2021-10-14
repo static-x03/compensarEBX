@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Using TIBCO EBX&reg; as a Web Component</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_manager_component" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/manager_component_ref.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Using TIBCO EBX&reg; as a Web Component</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Repository element and scope selection</a></li><li class="toc1"><a href="#combinedSelection">Combined selection</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Specific case</a></li><li class="toc2"><a href="#id3s2">Known limitations</a></li></ul>
+</li><li class="toc1"><a href="#specification">Request specifications</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Base URL</a></li><li class="toc2"><a href="#id4s2">User authentication and session information parameters</a></li><li class="toc2"><a href="#entity">Entity and service selection parameters</a></li></ul>
+</li><li class="toc1"><a href="#id5">Example calls to an EBX&reg; Web Component</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>EBX&reg; can be used as a user interface Web Component, called through the HTTP protocol. An EBX&reg; Web Component can be integrated into any application that is accessible through a supported web browser. This method of access offers the major benefits of EBX&reg;, such as user authentication, data validation, and automatic user interface generation, while additionally providing the ability to focus user navigation on specific elements of the repository.</p><p>Typical uses of EBX&reg; Web Components include integrating them into the intranet frameworks of organizations or into applications that manage the assignment of specific tasks to users.</p><h2 id="id2">
+Repository element and scope selection</h2>
+<p>When an EBX&reg; Web Component is called, the user must first be authenticated in the newly instantiated HTTP session. The Web Component then selects a repository element and displays it according to the <code>scope</code> layout parameter defined in the request.</p><p>The parameter <code>firstCallDisplay</code> may change this automatic display according to its value.</p><p>The repository elements that can be selected are as follows:</p><ul>
+<li><p>Dataspace or snapshot</p></li><li><p>Dataset</p></li><li><p>Node</p></li><li><p>Table or a published view</p></li><li><p>Table record</p></li></ul>
+<p>The scope determines how much of the user interface is displayed to the user, thus defining where the user is able to navigate in the session. The default scope that the Web component uses is the smallest possible depending on the entity or service being selected or invoked by the request.</p><p>It is also possible to select a specific perspective as well as a perspective action.</p><p>By default, the selection of the element is done in the context of the perspective of the user if the scope is &quot;full&quot;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_introduction/gui.html#advanced_perspective">Perspective</a></li></ul>
+</div>
+<h2 id="combinedSelection">
+Combined selection</h2>
+<p> A URL of a Web component can specify a perspective and an action or an entity (dataspace, dataset, etc). Thus, for a Web component that has specified in its URL a perspective and an entity (but no action), if an action of the perspective matches this entity, then this action will be automatically selected. </p><p> Otherwise, if no action matches this entity, no action will be selected but the entity is opened regardless. </p><p> If an action is specified at the same time than an entity, this last is ignored and the action will be selected. </p><h3 id="id3s1">
+Specific case</h3>
+<p> If the target entity is a record and if an action is on the table that contains this record, then this action will be selected and the record will be opened inside the action. </p><p> In the same way, if a workflow work item is targeted by the web component, and if an action on « inbox » exists in the perspective, then this action will be selected and the work item will be opened inside it. </p><h3 id="id3s2">
+Known limitations</h3>
+<p>If the Web component specifies a predicate to filter a table, the perspective action must specify the exact same predicate to be selected.</p><p>In the same way, if the perspective action specifies a predicate to filter a table, the Web component must specify the exact same predicate to establish the match.</p><h2 id="specification">
+Request specifications</h2>
+<h3 id="id4s1">
+Base URL</h3>
+<p>In a default deployment, the base URL must be of the following form:</p><blockquote><p><code>http://&lt;host&gt;[:&lt;port&gt;]/ebx/</code></p></blockquote><h3 id="id4s2">
+User authentication and session information parameters</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Parameter</strong></p></th><th valign="top"><p><strong>Description</strong></p></th><th valign="top"><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>login</code> and <code>password</code>, or a <em>user directory-specific token</em></p></td><td valign="top"><p>Specifies user authentication properties. If neither a login and password pair nor a user directory-specific token is provided, user will be required to authenticate through the repository login page.</p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>trackingInfo</code></p></td><td valign="top"><p>Specifies the tracking information of the new session. Tracking information is logged in history tables. Additionally, it can be used to programmatically restrict access permissions.</p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p id="redirect"><code>redirect</code></p></td><td valign="top"><p>The URL to which the user will be redirected at the end of the component session, when they click on the button &#39;Close&#39;. The close button is always displayed for record selections, but whether or not it is displayed for all other cases must be specified using the parameter <code>closeButton</code>.</p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>locale</code></p></td><td valign="top"><p>Specifies the locale to use. Value is either <code>en-US</code> or <code>fr-FR</code>.</p></td><td valign="top"><p>No, default is the locale registered for the user.</p></td></tr>
+</tbody>
+</table>
+<h3 id="entity">
+Entity and service selection parameters</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Parameter</strong></p></th><th valign="top"><p><strong>Description</strong></p></th><th valign="top"><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>branch</code></p></td><td valign="top"><p>Selects the specified dataspace.</p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>version</code></p></td><td valign="top"><p>Selects the specified snapshot.</p></td><td><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>instance</code></p></td><td valign="top"><p>Selects the specified dataset. The value must be the reference of a dataset that exists in the selected dataspace or snapshot.</p></td><td valign="top"><p>Only if <code>xpath</code> or <code>viewPublication</code> is specified. </p></td></tr>
+<tr>
+<td valign="top"><p id="viewPublication"><code>viewPublication</code></p></td><td valign="top"><p>Specifies the publication name of the tabular or hierarchical view to apply to the selected content.</p><p>This publication name is the one declared during the publication of the view. It can be found in the &#39;Administration&#39; area under <em>Views configuration &gt; Views</em>.</p><p>All settings of the view, that is, its filters, sort order, and displayed columns, are applied to the result. A dataspace and a dataset must be selected in order for this view to be applied. The target table selection is not necessary, as it can be automatically determined based on the definition of the view. This parameter can be combined with the predicate specified in the <code>xpath</code> parameter as a logical &#39;AND&#39; operation.</p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>xpath</code></p></td><td valign="top"><p>Specifies a node selection in the dataset. </p><p>Value may be a valid absolute path located in the selected dataset. The notation must conform to a simplified XPath, with abbreviated syntax.</p><p>It can also be a predicate surrounded by &quot;[&quot; and &quot;]&quot; (to be encoded using %5B and %5F respectively) if a table can be automatically selected using other Web Component parameters (for example, <code>viewPublication</code> or <code>workflowView</code>).</p><p>For XPath syntax, see <a href="../references/xpath_ref.html">XPath supported syntax</a></p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>service</code></p></td><td valign="top"><p>Specifies the service to access.</p><p>For more information on built-in User services, see <a href="builtin.html">Built-in services</a>.</p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>workflowView</code></p></td><td valign="top"><p>Specifies the workflow section to be selected.</p></td><td valign="top"><p>No.</p></td></tr>
+<tr>
+<td valign="top"><p><code>perspectiveName</code></p></td><td valign="top"><p>Specifies the name of the perspective to be selected.</p><p>If this parameter is specified, the <code>scope</code> parameter can have only two values: full and data.</p></td><td valign="top"><p>Only if <code>perspectiveActionId</code> or <code>perspectiveActionName</code> is specified. </p></td></tr>
+<tr>
+<td valign="top"><p><code>perspectiveActionId</code></p></td><td valign="top"><p><strong>Deprecated.</strong> Please consider using <code>perspectiveActionName</code> instead. </p><p>Specifies the identifier of the perspective action to be selected. </p></td><td valign="top"><p>No.</p></td></tr>
+<tr>
+<td valign="top"><p><code>perspectiveActionName</code></p></td><td valign="top"><p>Specifies the unique name of the perspective action to be selected.</p></td><td valign="top"><p>No.</p></td></tr>
+</tbody>
+</table>
+<h2 id="id5">
+Example calls to an EBX&reg; Web Component</h2>
+<p>Minimal URI:</p><blockquote><p><code>http://localhost:8080/ebx/</code></p></blockquote><p>Logs in as the user &#39;admin&#39; and selects the &#39;Reference&#39; dataspace:</p><blockquote><p><code>http://localhost:8080/ebx/?login=admin&amp;password=admin&amp;branch=Reference</code></p></blockquote><p>Selects the &#39;Reference&#39; dataspace and accesses the built-in validation service:</p><blockquote><p><code>http://localhost:8080/ebx/?login=admin&amp;password=admin&amp;branch=Reference&amp;service=@validation</code></p></blockquote><p>Selects the roles table in the default directory:</p><blockquote><p><code>http://localhost:8080/ebx/?login=admin&amp;password=admin&amp;branch=ebx-directory&amp;instance=ebx-directory&amp;xpath=/directory/roles</code></p></blockquote><p>Selects the record &#39;admin&#39; in the default directory:</p><blockquote><p><code>http://localhost:8080/ebx/?login=admin&amp;password=admin&amp;branch=ebx-directory&amp;instance=ebx-directory&amp;xpath=/directory/user[./login=&quot;admin&quot;]</code></p></blockquote><p>Accesses the interface for creating a new user in the default directory:</p><blockquote><p><code>http://localhost:8080/ebx/?login=admin&amp;password=admin&amp;branch=ebx-directory&amp;instance=ebx-directory&amp;xpath=/directory/user&amp;service=@creation</code></p></blockquote><p>Compares the record &#39;admin&#39; in the default directory with the record &#39;jSmith&#39;:</p><p>Compares the record &#39;R1&#39; in the dataset &#39;instanceId&#39; in the dataspace &#39;Reference&#39; with the record &#39;R0&#39;:</p><blockquote><p><code>http://localhost:8080/ebx/?login=admin&amp;password=admin&amp;branch=ebx-directory&amp;instance=ebx-directory&amp;xpath=/directory/user[./login=&quot;admin&quot;]&amp;service=@compare&amp;compare.branch=ebx-directory&amp;compare.instance=ebx-directory&amp;compare.xpath=/directory/user[./login=&quot;jSmith&quot;]</code></p></blockquote><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

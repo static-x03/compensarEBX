@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Implementing the data model structure</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_structure" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_implementdatastructure.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+<h1>
+Implementing the data model structure</h1>
+<p>To work with the structural definition of your data model, select the data model you are working with in the navigation pane.</p><p>You can then access the structure of your data model in the navigation pane under &#39;Data structure&#39;, to define the structure of fields, groups, and tables.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Common actions and properties</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Adding elements to the data model</a></li><li class="toc2"><a href="#delete">Deleting elements of the data model</a></li><li class="toc2"><a href="#duplicate">Duplicating existing elements</a></li><li class="toc2"><a href="#move">Moving elements</a></li></ul>
+</li><li class="toc1"><a href="#reusableTypes">Reusable types</a><ul class="toc2">
+<li class="toc2"><a href="#reusableDefine">Defining a reusable type</a></li><li class="toc2"><a href="#reusableUse">Using a reusable type</a></li><li class="toc2"><a href="#includeDataModel">Including data types defined in other data models</a></li></ul>
+</li><li class="toc1"><a href="#id3">Data model element creation details</a><ul class="toc2">
+<li class="toc2"><a href="#addfield">Creating fields</a></li><li class="toc2"><a href="#addtable">Creating tables</a></li><li class="toc2"><a href="#addgroup">Creating groups</a></li><li class="toc2"><a href="#addpkey">Creating primary key fields</a></li><li class="toc2"><a href="#addfkey">Creating or defining foreign key fields</a></li><li class="toc2"><a href="#addAssociation">Creating associations</a></li></ul>
+</li><li class="toc1"><a href="#id4">Modifying existing elements</a><ul class="toc2">
+<li class="toc2"><a href="#removepkey">Removing a field from the primary key</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Common actions and properties</h2>
+<h3 id="id1s1">
+Adding elements to the data model</h3>
+<p>The following elements are available to describe the structure of your data model:</p><ul>
+<li><p>fields</p></li><li><p>groups</p></li><li><p>tables</p></li><li><p>primary keys</p></li><li><p>foreign keys</p></li><li><p>associations</p></li></ul>
+<p>Add a new element relative to any existing element in the data structure by clicking the down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> to the right of the existing entry, and selecting an element creation option from the menu. Depending on whether the existing element is a field, group, or table, you have the choice of creating the new element as a child of the existing element, or before or after the existing element at the same level. You can then follow the element creation wizard to create the new element.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The element <code>root</code> is always added upon data model creation. If this element must be renamed, it can be deleted and recreated with a new name.</p></div>
+<h4>
+Names, labels, descriptions, and information</h4>
+<p>Whenever you create a new element in your data model, you must provide a name for the field &#39;Name&#39; that is unique in its level of the data structure. This name is assigned once the element is created and cannot be changed subsequently.</p><p>You have the option to provide localized user-friendly labels to be displayed in the user interface instead of the unique name of the element, as well as brief localized descriptions of the element. Unlike the unique name, the labels and descriptions are modifiable after creation. According to the language preference of each user, TIBCO EBX&reg; will display the corresponding localized label and description of the element.</p><h3 id="delete">
+Deleting elements of the data model</h3>
+<p>Any element can be deleted from the data structure using the down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> corresponding to its entry.</p><p>When deleting a group or table that is not using a reusable type, the deletion is performed recursively, removing all its nested elements.</p><h3 id="duplicate">
+Duplicating existing elements</h3>
+<p>To duplicate an element, click the down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> corresponding to its entry. You must provide a name for the duplicated element that is unique at its level of the data structure. All other properties are copied from the source element.</p><p>The duplicated element is added to the data model at the same level as the element from which it was copied, appended after the existing elements. If you are duplicating a table or group containing other elements, all nested elements are copied with their original names.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If you duplicate a primary key field, the properties of the field are maintained, but the new field is not automatically added to the primary key.</p></div>
+<h3 id="move">
+Moving elements</h3>
+<p>To reorder an element within its current level of the data structure, click the down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> corresponding to its entry and select &#39;Move&#39;. Then, select the left-arrow button corresponding to the field <em>before which</em> you want to move the current element.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>It is not possible to move an element to a position outside of its level in the data structure.</p></div>
+<h2 id="reusableTypes">
+Reusable types</h2>
+<p>Reusable types are shared element definitions that are created once and can be reused in different places in the data model.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If you modify the definition of a reusable type in the &#39;Simple data types&#39; or &#39;Complex data types&#39; section, you will modify the structure of all elements based on that reusable type. The structure of a groups or table using a reusable type is shown as read-only. To edit the structure of the associated reusable type, you have to access the type from the &#39;Simple data types&#39; or &#39;Complex data types&#39; section.</p></div>
+<h3 id="reusableDefine">
+Defining a reusable type</h3>
+<p>From the down arrow<img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img>menu of &#39;Simple data types&#39; and &#39;Complex data types&#39; in the navigation pane, you can define simple and complex reusable types that will be available for creating more elements which share the same structural definition and properties. Alternatively, you can convert existing tables and groups into reusable types using their corresponding down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img>menus.</p><p>It is possible to see the elements that are using a reusable type by selecting &#39;References to this type&#39; on the specific page of each data type, under &#39;Simple data types&#39; and &#39;Complex data types&#39; in the navigation pane. A table then displays all elements that are based on this type. If a data type is not used by any elements, you can select the &#39;Delete type&#39; from its down arrow <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img>menu to delete the reusable type.</p><h3 id="reusableUse">
+Using a reusable type</h3>
+<p>The structure of new elements can be defined using reusable types. To do so, select an existing reusable type in the element creation form. The created element will then share the type definition of the reusable type.</p><h3 id="includeDataModel">
+Including data types defined in other data models</h3>
+<p>You can also share reusable types between multiple data models. By configuring the inclusion of an external data model, you can use the data types defined in that data model to create new elements in the data structure the same way as using locally defined reusable types.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>As the names of data types must be unique across all locally defined as well as all included types, you cannot create new reusable types with the same name as a data type in an included data model. Similarly, you cannot include an external data model that defines a data type with the same name as a locally defined reusable type or a data type in another included data model.</p></div>
+<p>Included data types appear in the sections &#39;Included simple data types&#39; and &#39;Included complex data types&#39; in the navigation panel. You can view the details of these included reusable types; however, they can only be edited locally in their original data models.</p><p>See <a href="../user_datamodel/userdatamodel_configuring.html#includemodel">Included data models</a> for more information.</p><h2 id="id3">
+Data model element creation details</h2>
+<h3 id="addfield">
+Creating fields</h3>
+<p>When creating a new field, you must select its data type, which will define the data type of the values based upon this field. The data type of the field cannot be changed once the field has been created.</p><p>While creating a field, it is also possible to designate it as a foreign key, a mandatory field, and, if created under a table, a primary key.</p><h3 id="addtable">
+Creating tables</h3>
+<p>While creating a table, you have the option to create the new table based on an existing reusable type. See <a href="#reusableTypes">Reusable types</a> for more information. </p><p>Every table requires specifying at least one primary key field, which you can create as a child element of the table from the navigation pane.</p><h3 id="addgroup">
+Creating groups</h3>
+<p>While creating a group, you have the option to create the new group based on an existing reusable type. See <a href="#reusableTypes">Reusable types</a> for more information. </p><h3 id="addpkey">
+Creating primary key fields</h3>
+<p>At least one primary key is required for every table. You can create a primary key field for a table by creating it as a child element under the table&#39;s entry in the &#39;Data structure&#39; tree.</p><p id="definepkey">Besides creating a new field directly as a primary key, you can add any existing child field of a table to the definition of its primary key on the &#39;Primary key&#39; tab of the table&#39;s &#39;Advanced properties&#39;.</p><h3 id="addfkey">
+Creating or defining foreign key fields</h3>
+<p>Foreign key fields have the data type &#39;String&#39;. You can create a foreign key field for a table by creating it as a child element under the table&#39;s entry in the &#39;Data structure&#39; tree. You can also convert an existing field of type &#39;String&#39; into a foreign key. To convert an existing field of type &#39;String&#39; into a foreign key, enable &#39;Foreign key constraint&#39; in the field&#39;s &#39;Advanced controls&#39; and define the associated parameters.</p><p>Whether creating a foreign key directly or from an existing field, you must define the table that contains the records to be referenced.</p><h3 id="addAssociation">
+Creating associations</h3>
+<p>An association allows defining semantic links between tables. You can create an association by creating it as a child element under the table&#39;s entry in the &#39;Data structure&#39; tree and by selecting &#39;association&#39; in the form for creating a new element. An association can only be defined inside a table. It is not possible to convert an existing field to an association. </p><p>When creating an association, you must specify the type of association. Several options are available:</p><ul>
+<li><p>Inverse relationship of a <em>foreign key</em>. In this case, the association element is defined in a <em>source table</em> and refers to <em>a target table</em>. It is the counterpart of the foreign key field, which is defined in the target table and refers back the source table. You must define the foreign key that references the parent table of the association.</p></li><li><p>Over a <em>link table</em>. In this case, the association element is defined in a <em>source table</em> and refers to a <em>target table</em> that is inferred from a <em>link table</em>. This link table defines two foreign keys: one referring to the source table and another one referring to the target table. The primary key of the link table must also refer to auto-incremented fields and/or the foreign key to the source or target table of the association. You must define the link table and these two foreign keys. </p></li><li><p>Using an <em>XPath predicate</em>. In this case, the association element is defined in a <em>source table</em> and refers to a <em>target table</em> that is specified using a <em>path</em>. An <em>XPath expression</em> is also defined to specify the criteria used to associate a record of the current table to records of the target table. You must define the target table and an XPath expression. </p></li></ul>
+<p>In all types of association, we call <em>associated records</em> the records in the target table that are semantically linked to records in the source table. </p><p>Once you have created an association, you can specify additional properties. For an association, it is then possible to: </p><ul>
+<li><p>Filter associated records by specifying an additional XPath filter. It is only possible to use fields from the source and the target table when defining an XPath filter. That is, if it is an association other a link table it is not possible to use fields of the link table in the XPath filter. You can use the available wizard to select the fields that you want to use in your XPath filter.</p></li><li><p>Configure a tabular view to define the fields that must be displayed in the associated table. It is not possible to configure or modify an existing tabular view if the target table of the association does not exist. If a tabular view is not defined, all columns that a user is allowed to view according to the granted access rights are displayed. </p></li><li><p>Define how associated records are to be rendered in forms. You can specify that associated records are to be rendered either directly in the form or in a specific tab. By default, associated records are rendered in the form at the same position of the association in the parent table. </p></li><li><p>Hide/show associated records in data service &#39;select&#39; operation. By default associated records are hidden in data service &#39;select&#39; operation. </p></li><li><p>Specify the minimum and maximum numbers of associated records that are required. In associated datasets, a validation message of the specified severity is added if an association does not comply with the required minimum or the maximum numbers of associated records. By default, the required minimum and the maximum numbers of associated records are not restricted. </p></li><li><p>Add validation constraints using XPath predicates to restrict associated records. It is only possible to use fields from the source and the target table when defining an XPath predicate. That is, if it is an association over a link table it is not possible to use fields of the link table in the XPath predicate. You can use the available wizard to select the fields that you want to use in your XPath predicate. In associated datasets, a validation message of the specified severity is added when an associated record does not comply with the specified constraint. </p></li></ul>
+<h2 id="id4">
+Modifying existing elements</h2>
+<h3 id="removepkey">
+Removing a field from the primary key</h3>
+<p>Any field that belongs to the primary key can be removed from the primary key on the &#39;Primary key&#39; tab of the table&#39;s &#39;Advanced properties&#39;.</p><p>See <a href="../glossary/simple_glossary.html#pkey">primary key</a> in the glossary.</p><p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models &gt; Implementing data models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

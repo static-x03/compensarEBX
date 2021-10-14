@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<linearGradient id="linearGradient9351" x1="10.528" x2="10.528" y1="201.35" y2="200.65" gradientUnits="userSpaceOnUse">
+<stop style="stop-color:#ff6565" offset="0"/>
+<stop style="stop-color:#ffcfcf" offset="1"/>
+</linearGradient>
+<linearGradient id="linearGradient9351-7" x1="10.528" x2="10.528" y1="201.35" y2="200.65" gradientUnits="userSpaceOnUse">
+<stop style="stop-color:#c0c0c0" offset="0"/>
+<stop style="stop-color:#f0f0f0" offset="1"/>
+</linearGradient>
+<linearGradient id="linearGradient4606" x1="2" x2="14" y1="1121" y2="1121" gradientUnits="userSpaceOnUse">
+<stop style="stop-color:#c00000" offset="0"/>
+<stop style="stop-color:#808080" offset="1"/>
+</linearGradient>
+</defs>
+<g transform="translate(0 -1106.5)">
+<g transform="matrix(-.70711 -.70711 -.70711 .70711 156.33 978.6)">
+<path d="m1 201 2.8104-1.4142h9.1924c2.1213 0 2.1213 2.8284 0 2.8284h-9.1924z" style="fill:url(#linearGradient9351-7)"/>
+<path d="m3.8104 202.41c0.70711-0.70711 0.70711-2.1213 0-2.8284l-2.8104 1.42z" style="fill:#ffffff"/>
+<path d="m14.417 199.59h0.70711c2.8284 0 2.8284 2.8284 0 2.8284h-0.70711c0.70713-0.70703 0.70711-2.1213 0-2.8284z" style="fill:#ffffff"/>
+<path d="m14.417 199.59c0.70711 0.7071 0.70711 2.1213 0 2.8284" style="fill:none;stroke-width:1px;stroke:#808080"/>
+<path d="m2.3962 201.71v-1.4142l-1.4142 0.70711z" style="fill:#000000"/>
+<path d="m0.98195 201 2.8284-1.4142h12.021c2.1213 0 2.1213 2.8284 0 2.8284h-12.021z" style="fill:none;stroke-width:1px;stroke:#808080"/>
+</g>
+<g transform="matrix(.70711 -.70711 .70711 .70711 -140.33 978.6)">
+<path d="m1 201 2.8104-1.4142h9.1924c2.1213 0 2.1213 2.8284 0 2.8284h-9.1924z" style="fill:url(#linearGradient9351)"/>
+<path d="m3.8104 202.41c0.70711-0.70711 0.70711-2.1213 0-2.8284l-2.8104 1.42z" style="fill:#ffffff"/>
+<path d="m14.417 199.59h0.70711c2.8284 0 2.8284 2.8284 0 2.8284h-0.70711c0.70713-0.70703 0.70711-2.1213 0-2.8284z" style="fill:#ffffff"/>
+<path d="m14.417 199.59c0.70711 0.7071 0.70711 2.1213 0 2.8284" style="fill:none;stroke-width:1px;stroke:#c00000"/>
+<path d="m2.3962 201.71v-1.4142l-1.4142 0.70711z" style="fill:#c00000"/>
+<path d="m0.98195 201 2.8284-1.4142h12.021c2.1213 0 2.1213 2.8284 0 2.8284h-12.021z" style="fill:none;stroke-width:1px;stroke:#c00000"/>
+</g>
+<rect x="2" y="1120.5" width="12" height=".99995" style="fill:url(#linearGradient4606)"/>
+</g>
+</svg>

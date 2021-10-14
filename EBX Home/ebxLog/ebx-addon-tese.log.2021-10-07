@@ -1,0 +1,7 @@
+------------------------------------------------------------------------
+EBX(R) Information Search Add-on - version 3.0.1 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------
+2021-10-07 12:24:08,689 MDT INFO   log.wbp.ebx-addon-tese.main 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 14:56:45,796 MDT INFO   log.wbp.ebx-addon-tese.main 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+2021-10-07 14:57:00,703 MDT INFO   log.wbp.ebx-addon-tese.main 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:57:00,708 MDT INFO   log.wbp.ebx-addon-tese.main 1155 [localhost-startStop-1] **** EBX(R) Information Search Add-on - version 3.0.1 [1009] - bundle-version 5.1.0.1009

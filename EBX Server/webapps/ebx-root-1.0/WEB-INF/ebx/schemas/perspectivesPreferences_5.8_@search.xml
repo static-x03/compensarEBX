@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/perspectivesPreferences_5.8.xsd, iid=023]
+-->
+<search>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/RecommendedPerspectives/perspective</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+</search>

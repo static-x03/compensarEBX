@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	Copyright © TIBCO Software Inc. 2001-2021. All rights reserved. 
+
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ebx-schemas:module_2.4"
+	targetNamespace="urn:ebx-schemas:module_2.4"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="2.4" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="http://www.w3.org/2001/xml.xsd" />
+	<xs:element name="module" type="ModuleDescriptionType" />
+	<xs:complexType name="ModuleDescriptionType">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>
+						A fixed name identifying the module on an instance
+						of EBX®. The convention is to use the folder name
+						of the module.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ModuleNameType">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="publicPath" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Public path that identifies the web application
+						relative to the web server. Servlet
+						Specification version 2.3 - SRV9.1: "A web
+						application is rooted at a specific path within
+						a web server." If this element is not defined,
+						then public path is the module name defined
+						above.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="installerClassName" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Obsolete property.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- @since 5.7.0: added service groups -->
+			<xs:element name="serviceGroups" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="serviceGroup" type="ServiceGroupType"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="services" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="service" type="ServiceType"
+							minOccurs="0" maxOccurs="unbounded" />
+						<xs:element name="serviceLink"
+							type="ServiceLinkType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									Link to an adaptation service. If a
+									service is declared here, it must be
+									available in user task definition.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="serviceExtension"
+							type="ServiceExtensionType" minOccurs="0"
+							maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+									Extends an existing service (for
+									adding input properties).
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="beans" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Defines the beans to use in EBX®.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bean"
+							type="BeanDeclarationType" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ajaxComponents" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Defines Ajax components to use in EBX®.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ajaxComponent"
+							type="AJAXComponentType" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ModuleNameType">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<xs:complexType name="DocumentationType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="label" type="xs:string" />
+			<xs:element name="description" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute ref="xml:lang" use="optional"/>
+		<xs:attribute name="id" use="optional"/>
+	</xs:complexType>
+	<!-- @since 5.7.0: added service groups -->
+	<xs:complexType name="ServiceGroupType">
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ServiceType">
+		<xs:sequence>
+			<xs:element name="resourcePath" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<!-- @since 5.7.1: added displayInMenu and orderInMenu -->
+			<!-- @since 5.7.0: added service groups and service default permission -->
+			<xs:element name="group" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="displayInMenu" minOccurs="0" type="xs:boolean" default="true" />
+			<xs:element name="orderInMenu" minOccurs="0"/>
+			<xs:element name="type" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Service type: types list separate by
+						whitespaces. Authorized values are : branch,
+						version, workflow, perspective, table, instance, records. Sample:
+						"branch", "branch version", "workflow",
+						"instance table records" ... etc.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:list>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="branch" />
+								<xs:enumeration value="version" />
+								<xs:enumeration value="workflow" />
+								<xs:enumeration value="instance" />
+								<xs:enumeration value="table" />
+								<xs:enumeration value="records" />
+								<xs:enumeration value="perspective" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:list>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="documentation" type="DocumentationType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="confirmation" minOccurs="0" type="ConfirmationType"/>
+			<xs:element name="properties" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Defines input and output parameters.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="property" type="PropertyType"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" />
+		<!-- @since 5.7.0: added service groups and service default permission -->
+		<xs:attribute name="defaultPermission" type="DefaultPermissionType" use="optional" />
+	</xs:complexType>
+	<xs:complexType name="ConfirmationType">
+		<xs:sequence>
+			<xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Bean parameters
+					</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+		<xs:attribute name="disable" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="ServiceLinkType">
+		<xs:sequence>
+			<xs:element name="importFromSchema" type="xs:string"
+				minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Schema path where service is defined.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="properties" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Defines input and output parameters.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="property" type="PropertyType"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="serviceName" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Service Name : must be the same service name in
+					associated schema
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ServiceExtensionType">
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="properties" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Defines input and output parameters.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="property" type="PropertyType"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="extends" type="xs:string" />
+		<xs:attribute name="fromSchema" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Service name extended.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PropertyType">
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="wizards" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="wizard" type="WizardType"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="input" type="xs:boolean" />
+		<xs:attribute name="output" type="xs:boolean" />
+		<xs:attribute name="value" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="WizardType">
+		<xs:attribute name="type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="archive" />
+					<xs:enumeration value="boolean" />
+					<xs:enumeration value="compareFilter" />
+					<xs:enumeration value="dataContext" />
+					<xs:enumeration value="dataSpace" />
+					<xs:enumeration value="firstCallDisplay" />
+					<xs:enumeration value="profile" />
+					<xs:enumeration value="severity" />
+					<xs:enumeration value="scope"/>
+					<xs:enumeration value="snapshot" />
+					<xs:enumeration value="view"/>
+					<xs:enumeration value="workflowEmailTemplates"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BeanDeclarationType">
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="properties" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="property" type="PropertyType"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="className" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="AJAXComponentType">
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="property" type="AJAXComponentPropertyType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="className" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="AJAXComponentPropertyType">
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="value" type="xs:string" />
+	</xs:complexType>
+	<!-- @since 5.7.0: added service groups and service default permission -->
+	<xs:simpleType name="DefaultPermissionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="enabled" />
+			<xs:enumeration value="disabled" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

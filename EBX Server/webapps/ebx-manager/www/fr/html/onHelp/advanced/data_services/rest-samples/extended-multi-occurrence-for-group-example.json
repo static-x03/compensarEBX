@@ -1,0 +1,28 @@
+[
+  {
+    "content": {
+      "road": {
+        "content": "11 rue scribe"
+      },
+      "zipcode": {
+        "content": "75009"
+      },
+      "country": {
+        "content": "France"
+      }
+    }
+  },
+  {
+    "content": {
+      "road": {
+        "content": "711 Atlantic Ave"
+      },
+      "zipcode": {
+        "content": "MA 02111"
+      },
+      "country": {
+        "content": "United States"
+      }
+    }
+  }
+]

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Configuring graphs</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_config_overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_config_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</span></div>
+<h1 id="user_sample_topPage">
+Configuring graphs</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview and configuration roadmap</a></li><li class="toc1"><a href="#options_overview">Options overview</a><ul class="toc2">
+<li class="toc2"><a href="#main_configuration">Main configuration page</a></li><li class="toc2"><a href="#graph_scope">Graph scope</a></li><li class="toc2"><a href="#graph_tables">Graph tables</a></li><li class="toc2"><a href="#link_configurations">Link configurations</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview and configuration roadmap</h2>
+<p>The following image outlines the path to configuring a data value graph. The <a href="#options_overview">Options overview</a> section describes configuration options and settings in more detail.</p><img alt="/data-value-graph-config-overview.png" src="./resources/images/data-value-graph-config-overview.png"></img><h2 id="options_overview">
+Options overview</h2>
+<p>You perform all of the following configuration actions in the <em>Administration &gt; User interface &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs</em> group:</p><ul>
+<li><p><a href="#main_configuration">Main configuration page</a></p></li><li><p><a href="#graph_scope">Graph scope</a></p></li><li><p><a href="#graph_tables">Graph tables</a></p></li><li><p><a href="#link_configurations">Link configurations</a></p></li></ul>
+<h3 id="main_configuration">
+Main configuration page</h3>
+<p>You can create a graph configuration by adding an entry in the <strong>Configuration</strong> table. Each graph configuration is used to couple all other settings that determine what data displays in a graph and how the data and relationships are rendered. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>You might find it helpful to use the main configuration page when changing or updating graph settings. Since each configuration provides easy access to all configuration settings pertaining to a particular data value graph, you wouldn&#39;t have to hunt through configured tables, or links to find the desired setting.</p></div>
+<p>When creating a graph configuration, you use the <strong>Orientation</strong> setting to determine how the graph displays line relationships. You can specify Left-to-right, Right-to-left, Bottom-up, or Top-down. The add-on begins with the root node and renders remaining nodes in the specified direction. Users can change display orientation when opened, but this does not effect the configuration setting. Each time the graph is opened, it uses the configured settings.</p><p>After filling in required fields, you can save (but not close the configuration) to use it as a quick access point for remaining configuration options (shown below). When you create scopes, table and link configurations directly from this page, they are automatically associated to the main graph configuration.</p><img alt="/data-value-graph-config-2.png" src="./resources/images/data-value-graph-config-2.png"></img><h3 id="graph_scope">
+Graph scope</h3>
+<p>Optionally, create a scope. The <strong>Scope</strong> table allows you to restrict the dataspaces and datasets used in graph generation.</p><h3 id="graph_tables">
+Graph tables</h3>
+<p>Use the <strong>Table configuration</strong> table to include tables in this configuration. Users that can view data contained in these tables can then generate graphs once you define the relationships. When adding a table, use the <strong>Allow generation from selected table</strong> property to specify whether the option to generate a graph displays in the table&#39;s <strong>Actions</strong> menu.</p><p>You have several options for defining how labels display in the generated graphs (see <a href="../user_guide/user_data_value_graph_labels.html">Customizing labels</a> for more detailed information on labels):</p><ul>
+<li><p>The <strong>Default label</strong> property allows you to enter text to display on a node. Alternatively, you can select the wizard icon to choose from related data model elements.</p></li><li><p>The <strong>Localized Label</strong> group allows you to select a data model component from which the component&#39;s localized label from the DMA will be used. You can also enter the text to display.</p></li><li><p>The <strong>Programmatic Label field</strong> field allows you to enter the path to a Java class that defines labels.</p></li></ul>
+<p>You can use a combination of default and localized labels. However, the order of priority is Programmatic, Localized, and Default. So, if you use a programmatic label, it overrides all other settings.</p><p>Use the settings in the <strong>Node style</strong> tab to make it easier for users to differentiate between sources when viewing graphs. You can also use the API to create custom nodes. See <a href="../user_guide/user_data_value_graph_style.html">Customizing styles</a> for more information on these settings.</p><h3 id="link_configurations">
+Link configurations</h3>
+<p>Define the relationships between data and how these relationships display using the <strong>Link</strong> table. Create as many links as required and save and close when finished. Each link is defined by:</p><ul>
+<li><p>Specifying the link relationship type; one graph can display multiple types. See <a href="../user_guide/user_data_value_graph_overview.html">Overview</a> for examples of how each relationship type displays in the graph.</p></li><li><p>Setting the <strong>Source</strong>/<strong>Target</strong> when displaying relationships as lines and <strong>Parent</strong>/<strong>Child</strong> for containers. You can also specify whether the first level of parent and target nodes automatically display.</p></li><li><p>Entering the foreign key path and direction. The <strong>Path</strong> points to the foreign key and the direction property determines the direction of relationship lines. This field allows you to add multiple paths to account for foreign key references to multiple tables. See <a href="../user_guide/user_data_value_graph_filtering.html">Filtering data values</a> for information on using the filter.</p><p>Note that the add-on automatically sets the direction value when the foreign key references another table. When <strong>Reverse direction</strong> is enabled, the graphs generated using self-referencing foreign keys render the relationships in reverse (shown below). </p><p><img alt="/data-value-graph-reverse-fk.png" src="./resources/images/data-value-graph-reverse-fk.png"></img></p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_data_value_graph_generating.html">Generating data value graphs</a></li><li><a href="../user_guide/user_data_value_graph_clone_delete.html">Cloning and deleting graph configurations</a></li></ul>
+</div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

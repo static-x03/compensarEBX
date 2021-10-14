@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.10
+Created-By: TIBCO Software Inc.
+Implementation-Title: Web application 'ebx-manager' of EBX®
+Implementation-Version: 6.0.1 at 2021/06/25 19:49:19 [CEST]
+Implementation-Vendor: TIBCO Software Inc.
+Class-Path: lib/ebx.jar lib/ebx-lz4.jar
+

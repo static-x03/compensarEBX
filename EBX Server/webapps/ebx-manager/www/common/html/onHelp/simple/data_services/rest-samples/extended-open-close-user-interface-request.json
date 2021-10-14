@@ -1,0 +1,10 @@
+{
+  "content": {
+    "toolStatus": {
+      "content": true    // or false
+    },
+    "toolStatusCloseMessage": {
+      "content": "Access is temporarily forbidden for maintenance."
+    }
+  }
+}

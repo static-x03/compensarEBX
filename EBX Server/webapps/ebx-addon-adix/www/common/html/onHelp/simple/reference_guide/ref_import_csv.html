@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - CSV import options</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_import_csv_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Import Options</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_import_csv.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Import Options</span></div>
+<h1>
+CSV import options</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_import_csv_top">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#ref_import_csv_pref_page">Preferences page</a></li><li class="toc2"><a href="#ref_import_csv_config_page">Configuration page</a></li><li class="toc2"><a href="#ref_import_csv_column_mapping_page">Column mapping page</a></li><li class="toc2"><a href="#ref_import_csv_simulation_page">Simulation page</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_import_csv_top">
+Overview</h2>
+<p>This section describes the fields and available options when importing from an CSV file. You initiate import from a table&#39;s <em>Actions &gt; Data Exchange &gt; Import CSV</em> menu. CSV import presents you with several pages. Follow the links in the descriptions below for detailed information on each page:</p><ul>
+<li><p>File selection—From this page you can browse to select the file to import.</p></li><li><p>Preferences—Use the drop-down menu on this page to specify an existing set of preferences to use for this import.</p></li><li><p>Configuration page—The options here determine basic configuration information.</p></li><li><p>Column mapping—This page allows you to map the columns from tables to those in the Excel file.</p></li><li><p>Simulation page—From this page you can run a simulation and view results prior to performing the actual import operation.</p></li><li><p>Results page—This page shows you the import results.</p></li></ul>
+<h3 id="ref_import_csv_pref_page">
+Preferences page</h3>
+<p>Preferences allow you to automatically populate fields, and map between a source and target using saved information. This page contains the options shown in the following table:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>List</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Preference</p></td><td valign="top"><p>Choose a preference to load configuration and mapping information. </p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_import_csv_config_page">
+Configuration page</h3>
+<p>This page allows you to modify behavior of the import. Part of the modification can include specifying Java classes to transform, or validate data. This page contains the options shown in the following table:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property/Field/List</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Import mode</p></td><td valign="top"><ul>
+<li><p><strong>Update or insert</strong>: If a record with the same primary key already exists in the target table, it is updated. Otherwise, a new record is inserted.</p></li><li><p><strong>Insert only</strong>: Only record creations are allowed. If a record exists in the target table with the same primary key as in the source, an error is returned.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Use of this mode is not recommended when importing a large volume of data. When working with larger amounts of data, you can instead use the <strong>Update or insert</strong>, or <strong>Update only</strong> modes.</p></div>
+</li><li><p><strong>Update only</strong>: Only modifications of existing records are allowed. If a record with the same primary key does not exist in the target table, an error is returned.</p></li><li><p><strong>Replace all content</strong>: All existing data in the table will be deleted before importing the data from the file.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>First row contains header</p></td><td valign="top"><p>Use this option to specify whether the first row of every column in the file being imported is a label (Header), or contains data to import (No header).</p></td></tr>
+<tr>
+<td valign="top">File encoding</td><td valign="top"><p>Specifies the character encoding to use. The default is UTF-8.</p></td></tr>
+<tr>
+<td valign="top">Separator</td><td valign="top"><p>Specifies the separator to use. The default is &#39;;&#39;.</p></td></tr>
+<tr>
+<td valign="top">List separator</td><td valign="top"><p>Specifies the separator to use for values lists.</p></td></tr>
+<tr>
+<td valign="top">Line return</td><td valign="top">Specifies the line return used in the file.</td></tr>
+<tr>
+<td valign="top">Delimiter</td><td valign="top"><p>The character used to mark the beginning and end of a cell in the CSV file. By default, CSV files do not use a delimiter. If you select &#39;Only string&#39;, the delimiter is only used for String data types.</p></td></tr>
+<tr>
+<td valign="top">Decimal symbol</td><td valign="top">The character used to denote a decimal.</td></tr>
+<tr>
+<td valign="top">Force import</td><td valign="top"><p>Specifies that all triggers and constraints are disabled when this option is activated. Otherwise, all triggers and constraints are enabled.</p></td></tr>
+<tr>
+<td valign="top">Download file of invalid data</td><td valign="top"><p>Export all records with errors in their data rows to a downloadable file.</p></td></tr>
+<tr>
+<td valign="top">Use case-sensitive comparison when matching the header</td><td valign="top"><p>Differentiate between lower-case and upper-case when matching the imported file&#39;s column header with the field&#39;s label in EBX®.</p></td></tr>
+<tr>
+<td valign="top">Ignore the empty or null values</td><td valign="top"><p>By default, the existing record is not updated with null and empty cell values from the imported file.</p></td></tr>
+<tr>
+<td valign="top">Check empty or null primary keys</td><td valign="top"><p>The add-on verifies that all primary keys are mapped and validates the data before importing. If you disable this option, the add-on does not perform this verification.</p></td></tr>
+<tr>
+<td valign="top">Extensions</td><td valign="top"><p>Specifies the Java class that is implemented to transform data during import/export processing.</p></td></tr>
+<tr>
+<td valign="top">Validators</td><td valign="top"><p>Specifies the Java class that is implemented to validate data during import.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_import_csv_column_mapping_page">
+Column mapping page</h3>
+<p>This page allows you to map source columns in the CSV file with EBX® table columns. Use the drop-down list next to each table column to specify which source gets mapped to which target. You can use the tooltip icon next to each mapping to display additional transformation information. Additionally, at the top of the screen, you can expand <strong>Data file sample</strong> to see a preview of how the current mapping would import.</p><h3 id="ref_import_csv_simulation_page">
+Simulation page</h3>
+<p>This page allows you to use the current configuration and mapping settings to simulate import. The simulation results can include different levels (error, warning, and information) of technical, validation, and business messages. Use the result information to make any needed changes before performing the actual import.</p><p>The table below describes the page&#39;s main components.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Options</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Validate imported records only</p></td><td valign="top"><p>When selected, the validation report only runs on the records being imported. If unselected, the report also includes all records in the target table.</p></td></tr>
+<tr>
+<td valign="top"><p>Skip validation report</p></td><td valign="top"><p>When checked, the simulation result does not include the detailed validation report.</p></td></tr>
+<tr>
+<td valign="top"><p>Simulation stopped</p></td><td valign="top"><p>Select conditions that determine when to stop the simulation.</p></td></tr>
+<tr>
+<td valign="top"><p>Simulation result</p></td><td valign="top"><p>Displays simulation results on a table-by-table basis. Each tab corresponds to a simulation for a table.</p></td></tr>
+<tr>
+<td valign="top">Import option</td><td valign="top"><p>Choose whether to stop the import process when there are validation errors.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

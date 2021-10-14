@@ -1,0 +1,9 @@
+{
+  "type": "tableRefInverse",
+  "dataspace": "BTitles",
+  "dataset": "Titles",
+  "tablePath": "/root/Titles",
+  "details": "http://.../BTitles/Titles/root/Titles",
+  "fieldToSource": "/root/Titles/au_id",
+  "filter": "./unit_price > 10"
+}

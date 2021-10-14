@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+			xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_0.xsd"
+      metadata-complete="true"
+      version="3.0">
+
+	<filter>
+		<filter-name>builtInServicesDispatcher</filter-name>
+		<filter-class>com.orchestranetworks.dataservices.rest.BuiltInServicesDispatcher</filter-class>
+	</filter>
+
+	<servlet>
+		<display-name>connector</display-name>
+		<servlet-name>connector</servlet-name>
+		<servlet-class>
+			com.orchestranetworks.dataservices.connector.HTTPSOAPConnector
+    	</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<display-name>wsdl</display-name>
+		<servlet-name>wsdl</servlet-name>
+		<servlet-class>
+			com.orchestranetworks.dataservices.connector.WSDLConnector
+    	</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<display-name>rest</display-name>
+		<servlet-name>rest</servlet-name>
+		<servlet-class>
+			com.orchestranetworks.dataservices.connector.RESTAuthAndAdminConnector
+    	</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<display-name>JAX-RS-REST</display-name>
+		<servlet-name>JAX-RS-REST</servlet-name>
+		<servlet-class>com.orchestranetworks.rest.internal.RESTRegistrationServlet</servlet-class>
+		<init-param>
+			<param-name>RESTApplicationAbstract</param-name>
+			<param-value>com.orchestranetworks.dataservices.rest.RTKBuiltinApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ebxModuleName</param-name>
+			<param-value>ebx-dataservices</param-value>
+		</init-param>
+		<!-- CVE-2019-17573 [https://nvd.nist.gov/vuln/detail/CVE-2019-17573] -->
+		<!-- Force the "hide-service-list-page" servlet parameter to "true" -->
+		<init-param>
+			<param-name>hide-service-list-page</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<display-name>JAX-RS-REST-OPEN-API</display-name>
+		<servlet-name>JAX-RS-REST-OPEN-API</servlet-name>
+		<servlet-class>com.orchestranetworks.rest.internal.RESTRegistrationServlet</servlet-class>
+		<init-param>
+			<param-name>RESTApplicationAbstract</param-name>
+			<param-value>
+				com.orchestranetworks.dataservices.rest.openapi.v1.RTKBuiltinApplicationForOpenAPI
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ebxModuleName</param-name>
+			<param-value>ebx-dataservices</param-value>
+		</init-param>
+		<!-- CVE-2019-17573 [https://nvd.nist.gov/vuln/detail/CVE-2019-17573] -->
+		<!-- Force the "hide-service-list-page" servlet parameter to "true" -->
+		<init-param>
+			<param-name>hide-service-list-page</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<filter-mapping>
+		<filter-name>builtInServicesDispatcher</filter-name>
+		<servlet-name>rest</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+    <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<servlet-mapping>
+		<servlet-name>connector</servlet-name>
+		<url-pattern>/connector</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<url-pattern>/custom/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<url-pattern>/dataset/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<url-pattern>/directory/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<url-pattern>/repository/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<url-pattern>/tables/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<!-- @deprecated since 5.8.1 and replaced by <url-pattern>/admin/*</url-pattern> -->
+		<url-pattern>/userInterface/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<url-pattern>/administration/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>wsdl</servlet-name>
+		<url-pattern>/workflow/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>rest</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<mime-mapping>
+		<extension>xml</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xsd</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>wsdl</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>json</extension>
+		<mime-type>text/json</mime-type>
+	</mime-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

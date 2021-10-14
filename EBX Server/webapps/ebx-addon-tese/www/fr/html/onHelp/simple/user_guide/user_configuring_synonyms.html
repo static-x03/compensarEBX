@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - Expanding search with synonyms</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_configuring_synonyms" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Information Search Add-on Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_configuring_synonyms.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Information Search Add-on Documentation</span></div>
+<h1 id="user_configuring_synonyms_top">
+Expanding search with synonyms</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_configuring_synonyms_management">Overview</a></li><li class="toc1"><a href="#id2">Managing synonyms</a></li><li class="toc1"><a href="#id3">Enabling search with synonyms</a></li></ul>
+</div>
+<h2 id="user_configuring_synonyms_management">
+Overview</h2>
+<p>You can create and modify groups of synonyms to increase search flexibility. If the add-on does not find a match on the initial search value, it turns to the values contained in the synonym group to find a possible match. Of course, depending on business requirements, you need not limit this functionality to literal synonyms. For example, you could group common abbreviations. </p><h2 id="id2">
+Managing synonyms</h2>
+<p>The following image highlights the semantic group where you can work with synonyms.</p><p><img alt="/semantic_group_1.png" src="./resources/images/semantic_group_1.png"></img></p><p>To create synonyms and add them to groups:</p><ol>
+<li><p>Navigate to <em>Administration &gt; Data quality &amp; analytics &gt; EBX® Information Search Add-on &gt; Configuration &gt; Semantic</em>.</p></li><li><p>Create synonyms in the <strong>Synonym</strong> table.</p></li><li><p>Create a <strong>Synonym group</strong> to organize your synonyms.</p></li><li><p>Use the <strong>Populate synonym group</strong> table to assign synonyms to groups by adding each desire synonym.</p><p><img alt="/populate_synonym_1.png" src="./resources/images/populate_synonym_1.png"></img></p></li><li><p>Optionally, create a relationship between synonym groups. When enabling search, you can specify that the add-on check for matches in related groups. As shown below, use the <strong>Synonym group</strong> table to create the relationships.</p><p><img alt="/search_with_synonym_relationship.png" src="./resources/images/search_with_synonym_relationship.png"></img></p></li><li><p>Be sure to save after completing your changes.</p></li></ol>
+<h2 id="id3">
+Enabling search with synonyms</h2>
+<p>You can enable synonym search from a <strong>Searched field</strong> configuration as follows:</p><ol>
+<li><p>In the <strong>Searched fields</strong> table, select a synonym group from the drop-down menu of the <strong>Use synonym group</strong> property.</p><ul>
+<li><p>Select a synonym group from the <strong>Use synonym group</strong> drop-down menu.</p></li><li><p>Use the <strong>Synonyms processing mode</strong> to tell the add-on how to evaluate search terms against configured synonyms. The available options are:</p><ul>
+<li><p><strong>Use synonyms for the entire value of the attribute:</strong> This option compares synonyms with the entire word or phrase being searched. Take fore example the following group of synonyms: &quot;Mr&quot;, &quot;Mister&quot;, and &quot;Sir&quot;. Taken as a whole, the search phrase &quot;Mr. Bob Smith&quot; may not match close enough to trigger results. However, if the search term was &quot;Sir&quot;, it could return the record for &quot;Sir Bob Smith&quot;.</p></li><li><p><strong>Use synonyms for every word of the attribute:</strong> This option compares synonyms with each part of a phrase being searched. Using the above example, the search phrase &quot;Mr. Bob Smith&quot; could return &quot;Sir Bob Smith&quot; as a result. </p></li></ul>
+</li></ul>
+<p><img alt="/search_with_synonym_config.png" src="./resources/images/search_with_synonym_config.png"></img></p></li><li><p>Activate the <strong>Check synonyms in all groups</strong> property (Optional). When enabled, the add-on looks for matching synonyms in related groups.</p><p>In the configuration example shown below, we created an Esquire group and associated it with the add-on&#39;s default [ON] MR group. When searching for Mr., the returned results include the synonyms defined in each group. </p><p><img alt="/search_with_synonym_results.png" src="./resources/images/search_with_synonym_results.png"></img></p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

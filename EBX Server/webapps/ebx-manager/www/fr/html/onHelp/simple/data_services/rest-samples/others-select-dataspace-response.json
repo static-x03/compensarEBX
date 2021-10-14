@@ -1,0 +1,25 @@
+{
+  "rows": [
+    {
+      "label": "Master Data - Reference",
+      "description": "Reference dataspace in EBX.",
+      "details": "http://.../data/v1/BReference",
+      "information": "http://.../data/v1/BReference:information",
+      "key": "BReference",
+      "closed": false,
+      "isSelectAllowed": true,
+      "hasChildren": true,
+      "children": "http://.../data/v1/BReference:children",
+      "snapshots": "http://.../data/v1/BReference:snapshots"
+    },
+    {
+      // An other dataspace
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": null,
+    "lastPage": null
+  }
+}

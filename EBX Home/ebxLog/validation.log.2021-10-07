@@ -1,0 +1,15 @@
+2021-10-07 12:24:08,692 MDT INFO   log.validation 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 14:56:45,796 MDT INFO   log.validation 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+2021-10-07 14:56:59,339 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:57:26,833 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 4420 ms: dataspace Bebx-scheduler dataset ebx-scheduler
+2021-10-07 14:57:27,240 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 4429 ms:
+ ****** dataspace Bebx-scheduler dataset ebx-scheduler
+ **         warning [/scheduler/task[./name='SchedulerPurgeExecutionReports']/spec/className]: Parameter not defined. All execution reports are purged.
+ **         warning [/scheduler/task[./name='SchedulerMarkDataspaceHistoryForPurge']/spec/className]: The task is not configured.
+ **         warning [/scheduler/task[./name='SchedulerPurgeWorkflowMainHistory']/spec/className]: The task is not configured.
+ ****** 3 warnings, 
+2021-10-07 15:00:26,308 MDT INFO   log.validation 1155 [http-nio-9090-exec-10] Resetting validation report for dataset Person in dataspace ebx-dma
+2021-10-07 15:00:27,175 MDT INFO   log.validation 1155 [http-nio-9090-exec-10] Resetting validation report for dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c in dataspace ebx-dma
+2021-10-07 15:00:27,249 MDT INFO   log.validation 1155 [http-nio-9090-exec-10] Resetting validation report for dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01 in dataspace ebx-dma
+2021-10-07 15:00:27,322 MDT INFO   log.validation 1155 [http-nio-9090-exec-10] Resetting validation report for dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314 in dataspace ebx-dma
+2021-10-07 15:00:27,495 MDT INFO   log.validation 1155 [http-nio-9090-exec-10] Resetting validation report for dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace ebx-dma

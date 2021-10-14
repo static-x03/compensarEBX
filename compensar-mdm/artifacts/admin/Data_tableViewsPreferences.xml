@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+    <tableViewsPreferences>
+        <Id>049A5B50-0B89-11E8-AABE-004E42E4E526</Id>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <tablePath>/root/execution/process</tablePath>
+        <activity>WorkflowWorking</activity>
+        <order>1</order>
+        <viewId>EFC8C450-0B88-11E8-AABE-006E9FCACA88</viewId>
+        <profileList>Beveryone</profileList>
+        <dataSetReference>execution</dataSetReference>
+    </tableViewsPreferences>
+    <tableViewsPreferences>
+        <Id>2C309050-BA58-11EA-B463-00F4E698CEAD</Id>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <tablePath>/root/processPublished</tablePath>
+        <activity>WorkflowWorking</activity>
+        <order>1</order>
+        <viewId>BECB4110-BA46-11EA-B420-00532AA9E21F</viewId>
+        <profileList>Beveryone</profileList>
+        <dataSetReference>execution</dataSetReference>
+    </tableViewsPreferences>
+    <tableViewsPreferences>
+        <Id>2C590750-0B88-11E8-AABE-004D44CB2E1A</Id>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <tablePath>/root/execution/workItem</tablePath>
+        <activity>WorkflowMonitoring</activity>
+        <order>1</order>
+        <viewId>1B774820-0B88-11E8-AABE-0088D80CB0AF</viewId>
+        <profileList>Beveryone</profileList>
+        <dataSetReference>execution</dataSetReference>
+    </tableViewsPreferences>
+    <tableViewsPreferences>
+        <Id>7A3F9D40-0B87-11E8-AABE-003FA8B56BC6</Id>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <tablePath>/root/execution/workItem</tablePath>
+        <activity>WorkflowWorking</activity>
+        <order>1</order>
+        <viewId>6997D9D0-0B87-11E8-AABE-0032349ED918</viewId>
+        <profileList>Beveryone</profileList>
+        <dataSetReference>execution</dataSetReference>
+    </tableViewsPreferences>
+    <tableViewsPreferences>
+        <Id>D2407410-0B87-11E8-AABE-00D11B0ACA00</Id>
+        <schemaKey>module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_execution_1.1.xsd</schemaKey>
+        <tablePath>/root/execution/process</tablePath>
+        <activity>WorkflowMonitoring</activity>
+        <order>1</order>
+        <viewId>BDF85860-0B87-11E8-AABE-00F356D6B39D</viewId>
+        <profileList>Beveryone</profileList>
+        <dataSetReference>execution</dataSetReference>
+    </tableViewsPreferences>
+</preferences>

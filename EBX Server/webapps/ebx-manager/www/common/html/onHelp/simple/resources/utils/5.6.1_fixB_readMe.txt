@@ -1,0 +1,490 @@
+NEW LOCALIZED MESSAGES SINCE VERSION 5.6.1 FIX B
+
+File com/orchestranetworks/i18n/core_{locale}.mxml
+
+	<entry key="dataSet.mappingDefinition.label">Database mapping</entry>
+
+
+File com/orchestranetworks/i18n/manager/adminMessages_{locale}.mxml
+
+	<entry key="admin.mappingDefinition.renameColumn.action">
+		Rename column in the database
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.confirm.question">
+		Are you sure you want to rename the column in the database?
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.button.proceed">
+		Submit
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.summary.title">
+		Renaming column in the database
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.input.label">
+		New name for the column
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.input.description">
+		The new name must be a valid column identifier, and must begin with a letter.
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.finish.title">
+		Confirmation
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.finish">
+		The requested renaming has been performed.
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.wait.title">
+		Renaming column in the database...
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.wait">
+		Renaming selected column in the database...
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.error.notValid.general">
+		The new name for the column '{0}' is not a valid identifier. {1}
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.error.notValid.reason.reservedWord">
+		The identifier is a reserved word for the database.
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.error.notValid.reason.invalidChar">
+		The identifier contains invalid characters.
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.error.notValid.reason.maxLength">
+		The identifier is too long.
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.error.notValid.reason.mustStartWithAlpha">
+		The identifier must begin with a letter.
+	</entry>	
+	<entry key="admin.mappingDefinition.renameColumn.error.alreadyUsed">
+		The new name for the column '{0}' is already used for another column.
+	</entry>
+	<entry key="admin.mappingDefinition.renameColumn.error.oldNotUsed">
+		The old name for the column '{0}' is not used in the table.
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.action">
+		Purge column in the database
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.confirm.question">
+		Are you sure you want to purge the column in the database?
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.button.proceed">
+		Submit
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.summary.title">
+		Purging column in the database
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.finish.title">
+		Confirmation
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.finish">
+		The requested purge has been performed.
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.wait.title">
+		Purging column in the database...
+	</entry>
+	<entry key="admin.mappingDefinition.purgeColumn.wait">
+		Purging selected column in the database...
+	</entry>
+	<entry key="admin.mappingDefinition.summary.table.info">
+		Table
+	</entry>
+	<entry key="admin.mappingDefinition.summary.table.dataModel">
+		Data model
+	</entry>	
+	<entry key="admin.mappingDefinition.summary.table.path">
+		Table path
+	</entry>
+	<entry key="admin.mappingDefinition.summary.table.nameInDB">
+		Table name in database
+	</entry>
+	<entry key="admin.mappingDefinition.summary.table.nameInDBForHv">
+		Table name in database for history
+	</entry>
+	<entry key="admin.mappingDefinition.summary.table.state">
+		Table state
+	</entry>
+	<entry key="admin.mappingDefinition.summary.table.stateForHv">
+		Table state for history
+	</entry>
+	<entry key="admin.mappingDefinition.summary.table.replica">
+		Replica table name for unit {0}
+	</entry>	
+	<entry key="admin.mappingDefinition.summary.column.info">
+		Column
+	</entry>	
+	<entry key="admin.mappingDefinition.summary.column.path">
+		Column path
+	</entry>	
+	<entry key="admin.mappingDefinition.summary.column.type">
+		Column type
+	</entry>	
+	<entry key="admin.mappingDefinition.summary.column.state">
+		Column state
+	</entry>	
+	<entry key="admin.mappingDefinition.summary.column.nameInDB">
+		Column name in database
+	</entry>
+	<entry key="admin.mappingDefinition.error.cxsPurged">
+		The selected column seems to have been purged.
+	</entry>	
+	<entry key="admin.mappingDefinition.error.cxsModified">
+		The selected column seems to have been modified.
+	</entry>	
+	<entry key="admin.mappingDefinition.error.cxsDuplicated">
+		The selected column seems to be duplicated.
+	</entry>	
+	<entry key="admin.mappingDefinition.error.dataModelNotFound">
+		Could not retrieve data model [{0}].
+	</entry>	
+	<entry key="admin.mappingDefinition.error.tableNotExits">
+		Table [{0}] does not exist.
+	</entry>	
+	<entry key="admin.mappingDefinition.error.dataModelWithErrors">
+		Correct data model errors before using this service.
+	</entry>	
+	<entry key="admin.mappingDefinition.error.notDisabled">
+		The state of the column must be [{0}] in order to be purged.
+	</entry>
+	<entry key="admin.mappingDefinition.error.listNotDisabled">
+		The state of the column or its parent list must be [{0}] in order to be purged.
+	</entry>	
+	<entry key="admin.mappingDefinition.fail.title">
+		Operation failed
+	</entry>	
+	<entry key="admin.mappingDefinition.fail.text">
+		The requested operation could not be performed.
+	</entry>
+
+
+File com/orchestranetworks/i18n/xsdSchema/history_{locale}.mxml
+
+	<entry key="element.mappingDefinition.label">
+		Database mapping
+	</entry>
+	<entry key="element.mappingDefinition.description">
+		Database mapping
+	</entry>
+	<entry key="element.mappingDefinition.xs.label">
+		Data models
+	</entry>
+	<entry key="element.mappingDefinition.xs.description">
+		Data models
+	</entry>
+	<entry key="element.mappingDefinition.xs.table.defaultLabel">
+		Data model : ${./xsPath}
+	</entry>
+	<entry key="element.mappingDefinition.xs.xsId.label">
+		Data model id
+	</entry>
+	<entry key="element.mappingDefinition.xs.xsId.description">
+		Data model id
+	</entry>
+	<entry key="element.mappingDefinition.xs.xsPath.label">
+		Path
+	</entry>
+	<entry key="element.mappingDefinition.xs.xsPath.description">
+		Data model path
+	</entry>
+	<entry key="element.mappingDefinition.xs.lastWrite.label">
+		Last write
+	</entry>
+	<entry key="element.mappingDefinition.xs.lastWrite.description">
+		Date of last write
+	</entry>
+	<entry key="element.mappingDefinition.xs.tables.label">
+		Tables
+	</entry>
+	<entry key="element.mappingDefinition.xs.tables.description">
+		Data model's tables
+	</entry>
+	<entry key="element.mappingDefinition.xs.replicationUnits.label">
+		Replication units
+	</entry>
+	<entry key="element.mappingDefinition.xs.replicationUnits.description">
+		Replication units defined on the data model
+	</entry>
+	<entry key="element.mappingDefinition.xs.replicas.label">
+		Replicas
+	</entry>
+	<entry key="element.mappingDefinition.xs.replicas.description">
+		Replicas of data models's tables
+	</entry>
+	<entry key="element.mappingDefinition.txs.label">
+		Tables
+	</entry>
+	<entry key="element.mappingDefinition.txs.description">
+		Tables in the data model
+	</entry>
+	<entry key="element.mappingDefinition.txs.table.defaultLabel">
+		Table : ${./tablePath}
+	</entry>
+	<entry key="element.mappingDefinition.txs.txsId.label">
+		Table id
+	</entry>
+	<entry key="element.mappingDefinition.txs.txsId.description">
+		Table id
+	</entry>
+	<entry key="element.mappingDefinition.txs.tablePath.label">
+		Path
+	</entry>
+	<entry key="element.mappingDefinition.txs.tablePath.description">
+		Table path
+	</entry>
+	<entry key="element.mappingDefinition.txs.tableNameInDB.label">
+		Name in DB
+	</entry>
+	<entry key="element.mappingDefinition.txs.tableNameInDB.description">
+		Table name in the database
+	</entry>
+	<entry key="element.mappingDefinition.txs.tableNameInDBForHV.label">
+		Name in DB for history
+	</entry>
+	<entry key="element.mappingDefinition.txs.tableNameInDBForHV.description">
+		History table name in the database 
+	</entry>
+	<entry key="element.mappingDefinition.txs.state.label">
+		State
+	</entry>
+	<entry key="element.mappingDefinition.txs.state.description">
+		Table state
+	</entry>
+	<entry key="element.mappingDefinition.txs.stateHV.label">
+		State for history
+	</entry>
+	<entry key="element.mappingDefinition.txs.stateHV.description">
+		Table state for history
+	</entry>
+	<entry key="element.mappingDefinition.txs.lastWrite.label">
+		Last write
+	</entry>
+	<entry key="element.mappingDefinition.txs.lastWrite.description">
+		Date of last write
+	</entry>
+	<entry key="element.mappingDefinition.txs.xsId.label">
+		Data model
+	</entry>
+	<entry key="element.mappingDefinition.txs.xsId.description">
+		Data model of the table
+	</entry>
+	<entry key="element.mappingDefinition.txs.replicas.label">
+		Replicas
+	</entry>
+	<entry key="element.mappingDefinition.txs.replicas.description">
+		Table replicas
+	</entry>
+	<entry key="element.mappingDefinition.txs.columns.label">
+		Columns
+	</entry>
+	<entry key="element.mappingDefinition.txs.columns.description">
+		Table columns
+	</entry>
+	<entry key="element.mappingDefinition.txs.listsMatser.label">
+		Lists
+	</entry>
+	<entry key="element.mappingDefinition.txs.listsMatser.description">
+		Lists
+	</entry>
+	<entry key="element.mappingDefinition.txs.listsAux.label">
+		Master table
+	</entry>
+	<entry key="element.mappingDefinition.txs.listsAux.description">
+		Master table
+	</entry>
+	<entry key="element.mappingDefinition.cxs.label">
+		Columns
+	</entry>
+	<entry key="element.mappingDefinition.cxs.description">
+		Columns in tables
+	</entry>
+	<entry key="element.mappingDefinition.cxs.table.defaultLabel">
+		Column : ${./columnPath}
+	</entry>
+	<entry key="element.mappingDefinition.cxs.txsId.label">
+		Table
+	</entry>
+	<entry key="element.mappingDefinition.cxs.txsId.description">
+		Column table
+	</entry>
+	<entry key="element.mappingDefinition.cxs.cxsId.label">
+		Column
+	</entry>
+	<entry key="element.mappingDefinition.cxs.cxsId.description">
+		Column
+	</entry>
+	<entry key="element.mappingDefinition.cxs.columnPath.label">
+		Path
+	</entry>
+	<entry key="element.mappingDefinition.cxs.columnPath.description">
+		Column path
+	</entry>
+	<entry key="element.mappingDefinition.cxs.ctpId.label">
+		Type
+	</entry>
+	<entry key="element.mappingDefinition.cxs.ctpId.description">
+		Column type
+	</entry>
+	<entry key="element.mappingDefinition.cxs.columnNameInDB.label">
+		Name in DB
+	</entry>
+	<entry key="element.mappingDefinition.cxs.columnNameInDB.description">
+		Column name in database
+	</entry>
+	<entry key="element.mappingDefinition.cxs.state.label">
+		State
+	</entry>
+	<entry key="element.mappingDefinition.cxs.state.description">
+		Column state
+	</entry>
+	<entry key="element.mappingDefinition.cxs.lastWrite.label">
+		Last write
+	</entry>
+	<entry key="element.mappingDefinition.cxs.lastWrite.description">
+		Date of last write
+	</entry>
+	<entry key="element.mappingDefinition.lxs.label">
+		Lists
+	</entry>
+	<entry key="element.mappingDefinition.lxs.description">
+		Lists in tables
+	</entry>
+	<entry key="element.mappingDefinition.lxs.table.defaultLabel">
+		List : ${./listPath}
+	</entry>
+	<entry key="element.mappingDefinition.lxs.masterTxsId.label">
+		Master table
+	</entry>
+	<entry key="element.mappingDefinition.lxs.masterTxsId.description">
+		Master table
+	</entry>
+	<entry key="element.mappingDefinition.lxs.listPath.label">
+		Path
+	</entry>
+	<entry key="element.mappingDefinition.lxs.listPath.description">
+		List path
+	</entry>
+	<entry key="element.mappingDefinition.lxs.auxTxsId.label">
+		Auxiliary table
+	</entry>
+	<entry key="element.mappingDefinition.lxs.auxTxsId.description">
+		Auxiliary table
+	</entry>
+	<entry key="element.mappingDefinition.lxs.hvColumnName.label">
+		Name in DB for history
+	</entry>
+	<entry key="element.mappingDefinition.lxs.hvColumnName.description">
+		List name in database for history
+	</entry>
+	<entry key="element.mappingDefinition.txr.label">
+		Table replications
+	</entry>
+	<entry key="element.mappingDefinition.txr.description">
+		Table replications
+	</entry>
+	<entry key="element.mappingDefinition.txr.table.defaultLabel">
+		Table replication : ${./rpuName}
+	</entry>
+	<entry key="element.mappingDefinition.txr.xsId.label">
+		Data model
+	</entry>
+	<entry key="element.mappingDefinition.txr.xsId.description">
+		Data model
+	</entry>
+	<entry key="element.mappingDefinition.txr.rpuName.label">
+		Replication unit
+	</entry>
+	<entry key="element.mappingDefinition.txr.rpuName.description">
+		Replication unit
+	</entry>
+	<entry key="element.mappingDefinition.txr.txsId.label">
+		Table
+	</entry>
+	<entry key="element.mappingDefinition.txr.txsId.description">
+		Replication table
+	</entry>
+	<entry key="element.mappingDefinition.txr.tableNameInDB.label">
+		Table name in DB
+	</entry>
+	<entry key="element.mappingDefinition.txr.tableNameInDB.description">
+		Table name in database
+	</entry>
+	<entry key="element.mappingDefinition.txr.state.label">
+		State
+	</entry>
+	<entry key="element.mappingDefinition.txr.state.description">
+		Table state
+	</entry>
+	<entry key="element.mappingDefinition.txr.createdTime.label">
+		Creation date
+	</entry>
+	<entry key="element.mappingDefinition.txr.createdTime.description">
+		creation date of the replication
+	</entry>
+	<entry key="element.mappingDefinition.txr.lastRefreshedTime.label">
+		Last refresh
+	</entry>
+	<entry key="element.mappingDefinition.txr.lastRefreshedTime.description">
+		Date of last refresh
+	</entry>
+	<entry key="element.mappingDefinition.rpu.label">
+		Replication units
+	</entry>
+	<entry key="element.mappingDefinition.rpu.description">
+		Replication units
+	</entry>
+	<entry key="element.mappingDefinition.rpu.table.defaultLabel">
+		Replication unit : ${./name}
+	</entry>
+	<entry key="element.mappingDefinition.rpu.xsId.label">
+		Data model
+	</entry>
+	<entry key="element.mappingDefinition.rpu.xsId.description">
+		Data model
+	</entry>
+	<entry key="element.mappingDefinition.rpu.name.label">
+		Name
+	</entry>
+	<entry key="element.mappingDefinition.rpu.name.description">
+		Name of the replication unit
+	</entry>
+	<entry key="element.mappingDefinition.rpu.dataspace.label">
+		Data space
+	</entry>
+	<entry key="element.mappingDefinition.rpu.dataspace.description">
+		Data space
+	</entry>
+	<entry key="element.mappingDefinition.rpu.dataset.label">
+		Data set
+	</entry>
+	<entry key="element.mappingDefinition.rpu.dataset.description">
+		Data set
+	</entry>
+	<entry key="element.mappingDefinition.rpu.refresh.label">
+		Refresh
+	</entry>
+	<entry key="element.mappingDefinition.rpu.refresh.description">
+		Refresh mode
+	</entry>
+	<entry key="element.mappingDefinition.ctp.label">
+		Types
+	</entry>
+	<entry key="element.mappingDefinition.ctp.description">
+		Types
+	</entry>
+	<entry key="element.mappingDefinition.ctp.table.defaultLabel">
+		Type: ${./columnTypeName}
+	</entry>
+	<entry key="element.mappingDefinition.ctp.ctpId.label">
+		Type id
+	</entry>
+	<entry key="element.mappingDefinition.ctp.ctpId.description">
+		Type id
+	</entry>
+	<entry key="element.mappingDefinition.ctp.columnTypeName.label">
+		Type name
+	</entry>
+	<entry key="element.mappingDefinition.ctp.columnTypeName.description">
+		Type name
+	</entry>
+	<entry key="element.mappingDefinition.ctp.namespace.label">
+		Namespace
+	</entry>
+	<entry key="element.mappingDefinition.ctp.namespace.description">
+		Namespace
+	</entry>

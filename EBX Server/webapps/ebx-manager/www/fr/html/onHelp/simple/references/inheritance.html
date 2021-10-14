@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Inheritance and value resolution</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="advanced_inheritance" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Other</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/inheritance.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Other</span></div>
+<h1>
+Inheritance and value resolution</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#dataSetInheritanceOverview">Dataset inheritance</a></li><li class="toc2"><a href="#id1s2">Inherited fields</a></li></ul>
+</li><li class="toc1"><a href="#dataSetInheritance">Dataset inheritance</a><ul class="toc2">
+<li class="toc2"><a href="#dataSetInheritanceValues">Value lookup mechanism</a></li><li class="toc2"><a href="#dataSetInheritanceRecords">Record lookup mechanism</a></li><li class="toc2"><a href="#dataSetInheritanceTableProperties">Defining inheritance behavior at the table level</a></li></ul>
+</li><li class="toc1"><a href="#ina">Inherited fields</a><ul class="toc2">
+<li class="toc2"><a href="#fieldInheritanceLookup">Value lookup mechanism</a></li></ul>
+</li><li class="toc1"><a href="#optimize">Optimize &amp; Refactor service</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Procedure details</a></li><li class="toc2"><a href="#id4s2">Service availability</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>The principle of inheritance is to mutualize resources that are shared by multiple contexts or entities. TIBCO EBX&reg; offers mechanisms for defining, factorizing and resolving data values: <em>dataset inheritance</em> and <em>inherited fields</em>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#inheritance">Inheritance (glossary)</a></li></ul>
+</div>
+<h3 id="dataSetInheritanceOverview">
+Dataset inheritance</h3>
+<p>Dataset inheritance is particularly useful when data applies to global enterprise contexts, such as subsidiaries or business partners.</p><p>Given a hierarchy of datasets, it is possible to factorize common data into the root or intermediate datasets and define specialized data in specific contexts.</p><p>The dataset inheritance mechanisms are detailed below in <a href="#dataSetInheritance">Dataset inheritance</a>.</p><h3 id="id1s2">
+Inherited fields</h3>
+<p>Contrary to dataset inheritance, which exploits global built-in relationships between datasets, inherited fields exploit finer-grained dependencies that are specific to the data structure. It allows factorizing and specializing data at the business entities-level. </p><p>For example, if the model specifies that a &#39;Product&#39; is associated with a &#39;FamilyOfProducts&#39;, it is possible that some attributes of &#39;Product&#39; inherit their values from the attributes defined in the associated &#39;FamilyOfProducts&#39;.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> When using both inheritance mechanisms in the same dataset, field inheritance has priority over dataset inheritance. </p></div>
+<h2 id="dataSetInheritance">
+Dataset inheritance</h2>
+<h3 id="dataSetInheritanceValues">
+Value lookup mechanism</h3>
+<p>The dataset inheritance lookup mechanism for values proceeds as follows:</p><ol>
+<li><p>If the value is locally defined, it is returned.</p></li><li><p>Otherwise, looks up the first locally defined value according to the built-in child-to-parent relationship of the dataset in the hierarchy of datasets.</p></li><li><p>If no locally defined value is found, the default value is returned.</p><p>If no default value is defined, <code>null</code> is returned.</p><p><strong>Note:</strong> Default values cannot be defined on:</p><ul>
+<li><p>A single primary key node</p></li><li><p>Auto-incremented nodes</p></li><li><p>Nodes defining a computed value</p></li></ul>
+</li></ol>
+<h3 id="dataSetInheritanceRecords">
+Record lookup mechanism</h3>
+<p>Like values, table records can also be inherited as a unit by multiple contexts, but they can also be partially redefined (<em>overwritten</em>), defined for a specific context (<em>root mode</em>), or be <em>occulted</em>.</p><p>Formally, a table record has one of four distinct definition modes:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><em>root record</em></p></td><td class="ebx_definitionListDefinition"><p>Locally defined in the table and has no parent. This means that no record with the same primary key exists in the parent table, or that this parent is an occulting record.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><em>overwriting record</em></p></td><td class="ebx_definitionListDefinition"><p>Locally defined in the table and has a parent record. This means that a record with the same primary key exists in the parent table, and that this parent is not an occulting record. The overwriting record inherits its values from its parent, except for the values that it explicitly redefines.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><em>inherited record</em></p></td><td class="ebx_definitionListDefinition"><p>Not locally defined in the current table and has a parent record. All values are inherited.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><em>occulting record</em></p></td><td class="ebx_definitionListDefinition"><p>Specifies that, if a parent with the same primary key is defined, this parent will not be visible in table descendants.</p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_data/userdata_inheritance.html">Dataset inheritance</a></li></ul>
+</div>
+<h3 id="dataSetInheritanceTableProperties">
+Defining inheritance behavior at the table level</h3>
+<p>It is also possible to specify management rules in the declaration of a table in the data model.</p><h2 id="ina">
+Inherited fields</h2>
+<p>The specific inheritance mechanism allows fetching a value of a field according to its relationship to other tables.</p><h3 id="fieldInheritanceLookup">
+Value lookup mechanism</h3>
+<p>The lookup mechanism for inherited fields values proceeds as follows:</p><ol>
+<li><p>If the value is locally defined, it is returned.</p></li><li><p>Otherwise, looks up the source record and value to inherit from, according to the properties that are defined in the data model.</p></li><li><p>The process is recursive; if the source node does not locally define a value, it is then looked up according to the inheritance behavior of the source node.</p></li></ol>
+<h2 id="optimize">
+Optimize &amp; Refactor service</h2>
+<p>EBX&reg; provides a built-in user service for optimizing the dataset inheritance in the hierarchy of datasets. This service performs the following functions:</p><ul>
+<li><p><strong>Handles duplicated values:</strong> Detects and removes all parameter values that are duplicates of the inherited value. </p></li><li><p><strong>Mutualizes common values:</strong> Detects and mutualizes the common values among the descendants of a common ancestor.</p></li></ul>
+<h3 id="id4s1">
+Procedure details</h3>
+<p>Datasets are processed from the bottom up, which means that if the service is run on the dataset at level <em>N</em>, with <em>N+1</em> being the level of its children and <em>N+2</em> being the level of its children&#39;s children, the service will first process the datasets at level <em>N+2</em> to determine if they can be optimized with respect to the datasets at level <em>N+1</em>. Next, it would proceed with an optimization of level <em>N+1</em> against level <em>N</em>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><ul>
+<li><p>These optimization and refactoring functions do not handle default values that are declared in the data model.</p></li><li><p>The highest level considered during the optimization procedure is always the dataset on which the service is run. This means that optimization and refactoring are not performed between the target dataset and its own ancestors.</p></li><li><p>Table optimization is performed on records with the same primary key.</p></li><li><p>Inherited fields are not optimized.</p></li><li><p><em>The optimization and refactoring functions do not modify the resolved view of a dataset, if it is activated.</em></p></li></ul>
+</p></div>
+<h3 id="id4s2">
+Service availability</h3>
+<p>The &#39;Optimize &amp; Refactor&#39; service is available on datasets that have child datasets and have the &#39;Activated&#39; property set to &#39;No&#39; in their dataset information.</p><p>The service is available to any profile with write access on current dataset values. It can be disabled by setting restrictive access rights on a profile.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>For performance reasons, access rights are not verified on every node and table record.</p></div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Other</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

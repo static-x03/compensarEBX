@@ -1,0 +1,10 @@
+﻿<xs:element name="myTable" type="MyTableType" minOccurs="0" maxOccurs="unbounded">
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:table>
+				<primaryKeys>/key</primaryKeys>
+			</osd:table>
+			<osd:trigger class="com.foo.MyTableTrigger" />
+		</xs:appinfo>
+	</xs:annotation>
+</xs:element>

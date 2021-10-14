@@ -1,0 +1,10 @@
+﻿<xs:element name="computedValue" osd:disableValidation="true">
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:function class="com.foo.ComputeValue">
+				...
+			</osd:function>
+		</xs:appinfo>
+	</xs:annotation>
+	...
+</xs:element>

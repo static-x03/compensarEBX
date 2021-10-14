@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Mapping to Java</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_mapping" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Introduction</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/mapping_to_java.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Introduction</span></div>
+<h1>
+Mapping to Java</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#access">How to access data from Java?</a><ul class="toc2">
+<li class="toc2"><a href="#accessRead">Read access</a></li><li class="toc2"><a href="#accessWrite">Write access</a></li><li class="toc2"><a href="#accessWriteMutableObjects">Modification of mutable objects</a></li></ul>
+</li><li class="toc1"><a href="#transactionsAndConcurrency">Transactions and concurrency</a><ul class="toc2">
+<li class="toc2"><a href="#concurrency">Concurrency</a></li><li class="toc2"><a href="#queriesIsolation">Queries snapshot isolation</a></li><li class="toc2"><a href="#adaptationIsolation">Adaptation objects</a></li></ul>
+</li><li class="toc1"><a href="#mapping">Mapping of data types</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Simple data types</a></li><li class="toc2"><a href="#id3s2">Complex data types</a></li></ul>
+</li><li class="toc1"><a href="#bindings">Java bindings</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Benefits</a></li><li class="toc2"><a href="#id4s2">XML declaration</a></li></ul>
+</li></ul>
+</div>
+<h2 id="access">
+How to access data from Java?</h2>
+<h3 id="accessRead">
+Read access</h3>
+<p>Data can be read from various generic Java classes, mainly <a target="_blank" href="../Java_API/com/onwbp/adaptation/Adaptation.html"><code>Adaptation</code></a> and <a target="_blank" href="../Java_API/com/orchestranetworks/instance/ValueContext.html"><code>ValueContext</code></a>. The getter methods for these classes return objects that are typed according to the mapping rules described in the section <a href="#mapping">Mapping of data types</a>.</p><h3 id="accessWrite">
+Write access</h3>
+<p>Data updates must be performed in a well-managed context:</p><ul>
+<li><p>In the context of a procedure execution, by calling the methods <code>setValue...</code> of the interface <a target="_blank" href="../Java_API/com/orchestranetworks/service/ValueContextForUpdate.html"><code>ValueContextForUpdate</code></a>, or</p></li><li><p>During the user input validation, by calling the method <code>setNewValue</code> of the class <a target="_blank" href="../Java_API/com/orchestranetworks/instance/ValueContextForInputValidation.html"><code>ValueContextForInputValidation</code></a>.</p></li></ul>
+<h3 id="accessWriteMutableObjects">
+Modification of mutable objects</h3>
+<p>According to the mapping that is described in the <a href="#mapping">Mapping of data types</a> section, some accessed Java objects are mutable objects. These are instances of <code>List</code> ,&nbsp;<code>Date</code> or any JavaBean. Consequently, these objects can be locally modified by their own methods. However, such modifications will remain local to the returned object unless one of the above setters is invoked and the current transaction is successfully committed.</p><h2 id="transactionsAndConcurrency">
+Transactions and concurrency</h2>
+<h3 id="concurrency">
+Concurrency</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> At the dataspace level </p></td><td class="ebx_definitionListDefinition"><p> In a single dataspace, the system supports running only one single read-write <code>Procedure</code> and multiple concurrent <code>ReadOnlyProcedure</code>s. Concurrent accesses outside any <code>Procedure</code> are also supported. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> At the repository level </p></td><td class="ebx_definitionListDefinition"><p> At the repository level, concurrency is limited for only some specific operations. For example (non-exhaustive list): </p><ul>
+<li><p> A data model publication excludes many operations. </p></li><li><p> A dataspace merge excludes write operations on the two dataspaces involved in the merge. </p></li></ul>
+</td></tr>
+</table>
+<h3 id="queriesIsolation">
+Queries snapshot isolation</h3>
+<p>The following table defines the properties related to queries isolation. Note that all of the rules applying to <code>QueryResult</code> also apply to <code>RequestResult</code>: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> Queries outside of a <code>Procedure</code></p></td><td class="ebx_definitionListDefinition"><p> Data is frozen at the time of fetching the <code>QueryResult</code>. More precisely, a query result accesses only committed data as of the last committed transaction at the time of fetching this result. The content of this result never changes afterwards. </p><p> A query outside of a <code>Procedure</code> can be considered as a self-containing <code>ReadOnlyProcedure</code>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> Queries inside of a <code>Procedure</code>, in the same dataspace as the <code>Procedure</code> underlying dataspace </p></td><td class="ebx_definitionListDefinition"><p> The <code>QueryResult</code> reflects the last committed state before the Procedure starts and the changes that occurred in the <code>Procedure</code> previously to the <code>QueryResult</code> fetch. The content of this result never changes afterwards, whatever happens in the <code>Procedure</code>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> Queries inside of a <code>Procedure</code>, in another dataspace </p></td><td class="ebx_definitionListDefinition"><p> The consistency is guaranteed at the repository level, so the <code>QueryResult</code> reflects the last committed state before the <code>Procedure</code> starts. The content of this result never changes after the query is fetched, whatever happens in the whole repository. </p></td></tr>
+</table>
+<h3 id="adaptationIsolation">
+Adaptation objects</h3>
+<p>In Java, a persistent dataset or a persistent record are both represented by an instance of the <code>Adaptation</code> class. </p><p>The following table defines the properties related to <code>Adaptation</code> objects. </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> Immutability </p></td><td class="ebx_definitionListDefinition"><p> An <code>Adaptation</code> object instance is immutable. </p><p> Therefore, the client code should not &quot;hold&quot; an <code>Adaptation</code> object for a long time (in particular beyond a transaction boundaries). However, it is possible to invoke the method <a target="_blank" href="../Java_API/com/onwbp/adaptation/Adaptation.html#getUpToDateInstance--"><code>Adaptation.getUpToDateInstance</code></a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> Fetch </p></td><td class="ebx_definitionListDefinition"><p> If an <code>Adaptation</code> is fetched from a <code>QueryResult</code>, then the snapshot isolation rules described in the previous section apply. Otherwise, if an <code>Adaptation</code> is fetched from a running <code>Procedure</code>, it reflects the last committed state before the Procedure starts. Otherwise, outside of a <code>QueryResult</code> or a running <code>Procedure</code>, the <code>Adaptation</code> reflects the state of the record on its fetch-time. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/AdaptationHome.html#findAdaptationOrNull-com.onwbp.adaptation.AdaptationName-"><code>AdaptationHome.findAdaptationOrNull</code></a></li><li><a target="_blank" href="../Java_API/com/onwbp/adaptation/AdaptationTable.html#lookupAdaptationByPrimaryKey-com.onwbp.adaptation.PrimaryKey-"><code>AdaptationTable.lookupAdaptationByPrimaryKey</code></a></li></ul>
+</div>
+</td></tr>
+</table>
+<h2 id="mapping">
+Mapping of data types</h2>
+<p>This section describes how XML Schema type definitions and element declarations are mapped to Java types.</p><h3 id="id3s1">
+Simple data types</h3>
+<h4>
+Basic rules for simple data types</h4>
+<p>Each XML Schema simple type corresponds to a Java class; the mapping is documented in the table <a href="../models/types.html#xsdsimple">XML Schema built-in simple types</a>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html#createNewOccurrence--"><code>SchemaNode.createNewOccurrence</code></a></li></ul>
+</div>
+<h4>
+Multiple cardinality on a simple element</h4>
+<p>If the attribute <code>maxOccurs</code> is greater than 1, then the element is an aggregated list and the corresponding instance in Java is an instance of <code>java.util.List</code>.</p><p>Elements of the list are instances of the Java class that is determined from the mapping of the simple type (see previous section).</p><h3 id="id3s2">
+Complex data types</h3>
+<h4>
+Complex type definitions without a class declaration</h4>
+<p>By default (no attribute <code>osd:class</code>), a terminal node of a complex type is instantiated using an internal class. This class provides a generic JavaBean implementation. However, if a custom client Java code must access these values, use a custom JavaBean. To do so, use the <code>osd:class</code> declaration described in the next section.</p><p> You can transparently instantiate, read and modify the mapped Java object, with or without the attribute <code>osd:class</code>, by invoking the methods <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html#createNewOccurrence--"><code>SchemaNode.createNewOccurrence</code></a>, <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html#executeRead-java.lang.Object-"><code>SchemaNode.executeRead</code></a> and <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html#executeWrite-java.lang.Object-java.lang.Object-"><code>SchemaNode.executeWrite</code></a>. </p><h4 id="javabeans">
+Mapping of complex types to custom JavaBeans</h4>
+<p>You can map an XML Schema complex type to a custom Java class. This is done by adding the attribute <code>osd:class</code> to the complex node definition. Unless the element has <code>xs:maxOccurs &gt; 1</code>, you must also specify the attribute <code>osd:access</code> for the node to be considered a <em>terminal</em> node. If the element has <code>xs:maxOccurs &gt; 1</code>, it is automatically considered to be terminal.</p><p>The custom Java class must conform to the JavaBean protocol. This means that each child of the complex type must correspond to a JavaBean property of the class. Additionally, each JavaBean property must be a read-write property, and its implementation must ensure that the value set by the setter method is returned, as-is, by the getter method. Contextual computations are not allowed in these methods.</p><h4>
+Example</h4>
+<p>In this example, the Java class <code>com.carRental.Customer</code> must define the methods <code>getFirstName()</code> and <code>setFirstName(String)</code>.</p><p>A JavaBean can have a custom user interface within TIBCO EBX&reg;, by using a <code><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIBeanEditor.html"><code>UIBeanEditor</code></a></code>.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="customer" osd:access="RW">
+  &lt;xs:complexType name="subscriber" osd:class="com.carRental.Customer">
+	&lt;xs:sequence>
+	  &lt;xs:element name="firstName" type="xs:string"/>
+	  ...
+	&lt;/xs:sequence>
+  &lt;/xs:complexType>
+&lt;/xs:element></pre>
+<h4>
+Multiple cardinality on a complex element</h4>
+<p> If the attribute <code>maxOccurs</code> is greater than 1, then the corresponding instance in Java is: </p><ul>
+<li><p>An instance of <code>java.util.List</code> for an aggregated list, where every element in the list is an instance of the Java class determined by the <a href="../models/types.html#xsdsimple">mapping of simple types</a>, or</p></li><li><p>An instance of <a target="_blank" href="../Java_API/com/onwbp/adaptation/AdaptationTable.html"><code>AdaptationTable</code></a>, if the property <code>osd:table</code> is specified.</p></li></ul>
+<h2 id="bindings">
+Java bindings</h2>
+<p>Java bindings support generating Java types that reflect the structure of the data model. The Java code generation can be done in the user interface. See <a href="../references/tools_java_developer.html#generate_java">Generating Java bindings</a>.</p><h3 id="id4s1">
+Benefits</h3>
+<p>Ensuring the link between XML Schema structure and Java code provides a number of benefits:</p><ul>
+<li><p><strong>Development assistance:</strong> Auto-completion when you type an access path to parameters, if it is supported by your IDE.</p></li><li><p><strong>Access code verification:</strong> All accesses to parameters are verified at code compilation.</p></li><li><p><strong>Impact verification:</strong> Each modification of the data model impacts the code compilation state.</p></li><li><p><strong>Cross-referencing:</strong> By using the reference tools of your IDE, you can easily verify where a parameter is used.</p></li></ul>
+<p>Consequently, it is strongly encouraged that you use Java bindings.</p><h3 id="id4s2">
+XML declaration</h3>
+<p>The specification of the Java types to be generated from the data model is included in the main schema.</p><p>Each binding element defines a generation target. It must be located at, in XPath notation, <code>xs:schema/xs:annotation/xs:appinfo/ebxbnd:binding</code>, where the prefix <code>ebxbnd</code> is a reference to the namespace identified by the URI <code>urn:ebx-schemas:binding_1.0</code>. Several binding elements can be defined if you have different generation targets.</p><p>The attribute <code>targetDirectory</code> of the element <code>ebxbnd:binding</code> defines the root directory used for Java type generation. Generally, it is the directory containing the project source code, <code>src</code>. A relative path is interpreted based on the current runtime directory of the VM, as opposed to the XML schema.</p><p>See <a target="_blank" href="../resources/schema/binding_1.0.xsd">bindings XML Schema</a>.</p><h4>
+XML bindings example</h4>
+<pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ebxbnd="urn:ebx-schemas:binding_1.0">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;!-- The bindings define how this schema will be represented in Java.
+			Several &lt;binding> elements may be defined, one for each target. -->
+			&lt;ebxbnd:binding
+				targetDirectory="../_ebx-demos/src-creditOnLineStruts-1.0/">
+				&lt;javaPathConstants typeName="com.creditonline.RulesPaths">
+					&lt;nodes root="/rules" prefix="" />
+				&lt;/javaPathConstants>
+				&lt;javaPathConstants typeName="com.creditonline.StylesheetConstants">
+					&lt;nodes root="/stylesheet" prefix="" />
+				&lt;/javaPathConstants>
+			&lt;/ebxbnd:binding>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:schema>
+</pre>
+<p>Java constants can be defined for XML schema paths. To do so, generate one or more interfaces from a schema node, including the root node <code>/</code>. The example generates two Java path constant interfaces, one from the node <code>/rules</code> and the other from the node <code>/stylesheet</code> in the schema. Interface names are described by the element <code>javaPathConstants</code> with the attribute <code>typeName</code>. The associated node is described by the element <code>nodes</code> with the attribute <code>root</code>. </p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Introduction</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

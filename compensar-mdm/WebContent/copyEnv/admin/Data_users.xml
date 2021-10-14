@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directory>
+    <users>
+        <login>adminOnly</login>
+        <firstName>Admin</firstName>
+        <lastName>Only</lastName>
+        <password>3758d2da25846925347424db7091231ec061bb0216a11475d913ec3b7f87fc19</password>
+        <passwordLastUpdate>2015-10-01T18:26:00.028</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>true</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>commRda</login>
+        <firstName>Comm</firstName>
+        <lastName>Rda</lastName>
+        <password>3aacc78d0c83eeef01655c784c3cc28093b7c9a427bc6b98edf1022ec12a5e87</password>
+        <passwordLastUpdate>2016-01-25T16:28:33.621</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>commRde</login>
+        <firstName>Comm</firstName>
+        <lastName>Rde</lastName>
+        <password>18cbfb51a75cc294e11c60fbe2793f5cf4c541bf3290b399b3e0199c3c67faa3</password>
+        <passwordLastUpdate>2016-01-25T16:28:06.938</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>commRdsa</login>
+        <firstName>Comm</firstName>
+        <lastName>Rdsa</lastName>
+        <avatar/>
+        <password>2fff4edcb4544e4703994d167837365ad5ccebc1a38a78025ad849ffe2b875b0</password>
+        <passwordLastUpdate>2018-01-02T19:03:40.483</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>persDa</login>
+        <firstName>Pers</firstName>
+        <lastName>Da</lastName>
+        <password>accb3a5e3b8cd2c624bb07db4a8a4325620a802d1825f6268425289c93ac2124</password>
+        <passwordLastUpdate>2016-01-28T19:46:20.499</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>persDe</login>
+        <firstName>Pers</firstName>
+        <lastName>De</lastName>
+        <password>b523ec8b4cfdd2c528a502790080d0d4b86aaace714aa400abb4f647ee234b83</password>
+        <passwordLastUpdate>2016-01-28T19:47:49.578</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>persDsa</login>
+        <firstName>Pers</firstName>
+        <lastName>Dsa</lastName>
+        <avatar/>
+        <password>ef9d28c997e69807516e46571073ed35fea4b8e57e21d2d1c865d7a30c44b134</password>
+        <passwordLastUpdate>2018-01-02T19:04:30.513</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>persRda</login>
+        <firstName>Pers</firstName>
+        <lastName>Rda</lastName>
+        <password>eaf530014305546d564af9b8a423a3e560336dd8f61f34a450aa39bc3d5e1001</password>
+        <passwordLastUpdate>2016-01-28T19:49:34.495</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>persRde</login>
+        <firstName>Pers</firstName>
+        <lastName>Rde</lastName>
+        <password>d5669264de0c9e1aace527512f10203fb6747a696ef3751cfe45b75c443d8e02</password>
+        <passwordLastUpdate>2016-01-28T19:50:25.322</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>persRdsa</login>
+        <firstName>Pers</firstName>
+        <lastName>Rdsa</lastName>
+        <avatar/>
+        <password>5c144cb3dd4b02b41c9e040e8b26e40a426e2e5f32da15f0bb1efb1559099b99</password>
+        <passwordLastUpdate>2018-01-02T19:05:15.063</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+    <users>
+        <login>ReadOnly</login>
+        <firstName>User</firstName>
+        <lastName>ReadOnly</lastName>
+        <password>57d0808c68ad1bcd30a994585a9cdcb88a7689fa504f899c1a6960091e672c9b</password>
+        <passwordLastUpdate>2016-01-28T20:02:09.531</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Permissions User</jobFunction>
+    </users>
+    <users>
+        <login>techAdminOnly</login>
+        <firstName>Tech Admin</firstName>
+        <lastName>Only</lastName>
+        <password>9a66296af84a1bc22b23baf42aedb74f26cf9b83e9014dbca05de06d234d67d4</password>
+        <passwordLastUpdate>2015-10-14T19:15:51.562</passwordLastUpdate>
+        <passwordMustChange>false</passwordMustChange>
+        <builtInRoles>
+            <administrator>false</administrator>
+            <readOnly>false</readOnly>
+        </builtInRoles>
+        <jobFunction>Test User</jobFunction>
+    </users>
+</directory>

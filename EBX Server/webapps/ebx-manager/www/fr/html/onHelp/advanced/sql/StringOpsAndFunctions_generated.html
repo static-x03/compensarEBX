@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - String operators and functions</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="testStringOpsAndFunctions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; SQL in EBX®</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=sql/StringOpsAndFunctions_generated.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+<h1>
+String operators and functions</h1>
+<p>The table below lists all the SQL string operators and functions supported by EBX&reg;, along with their standard SQL syntax. Some functions may have optional parameters: they are surrounded by square brackets.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Operator syntax</strong></p></th><th><p><strong>Description and example(s)</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>string || string</p></td><td><p>Concatenates two character strings</p><p><code>SELECT &#39;Hello &#39; || &#39;world !&#39; :&nbsp; Hello world !</code></p></td></tr>
+<tr>
+<td><p>CHAR_LENGTH(string)</p></td><td><p>Returns the number of characters in a character string</p><p><code>SELECT CHAR_LENGTH(&#39;Alfreds Futterkiste&#39;) :&nbsp; 19</code></p></td></tr>
+<tr>
+<td><p>CHARACTER_LENGTH(string)</p></td><td><p>As CHAR_LENGTH(string)</p><p><code>SELECT CHARACTER_LENGTH(&#39;Alfreds Futterkiste&#39;) :&nbsp; 19</code></p></td></tr>
+<tr>
+<td><p>UPPER(string)</p></td><td><p>Returns a character string converted to upper case</p><p><code>SELECT UPPER(&#39;SQL Tutorial is FUN!&#39;) :&nbsp; SQL TUTORIAL IS FUN!</code></p></td></tr>
+<tr>
+<td><p>POSITION(string1 IN string2 [FROM integer])</p></td><td><p>Returns the position of the first occurrence of string1 in string2 starting at a given point if specified</p><p><code>SELECT POSITION(&#39;is fun&#39; IN &#39;Tutorial is FUN!&#39;) :&nbsp; 0</code></p><p><code>SELECT POSITION(&#39;fun&#39; IN &#39;Tutorial is FUN, very FUN!&#39; FROM 17) :&nbsp; 0</code></p></td></tr>
+<tr>
+<td><p>TRIM( { BOTH | LEADING | TRAILING } character FROM string)</p></td><td><p>Removes the longest string containing only the character from the start/end/both ends of string</p><p><code>SELECT TRIM(&#39; &#39; FROM &#39; #SQL Tutorial! &#39;) :&nbsp; #SQL Tutorial!</code></p><p><code>SELECT TRIM(LEADING &#39; &#39; FROM &#39; #SQL Tutorial! &#39;) :&nbsp; #SQL Tutorial! </code></p><p><code>SELECT TRIM(TRAILING &#39; &#39; FROM &#39; #SQL Tutorial! &#39;) :&nbsp; #SQL Tutorial!</code></p><p><code>SELECT TRIM(BOTH &#39; &#39; FROM &#39; #SQL Tutorial! &#39;) :&nbsp; #SQL Tutorial!</code></p></td></tr>
+<tr>
+<td><p>OVERLAY(string1 PLACING string2 FROM integer [ FOR integer2 ])</p></td><td><p>Replaces a substring of string1 with string2</p><p><code>SELECT OVERLAY(&#39;Tutorial is very FUN!&#39; PLACING &#39;VERY&#39; FROM 13) :&nbsp; Tutorial is VERY FUN!</code></p><p><code>SELECT OVERLAY(&#39;Tutorial is very FUN!&#39; PLACING &#39;VERY&#39; FROM 13 FOR 4) :&nbsp; Tutorial is VERY FUN!</code></p></td></tr>
+<tr>
+<td><p>SUBSTRING(string FROM integer [FOR integer])</p></td><td><p>Returns a substring of a character string starting at a given point</p><p><code>SELECT SUBSTRING(&#39;Tutorial is very FUN!&#39; FROM 13) :&nbsp; very FUN!</code></p><p><code>SELECT SUBSTRING(&#39;Tutorial is very FUN!&#39; FROM 13 FOR 4) :&nbsp; very</code></p></td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

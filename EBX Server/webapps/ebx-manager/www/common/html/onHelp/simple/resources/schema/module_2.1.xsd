@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright © TIBCO Software Inc. 2001-2021. All rights reserved. 
+
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+	DEPRECATED, THIS SCHEMA SHOULD NO LONGER BE USED SINCE 5.9.0
+	******************************************************************
+	
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:ebx-schemas:module_2.1"
+	targetNamespace="urn:ebx-schemas:module_2.1"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="2.1" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="http://www.w3.org/2001/xml.xsd" />
+	<xs:element name="module" type="ModuleDescriptionType" />
+	<xs:complexType name="ModuleDescriptionType">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>
+						Stable name identifying the module on an
+						EBX®. By convention, this name may be
+						the module's folder in development environment.
+						However, module's folder is not always
+						available, for example if a web application is
+						deployed within a .war file. Hence this field is
+						mandatory.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ModuleNameType">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="publicPath" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Public path that identifies the web application
+						relative to the web server. Servlet
+						Specification version 2.3 - SRV9.1: " A web
+						application is rooted at a specific path within
+						a web server." If this element is not defined,
+						then public path is the module name defined
+						above.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dependencies" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Obsolete, is ignored.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="module"
+							type="AliasToModuleNameAssociationType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="installerClassName" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						If defined, it must be the fully qualified name
+						of a Java class implementing
+						com.onwbp.core.service.ServiceInstaller
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="businessRules" type="BusinessRulesType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						EBX® internal
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locales" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Defines the locales used to localize schemas within the module.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="locale">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="LocaleType">
+										<xs:attribute name="isDefault"
+											type="xs:boolean" use="optional" fixed="true" />
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="services" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="service" type="ServiceType"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AliasToModuleNameAssociationType">
+		<xs:annotation>
+			<xs:documentation>
+				This type defines an association of a module alias to a
+				module name.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="alias" type="xs:string" use="required" />
+		<xs:attribute name="name" type="ModuleNameType" use="required" />
+	</xs:complexType>
+	<xs:simpleType name="ModuleNameType">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<xs:simpleType name="LocaleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ar" />
+			<xs:enumeration value="ar_AE" />
+			<xs:enumeration value="ar_BH" />
+			<xs:enumeration value="ar_DZ" />
+			<xs:enumeration value="ar_EG" />
+			<xs:enumeration value="ar_IQ" />
+			<xs:enumeration value="ar_JO" />
+			<xs:enumeration value="ar_KW" />
+			<xs:enumeration value="ar_LB" />
+			<xs:enumeration value="ar_LY" />
+			<xs:enumeration value="ar_MA" />
+			<xs:enumeration value="ar_OM" />
+			<xs:enumeration value="ar_QA" />
+			<xs:enumeration value="ar_SA" />
+			<xs:enumeration value="ar_SD" />
+			<xs:enumeration value="ar_SY" />
+			<xs:enumeration value="ar_TN" />
+			<xs:enumeration value="ar_YE" />
+			<xs:enumeration value="be" />
+			<xs:enumeration value="be_BY" />
+			<xs:enumeration value="bg" />
+			<xs:enumeration value="bg_BG" />
+			<xs:enumeration value="ca" />
+			<xs:enumeration value="ca_ES" />
+			<xs:enumeration value="ca_ES_EURO" />
+			<xs:enumeration value="cs" />
+			<xs:enumeration value="cs_CZ" />
+			<xs:enumeration value="da" />
+			<xs:enumeration value="da_DK" />
+			<xs:enumeration value="de" />
+			<xs:enumeration value="de_AT" />
+			<xs:enumeration value="de_AT_EURO" />
+			<xs:enumeration value="de_CH" />
+			<xs:enumeration value="de_DE" />
+			<xs:enumeration value="de_DE_EURO" />
+			<xs:enumeration value="de_LU" />
+			<xs:enumeration value="de_LU_EURO" />
+			<xs:enumeration value="el" />
+			<xs:enumeration value="el_GR" />
+			<xs:enumeration value="en" />
+			<xs:enumeration value="en_AU" />
+			<xs:enumeration value="en_BE" />
+			<xs:enumeration value="en_BE_EURO" />
+			<xs:enumeration value="en_CA" />
+			<xs:enumeration value="en_GB" />
+			<xs:enumeration value="en_IE" />
+			<xs:enumeration value="en_IE_EURO" />
+			<xs:enumeration value="en_NZ" />
+			<xs:enumeration value="en_US" />
+			<xs:enumeration value="en_ZA" />
+			<xs:enumeration value="es" />
+			<xs:enumeration value="es_AR" />
+			<xs:enumeration value="es_BO" />
+			<xs:enumeration value="es_CL" />
+			<xs:enumeration value="es_CO" />
+			<xs:enumeration value="es_CR" />
+			<xs:enumeration value="es_DO" />
+			<xs:enumeration value="es_EC" />
+			<xs:enumeration value="es_ES" />
+			<xs:enumeration value="es_ES_EURO" />
+			<xs:enumeration value="es_GT" />
+			<xs:enumeration value="es_HN" />
+			<xs:enumeration value="en_IN" />
+			<xs:enumeration value="es_MX" />
+			<xs:enumeration value="es_NI" />
+			<xs:enumeration value="es_PA" />
+			<xs:enumeration value="es_PE" />
+			<xs:enumeration value="es_PR" />
+			<xs:enumeration value="es_PY" />
+			<xs:enumeration value="es_SV" />
+			<xs:enumeration value="es_US" />
+			<xs:enumeration value="es_UY" />
+			<xs:enumeration value="es_VE" />
+			<xs:enumeration value="et" />
+			<xs:enumeration value="et_EE" />
+			<xs:enumeration value="fi" />
+			<xs:enumeration value="fi_FI" />
+			<xs:enumeration value="fi_FI_EURO" />
+			<xs:enumeration value="fr" />
+			<xs:enumeration value="fr_BE" />
+			<xs:enumeration value="fr_BE_EURO" />
+			<xs:enumeration value="fr_CA" />
+			<xs:enumeration value="fr_CH" />
+			<xs:enumeration value="fr_FR" />
+			<xs:enumeration value="fr_FR_EURO" />
+			<xs:enumeration value="fr_LU" />
+			<xs:enumeration value="fr_LU_EURO" />
+			<xs:enumeration value="hi_IN" />
+			<xs:enumeration value="hr" />
+			<xs:enumeration value="hr_HR" />
+			<xs:enumeration value="hu" />
+			<xs:enumeration value="hu_HU" />
+			<xs:enumeration value="is" />
+			<xs:enumeration value="is_IS" />
+			<xs:enumeration value="it" />
+			<xs:enumeration value="it_CH" />
+			<xs:enumeration value="it_IT" />
+			<xs:enumeration value="it_IT_EURO" />
+			<xs:enumeration value="iw" />
+			<xs:enumeration value="iw_IL" />
+			<xs:enumeration value="ja" />
+			<xs:enumeration value="ja_JP" />
+			<xs:enumeration value="ko" />
+			<xs:enumeration value="ko_KR" />
+			<xs:enumeration value="lt" />
+			<xs:enumeration value="lt_LT" />
+			<xs:enumeration value="lv" />
+			<xs:enumeration value="lv_LV" />
+			<xs:enumeration value="mk" />
+			<xs:enumeration value="mk_MK" />
+			<xs:enumeration value="nl" />
+			<xs:enumeration value="nl_BE" />
+			<xs:enumeration value="nl_BE_EURO" />
+			<xs:enumeration value="nl_NL" />
+			<xs:enumeration value="nl_NL_EURO" />
+			<xs:enumeration value="no" />
+			<xs:enumeration value="no_NO" />
+			<xs:enumeration value="no_NO_NY" />
+			<xs:enumeration value="pl" />
+			<xs:enumeration value="pl_PL" />
+			<xs:enumeration value="pt" />
+			<xs:enumeration value="pt_BR" />
+			<xs:enumeration value="pt_PT" />
+			<xs:enumeration value="pt_PT_EURO" />
+			<xs:enumeration value="ro" />
+			<xs:enumeration value="ro_RO" />
+			<xs:enumeration value="ru" />
+			<xs:enumeration value="ru_RU" />
+			<xs:enumeration value="sh" />
+			<xs:enumeration value="sh_YU" />
+			<xs:enumeration value="sk" />
+			<xs:enumeration value="sk_SK" />
+			<xs:enumeration value="sl" />
+			<xs:enumeration value="sl_SI" />
+			<xs:enumeration value="sq" />
+			<xs:enumeration value="sq_AL" />
+			<xs:enumeration value="sr" />
+			<xs:enumeration value="sr_YU" />
+			<xs:enumeration value="sv" />
+			<xs:enumeration value="sv_SE" />
+			<xs:enumeration value="th" />
+			<xs:enumeration value="th_TH" />
+			<xs:enumeration value="th_TH_TH" />
+			<xs:enumeration value="tr" />
+			<xs:enumeration value="tr_TR" />
+			<xs:enumeration value="uk" />
+			<xs:enumeration value="uk_UA" />
+			<xs:enumeration value="vi" />
+			<xs:enumeration value="vi_VN" />
+			<xs:enumeration value="zh" />
+			<xs:enumeration value="zh_CN" />
+			<xs:enumeration value="zh_HK" />
+			<xs:enumeration value="zh_TW" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BusinessRulesType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="packageName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						EBX® internal.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="ruleName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+							If development environment can not
+							introspect Java package, fill this list with
+							all java rules.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceDocumentationType">
+		<xs:sequence>
+			<xs:element name="label" type="xs:string" />
+			<xs:element name="description" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute ref="xml:lang" />
+	</xs:complexType>
+	<xs:complexType name="ServiceType">
+		<xs:sequence>
+			<xs:element name="resourcePath" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="type" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="documentation"
+				type="ServiceDocumentationType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" />
+	</xs:complexType>
+</xs:schema>

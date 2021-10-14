@@ -1,0 +1,16 @@
+{
+	"procedureContext":                // JSON Object (optional)
+	{
+		"trackingInformation": "String", // JSON String (optional)
+		"inputParameters":               // JSON Array (optional)
+		[
+			// JSON Object for each parameter
+			{
+				"name": "String",            // JSON String (required)
+				"value": "String"            // JSON String (optional)
+			},
+			...
+		]
+	},
+	...
+}

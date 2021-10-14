@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for data mapping's definition, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0"
+	xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0"
+		schemaLocation="./common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants
+					typeName="com.orchestranetworks.mappingDefinition.DmsMappingDefinition_1_0">
+					<nodes prefix="" root="/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<!-- schema extension -->
+			<osd:extensions
+				class="com.orchestranetworks.mappingDefinition.DmsSchemaExtensions" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.history" />
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- Root -->
+	<xs:element name="mappingDefinition" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.mappingDefinition" />
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="xs">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.mappingDefinition.xs" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/xsId</primaryKeys>
+									<relationalModeOnLegacy>XS_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.mappingDefinition.xs.table.defaultLabel" />
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="xsId" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>xs_id</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.xs.xsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsPath" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>xs_path</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.xs.xsPath" />
+								</xs:annotation>
+							</xs:element>
+
+							<xs:element name="lastWrite" type="xs:decimal">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>last_write</osd:mappingInfo>
+										<osd:uiBean
+											class="com.orchestranetworks.mappingDefinition.DmsTimestampUIBean" />
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.xs.lastWrite" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="tables" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/mappingDefinition/txs/xsId</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.xs.tables" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="replicationUnits" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/mappingDefinition/txr/xsId</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<displayMode>tab</displayMode>
+										</osd:defaultView>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.xs.replicationUnits" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="replicas" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/mappingDefinition/rpu/xsId</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<displayMode>tab</displayMode>
+										</osd:defaultView>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.xs.replicas" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="txs">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.mappingDefinition.txs" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/txsId</primaryKeys>
+									<relationalModeOnLegacy>TXS_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.mappingDefinition.txs.table.defaultLabel" />
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="txsId" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>txs_id</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.txsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="tablePath" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>table_path</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.tablePath" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="tableNameInDB" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>table_name_in_db</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.tableNameInDB" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="tableNameInDBForHV" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>table_name_in_db_for_HV</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.tableNameInDBForHV" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="state" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>state</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.mappingDefinition.DmsStateEnumeration"/>
+                                        </osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.state" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="stateHV" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>state_hv</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.mappingDefinition.DmsStateEnumeration"/>
+                                        </osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.stateHV" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="lastWrite" type="xs:decimal">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>last_write</osd:mappingInfo>
+										<osd:uiBean
+											class="com.orchestranetworks.mappingDefinition.DmsTimestampUIBean" />
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.lastWrite" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>xs_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/xs</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.xsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="replicas" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/mappingDefinition/txr/txsId</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<displayMode>tab</displayMode>
+										</osd:defaultView>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.replicas" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="columns" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/mappingDefinition/cxs/txsId</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.columns" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="lists_master" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/mappingDefinition/lxs/masterTxsId</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.listsMatser" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="lists_aux" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/mappingDefinition/lxs/auxTxsId</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<displayMode>default</displayMode>
+										</osd:defaultView>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txs.listsAux" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="cxs">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.mappingDefinition.cxs" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/txsId /cxsId</primaryKeys>
+									<relationalModeOnLegacy>CXS_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.mappingDefinition.cxs.table.defaultLabel" />
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="txsId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>txs_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/txs</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.cxs.txsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cxsId" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>cxs_id</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.cxs.cxsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="columnPath" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>column_path</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.cxs.columnPath" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ctpId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>ctp_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/ctp</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+<!-- 										<osd:uiBean
+											class="com.orchestranetworks.mappingDefinition.DmsColumnTypeUIBean" /> -->
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.cxs.ctpId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="columnNameInDB" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>column_name_in_db</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.cxs.columnNameInDB" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="state" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>state</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.mappingDefinition.DmsStateEnumeration"/>
+                                        </osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.cxs.state" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="lastWrite" type="xs:decimal">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>last_write</osd:mappingInfo>
+										<osd:uiBean
+											class="com.orchestranetworks.mappingDefinition.DmsTimestampUIBean" />
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.cxs.lastWrite" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="lxs">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.mappingDefinition.lxs" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/masterTxsId /auxTxsId</primaryKeys>
+									<relationalModeOnLegacy>LXS_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.mappingDefinition.lxs.table.defaultLabel" />
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="masterTxsId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>master_txs_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/txs</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.lxs.masterTxsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="listPath" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>list_path</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.lxs.listPath" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="auxTxsId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>aux_txs_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/txs</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.lxs.auxTxsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="hvColumnName" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>hv_column_name</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.lxs.hvColumnName" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="txr">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.mappingDefinition.txr" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/rpuName /txsId /xsId</primaryKeys>
+									<relationalModeOnLegacy>TXR_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.mappingDefinition.txr.table.defaultLabel" />
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="rpuName" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>rpu_name</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txr.rpuName" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="txsId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>txs_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/txs</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txr.txsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>xs_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/xs</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txr.xsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="tableNameInDB" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>table_name_in_db</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txr.tableNameInDB" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="state" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>state</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.mappingDefinition.DmsStateEnumeration"/>
+                                        </osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txr.state" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="createdTime" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>created_time</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txr.createdTime" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="lastRefreshedTime" type="xs:dateTime">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>last_refreshed_time</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.txr.lastRefreshedTime" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="rpu">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.mappingDefinition.rpu" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/name /xsId</primaryKeys>
+									<relationalModeOnLegacy>RPU_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.mappingDefinition.rpu.table.defaultLabel" />
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="name" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>name</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.rpu.name" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsId" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>xs_id</osd:mappingInfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/mappingDefinition/xs</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.rpu.xsId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dataspace" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>dataspace</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.rpu.dataspace" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dataset" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>dataset</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.rpu.dataset" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="refresh" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>refresh</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.rpu.refresh" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="ctp">
+					<xs:complexType>
+						<xs:annotation>
+							<xs:documentation osd:id="element.mappingDefinition.ctp" />
+							<xs:appinfo>
+								<osd:table>
+									<primaryKeys>/ctpId</primaryKeys>
+									<relationalModeOnLegacy>CTP_MAPPING
+									</relationalModeOnLegacy>
+									<defaultLabel osd:id="element.mappingDefinition.ctp.table.defaultLabel" />
+									<mayCreateRoot>never</mayCreateRoot>
+									<mayCreateOverwriting>never</mayCreateOverwriting>
+									<mayCreateOcculting>never</mayCreateOcculting>
+									<mayCreateDeriving>never</mayCreateDeriving>
+									<mayDuplicate>never</mayDuplicate>
+									<mayDelete>never</mayDelete>
+								</osd:table>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element name="ctpId" type="xs:integer">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>ctp_id</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.ctp.ctpId" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="columnTypeName" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>column_type_name</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.ctp.columnTypeName" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="namespace" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<osd:mappingInfo>namespace</osd:mappingInfo>
+									</xs:appinfo>
+									<xs:documentation osd:id="element.mappingDefinition.ctp.namespace" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

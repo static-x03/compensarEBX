@@ -1,0 +1,9 @@
+2021-10-07 12:24:08,655 MDT INFO   log.dataServices 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 14:56:45,795 MDT INFO   log.dataServices 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+2021-10-07 14:56:59,346 MDT INFO   log.dataServices 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:56:59,346 MDT INFO   log.restServices 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:57:02,082 MDT INFO   log.restServices 1155 [localhost-startStop-1] The REST application [com.orchestranetworks.manager.permissions.record.OverrideApplication] has been registered for module [ebx-manager].
+2021-10-07 14:57:02,578 MDT INFO   log.restServices 1155 [localhost-startStop-1] The REST application [com.orchestranetworks.x.ui.servlet.RestApplication] has been registered for module [ebx-ui].
+2021-10-07 14:57:19,733 MDT INFO   log.restServices 1155 [http-nio-9090-exec-1] GET RSP /ebx-ui/rest/workflowTree/v1/inboxItems HTTP 401 auth [NO_AUTHENTICATION] desc [] performed by [Anonymous] in 15304 ms.
+2021-10-07 15:30:50,865 MDT INFO   log.restServices 1155 [http-nio-9090-exec-9] GET RSP /ebx-ui/rest/workflowTree/v1/inboxItems HTTP 401 auth [NO_AUTHENTICATION] desc [] performed by [Anonymous] in 105 ms.
+2021-10-07 17:01:22,800 MDT INFO   log.restServices 1155 [http-nio-9090-exec-1] GET RSP /ebx-ui/rest/workflowTree/v1/inboxItems HTTP 401 auth [NO_AUTHENTICATION] desc [] performed by [Anonymous] in 112 ms.

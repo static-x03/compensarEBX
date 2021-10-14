@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - XML import and export</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="xml_services" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Datasets &gt; File import and export services</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/xml_services.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Datasets &gt; File import and export services</span></div>
+<h1>
+XML import and export</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#import">Imports</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Import mode</a></li><li class="toc2"><a href="#insertUpdateOperation">Insert and update operations</a></li><li class="toc2"><a href="#id2s3">Optimistic locking</a></li></ul>
+</li><li class="toc1"><a href="#export">Exports</a></li><li class="toc1"><a href="#id4">Handling of field values</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Date, time &amp; dateTime format</a></li></ul>
+</li><li class="toc1"><a href="#id5">Known limitations</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Association fields</a></li><li class="toc2"><a href="#id5s2">Selection nodes</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p>XML imports and exports can be performed on tables through the user interface using the <strong>Actions</strong> menu in the workspace.</p><p>Both imports and exports are performed in the context of a dataset.</p><p>Imports and exports can also be done programmatically.</p><p>Default import and export option values can be set in the Administration area, under <em>User interface &gt; Graphical interface configuration &gt; Default option values &gt; Import/Export</em>.</p><h2 id="import">
+Imports</h2>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Imported XML documents must be encoded in UTF-8 and its structure must conform to the underlying data model of the target dataset.</p></div>
+<h3 id="id2s1">
+Import mode</h3>
+<p>When importing an XML file, you must specify one of the following import modes, which will dictate how the import procedure handles the source records.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Insert mode</p></td><td class="ebx_definitionListDefinition"><p>Only record creations are allowed. If a record exists in the target table with the same primary key as the source record, an error is returned and the whole import operation is cancelled. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Update mode</p></td><td class="ebx_definitionListDefinition"><p>Only modifications of existing records are allowed. If no record exists in the target table with the same primary key as the source record, an error is returned and the whole import operation is cancelled.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Update or insert mode</p></td><td class="ebx_definitionListDefinition"><p>If a record with the same primary key as the source record already exists in the target table, that record is updated. Otherwise, a new record is created.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Replace (synchronization) mode</p></td><td class="ebx_definitionListDefinition"><p>If a record with the same primary key as the source record already exists in the target table, that record is updated. Otherwise, a new record is created. If a record exists in the target table but is not present in the source XML file, that record is deleted from the table.</p></td></tr>
+</table>
+<h3 id="insertUpdateOperation">
+Insert and update operations</h3>
+<p>The mode &#39;<em>by delta</em>&#39; allows ignoring data model elements that are missing from the source XML document. This mode can be enabled through data services or the Java API. The following table summarizes the behavior of insert and update operations when elements are not present in the source document.</p><p>See the data services operations <a href="../data_services/dataservices_execution.html#update">update</a> and <a href="../data_services/dataservices_execution.html#insert">insert</a>, as well as <a target="_blank" href="../Java_API/com/orchestranetworks/service/ImportSpec.html#setByDelta-boolean-"><code>ImportSpec.setByDelta</code></a> in the Java API for more information.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>State in source XML document</strong></p></th><th><p><strong>Behavior</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Element does not exist in the source document</p></td><td valign="top"><p><strong>If &#39;by delta&#39; mode is disabled (default):</strong></p><p>Target field value is set to one of the following:</p><ul>
+<li><p>If the element defines a default value, the target field value is set to that default value.</p></li><li><p>If the element is of a type other than a string or list, the target field value is set to <code>null</code>.</p></li><li><p>If the element is an aggregated list, the target field value is set to an empty list.</p></li><li><p>If the element is a string that distinguishes <code>null</code> from an empty string, the target field value is set to <code>null</code>. If it is a string that does not distinguish between the two, an empty string.</p></li><li><p>If the element (simple or complex) is hidden in data services, the target value is not changed.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/access_properties_categories.html#defaultViewHiddenInDataServices">Hiding a field in Data Services</a></li></ul>
+</div>
+</li></ul>
+<p><strong>Note:</strong> The user performing the import must have the permissions necessary to create or change the target field value. Otherwise, the value will remain unchanged.</p><p><strong>If &#39;by delta&#39; mode has been enabled through data services or the Java API:</strong></p><ul>
+<li><p>For the <code>update</code> operation, the field value remains unchanged.</p></li><li><p>For the <code>insert</code> operation, the behavior is the same as when <code>byDelta</code> mode is disabled.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>Element exists but is empty (for example, <code>&lt;fieldA/&gt;</code>)</p></td><td valign="top"><ul>
+<li><p>For nodes of type <code>xs:string</code> (or one of its sub-types), the target field&#39;s value is set to <code>null</code> if it distinguishes <code>null</code> from an empty string. Otherwise, the value is set to empty string.</p></li><li><p>For non-<code>xs:string</code> type nodes, an exception is thrown in conformance with XML Schema.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/constraints.html#ebxwhitespaces">TIBCO EBX&reg; whitespace management for data types</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td valign="top"><p>Element is present and <code>null</code> (for example, <code>&lt;fieldA xsi:nil=&quot;true&quot;/&gt;</code>)</p></td><td valign="top"><p>The target field is always set to <code>null</code> except for lists, for which it is not supported.</p><p>In order to use the <code>xsi:nil=&quot;true&quot;</code> attribute, you must import the namespace declaration <code>xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</code>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Set missing values as null</h4>
+<p>When updating existing records, if a node is missing or empty in the XML file: if this option is &quot;yes&quot;, it will be considered as null. If this option is &quot;no&quot;, it will not be modified.</p><h4>
+Ignore extra columns</h4>
+<p>It may happen that the XML document contains elements that do not exist in the target data model. By default, in this case, the import procedure will fail. It is possible, however, to allow users to launch import procedures that will ignore the extra columns defined in the XML files. This can be done in the configuration parameters of the import wizard for XML. The default value of this parameter can be configured in the &#39;User interface&#39; configuration under the &#39;Administration&#39; area.</p><h3 id="id2s3">
+Optimistic locking</h3>
+<p>If the technical attribute <code>ebxd:lastTime</code> exists in the source XML file, the import mechanism performs a verification to prevent an update operation on a record that may have changed since the last read. In order to use the <code>ebxd:lastTime</code> attribute, you must import the namespace declaration <code>xmlns:ebxd=&quot;urn:ebx-schemas:deployment_1.0</code>. The timestamp associated with the current record will be compared to this timestamp. If they are different, the update is rejected.</p><h2 id="export">
+Exports</h2>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Exported XML documents are always encoded in UTF-8.</p></div>
+<p>When exporting to XML, if the table has filters applied, only the records that correspond to the filter are included in the exported file.</p><p>The XML export options are as follows:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Download file name</p></td><td class="ebx_definitionListDefinition"><p>Specifies the name of the XML file to be exported. This field is pre-populated with the name of the table from which the records are being exported.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>User-friendly mode</p></td><td class="ebx_definitionListDefinition"><p>Specifies whether exported values will be represented in a user-friendly way, or in the standard XML raw format. For example, in user-friendly mode, dates and numbers are formatted according to the user&#39;s locale, and foreign keys and enumerated values display their associated labels.</p><p><strong>Note:</strong> If this option is selected, the exported file will not be able to be re-imported.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Include technical data</p></td><td class="ebx_definitionListDefinition"><p>Specifies whether internal technical data will be included in the export.</p><p><strong>Note:</strong> If this option is selected, the exported file will not be able to be re-imported.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Is indented</p></td><td class="ebx_definitionListDefinition"><p>Specifies whether the file should be indented to improve its readability by a human.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Omit XML comment</p></td><td class="ebx_definitionListDefinition"><p>Specifies whether the generated XML comment that describes the location of data and the date of the export should be omitted from the file.</p></td></tr>
+</table>
+<h2 id="id4">
+Handling of field values</h2>
+<h3 id="id4s1">
+Date, time &amp; dateTime format</h3>
+<p>The following date and time formats are supported:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Type</strong></p></th><th><p><strong>Format</strong></p></th><th><p><strong>Example</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>xs:date</p></td><td><p>yyyy-MM-dd</p></td><td align="right"><p>2007-12-31</p></td></tr>
+<tr>
+<td><p>xs:time</p></td><td><p>HH:mm:ss or HH:mm:ss.SSS</p></td><td align="right"><p>11:55:00</p></td></tr>
+<tr>
+<td><p>xs:dateTime</p></td><td><p>yyyy-MM-ddTHH:mm:ss or yyyy-MM-ddTHH:mm:ss.SSS</p></td><td align="right"><p>2007-12-31T11:55:00</p></td></tr>
+</tbody>
+</table>
+<h2 id="id5">
+Known limitations</h2>
+<h3 id="id5s1">
+Association fields</h3>
+<p>The XML import and export services do not support association values.</p><p>Exporting such fields will not cause any error, however, no value will be exported.</p><p>Importing such fields will cause an error, and the import procedure will be aborted.</p><h3 id="id5s2">
+Selection nodes</h3>
+<p>The XML import and export services do not support selection values.</p><p>Exporting such fields will not cause any error, however, no value will be exported.</p><p>Importing such fields will cause an error, and the import procedure will be aborted.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Datasets &gt; File import and export services</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

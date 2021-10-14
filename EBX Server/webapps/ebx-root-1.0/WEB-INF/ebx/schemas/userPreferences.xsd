@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Deprecated schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.service.preferences.UserPreferencesPaths_0_0">
+					<nodes root="/" prefix=""/>
+				</javaPathConstants>
+			</ebxbnd:binding>
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- 
+		Root
+	-->
+	<xs:element name="userPreferences" osd:access="--">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Préférences Utilisateurs &amp; Vues</osd:label>
+				<osd:description><![CDATA[<span style="font-weight: bold; color: red;">Schéma obsolète [mise à jour nécessaire !]</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Users Preferences &amp; Views</osd:label>
+				<osd:description><![CDATA[<span style="font-weight: bold; color: red;">Deprecated schema [upgrade required !]</span>]]></osd:description>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="preferences" type="Preference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="views" type="Views" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object definition -->
+	<xs:complexType name="Preference">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Préférences Utilisateurs</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Ne pas modifier, sauf pour supprimer des données obsolètes ou erronées.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Users Preferences</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Do not edit, except for removing obsolete or erroneous data.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/login</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="login">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Login</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Login</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="locale" type="osd:locale">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Preferred language</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Langue préférée</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastWorkingBranch">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Last working branch</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Branche de travail</osd:label>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.cce.cache.dataspace.AdaptationHomeConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Views">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Vues Utilisateurs</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Ne pas modifier, sauf pour supprimer des données obsolètes ou erronées.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Users Views</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Do not edit, except for removing obsolete or erroneous data.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/viewId /user /schemaKey /instanceRef</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="viewId">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Identifier</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Identifiant</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="32">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>L'identifiant de la vue ne doit pas excéder 32 caractères.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>View id must not exceed 32 characters.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:maxLength>
+						<xs:pattern value="\w*">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>L'identifiant de la vue ne doit pas contenir d'espace.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>View id does not support space character.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="user">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Owner</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Propriétaire</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">XML Schema</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Schéma XML</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="instanceRef" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation</osd:label>
+						<osd:description>Adaptation reference where this view has been defined.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Adaptation</osd:label>
+						<osd:description>Réféfrence d'adaptation pour laquelle cette vue a été définie.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Libellé &amp; Description</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Label &amp; Description</osd:label>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescription">
+					<xs:sequence>
+						<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+								<xs:sequence>
+									<xs:element name="locale" type="osd:locale"/>
+									<xs:element name="label" type="xs:string" minOccurs="0"/>
+									<xs:element name="description" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="99999"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tablePath" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Table (xPath)</osd:label>
+						<osd:description>Target table path in schema.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Table (xPath)</osd:label>
+						<osd:description>Chemin xPath de la table cible dans le schéma.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tableFieldsPath" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Fields (xPath)</osd:label>
+						<osd:description>Table fields to show in view.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Attributs (xPath)</osd:label>
+						<osd:description>Attributs de la table présents dans la vue.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="criteria" osd:access="RW">
+				<xs:complexType osd:class="com.onwbp.adaptation.perspective.views.ViewCriteria">
+					<xs:annotation>
+						<xs:documentation xml:lang="en-US">
+							<osd:label>XPath criterias</osd:label>
+						</xs:documentation>
+						<xs:documentation xml:lang="fr-FR">
+							<osd:label>Critères xPath</osd:label>
+						</xs:documentation>
+						<xs:appinfo>
+							<osd:uiBean class="com.onwbp.adaptation.perspective.views.ViewCriteriaUI"/>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="filterExpression" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

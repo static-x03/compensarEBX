@@ -1,0 +1,12 @@
+<Host name="localhost" appBase="webapps" workDir="work"
+				unpackWARs="false" autoDeploy="false">
+<Context path="/ebx" docBase="ebx.war">
+	<ResourceLink name="jdbc/postgres" type="javax.sql.DataSource" global="jdbc/postgres"/>
+</Context>
+<Context path="/ebx-manager" docBase="ebx-manager.war">
+	<ResourceLink name="jdbc/postgres" type="javax.sql.DataSource" global="jdbc/postgres"/>
+</Context>
+<Context path="/ebx-addon-adix" docBase="ebx-addon-adix.war">
+	<ResourceLink name="jdbc/postgres" type="javax.sql.DataSource" global="jdbc/postgres"/>
+</Context>
+</Host>

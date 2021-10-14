@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - CSV export options</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_export_csv_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Export Options</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_export_csv.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Export Options</span></div>
+<h1>
+CSV export options</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_export_csv">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#ref_export_csv_config_page">Configuration page</a></li><li class="toc2"><a href="#ref_export_csv_column_mapping_page">Column mapping page</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_export_csv">
+Overview</h2>
+<p>This section describes the fields and available options when exporting to a CSV file. </p><p>After running the export service, you are presented with configuration and mapping pages. See the sections below for more information.</p><h3 id="ref_export_csv_config_page">
+Configuration page</h3>
+<p>This page allows you to modify behavior of the export. Part of the modification can include specifying Java classes to transform, or validate data. This page contains the options shown in the following table:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property/Field/List</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td>File name</td><td valign="top"><p>Name of the exported file.</p></td></tr>
+<tr>
+<td valign="top">Preference</td><td valign="top"><p>All table columns will be exported based on configuration and mapping defined by the selected export preference.</p></td></tr>
+<tr>
+<td valign="top">First row contains header</td><td valign="top">Use this option to specify whether the first row of every column in the file being imported is a label (Header), or contains data to import (No header).</td></tr>
+<tr>
+<td valign="top">Disable write access lock</td><td valign="top"><p>Specifies the write access lock on the data space while exporting. If &#39;No&#39;: The dataspace is locked and the export is executed inside the read only procedure. If &#39;Yes&#39;: The export is executed outside a procedure and users have write access on the data space while exporting. Default value: &#39;No&#39;.</p></td></tr>
+<tr>
+<td valign="top">File encoding</td><td valign="top"><p>Specifies the character encoding to use. The default is UTF-8.</p></td></tr>
+<tr>
+<td valign="top">Separator</td><td valign="top"><p>Specifies the separator character used to separate fields. The default is &#39;;&#39;.</p></td></tr>
+<tr>
+<td valign="top">List separator</td><td valign="top"><p>Specifies the separator to use for values lists.</p></td></tr>
+<tr>
+<td valign="top">Delimiter</td><td valign="top"><p>Specifies the character used to enclose a field value. The exported file will include this delimiter character before and after each field value.</p><p>By default, CSV files do not use a delimiter. The add-on imports correctly from exported files where data values include the defined separator. These files also display correctly in spreadsheet programs. However, if you define a delimiter and view the file in a spreadsheet program, the display might not reflect the actual data structure. If you select &#39;Only string&#39;, the delimiter is only used for String data types.</p></td></tr>
+<tr>
+<td valign="top">Date format</td><td valign="top"><p>Specifies the format of date values in the exported file.</p></td></tr>
+<tr>
+<td valign="top">Date/time format</td><td valign="top"><p>Specifies the format of date/time values in the exported file.</p></td></tr>
+<tr>
+<td valign="top">Use language</td><td valign="top"><p>If this option is activated, the language and corresponding number format policy are applied.</p></td></tr>
+<tr>
+<td valign="top">Language</td><td valign="top"><p>Specify the language and the corresponding number format policy used in the exported file.</p></td></tr>
+<tr>
+<td valign="top">Export related data</td><td valign="top"><p>Specifies whether the export includes related data. The add-on exports a ZIP file containing the selected record(s) and all related data. Each file in the archive contains data from a related table. When you select:</p><ul>
+<li><p><strong>From referenced tables</strong>: The export includes data referenced by a foreign key from the exported record(s). Referenced data may include data from tables outside of the current data model. </p></li><li><p><strong>From tables that reference the selected record</strong>: The export includes data from tables with foreign keys to the exported record. This option is only available when exporting a single record.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top">Primary key</td><td valign="top"><p>The exported file will contain an information column with the label of the primary key.</p></td></tr>
+<tr>
+<td valign="top">Foreign key</td><td valign="top"><p>The exported file will contain an information column with the label of the foreign key.</p></td></tr>
+<tr>
+<td valign="top">Export enumerations</td><td valign="top"><p>The exported file will contain a dedicated column for the labels of the static enumerations.</p></td></tr>
+<tr>
+<td valign="top">Include computed values</td><td valign="top"><p>Specifies whether computed values must be included in the export.</p></td></tr>
+<tr>
+<td valign="top">Extensions</td><td valign="top"><p>Specifies the Java class that is implemented to transform data during import/export processing.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_export_csv_column_mapping_page">
+Column mapping page</h3>
+<p>This page allows you to map source table columns in the exported CSV file. Use the drop-down list next to each table column to specify which source gets mapped to which target. Below the mapping configuration information, the <strong>Save preference</strong> group allows you to save the mappings as a reusable preference. Just tic the <strong>Create new preference called</strong> radio button and enter a name in the field.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

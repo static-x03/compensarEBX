@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Date and time functions</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="testDateAndTimeFunctions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; SQL in EBX®</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=sql/DateAndTimeFunctions_generated.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+<h1>
+Date and time functions</h1>
+<p>The table below lists all the SQL date and time functions supported by EBX&reg;, along with their standard SQL syntax. Some functions may have optional parameters: they are surrounded by square brackets.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Operator syntax</strong></p></th><th><p><strong>Description and example(s)</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>CURRENT_TIME</p></td><td><p>Returns the current time in the session time zone, in a value of datatype TIMESTAMP WITH TIME ZONE</p></td></tr>
+<tr>
+<td><p>CURRENT_DATE</p></td><td><p>Returns the current date in the session time zone, in a value of datatype DATE</p></td></tr>
+<tr>
+<td><p>CURRENT_TIMESTAMP</p></td><td><p>Returns the current date and time in the session time zone, in a value of datatype TIMESTAMP WITH TIME ZONE</p></td></tr>
+<tr>
+<td><p>YEAR(date)</p></td><td><p>Extracts and returns the value of the year from a datetime value expression. Returns an integer.</p><p><code>SELECT YEAR(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 1971</code></p><p><code>SELECT YEAR(DATE &#39;1968-07-20&#39;) :&nbsp; 1968</code></p><p><code>SELECT YEAR(hiringDate) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 2015</code></p><p><code>SELECT YEAR(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 2017</code></p></td></tr>
+<tr>
+<td><p>QUARTER(date)</p></td><td><p>Extracts and returns the value of the quarter from a datetime value expression. Returns an integer between 1 and 4.</p><p><code>SELECT QUARTER(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 3</code></p><p><code>SELECT QUARTER(hiringDate) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 4</code></p><p><code>SELECT QUARTER(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 2</code></p></td></tr>
+<tr>
+<td><p>QUARTER(date)</p></td><td><p>Extracts and returns the value of the month from a datetime value expression. Returns an integer between 1 and 12.</p><p><code>SELECT MONTH(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 7</code></p><p><code>SELECT MONTH(hiringDate) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 10</code></p><p><code>SELECT MONTH(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 6</code></p></td></tr>
+<tr>
+<td><p>WEEK(date)</p></td><td><p>Extracts and returns the value of the week from a datetime value expression. Returns an integer between 1 and 53.</p><p><code>SELECT WEEK(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 29</code></p><p><code>SELECT WEEK(hiringDate) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 42</code></p><p><code>SELECT WEEK(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 26</code></p></td></tr>
+<tr>
+<td><p>DAYOFYEAR(date)</p></td><td><p>Extracts and returns the value of the day of year from a datetime value expression. Returns an integer between 1 and 366.</p><p><code>SELECT DAYOFYEAR(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 201</code></p><p><code>SELECT DAYOFYEAR(hiringDate) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 287</code></p><p><code>SELECT DAYOFYEAR(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 179</code></p></td></tr>
+<tr>
+<td><p>DAYOFMONTH(date)</p></td><td><p>Extracts and returns the value of the day of month from a datetime value expression. Returns an integer between 1 and 31.</p><p><code>SELECT DAYOFMONTH(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 20</code></p><p><code>SELECT DAYOFMONTH(hiringDate) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 14</code></p><p><code>SELECT DAYOFMONTH(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 28</code></p></td></tr>
+<tr>
+<td><p>DAYOFWEEK(date)</p></td><td><p>Extracts and returns the value of the day of week from a datetime value expression. Returns an integer between 1 and 7.</p><p><code>SELECT DAYOFWEEK(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 3</code></p><p><code>SELECT DAYOFWEEK(hiringDate) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 4</code></p><p><code>SELECT DAYOFWEEK(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 4</code></p></td></tr>
+<tr>
+<td><p>HOUR(date)</p></td><td><p>Extracts and returns the value of the hours from a datetime value expression. Returns an integer between 0 and 23.</p><p><code>SELECT HOUR(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 9</code></p><p><code>SELECT HOUR(TIME &#39;10:34:21&#39;) :&nbsp; 10</code></p><p><code>SELECT HOUR(workStart) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 8</code></p><p><code>SELECT HOUR(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 16</code></p></td></tr>
+<tr>
+<td><p>MINUTE(date)</p></td><td><p>Extracts and returns the value of the minutes from a datetime value expression. Returns an integer between 0 and 59.</p><p><code>SELECT MINUTE(TIMESTAMP &#39;1971-07-20 09:34:21&#39;) :&nbsp; 34</code></p><p><code>SELECT MINUTE(TIME &#39;10:35:21&#39;) :&nbsp; 35</code></p><p><code>SELECT MINUTE(workStart) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 0</code></p><p><code>SELECT MINUTE(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 6</code></p></td></tr>
+<tr>
+<td><p>SECOND(date)</p></td><td><p>Extracts and returns the value of the seconds from a datetime value expression. Returns an integer between 0 and 59.</p><p><code>SELECT HOUR(TIMESTAMP &#39;1969-07-20 09:34:21&#39;) :&nbsp; 9</code></p><p><code>SELECT SECOND(TIME &#39;10:34:22&#39;) :&nbsp; 22</code></p><p><code>SELECT SECOND(workStart) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 0</code></p><p><code>SELECT SECOND(lastProfileUpdateTime) FROM employee WHERE name=&#39;Smith&#39; :&nbsp; 12</code></p></td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

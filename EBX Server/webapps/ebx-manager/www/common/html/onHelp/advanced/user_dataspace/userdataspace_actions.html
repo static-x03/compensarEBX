@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Working with existing dataspaces</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dataspace" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Dataspaces</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataspace/userdataspace_actions.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Dataspaces</span></div>
+<h1>
+Working with existing dataspaces</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#information">Dataspace information</a></li><li class="toc1"><a href="#permissions">Dataspace permissions</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">General permissions</a></li><li class="toc2"><a href="#id2s2">Allowable actions</a></li></ul>
+</li><li class="toc1"><a href="#merge">Merging a dataspace</a><ul class="toc2">
+<li class="toc2"><a href="#startMerge">Initiating a merge</a></li><li class="toc2"><a href="#id3s2">Reviewing and accepting changes</a></li><li class="toc2"><a href="#mergePolicy">Finalizing a merge</a></li><li class="toc2"><a href="#id3s4">Abandoning a merge</a></li></ul>
+</li><li class="toc1"><a href="#compare_dataspace">Comparing a dataspace</a></li><li class="toc1"><a href="#validate">Validating a dataspace</a></li><li class="toc1"><a href="#id6">Dataspace archives</a><ul class="toc2">
+<li class="toc2"><a href="#export">Exporting</a></li><li class="toc2"><a href="#import">Importing</a></li></ul>
+</li><li class="toc1"><a href="#closing">Closing a dataspace</a></li></ul>
+</div>
+<h2 id="information">
+Dataspace information</h2>
+<p> Certain properties associated with a dataspace can be modified by selecting <strong>Actions &gt; Information</strong> from the navigation panel in the Dataspaces area. </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Documentation</p></td><td class="ebx_definitionListDefinition"><p>Localized labels and descriptions associated with the dataspace. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Loading strategy</p></td><td class="ebx_definitionListDefinition" id="loadingStrategy"><p><em>Only administrators can modify this setting.</em></p><ul>
+<li><p><strong>On demand loading and unloading: </strong> The main advantage of this strategy is the ability to free memory when needed. Its disadvantage is the performance cost associated with a resource being accessed for the first time since server startup, or accessed after having been unloaded. This is the default mode. </p></li><li><p><strong>Forced loading:</strong> This mode is recommended for dataspaces and snapshots used heavily or demanding in terms of response time. </p></li><li><p><strong>Forced loading and prevalidation: </strong> This mode is recommended for dataspaces and snapshots used heavily or demanding in terms of response time, and where the validation process can be time-intensive. </p></li></ul>
+<p><strong>Note:</strong> Whenever the loading strategy is changed, you must restart the server for the new setting to take effect. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Child merge policy</p></td><td class="ebx_definitionListDefinition" id="mergePolicyProperty"><p>This merge policy only applies to user-initiated merge processes; it does not apply to programmatic merges, for example, those performed by workflow script tasks. </p><p>The available merge policies are:</p><ul>
+<li><p><strong>Allows validation errors in result: </strong> Child dataspaces can be merged regardless of the validation result. This is the default policy. </p></li><li><p><strong>Pre-validating merge:</strong> A child dataspace can only be merged if the result would be valid. </p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Current Owner</p></td><td class="ebx_definitionListDefinition"><p>Owner of the dataspace, who is, by default, allowed to modify its information and permissions. The owner does not necessarily have to be the creator of the dataspace. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Child dataspace sort policy</p></td><td class="ebx_definitionListDefinition" id="childSortPolicy"><p>Defines the display order of child dataspaces in dataspace trees. If not defined, the policy of the parent dataspace is applied. Default is &#39;by label&#39;. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Change owner</p></td><td class="ebx_definitionListDefinition"><p>Whether the current owner of the dataspace is allowed to give ownership to another profile by modifying its &#39;Current owner&#39; property. If the value is &#39;Forbidden&#39;, only an administrator can modify the owner. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Change permissions</p></td><td class="ebx_definitionListDefinition"><p>Whether the current owner of the dataspace is allowed to modify its permissions. If the value is &#39;Forbidden&#39;, only an administrator can modify the permissions of the dataspace. </p></td></tr>
+</table>
+<h2 id="permissions">
+Dataspace permissions</h2>
+<h3 id="id2s1">
+General permissions</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dataspace id</p></td><td class="ebx_definitionListDefinition"><p>The dataspace to which the permissions will apply.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Profile selection</p></td><td class="ebx_definitionListDefinition"><p>The profile to which the rule applies.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Restriction policy</p></td><td class="ebx_definitionListDefinition"><p>Whether these permissions restrict the permissions assigned to a given user through policies defined for other profiles. </p><p> See <a href="../references/permissions.html#restrictionpolicy">Restriction policy</a>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dataspace access</p></td><td class="ebx_definitionListDefinition"><p>The global access permission on the dataspace.</p><p><strong>Read-only</strong></p><ul>
+<li><p>Can see the dataspace and its snapshots, as well as child dataspaces, according to their permissions. </p></li><li><p>Can see the contents of the dataspace depending on their permissions; cannot make modifications. </p></li></ul>
+<p><strong>Write</strong></p><ul>
+<li><p>Can see the dataspace and its snapshots, as well as child dataspaces, according to their permissions. </p></li><li><p>Can modify the contents of the dataspace depending on their permissions. </p></li></ul>
+<p><strong>Hidden</strong></p><ul>
+<li><p>Cannot see the dataspace nor its snapshots directly. </p></li><li><p>From a child dataspace, the current dataspace can be seen but not selected. </p></li><li><p>Cannot access the contents of the dataspace.</p></li><li><p>Cannot perform any actions on the dataspace.</p></li></ul>
+</td></tr>
+</table>
+<h3 id="id2s2">
+Allowable actions</h3>
+<p>Users can be allowed to perform the following actions:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Create a child dataspace</p></td><td class="ebx_definitionListDefinition"><p>Whether the profile can create child dataspaces.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Create a snapshot</p></td><td class="ebx_definitionListDefinition"><p>Whether the profile can create snapshots from the dataspace.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Initiate merge</p></td><td class="ebx_definitionListDefinition"><p>Whether the profile can merge the dataspace with its parent.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Export archive</p></td><td class="ebx_definitionListDefinition"><p>Whether the profile can perform exports.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Import archive</p></td><td class="ebx_definitionListDefinition"><p>Whether the profile can perform imports.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Close dataspace</p></td><td class="ebx_definitionListDefinition"><p>Whether the profile can close the dataspace.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Close snapshot</p></td><td class="ebx_definitionListDefinition"><p>Whether the profile can close snapshots of the dataspace. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Rights on services</p></td><td class="ebx_definitionListDefinition"><p>Specifies the access permissions for services.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Permissions of child dataspaces when created</p></td><td class="ebx_definitionListDefinition"><p>Specifies the default access permissions for child dataspaces that are created from the current dataspace. </p></td></tr>
+</table>
+<h2 id="merge">
+Merging a dataspace</h2>
+<p>When the work in a given dataspace is complete, you can perform a one-way merge of the dataspace back into the dataspace from which it was created. The merge process is as follows: </p><ol>
+<li><p>Both the parent and child dataspaces are locked to all users, except the user who initiated the merge and administrator users. These locks remain for the duration of the merge operation. When locked, the contents of a dataspace can be read, but they cannot be modified in any way. </p><p><strong>Note:</strong> This restriction on the parent dataspace means that, in addition to blocking direct modifications, other child dataspaces cannot be merged until the merge in progress is finished. </p></li><li><p>Changes that were made in the child dataspace since its creation are integrated into its parent dataspace. </p></li><li><p>The child dataspace is closed.</p></li><li><p>The parent dataspace is unlocked.</p></li></ol>
+<h3 id="startMerge">
+Initiating a merge</h3>
+<p>To merge a dataspace into its parent dataspace:</p><ol>
+<li><p>Select that dataspace in the navigation pane of the Dataspaces area. </p></li><li><p> In the workspace, select <strong>Merge dataspace </strong> from the <strong>Actions</strong> menu. </p></li></ol>
+<h3 id="id3s2">
+Reviewing and accepting changes</h3>
+<p>After initiating a dataspace merge, you must review the changes that have been made in the child (source) dataspace since its creation, to decide which of those changes to apply to the parent (target) dataspace. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This change set review and acceptance stage is bypassed when performing merges using data services or programmatically. For automated merges, all changes in the child dataspace override the data in the parent dataspace. </p></div>
+<p> The change acceptance process uses a side-by-side comparison interface that recapitulates the changes that require review. Two <em>change set </em> columns are obtained by taking the relevant changes from the following dataspace state comparisons: </p><ul>
+<li><p>The current child dataspace compared to its initial snapshot. </p></li><li><p>The parent dataspace compared to the initial snapshot of the child dataspace. </p></li></ul>
+<p>By default, all detected changes are selected to be merged. You may deselect any changes that you want to omit from the merge. You can view the changes relevant to different scopes in your data model by selecting elements in the navigation pane. </p><p>In order to detect conflicts, the merge involves the current dataspace, its initial snapshot and the parent dataspace, because data is likely to be modified both in the current dataspace and its parent. </p><p>The merge process also handles modifications to permissions on tables in the dataspace. As with other changes, access control changes must be reviewed for inclusion in the merge. </p><p> When you have decided which changes to merge for a given scope, you must click the button <strong>Mark difference(s) as reviewed </strong> to indicate that you have reviewed all the changes in that scope. All changes must be reviewed in order to proceed with the merge. </p><h4>
+Types of modifications</h4>
+<p>The merge process considers the following changes as modifications to be reviewed: </p><ul>
+<li><p>Record and dataset creations</p></li><li><p>Any changes to existing data</p></li><li><p>Record, dataset, or value deletions</p></li><li><p>Any changes to table permissions</p></li></ul>
+<h4>
+Types of conflicts</h4>
+<p>This review interface also shows conflicts that have been detected. Conflicts may arise when the same scope contains modifications in both the source and target dataspaces. </p><p>Conflicts are categorized as follows:</p><ul>
+<li><p>A record or a dataset creation conflict</p></li><li><p>An entity modification conflict</p></li><li><p>A record or dataset deletion conflict</p></li><li><p>All other conflicts</p></li></ul>
+<h3 id="mergePolicy">
+Finalizing a merge</h3>
+<p> Once you have reviewed all changes and decided which to include in the merge result, click on the <strong>Merge &gt;&gt;</strong> button in the navigation pane. </p><p>Depending on the child merge policy that is configured on the parent dataspace in your merge, the subsequent process may differ. By default, merges are finalized even if the result would contain validation errors. The administrator of the parent dataspace in your merge can set its child merge policy so that merges of its children are only finalized if the result would not contain any validation errors. </p><p>If, however, the administrator of the parent dataspace has set its child merge policy to &#39;Pre-validating merge&#39;, a dedicated dataspace is first created to hold the result of the merge. When the result is valid, this dedicated dataspace containing the merge result is automatically merged into the parent dataspace, and no further action is required. </p><p>In the case where validation errors are detected in the dedicated merge dataspace, you only have access to the original parent dataspace and the dataspace containing the merge result, named &quot;[merge] &lt; <em>name of child dataspace</em> &gt;&quot;. The following options are available to you from the <strong>Actions &gt; Merge in progress </strong> menu in the workspace: </p><ul>
+<li><p><strong>Cancel</strong>, which abandons the merge and recuperates the child dataspace in its pre-merge state. </p></li><li><p><strong>Continue</strong>, which you can use to reattempt the merge after you have made the necessary corrections to the dedicated merge dataspace. </p></li></ul>
+<h4 id="setmergepolicy">
+Setting the child merge policy of a dataspace</h4>
+<p> As the administrator of a dataspace, you can block the finalization of merges of its child dataspaces through the user interface when the merges would result in a dataspace with validation errors. To do so, select <strong>Actions &gt; Information</strong> from the workspace of the parent dataspace. On the dataspace&#39;s information page, set the <strong> Child merge policy</strong> to <strong>Pre-validating merge</strong>. This policy will then be applied to the merges of all child dataspaces into this parent dataspace. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>When the merge is performed through a Web Component, the behavior of the child merge policy is the same as described; the policy defined in the parent dataspace is automatically applied when merging a child dataspace. However, this setting is ignored during programmatic merge, which includes script tasks in data workflows. </p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#mergePolicy">Child merge policy</a></li></ul>
+</div>
+<h3 id="id3s4">
+Abandoning a merge</h3>
+<p> Merges are performed in the context of a user session, and must be completed in a single operation. If you decide not to proceed with a merge that you have initiated, you can click the <strong>Cancel</strong> button to abandon the operation. </p><p>If you navigate to another page after initiating a merge, the merge will be abandoned, but the locks on the parent and child dataspaces will remain until you unlock them in the Dataspaces area. </p><p> You may unlock a dataspace by selecting it in the navigation pane, and clicking the <strong>Unlock</strong> button in the workspace. Performing the unlock from the child dataspace unlocks both the child and parent dataspaces. Performing the unlock from the parent dataspace only unlocks the parent dataspace, thus you need to unlock the child dataspace separately. </p><h2 id="compare_dataspace">
+Comparing a dataspace</h2>
+<p> You can compare the contents of a dataspace to those of another dataspace or snapshot in the repository. To perform a comparison, select the dataspace in the navigation pane, then select <strong>Actions &gt; Compare </strong> from the workspace. </p><p>The comparison wizard prompts you to select the dataspace or snapshot with which to compare the current dataspace. </p><p>For a faster comparison that ignores fields with inherited and computed values, select the filter &#39;Persisted values only&#39;. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/builtin.html#compare">Compare contents</a></li></ul>
+</div>
+<h2 id="validate">
+Validating a dataspace</h2>
+<p> To perform a global validation of the contents of a dataspace, select that dataspace in the navigation panel, then select <strong>Actions &gt; Validate</strong> in the workspace. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This service is only available in the user interface if you have permission to validate every dataset contained in the current dataspace. </p></div>
+<h2 id="id6">
+Dataspace archives</h2>
+<p>The content of a dataspace can be exported to an archive or imported from an archive. </p><h3 id="export">
+Exporting</h3>
+<p> To export a dataspace to an archive, select that dataspace in the navigation panel, then select <strong>Actions &gt; Export </strong> in the workspace. Once exported, the archive file is saved to the file system of the server, where only an administrator can retrieve the file. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> See <a href="../engine/repository_administration.html#archive">Archives directory</a> in the Administration Guide for more information. </p></div>
+<p>In order to export an archive, the following information must be specified: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Name of the archive to create</p></td><td class="ebx_definitionListDefinition"><p>The name of the exported archive.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Export policy</p></td><td class="ebx_definitionListDefinition"><p>Required.</p><p>The default export policy is &#39;The whole content of the dataspace&#39;, which exports all selected data to the archive. </p><p>It may be useful to export only the differences between the dataspace and its initial snapshot using a change set. There are two different export options that include a change set: &#39;The updates with their whole content&#39; and &#39;The updates only&#39;. The first option exports all current data and a change set containing differences between the current state and the initial snapshot. The second option only exports the change set. Both options lead to a comparison page, where you can select the differences to include in this change set. Differences are detected at the table level. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Datasets to export</p></td><td class="ebx_definitionListDefinition"><p>The datasets to export from this dataspace. For each dataset, you can export its data values, permissions, and/or information. </p></td></tr>
+</table>
+<h3 id="import">
+Importing</h3>
+<p> To import content into a dataspace from an archive, select that dataspace in the navigation panel, then select <strong>Actions &gt; Import </strong> in the workspace. </p><p>If the selected archive does not include a change set, the current state of the dataspace will be replaced with the content of the archive. </p><p>If the selected archive includes the whole content as well as a change set, you can choose to apply the change set in order to merge the change set differences with the current state. Applying the change set leads to a comparison screen, where you can then select the change set differences to merge. </p><p>If the selected archive only includes a change set, you can select the change set differences to merge on a comparison screen. </p><h2 id="closing">
+Closing a dataspace</h2>
+<p> If a dataspace is no longer needed, it can be closed. Once it is closed, a dataspace no longer appears in the <strong>Dataspaces </strong> area of the user interface, nor can it be accessed. </p><p>An administrator can reopen a closed dataspace as long as it has not been cleaned from the repository. </p><p> To close a dataspace, select <strong>Actions &gt; Close this dataspace </strong>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#closing_dataspaces">Closing unused dataspaces and snapshots</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Dataspaces</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

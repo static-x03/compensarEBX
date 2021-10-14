@@ -1,0 +1,498 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Legacy user services</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_old_uiservices" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_interface_legacy/ui_services.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Legacy user services</h1>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><span class="red">This documentation is about an outdated API. For new developments, it is strongly recommended to use the new user service API available from 5.8.0. Please refer to <a href="../user_interface/user_services_overview.html">the current documentation on user services</a>.</span></p></div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#overview">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Accessing User services</a></li></ul>
+</li><li class="toc1"><a href="#instance">User services on datasets</a><ul class="toc2">
+<li class="toc2"><a href="#useCaseInstance">Common use cases</a></li><li class="toc2"><a href="#instanceSchema">Declaration and configuration</a></li></ul>
+</li><li class="toc1"><a href="#branch">Global User services on all dataspaces and snapshots</a><ul class="toc2">
+<li class="toc2"><a href="#useCaseBranch">Common use cases</a></li><li class="toc2"><a href="#configuration">Declaration and configuration</a></li></ul>
+</li><li class="toc1"><a href="#integration">Integration of User services with workflows or perspectives</a><ul class="toc2">
+<li class="toc2"><a href="#integrationOverview">Overview</a></li><li class="toc2"><a href="#commonProperties">Common properties for defining input and output parameters</a></li><li class="toc2"><a href="#type_workflow_perspective">Services on dataspaces or snapshots for data workflows or perspectives</a></li><li class="toc2"><a href="#id4s4">Service on datasets for data workflows or perspectives</a></li><li class="toc2"><a href="#serviceExtensions">Service extensions</a></li></ul>
+</li><li class="toc1"><a href="#defaultPermission">User services default permission</a></li><li class="toc1"><a href="#serviceGroup">User service groups</a><ul class="toc2">
+<li class="toc2"><a href="#serviceGroup_builtins">Built-in User Service Groups</a></li><li class="toc2"><a href="#serviceGroup_declaration">Declaring a User Service Group</a></li><li class="toc2"><a href="#serviceGroup_association">Associating a service to a group</a></li></ul>
+</li></ul>
+</div>
+<h2 id="overview">
+Overview</h2>
+<p>A user interface service (User service) is an HTTP resource, such as a JSP or Java servlet, that is integrated into TIBCO EBX&reg;. Through User services, users can perform specific and advanced functions directly from the user interface.</p><p>The following types of User services exist:</p><ul>
+<li><p><a href="../references/builtin.html">Built-in User services</a> provided by EBX&reg;,</p></li><li><p>Custom User services on datasets declared in the data model,</p></li><li><p>Custom User services on dataspaces or snapshots that are declared in a module and are available to all dataspaces or snapshots. These can be disabled on specific dataspaces or snapshots using service permissions.</p></li></ul>
+<p>Additionally, to integrate a User service with a workflow or a perspective, it needs to be declared for this usage. See <a href="#integration">Integration of User services with workflows and perspectives</a> in this chapter for more information.</p><h3 id="id1s1">
+Accessing User services</h3>
+<p>Depending on the nature of User services and their declarations, users can access them in several ways: </p><ul>
+<li><p>Directly in the EBX&reg; user interface, from a <strong>Services</strong> or <strong>Actions</strong> menu,</p></li><li><p>From a data workflow, in which case the User service must be declared as an interaction,</p></li><li><p>For a perspective, in which case the User service must be declared in an action menu item,</p></li><li><p>From the Java API, using <code><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIHttpManagerComponent.html#setService-com.orchestranetworks.service.ServiceKey-"><code>UIHttpManagerComponent.setService</code></a></code>.</p></li></ul>
+<h2 id="instance">
+User services on datasets</h2>
+<p>User services can be declared in a specific data model contained in a module, which makes them available to datasets that implement that data model. These User services can be defined to be executable on the entire data set, or on tables or record selections in the dataset. They are launched in the user interface as follows:</p><ul>
+<li><p>For datasets, from the <strong>Services</strong> menu in the navigation pane.</p></li><li><p>For tables, from the <strong>Actions</strong> menu in the workspace.</p></li><li><p>For record selections, from the <strong>Actions</strong> menu in the workspace.</p></li></ul>
+<h3 id="useCaseInstance">
+Common use cases</h3>
+<p>Common uses for User services on datasets, tables, and record selections are:</p><ul>
+<li><p>Updating a table or a user selection of table records. For example, the field values of a column &#39;Product price&#39; can be adjusted by a ratio that is specified by the user.</p></li><li><p>Importing data from an external source into the current data set.</p></li><li><p>Exporting the selected records of a table.</p></li><li><p>Implementing specific events in the life cycle of MDM entities. For example, the creation of a product, which impacts several tables, or the &quot;closure&quot; of a product at a given date.</p></li><li><p>Displaying statistics on a table.</p></li></ul>
+<h3 id="instanceSchema">
+Declaration and configuration</h3>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p>From version 5.8.0 of EBX&reg;, it is recommended to use the user service API instead of the user services defined in a data model. The user service API provides more features and a better integration of user services. As a consequence, no further evolution will be made on the user services defined in a data model and the user service section is no longer displayed by default in the Data Model Assistant on new data models and on existing data models that do not define user services. However, the new property <code>Enable user services (old API)</code> available in the section <code>Global properties</code> allows to enable the definition of user services in a data model. </p><p>See <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/declaration/UserServiceDeclaration.html"><code>UserServiceDeclaration</code></a> and <a href="../user_datamodel/userdatamodel_configuring.html#configuration">Data model properties</a> for more information. </p></p></div>
+<p>User services are available on <code>embedded</code> data models, published using the <em>Data Model Assistant</em>, and <code>packaged</code> data models.</p><p>For embedded data models, the definitions of user services are embedded in EBX&reg;&#39;s repository and linked with a publication. That is, when publishing an embedded data model, definitions of user services are embedded in the publication of the data model and managed by EBX&reg;.</p><p>For packaged data models, the definitions of user services are set in a dedicated <code>XML</code> document and must be named as the data model and end with the keyword <code>_services</code>. For instance, if a data model is named <code>catalog.xsd</code>, then the XML document containing the definition of the user services must be named <code>catalog_services.xml</code>. This <code>XML</code> document must also be stored in the same location as the data model. The user services document is automatically loaded by EBX&reg; if a file complying with this pattern is found when compiling a data model. This document must comply with the XML Schema document <code>userServices_1.0.xsd</code> that defines the structure of the user services document. The XML Schema document file is provided for the module <code>ebx-root-1.0</code>, at the path <code>/WEB-INF/ebx/schemas</code>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Since EBX&reg; 5.7.1, user services are defined in a dedicated XML document. Previous definitions, embedded in XML Schema documents, are still supported but are deprecated. The Data Model Assistant can be used to migrate existing data models. That is, the definition of user services embedded in the data models being edited by the Data Model Assistant will be automatically migrated to the next publication.</p></div>
+<h4>
+Example</h4>
+<p>The following example declares the user service &#39;Distribution&#39; on a table:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;services xmlns="urn:ebx-schemas:userServices_1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:ebx-schemas:userServices_1.0 http://schema.orchestranetworks.com/userServices_1.0.xsd">
+    &lt;service name="Distribution">
+        &lt;documentation xml:lang="en-US">
+            &lt;label>Distribute data for table 'Product'&lt;/label>
+            &lt;description>This service distributes data for table 'Product'&lt;/description>
+        &lt;/documentation>
+        &lt;resourcePath>/Distribution/Distribution.jsp&lt;/resourcePath>
+        &lt;orderInMenu>1&lt;/orderInMenu>
+        &lt;activation>
+        	&lt;onDataModel>
+        		&lt;path>/root/Product&lt;/path>
+        	&lt;/onDataModel>
+        &lt;/activation>
+    &lt;/service>
+&lt;/services></pre>
+<h4>
+Properties</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Attributes that specify the name of the user service.</p></td><td valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>resourcePath</code></p></td><td valign="top"><p>Element that identifies the JSP or servlet resource to be called. The identifier is a path relative to the root of the EBX&reg; module containing the data model. It must begin with &#39;/&#39;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/service/ServiceContext.html"><code>ServiceContext</code></a></li><li><a href="https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.3/javadoc/javax/servlet/ServletContext.html#getRequestDispatcher(java.lang.String)">ServletContext.getRequestDispatcher(String)</a></li></ul>
+</div>
+</td><td valign="top"><p>Yes.</p></td></tr>
+<tr>
+<td valign="top"><p><code>activation/onDataModel/path</code></p></td><td valign="top"><p>Element that specifies where the User service will be available. Several paths can be specified using this element several times. Each path must be the absolute XPath notation of the node. It is possible to activate the User service on nodes or on datasets. The path &#39;/&#39; activates the User service globally on the dataset. On <code>osd:table</code>, an additional syntax allows you to specify whether the User service is activated globally on the table or on record selections. If the path to the table is <code>/root/myTable</code>: </p><ul>
+<li><p><em>/root/myTable</em> activates the User service globally on the table.</p></li><li><p><em>/root/myTable{n}</em> activates the User service only if exactly &#39;n&#39; records are selected, where &#39;n&#39; is a positive integer.</p></li><li><p><em>/root/myTable{+}</em> activates the User service if one or more records are selected (an unbounded selection).</p></li></ul>
+</td><td valign="top">No. If not defined, activates as a global User service that is not attached to a particular node. </td></tr>
+<tr>
+<td valign="top"><p><code>activation/onDataModel/pathRegExp</code></p></td><td valign="top"><p>Element that specifies where the User service will be available based on a regular expression. The User service will be available on all nodes whose full path in the data model match the regular expression. The format of the regular expression is defined in the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">Java specification</a>.</p></td><td valign="top">No. When set, it is exclusive with <code>activation/onDataModel/path</code> element. </td></tr>
+<tr>
+<td valign="top"><p><code>permissions</code></p></td><td valign="top">Element that specifies a Java class that implements <a target="_blank" href="../Java_API/com/orchestranetworks/service/ServicePermission.html"><code>ServicePermission</code></a>. The Java class is specified using the attribute <code>class</code>. </td><td valign="top">No. If not defined, service has no permission restriction.</td></tr>
+<tr>
+<td valign="top"><p><code>confirmation</code></p></td><td valign="top">Element that specifies a confirmation message or that suppresses user confirmation before the User service is launched. See <a href="#confirmation">Confirmation messages</a> below.</td><td valign="top">No. If not defined, a default confirmation message is displayed.</td></tr>
+<tr>
+<td valign="top"><p><code>displayInMenu</code></p></td><td valign="top">Element that specifies if the service is displayed in UI menus and buttons.</td><td valign="top">No. Default value is true.</td></tr>
+<tr>
+<td valign="top"><p><code>orderInMenu</code></p></td><td valign="top">Element that specifies the position of this User service among the User services defined in the schema. This position is used for the display order of User services.</td><td valign="top">No</td></tr>
+<tr>
+<td valign="top"><p><code>group</code></p></td><td valign="top">Element that specifies the group to which this service belongs. See <a href="#serviceGroup">User Service Groups</a> in this chapter for more information. </td><td valign="top">No. If undefined, the service will be displayed at the root level. </td></tr>
+<tr>
+<td valign="top"><p><code>defaultPermission</code></p></td><td valign="top">Element that specifies the service default activation policy. See <a href="#defaultPermission">Default permission</a> in this chapter for more information. <p>Allowed values are: <code>enabled</code> and <code>disabled</code>.</p></td><td valign="top">No. If undefined, the service is enabled by default. </td></tr>
+</tbody>
+</table>
+<h4 id="confirmation">
+Confirmation messages</h4>
+<p> By default, the user is shown a generic message and must confirm the execution of the User service. The element <code>osd:confirmation</code> allows you to specify a custom localized confirmation message: </p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;services ...>
+	&lt;service name="DummyService">
+		...
+		&lt;confirmation>
+			&lt;label xml:lang="fr-FR">
+			Voulez-vous lancer le service ?
+			&lt;/label>
+			&lt;label xml:lang="en-US">
+			Do you want to launch the service ?
+			&lt;/label>
+		&lt;/confirmation>
+		...
+	&lt;/service>
+	...
+&lt;/services></pre>
+<p>The element <code>confirmation</code> can also be used to disable the user confirmation entirely with the attribute <code>disable=&quot;true&quot;</code>.</p><h2 id="branch">
+Global User services on all dataspaces and snapshots</h2>
+<p>A User service can also be declared in such a way that they are available to all dataspaces and/or snapshots in the repository. The purpose of such services is to write high-level core business procedures that involve actions such as merges, imports and exports, and validations.</p><h3 id="useCaseBranch">
+Common use cases</h3>
+<p>Common uses for User services on dataspaces and snapshots are:</p><ul>
+<li><p>Importing data from an external source.</p></li><li><p>Exporting data to multiple systems.</p></li><li><p>Validating a dataspace or snapshot before exporting it</p></li><li><p>Sending messages to monitoring systems before performing a merge</p></li></ul>
+<h3 id="configuration">
+Declaration and configuration</h3>
+<p>The Java applications, JSPs, and servlets for User services on data spaces or snapshots must be declared in a module. It is recommended to create a dedicated module for User services on dataspaces and snapshots; these User services will be available on all dataspaces and snapshots, but may have a life cycle that is independent of the data life cycle.</p><p>User services on dataspaces and snapshots must be declared in the module configuration file <code>module.xml</code>, under the element <code>services/service</code>, where <code>services</code> is the root of all User services declared in the module.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/modules_packaging.html">Packaging EBX&reg; modules</a></li></ul>
+</div>
+<h4>
+Example</h4>
+<p>The following example declares a User service that validates and merges a dataspace: </p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;service name="AdvancedMerge" defaultPermission="disabled"> 
+	&lt;resourcePath>/services/advancedMerge.jsp&lt;/resourcePath> 
+	&lt;type>branch version&lt;/type>
+	&lt;documentation xml:lang="en-US"> 
+		&lt;label>Merge/Validate&lt;/label> 
+		&lt;description>Merge current branch to parent if valid.&lt;/description> 
+	&lt;/documentation> 
+	&lt;confirmation>
+		&lt;label>A default confirmation message.&lt;/label>
+		&lt;label xml:lang="en-US">An English confirmation message.&lt;/label>
+		&lt;label xml:lang="fr-FR">Un message de confirmation en français.&lt;/label>
+	&lt;/confirmation>
+&lt;/service></pre>
+<h4>
+Properties</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Attribute that specifies the name of the User service. This name must be unique within the scope of a module.</p></td><td valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>resourcePath</code></p></td><td valign="top"><p>Element that identifies the JSP or servlet resource to be called. The identifier is a path relative to the root of the EBX&reg; module containing the schema. It must begin with &#39;/&#39;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/service/ServiceContext.html"><code>ServiceContext</code></a></li><li><a href="https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.3/javadoc/javax/servlet/ServletContext.html#getRequestDispatcher(java.lang.String)">ServletContext.getRequestDispatcher(String)</a></li></ul>
+</div>
+</td><td valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>type</code></p></td><td valign="top"><p>Element that defines the availability of the User service as a whitespace-delimited list.</p><ul>
+<li><p>&#39;branch&#39;, which makes the User service available to <em>dataspaces</em></p></li><li><p>&#39;version&#39;, which makes the User service available to <em>snapshots</em></p></li><li><p>&#39;workflow&#39;, which makes the User service available to be defined for user tasks in workflow models</p></li><li><p>&#39;perspective&#39;, which makes the User service available to be defined for action menu items in perspective configurations.</p></li></ul>
+<p>If the list includes neither &#39;branch&#39; or &#39;version&#39;, the User service will not be available in all <strong>Services</strong> menus. </p><p>If the value &#39;workflow&#39; is specified, the User service will be available for workflows on any dataspace or snapshot.</p><p>If the value &#39;perspective&#39; is specified, the User service will be available for perspectives on any dataspace or snapshot.</p><p>See <a href="#type_workflow_perspective">Services on dataspaces or snapshots for data workflows or perspectives</a></p></td><td valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>documentation</code></p></td><td valign="top"><p>Localized label and description of the user service, displayed in the menu where the user service appears.</p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>confirmation</code></p></td><td valign="top">Element that specifies a confirmation message or that suppresses user confirmation before the User service is launched. See <a href="#dataspace_confirmation">Confirmation messages</a> below.</td><td valign="top"><p>No. If not defined, a default confirmation message is displayed.</p></td></tr>
+<tr>
+<td valign="top"><p><code>group</code></p></td><td valign="top">Element that specifies the group to which this service belongs. See <a href="#serviceGroup">User Service Groups</a> in this chapter for more information. </td><td valign="top">No. If undefined, the service will be displayed at the root level. </td></tr>
+<tr>
+<td valign="top"><p><code>defaultPermission</code></p></td><td valign="top">Attribute that specifies the service default activation policy. See <a href="#defaultPermission">Default permission</a> in this chapter for more information. <p>Allowed values are: <code>enabled</code> and <code>disabled</code>.</p></td><td valign="top">No. If undefined, the service is enabled by default. </td></tr>
+</tbody>
+</table>
+<h4 id="dataspace_confirmation">
+Confirmation Message</h4>
+<p> By default, the user is shown a generic message and must confirm the execution of the User service. The element <code>confirmation</code> allows you to specify a custom localized confirmation message: </p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;service name="AdvancedMerge"> 
+	&lt;resourcePath>/services/advancedMerge.jsp&lt;/resourcePath> 
+	&lt;type>branch version&lt;/type> 
+	&lt;documentation xml:lang="en-US"> 
+		&lt;label>Merge/Validate&lt;/label> 
+		&lt;description>Merge current branch to parent if valid.&lt;/description> 
+	&lt;/documentation> 
+	&lt;confirmation disable="true"/>
+&lt;/service></pre>
+<p>The element <code>confirmation</code> can also be used to disable the user confirmation entirely with the attribute <code>disable=&quot;true&quot;</code>.</p><h2 id="integration">
+Integration of User services with workflows or perspectives</h2>
+<h3 id="integrationOverview">
+Overview</h3>
+<p>In order to make a User service available to workflows or perspectives, an additional declaration must be made in the configuration file <code>module.xml</code> of the module that implements the User service.</p><p>User services that are integrated into workflows or perspectives benefit from a declarative and secure specification for a &quot;component-oriented&quot; approach</p><h4>
+Workflow</h4>
+<p>Once this declaration has been made, the User service becomes available in the Workflow Models area where the user defines user tasks. The user then maps the input parameters and output parameters that are specified in the module configuration file <code>module.xml</code>.</p><p>Once the workflow model has been published and a workflow has been started, for every user starting a work item, the corresponding user session on the application server will be associated with a <a target="_blank" href="../Java_API/com/orchestranetworks/service/Session.html#getInteraction-boolean-">persistent interaction object</a> that contains the valued input parameters. Through the Java API, the running User service can access these input parameters and adapt its behavior accordingly. Once the corresponding work item and associated User services are complete, the completion method must be invoked with the output parameters specifying the resulting state of the work item. For more information, the developer of the User service should read the JavaDoc of the interface <code><a target="_blank" href="../Java_API/com/orchestranetworks/interactions/SessionInteraction.html"><code>SessionInteraction</code></a></code>. </p><h4>
+Perspective</h4>
+<p>Once this declaration has been made, the User service becomes available for action menu items. The perspective administrator then maps the input parameters that are specified in the module configuration file <code>module.xml</code>. Output parameters are not used by perspectives but can be defined in <code>module.xml</code> if the User service is also used for workflows.</p><h3 id="commonProperties">
+Common properties for defining input and output parameters</h3>
+<p>Parameter declarations in the module configuration file <code>module.xml</code> are made under the element <code>services</code>. The element <code>properties</code> is used for declaring the input and output parameters of the User service. These parameters will be available for the definition of user tasks that use the User service.</p><p>For instance, the following sample specifies a service on a branch with one input parameter named <code>branch</code> and one output parameter named <code>choice</code>:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;properties>
+	&lt;property name="branch" input="true">
+		&lt;documentation xml:lang="en-US">
+			&lt;label>Branch&lt;/label>
+			&lt;description>
+			This input parameter indicate the branch to work on.
+			&lt;/description>
+		&lt;/documentation>
+	&lt;/property>
+	&lt;property name="choice" output="true" />
+&lt;/properties></pre>
+<p>The following table summarizes the XML tags to use for defining input and output parameters:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>properties</code></p></td><td valign="top"><p>Element containing property declaration.</p></td><td valign="top">Yes. This element is unique for a service.</td></tr>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>This attribute specifies the name of the property.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>input</code></p></td><td valign="top"><p>This attribute specifies if the property is an input one.</p></td><td valign="top">No</td></tr>
+<tr>
+<td valign="top"><p><code>output</code></p></td><td valign="top"><p>This attribute specifies if the property is an output one. This property is ignored by perspectives.</p></td><td valign="top">No</td></tr>
+<tr>
+<td valign="top"><p><code>documentation</code></p></td><td valign="top"><p>Label and description of the property.</p></td><td valign="top">No</td></tr>
+</tbody>
+</table>
+<h3 id="type_workflow_perspective">
+Services on dataspaces or snapshots for data workflows or perspectives</h3>
+<p>The declaration of an User service on dataspaces and/or snapshots can indicate if the User service can also be used with workflows or perspectives.</p><p>If the <code>type</code> element contains the value <code>workflow</code> in the whitespace-delimited list, the User service will be available to the definition of user tasks in workflow models. </p><p>If the <code>type</code> element contains the value <code>perspective</code> in the whitespace-delimited list, the User service will be available for definition of action menu items in perspective configurations.</p><p>For User services on dataspaces in workflows or perspectives, an element <code>properties/property</code>, with attributes <code>name=&quot;branch&quot; input=&quot;true&quot;</code>, is also required. Similarly, for User services on snapshots in workflows or perspectives, an element <code>properties/property</code>, with attributes <code>name=&quot;version&quot; input=&quot;true&quot;</code>, is required.</p><h4>
+Example</h4>
+<p>This example declares a User services that is available in the <strong>Services</strong> menu for dataspaces, for user tasks in workflow models and for action menu items in perspective configurations. Note the mandatory inclusion of the element <code>property</code> with the attributes <code>name=&quot;branch&quot; input=&quot;true&quot;</code>.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;service name="AdvancedMerge">
+	&lt;resourcePath>/services/advancedMerge.jsp&lt;/resourcePath>
+	&lt;type>branch workflow perspective&lt;/type>
+	&lt;documentation xml:lang="en-US">
+		...Merge a branch to its parent if valid...
+	&lt;/documentation>
+	&lt;properties>
+		&lt;property name="branch" input="true"/>
+	&lt;/properties>
+&lt;/service></pre>
+<h3 id="id4s4">
+Service on datasets for data workflows or perspectives</h3>
+<p>User services on datasets are declared at the data model-level. However, in order to make them definable for workflow user tasks or perspective action menu items, their declarations must include additional elements in the module configuration file <code>module.xml</code> of the module containing the data model.</p><p>Under the element <code>services/serviceLink</code>, several properties must be defined.</p><p>Built-in parameters must be used to define the service selection. The built-in parameters are the same as for Web Components. <a href="../references/manager_component_ref.html#entity">Entity and service selection parameters</a>.</p><p>The built-in parameters <code>branch</code> and <code>instance</code> are required, which respectively identify the dataspace and contained data set on which the User service will be run.</p><p>To define on which table or on which record the service must be run, the <code>xpath</code> parameter must be added.</p><p>In addition, it is possible to define specific parameters that will be used in the service.</p><h4>
+Example</h4>
+<p>The following example declares a dataset service that imports a spreadsheet into a table in a dataset.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;serviceLink serviceName="ImportSpreadsheet">
+	&lt;importFromSchema>/WEB-INF/ebx/schema/my-ebx.xsd&lt;/importFromSchema>
+	&lt;properties>
+		&lt;property name="branch" input="true"/>
+		&lt;property name="instance" input="true"/>
+		&lt;property name="pathToTable" input="true"/>
+		&lt;property name="xpath" input="true"/>
+		&lt;property name="aSpecificParameter" input="true"/> 	
+	&lt;/properties>
+&lt;/serviceLink></pre>
+<h4>
+Properties</h4>
+<p>The following table summarizes the elements and attributes under the element <code>services/serviceLink</code>:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>serviceName</code></p></td><td valign="top"><p>Attribute of <code>serviceLink</code> that defines the name of the User service as it is specified in the data model.</p></td><td align="right" valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>importFromSchema</code></p></td><td valign="top"><p>Element that specifies the path to the data model, relative to the current module (web application).</p></td><td align="right" valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>properties</code></p></td><td valign="top"><p>Element that defines input and output parameters.</p></td><td align="right" valign="top">Yes. At least the input properties for &quot;branch&quot; and &quot;instance&quot; must be defined.</td></tr>
+</tbody>
+</table>
+<h3 id="serviceExtensions">
+Service extensions</h3>
+<p>It is possible to extend User services that have already been declared, by defining labels and descriptions and adding properties. You can extend built-in User services, dataspace or snapshot User services and dataset User services. However, it is not possible to further extend a service extension.</p><p>Service extensions must be declared in the module configuration file <code>module.xml</code>, under the element <code>services/serviceExtension</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>A service extension allows to extend a built-in service or a service declared in the same module. In other words, it is not possible to extend a service declared in an other module. Because of this limitation, it is not possible to extend an add-on service.</p></div>
+<h4>
+Extending a built-in User service</h4>
+<pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;serviceExtension name="BuiltinCreationServiceExtension" extends="@creation" > 
+	&lt;documentation xml:lang="en-US">
+		&lt;label>Built in creation service extension&lt;/label>
+	&lt;/documentation>
+	&lt;properties>
+		...
+	&lt;/properties>
+&lt;/serviceExtension></pre>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Attribute that specifies the name of the service extension.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>extends</code></p></td><td valign="top"><p>Attribute that specifies the name of the built-in User service being extended. The value is the <code><a target="_blank" href="../Java_API/com/orchestranetworks/service/ServiceKey.html"><code>ServiceKey</code></a></code> of the built-in User service. For the default built-in User service &#39;Access data&#39;, this attribute must be empty.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>properties</code></p></td><td valign="top"><p>Element that declares properties being added to the built-in User service.</p></td><td valign="top">No</td></tr>
+<tr>
+<td valign="top"><p><code>documentation</code></p></td><td valign="top"><p>Localized labels and descriptions to add to the built-in User service.</p></td><td valign="top">No</td></tr>
+</tbody>
+</table>
+<h4>
+Extending dataspace and snapshot User services</h4>
+<p>The service extension and the User service being extended must be defined in the same <code>module.xml</code> module configuration file.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;serviceExtension name="AdvancedMergeExtension" extends="AdvancedMerge">
+	&lt;documentation xml:lang="en-US">
+		...
+	&lt;/documentation>
+	&lt;properties>
+		...
+	&lt;/properties>
+&lt;/serviceExtension>
+</pre>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Attribute that specifies the name of the service extension.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>extends</code></p></td><td valign="top"><p>Attribute that specifies the name of the User service being extended.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>properties</code></p></td><td valign="top"><p>Element that declares properties being added to the User service.</p></td><td valign="top">No</td></tr>
+<tr>
+<td valign="top"><p><code>documentation</code></p></td><td valign="top"><p>Localized labels and descriptions to add to the User service.</p></td><td valign="top">No</td></tr>
+</tbody>
+</table>
+<h4>
+Extending dataset User services</h4>
+<p>Since the service extension and the User service being extended must be defined in the same <code>module.xml</code> module configuration file, you must first declare the User service as an interaction using element <code>serviceLink</code>.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;serviceExtension name="ImportSpreadsheetExtension" extends="ImportSpreadsheet" fromSchema="/WEB-INF/ebx/schema/my-ebx.xsd">
+	&lt;documentation xml:lang="en-US">
+		...
+	&lt;/documentation>
+	&lt;properties>
+		...
+	&lt;/properties>
+&lt;/serviceExtension></pre>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Attribute that specifies the name for the service extension.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>extends</code></p></td><td valign="top"><p>Attribute that specifies the name of the User service being extended.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>fromSchema</code></p></td><td valign="top"><p>Attribute that specifies the path to the schema that defines the User service.</p></td><td valign="top">Yes</td></tr>
+<tr>
+<td valign="top"><p><code>properties</code></p></td><td valign="top"><p>Element that declares properties being added to the User service.</p></td><td valign="top">No</td></tr>
+<tr>
+<td valign="top"><p><code>documentation</code></p></td><td valign="top"><p>Localized labels and descriptions to add to the User service.</p></td><td valign="top">No</td></tr>
+</tbody>
+</table>
+<h2 id="defaultPermission">
+User services default permission</h2>
+<p> The service default permission is used when no permission has been explicitly set for this service to a given profile. This occurs when:</p><ul>
+<li><p>No permission rule is set for this profile.</p></li><li><p>At least one permission rule is set for this profile, but the permission for the service is set &quot;default&quot;.</p></li></ul>
+<p>Note that when adding a new service to an EBX&reg; repository, the service permission is set to &quot;default&quot; for all existing permissions rules.</p><p>To set the default permission for user services on datasets, the <code>osd:defaultPermission</code> element must be used in the service declaration. To set the default permission for user services on dataspaces, the <code>defaultPermission</code> attribute must be used in the service declaration.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/permissions.html#permissionRules">Permission rules</a></li><li><a href="../references/permissions.html#servicePermissionResolution">Resolving permissions on services</a></li></ul>
+</div>
+<h2 id="serviceGroup">
+User service groups</h2>
+<p>User service groups are used to organize the display of user services in menus and permission management screens.</p><p>The following types of service groups are available:</p><ul>
+<li><p><a href="#serviceGroup_builtins">Built-in User Service Groups</a> provided by EBX&reg;,</p></li><li><p><a href="#serviceGroup_declaration">Custom User Service Groups</a> declared in a module.</p></li></ul>
+<p>The link between groups and services is made upon service declaration. See <a href="#serviceGroup_association">Associating a service to a group</a>.</p><h3 id="serviceGroup_builtins">
+Built-in User Service Groups</h3>
+<p>Available built-in service groups:</p><table class="ebx_definitionList">
+<th class="ebx_definitionListHeader"><p>Service Group Key</p></th><th class="ebx_definitionListHeader"><p>Description</p></th><tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>@ebx-importExport</code></p></td><td class="ebx_definitionListDefinition"><p>Group containing all built-in import and export services provided by EBX&reg;. In the default menus, these services are displayed in a &quot;Import / Export&quot; sub-menu.</p></td></tr>
+</table>
+<h3 id="serviceGroup_declaration">
+Declaring a User Service Group</h3>
+<p>User Service Groups must be declared in the module configuration file <code>module.xml</code>, under the element <code>serviceGroups/serviceGroup</code>, where <code>serviceGroups</code> is the root of all user services declared in the module.</p><h4>
+Example</h4>
+<p>The following example declares a user service group <code>myCompanyGroup</code>: </p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;serviceGroups>
+	&lt;serviceGroup name="myCompanyGroup">
+		&lt;documentation xml:lang="en-US">
+			&lt;label>My Company Services&lt;/label>
+		&lt;/documentation>
+		&lt;documentation xml:lang="fr-FR">
+			&lt;label>Services de ma compagnie&lt;/label>
+		&lt;/documentation>
+	&lt;/serviceGroup>
+&lt;/serviceGroups></pre>
+<p>Should this declaration be in a module named <code>myCompanyModule</code>, the resulting service group key would then be <code>myCompanyModule@myCompanyGroup</code>.</p><h4>
+Properties</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Definition</strong></p></th><th><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code></p></td><td valign="top"><p>Attribute specifying the name of the user service group. This name must be unique within the scope of a module.</p><p>The key identifier to reference this user service group is as follows: <code>&lt;moduleName&gt;@&lt;serviceGroupName&gt;</code>.</p></td><td valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>documentation</code></p></td><td valign="top"><p>Localized labels and descriptions to add to the user service.</p></td><td valign="top">No</td></tr>
+</tbody>
+</table>
+<h3 id="serviceGroup_association">
+Associating a service to a group</h3>
+<p>Associating a service to a group is made upon service declaration. To do so, the target service group key has to be set as a value of the <code>osd:group</code> element for a user service on datasets, or as a value of the <code>group</code> for a user service on dataspaces.</p><p>A service can be associated to either a built-in or custom service group. In the latter case, this service will be displayed in this built-in group, just like other built-in services belonging to this group.</p><p>The following examples are based on module declared services, but they apply similarly to data model declared services.</p><h4>
+Example 1: Association with a custom group</h4>
+<p>In the following example, the <code>displayAboutFromMyCompany</code> user service is associated with the <code>myCompanyModule@myCompanyGroup</code> custom group.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;service name="displayAboutMyCompany">
+	&lt;resourcePath>/help/displayAboutMyCompany.jsp&lt;/resourcePath>
+	&lt;group>myCompanyModule@myCompanyGroup&lt;/group>
+	&lt;type>branch version&lt;/type>
+	&lt;documentation xml:lang="fr-FR">
+		&lt;label>A propos...&lt;/label>
+		&lt;description>Affiche diverses informations sur ma compagnie.&lt;/description>
+	&lt;/documentation>
+&lt;/service></pre>
+<p>In menus, this service will be displayed in the &quot;My Company Services&quot; sub-menu with other custom services associated with this group.</p><h4>
+Example 2: Association with a built-in group</h4>
+<p>In the following example, the <code>importFromMyCompanyArchiveFormat</code> user service is associated with the <code>@ebx-importExport</code> built-in group.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;service name="importFromMyCompanyArchiveFormat">
+	&lt;resourcePath>/import/importFromMyCompanyArchiveFormat.jsp&lt;/resourcePath>
+	&lt;group>@ebx-importExport&lt;/group>
+	&lt;type>branch&lt;/type>
+	&lt;documentation xml:lang="fr-FR">
+		&lt;label>Import d'archive&lt;/label>
+		&lt;description>Importe une archive dans la branche courante.&lt;/description>
+	&lt;/documentation>
+&lt;/service></pre>
+<p>In menus, this service will be displayed in the &quot;Import / Export&quot; sub-menu with the CSV and XML import/export built-in services.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - XML export options</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_export_xml_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Export Options</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_export_xml.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Export Options</span></div>
+<h1>
+XML export options</h1>
+<h2 id="ref_export_xml">
+Overview</h2>
+<p>The sections below describe the pages and options you will be presented with when importing from an external database:</p><ul>
+<li><p>Configuration page—The options here determine basic configuration information including selection of the table, or view to import from.</p></li><li><p>Table selection page—This page only displays when running the export service from a dataset&#39;s <strong>Actions</strong> menu and allows you to select a table to export.</p></li><li><p>Results page—This page shows you the import results.</p></li></ul>
+<h3 id="ref_export_xml_config_page">
+Configuration page</h3>
+<p>This screen allows you to select an external database location to export to and select a Java class used to map columns. The options include:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Options</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Select a target application</p></td><td valign="top"><p>With &#39;Default XML format&#39; selected the export uses default configuration options. When additional target applications have been configured, they can be selected here.</p></td></tr>
+<tr>
+<td valign="top"><p>Select a version to include in the exported file</p></td><td valign="top"><p>For information only. If you use the &#39;use header&#39; option, this information is inserted in the exported file as the &#39;appversion&#39; XML tag within the header.</p></td></tr>
+<tr>
+<td valign="top">Use header</td><td valign="top"><p>You can add a EBX® Data Exchange Add-on header that contains metadata such as Name, Type, Application Version and export time. EBX® Data Exchange Add-on reuses this &#39;header&#39; XML tag at import time.</p></td></tr>
+<tr>
+<td valign="top">Include computed values</td><td valign="top"><p>Specifies whether computed values must be included in the export.</p></td></tr>
+<tr>
+<td valign="top">Is indented</td><td valign="top"><p>Specifies whether the file should be indented to improve readability.</p></td></tr>
+<tr>
+<td valign="top">Omit XML comment</td><td valign="top"><p>Specifies whether the generated XML comment that describes the location of data and the export date should be omitted from the file.</p></td></tr>
+<tr>
+<td valign="top">Disable write access lock</td><td valign="top"><p>Specifies the write access lock on the dataspace while exporting. If &#39;No&#39;: The dataspace is locked and the export is executed inside the read only procedure. If &#39;Yes&#39;: The export is executed outside a procedure and users have write access on the dataspace while exporting. Default value: &#39;No&#39;.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

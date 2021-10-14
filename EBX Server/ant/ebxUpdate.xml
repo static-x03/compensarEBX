@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<project name="EBX Update" default="doEbxUpdate">
+
+	<target name="setEbxUpdateLocation">
+		<echo>
+			setEbxUpdateLocation
+		</echo>
+		<input message="Please provide EBX CD root path (for example D:\)" addproperty="ebxCD.root" />
+		<property name="ebx.jar.location" value="${ebxCD.root}/ebx.software/lib/ebx.jar" />
+		<property name="ebx.war.location" value="${ebxCD.root}/ebx.software/webapps/wars-packaging" />
+		<property name="tutorial.war.location" value="${ebxCD.root}/ebx.tutorial/webapps/wars-packaging" />
+	</target>
+
+	<target name="doEbxUpdate" depends="setEbxUpdateLocation">
+
+		<echo>
+			doEbxUpdate
+		</echo>
+
+		<!-- Check ebx.jar now -->
+		<fail message="ebx.jar not found at [${ebx.jar.location}].">
+			<condition>
+				<not>
+					<available file="${ebx.jar.location}" />
+				</not>
+			</condition>
+		</fail>
+		<!-- Check ebx.war now -->
+		<fail message="ebx.war not found at [${ebx.war.location}].">
+			<condition>
+				<not>
+					<available file="${ebx.war.location}/ebx.war" />
+				</not>
+			</condition>
+		</fail>
+
+
+		<!-- Confirm ? -->
+		<input message="Update EBX Platform from ${ebxCD.root} ? " validargs="y,n" addproperty="do.update" />
+		<condition property="do.abort">
+			<equals arg1="n" arg2="${do.update}" />
+		</condition>
+		<fail if="do.abort">Build aborted by user.</fail>
+
+
+		<!-- Targets -->
+		<property name="lib.dir" value="../lib" />
+		<property name="webapps.dir" value="../webapps" />
+		<property name="ant.dir" value="../ant/taskDef" />
+
+
+		<!-- Update ebx.jar in lib -->
+		<copy todir="${lib.dir}" file="${ebx.jar.location}" overwrite="true" />
+
+
+
+		<!-- Update webapps -->
+		<delete dir="${webapps.dir}" />
+
+		<copy todir="${webapps.dir}">
+			<fileset dir="${ebx.war.location}">
+				<include name="**/*.war" />
+			</fileset>
+		</copy>
+
+		<copy todir="${webapps.dir}">
+			<fileset dir="${tutorial.war.location}">
+				<include name="**/*.war" />
+			</fileset>
+		</copy>
+
+		<!-- Update Ant task definitions -->
+		<unjar src="${ebx.jar.location}" dest="${ant.dir}">
+			<patternset>
+				<include name="**/tasks" />
+			</patternset>
+		</unjar>
+
+
+		<echo>
+			
+			*************************
+		</echo>
+		<echo>
+			EBX.Platform Update done !
+		</echo>
+		<echo>
+			*************************
+		</echo>
+
+	</target>
+	<!-- ======================================================= -->
+	<target name="ebxUpdate" depends="doEbxUpdate">
+
+		<echo>
+			ebxUpdate
+		</echo>
+
+	</target>
+
+	<!-- ======================================================= -->
+</project>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Configuring Dynamic Data Modeling</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ConfiguringDynamicDataModeling_dynamicDataModeling" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Dynamic Data Modeling &gt; User Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=ddm_userguide/ConfiguringDynamicDataModeling_dynamicDataModeling.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Dynamic Data Modeling &gt; User Guide</span></div>
+<h1 id="ConfiguringDynamicDataModeling_dynamicDataModeling_topPage">
+Configuring Dynamic Data Modeling</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#GlobalView1d24_11">Global view</a></li><li class="toc1"><a href="#DataModel1cae_12">Data model</a></li><li class="toc1"><a href="#Tableed3_13">Table</a></li><li class="toc1"><a href="#Field19e2_14">Field</a></li><li class="toc1"><a href="#PermissionUserProfileaf6_15">Permission - User profile</a></li><li class="toc1"><a href="#ReferenceDataTypeMapping1447_16">Reference - Data type mapping</a></li></ul>
+</div>
+<h2 id="GlobalView1d24_11">
+Global view</h2>
+<p>The <strong>Dynamic data modeling</strong> dataset is located under the EBX® <strong>Administration</strong> tab. </p><p>The <strong>Data model</strong> table contains the data models that have been declared. A data model is described through the <strong>Table</strong> and <strong>Field</strong> tables.</p><p>The <strong>Permission</strong> domain contains the permissions on use of the <strong>Dynamic data modeling</strong> per user-profile.</p><p>The <strong>Reference</strong> domain contains the list of permitted data types used as input data and their corresponding data type in EBX®.</p><h2 id="DataModel1cae_12">
+Data model</h2>
+<p>The <strong>Data model</strong> table contains the declaration of the data models that are available for generation. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention can be used (without whitespaces).</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>Name of the current data model. </p></td></tr>
+<tr>
+<td valign="top"><p>Label &amp; description</p></td><td valign="top"><p>The label and description are used as metadata for the data model description in EBX®.</p></td></tr>
+</tbody>
+</table>
+<p align="center">Table 1: Data model properties</p><h2 id="Tableed3_13">
+Table</h2>
+<p>This table contains the table declarations per data model.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Data model </p></td><td valign="top"><p>Name of the data model for which the table is declared.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name of the table is automatically retrieved from the imported file during generation (Excel, XML and DDL).</p></td></tr>
+<tr>
+<td valign="top"><p>Path </p></td><td valign="top"><p>Path of the table in the data model.</p></td></tr>
+<tr>
+<td valign="top"><p>XSD name </p></td><td valign="top"><p>Normalized name from the original table name. This name is used to generate the XSD file and guarantee its compliance with the XSD standard.</p></td></tr>
+<tr>
+<td valign="top"><p>Label and description </p></td><td valign="top"><p>Label and description used as metadata for the table description.</p></td></tr>
+<tr>
+<td valign="top"><p>XSD path </p></td><td valign="top"><p>Path of the table used to generate the XML file. You can adapt this value if needed.</p></td></tr>
+<tr>
+<td valign="top"><p>Full path </p></td><td valign="top"><p>For information only. The &#39;Full path&#39; shows you the actual and complete path+name of the table that is used to generate the XSD file.</p></td></tr>
+</tbody>
+</table>
+<p align="center">Table 2: Table properties</p><h2 id="Field19e2_14">
+Field</h2>
+<p>This table contains the field declarations for data model tables.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Table</p></td><td valign="top"><p>Name of the table for which the field is declared.</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name of the field is automatically retrieved from the input file during generation (Excel, XML and DDL).</p></td></tr>
+<tr>
+<td valign="top"><p>Path </p></td><td valign="top"><p>Path of the group that contains the field.</p></td></tr>
+<tr>
+<td valign="top"><p>XSD name </p></td><td valign="top"><p>Normalized name from the original field name. This name is used to generate the XSD file and guarantee its compliance with the XSD standard.</p></td></tr>
+<tr>
+<td valign="top"><p>Type </p></td><td valign="top"><p>This field&#39;s data type. You can modify the data type to adapt it to your needs before generating the XSD file.</p></td></tr>
+<tr>
+<td valign="top"><p>Is primary key </p></td><td valign="top"><p>If the field is a primary key you can set this property to &#39;Yes&#39;. In the generated XSD file the field is then considered as a primary key for EBX®.</p></td></tr>
+<tr>
+<td valign="top"><p>Label and description </p></td><td valign="top"><p>Text used as metadata for the field description.</p></td></tr>
+<tr>
+<td valign="top"><p>XSD path </p></td><td valign="top"><p>Path of the group that contains the field also used during XSD file generation.</p></td></tr>
+<tr>
+<td valign="top"><p>Full path </p></td><td valign="top"><p>For information only. The &#39;Full path&#39; shows you the actual and complete path+name of the field that is used to generate the XSD file.</p></td></tr>
+</tbody>
+</table>
+<p align="center">Table 3: Field properties</p><h2 id="PermissionUserProfileaf6_15">
+Permission - User profile</h2>
+<p>By default only the Admin user-profile can access to the <strong>Dynamic data modeling</strong> feature. If you want to grant permission to other user-profiles, you have to declare them in this table.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>User profile</p></td><td valign="top"><p>User-profile on which the permission is applied.</p></td></tr>
+<tr>
+<td valign="top"><p>Is data modeler available </p></td><td valign="top"><p>Determines whether the &#39;Dynamic Data Modeling&#39; service is available for the current user.</p></td></tr>
+</tbody>
+</table>
+<p align="center">Table 4: User profile properties</p><h2 id="ReferenceDataTypeMapping1447_16">
+Reference - Data type mapping</h2>
+<p>The <strong>Data type mapping</strong> table provides the list of mapping data types between XML, Excel and DLL files and the corresponding data types for the generated EBX® field.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Schema type name</p></td><td valign="top"><p>Corresponding data type of generated field in EBX®.</p></td></tr>
+<tr>
+<td valign="top"><p>Value in excel</p></td><td valign="top"><p>Data type of field in excel file.</p></td></tr>
+<tr>
+<td valign="top"><p>SQL Data type</p></td><td valign="top"><p>Data type of field in DDL file.</p></td></tr>
+</tbody>
+</table>
+<p align="center">Table 5: Data type mapping properties</p><p>All source and the corresponding data types of generated EBX® fields are listed in the following table:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>EBX® data type</p></th><th valign="top"><p>Excel data type</p></th><th valign="top"><p>SQL data type</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>AnyURI</p></td><td valign="top"><p>URI</p></td><td valign="top"><p>N/A</p></td></tr>
+<tr>
+<td valign="top"><p>Boolean</p></td><td valign="top"><p>Boolean</p></td><td valign="top"><p>Boolean</p></td></tr>
+<tr>
+<td valign="top"><p>Date</p></td><td valign="top"><p>Date</p></td><td valign="top"><p>Date</p></td></tr>
+<tr>
+<td valign="top"><p>Date time</p></td><td valign="top"><p>Date and time</p></td><td valign="top"><p>- SMALLDATETIME</p><p>- DATETIME</p><p>- TIMESTAMP</p><p>- TIMESTAMP WITH TIMEZONE</p><p>- TIMESTAMP WITHOUT TIMEZONE</p><p>- TIMESTAMP WITH LOCAL TIMEZONE</p></td></tr>
+<tr>
+<td valign="top"><p>Decimal</p></td><td valign="top"><p>Decimal</p></td><td valign="top"><p>- DECIMAL</p><p>- NUMERIC</p><p>- MONEY</p><p>- BIGINT</p><p>- NUMBER(PRECISION)</p><p>- BINARY_FLOAT</p><p>- BINARY_DOUBLE</p><p>- LONG</p><p>- BIGSERIAL</p><p>- DOUBLE PRECISION</p><p>- REAL</p></td></tr>
+<tr>
+<td valign="top"><p>Email</p></td><td valign="top"><p>Email address</p></td><td valign="top"><p>N/A</p></td></tr>
+<tr>
+<td valign="top"><p>Int</p></td><td valign="top"><p>Integer</p></td><td valign="top"><p>- INT</p><p>- SAMLLINT</p><p>- INTEGER</p><p>- SMALLSERIAL</p><p>- SERIAL</p><p>- NUMBER</p></td></tr>
+<tr>
+<td valign="top"><p>Locale</p></td><td valign="top"><p>Locale</p></td><td valign="top"><p>N/A</p></td></tr>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>XML name</p></td><td valign="top"><p>N/A</p></td></tr>
+<tr>
+<td valign="top"><p>Password</p></td><td valign="top"><p>Password</p></td><td valign="top"><p>N/A</p></td></tr>
+<tr>
+<td valign="top"><p>String</p></td><td valign="top"><p>String</p></td><td valign="top"><p>- CHAR</p><p>- VARCHAR</p><p>- VARCHAR2</p><p>- ROWID</p><p>- BIT</p><p>- BIT VARYING</p><p>- BYTEA</p><p>- CIDR</p><p>- CHARACTER</p><p>- CHARACTER VARYING</p><p>- INET</p><p>- TSQUERY</p><p>- TSVECTOR</p><p>- UUID</p></td></tr>
+<tr>
+<td valign="top"><p>Text</p></td><td valign="top"><p>Text</p></td><td valign="top"><p>- TEXT</p><p>- NCHAR</p><p>- NCHAR2</p><p>- NVARCHAR</p><p>- NVARCHAR2</p><p>- NTEXT</p><p>- XML</p><p>- UROWID</p><p>- JSON</p></td></tr>
+<tr>
+<td valign="top"><p>Time</p></td><td valign="top"><p>Time</p></td><td valign="top"><p>- TIME</p><p>- TIME WITH TIMEZONE</p><p>- TIME WITHOUT TIMEZONE</p></td></tr>
+</tbody>
+</table>
+<p align="center">Table 6: Data type mapping</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

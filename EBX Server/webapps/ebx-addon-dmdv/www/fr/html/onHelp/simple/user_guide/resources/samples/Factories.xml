@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--XML content generated for /root/factories in data set basicSupplyChain in data space Reference on 2018-07-31T07:39:18.494 by user [admin].-->
+<root>
+	<factories>
+		<factory>Northern Factory</factory>
+	</factories>
+	<factories>
+		<factory>Southern Factory</factory>
+	</factories>
+</root>

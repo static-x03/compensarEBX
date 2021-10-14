@@ -1,0 +1,8 @@
+{
+  "userMessage": "...", // Mandatory localized message
+  "errorCode":   "999", // EBX® error code (optional, used mainly for HTTP error 422)
+  "errors": [           // Internal messages useful when debugging (optional).
+                        // Usually not displayed to the user and not localized.
+     "Message 1", "Message 2" }
+  ]
+}

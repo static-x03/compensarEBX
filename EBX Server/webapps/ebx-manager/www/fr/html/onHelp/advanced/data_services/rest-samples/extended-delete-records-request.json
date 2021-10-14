@@ -1,0 +1,17 @@
+{
+  "rows": [
+    {
+      "details": "http://.../root/table/1"
+    },
+    {
+      "details": "http://.../root/table/2"
+    },
+    {
+      "primaryKey": "./oid=3"
+    },
+    {
+      "foreignKey": "4"
+    },
+    ...
+  ]
+}

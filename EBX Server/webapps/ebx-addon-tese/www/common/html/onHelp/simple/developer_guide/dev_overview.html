@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - Extending search functionality</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Information Search Add-on Documentation &gt; Developer Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=developer_guide/dev_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Information Search Add-on Documentation &gt; Developer Guide</span></div>
+<h1 id="dev_overview_top">
+Extending search functionality</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#create_template">Creating a custom template</a></li><li class="toc1"><a href="#register_synonyms_stopwords">Registering synonyms and stopwords</a></li><li class="toc1"><a href="#configure_data_model">Configuring the data model</a></li><li class="toc1"><a href="#configure_search">Configuring a targeted search</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>Since the 6.0.0 release of EBX, some search functionality is no longer handled by the add-on, or available to configure. However, you can programatically extend search functionality for targeted searches so that they use custom templates and include synonyms and stopwords. You can accomplish this by:</p><ul>
+<li><p><a href="#create_template">Creating a custom template</a></p></li><li><p><a href="#register_synonyms_stopwords">Registering synonyms and stopwords</a></p></li><li><p><a href="#configure_data_model">Configuring the data model</a></p></li><li><p><a href="#configure_search">Configuring a targeted search</a></p></li></ul>
+<h2 id="create_template">
+Creating a custom template</h2>
+<p>A custom search template must implement the <code>SearchTemplate</code> interface. This interface enables definition of a template key, description, and label. As shown in the example below, the <code>KEY</code> field must include the name of your custom module followed by <code>@<em>&lt;unique String&gt;</em></code>. See the EBX API documentation for details on this interface.</p><p>The following is an example of a <code>SearchTemplate</code>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+/**
+ */
+public class MyCustomTemplate implements SearchTemplate
+{
+
+	//The key must begin with the name of the custom module where you want to register this template followed by '@' and any value.
+	private final static SearchTemplateKey KEY = SearchTemplateKey
+		.parse("ebx-addon-docs@docsSearchTemplateExample");
+
+	@Override
+	public SearchTemplateKey getTemplateKey()
+	{
+		return KEY;
+	}
+
+	//Sets the label that identifies this template. This label displays in the menu that allows you to choose a search template.
+	@Override
+	public UserMessage getUserLabel()
+	{
+		return UserMessage.createInfo("My Custom Template");
+	}
+
+	@Override
+	public UserMessage getUserDescription()
+	{
+		return UserMessage.createInfo("Template used for synonyms and stopwords demo.");
+	}
+
+}
+</pre>
+<h2 id="register_synonyms_stopwords">
+Registering synonyms and stopwords</h2>
+<p>To make synonyms and stopwords available these lists must be included in your custom module registration by overriding the <code>handleSearchRegistration()</code> method in your module&#39;s registration servlet. The following example shows registration of basic lists:</p><pre class="brush: java; toolbar: false; gutter: false;">
+@Override
+	public void handleSearchRegistration(ModuleSearchRegistrationContext aContext)
+	{
+
+		ModuleSearchRegistrationAddonContext context = (ModuleSearchRegistrationAddonContext) aContext;
+
+		//Define the synonym list as pairs of synonyms.
+		List&lt;SynonymPair> customSynonyms = Arrays
+			.asList(SynonymPair.newPair("quick", "fast"), SynonymPair.newPair("quick", "rapid"));
+
+		//Define the list of stopwords.
+		List&lt;String> customStopwords = Arrays.asList("street", "boulevard", "city");
+
+		//Register the custom template and any lists of synonyms, or stopwords
+		//The SynonymKey and StopWordsKey arguments must begin with the name of your custom module followed by '@' and the value you choose.
+		//You pass these key values as parameters when configuring a field's search strategy.
+		context.registerSearchTemplate(MyCustomTemplate::new)
+			.registerSynonyms(
+				SynonymDeclaration.of(
+					SynonymsKey.parse("ebx-addon-docs@customSynonyms"),
+					UserMessage.createInfo("User message 1 String"),
+					UserMessage.createInfo("User message 2 String")),
+				customSynonyms)
+			.registerStopWords(
+				StopWordsDeclaration.of(
+					StopWordsKey.parse("ebx-addon-docs@customStopwords"),
+					UserMessage.createInfo("User message 3"),
+					UserMessage.createInfo("User Message 4")),
+				customStopwords);
+	}
+</pre>
+<h2 id="configure_data_model">
+Configuring the data model</h2>
+<p>After registering a search template, synonyms, and stopwords you can configure a data model&#39;s search extension to customize search capabilities. The configuration involves creating a search strategy and passing your synonym and stopword lists as parameters. You then associate the search strategy with your custom template and the field where settings will apply.</p><p>To configure your data model:</p><ol>
+<li><p>Create a new search strategy:</p><ol>
+<li><p>Select <strong>Data models</strong> from the main menu bar and open the desired data model.</p></li><li><p>Navigate to <em>Extensions &gt; Search &gt; Custom search strategies</em>.</p><p><img alt="/configure-1.png" src="./resources/images/configure-1.png"></img></p></li><li><p>Create a new record and specify the following:</p><ul>
+<li><p><strong>Name</strong>: Provide a unique name.</p></li><li><p><strong>Built-in strategy</strong>: Identifier of a built-in strategy that will be used as a base for the custom strategy.</p><ol>
+<li><p><strong>Strategy</strong>: Select the appropriate search strategy for this field&#39;s data type.</p></li><li><p><strong>Parameters</strong>: Configure the desired parameter for search strategy.</p></li></ol>
+</li></ul>
+</li><li><p>After optionally providing a label and description save and close.</p></li></ol>
+</li><li><p>Associate the search strategy, field, and template:</p><ol>
+<li><p>In the navigation pane, select <strong>Assigned search strategies</strong> and create a new record.</p><p><img alt="/configure-2.png" src="./resources/images/configure-2.png"></img></p></li><li><p>Update the following properties:</p><ul>
+<li><p><strong>Search template</strong>: Select your search template implementation from the list.</p></li><li><p><strong>Field path</strong>: Select the field you want to apply these settings to.</p></li><li><p><strong>Search strategy</strong>: Select the search strategy created in the previous steps.</p></li></ul>
+</li><li><p>Save and close.</p></li></ol>
+</li><li><p>Publish your data model.</p></li></ol>
+<h2 id="configure_search">
+Configuring a targeted search</h2>
+<p>After configuring the steps in the previous sections, you can create a new or update an existing targeted search configuration to use your search template implementation.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>The following instructions show how to apply a custom template to an existing configuration. See <a href="../admin_guide/admin_enable.html">Configuring search</a> for instructions on setting up a targeted search. </p></div>
+<p>To use a custom template with a targeted search:</p><ol>
+<li><p>In the <strong>Administration</strong> panel, navigate to <em>TIBCO EBX® Information Search Add-on &gt; Searchable datasets</em>.</p></li><li><p>Open the searchable dataset configuration where you want to use the custom template.</p></li><li><p>Use the <strong>Search template</strong> menu to select your template.</p></li><li><p>Save and close.</p><p>The following image shows a search executed using the synonym list from the example code and returns synonyms defined for &quot;quick&quot;:</p><p><img alt="/search-example.png" src="./resources/images/search-example.png"></img></p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

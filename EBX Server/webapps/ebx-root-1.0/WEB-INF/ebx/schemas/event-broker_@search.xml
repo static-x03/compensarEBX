@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/event-broker.xsd, iid=022]
+  -->
+<search>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbSubscriber/className</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbSubscriber/documentation/localizedDocumentations/description</field>
+        <searchStrategy>@Text</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbSubscriber/documentation/localizedDocumentations/label</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbSubscriber/moduleName</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbSubscriber/status</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbTopic/documentation/localizedDocumentations/description</field>
+        <searchStrategy>@Text</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbTopic/documentation/localizedDocumentations/label</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/evbTopic/status</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+</search>

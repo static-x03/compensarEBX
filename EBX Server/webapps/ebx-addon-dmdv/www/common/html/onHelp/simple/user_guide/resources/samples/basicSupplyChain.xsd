@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--XML schema generated from EBX™5 DMA instance [reference=basicSupplyChain] on Tue Jun 19 17:23:43 MDT 2018 by user [admin].-->
+<xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
+<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+<xs:element name="root" osd:access="--">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="factories" minOccurs="0" maxOccurs="unbounded">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Factories</osd:label>
+</xs:documentation>
+<xs:appinfo>
+<osd:table>
+<primaryKeys>/factory </primaryKeys>
+</osd:table>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element name="factory" type="xs:string" minOccurs="1" maxOccurs="1">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Factory Name</osd:label>
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="plants" minOccurs="0" maxOccurs="unbounded">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Assembly Plants</osd:label>
+</xs:documentation>
+<xs:appinfo>
+<osd:table>
+<primaryKeys>/plantName </primaryKeys>
+</osd:table>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element name="plantName" type="xs:string" minOccurs="1" maxOccurs="1">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Plant Name</osd:label>
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="supplier" type="xs:string" minOccurs="0" maxOccurs="1">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Supplier</osd:label>
+</xs:documentation>
+<xs:appinfo>
+<osd:otherFacets>
+<osd:tableRef>
+<tablePath>/root/factories</tablePath>
+</osd:tableRef>
+</osd:otherFacets>
+</xs:appinfo>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="store" minOccurs="0" maxOccurs="unbounded">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Stores</osd:label>
+</xs:documentation>
+<xs:appinfo>
+<osd:table>
+<primaryKeys>/storeName </primaryKeys>
+</osd:table>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element name="storeName" type="xs:string" minOccurs="1" maxOccurs="1">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Store Name</osd:label>
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="supplier" type="xs:string" minOccurs="0" maxOccurs="1">
+<xs:annotation>
+<xs:documentation xml:lang="en-US">
+<osd:label>Supplier</osd:label>
+</xs:documentation>
+<xs:appinfo>
+<osd:otherFacets>
+<osd:tableRef>
+<tablePath>/root/plants</tablePath>
+</osd:tableRef>
+</osd:otherFacets>
+</xs:appinfo>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>

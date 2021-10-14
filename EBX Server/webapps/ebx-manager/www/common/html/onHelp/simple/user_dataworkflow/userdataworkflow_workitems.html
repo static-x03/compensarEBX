@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Work items</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="workflow_workitems" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data workflows</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataworkflow/userdataworkflow_workitems.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data workflows</span></div>
+<h1>
+Work items</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">About work items</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Work item states</a></li></ul>
+</li><li class="toc1"><a href="#id2">Working on work items as a participant</a></li><li class="toc1"><a href="#workitem_priorities">Work item priorities</a></li></ul>
+</div>
+<h2 id="id1">
+About work items</h2>
+<p>A work item is a unit of work that must be performed by a human user as a part of a user task. By default, when a workflow model defines a user task, data workflows that are launched from that model&#39;s publications will generate an individual work item for each of the participants listed in the user task.</p><h3 id="id1s1">
+Work item states</h3>
+<p>When the data workflow spawns a work item for a modelled user task during execution, the work item passes through several possible states: offered, allocated, started, and completed.</p><h4>
+Creation of work items</h4>
+<h5>
+Default mode</h5>
+<p>By default, a single work item is generated regardless of the list of defined profiles.</p><p>By default, if a single user is defined in the list of profiles, the created work item is in the <em>allocated</em> state.</p><p>By default, in other cases, the created work item is in the <em>offered</em> state.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The default behavior described above can be overridden by a programmatic extension defined in the user task. In this case, work items may be generated programmatically and not necessarily based on the user task&#39;s list of participants.</p></div>
+<h5>
+Legacy mode</h5>
+<p>By default, for each user defined as a participant of the user task, the data workflow creates a work item in the <em>allocated</em> state.</p><p>By default, for each role defined as a participant of the user task, the data workflow creates a work item in the <em>offered</em> state. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The default behavior described above can be overridden by a programmatic extension defined in the user task. In this case, work items may be generated programmatically and not necessarily based on the user task&#39;s list of participants.</p></div>
+<h4>
+Variations of the work item states</h4>
+<p>When the work item is in the <em>allocated</em> state, the defined user can directly start working on the allocated work item with the &#39;Take and start&#39; action. The work item&#39;s state becomes <em>started</em>.</p><p>When the work item is in the <em>offered</em> state, any user or member of the roles to whom the work item is offered can take the work item with the &#39;Take and start&#39; action&#39;. The work item&#39;s state becomes <em>started</em>.</p><p>Before a user has claimed the offered work item, a workflow allocation manager can intervene to manually assign the work item to a single user, thus moving the work item to the <em>allocated</em> state. Then, when that user begins work on the work item by performing the action &#39;Start work item&#39;, the work item progresses to the <em>started</em> state.</p><p>Finally, after the user who started the work item has finished the assigned action, the concluding accept or reject action moves the work item to the <em>completed</em> state. Once a user completes a work item, the data workflow automatically progresses onto the next step defined in the workflow model.</p><h4 id="workItemStateDiagram">
+Diagram of the work item states</h4>
+<p><img alt="/userdataworkflow_workitemstates.png" src="../resources/images/user_dataworkflow/userdataworkflow_workitemstates.png"></img></p><p><img alt="/userdataworkflow_workitemstates_defaultMode.png" src="../resources/images/user_dataworkflow/userdataworkflow_workitemstates_defaultMode.png"></img></p><h2 id="id2">
+Working on work items as a participant</h2>
+<p>All work items relevant to you as a user (either offered or allocated to you), appear in your work items inbox. When you begin working on a work item, you can add an associated comment that will be visible to other participants of the data workflow, as well as administrators and monitors of the workflow. As long as you are still working on the work item, you can go back and edit this comment.</p><p>After you have performed all the necessary actions assigned for the work item, you must signal its completion by clicking either the <strong>Accept</strong> or <strong>Reject</strong> button. The labels of these two buttons may differ depending on the context of the work item.</p><p>To review the current progress of a data workflow for which you have a waiting work item in your work item inbox, click its &#39;Preview&#39; <img alt="/ebx_open.png" src="../resources/images/icons/ebx_open.png" class="ebx_appButton"></img> button in the &#39;Data workflow&#39; column of the table. A pop-up will show an interactive progress view of the data workflow up until this point and the upcoming steps. You can view the details of a step by clicking on that step.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If you interrupt the current session in the middle of a started work item, for example by closing the browser or by logging out, the current work item state is preserved. When you return to the work item, it continues from the point where you left off.</p></div>
+<h2 id="workitem_priorities">
+Work item priorities</h2>
+<p>Work items may carry a priority value, which can be useful for sorting and filtering outstanding work items. The priority of a work item is set at the level of its data workflow, rather than being specific to the individual work item itself. Thus, if a data workflow is considered urgent, all its associated open work items are also considered to be urgent. By default, there are six priority levels ranging from &#39;Very low&#39; to &#39;Urgent&#39;, however the visual representation and naming of the available priority levels depend on the configuration of your TIBCO EBX&reg; repository.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#usertask">user task (glossary)</a></li></ul>
+</div>
+<div class="ebx_seealso">
+<h5>
+Related concepts</h5>
+<ul>
+<li><a href="../user_workflowmodel/userworkflowmodel_createimplement.html#step_user">User tasks</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data workflows</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

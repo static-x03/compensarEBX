@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX5 DMA instance [reference=datamodeler-configuration] on Wed Feb 08 13:37:00 ICT 2017 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:extensions class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.DataModelerSchemaExtensions" />
+			<osd:inheritance>
+				<dataSetInheritance>none</dataSetInheritance>
+			</osd:inheritance>
+			<ebxbnd:binding targetDirectory="../addon-adix/src-api">
+				<javaPathConstants typeName="com.orchestranetworks.addon.dml.DataModelPaths">
+					<nodes prefix="" relativeToRoot="false" root="/root" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.addon.adix.i18n.xsdSchema.datamodeler-configuration" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:information>@administrative</osd:information>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DataModel" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.DataModel" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/code</primaryKeys>
+								<defaultLabel>${./name}</defaultLabel>
+								<defaultLabel osd:id="element.root.DataModel.table.defaultLabel" />
+								<defaultLabel osd:class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.DataModelLabelRendererForHierarchy" />
+							</osd:table>
+							<osd:trigger class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.DMLDataModelTrigger" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.DataModel.code" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.DataModel.name" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="labelAndDescription" type="localizableLabelDescription" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.DataModel.labelAndDescription" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="tables" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.DataModel.tables" />
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/root/Table/FKDataModel</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<hiddenInDataServices>true</hiddenInDataServices>
+											<displayMode>tab</displayMode>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Table" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.Table" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/FKDataModel /name /groupPath</primaryKeys>
+								<defaultLabel osd:class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.TableLabelRendererForHierarchy" />
+							</osd:table>
+							<osd:trigger class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.DMLTableTrigger" />
+							<osd:otherFacets>
+								<osd:constraint class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.TableConstraint" />
+							</osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FKDataModel" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.FKDataModel" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/DataModel</tablePath>
+												<validation>
+													<blocksCommit>onInsertUpdateOrDelete</blocksCommit>
+												</validation>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.name" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="groupPath" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.groupPath" />
+									<xs:appinfo>
+										<osd:defaultView>
+											<widget osd:class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.DMLGeneralWidgetFactory">
+												<widgetKey>com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.GroupPathOfTableWidget</widgetKey>
+											</widget>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsdName" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.xsdName" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="[a-zA-Z_][-a-zA-Z0-9_.]*" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="labelAndDescription" type="localizableLabelDescription" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.labelAndDescription" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsdPath" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.xsdPath" />
+									<xs:appinfo>
+										<osd:inheritance>
+											<sourceNode>./groupPath</sourceNode>
+										</osd:inheritance>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="fullPath" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.fullPath" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.FullPathOfTableFunction" />
+										<osd:defaultView>
+											<widget osd:class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.DMLGeneralWidgetFactory">
+												<widgetKey>com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.FullPathWidget</widgetKey>
+											</widget>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="order" type="xs:int" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.order" />
+									<xs:appinfo>
+										<osd:autoIncrement />
+										<osd:defaultView>
+											<hidden>true</hidden>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="fields" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Table.fields" />
+									<xs:appinfo>
+										<osd:association>
+											<tableRefInverse>
+												<fieldToSource>/root/Field/FKTable</fieldToSource>
+											</tableRefInverse>
+										</osd:association>
+										<osd:defaultView>
+											<hiddenInDataServices>true</hiddenInDataServices>
+											<displayMode>tab</displayMode>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="UniqueOn_root_Table49899C4E-6494-4CC5-8451-39EB81B3B5A5">
+						<xs:selector xpath="." />
+						<xs:field xpath="FKDataModel" />
+						<xs:field xpath="xsdName" />
+						<xs:field xpath="xsdPath" />
+					</xs:unique>
+				</xs:element>
+				<xs:element name="Field" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.Field" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/FKTable /name /groupPath</primaryKeys>
+								<defaultLabel osd:class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.FieldLabelRendererForHierarchy" />
+							</osd:table>
+							<osd:trigger class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.FieldTableTrigger" />
+							<osd:otherFacets>
+								<osd:constraint class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.HandleGroupPathOfFieldConstraint" />
+							</osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FKTable" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.FKTable" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/Table</tablePath>
+												<display>
+													<pattern>${./name} - ${./FKDataModel}</pattern>
+												</display>
+												<validation>
+													<blocksCommit>onInsertUpdateOrDelete</blocksCommit>
+												</validation>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.name" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="groupPath" type="xs:string" minOccurs="1" maxOccurs="1" default="/">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.groupPath" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsdName" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.xsdName" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="[a-zA-Z_][-a-zA-Z0-9_.]*" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="1" default="String" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.type" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.FieldTypeEnumeration" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="isPrimaryKey" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.isPrimaryKey" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="labelAndDescription" type="localizableLabelDescription" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.labelAndDescription" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xsdPath" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.xsdPath" />
+									<xs:appinfo>
+										<osd:inheritance>
+											<sourceNode>./groupPath</sourceNode>
+										</osd:inheritance>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="fullPath" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.fullPath" />
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.FullPathOfFieldFunction" />
+										<osd:defaultView>
+											<widget osd:class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.DMLGeneralWidgetFactory">
+												<widgetKey>com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.FullPathWidget</widgetKey>
+											</widget>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="order" type="xs:int" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Field.order" />
+									<xs:appinfo>
+										<osd:autoIncrement />
+										<osd:defaultView>
+											<hidden>true</hidden>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Permission" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.Permission" />
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Permission" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Permission.Permission" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/userProfile</primaryKeys>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="userProfile" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Permission.Permission.userProfile" />
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:constraintEnumeration class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.model.UserEnumeration" />
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="isDataModelerAvailable" type="xs:boolean" minOccurs="1" maxOccurs="1" default="true" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Permission.Permission.isDataModelerAvailable" />
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Reference" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.Reference" />
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DataTypeMapping" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Reference.DataTypeMapping" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/schemaTypeName</primaryKeys>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="schemaTypeName" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Reference.DataTypeMapping.schemaTypeName" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="valueInExcel" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Reference.DataTypeMapping.valueInExcel" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="sqlDataType" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.Reference.DataTypeMapping.sqlDataType" />
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="localizableLabelDescription" osd:access="RW" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded" osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale" minOccurs="1" maxOccurs="1" />
+						<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1" />
+						<xs:element name="description" type="osd:text" minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataModeler_AjaxProcedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.ui.ajax.DMLProgressInformationAjaxComponent" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DataModelerImportUploadFileAjax">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.ui.ajax.DMLImportUploadFileAjax" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>
+

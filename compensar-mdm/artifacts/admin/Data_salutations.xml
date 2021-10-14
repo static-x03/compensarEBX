@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directory>
+    <salutations>
+        <name>Mr.</name>
+        <label>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Mr</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+                <label>Mr</label>
+            </localizedDocumentations>
+        </label>
+    </salutations>
+    <salutations>
+        <name>Ms.</name>
+        <label>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Ms.</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+                <label>Mme</label>
+            </localizedDocumentations>
+        </label>
+    </salutations>
+</directory>

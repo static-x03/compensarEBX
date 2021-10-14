@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:include schemaLocation="./d3_types_1.1.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<!-- schema - java binding  -->
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.d3.slave.SlavePaths">
+					<nodes prefix="" root="/root/slave" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<!-- schema extension -->
+			<osd:extensions class="com.orchestranetworks.d3.slave.SlaveSchemaExtensions" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.d3_slave" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="slave">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.slave" />
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="1" minOccurs="1" name="masterInfo" type="MasterInfos">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.slave.masterInfo"/>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="deliveryBranch" type="SlaveDeliveryBranch">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.slave.deliveryBranch" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/branch</primaryKeys>
+											<mayCreateRoot>never</mayCreateRoot>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+											<mayDuplicate>never</mayDuplicate>
+											<mayDelete>never</mayDelete>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="deliveryProfiles" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.slave.deliveryProfiles"/>
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.d3.slave.GetDeliveryProfilesValueFunction"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element minOccurs="0" name="monitoringClass" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.slave.monitoringClass"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraint class="com.orchestranetworks.d3.slave.NodeMonitoringSchemaConstraint"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--
+		******************************* Services ****************************
+	-->
+	<xs:complexType name="Subscribe">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.d3.slave.D3ServicePermissionsOnSlave" resourcePath="/d3ServiceDispatcher?command=subscribe" />
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.Subscribe" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="Unregister">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.d3.slave.D3ServicePermissionsOnSlave" resourcePath="/d3ServiceDispatcher?command=unregisterOnSlave" />
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.Unregister" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DeleteVersion">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/slave/deliveryBranch{1}" class="com.orchestranetworks.d3.slave.D3ServicePermissionsOnSlave" resourcePath="/d3ServiceDispatcher?command=deleteVersionForm">
+					<osd:confirmation disable="true"/>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.DeleteVersion" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FullResynchronize">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/slave/deliveryBranch{1}" class="com.orchestranetworks.d3.slave.D3ServicePermissionsOnSlave" resourcePath="/d3ServiceDispatcher?command=fullResyncOnSlave"/>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.FullResynchronize" />
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>
+

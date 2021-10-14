@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - D3 administration</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="d3_admin" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/d3_admin.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+<h1>
+D3 administration</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#D3QuickStart">Quick start</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Declare an existing dataspace on the primary node</a></li><li class="toc2"><a href="#id1s2">Configure replica node for registration</a></li></ul>
+</li><li class="toc1"><a href="#configuration">Configuring D3 nodes</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Runtime configuration of primary and hub nodes through the user interface</a></li><li class="toc2"><a href="#technicalD3Config">Configuring primary, hub and replica nodes</a></li><li class="toc2"><a href="#networksD3Config">Configuring the network protocol of a node</a></li><li class="toc2"><a href="#D3ServicesOnMaster">Services on primary nodes</a></li><li class="toc2"><a href="#D3ServicesOnSlave">Services on replica nodes</a></li></ul>
+</li><li class="toc1"><a href="#d3supervision">Supervision</a><ul class="toc2">
+<li class="toc2"><a href="#console">Primary node management console</a></li><li class="toc2"><a href="#id3s2">Primary node supervision services</a></li><li class="toc2"><a href="#slaveMonitoring">Replica node monitoring through the Java API</a></li><li class="toc2"><a href="#masterNotification">Primary node notification</a></li><li class="toc2"><a href="#id3s5">Log supervision</a></li><li class="toc2"><a href="#temporary_files">Temporary files</a></li></ul>
+</li></ul>
+</div>
+<h2 id="D3QuickStart">
+Quick start</h2>
+<p>This section introduces the configuration of a basic D3 architecture with two TIBCO EBX&reg; instances. Before starting, please check that each instance can work properly with its own repository.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>Deploy EBX&reg; on two different web application containers. If both instances are running on the same host, ensure that all communication TCP ports are distinct.</p></p></div>
+<h3 id="id1s1">
+Declare an existing dataspace on the primary node</h3>
+<p>The objective is to configure and broadcast an existing dataspace from a <em>primary</em> node.</p><p>This configuration is performed on the entire D3 infrastructure (<a href="../engine/d3.html#master">primary</a> and <a href="../engine/d3.html#slave">replica</a> nodes included).</p><p>Update the <code>ebx.properties</code><em>primary</em> node configuration file with:</p><ol>
+<li><p>Define D3 mode as <code>primary</code> in key <code>ebx.d3.mode</code>.</p></li></ol>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>The <em>primary</em> node can be started after the configuration.</p></p></div>
+<p>After authenticating as a built-in administrator, navigate within the administration tab:</p><ol>
+<li><p>Prerequisite: Check that the node is configured as a <em>primary</em> node (in the &#39;Actions&#39; menu use &#39;System information&#39; and check &#39;D3 mode&#39;).</p></li><li><p>Open the &#39;[D3] Primary configuration&#39; administration feature.</p></li><li><p>Add the dataspace to be broadcast to the &#39;Delivery dataspaces&#39; table, and declare the allowed profile.</p></li><li><p>Add the <a href="../engine/d3.html#deliveryProfile">delivery profile</a> to the &#39;Delivery profiles&#39; table (it must correspond to a logical name) and declare the delivery mode. Possible values are: <a href="../engine/d3.html#cluster">cluster mode</a> or <a href="../engine/d3.html#federation">federation mode</a>.</p></li><li><p>Map the delivery dataspace with the delivery profile into the &#39;Delivery mapping&#39; table.</p></li></ol>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>The <em>primary</em> node is now ready for the replica node(s) registration on the delivery profile.</p><p>Check that the D3 broadcast menu appears in the &#39;Actions&#39; menu of the dataspace or one of its snapshots.</p></p></div>
+<h3 id="id1s2">
+Configure replica node for registration</h3>
+<p>The objective is to configure and register the <em>replica</em> node based on a delivery profile and communications settings.</p><p>Update the <code>ebx.properties</code> replica node configuration file with:</p><ol>
+<li><p>Define D3 mode as <code>replica</code> in key <code>ebx.d3.mode</code>.</p></li><li><p>Define the <a href="../engine/d3.html#deliveryProfile">delivery profile</a> set on the <em>primary</em> node in key <code>ebx.d3.delivery.profiles</code> (delivery profiles must be separated by a comma and a space).</p></li><li><p>Define the <em>primary</em> node user authentication (must have the built-in administrator profile) for node communications in <code>ebx.d3.master.username</code> and <code>ebx.d3.master.password</code>.</p></li><li><p>Define <a href="#D3overHTTP">HTTP/TCP protocols</a> for <em>primary</em> node communication, by setting a value for the property key <code>ebx.d3.master.url</code></p><p>(for example <code>http://localhost:8080/ebx-dataservices/connector</code>).</p></li><li><p>Define the <em>replica</em> node user authentication (must have the built-in administrator profile) for node communications in <code>ebx.d3.slave.username</code> and <code>ebx.d3.slave.password</code>.</p></li><li><p>Define <a href="#D3overHTTP">HTTP/TCP protocols</a> for <em>replica</em> node communication, by setting a value for the property key <code>ebx.d3.slave.url</code></p><p>(for example <code>http://localhost:8090/ebx-dataservices/connector</code>).</p></li></ol>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>The <em>replica</em> node can be started after the configuration.</p></p></div>
+<p>After authenticating as a built-in administrator, navigate inside the administration tab:</p><ol>
+<li><p>Prerequisite: Check that the node is configured as the <em>replica</em> node (in the &#39;Actions&#39; menu use &#39;System information&#39; and check &#39;D3 mode&#39;).</p></li><li><p>Open the &#39;[D3] Replica configuration&#39; administration feature.</p></li><li><p>Check the information on the &#39;Primary information&#39; screen: No field should have the &#39;N/A&#39; value.</p></li></ol>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>Please check that the model is available before broadcast (from data model assistant, it must be published).</p><p>The <em>replica</em> node is then ready for broadcast.</p></p></div>
+<h2 id="configuration">
+Configuring D3 nodes</h2>
+<h3 id="id2s1">
+Runtime configuration of primary and hub nodes through the user interface</h3>
+<p>The declaration of delivery dataspaces and delivery profiles is done by selecting the &#39;[D3] Primary configuration&#39; feature from the &#39;Administration&#39; area, where you will find the following tables:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Delivery dataspaces</p></td><td class="ebx_definitionListDefinition"><p>Declarations of the dataspaces that can be broadcast.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Delivery profiles</p></td><td class="ebx_definitionListDefinition"><p>Profiles to which replica nodes can subscribe. The delivery mode must be defined for each delivery profile.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Delivery mapping</p></td><td class="ebx_definitionListDefinition"><p>The association between delivery dataspaces and delivery profiles.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>The tables above are read-only while some broadcasts are pending or in progress.</p></p></div>
+<h3 id="technicalD3Config">
+Configuring primary, hub and replica nodes</h3>
+<p>This section details how to configure a node in its EBX&reg; main configuration file.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#overview">Overview</a></li></ul>
+</div>
+<h4>
+Primary node</h4>
+<p>In order to act as a <em>primary</em> node, an instance of EBX&reg; must declare the following property in its main configuration file.</p><p>Sample configuration for <code>ebx.d3.mode=master</code> node:</p><pre class="brush: properties; toolbar: false; gutter: false;">
+##################################################################
+## D3 configuration
+##################################################################
+##################################################################
+# Configuration for master, hub and slave
+##################################################################
+# Optional property.
+# Possibles values are single, master, hub, slave
+# Default is single meaning the server will be a standalone instance.
+ebx.d3.mode=master
+</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3.html#master">primary node</a></li></ul>
+</div>
+<h4>
+Hub node</h4>
+<p>In order to act as a <em>hub</em> node (combination of primary and replica node configurations), an instance of EBX&reg; must declare the following property in its main configuration file.</p><p>Sample configuration for <code>ebx.d3.mode=hub</code> node:</p><pre class="brush: properties; toolbar: false; gutter: false;">
+##################################################################
+## D3 configuration
+##################################################################
+##################################################################
+# Configuration for master, hub and slave
+##################################################################
+# Optional property.
+# Possibles values are single, master, hub, slave
+# Default is single meaning the server will be a standalone instance.
+ebx.d3.mode=hub
+
+##################################################################
+# Configuration dedicated to hub or slave
+##################################################################
+# Profiles to subscribe to
+# Mandatory property if ebx.d3.mode=hub or ebx.d3.mode=slave
+ebx.d3.delivery.profiles=
+
+# User and password to be used to communicate with the master. 
+# Mandatory properties if ebx.d3.mode=hub or ebx.d3.mode=slave
+ebx.d3.master.username=
+ebx.d3.master.password=
+
+# User and password to be used by the master to communicate with the hub or slave. 
+# Mandatory property if ebx.d3.mode=hub or ebx.d3.mode=slave
+ebx.d3.slave.username=
+ebx.d3.slave.password=</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3.html#hub">hub node</a></li></ul>
+</div>
+<h4>
+Replica node</h4>
+<p>In order to act as a <em>replica</em> node, an instance of EBX&reg; must declare the following property in its main configuration file.</p><p>Sample configuration for <code>ebx.d3.mode=slave</code> node:</p><pre class="brush: properties; toolbar: false; gutter: false;">
+##################################################################
+## D3 configuration
+##################################################################
+##################################################################
+# Configuration for master, hub and slave
+##################################################################
+# Optional property.
+# Possibles values are single, master, hub, slave
+# Default is single meaning the server will be a standalone instance.
+ebx.d3.mode=slave
+
+##################################################################
+# Configuration dedicated to hub or slave
+##################################################################
+# Profiles to subscribe to
+# Mandatory property if ebx.d3.mode=hub or ebx.d3.mode=slave
+ebx.d3.delivery.profiles=
+
+# User and password to be used to communicate with the master. 
+# Mandatory properties if ebx.d3.mode=hub or ebx.d3.mode=slave
+ebx.d3.master.username=
+ebx.d3.master.password=
+
+# User and password to be used by the master to communicate with the hub or slave. 
+# Mandatory property if ebx.d3.mode=hub or ebx.d3.mode=slave
+ebx.d3.slave.username=
+ebx.d3.slave.password=</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3.html#slave">replica node</a></li></ul>
+</div>
+<h3 id="networksD3Config">
+Configuring the network protocol of a node</h3>
+<p>This section details how to configure the network protocol of a node in its EBX&reg; main configuration file.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#overview">Overview</a></li></ul>
+</div>
+<h4 id="D3overHTTP">
+HTTP(S) and socket TCP protocols</h4>
+<p>Sample configuration for <code>ebx.d3.mode=hub</code> or <code>ebx.d3.mode=slave</code> node with HTTP(S) network protocol:</p><pre class="brush: properties; toolbar: false; gutter: false;">
+##################################################################
+# HTTP(S) and TCP socket configuration for D3 hub and slave
+##################################################################
+# URL to access the data services connector of the master 
+# Mandatory property if ebx.d3.mode=hub or ebx.d3.mode=slave and JMS for D3 is not activated.
+# This property will be ignored if JMS for D3 is activated.
+# The URL must follow this pattern: [protocol]://[master_host]:[master_port]/ebx-dataservices/connector
+# Where the possible values of 'protocol' are 'http' or 'https'.
+ebx.d3.master.url=
+
+# URL to access the data services connector of the slave 
+# Mandatory property if ebx.d3.mode=hub or ebx.d3.mode=slave and JMS for D3 is not activated.
+# This property will be ignored if JMS for D3 is activated.
+# The URL must follow this pattern: [protocol]://[slave_host]:[slave_port]/ebx-dataservices/connector
+# Where the possible values of 'protocol' are 'http' or 'https'.
+ebx.d3.slave.url=
+
+# Minimum port to use to transfer archives on TCP mode.
+# Must be a positive integer above zero and below 65535.
+# If not set, a random port will be used.
+#ebx.d3.slave.socket.range.min=
+
+# Max port to use on TCP mode to transfer archives.
+# Must be a positive integer above ebx.d3.slave.socket.range.min and below 65535.
+# Mandatory if ebx.d3.slave.socket.range.min is set.
+#ebx.d3.slave.socket.range.max=</pre>
+<h4 id="D3overJMS">
+JMS protocol</h4>
+<p>If JMS is activated, the following properties can be defined in order to enable JMS functionalities for a D3 node.</p><p>Sample configuration for all D3 nodes with JMS network protocol:</p><pre class="brush: properties; toolbar: false; gutter: false;">
+##################################################################
+## JMS configuration for D3
+##################################################################
+# Taken into account only if Data Services JMS is configured properly
+##################################################################
+# Configuration for master, hub and slave
+##################################################################
+# Default is false, activate JMS for D3
+## If activated, the deployer must ensure that the entries 
+## 'jms/EBX_D3ReplyQueue', 'jms/EBX_D3ArchiveQueue' and 'jms/EBX_D3CommunicationQueue' 
+## are bound in the operational environment of the application server.
+## On slave or hub mode, the entry 'jms/EBX_D3MasterQueue' must also be bound.
+ebx.jms.d3.activate=false
+
+# Change the default timeout when using reply queue.
+# Must be a positive integer that does not exceed 3600000.
+# Default is 10000 milliseconds.
+#ebx.jms.d3.reply.timeout=10000
+
+# Time-to-live message value expressed in milliseconds.
+# This value will be set on each message header 'JMSExpiration' that defines the
+# countdown before the message deletion managed by the JMS broker.
+# Must be a positive integer equal to 0 or above the value of 'ebx.jms.d3.reply.timeout'.
+# The value 0 means that the message does not expire.
+# Default is 3600000 (one hour). 
+#ebx.jms.d3.expiration=3600000
+
+# Archive maximum size in KB for the JMS body message. If exceeds, the message
+# is transferred into several sequences messages in a same group, where each one does
+# not exceed the maximum size defined.
+# Must be a positive integer equals to 0 or above 100.
+# Default is 0 that corresponds to unbounded.
+#ebx.jms.d3.archiveMaxSizeInKB=
+
+##################################################################
+# Configuration dedicated to hub or slave
+##################################################################
+# Master repository ID, used to set a message filter for the concerned master when sending JMS message
+# Mandatory property if ebx.jms.d3.activate=true and if ebx.d3.mode=hub or ebx.d3.mode=slave
+#ebx.jms.d3.master.repositoryId=</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3_jms_config.html#jms_d3">JMS for distributed data delivery (D3)</a></li></ul>
+</div>
+<h3 id="D3ServicesOnMaster">
+Services on primary nodes</h3>
+<p>Services to manage a primary node are available in the &#39;Administration&#39; area of the replica node under &#39;[D3] Primary node configuration&#39; and also in the &#39;Delivery dataspaces&#39; and &#39;Registered replica nodes&#39; tables. The services are:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Relaunch replays</p></td><td class="ebx_definitionListDefinition"><p>Immediately relaunch all replays for waiting federation deliveries.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Delete replica node delivery dataspace</p></td><td class="ebx_definitionListDefinition"><p>Delete the delivery dataspace on chosen replica nodes and/or unregister it from the configuration of the D3 primary node.</p><p>To access the service, select a delivery dataspace from the &#39;Delivery dataspaces&#39; table on the primary node, then launch the wizard.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Fully resynchronize</p></td><td class="ebx_definitionListDefinition"><p>Broadcast the full content of the last broadcast snapshot to the registered replica nodes.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Subscribe a replica node</p></td><td class="ebx_definitionListDefinition"><p>Subscribe a set of selected replica nodes.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Deactivate replica nodes</p></td><td class="ebx_definitionListDefinition"><p>Remove the selected replica nodes from the broadcast scope and switch their states to &#39;Unavailable&#39;.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The &quot;in progress&quot; broadcast contexts are rolled back.</p></div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Unregister replica nodes</p></td><td class="ebx_definitionListDefinition"><p>Disconnects the selected replica nodes from the primary node.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The &quot;in progress&quot; broadcast contexts are rolled back.</p></div>
+</td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>The primary node services above are hidden while some broadcasts are pending or in progress.</p></p></div>
+<h3 id="D3ServicesOnSlave">
+Services on replica nodes</h3>
+<p>Services are available in the &#39;Administration&#39; area under <em>[D3] Configuration of replica</em> node to manage its subscription to the primary node and perform other actions:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Register replica node</p></td><td class="ebx_definitionListDefinition"><p>Re-subscribes the replica node to the primary node if it has been unregistered.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Unregister replica node</p></td><td class="ebx_definitionListDefinition"><p>Disconnects the replica node from the primary node.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The &quot;in progress&quot; broadcast contexts are rolled back.</p></div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="deleteSnapshot">Close and delete snapshots</p></td><td class="ebx_definitionListDefinition"><p>Clean up a replica node delivery dataspace.</p><p>To access the service, select a delivery dataspace from the &#39;Delivery dataspaces&#39; table on the replica node, then follow the wizard to close and delete snapshots based on their creation dates.</p><p><strong>Note:</strong> The last broadcast snapshot is automatically excluded from the selection.</p></td></tr>
+</table>
+<h2 id="d3supervision">
+Supervision</h2>
+<p>The last broadcast snapshot is highlighted in the snapshot table of the dataspace, it is represented by an icon displayed in the first column.</p><h3 id="console">
+Primary node management console</h3>
+<p>Several tables make up the management console of the primary node, located in the &#39;Administration&#39; area of the primary node, under &#39;[D3] Primary node configuration&#39;. They are as follows:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Registered replica nodes</p></td><td class="ebx_definitionListDefinition"><p>Replica nodes registered with the primary node. From this table, several services are available on each record.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Broadcast history</p></td><td class="ebx_definitionListDefinition"><p>History of broadcast operations that have taken place.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Replica node registration log</p></td><td class="ebx_definitionListDefinition"><p>History of initialization operations that have taken place.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Detailed history</p></td><td class="ebx_definitionListDefinition"><p>History of archive deliveries that have taken place. The list of associated delivery archives can be accessed from the tables &#39;Broadcast history&#39; and &#39;Initialization history&#39; using selection nodes.</p></td></tr>
+</table>
+<h3 id="id3s2">
+Primary node supervision services</h3>
+<p>Available in the &#39;Administration&#39; area of the primary node under &#39;[D3] Primary node configuration&#39;. The services are as follows:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Check replica node information</p></td><td class="ebx_definitionListDefinition"><p>Lists the replica nodes and related information, such as the replica node&#39;s state, associated delivery profiles, and delivered snapshots.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Clear history content</p></td><td class="ebx_definitionListDefinition"><p>Deletes all records in all history tables, such as &#39;Broadcast history&#39;, &#39;Replica node registration log&#39; and &#39;Detailed history&#39;.</p></td></tr>
+</table>
+<h3 id="slaveMonitoring">
+Replica node monitoring through the Java API</h3>
+<p>A replica node monitoring class can be created to implement actions that are triggered when the replica node&#39;s status switches to either &#39;Available&#39; or &#39;Unavailable&#39;. To do so, it must implement the <code>NodeMonitoring</code> interface. This class must be outside of any EBX&reg; module and accessible from the class-loader of &#39;ebx.jar&#39; and its full class name must be specified under &#39;[D3] Replica node configuration&#39;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/d3/NodeMonitoring.html"><code>NodeMonitoring</code></a></li></ul>
+</div>
+<h3 id="masterNotification">
+Primary node notification</h3>
+<p>A D3 administrator can set up mail notifications to receive broadcast events:</p><ul>
+<li><p>On broadcast failure,</p></li><li><p>On federation broadcast, if replays exceed a given threshold.</p></li></ul>
+<p>The mail contains a table of events with optional links to further details.</p><p>To enable notifications, open the &#39;[D3] Primary node configuration&#39; dataspace from the &#39;Administration&#39; area and configure the &#39;Notifications&#39; group under &#39;Global configuration&#39;.</p><p>The &#39;From email&#39; and &#39;URL definition&#39; options should also be configured by using the &#39;Email configuration&#39; link.</p><h3 id="id3s5">
+Log supervision</h3>
+<p> The technical supervision can be done through the log category &#39;ebx.d3&#39;, declared in the EBX&reg; main configuration file. For example:</p><p><code>ebx.log4j.category.log.d3= INFO, Console, ebxFile:d3</code></p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#ebxLog">Configuring the EBX&reg; logs</a></li></ul>
+</div>
+<h3 id="temporary_files">
+Temporary files</h3>
+<p>Some temporary files, such as exchanged archives, SOAP messages, broadcast queue, (...), are created and written to the EBX&reg; temporary directory. This location is defined in the EBX&reg; main configuration file:</p><pre class="brush: properties; toolbar: false; gutter: false;">
+#################################################
+## Directories for temporary resources.
+#################################################
+# When set, allows specifying a directory for temporary files different from java.io.tmpdir.
+# Default value is java.io.tmpdir
+ebx.temp.directory = ${java.io.tmpdir}
+
+# Allows specifying the directory containing temporary files for cache.
+# If unset, the used directory is ${ebx.temp.directory}/ebx.platform.
+#ebx.temp.cache.directory = ${ebx.temp.directory}/ebx.platform
+
+# When set, allows specifying the directory containing temporary files for import.
+# If unset, the used directory is ${ebx.temp.directory}/ebx.platform.
+#ebx.temp.import.directory = ${ebx.temp.directory}/ebx.platform</pre>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

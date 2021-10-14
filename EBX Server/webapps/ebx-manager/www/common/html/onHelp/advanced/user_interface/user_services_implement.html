@@ -1,0 +1,769 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Implementing a user service</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_uiservices_implement" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; User interface &gt; User services</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_interface/user_services_implement.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+<h1 id="implement">
+Implementing a user service</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Implementation interface</a></li><li class="toc1"><a href="#LifeCycle">Life cycle and threading model</a></li><li class="toc1"><a href="#id3">Object Context</a></li><li class="toc1"><a href="#id4">Display setup</a></li><li class="toc1"><a href="#id5">Database updates</a></li><li class="toc1"><a href="#AJAX">Ajax</a></li><li class="toc1"><a href="#restDataServices">REST data services</a></li><li class="toc1"><a href="#FileUpload">File upload</a></li><li class="toc1"><a href="#FileDownload">File download</a></li><li class="toc1"><a href="#UserServiceWithoutDisplay">User service without display</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">Known limitation</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Implementation interface</h2>
+<p>The following table lists, per nature, the interface to implement:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Nature</strong></p></th><th><p><strong>Interface</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><code>Dataspace</code></td><td valign="top"><code>UserService&lt;DataspaceEntitySelection&gt;</code></td></tr>
+<tr>
+<td valign="top"><code>Dataset</code></td><td valign="top"><code>UserService&lt;DatasetEntitySelection&gt;</code></td></tr>
+<tr>
+<td valign="top"><code>TableView</code></td><td valign="top"><code>UserService&lt;TableViewEntitySelection&gt;</code></td></tr>
+<tr>
+<td valign="top"><code>Record</code></td><td valign="top"><code>UserService&lt;RecordEntitySelection&gt;</code></td></tr>
+<tr>
+<td valign="top"><code>Hierarchy</code></td><td valign="top"><code>UserService&lt;HierarchyEntitySelection&gt;</code></td></tr>
+<tr>
+<td valign="top"><code>HierarchyNode</code></td><td valign="top"><code>UserService&lt;HierarchyNodeEntitySelection&gt;</code></td></tr>
+<tr>
+<td valign="top"><code>Association</code></td><td valign="top"><code>UserService&lt;AssociationEntitySelection&gt;</code></td></tr>
+<tr>
+<td valign="top"><code>AssociationRecord</code></td><td valign="top"><code>UserService&lt;AssociationRecordEntitySelection&gt;</code></td></tr>
+</tbody>
+</table>
+<h2 id="LifeCycle">
+Life cycle and threading model</h2>
+<p>The user service implementation class is:</p><ul>
+<li><p>Instantiated at the first HTTP request by a call to its declaration <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/declaration/UserServiceDeclaration.html#createUserService--">createUserService()</a> method.</p></li><li><p>Discarded when the current page goes out of scope or when the session times out.</p></li></ul>
+<p>Access to this class is synchronized by TIBCO EBX&reg; to make sure that only one HTTP request is processed at a time. Therefore, the class does not need to be thread-safe.</p><p>The user service may have attributes. The state of these attributes will be preserved between HTTP requests. However, developers must be aware that these attributes should have moderate use of resources, such as memory, not to overload the EBX&reg; server.</p><h2 id="id3">
+Object Context</h2>
+<p>The object context is a container for objects managed by the user service. This context is initialized and modified by the user service&#39;s implementation of the method <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserService.html#setupObjectContext-com.orchestranetworks.userservice.UserServiceSetupObjectContext-com.orchestranetworks.userservice.UserServiceObjectContextBuilder-"><code>UserService.setupObjectContext</code></a>.</p><p>An object of the object context is identified by an object key:</p><pre class="brush: java; toolbar: false; gutter: false;">
+ObjectKey customerKey = ObjectKey.forName("customer");</pre>
+<p>An object can be:</p><ul>
+<li><p>A record,</p></li><li><p>A dataset,</p></li><li><p>A new record not yet persisted,</p></li><li><p>A dynamic object.</p></li></ul>
+<p>The object context is maintained between HTTP requests and usually only needs to be set up upon the first request.</p><p>Once persisted, a <em>new record</em> object is automatically changed to a <em>plain record</em> object.</p><p>As with <a target="_blank" href="../Java_API/com/onwbp/adaptation/Adaptation.html">adaptations</a>, <a target="_blank" href="../Java_API/com/orchestranetworks/schema/Path.html">path</a> expressions are used to reference a sub-element of an object.</p><p>In the following sample, a pane writer adds a form input mapped to the attribute of an object:</p><pre class="brush: java; toolbar: false; gutter: false;">
+// Add an input field for customer's last name.
+aWriter.setCurrentObject(customerKey); 
+aWriter.addFormRow(Path.parse("lastName"));
+</pre>
+<p>In the following sample, an event callback gets the value of the attribute of an object:</p><pre class="brush: java; toolbar: false; gutter: false;">
+// Get value of customer's last name.
+ValueContext customerValueContext = aValueContext.getValueContext(customerKey);
+String lastName = customerValueContext.getValue(Path.parse("lastName"));
+	</pre>
+<p>A <em>dynamic object</em> is an object whose schema is defined by the user service itself. An API is provided to define the schema programmatically. This API allows defining only instance elements (instance nodes). Defining tables is not supported. It supports most other features available with standard EBX&reg; data models, such as types, labels, custom widgets, enumerations and constraints, including programmatic ones.</p><p>The following sample defines two objects having the same schema:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class SampleService implements UserService&lt;TableViewEntitySelection> 
+{
+	// Define an object key per object:
+	private static final ObjectKey _PersonObjectKey = ObjectKey.forName("person");
+	private static final ObjectKey _PartnerObjectKey = ObjectKey.forName("partner");
+
+	// Define a path for each property:
+	private static final Path _FirstName = Path.parse("firstName");
+	private static final Path _LastName = Path.parse("lastName");
+	private static final Path _BirthDate = Path.parse("birthDate");
+
+	...
+	
+	// Define and register objects:
+	@Override
+	public void setupObjectContext(
+		UserServiceSetupObjectContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceObjectContextBuilder aBuilder)
+	{
+		if (aContext.isInitialDisplay())
+		{
+			BeanDefinition def = aBuilder.createBeanDefinition();
+	
+			BeanElement firstName = def.createElement(_FirstName, SchemaTypeName.XS_STRING);
+			firstName.setLabel("First name");
+			firstName.setDescription("This is the given name");
+			firstName.setMinOccurs(1);
+
+			BeanElement lastName = def.createElement(_LastName, SchemaTypeName.XS_STRING);
+			lastName.setLabel("Last name");
+			lastName.setDescription("This is the familly name");
+			lastName.setMinOccurs(1);
+
+			BeanElement birthDate = def.createElement(_BirthDate, SchemaTypeName.XS_DATE);
+			birthDate.setLabel("Birth date");
+			birthDate.addFacetMax(new Date(), false);
+
+			aBuilder.registerBean(_PersonObjectKey, def);
+			aBuilder.registerBean(_PartnerObjectKey, def);
+		}
+		
+		...
+	}</pre>
+<h2 id="id4">
+Display setup</h2>
+<p>The display is set up by the user service&#39;s implementation of the method <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserService.html#setupDisplay-com.orchestranetworks.userservice.UserServiceSetupDisplayContext-com.orchestranetworks.userservice.UserServiceDisplayConfigurator-"><code>UserService.setupDisplay</code></a>.</p><p>This method is called at each request and can set the following:</p><ul>
+<li><p>The title (the default is the label specified by the user service declaration),</p></li><li><p>The contextual help URL,</p></li><li><p>The breadcrumbs,</p></li><li><p>The toolbar,</p></li><li><p>The bottom buttons.</p></li></ul>
+<p>If necessary, the header and the bottom buttons can be hidden.</p><p>The display setup is not persisted and, at each HTTP request, is reset to default before calling the method <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserService.html#setupDisplay-com.orchestranetworks.userservice.UserServiceSetupDisplayContext-com.orchestranetworks.userservice.UserServiceDisplayConfigurator-"><code>UserService.setupDisplay</code></a>.</p><p><strong>Bottom buttons</strong></p><p>Buttons may be of two types: <em>action</em> and <em>submit</em>.</p><p>An <em>action</em> button triggers an <em>action</em> event without submitting the form. By default, the user needs to acknowledge that, by leaving the page, the last changes will be lost. This behavior can be customized.</p><p>A <em>submit</em> button triggers a <em>submit</em> event that always submits the form.</p><p>More information on events can be found in the following sections.</p><p><strong>Content callback</strong></p><p>This callback usually implements the interface <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServicePane.html"><code>UserServicePane</code></a> to render a plain EBX&reg; form. The callback can also be an instance of <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServiceTabbedPane.html"><code>UserServiceTabbedPane</code></a> to render an EBX&reg; form with tabs.</p><p>For specific cases, the callback can implement <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServiceRawPane.html"><code>UserServiceRawPane</code></a>. This interface has restrictions but is useful when one wants to implement an HTML form that is not managed by EBX&reg;.</p><p><strong>Toolbars</strong></p><p>Toolbars are optional and come in two flavors.</p><p>The <em>form</em> style:</p><p align="left"><img alt="/user_service_toolbar_form.png" src="../resources/images/user_service/user_service_toolbar_form.png"></img></p><p>The <em>table view</em> style:</p><p align="left"><img alt="/user_service_toolbar_table.png" src="../resources/images/user_service/user_service_toolbar_table.png"></img></p><p>The style is automatically selected: toolbars defined for a <em>record</em> are of the form style and toolbars defined for a <em>table</em> are of the table view style.</p><p><strong>Samples</strong></p><p>The following sample implements a button that closes the current user service and redirects the user back to the current selection, only if saving the data was successful:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class SampleService implements UserService&lt;...>
+{
+	private static final ObjectKey _RecordObjectKey = ObjectKey.forName("record");
+
+	...
+	
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;RecordEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		...
+		// Define a "save and close" button with callback onSave().
+		aConfigurator.setLeftButtons(aConfigurator.newSaveCloseButton(this::onSave));
+	}
+
+	private UserServiceEventOutcome onSave(UserServiceEventContext anEventContext)
+	{
+		ProcedureResult result = anEventContext.save(_RecordObjectKey);
+		if (result.hasFailed())
+		{
+			// Save has failed. Redisplay the user message.
+			return null;
+		}
+
+		// Save has succeded.Close the service.
+		return UserServiceNext.nextClose();
+	}
+}
+</pre>
+<p>The following sample is compatible with the Java 6 syntax. Only differences with the previous code are shown:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class SampleService implements UserService&lt;...>
+{
+	...
+	
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;RecordEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		...
+		// Define a "save and close" button with callback onSave().
+		aConfigurator.setLeftButtons(aConfigurator.newSaveCloseButton(new UserServiceEvent() {
+			@Override
+			public UserServiceEventOutcome processEvent(UserServiceEventContext anEventContext)
+			{
+				return onSave(anEventContext);
+			}	
+		}));
+	}
+}
+</pre>
+<p>The following sample implements a URL that closes the service and redirects the current user to another user service:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class SampleService implements UserService&lt;...>
+{
+	...
+	private void writePane(UserServicePaneContext aPaneContext, UserServicePaneWriter aWriter)
+	{
+		// Displays an ULR that redirect current user.
+		String url = aWriter.getURLForAction(this::goElsewhere);
+		aWriter.add("&lt;a ");
+		aWriter.addSafeAttribute("href", url);
+		aWriter.add(">Go elsewhere&lt;/a");
+	}
+	
+	private UserServiceEventOutcome goElsewhere(UserServiceEventContext anEventContext)
+	{
+		// Redirects current user to another user service.
+		ServiceKey serviceKey = ServiceKey.forModuleServiceName("CustomerModule", "CustomService");
+		 return UserServiceNext.nextService(serviceKey); 
+	}
+}
+</pre>
+<p>The following code is an implementation of the method <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserService.html#processEventOutcome-com.orchestranetworks.userservice.UserServiceProcessEventOutcomeContext-com.orchestranetworks.userservice.UserServiceEventOutcome-"><code>UserService.processEventOutcome</code></a>, sufficient for simple user services:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class HelloWordService implements UserService&lt;...>
+{
+	@Override
+	public UserServiceEventOutcome processEventOutcome(
+		UserServiceProcessEventOutcomeContext&lt;DatasetEntitySelection> aContext,
+		UserServiceEventOutcome anEventOutcome)
+	{
+		// By default do not modify the outcome.
+		return anEventOutcome;
+	}
+}</pre>
+<p>The following sample is a more complex &quot;wizard&quot; service that includes three steps, each having its own <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserService.html#setupDisplay-com.orchestranetworks.userservice.UserServiceSetupDisplayContext-com.orchestranetworks.userservice.UserServiceDisplayConfigurator-"><code>UserService.setupDisplay</code></a> method:</p><pre class="brush: java; toolbar: false; gutter: false;">
+// Custom outcome values.
+public enum CustomOutcome implements UserServiceEventOutcome {
+	displayStep1, displayStep2, displayStep3
+};
+
+// All steps of the  wizard service implement this interface.
+public interface WizardStep
+{
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator);
+}
+
+// The user service implementation.
+public class WizardService implements UserService&lt;...>
+{
+	// Attribute for current step.
+	private WizardStep step = new WizardStep1();
+	
+	...
+
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		...
+		
+		// Display current step.
+		this.step.setupDisplay(aContext, aConfigurator);
+	}
+
+	@Override
+	public UserServiceEventOutcome processEventOutcome(
+		UserServiceProcessEventOutcomeContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceEventOutcome anEventOutcome)
+	{
+		// Custom outcome value processing.
+
+		if (anEventOutcome instanceof CustomOutcome)
+		{
+			CustomOutcome action = (CustomOutcome) anEventOutcome;
+			switch (action)
+			{
+			case displayStep1:
+				this.step = new WizardStep1();
+				break;
+
+			case displayStep2:
+				this.step = new WizardStep2();
+				break;
+
+			case displayStep3:
+				this.step = new WizardStep3();
+				break;
+			}
+			
+			// Redisplay the user service.
+			return null;
+		}
+
+		// Let EBX® process the event outcome.
+		return anEventOutcome;
+	}
+}
+
+</pre>
+<h2 id="id5">
+Database updates</h2>
+<p>An event callback may update the database.</p><p>The following sample saves two objects using a single transaction:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class MultipleObjectsSampleService implements UserService&lt;...>
+{
+	// This service defines a two objects having same schema.
+	private static final ObjectKey _Person1_ObjectKey = ObjectKey.forName("person1");
+	private static final ObjectKey _Person2_ObjectKey = ObjectKey.forName("person2");
+
+	...
+
+	// Save button callback.
+	private UserServiceEventOutcome onSave(UserServiceEventContext aContext)
+	{
+		ProcedureResult result = aContext.save(_Person1_ObjectKey, _Person2_ObjectKey);
+		if (result.hasFailed())
+		{
+			//Save failed. Redisplay the service.
+			//The user interface will automatically report error messages. 
+			return null; 
+		}
+
+		// Save succeeded. Close the service.
+		return UserServiceNext.nextClose();
+	}
+}
+</pre>
+<p>The following sample updates the database using a <a target="_blank" href="../Java_API/com/orchestranetworks/service/Procedure.html">procedure</a>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+import com.orchestranetworks.service.*;
+import com.orchestranetworks.userservice.*;
+
+public class MultipleObjectsSampleService implements UserService&lt;...>
+{
+	...
+
+	// Event callback.
+	private UserServiceEventOutcome onUpdateSomething(UserServiceEventContext aContext)
+	{
+		Procedure procedure = new Procedure()
+		{
+			public void execute(ProcedureContext aContext) throws Exception
+			{
+				// Code that updates database should be here.
+				...
+			}
+		};
+
+		UserServiceTransaction transaction = aContext.createTransaction();
+		transaction.add(procedure);
+
+		ProcedureResult result = transaction.execute();
+		if (result.hasFailed())
+		{
+			aContext.addError("Procedure failed");
+		}
+		else
+		{
+			aContext.addInfo("Procedure succeeded");
+		}
+
+		return null; 
+}
+</pre>
+<h2 id="AJAX">
+Ajax</h2>
+<p>A user service can implement Ajax callbacks. An Ajax callback must implement the interface <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServiceAjaxRequest.html"><code>UserServiceAjaxRequest</code></a>.</p><p>The client calls an Ajax callback using the URL generated by: <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServiceResourceLocator.html#getURLForAjaxRequest-com.orchestranetworks.userservice.UserServiceAjaxRequest-"><code>UserServiceResourceLocator.getURLForAjaxRequest</code></a>.</p><p>To facilitate the use of Ajax components, EBX&reg; provides the JavaScript prototype <code>EBX_AJAXResponseHandler</code> for sending the request and handling the response. For more information on <code>EBX_AJAXResponseHandler</code> see <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServiceAjaxRequest.html"><code>UserServiceAjaxRequest</code></a>.</p><p>The following sample implements an Ajax callback that returns partial HTML:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class AjaxSampleService implements UserService&lt;DataspaceEntitySelection>
+{
+	...
+	
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		aConfigurator.setLeftButtons(aConfigurator.newCloseButton());
+		aConfigurator.setContent(this::writePane);
+	}
+
+	/**
+	 * Displays an URL that will execute the callback
+	 * and display the returned partial HTML inside a &lt;div> tag.
+	 */
+	private void writePane(UserServicePaneContext aPaneContext, UserServicePaneWriter aWriter)
+	{
+		// Generate the URL of the Ajax callback.
+		String url = aWriter.getURLForAjaxRequest(this::ajaxCallback);
+
+		// The id of the &lt;div> that will display the partial HTML returned by the Ajax callback.
+		String divId = "sampleId";
+
+		aWriter.add("&lt;div ");
+		aWriter.addSafeAttribute("class", UICSSClasses.CONTAINER_WITH_TEXT_PADDING);
+		aWriter.add(">");
+		
+		// Display the URL that will execute the callback.
+		aWriter.add("&lt;a ");
+		aWriter.addSafeAttribute("href", "javascript:sample_sendAjaxRequest('" + url + "', '"
+			+ divId + "')");
+		aWriter.add(">");
+		aWriter.add("Click to call a user service Ajax callback");
+		aWriter.add("&lt;/a>");
+
+		// Output the &lt;div> tag that will display the partial HTML returned by the callback.
+		aWriter.add("&lt;div ");
+		aWriter.addSafeAttribute("id", divId);
+		aWriter.add(">&lt;/div>");
+
+		aWriter.add("&lt;/div>");
+
+		// JavaScript method that will send the Java request.
+		aWriter.addJS_cr();
+		aWriter.addJS_cr("function sample_sendAjaxRequest(url, targetDivId) {");
+		aWriter.addJS_cr("  var ajaxHandler = new EBX_AJAXResponseHandler();");
+
+		aWriter.addJS_cr("  ajaxHandler.handleAjaxResponseSuccess = function(responseContent) {");
+		aWriter.addJS_cr("    var element = document.getElementById(targetDivId);");
+		aWriter.addJS_cr("    element.innerHTML = responseContent;");
+		aWriter.addJS_cr("  };");
+
+		aWriter.addJS_cr("  ajaxHandler.handleAjaxResponseFailed = function(responseContent) {");
+		aWriter.addJS_cr("    var element = document.getElementById(targetDivId);");
+		aWriter.addJS_cr("    element.innerHTML = \"&lt;span class='" + UICSSClasses.TEXT.ERROR
+			+ "'>Ajax call failed&lt;/span>\";");
+		aWriter.addJS_cr("  }");
+
+		aWriter.addJS_cr("  ajaxHandler.sendRequest(url);");
+		aWriter.addJS_cr("}");
+	}
+
+	/**
+	 * The Ajax callback that returns partial HTML.
+	 */
+	private void ajaxCallback(
+		UserServiceAjaxContext anAjaxContext,
+		UserServiceAjaxResponse anAjaxResponse)
+	{
+		UserServiceWriter writer = anAjaxResponse.getWriter();
+		writer.add("&lt;p style=\"color:green\">Ajax callback succeeded!&lt;/p>");
+		writer.add("&lt;p>Current data and time is: ");
+
+		DateFormat format = DateFormat.getDateTimeInstance(
+			DateFormat.FULL,
+			DateFormat.FULL,
+			Locale.US);
+		writer.addSafeInnerHTML(format.format(new Date()));
+
+		writer.add("&lt;/p>");
+	}
+}
+</pre>
+<h2 id="restDataServices">
+REST data services</h2>
+<p>A user service can access REST data services through HTTP requests.</p><p>The client should use the URL generated by: <a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIResourceLocator.html#getURLForRest-java.lang.String-com.orchestranetworks.service.URLQuery-"><code>UIResourceLocator.getURLForRest</code></a>. This URL includes required information for the user authentication.</p><p>For more information on REST data services see the <a href="../data_services/dataservices_rest_v1.html">Built-in RESTful services</a>.</p><p>The following sample implements a REST data service call whose response is printed in a <code>textarea</code>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class RestCallSampleService implements UserService&lt;DataspaceEntitySelection>
+{
+	...
+
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		aConfigurator.setLeftButtons(aConfigurator.newCloseButton());
+		aConfigurator.setContent(this::writePane);
+	}
+
+	private void writePane(UserServicePaneContext aPaneContext, UserServicePaneWriter aWriter)
+	{
+		// Generates the URL for REST data service call without additional parameters
+		final String url = aWriter.getURLForRest("/ebx-dataservices/rest/{specificPath}", null);
+
+		final String resultAreaId = "restResult";
+
+		// Displays a link for REST data service call
+		aWriter.add("&lt;div ");
+		aWriter.addSafeAttribute("class", UICSSClasses.CONTAINER_WITH_TEXT_PADDING);
+		aWriter.add(">");
+		aWriter.add("&lt;p>This link will display the response after making a REST call&lt;/p>");
+		aWriter.add("&lt;a ");
+		aWriter.addSafeAttribute("href",
+			"javascript:sendRestRequest('" + url + "', '" + resultAreaId + "')");
+		aWriter.add(">");
+		aWriter.add("Make the call.");
+		aWriter.add("&lt;/a>");
+		aWriter.add("&lt;textarea ");
+		aWriter.addSafeAttribute("id", resultAreaId);
+		aWriter.add(" readonly=\"readonly\" style=\"width: 100%;\" >&lt;/textarea>");
+		aWriter.add("&lt;/div>");
+
+		// JavaScript method that will send the HTTP REST request
+		aWriter.addJS_cr("function sendRestRequest(url, targetId) {");
+		aWriter.addJS_cr("  var xhttp = new XMLHttpRequest();");
+		aWriter.addJS_cr("  xhttp.open('GET', url, true);");
+		aWriter.addJS_cr("  xhttp.setRequestHeader('Content-type', 'application/json');");
+		aWriter.addJS_cr("  xhttp.send();");
+		aWriter.addJS_cr("  var element = document.getElementById(targetId);");
+		aWriter.addJS_cr("  xhttp.onreadystatechange = function() {");
+		aWriter.addJS_cr("	  if (xhttp.readyState == 4)");
+		aWriter.addJS_cr("      element.innerHTML = xhttp.responseText;");
+		aWriter.addJS_cr("  }");
+		aWriter.addJS_cr("}");
+	}
+}</pre>
+<h2 id="FileUpload">
+File upload</h2>
+<p>A user service can display forms with file input fields.</p><p>The following sample displays a form with two input fields, a title and a file:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class FileUploadService implements UserService&lt;...>
+{
+	// This service defines a single object named "file".
+	private static final ObjectKey _File_ObjectKey = ObjectKey.forName("file");
+
+	// Paths for the "file" object.
+	public static final Path _Title = Path.parse("title");
+	public static final Path _File = Path.parse("file");
+
+	...
+	
+	@Override
+	public void setupObjectContext(
+		UserServiceSetupObjectContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceObjectContextBuilder aBuilder)
+	{
+		if (aContext.isInitialDisplay())
+		{
+			// Create a definition for the "model" object.
+			BeanDefinition def = aBuilder.createBeanDefinition();
+			aBuilder.registerBean(_File_ObjectKey, def);
+
+			BeanElement element;
+
+			element = def.createElement(_Title, SchemaTypeName.XS_STRING);
+			element.setLabel("Title");
+			element.setMinOccurs(1);
+
+			// Type for a file must be BeanDefinition.OSD_FILE_UPLOAD.
+			element = def.createElement(_File, BeanDefinition.OSD_FILE_UPLOAD);
+			element.setLabel("File");
+			element.setMinOccurs(1);
+		}
+	}
+
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		aConfigurator.setTitle("File upload service");
+		aConfigurator.setLeftButtons(aConfigurator.newSubmitButton("Upload", this::onUpload), aConfigurator.newCancelButton());
+		
+		// IMPORTANT: Following method must be called to enable file upload.
+		// This will set form  encryption type to  "multipart/form-data". 
+		aConfigurator.setFileUploadEnabled(true);
+		
+		aConfigurator.setContent(this::writePane);
+	}
+
+	
+	private void writePane(UserServicePaneContext aContext, UserServicePaneWriter aWriter)
+	{
+		final UIWidgetFileUploadFactory fileUploadFactory = new UIWidgetFileUploadFactory();
+
+		aWriter.setCurrentObject(_File_ObjectKey);
+
+		aWriter.startTableFormRow();
+
+		// Title input.
+		aWriter.addFormRow(_Title);
+
+		// File upload input.
+		UIWidgetFileUpload widget = aWriter.newCustomWidget(_File, fileUploadFactory);
+		// Default filter for file names.
+		widget.setAccept(".txt");
+		aWriter.addFormRow(widget);
+
+		aWriter.endTableFormRow();
+	}
+
+	private UserServiceEventOutcome onUpload(UserServiceEventContext anEventContext)
+	{
+		ValueContextForInputValidation valueContext = anEventContext.getValueContext(_File_ObjectKey);
+		
+		String title = (String) valueContext.getValue(_Title);
+		UploadedFile file = (UploadedFile) valueContext.getValue(_File);
+		
+		InputStream in;
+		try
+		{
+			in = file.getInputStream();
+		}
+		catch (IOException e)
+		{
+			// Should not happen.
+			anEventContext.addError("Cannot read file.");
+			return null;
+		}
+
+		// Do something with title and the input stream.
+		return UserServiceNext.nextClose();
+	}
+}
+</pre>
+<p>For more information, see <a target="_blank" href="../Java_API/com/orchestranetworks/ui/form/widget/UIWidgetFileUpload.html"><code>UIWidgetFileUpload</code></a>.</p><h2 id="FileDownload">
+File download</h2>
+<p>A user service can display URLs or buttons to download files. The actual downloading of a file is under the control of the user service.</p><p>The following sample displays a URL to download a file:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class FileDownloadService implements UserService&lt;DataspaceEntitySelection>
+{
+	...
+	
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;DataspaceEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		aConfigurator.setLeftButtons(aConfigurator.newCloseButton());
+		aConfigurator.setContent(this::writePane);
+	}
+
+	private void writePane(UserServicePaneContext aContext, UserServicePaneWriter aWriter)
+	{
+		aWriter.add("&lt;div ");
+		aWriter.addSafeAttribute("class", UICSSClasses.CONTAINER_WITH_TEXT_PADDING);
+		aWriter.add(">");
+
+		// Generate and display the URL for the download.
+		String downloadURL = aWriter.getURLForGetRequest(this::processDownloadRequest);
+
+		aWriter.add("&lt;a ");
+		aWriter.addSafeAttribute("href", downloadURL);
+		aWriter.add(">Click here to download a sample file&lt;/a>");
+
+		aWriter.add("&lt;/div>");
+	}
+
+	private void processDownloadRequest(
+		UserServiceGetContext aContext,
+		UserServiceGetResponse aResponse)
+	{
+		// The file is plain text.
+		aResponse.setContentType("text/plain;charset=UTF-8");
+		// Remove the following statement to display the file directly in the browser.
+		aResponse.setHeader("Content-Disposition", "attachment; filename=\"sample.txt\"");
+
+		// Write a text file using UTF-8 encoding.
+		PrintWriter out;
+		try
+		{
+			out = new PrintWriter(new OutputStreamWriter(aResponse.getOutputStream(), "UTF-8"));
+		}
+		catch (IOException ex)
+		{
+			throw new RuntimeException(ex);
+		}
+
+		DateFormat format = DateFormat.getDateTimeInstance(
+			DateFormat.FULL,
+			DateFormat.MEDIUM,
+			Locale.US);
+		Date now = new Date();
+
+		out.println("Hello !");
+		out.println("This is a sample text file downloaded on " + format.format(now)
+			+ ", from EBX®.");
+
+		out.close();
+	}
+}
+</pre>
+<h2 id="UserServiceWithoutDisplay">
+User service without display</h2>
+<p>A user service may be designed to execute a task without display and return to the previous screen or redirect the user to another screen.</p><p>This type of service must implement the interface <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServiceExtended.html">UserServiceExtended </a> and method <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/UserServiceExtended.html#initialize-com.orchestranetworks.userservice.UserServiceInitializeContext-"><code>UserServiceExtended.initialize</code></a>.</p><p>The following sample deletes selected records in the current table view:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class DeleteRecordsService implements UserServiceExtended&lt;TableViewEntitySelection>
+{
+	...
+	
+	@Override
+	public UserServiceEventOutcome initialize(
+		UserServiceInitializeContext&lt;TableViewEntitySelection> aContext)
+	{
+		final List&lt;AdaptationName> records = new ArrayList&lt;>();
+
+		// Deletes all selected rows in a single transaction.
+		RequestResult requestResult = aContext.getEntitySelection().getSelectedRecords().execute();
+		try
+		{
+			for (Adaptation record = requestResult.nextAdaptation(); record != null; record = requestResult.nextAdaptation())
+			{
+				records.add(record.getAdaptationName());
+			}
+		}
+		finally
+		{
+			requestResult.close();
+		}
+
+		Procedure deleteProcedure = new Procedure()
+		{
+			@Override
+			public void execute(ProcedureContext aContext) throws Exception
+			{
+				for (AdaptationName record : records)
+				{
+					aContext.doDelete(record, false);
+				}
+			}
+		};
+
+		UserServiceTransaction transaction = aContext.createTransaction();
+		transaction.add(deleteProcedure);
+
+		// Adds an information messages for current user. 
+		ProcedureResult procedureResult = transaction.execute(true);
+		if (!procedureResult.hasFailed())
+		{
+			if (records.size() &lt;= 1)
+			{
+				aContext.addInfo(records.size() + " record was deleted.");
+			}
+			else
+			{
+				aContext.addInfo(records.size() + " records were deleted.");
+			}
+		}
+
+		// Do not display the user service and return to current view.
+		return UserServiceNext.nextClose();
+	}
+
+	@Override
+	public void setupObjectContext(
+		UserServiceSetupObjectContext&lt;TableViewEntitySelection> aContext,
+		UserServiceObjectContextBuilder aBuilder)
+	{
+		//Do nothing.
+	}
+
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;TableViewEntitySelection> aContext,
+		UserServiceDisplayConfigurator aConfigurator)
+	{
+		//Do nothing.
+	}
+
+	@Override
+	public void validate(UserServiceValidateContext&lt;TableViewEntitySelection> aContext)
+	{
+		//Do nothing.
+	}
+
+	@Override
+	public UserServiceEventOutcome processEventOutcome(
+		UserServiceProcessEventOutcomeContext&lt;TableViewEntitySelection> aContext,
+		UserServiceEventOutcome anEventOutcome)
+	{
+		return anEventOutcome;
+	}
+}
+</pre>
+<h3 id="id10s1">
+Known limitation</h3>
+<p>If such service is called in the context of a Web component, an association, a perspective action or a hierarchy node, The service will be launched, initialized and closed, but the service&#39;s target entity will still be displayed.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

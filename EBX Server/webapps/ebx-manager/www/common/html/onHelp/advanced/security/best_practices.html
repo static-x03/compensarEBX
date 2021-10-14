@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Security Best Practices</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="security" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Security Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=security/best_practices.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Security Guide</span></div>
+<h1>
+Security Best Practices</h1>
+<p> Here is a list of best practices that are considered useful to enforce a good security level for the EBX&reg; setup. These best practices apply to EBX&reg; and to other environments, their configuration, protocols and policies. These are best practices in general, and may not be relevant to your particular infrastructure and security policy. </p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#encryption">Encryption algorithms</a></li><li class="toc1"><a href="#https">HTTPS</a></li><li class="toc1"><a href="#installation">Installation</a></li><li class="toc1"><a href="#webserver">Web Server</a></li><li class="toc1"><a href="#appserver">Application Server</a></li><li class="toc1"><a href="#java">Java</a></li><li class="toc1"><a href="#database">Database</a></li><li class="toc1"><a href="#configuration">User directory and Administration rights</a></li><li class="toc1"><a href="#permission">Permissions</a></li></ul>
+</div>
+<h2 id="encryption">
+Encryption algorithms</h2>
+<p> EBX&reg; does not use, nor embed encryption algorithms (symmetric, asymmetric, or elliptic). Web Server or Application Server may specify encryption algorithms when setting HTTPS parameters. Some recommendations on these algorithms are provided in section <a href="#https">HTTPS</a>. Password and fields having osd:password as a type are storing hash of their value with SHA_256 as algorithm. That includes the password of users of the default directory. </p><h2 id="https">
+HTTPS</h2>
+<p>Using HTTPS for communication with clients (GUI and REST or SOAP) is recommended. All HTTP traffic should be redirected to HTTPS. </p><p> A secure <a href="https://en.wikipedia.org/wiki/Cipher_suite">cipher suite</a> and protocols should be used whenever possible. This applies, for example, to Web Servers, Application Servers, and jdbc connections. </p><p> TLS v1.2 should be the main protocol because it&#39;s the only version that offers modern authenticated encryption (also known as AEAD). </p><p> Several obsolete cryptographic primitives must be avoided: </p><ul>
+<li><p>Anonymous Diffie-Hellman (ADH) suites do not provide authentication,</p></li><li><p>NULL cipher suites provide no encryption,</p></li><li><p>Export cipher suites are insecure when negotiated in a connection, but they can also be used against a server that prefers stronger suites (the FREAK attack),</p></li><li><p>Suites with weak ciphers (typically of 40 and 56 bits) use encryption that can easily be broken,</p></li><li><p>RC4 is insecure,</p></li><li><p>3DES is slow and weak,</p></li></ul>
+<p> On the other hand, getting too restrictive on allowed cyphers may prevent some clients to connect as they may not be able to negotiate the HTTPS connection. </p><p> The following configuration is compatible with browsers supported by EBX&reg;. </p><ul>
+<li><p>Cipher suites: ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256</p></li><li><p>Versions: TLSv1.2</p></li></ul>
+<h2 id="installation">
+Installation</h2>
+<p> Deployed components as Web Server and Application Server should be installed using a non-root or unprivileged user, and following the <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege">principle of least privilege</a> whenever possible. For example, only necessary ports and protocols should be opened. </p><h2 id="webserver">
+Web Server</h2>
+<p> If you have to expose web applications on the internet, it&#39;s a good practice to protect them with a Web Server in a <a href="https://en.wikipedia.org/wiki/DMZ_(computing)">demilitarized zone</a> while EBX&reg; and the database server can be in a production zone. Consider the following practices for your configuration.</p><p> The secure cipher suite and protocols should be set according to the above section <a href="#https">HTTPS</a>. </p><p> Do not use the default configuration, and remove any banner that might also expose the version and type of web server. </p><p>For example, on Apache2, to remove the banner (default page returned at the root), just remove the folder <code>/var/www/html</code>. </p><p> Also, on Apache2, to remove headers identifying the Web Server, the value of <a href="https://httpd.apache.org/docs/2.4/mod/core.html#servertokens"><code>ServerTokens</code></a> and <a href="https://httpd.apache.org/docs/2.4/mod/core.html#serversignature"><code>ServerSignature</code></a> from the file <code>security.conf</code> should have the following values: </p><pre class="brush: properties; toolbar: false; gutter: false;">
+# ServerTokens
+# This directive configures what you return as the Server HTTP response
+# Header. The default is 'Full' which sends information about the OS-Type
+# and compiled in modules.
+# Set to one of:  Full | OS | Minimal | Minor | Major | Prod
+# where Full conveys the most information, and Prod the least.
+ServerTokens Prod
+
+# Optionally add a line containing the server version and virtual host
+# name to server-generated pages (internal error documents, FTP directory
+# listings, mod_status and mod_info output etc., but not CGI generated
+# documents or custom error documents).
+# Set to "EMail" to also include a mailto: link to the ServerAdmin.
+# Set to one of:  On | Off | EMail
+ServerSignature Off</pre>
+<p> Use the Web Server to set restrictions with HTTP security headers. Note that headers related to the origin impact authorized URLs for all resources returned by EBX&reg;. That includes the content of fields of the URL type (example: image of avatar). </p><p> Here is a list of security headers and how to set them for EBX&reg;. First, configure EBX&reg; to not set any HTTP security headers. To do so, set the property <code>ebx.security.headers.activated</code> to <code>false</code> or unset. </p><p><em>X-XSS-Protection</em></p><p> The <code>x-xss-protection</code> header is designed to enable the cross-site scripting (XSS) filter built into modern web browsers. Here is what the header should look like. </p><blockquote><p><code>x-xss-protection: 1; mode=block</code></p></blockquote><p>Enable in Nginx</p><pre class="brush: properties; toolbar: false; gutter: false;">
+header always unset x-xss-protection
+header always set x-xss-protection "1; mode=block"</pre>
+<p>Enable in Apache2</p><pre class="brush: properties; toolbar: false; gutter: false;">
+proxy_hide_header x-xss-protection;
+add_header x-xss-protection "1; mode=block" always;</pre>
+<p><em>x-Frame-Options</em></p><p> The <code>x-frame-options</code> header provides clickjacking protection by not allowing iframes to load on the site. Be aware, this may not be compatible with your configuration if EBX&reg; is integrated through frames for example. Here is what the header should look like: </p><blockquote><p><code>x-frame-options: SAMEORIGIN</code></p></blockquote><p></p><p>Enable in Nginx</p><blockquote><p><code> add_header x-frame-options &quot;SAMEORIGIN&quot; always; </code></p></blockquote><p>Enable in Apache2</p><blockquote><p><code> header always sets x-frame-options &quot;SAMEORIGIN&quot; </code></p></blockquote><p><em>X-Content-Type-Options</em></p><p> The <code>x-content-type-options</code> header prevents Internet Explorer and Google Chrome from sniffing a response away from the declared content-type. This helps reduce the danger of drive-by downloads and helps treat the content properly. Here is what the header looks like. </p><blockquote><p><code>x-content-type-options: nosniff</code></p></blockquote><p></p><p>Enable in Nginx</p><blockquote><p><code> add_header X-Content-Type-Options &quot;nosniff&quot; always; </code></p></blockquote><p>Enable in Apache2</p><blockquote><p><code> header always sets X-Content-Type-Options &quot;nosniff&quot; </code></p></blockquote><p><em>Strict-Transport-Security</em></p><p>The <code>strict-transport-security</code> header is a security enhancement that restricts web browsers to access web servers solely over HTTPS. This ensures the connection cannot be established through an insecure HTTP connection which could be vulnerable to attacks. Here is what the header should look like: </p><blockquote><p><code>strict-transport-security: max-age=31536000; includeSubDomains</code></p></blockquote><p></p><p>Enable in Nginx</p><blockquote><p><code> add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot; always; </code></p></blockquote><p>Enable in Apache2</p><blockquote><p><code> header always sets Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot; </code></p></blockquote><p><em>Content-Security-Policy</em></p><p>The <code>content-security-policy</code> HTTP header provides an additional layer of security. This policy helps prevent attacks such as Cross Site Scripting (XSS) and other code injection attacks by defining content sources which are approved and thus allowing the browser to load them. Here is what the header shuould look like. Make sure to adapt it with your domain name (<code>server.company.com</code> in the example). </p><blockquote><p><code>content-security-policy: default-src &#39;self&#39;; font-src * data: server.company.com; img-src * data: server.company.com; script-src * &#39;unsafe-inline&#39; &#39;unsafe-eval&#39;; style-src * &#39;unsafe-inline&#39;;</code></p></blockquote><p>Enable in Nginx</p><blockquote><p><code> add_header Content-Security-Policy &quot;default-src &#39;self&#39;; font-src * data: server.company.com; img-src * data: server.company.com; script-src * &#39;unsafe-inline&#39; &#39;unsafe-eval&#39;; style-src * &#39;unsafe-inline&#39;;&quot; always; </code></p></blockquote><p>Enable in Apache2</p><blockquote><p><code> header always sets Content-Security-Policy &quot;default-src &#39;self&#39;; font-src * data: server.company.com; img-src * data: server.company.com; script-src * &#39;unsafe-inline&#39; &#39;unsafe-eval&#39;; style-src * &#39;unsafe-inline&#39;;&quot; </code></p></blockquote><p><em>Referrer-Policy</em></p><p>The Referrer-Policy HTTP header governs which referrer information should be included with requests made. The Referrer-Policy tells the web browser how to handle referrer information that is sent when a user clicks on a link that leads to another page. Here is what it should look like: </p><blockquote><p><code>Referrer-Policy: strict-origin</code></p></blockquote><p>Enable in Nginx</p><blockquote><p><code> add_header Referrer-Policy: &quot;strict-origin&quot; always; </code></p></blockquote><p>Enable in Apache2</p><blockquote><p><code> header always sets Referrer-Policy &quot;strict-origin&quot; </code></p></blockquote><h2 id="appserver">
+Application Server</h2>
+<p> As for Web Servers, the same best practice applies: do not expose technical information on the Application Server. For example, for Tomcat, it is recommended to fill the attribute <code>server</code> of <code>connector</code> in <code>server.xml</code> with a generic value as <code>AppServer</code>. </p><pre class="brush: properties; toolbar: false; gutter: false;">
+ &lt;Connector port="8080" enableLookups="false" protocol="HTTP/1.1" useBodyEncodingForURI="true" server="AppServer"/></pre>
+<p> If the Application Server is exposed through HTTPS, the secure cipher suite and Protocols should be set according to the above section <a href="#https">HTTPS</a>. </p><p> If there is a Web Server, it is also recommended to use ports higher than 1024 and let the Web Server do proxy. </p><p>If there is no Web Server, security headers should be set by the Application Server as described above. </p><h2 id="java">
+Java</h2>
+<p>It is recommended to follow the <a href="https://www.oracle.com/java/technologies/security.html">security best practices from Oracle</a>. Last supported patches should also be applied as soon as they are available especially when they include security patches. Consider using the Server JRE for server systems, such as application servers or other long-running back-end processes. The Server JRE is the same as the regular JRE except that it does not contain the web-browser plugins.</p><p>EBX&reg; allows a very high level of customization through custom code. All integrated Java modules are considered by EBX&reg; as trusted. Hence all development on top of EBX&reg; should be reviewed and validated. As an example, developers should not generate HTML from values comming from the database without proper escaping. For more details on this, see the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"> Cross Site Scripting prevention on the OWASP site</a>. Here is a proper escaping example: the name of a store is encoded before being displayed in an HTML form. The <code>StringEscapeUtils</code> class included in Apache Commons Lang is used for string encoding. </p><pre class="brush: java; toolbar: false; gutter: false;">
+public class StoreMainPane implements UIFormPane
+{
+	public static final String STORE_NAME_STYLE = "font-weight: bold; padding-top:20px; padding-bottom:20px";
+
+	@Override
+	public void writePane(final UIFormPaneWriter writer, final UIFormContext context)
+	{
+
+		String storeName = (String) context.getValueContext().getValue(Paths._Store._Name);
+
+		writer.add("&lt;div").addSafeAttribute("style", STORE_NAME_STYLE).add(">");
+		writer.add("Data stored for " + StringEscapeUtils.escapeHtml(storeName));
+		writer.add("&lt;/div>");
+
+		// ...
+	}
+}</pre>
+<h2 id="database">
+Database</h2>
+<p>Databases should be encrypted at rest and in transit. If there is a private key for encryption, it should not be stored in the same location as the data files. Regarding the JDBC connection, consider configuring the JDBC driver to use SSL/TLS. Contact your database administrator for detailed instructions. You should always use the last supported version or RDBMS including drivers.</p><h2 id="configuration">
+User directory and Administration rights</h2>
+<p>It is strongly recommended to integrate EBX&reg; with your enterprise directory to enforce the password policy of your company. This is done with a <a href="../engine/directory.html#DirectorySpecific">custom directory</a>. </p><p>According to the <a href="https://en.wikipedia.org/wiki/Separation_of_duties">Separation of Duties</a> best practice, administrators can manage users and grant access but should not have any functional rights.</p><h2 id="permission">
+Permissions</h2>
+<p>Very special care is required when defining permissions in EBX&reg;. People in charge of this are expected to be aware of the content of the <a href="../references/permissions.html">permission documentation</a>, and especially the information provided in the <a href="../references/permissions.html#importantConsiderations">Important considerations about permissions</a> section.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Security Guide</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

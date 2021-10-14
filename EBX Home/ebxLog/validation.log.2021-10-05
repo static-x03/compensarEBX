@@ -1,0 +1,220 @@
+2021-10-05 15:27:24,538 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:27:54,798 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 3433 ms: dataspace Bebx-scheduler dataset ebx-scheduler
+2021-10-05 15:27:55,136 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 3444 ms:
+ ****** dataspace Bebx-scheduler dataset ebx-scheduler
+ **         warning [/scheduler/task[./name='SchedulerPurgeExecutionReports']/spec/className]: Parameter not defined. All execution reports are purged.
+ **         warning [/scheduler/task[./name='SchedulerMarkDataspaceHistoryForPurge']/spec/className]: The task is not configured.
+ **         warning [/scheduler/task[./name='SchedulerPurgeWorkflowMainHistory']/spec/className]: The task is not configured.
+ ****** 3 warnings, 
+2021-10-05 15:35:22,393 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:38:11,686 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:42:20,315 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:52:45,785 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:54:21,911 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:56:31,161 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 6889 ms: dataspace Bebx-scheduler dataset ebx-scheduler
+2021-10-05 15:56:31,443 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 6900 ms:
+ ****** dataspace Bebx-scheduler dataset ebx-scheduler
+ **         warning [/scheduler/task[./name='SchedulerPurgeExecutionReports']/spec/className]: Parameter not defined. All execution reports are purged.
+ **         warning [/scheduler/task[./name='SchedulerMarkDataspaceHistoryForPurge']/spec/className]: The task is not configured.
+ **         warning [/scheduler/task[./name='SchedulerPurgeWorkflowMainHistory']/spec/className]: The task is not configured.
+ ****** 3 warnings, 
+2021-10-05 16:04:26,589 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 11126 ms: dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+2021-10-05 16:04:26,873 MDT WARN   log.validation 1155 [http-nio-9090-exec-1] Validation done in 11138 ms:
+ ****** dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+ **         error [/root/nodeRef[./uuid='FFEE9A90-2627-11EC-8A1A-00E6A8A13ABC']/propertiesAdvanced/osdTable/primaryKeys]: The number of occurrences is less than the minimum specified (minOccurs='1').
+ ****** 1 errors, 
+2021-10-05 16:04:26,873 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 16:04:26,873 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 16:04:26,873 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 16:04:26,873 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 16:04:26,982 MDT WARN   log.validation 1155 [http-nio-9090-exec-1] Validation done in 3 ms:
+ ****** dataspace Bebx-dma dataset Person
+ **         error [/root/nodeRef[./uuid='FFEE9A90-2627-11EC-8A1A-00E6A8A13ABC']/propertiesAdvanced/osdTable/primaryKeys]: The number of occurrences is less than the minimum specified (minOccurs='1').
+ ****** 1 errors, 
+2021-10-05 16:04:26,992 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 16:04:26,992 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 16:04:26,992 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 16:04:26,993 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 16:04:27,095 MDT WARN   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ **         error [/root/nodeRef[./uuid='FFEE9A90-2627-11EC-8A1A-00E6A8A13ABC']/propertiesAdvanced/osdTable/primaryKeys]: The number of occurrences is less than the minimum specified (minOccurs='1').
+ ****** 1 errors, 
+2021-10-05 16:05:42,546 MDT INFO   log.validation 1155 [http-nio-9090-exec-4] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 16:05:42,547 MDT INFO   log.validation 1155 [http-nio-9090-exec-4] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 16:05:42,547 MDT INFO   log.validation 1155 [http-nio-9090-exec-4] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 16:05:42,547 MDT INFO   log.validation 1155 [http-nio-9090-exec-4] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 16:05:42,726 MDT WARN   log.validation 1155 [http-nio-9090-exec-4] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ **         error [/root/nodeRef[./uuid='FFEE9A90-2627-11EC-8A1A-00E6A8A13ABC']/propertiesAdvanced/osdTable/primaryKeys]: The number of occurrences is less than the minimum specified (minOccurs='1').
+ ****** 1 errors, 
+2021-10-05 16:07:30,491 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 2995 ms: dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+2021-10-05 16:07:30,491 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 2995 ms:
+ ****** dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+ ****** 
+2021-10-05 16:07:30,492 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 16:07:30,492 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 16:07:30,492 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 16:07:30,492 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 16:07:30,492 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 
+2021-10-05 16:07:30,494 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 16:07:30,494 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 16:07:30,494 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 16:07:30,494 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 16:07:30,494 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 
+2021-10-05 16:07:38,529 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 1012 ms: dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+2021-10-05 16:07:38,529 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 1012 ms:
+ ****** dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+ ****** 
+2021-10-05 16:07:38,529 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 16:07:38,530 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 16:07:38,530 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 16:07:38,530 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 16:07:38,530 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 
+2021-10-05 16:07:39,083 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 16:07:39,083 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 16:07:39,083 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 16:07:39,083 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 16:07:39,083 MDT INFO   log.validation 1155 [http-nio-9090-exec-7] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 
+2021-10-05 16:11:45,150 MDT INFO   log.validation 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 16:12:28,517 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 3339 ms: dataspace Bebx-scheduler dataset ebx-scheduler
+2021-10-05 16:12:28,836 MDT INFO   log.validation 1155 [ebx-boot] Validation done in 3348 ms:
+ ****** dataspace Bebx-scheduler dataset ebx-scheduler
+ **         warning [/scheduler/task[./name='SchedulerPurgeExecutionReports']/spec/className]: Parameter not defined. All execution reports are purged.
+ **         warning [/scheduler/task[./name='SchedulerMarkDataspaceHistoryForPurge']/spec/className]: The task is not configured.
+ **         warning [/scheduler/task[./name='SchedulerPurgeWorkflowMainHistory']/spec/className]: The task is not configured.
+ **         warning [/scheduler/task[./name='SchedulerPurgeExecutionReports']/spec/className]: Parameter not defined. All execution reports are purged.
+ **         warning [/scheduler/task[./name='SchedulerMarkDataspaceHistoryForPurge']/spec/className]: The task is not configured.
+ **         warning [/scheduler/task[./name='SchedulerPurgeWorkflowMainHistory']/spec/className]: The task is not configured.
+ ****** 6 warnings, 
+2021-10-05 17:00:17,002 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 2468 ms: dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+2021-10-05 17:00:17,008 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 2474 ms:
+ ****** dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+ ****** 
+2021-10-05 17:00:17,008 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 17:00:17,008 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 17:00:17,008 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 17:00:17,008 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 17:00:17,009 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 1 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 
+2021-10-05 17:00:17,015 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 17:00:17,015 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 17:00:17,015 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 17:00:17,015 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 17:00:17,015 MDT INFO   log.validation 1155 [http-nio-9090-exec-5] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 
+2021-10-05 17:00:22,694 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 1305 ms: dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+2021-10-05 17:00:22,694 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 1305 ms:
+ ****** dataset Person, dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c, dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01, dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314, dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d in dataspace Bebx-dma
+ ****** 
+2021-10-05 17:00:22,695 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 17:00:22,695 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 17:00:22,695 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 17:00:22,695 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 17:00:22,695 MDT INFO   log.validation 1155 [http-nio-9090-exec-1] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 
+2021-10-05 17:00:31,504 MDT INFO   log.validation 1155 [http-nio-9090-exec-3] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_95b65632-465d-5a11-95ed-1c5bfee8b09c
+ ****** 
+2021-10-05 17:00:31,504 MDT INFO   log.validation 1155 [http-nio-9090-exec-3] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_53e0a8d3-ee0f-58bc-a28f-a853ab5eaf01
+ ****** 
+2021-10-05 17:00:31,505 MDT INFO   log.validation 1155 [http-nio-9090-exec-3] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_ed2bad9f-a129-5124-b2e3-115229c27314
+ ****** 
+2021-10-05 17:00:31,505 MDT INFO   log.validation 1155 [http-nio-9090-exec-3] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset dme_a07b2985-f8e7-5802-9be1-02aeb3f6032d
+ ****** 
+2021-10-05 17:00:31,505 MDT INFO   log.validation 1155 [http-nio-9090-exec-3] Validation done in 0 ms:
+ ****** dataspace Bebx-dma dataset Person
+ ****** 

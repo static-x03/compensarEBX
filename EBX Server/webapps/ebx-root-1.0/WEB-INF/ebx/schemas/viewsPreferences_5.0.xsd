@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for maintaining users' preferences, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd" />
+	<xs:include schemaLocation="./customViewsTypes.xsd" />
+	<xs:include schemaLocation="urn:ebx:module:ebx-root-1.0:/WEB-INF/ebx/schemas/toolbars/toolbars_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.service.preferences.ViewsPreferencesPaths_5_0">
+					<nodes prefix="" root="/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.viewsPreferences" />
+			<osd:extensions class="com.orchestranetworks.service.preferences.ViewsSchemaExtensions" />
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- 
+		Root
+	-->
+	<xs:element name="preferences" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.preferences" />
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="tableViews" type="TableViewType" >
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.TableViewType" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/id</primaryKeys>
+								<defaultLabel osd:class="com.orchestranetworks.service.preferences.views.CustomViewLabelRenderer"/>
+							</osd:table>
+							<osd:trigger class="com.orchestranetworks.service.preferences.schema.ViewsPublicationNameTrigger"/>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:unique name="publicationName">
+						<xs:selector xpath="." />
+						<xs:field xpath="publicationName" />
+					</xs:unique>
+				</xs:element>
+				<xs:element name="tableViewsGroup" type="TableViewsGroup" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element name="tableFilters" type="AdvancedFiltersType" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element name="tableViewsPreferences" type="TableViewsPreferencesType" maxOccurs="unbounded" minOccurs="0"/>
+				<xs:element name="ViewsPermissions" minOccurs="0" maxOccurs="unbounded" type="ViewsPermissionType">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/schema /profile </primaryKeys>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object definition -->
+	<xs:complexType name="LabelType" osd:class="com.onwbp.base.text.bean.Label">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabel" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.LabelType.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.LabelType.localizedDocumentations.locale" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="label" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.LabelType.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentationType" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.DocumentationType" />
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescriptionSchemaAware">
+					<pathToSchema>../schemaKey</pathToSchema>
+				</osd:uiBean>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale" />
+						<xs:element minOccurs="0" name="label" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="description">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.description" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Label" osd:class="com.onwbp.base.text.bean.Label">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabel" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.LabelType.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.LabelType.localizedDocumentations.locale" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="label" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.LabelType.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Table definition -->
+	<xs:complexType name="TableViewType">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.id" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="publicationName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.publicationName" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-zA-Z_][-a-zA-Z0-9_.]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.schemaKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="activity" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.activity" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" osd:access="RW" type="DocumentationType">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.documentation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="owner" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.owner" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tablePath" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.tablePath" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element minOccurs="0" name="viewGroup" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.viewGroup" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsGroupConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="readers" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.readers" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="presentationMode" type="PresentationModeType"/>
+			<xs:element minOccurs="0" name="tabularViewOnSingleTable" type="tabularViewOnSingleTableType"/>
+			<xs:element minOccurs="0" name="hierarchicalView" type="hierarchicalViewType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TableViewsGroup">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TableViewsGroup" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name /schemaKey</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsGroup.name" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsGroup.schemaKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0" osd:access="RW" type="LabelType">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsGroup.label" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="PresentationModeType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TableViewType.presentationMode" />
+			<xs:appinfo>
+				<osd:otherFacets>
+					<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.ViewPresentationModeEnumeration" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<xs:complexType name="TableViewsPreferencesType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TableViewsPreferencesType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/Id</primaryKeys>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.service.preferences.ViewsPreferencesTableTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Id" type="xs:string" >
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsPreferencesType.schemaKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tablePath" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsPreferencesType.tablePath" />
+					<xs:appinfo>						
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="activity" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsPreferencesType.activity" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="order" type="xs:integer" minOccurs="0" maxOccurs="1">	
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsPreferencesType.order" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="viewId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsPreferencesType.viewId" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.service.preferences.views.UIBeanViewPreferences_ViewID"/>
+                        <osd:otherFacets>
+                            <osd:tableRef>
+                                <tablePath>/preferences/tableViews</tablePath>
+                            </osd:tableRef>
+                        </osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profileList" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsPreferencesType.profileList" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dataSetReference" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewsPreferencesType.dataSetReference" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdvancedFiltersType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.AdvancedFiltersType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+					<xs:documentation osd:id="complexType.AdvancedFiltersType.id" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AdvancedFiltersType.schemaKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataSetReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AdvancedFiltersType.dataSetReference" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" osd:access="RW" type="LabelType">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AdvancedFiltersType.label" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="owner">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AdvancedFiltersType.owner" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+      </xs:element>
+			<xs:element name="tablePath" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AdvancedFiltersType.tablePath" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+      <xs:element name="quickSearch" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation osd:id="complexType.AdvancedFiltersType.quickSearch"/>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="predicate" osd:access="RW">
+				<xs:complexType osd:class="com.onwbp.adaptation.perspective.views.ViewCriteria">
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.AdvancedFiltersType.predicate" />
+						<xs:appinfo>
+							<osd:uiBean class="com.onwbp.adaptation.perspective.views.ViewCriteriaUI" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="filterExpression" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.AdvancedFiltersType.predicate.filterExpression" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="simpleFilterMode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AdvancedFiltersType.simpleFilterMode" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ViewsPermissionType" osd:class="com.orchestranetworks.ui.view.permissions.ViewsPermissionsBean">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ViewsPermissionType" />
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="schema" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+                <xs:annotation>
+                   	<xs:documentation osd:id="complexType.ViewsPermissionType.schema" />
+                    <xs:appinfo>
+                        <osd:otherFacets>
+                            <osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraintEnumeration"/>
+                        </osd:otherFacets>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="profile" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+                <xs:annotation>
+                	<xs:documentation osd:id="complexType.ViewsPermissionType.profile" />
+                    <xs:appinfo>
+                        <osd:otherFacets>
+                            <osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForPermissionConstraintEnumeration"/>
+                        </osd:otherFacets>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="restrictionPolicy" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false" osd:checkNullInput="true">
+            	<xs:annotation>
+            		<xs:documentation osd:id="complexType.ViewsPermissionType.restrictionPolicy" />
+            	</xs:annotation>
+            </xs:element>
+            <xs:element name="manageRecommendedViews" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false" osd:checkNullInput="true">
+            	<xs:annotation>
+		    		<xs:documentation osd:id="complexType.ViewsPermissionType.manageRecommendedViews" />
+		    	</xs:annotation>
+            </xs:element>
+            <xs:element name="manageViews" type="ViewPermissionLevel" minOccurs="1" maxOccurs="1" default="O">
+            	<xs:annotation>
+		    		<xs:documentation osd:id="complexType.ViewsPermissionType.manageViews" />
+		    		<xs:appinfo>
+		    			<osd:otherFacets>
+		                    <osd:constraintEnumeration class="com.orchestranetworks.ui.view.permissions.ViewPermissionEnumeration">
+		    					<authorizedValues>O,S</authorizedValues>
+		                    </osd:constraintEnumeration>
+		                </osd:otherFacets>
+		    		</xs:appinfo>
+		    	</xs:annotation>
+            </xs:element>
+            <xs:element name="shareViews" type="ViewPermissionLevel" minOccurs="1" maxOccurs="1" default="N">
+            	<xs:annotation>
+		    		<xs:documentation osd:id="complexType.ViewsPermissionType.shareViews" />
+		    		<xs:appinfo>
+		    			<osd:otherFacets>
+		                    <osd:constraintEnumeration class="com.orchestranetworks.ui.view.permissions.ViewPermissionEnumeration">
+		    					<authorizedValues>N,O,S</authorizedValues>
+		                    </osd:constraintEnumeration>
+		                </osd:otherFacets>
+		    		</xs:appinfo>
+		    	</xs:annotation>
+            </xs:element>
+            <xs:element name="publishViews" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false" osd:checkNullInput="true">
+            	<xs:annotation>
+		    		<xs:documentation osd:id="complexType.ViewsPermissionType.publishViews" />
+		    	</xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:simpleType name="ViewPermissionLevel" osd:checkNullInput="true">
+        <xs:annotation>
+        	<xs:documentation osd:id="complexType.ViewPermissionLevel" />
+            <xs:appinfo>
+                <osd:otherFacets>
+                    <osd:constraintEnumeration class="com.orchestranetworks.ui.view.permissions.ViewPermissionEnumeration"/>
+                </osd:otherFacets>
+                <osd:defaultView>
+                    <widget>
+                        <radioButtonGroup/>
+                    </widget>
+                </osd:defaultView>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+        	
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

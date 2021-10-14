@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML for user services generated from EBX5 DMA instance [reference=DEX] on Wed May 02 11:55:52 ICT 2018 by user [khoi].-->
+<services xmlns="urn:ebx-schemas:userServices_1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="urn:ebx-schemas:userServices_1.0 http://schema.orchestranetworks.com/userServices_1.0.xsd">
+	<service name="AutoMappingService">
+		<documentation id="service.AutoMappingService" />
+		<resourcePath>/dataexchange?action=AutoMappingService</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.model.permissions.AdministrationItemPermissions" />
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Application/ApplicationByType{1}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>5</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="CleanAllConfiguration">
+		<documentation id="service.CleanAllConfiguration" />
+		<resourcePath>/dataexchange?action=CleanAllConfigurationWait</resourcePath>
+		<activation>
+			<onDataModel>
+				<pathRegExp>/</pathRegExp>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>1</orderInMenu>
+		<confirmation disable="false">
+			<label id="service.CleanAllConfiguration.confirmation.label" />
+		</confirmation>
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="CleanUnusedPathsService">
+		<documentation id="service.CleanUnusedPathsService" />
+		<resourcePath>/dataexchange?action=CleanUnusedPathsWait</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Path/Path</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="DeletionDataMappingService">
+		<documentation id="service.DeletionDataMappingService" />
+		<resourcePath>/dataexchange?action=DeletionDataMappingWait</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Application/ApplicationByType{+}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>6</orderInMenu>
+		<confirmation disable="false">
+			<label id="service.DeletionDataMappingService.confirmation.label" />
+		</confirmation>
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="DeletionService">
+		<documentation id="service.DeletionService" />
+		<resourcePath>/dataexchange?action=DeletionService</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.model.permissions.AdministrationItemPermissions" />
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Application/ApplicationByType{1}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>2</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="DEXConfigurationSnipletServlet">
+		<resourcePath>/DataExchangeSnipletServlet</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>false</displayInMenu>
+		<confirmation disable="false" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="GenerationService">
+		<documentation id="service.GenerationService" />
+		<resourcePath>/dataexchange?action=GenerationService</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.model.permissions.GenerationModelPermissions" />
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Application/ApplicationByType{1}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>1</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="PurgationService">
+		<documentation id="service.PurgationService" />
+		<resourcePath>/dataexchange?action=PurgationService</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.model.permissions.AdministrationItemPermissions" />
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Application/ApplicationByType{1}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>3</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="RefreshHierarchicalViews">
+		<documentation id="service.RefreshHierarchicalViews" />
+		<resourcePath>/dataexchange?action=RefreshHierarchicalViewsWait</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/DataModel/Table</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<confirmation disable="false">
+			<label id="service.RefreshHierarchicalViews.confirmation.label" />
+		</confirmation>
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="ReportDataMappingService">
+		<documentation id="service.ReportDataMappingService" />
+		<resourcePath>/dataexchange?action=ReportDataMappingService</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.permissions.DEXReportDataMappingPermissions" />
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/DataMapping/TableMapping</path>
+				<path>/DataExchange/DataMapping/FieldMapping</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>5</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="ValidationService">
+		<documentation id="service.ValidationService" />
+		<resourcePath>/dataexchange?action=ValidationService</resourcePath>
+		<permissions class="com.orchestranetworks.addon.adix.dataexchange.model.permissions.AdministrationItemPermissions" />
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Application/ApplicationByType{1}</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>4</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="XMLExportDEXConfiguration">
+		<documentation id="service.XMLExportDEXConfiguration" />
+		<resourcePath>/dataexchange?action=XMLExportDEXConfigurationService</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>2</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="XMLExportPreferencesService">
+		<documentation id="service.XMLExportPreferencesService" />
+		<resourcePath>/dataexchange?action=XMLExportPreferencesService</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/DataExchange/Application/ApplicationInterfaceConfiguration{+} /DataExchange/Application/ApplicationInterfaceConfiguration</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+	<service name="XMLImportDEXConfiguration">
+		<documentation id="service.XMLImportDEXConfiguration" />
+		<resourcePath>/dataexchange?action=XMLImportDEXConfigurationService</resourcePath>
+		<activation>
+			<onDataModel>
+				<path>/</path>
+			</onDataModel>
+		</activation>
+		<displayInMenu>true</displayInMenu>
+		<orderInMenu>3</orderInMenu>
+		<confirmation disable="true" />
+		<defaultPermission>enabled</defaultPermission>
+	</service>
+</services>
+

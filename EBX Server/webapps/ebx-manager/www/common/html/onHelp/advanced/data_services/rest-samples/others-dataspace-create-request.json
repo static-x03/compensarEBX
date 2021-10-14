@@ -1,0 +1,14 @@
+{
+  "content": {
+    "key": "BMyData",
+    "owner": "Beveryone",
+    "documentation": [
+      {
+        "locale": "en-US",
+        "label": "My dataspace",
+        "description": "This space contains my data"
+      }
+    ],
+    "dataspaceKeyToCopyPermissionsFrom": "BReference"
+  }
+}

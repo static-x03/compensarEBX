@@ -1,0 +1,4 @@
+2021-10-07 12:24:08,695 MDT INFO   log.d3 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 14:56:45,798 MDT INFO   log.d3 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+2021-10-07 14:56:59,345 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:57:18,752 MDT INFO   log.d3 1155 [ebx-boot] D3 is not activated in 'ebx.properties'.

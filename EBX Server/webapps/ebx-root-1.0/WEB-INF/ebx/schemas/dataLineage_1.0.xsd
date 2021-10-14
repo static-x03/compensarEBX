@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for maintaining users' preferences, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.dataservices.util.wsdl.DataLineage_1_0">
+					<nodes prefix="" root="/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<!-- schema extension -->
+			<osd:extensions class="com.orchestranetworks.dataservices.util.wsdl.DslExtensions" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.dataLineage" />
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- 
+		Root
+	-->
+	<xs:element name="lineage" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.lineage" />
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name="baseURL" type="xs:anyURI" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation osd:id="element.lineage.baseURL" />
+						<xs:appinfo>
+							<osd:otherFacets>
+								<osd:constraint class="com.orchestranetworks.dataservices.util.wsdl.DslBaseURL" />
+							</osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+                <xs:element maxOccurs="1" minOccurs="0" name="securityHeader" osd:access="RW" type="SecurityHeaderDeclarationType" />
+                <xs:element maxOccurs="unbounded" minOccurs="0"
+					name="profiles" type="ProfileType" />
+				<xs:element maxOccurs="unbounded" minOccurs="0"
+					name="history" type="HistoryType" />
+				<xs:element maxOccurs="unbounded" minOccurs="0"
+					name="JMSEndpoint" type="JMSEndPointType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object definition -->
+	<!-- complex definition -->
+	<xs:complexType name="SecurityHeaderDeclarationType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.SecurityHeaderDeclarationType" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="importSecurityHeaderSchemaLocation" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SecurityHeaderDeclarationType.importSecurityHeaderSchemaLocation" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="securityHeaderTargetNamespace" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SecurityHeaderDeclarationType.securityHeaderTargetNamespace" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="securityHeaderNameSpacePrefix" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SecurityHeaderDeclarationType.securityHeaderNameSpacePrefix" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="wsdlMessageName" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SecurityHeaderDeclarationType.wsdlMessageName" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="rootElementName" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SecurityHeaderDeclarationType.rootElementName" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="wsdlPartName" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SecurityHeaderDeclarationType.wsdlPartName" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Table definition -->
+	<xs:complexType name="ProfileType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ProfileType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/profile</primaryKeys>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="profile">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ProfileType.profile" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForGlobalPermissionConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HistoryType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.HistoryType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+					<defaultLabel>${./profile} [${./schemaKey}]</defaultLabel>
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.id" />
+					<xs:appinfo>
+						<osd:autoIncrement />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="profile" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.profile" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForGlobalPermissionConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="instanceReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.instanceReference" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="homeKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.homeKey" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dataservices.util.wsdl.DslHomeEditor" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.schemaKey" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="targetNamespace" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.targetNamespace" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="wsdlConfiguration" osd:access="RW" osd:class="com.orchestranetworks.dataservices.util.wsdl.DslConfiguration">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.wsdlConfiguration" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tablePath">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.HistoryType.wsdlConfiguration.tablePath" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string" />
+							</xs:simpleType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="actions">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.HistoryType.wsdlConfiguration.actions" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wsdl">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.HistoryType.wsdl" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="osd:text" />
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="JMSEndPointType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.JMSEndPointType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name</primaryKeys>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JMSEndPointType.name" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:excludeValue value="ebx-dataservices">
+								<osd:defaultErrorMessage osd:id="complexType.JMSEndPointType.name.otherFacets.excludeValue.defaultErrorMessage" />
+							</osd:excludeValue>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="url">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JMSEndPointType.url" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

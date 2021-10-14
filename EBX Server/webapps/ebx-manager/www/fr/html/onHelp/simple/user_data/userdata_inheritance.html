@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - H&eacute;ritage entre jeux de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="data_inheritance" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Jeux de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/userdata_inheritance.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+<h1>
+H&eacute;ritage entre jeux de donn&eacute;es</h1>
+<p>En utilisant le concept d&#39;h&eacute;ritage entre jeux de donn&eacute;es, vous pouvez cr&eacute;er des jeux de donn&eacute;es additionnels, &agrave; partir d&#39;un jeu de donn&eacute;es racine. Ces jeux de donn&eacute;es enfants h&eacute;ritent des propri&eacute;t&eacute;s et des valeurs de leur parents, qui peuvent &ecirc;tre surcharg&eacute;es si n&eacute;cessaire. Plusieurs niveaux d&#39;h&eacute;ritage peuvent &ecirc;tre cr&eacute;&eacute;s.</p><p>L&#39;h&eacute;ritage peut &ecirc;tre utilis&eacute; pour adapter des donn&eacute;es de r&eacute;f&eacute;rence &agrave; divers contextes. Par exemple, il serait possible de d&eacute;finir des valeurs globales dans un jeu de donn&eacute;es parent, et de cr&eacute;er des jeux de donn&eacute;es enfants par zones g&eacute;ographiques. Ceci permettra &agrave; ces derniers d&#39;h&eacute;riter des valeurs de leur parent, et de les surcharger si besoin.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Le comportement standard est d&#39;interdire l&#39;h&eacute;ritage de jeux de donn&eacute;es. Il est donc n&eacute;cessaire d&#39;activer explicitement cette fonction au niveau du mod&egrave;le de donn&eacute;es.</p></div>
+<div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_configuring.html#configuration">Configuration du mod&egrave;le de donn&eacute;es</a></li></ul>
+</div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#tree">Structure de l&#39;h&eacute;ritage entre jeux de donn&eacute;es</a></li><li class="toc1"><a href="#value">H&eacute;ritage de valeurs</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">H&eacute;ritage d&#39;enregistrement</a></li></ul>
+</li></ul>
+</div>
+<h2 id="tree">
+Structure de l&#39;h&eacute;ritage entre jeux de donn&eacute;es</h2>
+<p>Une fois le jeu de donn&eacute;es racine cr&eacute;&eacute;, un jeu de donn&eacute;es enfant peut &ecirc;tre cr&eacute;&eacute; &agrave; l&#39;aide du bouton <img alt="Create a child dataset button" src="../resources/images/icons/ebx_add.png" width="16" height="16"></img>, situ&eacute; dans l&#39;&eacute;cran de s&eacute;lection des jeux de donn&eacute;es du panneau de navigation.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><ul>
+<li><p>Un jeu de donn&eacute;es ne peut pas &ecirc;tre supprim&eacute; s&#39;il a des jeux de donn&eacute;es enfants. Ces enfants doivent &ecirc;tre supprim&eacute;s pr&eacute;alablement.</p></li><li><p>Si un jeu de donn&eacute;es enfant est dupliqu&eacute;, le jeu de donn&eacute;es nouvellement cr&eacute;&eacute; sera ins&eacute;r&eacute; dans l&#39;arbre des jeux de donn&eacute;es existants, au m&ecirc;me niveau de l&#39;arbre que le jeu de donn&eacute;es dupliqu&eacute;. </p></li></ul>
+</p></div>
+<h2 id="value">
+H&eacute;ritage de valeurs</h2>
+<p>Quand un jeu de donn&eacute;es enfant est cr&eacute;&eacute;, il h&eacute;rite de toutes les valeurs des champs et des enregistrements de tables de son parent. Un champ ou un enregistrement peut soit h&eacute;riter ses valeurs, soit les surcharger.</p><p>Dans une vue tabulaire, les valeurs h&eacute;rit&eacute;es sont signal&eacute;es par un rep&egrave;re dans le coin en haut &agrave; gauche de la cellule.</p><p>Le bouton <img alt="Inherit/overwrite a value button" src="../resources/images/icons/ebx_setInherited.png" width="16" height="16"></img> permet de surcharger une valeur.</p><h3 id="id2s1">
+H&eacute;ritage d&#39;enregistrement</h3>
+<p>Une table dans un jeu de donn&eacute;es enfant h&eacute;rite des enregistrements des tables de ses jeux de donn&eacute;es anc&ecirc;tres. La table dans le jeu de donn&eacute;es enfant peut rajouter, &eacute;diter ou supprimer des enregistrements. Des &eacute;tats sont d&eacute;finis pour diff&eacute;rencier les types d&#39;enregistrement.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Racine</p></td><td class="ebx_definitionListDefinition"><p>Un enregistrement racine est un enregistrement cr&eacute;&eacute; dans le jeu de donn&eacute;es courant, qui n&#39;existe pas dans les jeux de donn&eacute;es anc&ecirc;tres. Il sera h&eacute;rit&eacute; par les jeux de donn&eacute;es enfants.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>H&eacute;rit&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Un enregistrement h&eacute;rit&eacute; est d&eacute;fini dans un des jeux de donn&eacute;es anc&ecirc;tres du jeu de donn&eacute;es courant.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Surcharg&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Un enregistrement surcharg&eacute; est un enregistrement h&eacute;rit&eacute; dont les valeurs sont &eacute;dit&eacute;es dans le jeu de donn&eacute;es courant. Les valeurs surcharg&eacute;es seront h&eacute;rit&eacute;es par les jeux de donn&eacute;es enfants.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Occult&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Un enregistrement occult&eacute; est un enregistrement h&eacute;rit&eacute; qui est supprim&eacute; du jeu de donn&eacute;es courant. Il apparaîtra toujours dans le jeu de donn&eacute;es courant comme un enregistrement barr&eacute;, mais il ne sera pas h&eacute;rit&eacute; par les jeux de donn&eacute;es enfants.</p></td></tr>
+</table>
+<p>Quand le bouton <img alt="Inherit/overwrite a value button" src="../resources/images/icons/ebx_setInherited.png" width="16" height="16"></img> est activ&eacute;, la valeur de l&#39;enregistrement est h&eacute;rit&eacute;e du jeu de donn&eacute;es parent. Ce bouton peut &ecirc;tre d&eacute;sactiv&eacute;, afin de surcharger l&#39;enregistrement ou la valeur. Pour un enregistrement occult&eacute;, l&#39;activation de ce bouton restaure l&#39;&eacute;tat h&eacute;rit&eacute;.</p><p>La table suivante r&eacute;sume le comportement des enregistrements lorsque l&#39;on cr&eacute;e, modifie, ou supprime un enregistrement, selon son &eacute;tat initial.</p><table border="1px" cellpadding="5px" width="100%">
+<thead>
+<tr>
+<th><p><strong>Etat</strong></p></th><th><p><strong>Cr&eacute;ation</strong></p></th><th><p><strong>Edition</strong></p></th><th><p><strong>Suppression</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><strong>Racine</strong></p></td><td valign="top"><p>Cr&eacute;ation normale d&#39;un enregistrement. L&#39;enregistrement nouvellement cr&eacute;&eacute; sera h&eacute;rit&eacute; par ses jeux de donn&eacute;es enfant.</p></td><td valign="top"><p>Edition normale d&#39;un enregistrement. Les nouvelles valeurs seront h&eacute;rit&eacute;es par les jeux de donn&eacute;es enfants.</p></td><td valign="top"><p>Suppression normale d&#39;un enregistrement. L&#39;enregistrement va disparaître du jeu de donn&eacute;es courant ainsi que des jeux de donn&eacute;es enfants.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>H&eacute;rit&eacute;</strong></p></td><td valign="top"><p>Si un enregistrement est cr&eacute;&eacute; &agrave; l&#39;aide de la cl&eacute; primaire d&#39;un enregistrement h&eacute;rit&eacute; existant, l&#39;&eacute;tat de l&#39;enregistrement devient surcharg&eacute;, et sa valeur sera celle soumise &agrave; sa cr&eacute;ation.</p></td><td valign="top"><p>Un enregistrement h&eacute;rit&eacute; doit &ecirc;tre d&eacute;clar&eacute; comme surcharg&eacute; pour que ses valeurs soient modifiables.</p></td><td valign="top"><p>Supprimer un enregistrement h&eacute;rit&eacute; change son &eacute;tat &agrave; &quot;occult&eacute;&quot;.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>Surcharg&eacute;</strong></p></td><td valign="top"><p>Non applicable. Il est impossible de cr&eacute;er un nouvel enregistrement si la cl&eacute; primaire est d&eacute;j&agrave; utilis&eacute;e.</p></td><td valign="top"><p>Un enregistrement surcharg&eacute; peut &ecirc;tre remis &agrave; l&#39;&eacute;tat &quot;h&eacute;rit&eacute;&quot;, mais sa valeur sp&eacute;cifique sera perdue.</p><p>Les valeurs de l&#39;enregistrement surcharg&eacute; peuvent &ecirc;tre h&eacute;rit&eacute;es ou modifi&eacute;es.</p></td><td valign="top"><p>Supprimer un enregistrement surcharg&eacute; change son &eacute;tat &agrave; &quot;occult&eacute;&quot;.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>Occult&eacute;</strong></p></td><td valign="top"><p>Si un enregistrement est cr&eacute;&eacute; en utilisant la cl&eacute; primaire de l&#39;enregistrement existant occult&eacute;, l&#39;&eacute;tat de l&#39;enregistrement devient &quot;surcharg&eacute;&quot; et sa valeur sera celle soumise &agrave; la cr&eacute;ation.</p></td><td valign="top"><p>Non applicable. Un enregistrement occult&eacute; ne peut plus &ecirc;tre &eacute;dit&eacute;.</p></td><td valign="top"><p>Non applicable. Un enregistrement occult&eacute; est d&eacute;j&agrave; consid&eacute;r&eacute; comme supprim&eacute;, et ne peut donc pas &ecirc;tre supprim&eacute; une deuxi&egrave;me fois.</p></td></tr>
+</tbody>
+</table>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

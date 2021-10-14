@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns="urn:ebx-schemas:session_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" targetNamespace="urn:ebx-schemas:session_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="common_1.0.xsd"/>
+	<xs:include schemaLocation="coreModel_1.0.xsd"/>
+	<xs:complexType name="UserSessionType" osd:access="--:--:--" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Configuration, Paramètres et Données</osd:label>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Data model and Parameters</osd:label>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localParamTree" type="UserSession_localParamTreeType" osd:access="CC:CC:--" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Session utilisateur : Paramètres locaux</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Session: Local Param Tree</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="generalInformation" type="UserSession_generalInformationType">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Session utilisateur : Informations générales</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Session: Business Context Information</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fsm" type="UserSession_FSMType" osd:access="CC:CC:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Session utilisateur : Informations de navigation</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Session: Navigation Information</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endUser" type="UserSession_endUserType" osd:access="CC:CC:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Session utilisateur : Informations utilisateur</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Session: User Information</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sessionInfo" type="UserSession_sessionInfoType" osd:access="--:CC:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Paramètres de Session et Localisation</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Session Configuration and Localization</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="requestInfo" type="UserSession_requestInfoType" osd:access="CC:CC:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Session utilisateur: Informations de requête</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Session: Request Information</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="interfaceConfiguration" type="UserSession_interfaceConfigurationType" osd:access="--:CC:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Configuration des URLs</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Interface Configuration</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="domain" type="DomainType" osd:access="--:--:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Données et Paramètres d'Adaptation</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation Data Model</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_endUserType" osd:access="CC:CC:RW" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession_endUser">
+		<xs:sequence>
+			<xs:element name="ip" type="UserSession_endUser_ipType">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Identité IP de l'utilisateur</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User IP identity</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="browser" type="UserSession_endUser_browserType">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Navigateur internet</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Internet browser</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="initialRequestReferer" type="xs:string" osd:persistent="true">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL d'origine (referrer) de la requête initiale</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Internet Referrer URL of initial request</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastRequestReferer" type="xs:string" osd:persistent="true">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL d'origine (referrer) de la dernière requête</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User Internet Referer URL of last request</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_endUser_browserType" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession_endUser_browser">
+		<xs:sequence>
+			<xs:element name="userAgent" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>User-Agent</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User-Agent</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="languages" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Langues</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Languages</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_endUser_ipType" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession_endUser_ip">
+		<xs:sequence>
+			<xs:element name="addressV4" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Adresse IP</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User IP address</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="domain" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Domaine IP</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User IP domain</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_FSMType" osd:access="CC:CC:RW" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession_FSM">
+		<xs:sequence>
+			<xs:element name="currentState" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Etat courant</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Current state</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="currentPage" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Page courante</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Current page</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reloadablePage" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Page à recharger lors de la restauration de la session.</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Page to reload when restoring user session.</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_generalInformationType" osd:access="CC:CC:RW" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession_generalInformation">
+		<xs:sequence>
+			<xs:element name="webProcessName" type="xs:string" osd:access="--:--:R-" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Nom de l'application</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Application name</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customizationName" type="xs:string" osd:access="--:--:R-" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Nom de l'adaptation</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation name</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customizationVersion" type="xs:string" osd:access="--:--:R-" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Version de l'adaptation</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation version</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_localParamTreeType" osd:access="CC:CC:RW" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession_localParamTree">
+		<xs:sequence>
+			<xs:element name="typeString" type="xs:string" osd:access="--:--:R-" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Utilisé par les paramètres locaux de type String</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>used by all local params of type String</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_requestInfoType" osd:persistent="false" osd:class="com.onwbp.core.session.UserSession_requestInfo">
+		<xs:sequence>
+			<xs:element name="protocol" type="xs:string" osd:access="CC:CC:RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Protocole</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Protocol</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="port" type="xs:integer" osd:access="CC:CC:RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestURI" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URI de requête</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Request URI</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="focusElement" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Focus</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Focus element</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="anchorElement" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Ancre</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Anchor element</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UserSession_sessionInfoType" osd:persistent="true" osd:class="com.onwbp.core.session.UserSession_sessionInfo">
+		<xs:sequence>
+			<xs:element name="activationId" type="xs:string" osd:access="CC:CC:RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Identifiant d'activation</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Activation ID</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customizationVersion" type="xs:string" osd:access="CC:CC:RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Version d'activation</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation version</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locale" type="osd:locale">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.core.session.ModuleLocalesEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Internationalisation (langue, pays, variante)</osd:label>
+						<osd:description>format : "language_COUNTRY_variant", 'language'=2-lettres en minuscule, 'country'=2-lettres en majuscule, 'language' OU (exclusif) 'country' optionnel, 'variant' optionnel (si c'est le cas, le caractère précédent '_' doit être omis).</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Internationalization (language, country, variant)</osd:label>
+						<osd:description>format : "language_COUNTRY_variant", language=2-letter lowercase, country=2-letter uppercase, language OR (exclusive) country optional, variant optional (if so, preceding _ must be omitted).</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxInactiveInterval" default="1800">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Durée de session inactive (en secondes)</osd:label>
+						<osd:description>Durée maximale d'inactivité de la session utilisateur avant destruction de celle-ci ('time-out')</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Session time-out (in seconds)</osd:label>
+						<osd:description>Maximum time of inactivity of the end-user before he will be considered as inactive (so its session will be terminated).</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0" osd:index="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="timeStampInitialRequest" type="xs:dateTime" osd:access="CC:CC:RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>date/heure de début</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Beginning date/time</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="timeStampLastRequest" type="xs:dateTime" osd:access="CC:CC:RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>date/heure de dernière requête</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Last request date/time</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sessionId" type="xs:string" osd:access="CC:CC:RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Identifiant de session</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Session ID</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="urlLabel" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Décoration de l'URL</osd:label>
+						<osd:description>Libellé apparaissant dans l'URL de la session utilisateur (utilisé, par exemple, pour personnaliser l'URL avec des mentions spécifiques au distributeur)</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>User-friendly label in URL</osd:label>
+						<osd:description>Customized label appearing in URL during user session (used to customize URL with distributor information).</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_interfaceConfigurationType" osd:class="com.onwbp.core.session.UserSession_interfaceConfiguration">
+		<xs:sequence>
+			<xs:element name="entryConfiguration" type="UserSession_entryConfigurationType" osd:access="--:CC:--" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL d'accès</osd:label>
+						<osd:description>URL d'accès à l'application 'adaptée'.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Entry Policy</osd:label>
+						<osd:description>Describes URL to access adapted application.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="urlConfiguration" type="UserSession_urlConfigurationType" osd:access="--:CC:--" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URLs de session</osd:label>
+						<osd:description>Les URLs en cours de session peuvent être configurées si nécessaire (cas d'utilisation d'un reverse proxy, par exemple).&lt;br&gt;Dans le cas général, aucune valeur n'est définie.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>URL Policy</osd:label>
+						<osd:description>Describes URL and proxy policy.&lt;br&gt;Both dynamic (servlet) and static (ressources) urls can be configured.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exitConfiguration" type="UserSession_exitConfigurationType" osd:access="--:CC:--" osd:persistent="false">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URLs de sortie</osd:label>
+						<osd:description>Les URLs de fin de session sont configurées dans cette section. Le nombre de sorties possibles dépend de la configuration du service.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Exit Policy</osd:label>
+						<osd:description>Describes how to exit adapted application.&lt;br&gt;Additional parameters may be added to exit request with DataSharing OUT.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServerPathHttpType" osd:persistent="true" osd:class="com.onwbp.core.session.ServerPathHttp">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Configuration serveur (HTTP)</osd:label>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Server path (HTTP)</osd:label>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="isBeanValueDefined" type="xs:boolean" default="false" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useLocalUrl" type="xs:boolean" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL locale ?</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Use local URL</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="host" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Nom du serveur</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Host name</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="(([a-zA-Z\\d](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?)\\.)*[a-zA-Z](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?))|((([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9])\\.){3}([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9]))" osd:display="true" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le nom du serveur est incorrect.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>Host has incorrect syntax.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="port" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être strictement positif.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be strictly positive.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:minInclusive>
+						<xs:maxExclusive value="65536" osd:index="1">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être inférieur à 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be less than 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:maxExclusive>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="path" type="xs:string" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Chemin d'accès</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Path</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useHttpsSettings" type="xs:boolean" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Utiliser les paramètres HTTPS ?</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Use HTTPS settings (forced)</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NewUIServerPathHttpType" osd:persistent="true" osd:class="com.onwbp.core.session.NewUIServerPathHttp">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Configuration serveur UI (HTTP)</osd:label>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>UI Server path (HTTP)</osd:label>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="isBeanValueDefined" type="xs:boolean" default="false" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useLocalUrl" type="xs:boolean" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL locale ?</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Use local URL</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="host" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Nom du serveur</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Host name</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="(([a-zA-Z\\d](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?)\\.)*[a-zA-Z](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?))|((([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9])\\.){3}([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9]))" osd:display="true" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le nom du serveur est incorrect.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>Host has incorrect syntax.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="port" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être strictement positif.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be strictly positive.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:minInclusive>
+						<xs:maxExclusive value="65536" osd:index="1">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être inférieur à 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be less than 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:maxExclusive>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="path" type="xs:string" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Chemin d'accès</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Path</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useHttpsSettings" type="xs:boolean" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Utiliser les paramètres HTTPS ?</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Use HTTPS settings (forced)</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServerPathHttpsType" osd:persistent="true" osd:class="com.onwbp.core.session.ServerPathHttps">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Configuration serveur (HTTPS)</osd:label>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Server path (HTTPS)</osd:label>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="isBeanValueDefined" type="xs:boolean" default="false" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useLocalUrl" type="xs:boolean" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL locale ?</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Use local URL</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="host" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Nom du serveur</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Host name</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="(([a-zA-Z\\d](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?)\\.)*[a-zA-Z](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?))|((([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9])\\.){3}([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9]))" osd:display="true" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le nom du serveur est incorrect.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>Host has incorrect syntax.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="port" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être strictement positif.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be strictly positive.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:minInclusive>
+						<xs:maxExclusive value="65536" osd:index="1">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être inférieur à 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be less than 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:maxExclusive>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="path" type="xs:string" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Chemin d'accès</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Path</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NewUIServerPathHttpsType" osd:persistent="true" osd:class="com.onwbp.core.session.NewUIServerPathHttps">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Configuration serveur UI (HTTPS)</osd:label>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>UI Server path (HTTPS)</osd:label>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="isBeanValueDefined" type="xs:boolean" default="false" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>(internal)</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useLocalUrl" type="xs:boolean" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL locale ?</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Use local URL</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="host" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Nom du serveur</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Host name</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="(([a-zA-Z\\d](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?)\\.)*[a-zA-Z](([a-zA-Z\\d]|-)*[a-zA-Z\\d]?))|((([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9])\\.){3}([2][5][0-5]|[2][0-4][0-9]|[0-1][0-9][0-9]|[0-9]|[0-9][0-9]))" osd:display="true" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le nom du serveur est incorrect.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>Host has incorrect syntax.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="port" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Port</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1" osd:index="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être strictement positif.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be strictly positive.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:minInclusive>
+						<xs:maxExclusive value="65536" osd:index="1">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:defaultErrorMessage>Le port TCP doit être inférieur à 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:defaultErrorMessage>TCP port must be less than 65535.</osd:defaultErrorMessage>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:maxExclusive>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="path" type="xs:string" minOccurs="0" osd:access="RW:--:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Chemin d'accès</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Path</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_entryConfigurationType" osd:persistent="false" osd:class="com.onwbp.core.session.UserSession_entryConfiguration">
+		<xs:sequence>
+			<xs:element name="loginUrl" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL de login</osd:label>
+						<osd:description>Si l'utilisateur n'est pas authentifié, il est redirigé vers cette url.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Login URL</osd:label>
+						<osd:description>If the user is not authenticated, its session is forwarded to this url.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_exitConfigurationType" osd:persistent="false" osd:class="com.onwbp.core.session.UserSession_exitConfiguration">
+		<xs:sequence>
+			<xs:element name="normalRedirection" type="UrlRedirectionType" osd:access="RW:--:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Redirection nominale</osd:label>
+						<osd:description>URL vers laquelle l'utilisateur est redirigé en fin de session (cas normal).</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Normal redirection</osd:label>
+						<osd:description>URL redirection address used when exiting the session normally.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="errorRedirection" type="UrlRedirectionType" osd:access="RW:--:--">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Redirection en erreur</osd:label>
+						<osd:description>URL vers laquelle l'utilisateur est redirigé en fin de session suite à une erreur.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Error redirection</osd:label>
+						<osd:description>URL redirection address used when exiting the session with error.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UrlRedirectionType" osd:persistent="false" osd:class="com.onwbp.core.session.UrlRedirection">
+		<xs:sequence>
+			<xs:element name="url" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>URL cible</osd:label>
+						<osd:description>URL vers laquelle l'utilisateur est redirigé, en fin de session (ex : https://www.tibco.com).</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>URL Redirection</osd:label>
+						<osd:description>User redirection url (ex: https://www.tibco.com).</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="method" default="POST">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Méthode de transfert</osd:label>
+						<osd:description>Mode de transfert des données ("datasharing out") via HTTP.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>HTTP method</osd:label>
+						<osd:description>HTTP method to transfer data (post/get)</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="no Data" osd:label="No data transfer"/>
+						<xs:enumeration value="GET" osd:label="HTTP GET method"/>
+						<xs:enumeration value="POST" osd:label="HTTP POST Method"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="target" type="xs:string" default="" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Frame cible (target)</osd:label>
+						<osd:description>Fenêtre ou frame dans laquelle l'URL de redirection est appelée (ex : _self, _top, _blank, _parent, etc.).</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Target frame name</osd:label>
+						<osd:description>HTML target (_self, _top, _blank, _parent, or any frame name)</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserSession_urlConfigurationType" osd:persistent="false" osd:class="com.onwbp.core.session.UserSession_urlConfiguration">
+		<xs:sequence>
+			<xs:element name="servletHttp" type="ServerPathHttpType" osd:access="RW:CC:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Servlet configuration - mode HTTP</osd:label>
+						<osd:description>URL configuration des ressources dynamiques en mode HTTP.&lt;li&gt;Si une valeur de champ est vide, une valeur est calculée en fonction du contexte d'exécution.&lt;/li&gt;&lt;li&gt;Si aucune valeur n'est renseignée, la configuration est déduite en fonction du contexte d'exécution.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>HTTP Servlet Policy</osd:label>
+						<osd:description>Header Content of Servlet HTTP request:&lt;li&gt;if a field is not set, default value is chosen (in environment configuration),&lt;/li&gt;&lt;li&gt;if default value is not set, value carried by initial request is chosen.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uiServletHttp" type="NewUIServerPathHttpType" osd:access="RW:CC:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>UI Servlet configuration - mode HTTP</osd:label>
+						<osd:description>URL configuration des ressources dynamiques en mode HTTP.&lt;li&gt;Si une valeur de champ est vide, une valeur est calculée en fonction du contexte d'exécution.&lt;/li&gt;&lt;li&gt;Si aucune valeur n'est renseignée, la configuration est déduite en fonction du contexte d'exécution.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>HTTP UI Servlet Policy</osd:label>
+						<osd:description>Header Content of Servlet HTTP request:&lt;li&gt;if a field is not set, default value is chosen (in environment configuration),&lt;/li&gt;&lt;li&gt;if default value is not set, value carried by initial request is chosen.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="servletHttps" type="ServerPathHttpsType" osd:access="RW:CC:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Servlet configuration - mode HTTPS</osd:label>
+						<osd:description>URL configuration des ressources dynamiques en mode HTTPS.&lt;li&gt;Si une valeur de champ est vide, une valeur est calculée en fonction du contexte d'exécution.&lt;/li&gt;&lt;li&gt;Si aucune valeur n'est renseignée, la configuration est déduite en fonction du contexte d'exécution.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>HTTPS Servlet Policy</osd:label>
+						<osd:description>Header Content of Servlet HTTPS request:&lt;li&gt;if a field is not set, default value is chosen (in environment configuration),&lt;/li&gt;&lt;li&gt;if default value is not set, value carried by initial request is chosen.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uiServletHttps" type="NewUIServerPathHttpsType" osd:access="RW:CC:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>UI Servlet configuration - mode HTTPS</osd:label>
+						<osd:description>URL configuration des ressources dynamiques en mode HTTPS.&lt;li&gt;Si une valeur de champ est vide, une valeur est calculée en fonction du contexte d'exécution.&lt;/li&gt;&lt;li&gt;Si aucune valeur n'est renseignée, la configuration est déduite en fonction du contexte d'exécution.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>HTTPS UI Servlet Policy</osd:label>
+						<osd:description>Header Content of Servlet HTTPS request:&lt;li&gt;if a field is not set, default value is chosen (in environment configuration),&lt;/li&gt;&lt;li&gt;if default value is not set, value carried by initial request is chosen.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="externalResourceHttp" type="ServerPathHttpType" osd:access="RW:CC:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Ressources configuration - mode HTTP</osd:label>
+						<osd:description>URL configuration des ressources statiques en mode HTTP.&lt;li&gt;Si une valeur de champ est vide, une valeur est calculée en fonction du contexte d'exécution.&lt;/li&gt;&lt;li&gt;Si aucune valeur n'est renseignée, la configuration est déduite en fonction du contexte d'exécution.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>HTTP External resource Policy</osd:label>
+						<osd:description>Header Content of External resource URL in HTTP:&lt;li&gt;if a field is not set, default value is chosen (in environment configuration),&lt;/li&gt;&lt;li&gt;if default value is not set, value carried by initial request is chosen.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="externalResourceHttps" type="ServerPathHttpsType" osd:access="RW:CC:R-">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Ressources configuration - mode HTTPS</osd:label>
+						<osd:description>URL configuration des ressources statiques en mode HTTPS.&lt;li&gt;Si une valeur de champ est vide, une valeur est calculée en fonction du contexte d'exécution.&lt;/li&gt;&lt;li&gt;Si aucune valeur n'est renseignée, la configuration est déduite en fonction du contexte d'exécution.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>HTTPS External resource Policy</osd:label>
+						<osd:description>Header Content of External resource URL in HTTPS:&lt;li&gt;if a field is not set, default value is chosen (in environment configuration),&lt;/li&gt;&lt;li&gt;if default value is not set, value carried by initial request is chosen.&lt;/li&gt;</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DomainType">
+		<xs:sequence/>
+	</xs:complexType>
+
+
+</xs:schema>

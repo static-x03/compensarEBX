@@ -1,0 +1,27 @@
+{
+  "content": [
+    {
+      "label": "Germinal",
+      "memberValue": "book01",
+      "member": "http://localhost:8080/ebx-dataservices/rest/.../BooksByAuthors/members/author0/members/book1",
+      ...
+    },
+
+    ...,
+
+    {
+      "label": "La bête humaine",
+      "memberValue": "book32",
+      "member": "http://localhost:8080/ebx-dataservices/rest/.../BooksByAuthors/members/author0/members/book32",
+      ...
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://localhost:8080/ebx-dataservices/rest/.../BooksByAuthors/members/author0?pageAction=next&amp;pageCursor=book32",
+    "lastPage": "http://localhost:8080/ebx-dataservices/rest/.../BooksByAuthors/members/author0?pageAction=last"
+  }
+}
+
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Edition des donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="data_dataset" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Jeux de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/userdata_editing.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+<h1>
+Edition des donn&eacute;es</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#editRecord">Actions sur les enregistrements dans l&#39;interface utilisateur</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Cr&eacute;ation d&#39;un enregistrement</a></li><li class="toc2"><a href="#id1s2">Modification d&#39;un enregistrement</a></li><li class="toc2"><a href="#id1s3">Dupliquer un enregistrement</a></li><li class="toc2"><a href="#id1s4">Supprimer</a></li><li class="toc2"><a href="#id1s5">Comparer</a></li></ul>
+</li><li class="toc1"><a href="#id2">Import et export de donn&eacute;es</a></li><li class="toc1"><a href="#restoreFromHistory">Restauration depuis l&#39;historique</a></li></ul>
+</div>
+<h2 id="editRecord">
+Actions sur les enregistrements dans l&#39;interface utilisateur</h2>
+<p>L&#39;&eacute;dition des enregistrements s&#39;effectue dans l&#39;espace de travail de l&#39;interface utilisateur.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Seuls les utilisateurs autoris&eacute;s peuvent acc&eacute;der &agrave; cet &eacute;cran via la &#39;Perspective avanc&eacute;e&#39; ou via une perspective sp&eacute;cifique.</p></div>
+<h3 id="id1s1">
+Cr&eacute;ation d&#39;un enregistrement</h3>
+<p>Dans la vue tabulaire, un nouvel enregistrement peut &ecirc;tre cr&eacute;&eacute; &agrave; l&#39;aide du bouton <img alt="/ebx_add.png" src="../resources/images/icons/ebx_add.png" width="16" height="16"></img> situ&eacute; en haut &agrave; gauche de la table.</p><p>Dans une vue hi&eacute;rarchique, s&eacute;lectionnez &quot;Cr&eacute;er un enregistrement&quot; dans le menu du noeud parent du nouvel enregistrement.</p><p>Dans les deux cas, un formulaire s&#39;affiche, permettant d&#39;entrer des donn&eacute;es. Les donn&eacute;es obligatoires sont rep&eacute;r&eacute;es par une ast&eacute;risque rouge.</p><h3 id="id1s2">
+Modification d&#39;un enregistrement</h3>
+<p>Un enregistrement peut &ecirc;tre &eacute;dit&eacute; par double clic. Le formulaire qui s&#39;affiche permet d&#39;&eacute;diter l&#39;enregistrement, tandis que le bouton <em> R&eacute;tablir</em> permet de recharger le formulaire sans soumettre aucun des changements effectu&eacute;s.</p><h3 id="id1s3">
+Dupliquer un enregistrement</h3>
+<p>Pour dupliquer un enregistrement, s&eacute;lectionnez-le, puis s&eacute;lectionnez <em>Actions &gt; Dupliquer</em>. </p><p>Un formulaire apparaît, pr&eacute;-rempli &agrave; partir des valeurs de l&#39;enregistrement copi&eacute;. La cl&eacute; primaire doit ensuite &ecirc;tre modifi&eacute;e pour pouvoir cr&eacute;er ce nouvel enregistrement, &agrave; moins qu&#39;elle ne soit g&eacute;n&eacute;r&eacute;e automatiquement (&agrave; l&#39;exemple d&#39;une valeur auto-incr&eacute;ment&eacute;e).</p><h3 id="id1s4">
+Supprimer</h3>
+<p>Pour supprimer un ou plusieurs enregistrements s&eacute;lectionn&eacute;s, s&eacute;lectionnez <em>Actions &gt; Supprimer</em>. </p><h3 id="id1s5">
+Comparer</h3>
+<p>Deux enregistrements s&eacute;lectionn&eacute;s peuvent &ecirc;tre compar&eacute;s en s&eacute;lectionnant <em>Actions &gt; Comparer</em>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>La comparaison ne prend pas en compte le contenu des noeuds terminaux complexes, comme les listes aggr&eacute;g&eacute;es ou les attributs utilisateurs. Toutes les diff&eacute;rences portant sur de tels noeuds seront ignor&eacute;es.</p></div>
+<h2 id="id2">
+Import et export de donn&eacute;es</h2>
+<p>Dans une table, les enregistrements peuvent &ecirc;tre import&eacute;s ou export&eacute;s, depuis ou vers les formats CSV ou XML.</p><p>Vous pouvez soit exporter l&#39;ensemble de la table, soit s&eacute;lectionner manuellement certains enregistrements &agrave; exporter, gr&acirc;ce aux cases &agrave; cocher.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_data/csv_services.html">Services CSV</a></li><li><a href="../user_data/xml_services.html">Services XML</a></li></ul>
+</div>
+<h2 id="restoreFromHistory">
+Restauration depuis l&#39;historique</h2>
+<p>Dans une table o&ugrave; l&#39;historique est activ&eacute;, il est possible de restaurer un enregistrement &agrave; un &eacute;tat ant&eacute;rieur en se basant sur son historique. Dans le cas o&ugrave; l&#39;enregistrement (identifi&eacute; par sa cl&eacute; primaire) existe encore dans la table, il sera mis &agrave; jour par les valeurs historis&eacute;es &agrave; restaurer. Dans le cas contraire, il sera cr&eacute;&eacute;.</p><p>Pour restituer un enregistrement &agrave; un &eacute;tat ant&eacute;rieur, s&eacute;lectionner un enregistrement dans la vue d&#39;historique, puis s&eacute;lectionner <em> Actions &gt; Restaurer depuis l&#39;historique</em> dans l&#39;espace de travail. Un &eacute;cran de r&eacute;sum&eacute; s&#39;affiche avec les d&eacute;tails de la mise &agrave; jour ou de la cr&eacute;ation &agrave; effectuer.</p><p>La fonctionnalit&eacute; de restauration est uniquement applicable sur un enregistrement &agrave; la fois.</p><p>Si un trigger de table doit avoir un comportement sp&eacute;cifique pour la restauration, c&#39;est &agrave; dire diff&eacute;rent de celui des op&eacute;rations classiques de cr&eacute;ation et de mise &agrave; jour, le d&eacute;veloppeur peut utiliser la m&eacute;thode <a target="_blank" href="../Java_API/com/orchestranetworks/schema/trigger/TableTriggerExecutionContext.html#isHistoryRestore--"><code>TableTriggerExecutionContext.isHistoryRestore</code></a>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>Il existe des limitations li&eacute;es &agrave; la fonctionnalit&eacute; de l&#39;historique :</p><ul>
+<li><p>La restauration depuis l&#39;historique n&#39;est pas disponible pour les tables contenant des listes non support&eacute;es par l&#39;historique. Voir <a href="../references/history.html#limitationsDataModel">Limitations du mod&egrave;le de donn&eacute;es</a>.</p></li><li><p>Les types de champ suivants ne sont pas historis&eacute;s&nbsp;:&nbsp;les valeurs calcul&eacute;es, les champs crypt&eacute;s, ainsi que les champs dont l&#39;historique est d&eacute;sactiv&eacute;. Ces champs seront donc ignor&eacute;s lors de la restauration d&#39;un enregistrement depuis l&#39;historique.</p></li></ul>
+</p></div>
+<div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../references/history.html">Historique</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

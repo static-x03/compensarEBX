@@ -1,0 +1,12 @@
+ebx.batch = com.onwbp.tools.ant.EbxBatchTask
+urlChecker = com.orchestranetworks.doc.checker.URLChecker
+urlMatcher = com.orchestranetworks.doc.checker.URLMatcher
+releaseNoteGenerator = com.orchestranetworks.doc.releasenotes.ReleaseNoteGenerator
+builtInServicesDocGenerator = com.orchestranetworks.doc.services.BuiltInServiceDocGenerator
+docHtmlGenerator = com.orchestranetworks.doc.xdb.XdbAntTask
+docLinkGenerator = com.orchestranetworks.doc.link.DocLinkClassGenerator
+docLinkChecker = com.orchestranetworks.doc.link.DocLinkChecker
+docAnchorChecker = com.orchestranetworks.doc.link.DocAnchorChecker
+publicAPIChecker = com.orchestranetworks.doc.checker.PublicAPIChecker
+installationScriptGenerator = com.orchestranetworks.cce.rdb.installation.DbuScriptGeneratorAntTask
+concatStaticResources = com.onwbp.tools.ant.ConcatStaticHTMLResourcesTask

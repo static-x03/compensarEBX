@@ -1,0 +1,5 @@
+/*
+ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
+*/
+CKEDITOR.editorConfig=function(e){e.toolbar=["Bold Italic Underline - TextColor BGColor".split(" "),["Font","FontSize"],["JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock"],["RemoveFormat"],["NumberedList","BulletedList"],["Outdent","Indent"],["Cut","Copy","Paste","PasteText","PasteFromWord"],["Link","Unlink"],["Image"],["Preview","Print"],["Maximize"]],e.ebx_toolbarGroupIndexToDisplayOnCollapsed=[0,2,4,11],e.allowedContent=!0,e.resize_dir="both",e.resize_minHeight=200,e.resize_minWidth=300,e.toolbarCanCollapse=!0,e.toolbarStartupExpanded=!1,e.removeButtons="Undo,Redo,Anchor,Strike,Subscript,Superscript",e.removeDialogTabs="link:advanced"},CKEDITOR.config.image_previewText=" ";

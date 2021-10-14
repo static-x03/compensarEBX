@@ -1,0 +1,10 @@
+<xs:element name="autoIncrementedValue" type="xs:int">
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:autoIncrement>
+				<start>100</start>
+				<step>5</step>
+			</osd:autoIncrement>
+		</xs:appinfo>
+	</xs:annotation>
+</xs:element>

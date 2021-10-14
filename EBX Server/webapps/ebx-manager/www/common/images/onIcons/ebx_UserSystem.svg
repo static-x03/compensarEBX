@@ -1,0 +1,11 @@
+<svg width="26" height="26" enable-background="new" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g>
+<path id="path11269" d="m9.5 7.5 1.5-1 0.5-3h3l0.5 3 1.5 1" style="fill:#ffffff;stroke-width:1px;stroke:#ffffff"/>
+<use transform="matrix(-1,0,0,-1,26,26)" width="26" height="26" xlink:href="#path11269"/>
+<use transform="matrix(.5 .86603 -.86603 .5 17.758 -4.7583)" width="26" height="26" xlink:href="#path11269"/>
+<use transform="matrix(-.5 .86603 -.86603 -.5 30.758 8.2417)" width="26" height="26" xlink:href="#path11269"/>
+<use transform="matrix(.5 -.86603 .86603 .5 -4.7583 17.758)" width="26" height="26" xlink:href="#path11269"/>
+<use transform="matrix(-.5 -.86603 .86603 -.5 8.2417 30.758)" width="26" height="26" xlink:href="#path11269"/>
+<path d="m13 6c-3.866 0-7 3.134-7 7 0 3.866 3.134 7 7 7 3.866 0 7-3.134 7-7 0-3.866-3.134-7-7-7zm0 4c1.6569 0 3 1.3431 3 3s-1.3431 3-3 3-3-1.3431-3-3 1.3431-3 3-3z" style="fill:#ffffff"/>
+</g>
+</svg>

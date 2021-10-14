@@ -1,0 +1,9 @@
+{
+  "type": "linkTable",
+  "tablePath": "/root/Inventory",
+  "details": "http://.../BInventory/Inventory/root/Inventory",
+  "linkTablePath": "/root/Inventory",
+  "fieldToSource": "/root/Inventory/store",
+  "fieldToTarget": "/root/Inventory/item",
+  "filter": "./price > 10"
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX(TM) DMA instance [reference=ebx-addon-common] on Thu Nov 28 13:40:51 ICT 2019 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd" />
+	<xs:include schemaLocation="./map-type.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:extensions class="com.orchestranetworks.addon.common.schemaextensions.CommonSchemaExtension" />
+			<osd:inheritance>
+				<dataSetInheritance>none</dataSetInheritance>
+			</osd:inheritance>
+			<ebxbnd:binding targetDirectory="../addon-common/src-api">
+				<javaPathConstants typeName="com.orchestranetworks.addon.common.datatype.map.models.MapPaths">
+					<nodes relativeToRoot="false" root="/root" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.addon.common.i18n.xsdSchema.ebx-addon-common" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:information>@administrative</osd:information>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="map_configuration">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.map_configuration" />
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="crs" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.map_configuration.crs" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/name</primaryKeys>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.map_configuration.crs.name" />
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="definition" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.map_configuration.crs.definition" />
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="400" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

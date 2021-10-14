@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directory>
+    <roles>
+        <name>COMM</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>COMM - Reference Data Approver</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>COMM - Reference Data Entry</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>COMM - Reference Data Self Approver</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PERS</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PERS - Data Approver</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PERS - Data Entry</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PERS - Data Self Approver</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PERS - Reference Data Approver</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PERS - Reference Data Entry</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PERS - Reference Data Self Approver</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>Permissions User</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>Service User</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>Tech Admin</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>Test User</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>Workflow Administrator</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+</directory>

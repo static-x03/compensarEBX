@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		 2001-2021
+
+		******************************************************************************
+		EBX(R) schema.
+		This schema is not meant for modifications.
+		Any modification done on this document can prevent the
+		execution of EBX(R) software.
+		******************************************************************************
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+  <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+  <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+      <osd:extensions class="com.orchestranetworks.manager.core.layout.LayoutSchemaExtensions"/>
+			<osd:inheritance>
+				<dataSetInheritance>none</dataSetInheritance>
+			</osd:inheritance>
+			<ebxbnd:binding targetDirectory="../_ebx/src">
+				<javaPathConstants typeName="com.orchestranetworks.ui.layout.persist.LayoutDefinitionPaths">
+          <nodes relativeToRoot="false" root="/root"/>
+				</javaPathConstants>
+			</ebxbnd:binding>
+      <osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.layoutDefinition"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="defaultLayouts" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+            <xs:documentation osd:id="element.root.defaultLayouts"/>
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/tablePath</primaryKeys>
+								<defaultLabel>${./tablePath}</defaultLabel>
+							</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="tablePath" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+                  <xs:documentation osd:id="element.root.defaultLayouts.tablePath"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+                      <osd:constraintEnumeration class="com.orchestranetworks.manager.core.layout.TargetTableConstraintEnumeration"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="layout" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+                  <xs:documentation osd:id="element.root.defaultLayouts.layout"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/layouts</tablePath>
+												<filter>
+													<predicate>./targetTable = ${../tablePath}</predicate>
+												</filter>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="layouts" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+            <xs:documentation osd:id="element.root.layouts"/>
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/name</primaryKeys>
+								<defaultLabel>${./name}</defaultLabel>
+                <recordForm osd:class="com.orchestranetworks.manager.core.layout.LayoutRecordFormFactory"/>
+								<defaultView>
+									<toolbars>
+										<tabularViewTop>Components</tabularViewTop>
+										<recordTop>ComponentForm</recordTop>
+									</toolbars>
+								</defaultView>
+							</osd:table>
+              <osd:trigger class="com.orchestranetworks.manager.core.layout.LayoutTrigger"/>
+              <osd:otherFacets>
+                <osd:constraint class="com.orchestranetworks.manager.core.layout.LayoutTableConstraint"/>
+              </osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+                  <xs:documentation osd:id="element.root.layouts.name"/>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+                    <xs:pattern value="[a-zA-Z_][a-zA-Z0-9_]*"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="targetTable" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+                  <xs:documentation osd:id="element.root.layouts.targetTable"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+                      <osd:constraintEnumeration class="com.orchestranetworks.manager.core.layout.TargetTableConstraintEnumeration"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+              <xs:element name="expression" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation osd:id="element.root.layouts.body"/>
+                  <xs:appinfo>
+                    <osd:defaultView>
+                      <hidden>true</hidden>
+                      <hiddenInSearch>true</hiddenInSearch>
+                      <hiddenInViews>true</hiddenInViews>
+                      <hiddenInDataServices>true</hiddenInDataServices>
+                    </osd:defaultView>
+                  </xs:appinfo>
+                </xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="components" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+            <xs:documentation osd:id="element.root.components"/>
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/name</primaryKeys>
+								<defaultLabel>${./name}</defaultLabel>
+                <recordForm osd:class="com.orchestranetworks.manager.core.layout.ComponentRecordFormFactory"/>
+								<defaultView>
+									<toolbars>
+										<tabularViewTop>Components</tabularViewTop>
+										<recordTop>ComponentForm</recordTop>
+									</toolbars>
+								</defaultView>
+							</osd:table>
+              <osd:trigger class="com.orchestranetworks.manager.core.layout.ComponentTrigger"/>
+              <osd:otherFacets>
+                <osd:constraint class="com.orchestranetworks.manager.core.layout.ComponentTableConstraint"/>
+              </osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+                  <xs:documentation osd:id="element.root.components.name"/>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+                    <xs:pattern value="[a-zA-Z_][a-zA-Z0-9_]*"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+              <xs:element name="expression" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation osd:id="element.root.components.body"/>
+                  <xs:appinfo>
+                    <osd:defaultView>
+                      <hidden>true</hidden>
+                      <hiddenInSearch>true</hiddenInSearch>
+                      <hiddenInViews>true</hiddenInViews>
+                      <hiddenInDataServices>true</hiddenInDataServices>
+                    </osd:defaultView>
+                  </xs:appinfo>
+                </xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+        <xs:element name="metadata" minOccurs="1" maxOccurs="1" osd:category="Hidden">
+          <xs:annotation>
+            <xs:appinfo>
+              <osd:defaultView>
+                <hidden>true</hidden>
+                <hiddenInSearch>true</hiddenInSearch>
+                <hiddenInViews>true</hiddenInViews>
+                <hiddenInDataServices>true</hiddenInDataServices>
+              </osd:defaultView>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ComponentMetadata" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <osd:table>
+                      <primaryKeys>/component</primaryKeys>
+                    </osd:table>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="component" type="xs:string" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <osd:otherFacets>
+                            <osd:tableRef>
+                              <tablePath>/root/components</tablePath>
+                            </osd:tableRef>
+                          </osd:otherFacets>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="LayoutDependencies" minOccurs="0" maxOccurs="unbounded" osd:category="Hidden">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <osd:table>
+                      <primaryKeys>/layout /dependency</primaryKeys>
+                    </osd:table>
+                    <osd:defaultView>
+                      <hidden>true</hidden>
+                    </osd:defaultView>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layout" type="xs:string" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <osd:otherFacets>
+                            <osd:tableRef>
+                              <tablePath>/root/layouts</tablePath>
+                            </osd:tableRef>
+                          </osd:otherFacets>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dependency" type="xs:string" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <osd:otherFacets>
+                            <osd:tableRef>
+                              <tablePath>/root/components</tablePath>
+                            </osd:tableRef>
+                          </osd:otherFacets>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ComponentDependencies" minOccurs="0" maxOccurs="unbounded" osd:category="Hidden">
+                <xs:annotation>
+                  <xs:appinfo>
+                    <osd:table>
+                      <primaryKeys>/component /dependency</primaryKeys>
+                    </osd:table>
+                    <osd:defaultView>
+                      <hidden>true</hidden>
+                    </osd:defaultView>
+                  </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="component" type="xs:string" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <osd:otherFacets>
+                            <osd:tableRef>
+                              <tablePath>/root/components</tablePath>
+                            </osd:tableRef>
+                          </osd:otherFacets>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dependency" type="xs:string" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:appinfo>
+                          <osd:otherFacets>
+                            <osd:tableRef>
+                              <tablePath>/root/components</tablePath>
+                            </osd:tableRef>
+                          </osd:otherFacets>
+                        </xs:appinfo>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

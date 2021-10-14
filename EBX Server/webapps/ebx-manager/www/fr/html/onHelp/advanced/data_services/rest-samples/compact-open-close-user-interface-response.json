@@ -1,0 +1,7 @@
+{
+  "toolStatus": {
+    "key": true,     // or false
+    "label": "Open"
+  },
+  "toolStatusCloseMessage": "Access is temporarily forbidden for maintenance."
+}

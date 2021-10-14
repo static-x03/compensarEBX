@@ -1,0 +1,19 @@
+{
+  "singer":{
+   	"label": "23",
+   	"creationDate": "2018-09-04T15:35:10.706",
+    "creationUser": "user",
+    "lastUpdateDate": "2018-10-02T17:05:47.090",
+    "lastUpdateUser": "user",
+  	"content":{
+  		"firstname":{
+  			"content":"Frank",
+  			"label":"First Name"
+  		},
+  		"lastname":{
+  			"content":"Sinatra",
+  			"label":"Last Name"
+  		}
+ 	  }
+  }
+}

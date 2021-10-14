@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:include schemaLocation="./d3_types_1.1.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<!-- schema - java binding  -->
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.d3.master.MasterPaths">
+					<nodes prefix="" root="/root/master" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<!-- schema extension -->
+			<osd:extensions class="com.orchestranetworks.d3.master.MasterSchemaExtensions" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.d3_master" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="master">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.master" />
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="globalConfiguration">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.globalConfiguration"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="1" name="replayDelay" type="xs:int" osd:checkNullInput="true">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.master.globalConfiguration.replayDelay"/>
+												<xs:appinfo>
+													<osd:otherFacets>
+														<osd:minInclusive value="30"/>
+														<osd:excludeSegment  minValue="30" maxValue="599">
+															<osd:validation> 
+																<severity>warning</severity>
+															</osd:validation>
+														</osd:excludeSegment>
+													</osd:otherFacets>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element minOccurs="0" name="nextReplay" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.master.globalConfiguration.nextReplay"/>
+												<xs:appinfo>
+													<osd:function class="com.orchestranetworks.d3.master.NextReplayFunctionInGlobalConfiguration"/>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="notification" type="notificationConfigurationType">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.master.globalConfiguration.notification"/>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="lastSentDate" type="xs:dateTime" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation osd:id="element.root.master.globalConfiguration.lastSentDate"/>
+												<xs:appinfo>
+													<osd:function class="com.orchestranetworks.d3.common.LastNotificationSentFunction"/>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="deliveryBranch" type="DeliveryBranch">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.deliveryBranch" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/branch</primaryKeys>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+										</osd:table>
+										<osd:otherFacets>
+											<osd:constraint class="com.orchestranetworks.d3.master.constraint.BranchesConstraintOnTable"/>
+										</osd:otherFacets>
+										<osd:trigger class="com.orchestranetworks.d3.master.DeliveryBranchTableTrigger" />
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="deliveryProfile" type="MasterDeliveryProfile">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.deliveryProfile" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/name</primaryKeys>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+										</osd:table>
+										<osd:trigger class="com.orchestranetworks.d3.master.DeliveryProfileTableTrigger" />
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="branchProfileAssociation" type="BranchesProfilesAssociation">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.branchProfileAssociation" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/branch /deliveryProfile</primaryKeys>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="slave" type="Slave">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.slave" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/repositoryId</primaryKeys>
+											<defaultLabel>${./slaveId} (${./repositoryId})</defaultLabel>
+											<mayCreateRoot>never</mayCreateRoot>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+											<mayDuplicate>never</mayDuplicate>
+											<mayDelete>never</mayDelete>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="broadcastHistory" type="BroadcastHistory">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.broadcastHistory" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/uuid</primaryKeys>
+											<defaultLabel>Broadcast ${./branch} on ${./startDate}</defaultLabel>
+											<defaultLabel xml:lang="fr-FR">Diffusion de ${./branch} le ${./startDate}</defaultLabel>
+											<mayCreateRoot>never</mayCreateRoot>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+											<mayDuplicate>never</mayDuplicate>
+											<mayDelete>never</mayDelete>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="slaveRegistrationLog" type="SlaveRegistrationLog">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.slaveRegistrationLog" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/uuid</primaryKeys>
+											<defaultLabel>'${./slaveId}' subscription on ${./startDate}</defaultLabel>
+											<defaultLabel xml:lang="fr-FR">Enregistrement de '${./slaveId}' le ${./startDate}</defaultLabel>
+											<mayCreateRoot>never</mayCreateRoot>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+											<mayDuplicate>never</mayDuplicate>
+											<mayDelete>never</mayDelete>
+										</osd:table>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="history" type="History">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.master.history" />
+									<xs:appinfo>
+										<osd:table>
+											<primaryKeys>/id</primaryKeys>
+											<defaultLabel>Broadcast ${./branch} to ${./slaveId} on ${./startDate}</defaultLabel>
+											<defaultLabel xml:lang="fr-FR">Diffusion de ${./branch} vers ${./slaveId} le ${./startDate}</defaultLabel>
+											<mayCreateRoot>never</mayCreateRoot>
+											<mayCreateOverwriting>never</mayCreateOverwriting>
+											<mayCreateOcculting>never</mayCreateOcculting>
+											<mayCreateDeriving>never</mayCreateDeriving>
+											<mayDuplicate>never</mayDuplicate>
+											<mayDelete>never</mayDelete>
+										</osd:table>
+										<osd:trigger class="com.orchestranetworks.d3.master.D3mHistoryTrigger"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--
+		******************************* Services ****************************
+	-->
+	<xs:complexType name="Deactivate">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/master/slave{+}" class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=deactivate">
+					<enableDuringBroadcast>false</enableDuringBroadcast>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.Deactivate" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="InitSubscription">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/master/slave{+}" class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=initSubscription">
+					<enableDuringBroadcast>true</enableDuringBroadcast>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.InitSubscription" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="Unregister">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/master/slave{+}" class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=unregisterOnMaster">
+					<enableDuringBroadcast>false</enableDuringBroadcast>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.Unregister" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DeleteDeliveryBranch">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/master/deliveryBranch{1}" class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=deleteDeliveryBranchForm">
+					<enableDuringBroadcast>false</enableDuringBroadcast>
+					<osd:confirmation disable="true"/>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.DeleteDeliveryBranch" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="FullResynchronize">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/master/deliveryBranch{1}" class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=fullResyncOnMaster">
+					<enableDuringBroadcast>false</enableDuringBroadcast>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.FullResynchronize" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="CheckAllSlaves">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=checkSlaves">
+					<enableDuringBroadcast>true</enableDuringBroadcast>
+					<osd:confirmation disable="true"/>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.CheckAllSlaves" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="CheckSelectedSlaves">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" activatedForPaths="/root/master/slave{+}" resourcePath="/d3ServiceDispatcher?command=checkSlaves">
+					<enableDuringBroadcast>true</enableDuringBroadcast>
+					<osd:confirmation disable="true"/>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.CheckSelectedSlaves" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="RelaunchReplays">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=relaunchReplays">
+					<enableDuringBroadcast>true</enableDuringBroadcast>
+					<osd:confirmation disable="true"/>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.RelaunchReplays" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ClearHistory">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.d3.master.D3ServicePermissionsOnMaster" resourcePath="/d3ServiceDispatcher?command=clearHistory">
+					<enableDuringBroadcast>false</enableDuringBroadcast>
+					<osd:confirmation disable="false"/>
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.ClearHistory" />
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>
+

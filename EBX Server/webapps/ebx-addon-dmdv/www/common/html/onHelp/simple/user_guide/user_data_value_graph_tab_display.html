@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Enabling tab display</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_tabs" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_tab_display.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs</span></div>
+<h1 id="user_data_value_graph_tabs_topPage">
+Enabling tab display</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_data_value_graph_overview">Overview</a></li><li class="toc1"><a href="#id2">Configuring tab display</a></li></ul>
+</div>
+<h2 id="user_data_value_graph_overview">
+Overview</h2>
+<p>Administrators can enable display of default data value graphs in tabs on EBX® records. When a user opens a record, they are not required to run a service to display a graph. They can simply select the tab and display a graph with the current record in focus.</p><h2 id="id2">
+Configuring tab display</h2>
+<p>To display a default data value and relationship graph in a record view tab:</p><ol>
+<li><p>Open the desired data model in the EBX® Data Modeler Assistant (DMA).</p></li><li><p>Navigate to <em>Configuration &gt; Component library</em>, create a new record, and enter the following:</p><ul>
+<li><p>A name.</p></li><li><p>In the <strong>Configuration</strong> field, enter <code>com.orchestranetworks.addon.dmdv.data.ui.GraphDataWithoutConfigUIWidgetFactory</code> and select <strong>Save</strong>.</p></li><li><p>On the <strong>Parameters</strong> tab enable <strong>widgetKey</strong> and save your progress.</p></li></ul>
+</li><li><p>In the <strong>Navigation pane</strong>, select the table where you want to add the tab and complete the following:</p><ul>
+<li><p>Select the table&#39;s <strong>Advanced properties</strong> tab.</p></li><li><p>Navigate to <em>Table &gt; Presentation &gt; Default rendering for groups in forms &gt; Enable rendering</em> and select the <strong>Enable tabs</strong> option.</p></li><li><p>Save your progress</p></li></ul>
+</li><li><p>Add a <strong>Group</strong> child element to this table. Optionally, you can set the <strong>Minimum number of values</strong> option to 0. Setting this option prevents validation messages from displaying.</p></li><li><p>Select the <strong>Advanced properties</strong> tab and in the <strong>Default view and tools</strong> group specify the following:</p><ul>
+<li><p>Under <strong>Rendering in forms</strong>, enable the <strong>As tab</strong> option.</p></li><li><p>Under <strong>Widget</strong>, use the <strong>Component</strong> tab&#39;s drop-down menu to select the widget component created in step 2.</p></li><li><p>Under <strong>Widget</strong>, use the <strong>Parameters</strong> tab to enter the following <strong>widgetKey</strong> parameter: <code>com.orchestranetworks.addon.dmdv.data.ui.GraphDataWithoutConfigTabUIWidget</code></p></li><li><p>Set the <strong>Access properties</strong> option to <strong>Read only</strong>.</p></li></ul>
+</li><li><p>Save your progress and publish the data model. As shown below, the tab now displays when opening the record.</p><p><img alt="/graph-tab-1.png" src="./resources/images/graph-tab-1.png"></img></p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

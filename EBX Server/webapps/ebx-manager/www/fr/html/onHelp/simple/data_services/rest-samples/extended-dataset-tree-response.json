@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "fields": [
+      {
+        "name": "rootName",
+        "label": "Localized label",
+        "description": "Localized description",
+        "type": "group",
+        "pathInDataset": "/rootName",
+        "fields": [
+          {
+            "name": "settings",
+            "label": "Settings",
+            "type": "group",
+            "pathInDataset": "/rootName/settings",
+            "fields": [
+              {
+                "name": "settingA",
+                "label": "A settings label",
+                "type": "group",
+                "pathInDataset": "/rootName/settings/settingA"
+              },
+              {
+                "name": "settingB",
+                "label": "B settings label",
+                "type": "group",
+                "pathInDataset": "/rootName/settings/settingB"
+              }
+            ]
+          },
+          {
+            "name": "table1",
+            "label": "Table1 localized label",
+            "type": "table",
+            "minOccurs": 0,
+            "maxOccurs": "unbounded",
+            "pathInDataset": "/rootName/table1"
+          },
+          {
+            "name": "table2",
+            "label": "Table2 localized label",
+            "type": "table",
+            "minOccurs": 0,
+            "maxOccurs": "unbounded",
+            "pathInDataset": "/rootName/table2"
+          }
+        ]
+      }
+    ]
+  },
+  "validation": [
+    {
+      "level": "error",
+      "message": "Value must be greater than or equal to 0.",
+      "details": "http://.../rootName/settings/settingA/settingA1?includeValidation=true"
+    },
+    {
+      "level": "error",
+      "message": "Field 'Settings A2' is mandatory.",
+      "details": "http://.../rootName/settings/settingA/settingA2?includeValidation=true"
+    }
+  ],
+  "content": {
+    "rootName": {
+      "details": "http://.../rootName",
+      "openApiDetails": "http://.../open-api/.../rootName",
+      "content": {
+        "settings": {
+          "details": "http://.../rootName/settings",
+          "openApiDetails": "http://.../open-api/.../rootName/settings",
+          "content": {
+            "weekTimeSheet": {
+              "details": "http://.../rootName/settings/settingA",
+              "openApiDetails": "http://.../open-api/.../rootName/settings/settingA"
+            },
+            "vacationRequest": {
+              "details": "http://.../rootName/settings/settingB",
+              "openApiDetails": "http://.../open-api/.../rootName/settings/settingB"
+            }
+          }
+        },
+        "table1": {
+          "details": "http://.../rootName/table1",
+          "openApiDetails": "http://.../open-api/.../rootName/table1"
+        },
+        "table2": {
+          "details": "http://.../rootName/table2",
+          "openApiDetails": "http://.../open-api/.../rootName/table2"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="common_1.0.xsd"/>
+	<xs:complexType name="Nomenclature_anyURI" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_anyURI" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_anyURI" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:anyURI</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_email" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_email" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_email" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="osd:email">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value osd:email</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_string" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_string" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:string</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_locale" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_locale" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_locale" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="osd:locale">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value osd:locale</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_boolean" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_boolean" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_boolean" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:boolean</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_html" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_html" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_html" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="osd:html">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value osd:html</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_dateTime" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_dateTime" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_dateTime" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:dateTime</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_Name" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_Name" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_Name" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:Name</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_decimal" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_decimal" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_decimal" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:decimal</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_time" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_time" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_time" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:time">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:time</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_date" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_date" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_date" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:date">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:date</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nomenclature_integer" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.Nomenclature">
+		<xs:sequence>
+			<xs:element name="items" type="NomenclatureItem_integer" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>items</osd:label>
+						<osd:mandatoryErrorMessage>nomenclature items</osd:mandatoryErrorMessage>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NomenclatureItem_integer" osd:access="CC:CC:RW" osd:class="com.onwbp.base.text.NomenclatureItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item value xs:integer</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>item label</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

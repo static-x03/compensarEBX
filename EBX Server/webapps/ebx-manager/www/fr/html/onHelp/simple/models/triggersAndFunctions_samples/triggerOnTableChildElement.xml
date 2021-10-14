@@ -1,0 +1,12 @@
+<xs:complexType name="MyTableType">
+   ...
+   <xs:annotation>
+	   <xs:appinfo>
+		  <osd:trigger class="com.foo.MyTableTrigger">	
+			 <param1>...</param1> 
+			 <param...n>...</param...n> 
+		  </osd:trigger>	
+	   </xs:appinfo>
+   </xs:annotation>
+   ...
+</xs:complexType>

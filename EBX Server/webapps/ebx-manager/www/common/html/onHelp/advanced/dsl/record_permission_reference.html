@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Record permission</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="Record_permission" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/record_permission_reference.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting</span></div>
+<h1>
+Record permission</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#_introduction">Introduction</a></li><li class="toc1"><a href="#_lexical_structure">Lexical structure</a><ul class="toc2">
+<li class="toc2"><a href="#_introduction_2">Introduction</a></li><li class="toc2"><a href="#_character_set">Character set</a></li><li class="toc2"><a href="#_character_case_sensitivity">Character case sensitivity</a></li><li class="toc2"><a href="#_comments">Comments</a></li><li class="toc2"><a href="#_keywords">Keywords</a></li></ul>
+</li><li class="toc1"><a href="#_identifiers">Identifiers</a><ul class="toc2">
+<li class="toc2"><a href="#identifiers">Unquoted identifier</a></li><li class="toc2"><a href="#_quoted_identifiers">Quoted identifiers</a></li></ul>
+</li><li class="toc1"><a href="#_types">Types</a><ul class="toc2">
+<li class="toc2"><a href="#_supported_types">Supported types</a></li><li class="toc2"><a href="#_literals">Literals</a></li></ul>
+</li><li class="toc1"><a href="#_field_access">Field access</a><ul class="toc2">
+<li class="toc2"><a href="#_simple_fields">Simple fields</a></li><li class="toc2"><a href="#_foreign_table_fields">Foreign table fields</a></li><li class="toc2"><a href="#_list_multi_valued_field_access">List (multi-valued) field access</a></li><li class="toc2"><a href="#_associations">Associations</a></li></ul>
+</li><li class="toc1"><a href="#_operators">Operators</a></li><li class="toc1"><a href="#_null_value_management">Null value management</a><ul class="toc2">
+<li class="toc2"><a href="#_arithmetic_operators">Arithmetic operators</a></li><li class="toc2"><a href="#_comparison_operators">Comparison operators</a></li><li class="toc2"><a href="#_boolean_operators">Boolean operators</a></li><li class="toc2"><a href="#_index_expressions">Index expressions</a></li><li class="toc2"><a href="#_functions">Functions</a></li></ul>
+</li><li class="toc1"><a href="#_if_statement">If statement</a><ul class="toc2">
+<li class="toc2"><a href="#_if_then_statement">&quot;If then&quot; statement</a></li><li class="toc2"><a href="#_if_then_else_statement">&quot;If then else&quot; statement</a></li><li class="toc2"><a href="#_then_or_else_body_statement">&quot;Then&quot; or &quot;else&quot; body statement</a></li></ul>
+</li><li class="toc1"><a href="#_return_statement">Return statement</a></li><li class="toc1"><a href="#_context">Context</a><ul class="toc2">
+<li class="toc2"><a href="#_introduction_3">Introduction</a></li><li class="toc2"><a href="#_dataspace">Dataspace</a></li><li class="toc2"><a href="#_dataset">Dataset</a></li><li class="toc2"><a href="#_session">Session</a></li></ul>
+</li><li class="toc1"><a href="#_functions_2">Functions</a><ul class="toc2">
+<li class="toc2"><a href="#_roles">Roles</a></li><li class="toc2"><a href="#_string_matching_functions">String matching functions</a></li><li class="toc2"><a href="#_aggregate_functions">Aggregate functions</a></li><li class="toc2"><a href="#_miscellaneous_functions">Miscellaneous functions</a></li></ul>
+</li></ul>
+</div>
+<h2 id="_introduction">
+Introduction</h2>
+<p>Use the record permission DSL (Domain Specific Language) to specify access rules on records of a given table.</p><p>The main goals of the record permission DSL are to not require Java coding, and to be easy to use by people without deep programming knowledge.</p><p>You can specify permission on any table using a script. The script consists of a sequence of <strong>if then else</strong> and <strong>return</strong> statements that indicate the permission for a record.</p><p>You can edit the script using the <a href="../user_datamodel/userdatamodel_intro.html">Data Model Assistant (DMA)</a>.</p><h2 id="_lexical_structure">
+Lexical structure</h2>
+<h3 id="_introduction_2">
+Introduction</h3>
+<p>The script has following structure:</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  &lt;statement 1&gt;
+  &lt;statement 2&gt;
+  ...
+  &lt;last statement&gt;
+end</pre>
+<p>All statements except the last one must be an <a href="#if_then_statement">&quot;if then&quot;</a> or an <a href="#if_then_else_statement">&quot;if then else&quot;</a> statement.</p><p>The last statement can be an <a href="#if_then_statement">&quot;if then&quot;</a>, <a href="#if_then_else_statement">&quot;if then else&quot;</a> or <a href="#return_statement">&quot;return&quot;</a> statement.</p><p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if isMember(administrator) then
+  // Administrator has no restrictions.
+  return readWrite;
+
+if isMember('french-team') and record.Country='F' then
+  //Members of 'french-team' can view and modify data for France.
+  return readWrite;
+
+if isMember('us-team') and record.Country='US' then
+  //Members of 'us-team' can view and modify data for US.
+  return readWrite;
+
+// This statement is not actually needed as 'hidden' is the default permission.
+return hidden;</pre>
+<h3 id="_character_set">
+Character set</h3>
+<p>The Unicode character set is supported.</p><h3 id="_character_case_sensitivity">
+Character case sensitivity</h3>
+<p>The DSL is case-sensitive.</p><h3 id="_comments">
+Comments</h3>
+<p>A single line comment extends from <strong>//</strong> to the end of the current line:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// This is a comment
+if record.LastName = 'Doe' then // This is another comment.
+  return readOnly;</pre>
+<p>A multi-line comment extends from <strong>/*</strong> and ends with <strong>*/</strong>:</p><pre class="brush: text; toolbar: false; gutter: false;">
+/* This is a sample of a multi-line
+   comment */
+if record.isActive then
+  return readWrite;</pre>
+<h3 id="_keywords">
+Keywords</h3>
+<p>There are two types of keyword:</p><ul>
+<li><p><strong>Reserved keywords</strong> are: <strong>if</strong>, <strong>then</strong>, <strong>else</strong>, <strong>begin</strong>, <strong>end</strong>, <strong>return</strong>, <strong>null</strong>, <strong>and</strong>, <strong>or</strong>, <strong>not</strong>, <strong>true</strong>, <strong>false</strong>.</p></li><li><p><strong>Unreserved keywords</strong> are all other keywords defined by the DSL.</p></li></ul>
+<p>The main difference between the two types of keywords is that unreserved ones, but not reserved ones, can be used as plain (unquoted) identifiers.</p><h2 id="_identifiers">
+Identifiers</h2>
+<h3 id="identifiers">
+Unquoted identifier</h3>
+<p>An <strong>unquoted identifier</strong> is an unlimited-length sequence of letters, digits or underscore (<strong>_</strong>). The first character must be a letter or an underscore.</p><p>Valid letters are <strong>a to z</strong> and <strong>A to Z</strong>. Valid digits are <strong>0 to 9</strong>.</p><p>An unquoted identifier cannot be equal to a reserved keyword.</p><h3 id="_quoted_identifiers">
+Quoted identifiers</h3>
+<p>A quoted identifier is an unlimited length of any Unicode character except a double quote (<strong>&quot;</strong>).</p><p>Quoted identifiers <strong>must</strong> be used surrounded by double quotes.</p><p>An unquoted identifier can be used surrounded by double quotes.This means that identifier &quot;a_name&quot; is equal to a_name.</p><p>Quoted identifiers can be reserved keywords.</p><h2 id="_types">
+Types</h2>
+<h3 id="_supported_types">
+Supported types</h3>
+<p>The following types are supported:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Type</strong></th><th align="left" valign="top"><strong>EBX corresponding types</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>Boolean</p></td><td align="left" valign="top"><p>xs:boolean</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Decimal</p></td><td align="left" valign="top"><p>xs:decimal</p><p>xs:int</p><p>xs:integer</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>String</p></td><td align="left" valign="top"><p>xs:string</p><p>xs:anyURI</p><p>xs:Name</p><p>osd:text</p><p>osd:html</p><p>osd:email</p><p>osd:password</p><p>osd:color</p><p>osd:resource</p><p>osd:locale</p><p>osd:dataspaceKey</p><p>osd:datasetName</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Timestamp</p></td><td align="left" valign="top"><p>xs:dateTime</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Date</p></td><td align="left" valign="top"><p>xs:date</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Time</p></td><td align="left" valign="top"><p>xs:time</p></td></tr>
+</tbody>
+</table>
+<h3 id="_literals">
+Literals</h3>
+<h4 id="_string_literal">
+String literal</h4>
+<p>String literals can be any sequence of Unicode characters surrounded by single quotes. The following table displays characters that need to be replaced by an escape sequence:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Character</strong></th><th align="left" valign="top"><strong>Escape sequence</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>Tab</p></td><td align="left" valign="top"><p>\t</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Backspace</p></td><td align="left" valign="top"><p>\b</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>New line</p></td><td align="left" valign="top"><p>\n</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Carriage return</p></td><td align="left" valign="top"><p>\r</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Form feed</p></td><td align="left" valign="top"><p>\f</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Single quote</p></td><td align="left" valign="top"><p>\&#39;</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Backlash</p></td><td align="left" valign="top"><p>\\</p></td></tr>
+</tbody>
+</table>
+<p>A character can be specified by a Unicode escape sequence that has the format \uXXXX with XXXX the hexadecimal code of the Unicode character.</p><p><strong>Examples</strong></p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Value</strong></th><th align="left" valign="top"><strong>Syntax</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>O’Harra</p></td><td align="left" valign="top"><p><strong>&#39;O\&#39;Harra&#39;</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p>No&euml;l</p></td><td align="left" valign="top"><p><strong>&#39;No\u00EBl&#39;</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p>&eacute;t&eacute;</p></td><td align="left" valign="top"><p><strong>&#39;\u00e9\u00E9&#39;</strong></p></td></tr>
+</tbody>
+</table>
+<p><strong>Note</strong></p><p>An invalid escape or Unicode sequence generates an error at compile time.</p><h4 id="_decimal_literal">
+Decimal literal</h4>
+<p>The following decimal formats are supported:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Format</strong></th><th align="left" valign="top"><strong>Examples</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>Integer</p></td><td align="left" valign="top"><p>546</p><p>-67</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Floating point</p></td><td align="left" valign="top"><p>54.987</p><p>-433.876</p><p>0.00054</p><p>-0.0032</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>Exponent notation</p></td><td align="left" valign="top"><p>34.654e-5</p><p>-45E+65</p><p>1.543e23</p></td></tr>
+</tbody>
+</table>
+<h4 id="_timestamp_literal">
+Timestamp literal</h4>
+<p>Timestamp literals have the format <strong>dt(yyyy-MM-dd hh:mm:ss.sss)</strong>.</p><p>Seconds are optional. When seconds are not specified, 0 is assumed. Seconds can have fractions up to millisecond precision.</p><p>The dates that are not valid in the Gregorian calendar generate an error at compile time.</p><p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+dt(2010-01-02 00:00:00.000)
+dt(2019-2-3 12:56:7)
+dt(2019-2-3 12:56:7.5)
+dt(2019-5-7 1:6)</pre>
+<h4 id="_date_literal">
+Date literal</h4>
+<p>Date literals have format <strong>d(yyyy-MM-dd)</strong>.</p><p>The dates that are not valid in the Gregorian calendar generate an error at compile time.</p><p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+d(2010-01-02)
+d(2019-2-3)
+dt(2019-5-7)</pre>
+<h4 id="_time_literal">
+Time literal</h4>
+<p>Time literals have the format <strong>t(hh:mm:ss.sss)</strong>.</p><p>Seconds are optional. When seconds arenot specified, 0 is assumed. Seconds can have fractions up to millisecond precision.</p><p>Invalid times generate an error at compile time.</p><p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+t(00:00:00)
+t(12:56:7)
+t(12:56:7.5)
+t(1:6)</pre>
+<h4 id="_boolean_literal">
+Boolean literal</h4>
+<p>Boolean literals are <strong>true</strong> and <strong>false</strong>.</p><h2 id="_field_access">
+Field access</h2>
+<h3 id="_simple_fields">
+Simple fields</h3>
+<p>Only access to optimized/indexed table field is supported. Dot notation is used to access tables fields. For example, a condition of current table fields whose path is <strong>./OfficeAddress/City</strong> would be:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if record.OfficeAddress.City = ‘Paris’ then
+  return readWrite;</pre>
+<p>The alias <strong>record</strong> always refers to the current record. Depending on context, other aliases might be available.</p><p>Each step (parts separated by a dot) is an <a href="#identifiers">identifier</a>. This means that the following quoted notation can be used for any step:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if record."OfficeAddress".City = ‘Paris’ then
+  return readWrite;</pre>
+<p>This is useful for steps equal to a reserved keyword or using characters, such as the minus character (<strong>-</strong>) or dot (<strong>.</strong>), which are not compatible with unquoted identifiers.</p><p>At runtime, any step can evaluate to <strong>null</strong>. In this case, the full field expression evaluates to <strong>null</strong>.</p><h3 id="_foreign_table_fields">
+Foreign table fields</h3>
+<p>You can access foreign tables by &quot;following&quot; foreign keys using dot notation.</p><p>In the following example, the field <strong>Supervisor</strong> is a foreign key:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if record.Supervisor.Name = ‘John Doe’ then
+  return readWrite;</pre>
+<p>There can be multiple levels of foreign keys, such as in the following example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if record.Supervisor.Supervisor.Supervisor.Name = ‘John Doe’ then
+  return readOnly;</pre>
+<h3 id="_list_multi_valued_field_access">
+List (multi-valued) field access</h3>
+<p>Multi-valued fields are not supported.</p><h3 id="_associations">
+Associations</h3>
+<p>Aggregate functions can take as input expressions based on an association. In the following example, the field <strong>ManagedUsers</strong> is an association:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// All users that manage at least 2 persons have read write access.
+if count(record.ManagedUsers[]) &gt;= 2 then
+  return readWrite;</pre>
+<p>You can apply a filter on an association. You must use an alias to access fields from the association. An association alias is declared using <strong>:</strong>. In the following example, the alias is <strong>u1</strong>:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// All users that manage at least one person whose office is in Briton has read only access.
+if exists(record.ManagedUsers:u1[u1.OfficeAddress.City='Briton']) then
+  return readOnly;</pre>
+<p>A filter on an association can reference a field of the current record:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// All users that manage at least one person whose office is in the same city as user has read only access.
+if exists(record.ManagedUsers:t1[t1.OfficeAddress.City=record.OfficeAddress.City]) then
+  return readOnly;</pre>
+<p><strong>Note</strong></p><p>Currently, it is not possible to:</p><ul>
+<li><p>Use an aggregate function in between <strong>[]</strong>.</p></li><li><p>Select fields of an association to aggregate values.</p></li></ul>
+<h2 id="_operators">
+Operators</h2>
+<p>By default, operation evaluation order is based on precedence and associativity. The order of evaluation can be indicated explicitly by using parentheses.</p><p>The following table shows all operators from highest to lowest precedence and their associativity:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Precedence Level</strong></th><th align="left" valign="top"><strong>Operator</strong></th><th align="left" valign="top"><strong>Operand type</strong></th><th align="left" valign="top"><strong>Result type</strong></th><th align="left" valign="top"><strong>Associativity</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>8</p></td><td align="left" valign="top"><p>[] (access to an element of a list)</p><p>. (access to fields)</p><p>() (parenthesis)</p></td><td align="left" valign="top"><p>List index must be a decimal.</p></td><td align="left" valign="top"><p>Can be any type.</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>7</p></td><td align="left" valign="top"><p>not</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"></td></tr>
+<tr>
+<td align="left" valign="top"><p>6</p></td><td align="left" valign="top"><p>*</p><p>/</p></td><td align="left" valign="top"><p>Decimal.</p></td><td align="left" valign="top"><p>Decimal.</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>5</p></td><td align="left" valign="top"><p>+</p><p>-</p></td><td align="left" valign="top"><p>Decimal.</p></td><td align="left" valign="top"><p>Decimal.</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>4</p></td><td align="left" valign="top"><p>&lt;</p><p>&lt;=</p><p>&gt;</p><p>&gt;=</p></td><td align="left" valign="top"><p>String, Decimal, timestamp, date, time (3).</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"><p>Not associative.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>3</p></td><td align="left" valign="top"><p>=</p><p>&lt;&gt;</p></td><td align="left" valign="top"><p>String, decimal, timestamp, date, time, boolean (3).</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"></td></tr>
+<tr>
+<td align="left" valign="top"><p>2</p></td><td align="left" valign="top"><p>and</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>1</p></td><td align="left" valign="top"><p>or</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"><p>Boolean.</p></td><td align="left" valign="top"><p>Left to right.</p></td></tr>
+</tbody>
+</table>
+<h2 id="_null_value_management">
+Null value management</h2>
+<h3 id="_arithmetic_operators">
+Arithmetic operators</h3>
+<p>An arithmetic operator (<strong>*</strong>, <strong>/</strong>, <strong>+</strong> and <strong>-</strong>) returns <strong>null</strong> if any operand is <strong>null</strong>.</p><h3 id="_comparison_operators">
+Comparison operators</h3>
+<p>A Comparison operator (<strong>&lt;</strong>, <strong>&lt;=</strong>, <strong>&gt;</strong>, <strong>=&gt;</strong>, <strong>=</strong> and <strong>&lt;&gt;</strong>) returns <strong>null</strong> if any operand is <strong>null</strong>.</p><h3 id="_boolean_operators">
+Boolean operators</h3>
+<p>Boolean operators use thread-value logic.</p><p>Truth table for <strong>and</strong> is:</p><table>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>And</strong></p></td><td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p><strong>null</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>null</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>false</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>null</strong></p></td><td align="left" valign="top"><p>null</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>null</p></td></tr>
+</tbody>
+</table>
+<p>Truth table for <strong>or</strong> is:</p><table>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>Or</strong></p></td><td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p><strong>null</strong></p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>true</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>true</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>false</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>false</p></td><td align="left" valign="top"><p>null</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>null</strong></p></td><td align="left" valign="top"><p>true</p></td><td align="left" valign="top"><p>null</p></td><td align="left" valign="top"><p>null</p></td></tr>
+</tbody>
+</table>
+<h3 id="_index_expressions">
+Index expressions</h3>
+<p>An indexed expression with an index that evaluates <strong>null</strong> or is out of range returns <strong>null</strong>.</p><h3 id="_functions">
+Functions</h3>
+<p>Functions usually return <strong>null</strong> if a parameter is <strong>null</strong>. An exception is the function <strong>isNull(value)</strong>, which never returns <strong>null</strong>.</p><h2 id="_if_statement">
+If statement</h2>
+<h3 id="_if_then_statement">
+&quot;If then&quot; statement</h3>
+<p id="if_then_statement">An &quot;if then&quot; statement has the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if condition-expression then
+  then-body-statement</pre>
+<p>The condition expression must evaluate to a boolean type.</p><p>If the expression evaluates to <strong>true</strong>, the &quot;then&quot; statement is executed. If the expression evaluates to <strong>false</strong> or <strong>null</strong>, the &quot;then&quot; statement is ignored.</p><p>The &#39;then&#39; statement is a <a href="#body_statement">body statement</a>.</p><h3 id="_if_then_else_statement">
+&quot;If then else&quot; statement</h3>
+<p id="if_then_else_statement">An &quot;if then else&quot; statement has the following syntax:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if condition-expression then
+  then-body-statement
+else
+  else-body-statement</pre>
+<p>The condition expression must be of boolean type.</p><p>If the expression evaluates to <strong>true</strong>, then the &quot;then&quot; statement is executed. If the expression evaluates to <strong>false</strong> or <strong>null</strong>, then the &quot;else&quot; statement is executed.</p><p>A &quot;then&quot; or &quot;else&quot; statement is a <a href="#body_statement">body statement</a>.</p><p><strong>Note</strong></p><p>The expression:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if condition-expression then
+  statement-a;
+else
+  statement-b;</pre>
+<p>might not be equivalent to:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if not condition-expression then
+  statement-b;
+else
+  statement-a;</pre>
+<p>Indeed, if the expression is null, then the &quot;else&quot; statement is executed in both cases.</p><h3 id="_then_or_else_body_statement">
+&quot;Then&quot; or &quot;else&quot; body statement</h3>
+<p id="body_statement">A body statement can be:</p><ul>
+<li><p>A <a href="#return_statement">return statement</a>,</p></li><li><p>An <a href="#if_then_statement">&quot;if then&quot;</a> or <a href="#if_then_else_statement">&quot;if then else&quot;</a> statement,</p></li><li><p>A statement block.</p></li></ul>
+<p>A <strong>statement block</strong> is used to group multiple statements. It starts with the keyword <strong>begin</strong> and ends with the keyword <strong>end</strong>.</p><pre class="brush: text; toolbar: false; gutter: false;">
+begin
+  &lt;statement 1&gt;
+  &lt;statement 2&gt;
+  ...
+  &lt;last statement&gt;
+end</pre>
+<p>All statements except last one must be an <a href="#if_then_statement">&quot;if then&quot;</a> or an <a href="#if_then_else_statement">&quot;if then else&quot;</a> statement.</p><p>The last statement can be a <a href="#if_then_statement">&quot;if then&quot;</a>, <a href="#if_then_else_statement">&quot;if then else&quot;</a> or a <a href="#return_statement">&quot;return&quot;</a> statement.</p><pre class="brush: text; toolbar: false; gutter: false;">
+if isMember('sales-team')then
+begin
+  if record.Country='F' then
+     return readWrite;
+
+  if record.Country='UK' then
+     return readOnly;
+end
+else
+begin
+  if record.Country='D' then
+     return readOnly;
+
+  if record.Country='B' then
+     return readWrite;
+
+  return hidden;
+end</pre>
+<h2 id="_return_statement">
+Return statement</h2>
+<p id="return_statement">A return statement specifies access to records that meet given conditions.</p><p>The following table shows valid return statements.</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Return statement</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>return hidden;</p></td><td align="left" valign="top"><p>The record is hidden (the user has no access).</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>return readOnly;</p></td><td align="left" valign="top"><p>The record is read only for the current user.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>return readWrite;</p></td><td align="left" valign="top"><p>The record can be read and modified by the current user.</p></td></tr>
+</tbody>
+</table>
+<p>If no return statement applies to a given record, the value ‘hidden’ is assumed.</p><h2 id="_context">
+Context</h2>
+<h3 id="_introduction_3">
+Introduction</h3>
+<p>Record permissions can depend on the current dataspace, dataset, or session.</p><h3 id="_dataspace">
+Dataspace</h3>
+<p>The predefined alias <strong>dataspace</strong> provides access to information on the current dataspace.</p><p>This alias gives access to the following fields:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Name</strong></th><th align="left" valign="top"><strong>Type</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>name</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The name of the dataspace. Because the dataspace namespace and the snapshot namespace are independent, the returned string is only an identifier in the context of one of the namespaces. For a global dataspace or snapshot identifier, use the field <strong>id</strong>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>id</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The persistent identifier of a dataspace or snapshot. Compared to <strong>name</strong>, this identifier additionally specifies whether this id is for a dataspace or a snapshot.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>isSnapshot</strong></p></td><td align="left" valign="top"><p><strong>boolean</strong></p></td><td align="left" valign="top"><p>Is <strong>true</strong> if dataspace is a snapshot and <strong>false</strong> if dataspace is a branch.</p></td></tr>
+</tbody>
+</table>
+<p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if dataspace.name = 'branch-R' then
+  return readOnly;</pre>
+<h3 id="_dataset">
+Dataset</h3>
+<p>The predefined alias <strong>dataset</strong> provides access to information on the current dataset.</p><p>This alias has the following fields:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Name</strong></th><th align="left" valign="top"><strong>Type</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>name</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The name of the dataset.</p></td></tr>
+</tbody>
+</table>
+<p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if dataset.name = 'TEST' then
+  return readWrite;</pre>
+<h3 id="_session">
+Session</h3>
+<p>The predefined alias <strong>session</strong> provides access to information on the current user session.</p><p>This alias has the following fields:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Name</strong></th><th align="left" valign="top"><strong>Type</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><strong>userId</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The current user’s id.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><strong>userEmail</strong></p></td><td align="left" valign="top"><p><strong>string</strong></p></td><td align="left" valign="top"><p>The current user’s email.</p></td></tr>
+</tbody>
+</table>
+<p>To check current user’s roles, see <a href="#roles_functions">Roles</a>.</p><p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if session.userId = 'jdoe' then
+  return readWrite;</pre>
+<h2 id="_functions_2">
+Functions</h2>
+<h3 id="_roles">
+Roles</h3>
+<p id="roles_functions">The following table describes <strong>isMember()</strong> function:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Syntax</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>isMember(‘rolea’, ‘roleb’…)</p></td><td align="left" valign="top"><p>Returns true if the current user has at least one of the specified roles.</p><p>The following <strong>built-in roles</strong> must be specified without quotes: <strong>administrator</strong>, <strong>readOnly</strong>, <strong>everyone</strong>.</p><p>Custom roles are specified as string literals. Specifying a role that does not exist is not an error. (It is considered as a role with no members.)</p><p><strong>Note</strong></p><p>The roles <strong>administrator</strong> and <strong>&#39;administrator&#39;</strong> can be two distinct roles. This means that <strong>isMember(administrator)</strong> might not return the same result as is_member(&#39;administrator&#39;). The same rule applies for other built in roles.</p></td></tr>
+</tbody>
+</table>
+<p>Example:</p><pre class="brush: text; toolbar: false; gutter: false;">
+if isMember('SALES', 'SUPPORT') then
+  return readWrite;
+
+// Role administrator and not surrounded by quotes:
+if isMember(administrator, 'SUPPORT') then
+  return readOnly;</pre>
+<h3 id="_string_matching_functions">
+String matching functions</h3>
+<p>A string matching function takes three parameters:</p><ul>
+<li><p>A <strong>stringExpression</strong> that evaluates to a string.</p></li><li><p>A <strong>pattern</strong> that must be a string literal.</p></li><li><p>An optional boolean literal <strong>isCaseSensitive</strong> that indicates if matching is case-sensitive. If omitted, it is assumed that matching is case-insensitive.</p></li></ul>
+<table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Syntax</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>matches(stringExpression, pattern, isCaseSensitive)</p></td><td align="left" valign="top"><p>Returns <strong>true</strong> if <strong>stringExpression</strong> matches a java regular expression <strong>pattern</strong>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>startsWith(stringExpression, pattern, isCaseSensitive)</p></td><td align="left" valign="top"><p>Returns <strong>true</strong> if <strong>stringExpression</strong> starts with string <strong>pattern</strong>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>endsWith(stringExpression, pattern, isCaseSensitive)</p></td><td align="left" valign="top"><p>Returns <strong>true</strong> if <strong>stringExpression</strong> ends with string <strong>pattern</strong>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>contains(stringExpression, pattern, isCaseSensitive)</p></td><td align="left" valign="top"><p>Returns <strong>true</strong> if <strong>stringExpression</strong> contains a string <strong>pattern</strong>.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>containsWholeWord(stringExpression, pattern, isCaseSensitive)</p></td><td align="left" valign="top"><p>Returns <strong>true</strong> if <strong>stringExpression</strong> contains a whole word <strong>pattern</strong>.</p></td></tr>
+</tbody>
+</table>
+<p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Give read write access if first name starts with 'a', 'b' or 'c' (case-sensitive).
+if matches(record.FirstName, '[a-c].*', true) then
+  return readWrite;
+
+// Give read only access if first name starts with 'Lé' (case-insensitive).
+if startsWith(record.FirstName, 'Lé') then
+  return readOnly;
+
+// Give read only access if first name ends with 'my' (case-insensitive).
+if endsWith(record.FirstName, 'my') then
+  return readOnly;
+
+// Give read only access if email contains with 'BeauMont@' (case-sensitive).
+if contains(record.Email, 'BeauMont@', true) then
+  return readOnly;
+
+// Give read write access if last name contains the whole word 'Michel' (case-insensitive).
+if containsWholeWord(record.LastName, 'Michel', false) then
+  return readWrite;</pre>
+<h3 id="_aggregate_functions">
+Aggregate functions</h3>
+<p>The following aggregate function can be used with associations:</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Syntax</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>count(expression)</p></td><td align="left" valign="top"><p>Returns the number of rows of an expression.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p>exists(expression)</p></td><td align="left" valign="top"><p>Returns true if the expression evaluates to at least one row.</p></td></tr>
+</tbody>
+</table>
+<p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Give read write access if managed users count is at least 2.
+if count(record.ManagedUsers[]) &gt;= 2 then
+  return readWrite;
+
+// Give read only access if count of managed users that are not in Paris is less than 4.
+if count(record.ManagedUsers:m1[m1.OfficeAddress.City&lt;&gt;'Paris']) &lt; 4 then
+  return readOnly;
+
+// Give read write access if managed users count is at least 1.
+if exists(record.ManagedUsers[]) then
+  return readWrite;
+
+// Give read write access if count of managed users that are not in Briton is at least 1.
+if exists(record.ManagedUsers:u1[u1.OfficeAddress.City&lt;&gt;'Briton']) then
+  return readWrite;</pre>
+<h3 id="_miscellaneous_functions">
+Miscellaneous functions</h3>
+<p>The following table describes built-in functions that return a boolean.</p><table>
+<thead>
+<tr>
+<th align="left" valign="top"><strong>Syntax</strong></th><th align="left" valign="top"><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p>isNull(value)</p></td><td align="left" valign="top"><p>Returns true if value is null. Value can be an expression be of any type.</p></td></tr>
+</tbody>
+</table>
+<p>Examples:</p><pre class="brush: text; toolbar: false; gutter: false;">
+// Give read write access if no supervisor.
+if isNull(record.supervisor) then
+  return readWrite;</pre>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

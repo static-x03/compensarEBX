@@ -1,0 +1,13 @@
+{
+  "content": {
+    "nodeName1": {
+      "content": true
+    },
+    "nodeName2": {
+      "content": 2
+    },
+    "nodeName3": {
+      "content": "Hello"
+    }
+  }
+}

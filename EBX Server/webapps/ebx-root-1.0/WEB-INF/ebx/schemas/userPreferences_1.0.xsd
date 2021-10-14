@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for maintaining users' preferences, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.service.preferences.UserPreferencesPaths_1_0">
+					<nodes root="/" prefix=""/>
+				</javaPathConstants>
+			</ebxbnd:binding>
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- 
+		Root
+	-->
+	<xs:element name="preferences" osd:access="--">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>
+					Préférences Utilisateurs &amp; Vues
+				</osd:label>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Users Preferences &amp; Views</osd:label>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="userPreferences" type="UserPreferenceType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="tableViews" type="TableViewType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="tableHierarchies" type="TableHierarchiesType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="tablePerspectives" type="TablePerspectiveType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="preferredLocalesForSchemas" type="PreferredLocalesForSchemasType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object definition -->
+	<xs:complexType name="DocumentationType" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Libellé &amp; Description</osd:label>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Label &amp; Description</osd:label>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescriptionSchemaAware">
+					<pathToSchema>../schemaKey</pathToSchema>
+				</osd:uiBean>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>[locale]</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>[locale]</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale"/>
+						<xs:element name="label" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:label>Libellé</osd:label>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:label>Label</osd:label>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="description" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:label>Description</osd:label>
+								</xs:documentation>
+								<xs:documentation xml:lang="en-US">
+									<osd:label>Description</osd:label>
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Table definition -->
+	<xs:complexType name="PreferredLocalesForSchemasType">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Langues préférées pour les schémas</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Ne pas modifier, sauf pour supprimer des données obsolètes ou erronées.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Preferred languages for schemas</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Do not edit, except for removing obsolete or erroneous data.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/profile /schemaKey</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="profile">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Login</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Login</osd:label>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ProfileForPreferencesConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						XML Schema
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						Schéma XML
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locale" type="osd:locale">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Preferred language</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Langue préférée</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TableViewType">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Vues Utilisateurs</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Ne pas modifier, sauf pour supprimer des données obsolètes ou erronées.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Users Views</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Do not edit, except for removing obsolete or erroneous data.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:integer" osd:category="Hidden ">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Identifier</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Identifiant</xs:documentation>
+					<xs:appinfo>
+						<osd:autoIncrement>
+							<start>1</start>
+							<step>1</step>
+						</osd:autoIncrement>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">XML Schema</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Schéma XML</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="adaptationReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation</osd:label>
+						<osd:description>Adaptation reference where this view has been defined.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Adaptation</osd:label>
+						<osd:description>Réféfrence d'adaptation pour laquelle cette vue a été définie.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" type="DocumentationType" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Documentation</osd:label>
+						<osd:description>
+							Localized labels and descriptions.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Documentation</osd:label>
+						<osd:description>
+							Libellés et descriptions localisés.
+						</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="owner">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Owner</osd:label>
+						<osd:description>Profile owning and authoring this view definition. </osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Propriétaire</osd:label>
+						<osd:description>Profil propriétaire (auteur) de cette spécification de vue.</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tablePath" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Target table</osd:label>
+						<osd:description>Target table path in schema.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Table cible</osd:label>
+						<osd:description>Chemin xPath de la table cible dans le schéma.</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tableFieldsPath" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Fields (xPath)</osd:label>
+						<osd:description>
+							Table fields filter to show in view. An
+							empty specification means 'all'.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Champs (xPath)</osd:label>
+						<osd:description>
+							Filtre des colonnes de la table présentes
+							dans la vue. Un filtre vide signifie 'toutes
+							les colonnes'.
+						</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableColumnConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="criteria" osd:access="RW">
+				<xs:complexType osd:class="com.onwbp.adaptation.perspective.views.ViewCriteria">
+					<xs:annotation>
+						<xs:documentation xml:lang="en-US">
+							<osd:label>XPath criterias</osd:label>
+						</xs:documentation>
+						<xs:documentation xml:lang="fr-FR">
+							<osd:label>Critères xPath</osd:label>
+						</xs:documentation>
+						<xs:appinfo>
+							<osd:uiBean class="com.onwbp.adaptation.perspective.views.ViewCriteriaUI"/>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="filterExpression" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="en-US">
+									<osd:label>Expression</osd:label>
+								</xs:documentation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:label>Expression</osd:label>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="readers" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Authorized profiles</osd:label>
+						<osd:description>
+							Other profiles allowed to use this view.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Profils autorisés</osd:label>
+						<osd:description>
+							Autres profils pouvant utiliser cette vue.
+						</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="sortCriteria" minOccurs="0" maxOccurs="unbounded" osd:class="com.orchestranetworks.service.preferences.RequestSortCriterionBean">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nodePath" type="xs:string"/>
+						<xs:element name="isAscending" type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TableHierarchiesType">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Hiérarchies Utilisateurs</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Ne pas modifier, sauf pour supprimer des données obsolètes ou erronées.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Users Hierarchies</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Do not edit, except for removing obsolete or erroneous data.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:integer" osd:category="Hidden ">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						Identifier
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						Identifiant
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:autoIncrement>
+							<start>1</start>
+							<step>1</step>
+						</osd:autoIncrement>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						XML Schema
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						Schéma XML
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="adaptationReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation</osd:label>
+						<osd:description>
+							Adaptation reference where this hierarchy
+							has been defined.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Adaptation</osd:label>
+						<osd:description>
+							Réféfrence d'adaptation pour laquelle cette
+							hiérarchie a été définie.
+						</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" type="DocumentationType" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Documentation</osd:label>
+						<osd:description>
+							Localized label and description.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Documentation</osd:label>
+						<osd:description>
+							Libellé et description localisés.
+						</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="owner">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Owner</osd:label>
+						<osd:description>
+							Profile owning and authoring this hierarchy
+							definition.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Propriétaire</osd:label>
+						<osd:description>
+							Profil propriétaire (auteur) de cette
+							spécification de hiérarchie.
+						</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tablePath" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Target table</osd:label>
+						<osd:description>
+							Target table path in schema.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Table cible</osd:label>
+						<osd:description>
+							Chemin xPath de la table cible dans le
+							schéma.
+						</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="configuration" osd:access="RW">
+				<xs:complexType osd:class="com.orchestranetworks.service.preferences.HierarchyExpression">
+					<xs:annotation>
+						<xs:documentation xml:lang="en-US">
+							<osd:label>Configuration</osd:label>
+						</xs:documentation>
+						<xs:documentation xml:lang="fr-FR">
+							<osd:label>Configuration</osd:label>
+						</xs:documentation>
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.service.preferences.HierarchyExpressionUI"/>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="hierarchyExpression" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation xml:lang="en-US">
+									<osd:label>Expression</osd:label>
+								</xs:documentation>
+								<xs:documentation xml:lang="fr-FR">
+									<osd:label>Expression</osd:label>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="readers" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Authorized profiles</osd:label>
+						<osd:description>
+							Other profiles allowed to use this
+							hierarchy.
+						</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Profils autorisés</osd:label>
+						<osd:description>
+							Autres profils pouvant utiliser cette
+							hiérarchie.
+						</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="isPopupMode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Display records in a new window</osd:label>
+						<osd:description>If "yes", a new window will be opened with the record to edit. 
+						Otherwise, it will be displayed in a new page of the same window.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Afficher les enregistrements dans une nouvelle fenêtre</osd:label>
+						<osd:description>Si "oui", une nouvelle fenêtre contenant l'enregistrement sera ouverte. 
+						Sinon, il sera affiché dans une nouvelle page de la fenêtre courante.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="isPruned" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Prune hierarchy</osd:label>
+						<osd:description>If "yes", hierarchy nodes with no children and are not belonging to target table, will not be displayed.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Hiérarchie élaguée</osd:label>
+						<osd:description>Si "oui", les noeuds de la hiérarchie sans enfant et qui n'appartiennent pas à la table cible, ne seront pas affichés.</osd:description>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TablePerspectiveType">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Préférences de perspective</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Ne pas modifier, sauf pour supprimer des données obsolètes ou erronées.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Perspectives preferences</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Do not edit, except for removing obsolete or erroneous data.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/Id</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">Identifier</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Identifiant</xs:documentation>
+					<xs:appinfo>
+						<osd:autoIncrement>
+							<start>1</start>
+							<step>1</step>
+						</osd:autoIncrement>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">XML Schema</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">Schéma XML</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="adaptationReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Adaptation tree</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Arbre d'adaptation</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tablePath" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Table (xPath)</osd:label>
+						<osd:description>Table for which this configuration will be applied.</osd:description>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Table (xPath)</osd:label>
+						<osd:description>Chemin xPath de la table sur laquel cette configuration sera appliquée.</osd:description>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="perspectiveId" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.CustomViewConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserPreferenceType">
+		<xs:annotation>
+			<xs:documentation xml:lang="fr-FR">
+				<osd:label>Préférences Utilisateurs</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Ne pas modifier, sauf pour supprimer des données obsolètes ou erronées.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:documentation xml:lang="en-US">
+				<osd:label>Users Preferences</osd:label>
+				<osd:description><![CDATA[<span style="font-style: italic; color: #777777;">Do not edit, except for removing obsolete or erroneous data.</span>]]></osd:description>
+			</xs:documentation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/profile</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="profile">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Login</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Login</osd:label>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ProfileForPreferencesConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="locale" type="osd:locale" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Preferred language</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Langue préférée</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastWorkingHome">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Last working branch</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Branche de travail</osd:label>
+					</xs:documentation>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.cce.cache.dataspace.AdaptationHomeConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tableMaxDisplay" type="xs:int" minOccurs="0" osd:category="hidden">
+				<xs:annotation>
+					<xs:documentation xml:lang="en-US">
+						<osd:label>Nb records by page</osd:label>
+					</xs:documentation>
+					<xs:documentation xml:lang="fr-FR">
+						<osd:label>Nb enregistrements par page</osd:label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

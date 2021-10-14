@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-manager, path: /WEB-INF/ebx/schemas/layoutDefinition_1.0.xsd, iid=004]
+-->
+<search>
+  <searchStrategy>
+    <name>void</name>
+    <key>@Void</key>
+    <documentation>
+      <localizedDocumentations>
+        <locale>en_US</locale>
+        <label>Void (Built-in)</label>
+        <description>Disables indexing and search.</description>
+      </localizedDocumentations>
+    </documentation>
+  </searchStrategy>
+  <association>
+    <searchTemplate>@default</searchTemplate>
+    <field>/root/components/expression</field>
+    <searchStrategy>void</searchStrategy>
+  </association>
+  <association>
+    <searchTemplate>@default</searchTemplate>
+    <field>/root/layouts/expression</field>
+    <searchStrategy>void</searchStrategy>
+  </association>
+  <association>
+    <searchTemplate>@default</searchTemplate>
+    <field>/root/metadata/ComponentMetadata/type</field>
+    <searchStrategy>@Code</searchStrategy>
+  </association>
+  <association>
+    <searchTemplate>@default</searchTemplate>
+    <field>/root/layouts/targetTable</field>
+    <searchStrategy>@Code</searchStrategy>
+  </association>
+</search>

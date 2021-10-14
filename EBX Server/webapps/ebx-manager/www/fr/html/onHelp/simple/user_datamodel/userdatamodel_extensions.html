@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Extensions de mod&egrave;les de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_extensions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_extensions.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Extensions de mod&egrave;les de donn&eacute;es</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#indexing">Indexation et strat&eacute;gies de recherche</a></li><li class="toc1"><a href="#toolbars">Barres d&#39;outils</a><ul class="toc2">
+<li class="toc2"><a href="#toolbarStructure">D&eacute;finir la structure d&#39;une barre d&#39;outils</a></li><li class="toc2"><a href="#delete">Supprimer des &eacute;l&eacute;ments</a></li><li class="toc2"><a href="#duplicate">Dupliquer des &eacute;l&eacute;ments existants</a></li><li class="toc2"><a href="#move">D&eacute;placer des &eacute;l&eacute;ments</a></li><li class="toc2"><a href="#associate">Associer avec des tables existantes</a></li><li class="toc2"><a href="#exportToolbars">Exporter les barres d&#39;outils</a></li><li class="toc2"><a href="#importToolbars">Importer des barres d&#39;outils</a></li></ul>
+</li></ul>
+</div>
+<h2 id="indexing">
+Indexation et strat&eacute;gies de recherche</h2>
+<p>Cette fonctionnalit&eacute; est document&eacute;e dans le chapitre <a href="../references/indexing.html">Search</a>.</p><h2 id="toolbars">
+Barres d&#39;outils</h2>
+<p> Une barre d&#39;outils permet de personnaliser les boutons et menus affich&eacute;s lors de la consultation de tables ou d&#39;enregistrements dans un jeu de donn&eacute;es. Les barres d&#39;outils sont configurables dans le mod&egrave;le de donn&eacute;es via la section &#39;Configuration&#39;. </p><p>Ajoutez une barre d&#39;outils &agrave; partir de la section <em>Barres d&#39;outils</em> du panneau de navigation, en cliquant sur la fl&egrave;che <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> situ&eacute;e &agrave; droite de l&#39;&eacute;l&eacute;ment <em>[ Tous les &eacute;l&eacute;ments ]</em>, puis en s&eacute;lectionnant l&#39;option <em>Cr&eacute;er barre d&#39;outils</em>. Suivez ensuite l&#39;assistant de cr&eacute;ation pour cr&eacute;er une barre d&#39;outils. Une barre d&#39;outils d&eacute;finit les informations suivantes&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom</p></td><td class="ebx_definitionListDefinition"><p>Nom de la barre d&#39;outils. Le nom de la barre d&#39;outils doit &ecirc;tre unique dans le mod&egrave;le de donn&eacute;es, il n&#39;est pas possible de cr&eacute;er plusieurs barres d&#39;outils avec le m&ecirc;me nom. Les tables et associations pouvant utiliser des barres d&#39;outils, utilisent ce nom pour d&eacute;finir la barre d&#39;outils &agrave; utiliser.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute; et description</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute;s et descriptions internationalis&eacute;s affich&eacute;s &agrave; l&#39;utilisateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mod&egrave;le de barre d&#39;outils</p></td><td class="ebx_definitionListDefinition"><p>Permet de cr&eacute;er une barre d&#39;outils &agrave; partir d&#39;une barre d&#39;outils par d&eacute;faut.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Emplacements</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit les emplacements pour lesquels la barre d&#39;outils peut &ecirc;tre utilis&eacute;e dans les jeux de donn&eacute;es associ&eacute;s.</p></td></tr>
+</table>
+<h3 id="toolbarStructure">
+D&eacute;finir la structure d&#39;une barre d&#39;outils</h3>
+<p>Une barre d&#39;outils peut d&eacute;finir les &eacute;l&eacute;ments suivants :</p><ul>
+<li><p><a href="#actionButton">Bouton action</a></p></li><li><p><a href="#menuButton">Bouton menu</a></p></li><li><p><a href="#separator">S&eacute;parateur</a></p></li><li><p><a href="#menuGroup">Groupe de menu</a></p></li><li><p><a href="#actionMenuItem">Action de menu</a></p></li><li><p><a href="#subMenuItem">Sous-menu</a></p></li></ul>
+<p>Ajoutez un de ces &eacute;l&eacute;ments sous une barre d&#39;outils ou &agrave; un &eacute;l&eacute;ment existant en cliquant sur la fl&egrave;che <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> situ&eacute;e &agrave; droite de l&#39;&eacute;l&eacute;ment existant, puis en s&eacute;lectionnant une option de cr&eacute;ation parmi celles pr&eacute;sent&eacute;es dans le menu. Suivez ensuite l&#39;assistant de cr&eacute;ation pour cr&eacute;er un &eacute;l&eacute;ment. </p><h4 id="actionButton">
+Bouton action</h4>
+<p>Ce type d&#39;&eacute;l&eacute;ment permet d&#39;associer une action &agrave; un bouton dans une barre d&#39;outils. L&#39;action est ex&eacute;cut&eacute;e lorsque l&#39;utilisateur clique sur le bouton associ&eacute; dans une barre d&#39;outils. Un &eacute;l&eacute;ment de type <em>Bouton action</em> d&eacute;finit les informations suivantes&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Service</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le service &agrave; ex&eacute;cuter lorsque l&#39;utilisateur clique sur le bouton. Il est possible de s&eacute;lectionner un service fourni, ou un service utilisateur d&eacute;fini dans un module ou dans le mod&egrave;le de donn&eacute;es courant. Si la cible &#39;Composant web&#39; est s&eacute;lectionn&eacute;e, le service devra avoir &eacute;t&eacute; d&eacute;clar&eacute; comme utilisable en tant que composant web dans les barres d&#39;outils.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute; et description</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute;s et descriptions internationalis&eacute;s affich&eacute;s &agrave; l&#39;utilisateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Rendu</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit la mani&egrave;re d&#39;afficher cet &eacute;l&eacute;ment dans les jeux de donn&eacute;es utilisant la barre d&#39;outils. Il est possible d&#39;afficher : l&#39;ic&ocirc;ne seule, le texte seul, le texte avec l&#39;ic&ocirc;ne sur la gauche ou le texte avec l&#39;ic&ocirc;ne sur la droite.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Ic&ocirc;ne</p></td><td class="ebx_definitionListDefinition"><p>Ic&ocirc;ne &agrave; afficher. Il est possible d&#39;utiliser une ic&ocirc;ne parmi un ensemble d&#39;ic&ocirc;nes propos&eacute;es, ou de faire r&eacute;f&eacute;rence &agrave; une ic&ocirc;ne en utilisant une URL.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Relief</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit l&#39;apparence du bouton. Le bouton peut &ecirc;tre affich&eacute; en relief ou avec un design plat.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Est en surbrillance</p></td><td class="ebx_definitionListDefinition"><p>Indique si le bouton doit &ecirc;tre par d&eacute;faut en surbrillance.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Un &eacute;l&eacute;ment de type <em>Bouton action</em> peut uniquement &ecirc;tre cr&eacute;&eacute; sous un &eacute;l&eacute;ment de type <em>barre d&#39;outils</em>. </p></div>
+<h4 id="menuButton">
+Bouton menu</h4>
+<p>Ce type d&#39;&eacute;l&eacute;ment permet de d&eacute;finir un menu qui est affich&eacute; lorsque l&#39;utilisateur clique sur le bouton associ&eacute; dans une barre d&#39;outils. Un &eacute;l&eacute;ment de type <em>Bouton menu</em> d&eacute;finit les informations suivantes&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute; et description</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute;s et descriptions internationalis&eacute;s affich&eacute;s &agrave; l&#39;utilisateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Rendu</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit la mani&egrave;re d&#39;afficher cet &eacute;l&eacute;ment dans les jeux de donn&eacute;es utilisant la barre d&#39;outils. Il est possible d&#39;afficher : l&#39;ic&ocirc;ne seule, le texte seul, le texte avec l&#39;ic&ocirc;ne sur la gauche ou le texte avec l&#39;ic&ocirc;ne sur la droite.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Ic&ocirc;ne</p></td><td class="ebx_definitionListDefinition"><p>Ic&ocirc;ne &agrave; afficher. Il est possible d&#39;utiliser une ic&ocirc;ne parmi un ensemble d&#39;ic&ocirc;nes propos&eacute;es, ou de faire r&eacute;f&eacute;rence &agrave; une ic&ocirc;ne en utilisant une URL.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Relief</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit l&#39;apparence du bouton. Le bouton peut &ecirc;tre affich&eacute; en relief ou avec un design plat.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Est en surbrillance</p></td><td class="ebx_definitionListDefinition"><p>Indique si le bouton doit &ecirc;tre par d&eacute;faut en surbrillance.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Un &eacute;l&eacute;ment de type <em>Bouton menu</em> peut uniquement &ecirc;tre cr&eacute;&eacute; sous un &eacute;l&eacute;ment de type <em>barre d&#39;outils</em>. </p></div>
+<h4 id="separator">
+S&eacute;parateur</h4>
+<p>Ce type d&#39;&eacute;l&eacute;ment permet d&#39;ins&eacute;rer un s&eacute;parateur sous la forme d&#39;espacements entre deux &eacute;l&eacute;ments d&#39;une barre d&#39;outils.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Un &eacute;l&eacute;ment de type <em>S&eacute;parateur</em> peut uniquement &ecirc;tre cr&eacute;&eacute; sous un &eacute;l&eacute;ment de type <em>barre d&#39;outils</em>. </p></div>
+<h4 id="menuGroup">
+Groupe de menu</h4>
+<p>Ce type d&#39;&eacute;l&eacute;ment permet de d&eacute;finir un groupe d&#39;&eacute;l&eacute;ments dans un menu. Un &eacute;l&eacute;ment de type <em>Groupe de menu</em> d&eacute;finit les informations suivantes&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute; et description</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute;s et descriptions internationalis&eacute;s affich&eacute;s &agrave; l&#39;utilisateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Type de groupe</p></td><td class="ebx_definitionListDefinition"><p>Indique le type de groupe de menu &agrave; cr&eacute;er :<br/> - &#39;Local&#39; permet de cr&eacute;er un groupe de menu vide.<br/> - &#39;Groupe de services&#39; permet d&#39;assigner un groupe de services existant &agrave; ce groupe de menu.<br/> - &#39;Menu builder&#39; permet d&#39;assigner un menu pr&eacute;d&eacute;fini &agrave; ce groupe de menu.<br/> Une fois cr&eacute;&eacute;, il n&#39;est pas possible de changer le type de ce groupe de menu.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom du groupe de service</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un groupe de services existant &agrave; r&eacute;utiliser. Un groupe de services est d&eacute;clar&eacute; dans un module et peut inclure d&#39;autres groupes de services. Tous les services contenus dans ce groupe seront affich&eacute;s dans les jeux de donn&eacute;es associ&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom du Menu builder</p></td><td class="ebx_definitionListDefinition"><p>Indique le menu pr&eacute;d&eacute;fini &agrave; assigner &agrave; ce groupe de menu:<br/> - &#39;Menu par d&eacute;faut &quot;Actions&quot;&#39; correspond au menu &#39;Actions&#39; de la barre d&#39;outil par d&eacute;faut. Les services standards et utilisateurs y sont pr&eacute;sent&eacute;s sans distinction.<br/> - &#39;Menu par d&eacute;faut &quot;Actions&quot;&#39; (avec s&eacute;parateur)&#39; a le m&ecirc;me contenu que le menu &#39;Actions&#39; de la barre d&#39;outil par d&eacute;faut, mais les services standards et utilisateurs y sont pr&eacute;sent&eacute;s s&eacute;par&eacute;ment (d&#39;abord les services standards, puis les services utilisateurs).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Services exclus</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit les services &agrave; exclure du groupe de services &agrave; r&eacute;utiliser. Les services exclus ne seront pas affich&eacute;s dans les jeux de donn&eacute;es associ&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Groupes de services exclus</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit les groupes &agrave; exclure du groupe de services &agrave; r&eacute;utiliser. Les services contenus dans les groupes &agrave; exclure ne seront pas affich&eacute;s dans les jeux de donn&eacute;es associ&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="filteringPolicy"><p>Politique d&#39;affichage</p></td><td class="ebx_definitionListDefinition"><p>Si &quot;Filtrage intelligent&quot;, les services configur&eacute;s en acc&egrave;s direct, c&#39;est &agrave; dire via un bouton action ou une action de menu, seront retir&eacute;s de la g&eacute;n&eacute;ration automatique de ce groupe.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Un &eacute;l&eacute;ment de type <em>Groupe de menu</em> peut uniquement &ecirc;tre cr&eacute;&eacute; sous les &eacute;l&eacute;ments suivants&nbsp;:&nbsp;</p></div>
+<ul>
+<li><p>Bouton menu</p></li><li><p>Sous-menu</p></li></ul>
+<h4 id="actionMenuItem">
+Action de menu</h4>
+<p>Ce type d&#39;&eacute;l&eacute;ment permet d&#39;associer une action &agrave; une entr&eacute;e d&#39;un menu dans une barre d&#39;outils. L&#39;action est ex&eacute;cut&eacute;e lorsque l&#39;utilisateur clique sur l&#39;entr&eacute;e correspondante dans un menu. Un &eacute;l&eacute;ment de type <em>Action de menu</em> d&eacute;finit les informations suivantes&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute; et description</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute;s et descriptions internationalis&eacute;s affich&eacute;s &agrave; l&#39;utilisateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Service</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le service &agrave; ex&eacute;cuter lorsque l&#39;utilisateur clique sur le bouton. Il est possible de s&eacute;lectionner un service fourni, ou un service utilisateur d&eacute;fini dans un module ou dans le mod&egrave;le de donn&eacute;es courant. Si la cible &#39;Composant web&#39; est s&eacute;lectionn&eacute;e, le service devra avoir &eacute;t&eacute; d&eacute;clar&eacute; comme utilisable en tant que composant web dans les barres d&#39;outils.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Un &eacute;l&eacute;ment de type <em>Action de menu</em> peut uniquement &ecirc;tre cr&eacute;&eacute; sous un &eacute;l&eacute;ment de type <em>Groupe de menu</em>. </p></div>
+<h4 id="subMenuItem">
+Sous-menu</h4>
+<p>Ce type d&#39;&eacute;l&eacute;ment permet d&#39;ajouter un sous-menu dans un menu d&#39;une barre d&#39;outils. Un <em>Sous-menu</em> d&eacute;finit les informations suivantes&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute; et description</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute;s et descriptions internationalis&eacute;s affich&eacute;s &agrave; l&#39;utilisateur.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Un &eacute;l&eacute;ment de type <em>Sous-menu</em> peut uniquement &ecirc;tre cr&eacute;&eacute; sous un &eacute;l&eacute;ment de type Groupe de menu.</p></div>
+<h3 id="delete">
+Supprimer des &eacute;l&eacute;ments</h3>
+<p>Tous les &eacute;l&eacute;ments d&#39;une barre d&#39;outils peuvent &ecirc;tre supprim&eacute;s de celle-ci en utilisant la fl&egrave;che <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> situ&eacute;e &agrave; droite de l&#39;&eacute;l&eacute;ment &agrave; supprimer.</p><p>Si un &eacute;l&eacute;ment contenant d&#39;autres &eacute;l&eacute;ments est supprim&eacute;, alors la suppression est effectu&eacute;e r&eacute;cursivement sur tous les &eacute;l&eacute;ments situ&eacute;s sous l&#39;&eacute;l&eacute;ment supprim&eacute;.</p><h3 id="duplicate">
+Dupliquer des &eacute;l&eacute;ments existants</h3>
+<p>Pour dupliquer un &eacute;l&eacute;ment, cliquez sur la fl&egrave;che <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> situ&eacute;e &agrave; droite de l&#39;&eacute;l&eacute;ment &agrave; dupliquer. Sp&eacute;cifiez le nom et les propri&eacute;t&eacute;s de l&#39;&eacute;l&eacute;ment dupliqu&eacute;. Toutes les propri&eacute;t&eacute;s de l&#39;&eacute;l&eacute;ment source sont dupliqu&eacute;es.</p><p>L&#39;&eacute;l&eacute;ment dupliqu&eacute; est ajout&eacute; au m&ecirc;me niveau que l&#39;&eacute;l&eacute;ment d&#39;origine, en derni&egrave;re position. Lorsqu&#39;un &eacute;l&eacute;ment contenant d&#39;autres &eacute;l&eacute;ments est dupliqu&eacute;, tous les sous-&eacute;l&eacute;ments sont dupliqu&eacute;s avec leurs propri&eacute;t&eacute;s.</p><h3 id="move">
+D&eacute;placer des &eacute;l&eacute;ments</h3>
+<p>Pour d&eacute;placer un &eacute;l&eacute;ment, cliquez sur la fl&egrave;che <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> et s&eacute;lectionnez l&#39;option de d&eacute;placement souhait&eacute;e.</p><h3 id="associate">
+Associer avec des tables existantes</h3>
+<p>Pour associer une barre d&#39;outils avec des tables existantes, cliquez sur la fl&egrave;che <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> et s&eacute;lectionnez l&#39;option <em>Associer &agrave; des tables</em>. Ce service permet de d&eacute;finir une barre d&#39;outils en tant que barre d&#39;outils par d&eacute;faut d&#39;un ensemble de tables. Pour cela, d&eacute;finissez les positions cibles de la barre d&#39;outils et s&eacute;lectionnez les tables ou types de donn&eacute;es complexes, d&eacute;finissant les propri&eacute;t&eacute;s de la table, &agrave; associer &agrave; la barre d&#39;outils. La barre d&#39;outils sera d&eacute;finie par d&eacute;faut aux positions d&eacute;finies sur les tables et types s&eacute;lectionn&eacute;es.</p><h3 id="exportToolbars">
+Exporter les barres d&#39;outils</h3>
+<p>Il est possible d&#39;exporter les barres d&#39;outils d&eacute;finies dans le mod&egrave;le dans un document XML. Pour cela, s&eacute;lectionner l&#39;option <em>Export XML</em> disponible dans le menu <em>Actions</em> de la section &#39;Barres d&#39;outils&#39;. Suivez ensuite l&#39;assistant pour exporter les barres d&#39;outils. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Une s&eacute;lection de barres d&#39;outils peut &ecirc;tre export&eacute;e en s&eacute;lectionnant dans la section &#39;Barres d&#39;outils&#39; les barres d&#39;outils &agrave; exporter, puis en s&eacute;lectionnant l&#39;option <em>Export XML</em> disponible dans le menu <em>Actions</em>. Les barres d&#39;outils peuvent aussi &ecirc;tre export&eacute;es en utilisant le service d&#39;export des mod&egrave;les de donn&eacute;es accessible depuis le menu <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>&#39;Actions&#39; du mod&egrave;le de donn&eacute;es</strong></a> dans le panneau de navigation. </p></div>
+<h3 id="importToolbars">
+Importer des barres d&#39;outils</h3>
+<p>Il est possible d&#39;importer des barres d&#39;outils existantes &agrave; partir d&#39;un document XML. Pour cela, s&eacute;lectionner l&#39;option <em>Import XML</em> disponible dans le menu <em>Actions</em> de la section Barres d&#39;outils. Suivez ensuite l&#39;assistant pour importer les barres d&#39;outils. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Les barres d&#39;outils peuvent aussi &ecirc;tre import&eacute;es en utilisant le service d&#39;import de mod&egrave;les de donn&eacute;es accessible depuis le menu <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>&#39;Actions&#39; du mod&egrave;le de donn&eacute;es</strong></a> dans le panneau de navigation. </p></div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html">table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

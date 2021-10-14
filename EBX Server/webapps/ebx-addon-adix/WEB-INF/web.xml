@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0">
+
+	<servlet>
+		<servlet-name>dataexchange</servlet-name>
+		<servlet-class>com.orchestranetworks.addon.adix.dataexchange.common.DEXServicesDispatcher</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>DownloadServlet</servlet-name>
+		<servlet-class>com.orchestranetworks.addon.common.ui.DownloadServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>DataExchangeDownloadServlet</servlet-name>
+		<servlet-class>com.orchestranetworks.addon.common.ui.DownloadServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>AdixSnipletServlet</servlet-name>
+		<servlet-class>com.orchestranetworks.addon.adix.common.AdixSnipletServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>DataExchangeSnipletServlet</servlet-name>
+		<servlet-class>com.orchestranetworks.addon.adix.dataexchange.common.DEXSnipletServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>datamodeler</servlet-name>
+		<servlet-class>com.orchestranetworks.addon.adix.dataexchange.datamodelgenerator.common.DMLServicesDispatcher
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dataexchange</servlet-name>
+		<url-pattern>/dataexchange</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>datamodeler</servlet-name>
+		<url-pattern>/datamodeler</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DownloadServlet</servlet-name>
+		<url-pattern>/DownloadServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DataExchangeDownloadServlet</servlet-name>
+		<url-pattern>/DataExchangeDownloadServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>AdixSnipletServlet</servlet-name>
+		<url-pattern>/AdixSnipletServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DataExchangeSnipletServlet</servlet-name>
+		<url-pattern>/DataExchangeSnipletServlet</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

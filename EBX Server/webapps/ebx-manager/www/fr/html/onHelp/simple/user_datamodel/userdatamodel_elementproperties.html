@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Propri&eacute;t&eacute;s des &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_properties" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_elementproperties.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</span></div>
+<h1>
+Propri&eacute;t&eacute;s des &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</h1>
+<p>Apr&egrave;s avoir cr&eacute;&eacute; un &eacute;l&eacute;ment, il est possible de d&eacute;finir des propri&eacute;t&eacute;s suppl&eacute;mentaires pour compl&eacute;ter sa d&eacute;finition.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementcontrols.html">Contr&ocirc;les sur les &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</a></li></ul>
+</div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#common">Propri&eacute;t&eacute;s basiques des &eacute;l&eacute;ments</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Propri&eacute;t&eacute;s basiques communes</a></li><li class="toc2"><a href="#id1s2">Propri&eacute;t&eacute;s basiques des champs</a></li></ul>
+</li><li class="toc1"><a href="#advanced_props">Propri&eacute;t&eacute;s avanc&eacute;es des &eacute;l&eacute;ments</a><ul class="toc2">
+<li class="toc2"><a href="#AdvancedPropertiesFields">Propri&eacute;t&eacute;s avanc&eacute;es des champs</a></li><li class="toc2"><a href="#table">Propri&eacute;t&eacute;s avanc&eacute;es des tables</a></li></ul>
+</li></ul>
+</div>
+<h2 id="common">
+Propri&eacute;t&eacute;s basiques des &eacute;l&eacute;ments</h2>
+<h3 id="id1s1">
+Propri&eacute;t&eacute;s basiques communes</h3>
+<p>Les propri&eacute;t&eacute;s basiques suivantes sont disponibles pour plusieurs types d&#39;&eacute;l&eacute;ments :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Information</p></td><td class="ebx_definitionListDefinition"><p>Informations suppl&eacute;mentaires non internationalis&eacute;es associ&eacute;es &agrave; l&#39;&eacute;l&eacute;ment.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nombre minimum de valeurs</p></td><td class="ebx_definitionListDefinition"><p>Nombre minimum de valeurs pour cet &eacute;l&eacute;ment.</p><p>Les cl&eacute;s primaires ne pouvant &ecirc;tre multi-valu&eacute;es, cette propri&eacute;t&eacute; doit &ecirc;tre &eacute;gale &agrave; &quot;1&quot; ou &ecirc;tre &quot;non d&eacute;finie&quot;. </p><p>Pour les &eacute;l&eacute;ments de type &quot;Noeud de s&eacute;lection&quot;, le nombre minimum est automatiquement d&eacute;fini &agrave; &quot;0&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nombre maximum de valeurs</p></td><td class="ebx_definitionListDefinition"><p>Nombre maximum de valeurs pour cet &eacute;l&eacute;ment. Si cette propri&eacute;t&eacute; est sup&eacute;rieure &agrave; &quot;1&quot;, l&#39;&eacute;l&eacute;ment est consid&eacute;r&eacute; comme multi-valu&eacute;.</p><p>Les cl&eacute;s primaires ne pouvant &ecirc;tre multi-valu&eacute;es, cette propri&eacute;t&eacute; doit &ecirc;tre &eacute;gale &agrave; &quot;1&quot; ou &ecirc;tre &quot;non d&eacute;finie&quot;.</p><p>Pour une table, le nombre maximum d&#39;&eacute;l&eacute;ments est d&eacute;fini &agrave; &quot;unbounded&quot; par d&eacute;faut lors de sa cr&eacute;ation.</p><p> Pour les &eacute;l&eacute;ments de type &quot;Noeud de s&eacute;lection&quot;,&nbsp;le nombre maximum d&#39;&eacute;l&eacute;ments est d&eacute;fini &agrave; &quot;0&quot; par d&eacute;faut lors de la d&eacute;finition des propri&eacute;t&eacute;s du noeud de s&eacute;lection.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="validationRules">R&egrave;gles de validation</p></td><td class="ebx_definitionListDefinition"><p>Cette propri&eacute;t&eacute; est disponible pour les champs situ&eacute;s dans une table, sauf pour les champs de type <code>Mot de passe</code>, les types r&eacute;utilisables, les champs des types complexes r&eacute;utilisables et les noeuds de s&eacute;lection. Cette propri&eacute;t&eacute; est utilis&eacute;e pour d&eacute;finir des r&egrave;gles de validation riches et complexes &agrave; l&#39;aide d&#39;un &eacute;diteur de pr&eacute;dicats XPath 1.0. </p><p> Une r&egrave;gle de validation peut &ecirc;tre utile lorsque la validation de la valeur d&eacute;pend de crit&egrave;res complexes ou des valeurs d&#39;autres champs.</p><p>En utilisant l&#39;assistant associ&eacute;, il est possible de d&eacute;finir des libell&eacute;s localis&eacute;s pour la r&egrave;gle de validation, ainsi qu&#39;un message localis&eacute; avec la s&eacute;v&eacute;rit&eacute; qui s&#39;affichera si le crit&egrave;re n&#39;est pas satisfait. </p><p> Il est possible d&#39;indiquer si la r&egrave;gle doit toujours &ecirc;tre valide ou non lorsqu&#39;un utilisateur soumet un formulaire. Cette option est uniquement disponible sur les r&egrave;gles de validation d&eacute;finies par un champ et lorsque la s&eacute;v&eacute;rit&eacute; du message est d&eacute;finie &agrave; &quot;erreur&quot;. Si les erreurs de validation ne sont pas autoris&eacute;es, alors toutes les saisies qui rendraient la r&egrave;gle invalide seront rejet&eacute;es et les donn&eacute;es seront non modifi&eacute;es. Si les erreurs de validation sont autoris&eacute;es alors toutes les saisies qui rendraient la r&egrave;gle invalide seront accept&eacute;es et les donn&eacute;es seront modifi&eacute;es. Si cette propri&eacute;t&eacute; n&#39;est pas sp&eacute;cifi&eacute;e, alors la r&egrave;gle bloquera uniquement les erreurs lors de la soumission d&#39;un formulaire. </p></td></tr>
+</table>
+<h3 id="id1s2">
+Propri&eacute;t&eacute;s basiques des champs</h3>
+<p>Les propri&eacute;t&eacute;s basiques suivantes sont sp&eacute;cifiques aux champs simples :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="defaultValue">Valeur par d&eacute;faut</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit une valeur par d&eacute;faut pour ce champ. </p><p>Cette valeur sera ins&eacute;r&eacute;e automatiquement dans le champ de saisie du formulaire de cr&eacute;ation des nouveaux enregistrements. Le type de la valeur par d&eacute;faut doit &ecirc;tre compatible avec le type du champ courant.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Message d&#39;erreur de conversion</p></td><td class="ebx_definitionListDefinition"><p>Messages d&#39;erreur internationalis&eacute;s affich&eacute;s aux utilisateurs lors de la saisie d&#39;une valeur qui n&#39;est pas compatible avec le type du champ courant.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="computationrules">R&egrave;gle de calcul</p></td><td class="ebx_definitionListDefinition"><p>Cette propri&eacute;t&eacute; est disponible pour les champs des tables, except&eacute; pour les types r&eacute;utilisables. D&eacute;finit une r&egrave;gle de calcul pour la valeur du champ avec l&#39;aide d&#39;un &eacute;diteur de pr&eacute;dicats XPath 1.0. </p><p> Une r&egrave;gle de calcul peut &ecirc;tre utile lorsqu&#39;une valeur d&eacute;pend d&#39;autres valeurs dans le m&ecirc;me enregistrement, mais qu&#39;un calcul programmatique n&#39;est pas n&eacute;cessaire.</p><p>Les limitations suivantes existent pour les r&egrave;gles de calcul :</p><ul>
+<li><p>Les r&egrave;gles de calcul s&#39;utilisent uniquement avec les champs simples d&#39;une table.</p></li><li><p>Les r&egrave;gles de calcul ne peuvent pas &ecirc;tre d&eacute;finies sur des champs du type <code>OResource</code> ou <code>Password</code>.</p></li><li><p>Les r&egrave;gles de calcul ne peuvent pas &ecirc;tre d&eacute;finies sur les noeuds de s&eacute;lection ni les champs cl&eacute;s primaires.</p></li><li><p>Les r&egrave;gles de calcul ne peuvent pas &ecirc;tre d&eacute;finies en acc&eacute;dant &agrave; l&#39;&eacute;l&eacute;ment depuis le rapport de validation.</p></li></ul>
+</td></tr>
+</table>
+<h2 id="advanced_props">
+Propri&eacute;t&eacute;s avanc&eacute;es des &eacute;l&eacute;ments</h2>
+<h3 id="AdvancedPropertiesFields">
+Propri&eacute;t&eacute;s avanc&eacute;es des champs</h3>
+<p>Les propri&eacute;t&eacute;s avanc&eacute;es suivantes sont sp&eacute;cifiques aux champs.</p><h4>
+D&eacute;sactiver validation</h4>
+<p>Indique si les contraintes d&eacute;finies sur le champ doivent &ecirc;tre d&eacute;sactiv&eacute;es. Cette propri&eacute;t&eacute; peut uniquement &ecirc;tre d&eacute;finie sur des champs calcul&eacute;s. Si &#39;Oui&#39;, les contraintes simples, avanc&eacute;es et de cardinalit&eacute; ne seront pas ex&eacute;cut&eacute;es lors de la validation des jeux de donn&eacute;es associ&eacute;s au mod&egrave;le de donn&eacute;es.</p><h4>
+Auto-incr&eacute;ment</h4>
+<p>Cette propri&eacute;t&eacute; est disponible uniquement pour les champs de type &quot;entier&quot; contenus dans une table. Si elle est activ&eacute;e, la valeur du champ est calcul&eacute;e automatiquement lors de la cr&eacute;ation d&#39;un nouvel enregistrement. Peut &ecirc;tre utile pour les cl&eacute;s primaires, car l&#39;auto-incr&eacute;ment g&eacute;n&egrave;re un identifiant unique pour chaque enregistrement. Deux attributs peuvent &ecirc;tre sp&eacute;cifi&eacute;s :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Valeur de d&eacute;marrage</p></td><td class="ebx_definitionListDefinition"><p>Valeur initiale de l&#39;auto-incr&eacute;ment. Si aucune valeur n&#39;est d&eacute;finie, la valeur par d&eacute;faut est &quot;1&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Pas de l&#39;incr&eacute;ment</p></td><td class="ebx_definitionListDefinition"><p>La valeur ajout&eacute;e &agrave; la valeur pr&eacute;c&eacute;dente de l&#39;auto-incr&eacute;ment. Si aucune valeur n&#39;est d&eacute;finie, la valeur par d&eacute;faut est &quot;1&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>D&eacute;sactiver les contr&ocirc;les de l&#39;auto-incr&eacute;ment</p></td><td class="ebx_definitionListDefinition"><p>Indique s&#39;il faut d&eacute;sactiver le contr&ocirc;le de la valeur d&#39;un champ auto-incr&eacute;ment&eacute; par rapport &agrave; la valeur maximale trouv&eacute;e dans la table en cours de mise &agrave; jour. </p></td></tr>
+</table>
+<h4>
+Champ h&eacute;rit&eacute;</h4>
+<p>D&eacute;finit une relation entre le champ courant et un champ dans une autre table afin de chercher sa valeur automatiquement.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Enregistrement source</p></td><td class="ebx_definitionListDefinition"><p>Une cl&eacute; &eacute;trang&egrave;re ou une s&eacute;quence de cl&eacute;s &eacute;trang&egrave;res, s&eacute;par&eacute;es par des espaces, permettant de trouver l&#39;enregistrement dont h&eacute;rite le champ courant. Si cette propri&eacute;t&eacute; n&#39;est pas renseign&eacute;e, alors l&#39;&eacute;l&eacute;ment courant sera utilis&eacute; comme source d&#39;h&eacute;ritage de champ.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>&Eacute;l&eacute;ment source</p></td><td class="ebx_definitionListDefinition"><p>Chemin XPath d&eacute;finissant l&#39;&eacute;l&eacute;ment &agrave; h&eacute;riter. L&#39;&eacute;l&eacute;ment source doit &ecirc;tre terminal, se trouver dans &quot;Enregistrement source&quot;, et son type doit &ecirc;tre le m&ecirc;me que le type de ce champ. Cette propri&eacute;t&eacute; est obligatoire pour l&#39;h&eacute;ritage de champ.</p></td></tr>
+</table>
+<p>Voir <a href="../glossary/simple_glossary.html#inheritance">h&eacute;ritage</a> dans le glossaire. </p><h3 id="table">
+Propri&eacute;t&eacute;s avanc&eacute;es des tables</h3>
+<p>Les propri&eacute;t&eacute;s avanc&eacute;es suivantes sont sp&eacute;cifiques aux tables.</p><h4>
+Table</h4>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Cl&eacute; primaire</p></td><td class="ebx_definitionListDefinition"><p>Liste des champs composant la cl&eacute; primaire de la table. Il est possible d&#39;ajouter ou de supprimer des champs de la cl&eacute; primaire.</p><p>Chaque champ de la cl&eacute; est identifi&eacute; par un chemin XPath absolu qui d&eacute;bute sous la table.</p><p>Si la cl&eacute; est composite, la liste des champs doit &ecirc;tre s&eacute;par&eacute;e par des espaces. Par exemple, &quot;/name /startDate&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Pr&eacute;sentation</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie la mani&egrave;re dont les enregistrements de cette table sont affich&eacute;s dans l&#39;interface utilisateur dans les jeux de donn&eacute;es associ&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Labellisation des enregistrements</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit les champs composant le libell&eacute; par d&eacute;faut et les libell&eacute;s localis&eacute;s pour les enregistrements de la table.</p><p><strong>Attention&nbsp;:&nbsp;</strong>Les droits d&#39;acc&egrave;s d&eacute;finis dans les jeux de donn&eacute;es associ&eacute;s ne sont pas appliqu&eacute;s lors de l&#39;affichage des libell&eacute;s. <br/> Les champs habituellement cach&eacute;s &agrave; cause de droits d&#39;acc&egrave;s seront affich&eacute;s dans les libell&eacute;s des enregistrements.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="rendering">Pr&eacute;sentation par d&eacute;faut des groupes dans un formulaire</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie la politique d&#39;affichage par d&eacute;faut des groupes contenus dans cette table. Si cette propri&eacute;t&eacute; n&#39;est pas d&eacute;finie, alors la politique par d&eacute;faut sera utilis&eacute;e pour afficher les groupes.</p><p><strong>Pr&eacute;sentation activ&eacute;e des groupes</strong> : sp&eacute;cifie un mode de pr&eacute;sentation autoris&eacute; en compl&eacute;ment de &quot;D&eacute;velopp&eacute;&quot; et &quot;R&eacute;duit&quot;, qui sont toujours disponibles. Les liens doivent &ecirc;tre activ&eacute;s sur la table afin de d&eacute;finir sp&eacute;cifiquement le mode de pr&eacute;sentation des groupes en tant que liens.</p><p><strong>Pr&eacute;sentation par d&eacute;faut des groupes</strong>&nbsp;:&nbsp;sp&eacute;cifie la pr&eacute;sentation par d&eacute;faut des groupes contenus dans cette table. Si un groupe ne sp&eacute;cifie aucune vue par d&eacute;faut, alors le mode de pr&eacute;sentation par d&eacute;faut d&eacute;fini par cette table sera utilis&eacute;. En fonction des performances du r&eacute;seau et du navigateur, ajustez la mani&egrave;re d&#39;afficher chaque groupe du formulaire. En ce qui concerne le poids de la page t&eacute;l&eacute;charg&eacute;e, le mode &quot;Lien&quot; est l&eacute;ger, les modes &quot;D&eacute;velopp&eacute;&quot; et &quot;R&eacute;duit&quot; sont plus lourds.</p><p><strong>Note :</strong> quand les onglets sont activ&eacute;s dans une table, tous les groupes qui utiliseraient les liens dans les autres cas sont convertis automatiquement en mode &quot;R&eacute;duit&quot;. Cela permet d&#39;&eacute;viter les complexit&eacute;s d&#39;affichage qui se posent quand les liens et les onglets sont dans la m&ecirc;me interface utilisateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Pr&eacute;sentation sp&eacute;cifique d&#39;un formulaire</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit une pr&eacute;sentation sp&eacute;cifique pour personnaliser le formulaire d&#39;un enregistrement dans les jeux de donn&eacute;es associ&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Barres d&#39;outils</p></td><td class="ebx_definitionListDefinition"><p id="toolbars">D&eacute;finit les barres d&#39;outils &agrave; afficher dans la table.</p><p>Les barres d&#39;outils peuvent &ecirc;tre consult&eacute;es et modifi&eacute;es dans la section <em>Configuration &gt; Barre d&#39;outils</em>.</p><p><strong>Ent&ecirc;te de table: </strong>D&eacute;finit la barre d&#39;outils &agrave; afficher en ent&ecirc;te de la vue table par d&eacute;faut.</p><p><strong>Ligne de table: </strong>D&eacute;finit la barre d&#39;outils &agrave; afficher pour chaque ligne de la vue table par d&eacute;faut.</p><p><strong>Ent&ecirc;te de formulaire: </strong>D&eacute;finit la barre d&#39;outils &agrave; afficher en ent&ecirc;te du formulaire d&#39;un enregistrement.</p><p><strong>Ent&ecirc;te de hi&eacute;rarchie: </strong>D&eacute;finit la barre d&#39;outils &agrave; afficher en ent&ecirc;te de la hi&eacute;rarchie par d&eacute;faut de la table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Historisation</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie si l&#39;historisation est activ&eacute;e, et le niveau de garantie demand&eacute;. Les profils d&#39;historisation peuvent &ecirc;tre modifi&eacute;s dans la section <strong>Administration &gt; Historique et journaux</strong>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Filtres sp&eacute;cifiques</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit des filtres pour afficher uniquement les enregistrements correspondant &agrave; certains crit&egrave;res.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Actions</p></td><td class="ebx_definitionListDefinition"><p>Indique les actions autoris&eacute;es ou interdites dans le contexte d&#39;un jeu de donn&eacute;es. Toutes les actions sont autoris&eacute;es par d&eacute;faut, cependant des droits d&#39;acc&egrave;s peuvent &ecirc;tre d&eacute;finis dans les jeux de donn&eacute;es associ&eacute;s pour restreindre ces actions.</p></td></tr>
+</table>
+<h4>
+ Contraintes d&#39;unicit&eacute; </h4>
+<p>Indique les champs dont les valeurs doivent &ecirc;tre uniques dans la table.</p><div class="ebx_seealso">
+<h5>
+Concepts apparentés</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementcontrols.html">Contr&ocirc;les sur les &eacute;l&eacute;ments du mod&egrave;le de donn&eacute;es</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html">Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

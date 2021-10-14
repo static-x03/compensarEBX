@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Toolbars</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_toolbar" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Data model</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/toolbars.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+<h1>
+Toolbars</h1>
+<p>This chapter details how toolbars are defined and managed by TIBCO EBX&reg;.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#toolbars_definition">Definition</a></li><li class="toc1"><a href="#toolbars_use">Using toolbars</a></li></ul>
+</div>
+<h2 id="toolbars_definition">
+Definition</h2>
+<p>Toolbars allow to customize the buttons and menus to display when accessing a table view, a hierarchical view, or a record form. </p><p>Toolbars can only be created and published using the <em>Data Model Assistant</em> and are available only on <code>embedded</code> and <code>packaged</code> data models.</p><p>For embedded data models, toolbars are embedded in EBX&reg;&#39;s repository and linked to a publication. That is, when publishing an embedded data model, the toolbars defined in the data model are embedded with the publication of the data model and managed by EBX&reg;.</p><p>For packaged data models, toolbars are defined in a dedicated <code>XML</code> document and must be named as the data model and end with the keyword <code>_toolbars</code>. For instance, if a data model is named <code>catalog.xsd</code> then the XML document containing the definition of the toolbars must be named <code>catalog_toolbars.xml</code>. This <code>XML</code> document must also be placed in the same location as the data model. The toolbar document is automatically loaded by EBX&reg; if a file complying with this pattern is found when compiling a data model. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_extensions.html#toolbarStructure">Configuring toolbars using the Data Model Assistant</a></li><li><a href="../models/tables.html#tables_toolbars">Using toolbars in data models</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/toolbar/ToolbarFactory.html">Toolbar API</a></li></ul>
+</div>
+<h2 id="toolbars_use">
+Using toolbars</h2>
+<p>Toolbars can be used on <code>tables</code> and <code>associations.</code></p><p>On tables, it is possible to specify the toolbar to display:</p><ul>
+<li><p>On the top of a tabular view</p></li><li><p>On each row of a tabular view</p></li><li><p>On the top of a record form</p></li><li><p>On the top of a hierarchical view.</p></li></ul>
+<p>On associations, it is possible to specify the toolbar to display:</p><ul>
+<li><p>On top of the tabular view of the association</p></li><li><p>On each row of the tabular view of the association</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/tables.html#tables_toolbars">Using toolbars</a></li><li><a href="tables.html#association">Associations</a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

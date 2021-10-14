@@ -1,0 +1,7 @@
+{
+  "type": "xpathLink",
+  "tablePath": "/root/Inventory",
+  "details": "http://.../BAuthors/Authors/root/Inventory",
+  "predicate": "/root/Inventory[./price < 100]",
+  "filter": "./price > 10"
+}

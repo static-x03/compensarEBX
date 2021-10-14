@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Unit core.datetime</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dsl.core.datetimeUnit" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/core_datetimeUnit.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+<h1>
+Unit core.datetime</h1>
+<p>Script unit that provides datetime functions.</p><table>
+<thead>
+<tr>
+<th align="left" valign="top">Methods</th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddYearsvaluedatetimeyearsdecimaldatetime">function addYears(value: datetime, years: decimal): datetime</a></p><p>Adds years to a date and time.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddMonthsvaluedatetimemonthsdecimaldatetime">function addMonths(value: datetime, months: decimal): datetime</a></p><p>Adds months to a date and time.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddDaysvaluedatetimedaysdecimaldatetime">function addDays(value: datetime, days: decimal): datetime</a></p><p>Adds days to a date and time.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddHoursvaluedatetimehoursdecimaldatetime">function addHours(value: datetime, hours: decimal): datetime</a></p><p>Adds hours to a date and time.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddMinutesvaluedatetimeminutesdecimaldatetime">function addMinutes(value: datetime, minutes: decimal): datetime</a></p><p>Adds minutes to a date and time.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionaddSecondsvaluedatetimesecondsdecimaldatetime">function addSeconds(value: datetime, seconds: decimal): datetime</a></p><p>Adds seconds to a date and time.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionofyeardecimalmonthdecimaldaydecimalhourdecimalminutedecimalseconddecimaldatetime">function of(year: decimal, month: decimal, day: decimal, hour: decimal, minute: decimal, second: decimal): datetime</a></p><p>Creates a date and time given year, month, day, hours, minutes and seconds.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionfromDatevaluedatedatetime">function fromDate(value: date): datetime</a></p><p>Converts a date to date and time with time set to 00:00:00.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionfromDateAndTimedateValuedatetimeValuetimedatetime">function fromDateAndTime(dateValue: date, timeValue: time): datetime</a></p><p>Creates a date and time given date and time values.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiondaysstartValuedatetimeendValuedatetimedecimal">function days(startValue: datetime, endValue: datetime): decimal</a></p><p>Returns the number of days between two date and times.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functionsecondsstartValuedatetimeendValuedatetimedecimal">function seconds(startValue: datetime, endValue: datetime): decimal</a></p><p>Returns the number of seconds between two date and times.</p></td></tr>
+</tbody>
+</table>
+<p></p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#functionaddYearsvaluedatetimeyearsdecimaldatetime">function addYears(value: datetime, years: decimal): datetime</a></li><li class="toc1"><a href="#functionaddMonthsvaluedatetimemonthsdecimaldatetime">function addMonths(value: datetime, months: decimal): datetime</a></li><li class="toc1"><a href="#functionaddDaysvaluedatetimedaysdecimaldatetime">function addDays(value: datetime, days: decimal): datetime</a></li><li class="toc1"><a href="#functionaddHoursvaluedatetimehoursdecimaldatetime">function addHours(value: datetime, hours: decimal): datetime</a></li><li class="toc1"><a href="#functionaddMinutesvaluedatetimeminutesdecimaldatetime">function addMinutes(value: datetime, minutes: decimal): datetime</a></li><li class="toc1"><a href="#functionaddSecondsvaluedatetimesecondsdecimaldatetime">function addSeconds(value: datetime, seconds: decimal): datetime</a></li><li class="toc1"><a href="#functionofyeardecimalmonthdecimaldaydecimalhourdecimalminutedecimalseconddecimaldatetime">function of(year: decimal, month: decimal, day: decimal, hour: decimal, minute: decimal, second: decimal): datetime</a></li><li class="toc1"><a href="#functionfromDatevaluedatedatetime">function fromDate(value: date): datetime</a></li><li class="toc1"><a href="#functionfromDateAndTimedateValuedatetimeValuetimedatetime">function fromDateAndTime(dateValue: date, timeValue: time): datetime</a></li><li class="toc1"><a href="#functiondaysstartValuedatetimeendValuedatetimedecimal">function days(startValue: datetime, endValue: datetime): decimal</a></li><li class="toc1"><a href="#functionsecondsstartValuedatetimeendValuedatetimedecimal">function seconds(startValue: datetime, endValue: datetime): decimal</a></li></ul>
+</div>
+<h2 id="functionaddYearsvaluedatetimeyearsdecimaldatetime">
+function addYears(value: datetime, years: decimal): datetime</h2>
+<p>Adds years to a date and time.</p><p><strong>Parameters :</strong></p><p>value: the input date and time</p><p>months: the number of years to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functionaddMonthsvaluedatetimemonthsdecimaldatetime">
+function addMonths(value: datetime, months: decimal): datetime</h2>
+<p>Adds months to a date and time.</p><p><strong>Parameters :</strong></p><p>value: the input date and time</p><p>months: the number of months to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functionaddDaysvaluedatetimedaysdecimaldatetime">
+function addDays(value: datetime, days: decimal): datetime</h2>
+<p>Adds days to a date and time.</p><p><strong>Parameters :</strong></p><p>value: the input date and time</p><p>months: the number of days to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functionaddHoursvaluedatetimehoursdecimaldatetime">
+function addHours(value: datetime, hours: decimal): datetime</h2>
+<p>Adds hours to a date and time.</p><p><strong>Parameters :</strong></p><p>value: the input date and time</p><p>hours: the number of hours to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functionaddMinutesvaluedatetimeminutesdecimaldatetime">
+function addMinutes(value: datetime, minutes: decimal): datetime</h2>
+<p>Adds minutes to a date and time.</p><p><strong>Parameters :</strong></p><p>value: the input date and time</p><p>minutes: the number of minutes to be added. Must be an integer.</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functionaddSecondsvaluedatetimesecondsdecimaldatetime">
+function addSeconds(value: datetime, seconds: decimal): datetime</h2>
+<p>Adds seconds to a date and time. Fractions of seconds are supported with millisecond precision.</p><p><strong>Parameters :</strong></p><p>value: the input date and time</p><p>seconds: the number of seconds to be added. Fractions are rounded to three decimal digits.</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functionofyeardecimalmonthdecimaldaydecimalhourdecimalminutedecimalseconddecimaldatetime">
+function of(year: decimal, month: decimal, day: decimal, hour: decimal, minute: decimal, second: decimal): datetime</h2>
+<p>Creates a date and time given year, month, day, hours, minutes and seconds. Fractions of seconds are supported with millisecond precision.</p><p><strong>Parameters :</strong></p><p>year: the input year</p><p>month: the input month</p><p>day: the input day</p><p>hour: the input hour</p><p>minute: the input minute</p><p>second: the input second. Fractions are rounded to three decimal digits.</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functionfromDatevaluedatedatetime">
+function fromDate(value: date): datetime</h2>
+<p>Converts a date to date and time with time set to 00:00:00.</p><p><strong>Parameters :</strong></p><p>value: the input date</p><p><strong>Return :</strong></p><p>the new date and time or null if parameter is null.</p><h2 id="functionfromDateAndTimedateValuedatetimeValuetimedatetime">
+function fromDateAndTime(dateValue: date, timeValue: time): datetime</h2>
+<p>Creates a date and time given date and time values.</p><p><strong>Parameters :</strong></p><p>dateValue: the input date</p><p>timeValue: the input time</p><p><strong>Return :</strong></p><p>the new date and time or null if any parameter is null.</p><h2 id="functiondaysstartValuedatetimeendValuedatetimedecimal">
+function days(startValue: datetime, endValue: datetime): decimal</h2>
+<p>Returns the number of days between two date and times. This function is equivalent to equivalent to days(toDate(startValue), toDate(endValue)).</p><p><strong>Parameters :</strong></p><p>startValue: the input start date and time</p><p>endValue: the input end date and time</p><p><strong>Return :</strong></p><p>the number of days or null if any parameter is null.</p><h2 id="functionsecondsstartValuedatetimeendValuedatetimedecimal">
+function seconds(startValue: datetime, endValue: datetime): decimal</h2>
+<p>Returns the number of seconds between two date and times. Fractions of seconds are supported with millisecond precision.</p><p><strong>Parameters :</strong></p><p>startValue: the input start date and time inclusive</p><p>endValue: the input end date and time exclusive</p><p><strong>Return :</strong></p><p>the number of seconds or null if any parameter is null.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

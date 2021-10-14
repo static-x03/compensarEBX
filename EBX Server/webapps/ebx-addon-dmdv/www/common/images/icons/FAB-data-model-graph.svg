@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 57.1 (101010) - https://sketch.com -->
+    <title>2C5F95D4-8EDF-4924-B4CE-837E4368E6A1</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="DMDV-Design-System" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DMDV-/-Design-system" transform="translate(-957.000000, -1497.000000)" stroke="#606060">
+            <g id="FAB-data-model-graph" transform="translate(957.000000, 1497.000000)">
+                <g id="Generate-Data-Model-Graph-FAB-button" transform="translate(0.194444, 0.194444)">
+                    <rect id="Rectangle" x="1.00462963" y="0.324074074" width="5.73132045" height="3.45865262" rx="1"></rect>
+                    <rect id="Rectangle" x="7.26574074" y="5.19636015" width="5.73132045" height="3.45865262" rx="1"></rect>
+                    <path d="M1.32407407,9.71104724 L5.05539453,9.71104724 C5.60767928,9.71104724 6.05539453,10.1587625 6.05539453,10.7110472 L6.05539453,12.1696999 C6.05539453,12.7219846 5.60767928,13.1696999 5.05539453,13.1696999 L1.32407407,13.1696999 C0.771789324,13.1696999 0.324074074,12.7219846 0.324074074,12.1696999 L0.324074074,10.7110472 C0.324074074,10.1587625 0.771789324,9.71104724 1.32407407,9.71104724 Z" id="Rectangle"></path>
+                    <path d="M10.9155194,9.09642404 L10.9155194,10.9738187" id="Line-2" stroke-linecap="square"></path>
+                    <path d="M3.63357488,4.41785913 L3.63357488,6.41443167" id="Line-2" stroke-linecap="square"></path>
+                    <path d="M6.66944444,11.2643678 L10.9155194,11.2643678" id="Line-2" stroke-linecap="square"></path>
+                    <path d="M3.62989647,6.98607914 L7.14583333,6.98607914" id="Line-2" stroke-linecap="square"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

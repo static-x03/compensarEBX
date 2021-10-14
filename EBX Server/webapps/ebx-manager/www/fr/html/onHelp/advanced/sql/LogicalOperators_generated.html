@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Logical operators</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="testLogicalOperators" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; SQL in EBX®</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=sql/LogicalOperators_generated.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+<h1>
+Logical operators</h1>
+<p>The table below lists all the SQL logical operators supported by EBX&reg;, along with their standard SQL syntax.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Operator syntax</strong></p></th><th><p><strong>Description and example(s)</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>boolean1 OR boolean2</p></td><td><p>Whether boolean1 is TRUE or boolean2 is TRUE</p><p><code>SELECT TRUE OR TRUE :&nbsp; true</code></p><p><code>SELECT TRUE OR FALSE :&nbsp; true</code></p><p><code>SELECT FALSE OR TRUE :&nbsp; true</code></p><p><code>SELECT FALSE OR FALSE :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>boolean1 AND boolean2</p></td><td><p>Whether boolean1 is TRUE and boolean2 is TRUE</p><p><code>SELECT TRUE AND TRUE :&nbsp; true</code></p><p><code>SELECT TRUE AND FALSE :&nbsp; false</code></p><p><code>SELECT FALSE AND TRUE :&nbsp; false</code></p><p><code>SELECT FALSE AND FALSE :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>NOT boolean</p></td><td><p>Whether boolean is not TRUE; returns UNKNOWN if boolean is UNKNOWN</p><p><code>SELECT NOT TRUE :&nbsp; false</code></p><p><code>SELECT NOT FALSE :&nbsp; true</code></p><p><code>SELECT NOT UNKNOWN :&nbsp; null</code></p></td></tr>
+<tr>
+<td><p>boolean IS FALSE</p></td><td><p>Whether boolean is FALSE; returns FALSE if boolean is UNKNOWN</p><p><code>SELECT TRUE IS FALSE :&nbsp; false</code></p><p><code>SELECT FALSE IS FALSE :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>boolean IS NOT FALSE</p></td><td><p>Whether boolean is not FALSE; returns TRUE if boolean is UNKNOWN</p><p><code>SELECT TRUE IS NOT FALSE :&nbsp; true</code></p><p><code>SELECT FALSE IS NOT FALSE :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>boolean IS TRUE</p></td><td><p>Whether boolean is TRUE; returns TRUE if boolean is UNKNOWN</p><p><code>SELECT TRUE IS TRUE :&nbsp; true</code></p><p><code>SELECT FALSE IS TRUE :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>boolean IS NOT TRUE</p></td><td><p>Whether boolean is not TRUE; returns FALSE if boolean is UNKNOWN</p><p><code>SELECT TRUE IS NOT TRUE :&nbsp; false</code></p><p><code>SELECT FALSE IS NOT TRUE :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>boolean IS UNKNOWN</p></td><td><p>Whether boolean is UNKNOWN</p><p><code>SELECT TRUE IS UNKNOWN :&nbsp; false</code></p><p><code>SELECT FALSE IS UNKNOWN :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>boolean IS NOT UNKNOWN</p></td><td><p>Whether boolean is not UNKNOWN</p><p><code>SELECT TRUE IS NOT UNKNOWN :&nbsp; true</code></p><p><code>SELECT FALSE IS NOT UNKNOWN :&nbsp; true</code></p></td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

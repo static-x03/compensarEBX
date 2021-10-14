@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+			xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_0.xsd"
+	    metadata-complete="true"
+      version="3.0">
+	<servlet>
+		<servlet-name>WebProcessServlet</servlet-name>
+		<servlet-class>com.onwbp.front.WebProcessServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RegisterManagerServlet</servlet-name>
+		<servlet-class>com.orchestranetworks.manager.RegisterManagerServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+  <servlet>
+    <display-name>record-permissions-jaxrs</display-name>
+    <servlet-name>record-permissions-jaxrs</servlet-name>
+    <servlet-class>com.orchestranetworks.rest.internal.RESTRegistrationServlet</servlet-class>
+    <init-param>
+      <param-name>RESTApplicationAbstract</param-name>
+      <param-value>com.orchestranetworks.manager.permissions.record.OverrideApplication
+      </param-value>
+    </init-param>
+    <init-param>
+      <param-name>ebxModuleName</param-name>
+      <param-value>ebx-manager</param-value>
+    </init-param>
+    <!-- Force the "hide-service-list-page" servlet parameter to "true" -->
+    <init-param>
+      <param-name>hide-service-list-page</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <!-- must start before module registration servlet -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+	<mime-mapping>
+		<extension>svg</extension>
+		<mime-type>image/svg+xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>svgz</extension>
+		<mime-type>image/svg+xml</mime-type>
+	</mime-mapping>
+</web-app>

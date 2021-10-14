@@ -1,0 +1,4 @@
+2021-10-06 12:54:16,076 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-06 12:54:44,727 MDT INFO   log.d3 1155 [ebx-boot] D3 is not activated in 'ebx.properties'.
+2021-10-06 17:13:16,708 MDT INFO   log.d3 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-06 17:13:45,027 MDT INFO   log.d3 1155 [ebx-boot] D3 is not activated in 'ebx.properties'.

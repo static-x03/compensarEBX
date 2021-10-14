@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Filtering data values</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_filtering" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_filtering.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</span></div>
+<h1 id="user_data_value_graph_filtering_topPage">
+Filtering data values</h1>
+<p>You can filter values and relationships from data value graphs using an XPath expression, or a programmatic filter implemented in a Java class. The points below describe behavior, advantages and drawbacks to each:</p><ul>
+<li><p><strong>Programmatic filter:</strong> When a programmatic filter is used, its logic applies to all foreign keys defined in the link configuration. These types of filters can be very powerful as they allow you to filter links based on individual start and end nodes, any related nodes, or nodes between the start and end node path. The difficulty in using a programmatic filter mainly lies in its implementation, as this requires knowledge of Java. These types of filters can also negatively impact performance in large graphs.</p></li><li><p><strong>XPath filter:</strong> An XPath filter can be configured and applied to individual foreign keys in a link configuration. These types of filters provide the convenience of configuration via the UI and not requiring programming knowledge to configure. However, there are limits to the available functions and operators.</p></li></ul>
+<p>The following demonstrates how to add each type of filter to a link configuration and the outcome of doing so:</p><ul>
+<li><p>Add an XPath expression to a link configuration&#39;s <strong>Path</strong> property. If conditions in a generated graph satisfy the expression, the add-on removes the corresponding nodes. As shown in the following image, you can use the <strong>Conditional Filter</strong> property to define an XPath filter:</p><p><img alt="/conditional-filter.png" src="./resources/images/conditional-filter.png"></img></p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The add-on only supports XPath for fields on the target table, or a combination of the target and current tables. You cannot use the current table only. Additionally, the add-on validates the XPath statement when saving the record and blocks the save action if the statement is invalid.</p></div>
+</li><li><p>Add a programmatic filter that applies to all paths defined in a link configuration. See the <a href="../developer_guide/dev_data_value_relationship.html#dev_data_value_relationship_filter">Filtering data values and relationships</a> section for sample code to help you get started. Once you&#39;ve implemented the custom filter class, enter the fully qualified name in the <strong>Custom filter class</strong> field (shown below).</p><p><img alt="/programmatic-filter.png" src="./resources/images/programmatic-filter.png"></img></p></li></ul>
+<p>For demonstration purposes, both filters described above remove the same values from the graph. The image below shows the result of applying the filters:</p><img alt="/implemented_filter.png" src="./resources/images/implemented_filter.png"></img></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "rows": [
+    {
+      "code": 204,
+      "foreignKey": "62",
+      "label": "Claude Debussy",
+      "details": "http://.../root/individu/62"
+    },
+    {
+      "code": 201,
+      "foreignKey": "195",
+      "label": "Camille Saint-Sa&euml;ns",
+      "details": "http://.../root/individu/195"
+    }
+  ]
+}

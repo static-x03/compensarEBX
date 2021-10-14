@@ -1,0 +1,7 @@
+<svg id="SVGRoot" width="16px" height="16px" version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<g>
+<circle cx="8" cy="8" r="7.5" style="fill:none;paint-order:normal;stroke-linecap:round;stroke-linejoin:round;stroke:#000000"/>
+<circle cx="8" cy="8" r="5.5" style="fill:none;paint-order:normal;stroke-linecap:round;stroke-linejoin:round;stroke:#000000"/>
+<path d="m4.5 10.5h7l-3.5-6.5z" style="fill-rule:evenodd;fill:#ffffff;stroke-linejoin:round;stroke-width:1px;stroke:#000000"/>
+</g>
+</svg>

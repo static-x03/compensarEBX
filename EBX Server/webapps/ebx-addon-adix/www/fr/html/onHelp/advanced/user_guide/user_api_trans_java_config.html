@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Using a custom transformation</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_api_trans_java_config" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Using a custom transformation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_api_trans_java_config.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Using a custom transformation</span></div>
+<h1>
+Using a custom transformation</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Creating the import preference and adding a transformation</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>This section gives administrators an example of how to configure the add-on to import and transform data from a spreadsheet. In this example, we also demonstrate the add-on&#39;s ability to automatically generate the components required for configuration by creating and saving an import preference. In the final step we add a the transformation to the auto-generated mapping configuration. Once these steps are complete we can re-import the file to apply the transformation.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>The process demonstrated in this section might not be the best solution depending on your data structure. For example, if your target table uses an auto-generated primary key and the source has no primary key or it is not mapped, re-importing might result in duplicate records. To avoid this you can follow the general step by step instructions to configure manually. See <a href="../user_guide/user_mapping_generate_constant_values.html">Generating constant values</a> for more information.</p></div>
+<h2 id="id2">
+Creating the import preference and adding a transformation</h2>
+<p>When you import data from a spreadsheet, the add-on automatically creates required applications, interfaces, models, and mappings behind the scene. If you create a preference when importing, the add-on saves all of these settings. You can access the settings and add a transformation to a saved field mapping to alter how data is processed.</p><p>To create an import preference and add a transformation:</p><ol>
+<li><p>Open the table in EBX® where you want to import data.</p></li><li><p>From the <strong>Actions</strong> menu, select <strong>Data Exchange</strong> and the import option. In this example we are importing from a spreadsheet so we use <strong>Import Excel</strong>.</p><p><img alt="/wkday-import-service-1.png" src="./resources/images/wkday-import-service-1.png"></img></p></li><li><p>Select <strong>Browse</strong> to choose the file to import and select <strong>Configuration</strong> at the bottom of the screen.</p><p><img alt="/wkday-import-screen-1.png" src="./resources/images/wkday-import-screen-1.png"></img></p></li><li><p>Double-check the default options here to ensure the mode and starting position of table data is set correctly and select <strong>Mapping</strong> at the bottom of the screen.</p><p><img alt="/wkday-import-screen-2.png" src="./resources/images/wkday-import-screen-2.png"></img></p></li><li><p>In the <strong>Manage preference</strong> box, select <strong>Create</strong> a new preference called and provide a name. After selecting <strong>Import</strong> at the bottom of the page you can close the result page and open the <strong>Administration</strong> area from the main menu.</p><p><img alt="/wkday-import-screen-3.png" src="./resources/images/wkday-import-screen-3.png"></img></p><p>In the <strong>Administration</strong> area, browse the contents of the configuration area to see how configuration settings were generated.</p><p><img alt="/wkday-import-results-1.png" src="./resources/images/wkday-import-results-1.png"></img></p></li><li><p>We can now add our custom transformation built using the add-on&#39;s API by navigating to <em>Data mapping &gt; Field mapping transformation</em> and creating a new record.</p><p><img alt="/wkday-import-transformation-1.png" src="./resources/images/wkday-import-transformation-1.png"></img></p></li><li><p>In the <strong>Field mapping</strong> drop-down menu, choose the mapping for the data to transform and use the <strong>Transformation function</strong> drop-down menu to select the custom transformation. After saving the record populates with the settings specified in the Java class.</p><p><img alt="/wkday-import-transformation-2.png" src="./resources/images/wkday-import-transformation-2.png"></img></p></li><li><p>After saving and closing the record, navigate to the import target table from step 1 and re-import, making sure to select the preference you just created on the import&#39;s file selection page.</p><p>Note that depending on your data structure, you might need to update the import mode, or other options. After making changes, the <strong>Mapping</strong> screen allows you to update the preference, create a new one, or ignore changes.</p><p><img alt="/wkday-import-service-2.png" src="./resources/images/wkday-import-service-2.png"></img></p><p>Notice that upon re-import the add-on applied the transformation function to the data. Anytime this preference is used the function will apply.</p><p><img alt="/wkday-import-service-3.png" src="./resources/images/wkday-import-service-3.png"></img></p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

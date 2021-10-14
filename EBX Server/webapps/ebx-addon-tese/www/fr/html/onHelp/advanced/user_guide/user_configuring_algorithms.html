@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - Working with algorithms</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_configuring_algorithms" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Information Search Add-on Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_configuring_algorithms.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Information Search Add-on Documentation</span></div>
+<h1 id="user_configuring_algorithms_top">
+Working with algorithms</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_configuring_algorithms_overview">Customizing search algorithms</a></li><li class="toc1"><a href="#user_configuring_algorithms_number">Algorithms for number and date/time data types</a></li><li class="toc1"><a href="#user_configuring_japanese_algorithms">Japanese search algorithms</a></li></ul>
+</div>
+<h2 id="user_configuring_algorithms_overview">
+Customizing search algorithms</h2>
+<p>The add-on comes bundled with a set of ready-to-use algorithms. You can create a new algorithm based on one of these default algorithms and edit its parameters to customize behavior. As shown below, you could use the <strong>N-Gram</strong> algorithm to create two algorithm definitions with different values for the input parameters.</p><p><img alt="/custom_algorithm_1.png" src="./resources/images/custom_algorithm_1.png"></img></p><p>When you create a new algorithm, fill in the <strong>Code</strong> field, choose a <strong>Supported algorithm</strong>, and click the <strong>Save</strong> button. The label and description automatically update, and a list of default parameters displays in the <strong>Input parameters</strong> section. The parameters that display depend on the selected algorithm. After you finish customizing parameter values for the new algorithm, click <strong>Save and close</strong>. Your newly created algorithm displays in the <strong>Algorithm</strong> table and is ready to use.</p><p>The following image shows a newly created algorithm configuration based on the DoubleMetaphoneLevenstein pre-defined algorithm with its <strong>Max code length</strong> value updated to 5.</p><p><img alt="/new_algorithm_1.png" src="./resources/images/new_algorithm_1.png" width="621"></img></p><p>The table below lists all algorithms from which you can customize parameters in order to create new algorithms.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Algorithms</p></th><th valign="top"><p>Default parameters</p></th><th valign="top"><p>Parameter configuration</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><strong>DoubleMetaphone</strong></p></td><td valign="top"><p>Max code length = 4</p></td><td valign="top"><p>This phonetic algorithm works best on short strings, such as proper names. It is especially adept at returning words or names whose actual pronunciation may be different than the search text entered.</p><p>The <strong>Max code length</strong> property limits the code length used to find possible matches. When you enter a search string, the algorithm encodes it as a key and returns words with matching keys. You should set this property to a value that reflects the length of text being searched. For example:</p><p>If you specify a value of 4, the algorithm encodes the three words &quot;cricket&quot;, criket&quot; and cricketgame&quot; as &quot;KRKT&quot;. The algorithm considers the three words a match. If you changed the value to 8, &quot;cricket&quot; and &quot;criket&quot; are still encoded as &quot;KRKT&quot;. However, it encodes &quot;cricketgame&quot; as &quot;KRKTKM&quot;. In this case, &quot;cricketgame&quot; no longer matches.</p><p>Note that this algorithm cannot be used to search numeric, date/time, or special character formats. Also, due to the way the algorithm processes phonetic structures, a search for &quot;www&quot; returns no result.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>DoubleMetaphone</strong></p><p><strong>Levenshtein</strong></p></td><td valign="top"><p>Max code length = 4</p></td><td valign="top"><p>Being a phonetic algorithm, Double Metaphone may fail to match misspelled words when the misspelling substantially alters the phonetic structure of a word.</p><p>The Double Metaphone Levenshtein algorithm can compute distance between two long strings, but at the cost to compute it, which is roughly proportional to the product of the two string lengths.</p><p>So, a combination of these algorithms reduces their limitations. Levenshtein may find similarity between encoded strings, and the length of encoded strings is limited by Double Metaphone.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>NGram</strong></p></td><td valign="top"><p>Item size (n) = 2</p></td><td valign="top"><p>This algorithm partitions search criteria into subsets of a specified length called NGrams. You set this length using the <strong>Gram size</strong> property. For example, if you set this property to a value of 3, the algorithm splits the word PHASED into the following N-Grams: PHA, HAS, ASE and SED. PHASED is then added to the lists of words containing those N-Grams.</p><p>Keep in mind that if you set the size too small, the algorithm may not capture important differences and return too many terms. If the size is too large, the opposite is true and may result in few returned results. Therefore, when used for names, a value of 3 or 4 is recommended. For phone numbers, a value of 7.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>JaroWinkler</strong></p></td><td valign="top"><p>threshold = 0.7 (a condition to add <strong>Winkler</strong> distance or not. Value is from 0 to 1)</p></td><td valign="top"><p>This algorithm works best on short strings, such as proper names. It tallies the number of characters in common and places a higher emphasis on differences at the start of the string. Therefore, the lower you set the <strong>Threshold</strong> parameter, the more impact differences at the beginning of strings have. <strong>Threshold</strong> parameter values should be from 0.0 to 1.0.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>FuzzyFullText</strong></p></td><td valign="top"><p>Similarity = 0.7</p><p>Prefix length = 0</p></td><td valign="top"><p>This algorithm works best for general strings like those contained in descriptions. This algorithm finds a similar, or fuzzy, match of the keyword text entered.</p><p>The <strong>Similarity</strong> parameter determines how similar results have to be before they are returned. The higher you set the value, the fewer results and vice versa.</p><p>The <strong>Prefix length</strong> parameter specifies that a number of characters from the beginning of the keyword must exactly match data being searched in order to return a result. For example, if you set the value to 2 and use the keyword &quot;Automotive&quot;, the algorithm only considers words that begin with &quot;au&quot; as potential matches.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>FuzzyJapanese</strong></p></td><td valign="top"><p>Similarity = 0.7</p><p>Prefix length = 0</p></td><td valign="top"><p>This algorithm performs a search on Japanese text and finds a similar, or &quot;fuzzy&quot; match. This algorithm allows you to use the following character types or any combination thereof: Kanji, Katakana and Hiragana.</p><p>The <strong>Similarity</strong> parameter defines a value between 0 and 1, which is used to set the required similarity between the query terms and the matching terms. The similarity level is calculated based on the Levenshtein algorithm. For example: For a similarity of 0.5, a term of the same length as the query term is considered similar to the query term if the edit distance between both terms is less than length(term)*0.5. The keyword &#39;クリニク&#39; will match with &#39;クリニック&#39; if the <strong>Similarity</strong> &lt; 0.75.</p><p>The <strong>Prefix length</strong> parameter specifies the number of characters-from the beginning of the search term-that must exactly match in order to return a result. For example: The keyword &#39;クリニク&#39; will match &#39;クリニック&#39; if the <strong>Prefix length</strong> &lt; 4 and <strong>Similarity</strong> = 0.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>SearchDate</strong></p></td><td valign="top"><p>Threshold = 5</p></td><td valign="top"><p>This algorithm allows you to search on fields with date or, date-time data types. In order for a date to match, it must be in the range specified by the search input plus/minus the value set in the <strong>Threshold</strong> parameter. The closer the search input is to the data being searched, the higher the score.</p><p>In order for a date to match, it must be in the range specified by the search input plus or minus the value set in the <strong>Threshold</strong> parameter. If the <strong>Threshold</strong> value increases, the score decreases. Score = 100-(distance*100/threshold).</p></td></tr>
+<tr>
+<td valign="top"><p><strong>SearchNumber</strong></p></td><td valign="top"><p>Threshold = 5</p></td><td valign="top"><p>This algorithm allows you to search on fields with a numeric data type. In order for a number to match, it must be in the range specified by the search input plus/minus the value set in the <strong>Threshold</strong> parameter. The closer the search input is to the numbers being searched, the higher the score.</p><p>In order for a number to match, it must be in the range specified by the search input plus or minus the value set in the <strong>Threshold</strong> parameter. If the <strong>Threshold</strong> value increases, the score decreases. Score = 100-(distance*100/threshold).</p></td></tr>
+</tbody>
+</table>
+<h2 id="user_configuring_algorithms_number">
+Algorithms for number and date/time data types</h2>
+<p>You can search in fields whose data types are integer, decimal, date, or date time. To search fields with date data types, you must configure the desired fields to use the <strong>Search Date</strong> algorithm. To search fields with integer, or decimal data types, you must use the <strong>Search Number</strong> algorithm.</p><p>After you have configured fields to use the <strong>Search Date</strong> algorithm, to search for Date, input the Date string in &#39;DD/MM/YYYY&#39; format for French and &#39;MM/DD/YYYY&#39; format for other languages.</p><h2 id="user_configuring_japanese_algorithms">
+Japanese search algorithms</h2>
+<p>The Japanese and Fuzzy Japanese search algorithms allow you to retrieve results written in the Japanese language by using one, or a combination of three Japanese alphabet charts: Kanji, Hiragana, and Katakana. The Fuzzy Japanese algorithm works best for general strings like those contained in descriptions by finding a similar, or fuzzy, match of the keyword entered.</p><p>To apply the Japanese search algorithm, you navigate to the <strong>Searched fields</strong> table in the EBX® Information Search Add-on configuration, then specify the Japanese search option on the <strong>Primary search algorithm</strong> field.</p><p>Once you have completed the configuration, you can execute a search as usual.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

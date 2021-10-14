@@ -1,0 +1,468 @@
+2021-10-05 15:54:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_REP [42102-196]
+2021-10-05 15:54:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "CF40_REPOSITORY" not found; SQL statement:
+SELECT COUNT(*) FROM CF40_REPOSITORY [42102-196]
+2021-10-05 15:54:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-05 15:54:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REP" not found; SQL statement:
+SELECT repository_id,format_id,repository_label FROM EBX_REP [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REP" not found; SQL statement:
+SELECT repository_id,format_id,repository_label FROM EBX_REP [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDS [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDO" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDO [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDO" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDO [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDO" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDO [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDX [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REL" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_REL [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REL" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_REL [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REL" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_REL [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_REP [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_REP [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_REP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_REP [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_DSP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_DSP [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_DSP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_DSP [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_DST" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_DST [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_DST" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_DST [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_SCH" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_SCH [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_SCH" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_SCH [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_TLR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_TLR [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_TLR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_TLR [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_BLK [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_BLK [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_SHR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_SHR [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_SHR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_SHR [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_TRV" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_TRV [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_TRV" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_TRV [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_DTR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_DTR [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_G_DTR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_G_DTR [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_RRO" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_RRO [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_RRO" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_RRO [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_XS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_XS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_XS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_XS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_XS_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_XS_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_TXS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_TXS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_TXS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_TXS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_TXS_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_TXS_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_CXS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_CXS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_CXS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_CXS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_IDX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_IDX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_IDX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_IDX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_IDX_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_IDX_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_ICX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_ICX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_ICX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_ICX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_CTP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_CTP [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_CTP" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_CTP [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_CTP_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_CTP_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_FCT" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_FCT [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_FCT" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_FCT [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_FCT_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_FCT_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_LXS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_LXS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_LXS" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_LXS [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Column "HV_COLUMN_NAME" not found; SQL statement:
+SELECT hv_column_name FROM EBX_LXS WHERE 1=0 [42122-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:839)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:194)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:194)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:194)
+	at com.orchestranetworks.cce.rdb.resource.zzd.zzc(zzd.java:146)
+	at com.orchestranetworks.cce.rdb.zzc.zza(zzc.java:113)
+	at com.orchestranetworks.cce.rdb.ddl.zzp.zzf(zzp.java:231)
+	at com.orchestranetworks.cce.rdb.ddl.zzp.zzc(zzp.java:36)
+	at com.orchestranetworks.cce.rdb.ddl.zzar.zzb(zzar.java:7)
+	at com.orchestranetworks.cce.rdb.ddl.zzx.zza(zzx.java:5)
+	at com.orchestranetworks.cce.rdb.ddl.zzp.zza(zzp.java:256)
+	at com.orchestranetworks.cce.rdb.ddl.zzb.zza(zzb.java:6)
+	at com.orchestranetworks.cce.rdb.ddl.execution.zzm.zzb(zzm.java:7)
+	at com.orchestranetworks.cce.rdb.ddl.execution.zzn.zzb(zzn.java:3)
+	at com.orchestranetworks.cce.rdb.ddl.zzaF.zza(zzaF.java:65)
+	at com.orchestranetworks.cce.rdb.ddl.zzaF.zzs(zzaF.java:58)
+	at com.orchestranetworks.cce.rdb.installation.zzg.zza(zzg.java:15)
+	at com.orchestranetworks.cce.rdb.installation.zzl.zza(zzl.java:1)
+	at com.orchestranetworks.cce.rdb.installation.zzg.zza(zzg.java:16)
+	at com.orchestranetworks.cce.rdb.installation.zzg.zzb(zzg.java:10)
+	at com.orchestranetworks.cce.cache.store.rdb.zzbn.zzb(zzbn.java:78)
+	at com.onwbp.adaptation.zzfs.zza(zzfs.java:38)
+	at com.onwbp.adaptation.zzbp.zza(zzbp.java:15)
+	at com.onwbp.adaptation.zzfs.<init>(zzfs.java:75)
+	at com.onwbp.adaptation.CfRepository.<init>(CfRepository.java:413)
+	at com.onwbp.adaptation.zzb5.zza(zzb5.java:40)
+	at com.onwbp.adaptation.CfRepository.newRepository(CfRepository.java:516)
+	at com.onwbp.adaptation.CfRepositoryEnvelope.zza(CfRepositoryEnvelope.java:28)
+	at com.onwbp.adaptation.CfRepositoryEnvelope.initializeDefaultRepositoryByInstallingItIfPropertiesSpecified(CfRepositoryEnvelope.java:45)
+	at com.onwbp.front.zzd.zza(zzd.java:47)
+	at com.onwbp.front.zzd.zza(zzd.java:36)
+	at com.onwbp.front.zzd.zza(zzd.java:15)
+	at com.onwbp.front.Dispatcher.route(Dispatcher.java:350)
+	at com.onwbp.front.FrontServlet.service(FrontServlet.java:14)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:94)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:620)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:502)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1132)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:684)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1533)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1489)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_RPU" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_RPU [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_RPU" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_RPU [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_TXR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_TXR [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_TXR" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_TXR [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDT" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDT [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDT" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDT [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_DDT" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_DDT [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_TX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_TX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_TX" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_TX [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_HV_TX_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_HV_TX_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_TX_STAT" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_TX_STAT [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_TX_STAT" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_TX_STAT [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_HV_TX_STAT_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_HV_TX_STAT_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_USER" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_USER [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_USER" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_USER [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_HV_USER_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_HV_USER_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_ACTION" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_ACTION [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_ACTION" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_ACTION [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_HV_ACTION_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_HV_ACTION_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_INSTANCE" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_INSTANCE [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_INSTANCE" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_INSTANCE [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_HV_INSTANCE_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_HV_INSTANCE_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_HOM" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_HOM [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_HOM" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_HOM [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_HV_HOM_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_HV_HOM_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_SESSION" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_SESSION [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_SESSION" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_SESSION [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT EBX_HV_SESSION_SEQ.NEXTVAL FROM[*] DUAL  "; expected "identifier"; SQL statement:
+SELECT EBX_HV_SESSION_SEQ.nextval FROM DUAL  [42001-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_MERGE" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_MERGE [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_HV_MERGE" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_HV_MERGE [42102-196]
+2021-10-05 15:55:23 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-05 15:55:23 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-05 16:11:46 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-05 16:11:56 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-05 16:11:57 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-06 12:54:17 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-06 12:54:27 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-06 12:54:29 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-06 17:13:18 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-06 17:13:28 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-06 17:13:29 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-07 14:56:45 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1484)
+	at org.h2.jdbc.JdbcStatement.checkClosed(JdbcStatement.java:993)
+	at org.h2.jdbc.JdbcPreparedStatement.checkClosed(JdbcPreparedStatement.java:1682)
+	at org.h2.jdbc.JdbcStatement.checkClosed(JdbcStatement.java:967)
+	at org.h2.jdbc.JdbcPreparedStatement.clearParameters(JdbcPreparedStatement.java:233)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingPreparedStatement.clearParameters(DelegatingPreparedStatement.java:81)
+	at com.onwbp.org.apache.commons.dbcp2.PoolingConnection.passivateObject(PoolingConnection.java:340)
+	at com.onwbp.org.apache.commons.dbcp2.PoolingConnection.passivateObject(PoolingConnection.java:43)
+	at com.onwbp.org.apache.commons.pool2.impl.GenericKeyedObjectPool.returnObject(GenericKeyedObjectPool.java:483)
+	at com.onwbp.org.apache.commons.dbcp2.PoolablePreparedStatement.close(PoolablePreparedStatement.java:104)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingStatement.close(DelegatingStatement.java:161)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingStatement.close(DelegatingStatement.java:161)
+	at com.orchestranetworks.cce.rdb.resource.zzi.close(zzi.java:83)
+	at com.orchestranetworks.cce.rdb.resource.zzd.zza(zzd.java:66)
+	at com.orchestranetworks.cce.rdb.resource.zzd.zzb(zzd.java:135)
+	at com.orchestranetworks.cce.rdb.rro.zzn.zzr(zzn.java:48)
+	at com.orchestranetworks.cce.rdb.rro.zzo.run(zzo.java:33)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2021-10-07 14:56:45 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1484)
+	at org.h2.jdbc.JdbcStatement.checkClosed(JdbcStatement.java:993)
+	at org.h2.jdbc.JdbcPreparedStatement.checkClosed(JdbcPreparedStatement.java:1682)
+	at org.h2.jdbc.JdbcStatement.checkClosed(JdbcStatement.java:967)
+	at org.h2.jdbc.JdbcPreparedStatement.clearParameters(JdbcPreparedStatement.java:233)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingPreparedStatement.clearParameters(DelegatingPreparedStatement.java:81)
+	at com.onwbp.org.apache.commons.dbcp2.PoolingConnection.passivateObject(PoolingConnection.java:340)
+	at com.onwbp.org.apache.commons.dbcp2.PoolingConnection.passivateObject(PoolingConnection.java:43)
+	at com.onwbp.org.apache.commons.pool2.impl.GenericKeyedObjectPool.returnObject(GenericKeyedObjectPool.java:483)
+	at com.onwbp.org.apache.commons.dbcp2.PoolablePreparedStatement.close(PoolablePreparedStatement.java:104)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingStatement.close(DelegatingStatement.java:161)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingStatement.close(DelegatingStatement.java:161)
+	at com.orchestranetworks.cce.rdb.resource.zzi.close(zzi.java:83)
+	at com.orchestranetworks.cce.rdb.resource.zzd.zza(zzd.java:66)
+	at com.orchestranetworks.cce.rdb.resource.zzd.zzb(zzd.java:135)
+	at com.orchestranetworks.cce.rdb.rro.zzn.zzr(zzn.java:163)
+	at com.orchestranetworks.cce.rdb.rro.zzo.run(zzo.java:33)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2021-10-07 14:56:45 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1484)
+	at org.h2.jdbc.JdbcConnection.checkClosedForWrite(JdbcConnection.java:1469)
+	at org.h2.jdbc.JdbcConnection.rollback(JdbcConnection.java:498)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingConnection.rollback(DelegatingConnection.java:484)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingConnection.rollback(DelegatingConnection.java:484)
+	at com.onwbp.org.apache.commons.dbcp2.DelegatingConnection.rollback(DelegatingConnection.java:484)
+	at com.orchestranetworks.cce.rdb.resource.zzd.zzc(zzd.java:36)
+	at com.orchestranetworks.cce.rdb.rro.zzn.zzr(zzn.java:144)
+	at com.orchestranetworks.cce.rdb.rro.zzo.run(zzo.java:33)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2021-10-07 14:57:01 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-07 14:57:01 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-07 14:57:03 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-10 09:08:48 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-10 09:08:58 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-10 09:08:59 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-11 09:44:46 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-11 09:44:56 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]
+2021-10-11 09:44:58 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "EBX_BLK" not found; SQL statement:
+SELECT COUNT(*) FROM EBX_BLK [42102-196]

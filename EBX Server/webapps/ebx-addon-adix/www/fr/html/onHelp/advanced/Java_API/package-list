@@ -1,0 +1,14 @@
+com.orchestranetworks.addon.adix
+com.orchestranetworks.addon.dataexchange
+com.orchestranetworks.addon.dataexchange.sql
+com.orchestranetworks.addon.dataexchange.transformation
+com.orchestranetworks.addon.dataexchange.validator
+com.orchestranetworks.addon.dex
+com.orchestranetworks.addon.dex.common
+com.orchestranetworks.addon.dex.common.generation
+com.orchestranetworks.addon.dex.configuration
+com.orchestranetworks.addon.dex.mapping
+com.orchestranetworks.addon.dex.result
+com.orchestranetworks.addon.dex.transformation
+com.orchestranetworks.addon.dex.validator
+com.orchestranetworks.addon.dml

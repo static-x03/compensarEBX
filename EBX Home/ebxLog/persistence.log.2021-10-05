@@ -1,0 +1,767 @@
+2021-10-05 15:27:24,538 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:27:25,805 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #0 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:26,810 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #1 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:27,815 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #2 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:28,817 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #3 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:29,821 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #4 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:30,825 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #5 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:31,830 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #6 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:32,832 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #7 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:33,834 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #8 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:34,838 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #9 to take exclusive ownership of a repository apparently owned by: id=2, hostName=Manishs-MBP-2, hostAddress=192.168.1.156, mode=unique, state=Owner.
+2021-10-05 15:27:35,843 MDT INFO   log.persistence 1155 [ebx-rro-3-unique] Starting repository ownership heart beat thread on entry: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Not owner.
+2021-10-05 15:27:44,874 MDT INFO   log.persistence 1155 [ebx-rro-3-unique] Heart beat #10: avgInterval=903: maxInterval=1005 ms.
+2021-10-05 15:27:50,233 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 1068 ms.
+2021-10-05 15:27:50,625 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 122 ms.
+2021-10-05 15:27:50,814 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 187 ms.
+2021-10-05 15:27:51,173 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 198 ms.
+2021-10-05 15:27:51,536 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 95 ms.
+2021-10-05 15:27:53,001 MDT INFO   log.persistence 1155 [ebx-boot] Committed 4 blocs modified in Java Cache; in 259 ms.
+2021-10-05 15:27:53,744 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-05 15:27:54,381 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 636 ms.
+2021-10-05 15:27:54,499 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 113 ms.
+2021-10-05 15:27:54,797 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 145 ms.
+2021-10-05 15:27:54,905 MDT INFO   log.persistence 1155 [ebx-rro-3-unique] Heart beat #20: avgInterval=953: maxInterval=1005 ms.
+2021-10-05 15:35:22,392 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:35:23,618 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #0 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:24,621 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #1 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:25,627 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #2 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:26,631 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #3 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:27,636 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #4 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:28,642 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #5 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:29,643 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #6 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:30,647 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #7 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:31,650 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #8 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:32,651 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #9 to take exclusive ownership of a repository apparently owned by: id=3, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:35:33,655 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Starting repository ownership heart beat thread on entry: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Not owner.
+2021-10-05 15:35:42,688 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #10: avgInterval=903: maxInterval=1005 ms.
+2021-10-05 15:35:52,727 MDT INFO   log.persistence 1155 [ebx-rro-4-unique] Heart beat #20: avgInterval=953: maxInterval=1005 ms.
+2021-10-05 15:38:11,685 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:38:13,239 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #0 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:14,243 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #1 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:15,247 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #2 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:16,250 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #3 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:17,255 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #4 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:18,261 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #5 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:19,265 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #6 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:20,270 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #7 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:21,274 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #8 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:22,275 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #9 to take exclusive ownership of a repository apparently owned by: id=4, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:38:23,283 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Starting repository ownership heart beat thread on entry: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Not owner.
+2021-10-05 15:38:32,323 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #10: avgInterval=904: maxInterval=1005 ms.
+2021-10-05 15:38:42,352 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #20: avgInterval=953: maxInterval=1006 ms.
+2021-10-05 15:42:20,314 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:42:21,939 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #0 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:22,943 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #1 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:23,947 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #2 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:24,951 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #3 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:25,954 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #4 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:26,958 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #5 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:27,962 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #6 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:28,968 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #7 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:29,973 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #8 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:30,978 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #9 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 15:42:31,984 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Starting repository ownership heart beat thread on entry: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Not owner.
+2021-10-05 15:42:41,028 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #10: avgInterval=904: maxInterval=1009 ms.
+2021-10-05 15:42:51,069 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #20: avgInterval=954: maxInterval=1009 ms.
+2021-10-05 15:52:45,784 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:52:47,242 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #0 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:48,248 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #1 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:49,252 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #2 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:50,256 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #3 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:51,262 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #4 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:52,266 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #5 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:53,271 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #6 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:54,273 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #7 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:55,275 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #8 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:56,281 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #9 to take exclusive ownership of a repository apparently owned by: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Owner.
+2021-10-05 15:52:57,289 MDT INFO   log.persistence 1155 [ebx-rro-7-unique] Starting repository ownership heart beat thread on entry: id=7, hostName=MacBook-Pro.local, hostAddress=192.168.1.3, mode=unique, state=Not owner.
+2021-10-05 15:53:06,324 MDT INFO   log.persistence 1155 [ebx-rro-7-unique] Heart beat #10: avgInterval=903: maxInterval=1005 ms.
+2021-10-05 15:53:16,354 MDT INFO   log.persistence 1155 [ebx-rro-7-unique] Heart beat #20: avgInterval=953: maxInterval=1005 ms.
+2021-10-05 15:54:21,910 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 15:54:23,341 MDT INFO   log.persistence 1155 [localhost-startStop-1] Tried request on table EBX_REP: table not found. Database tables for EBX(R) are apparently missing.
+2021-10-05 15:54:23,343 MDT INFO   log.persistence 1155 [localhost-startStop-1] Tried request on table CF40_REPOSITORY: table not found. Database tables for EBX(R) are apparently missing.
+2021-10-05 15:54:58,656 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] EBX(R) configuration file: property [ebx.persistence.driver] is not defined.
+2021-10-05 15:55:19,838 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] EBX(R) configuration file: property [ebx.persistence.driver] is not defined.
+2021-10-05 15:55:23,429 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] ============================================================================
+2021-10-05 15:55:23,429 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] BEGIN REPOSITORY INSTALLATION: RepositoryDeclaration[repositoryId=00E6A8A13ABC, repositoryLabel=compensar-mvp, format=null]@1915da53
+2021-10-05 15:55:23,429 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Database: jdbc:h2:../EBX Home/ebxRepository/h2/repository;MVCC=TRUE
+2021-10-05 15:55:23,429 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] ============================================================================
+2021-10-05 15:55:23,460 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level SSE.1 not found. Upgrading...
+2021-10-05 15:55:23,527 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script: 
+CREATE TABLE EBX_DDS (
+	script_id INT NOT NULL ,
+	repository_patch NVARCHAR(50) NOT NULL ,
+	product_info NVARCHAR(50) NOT NULL ,
+	start_time TIMESTAMP NOT NULL ,
+	end_time TIMESTAMP,
+	CONSTRAINT EBX_DDS_PK PRIMARY KEY  (script_id));
+CREATE INDEX EBX_DDSIX ON EBX_DDS (repository_patch);
+CREATE TABLE EBX_DDO (
+	script_id INT NOT NULL ,
+	operation_id INT NOT NULL ,
+	statement VARCHAR NOT NULL ,
+	start_time TIMESTAMP NOT NULL ,
+	end_time TIMESTAMP,
+	CONSTRAINT EBX_DDO_PK PRIMARY KEY  (script_id, operation_id),
+	 FOREIGN KEY (script_id) REFERENCES EBX_DDS(script_id));
+CREATE TABLE EBX_DDX (
+	script_id INT NOT NULL ,
+	operation_id INT NOT NULL ,
+	execution_id INT NOT NULL ,
+	start_time TIMESTAMP NOT NULL ,
+	end_time TIMESTAMP,
+	error VARCHAR,
+	CONSTRAINT EBX_DDX_PK PRIMARY KEY  (execution_id, operation_id, script_id),
+	 FOREIGN KEY (script_id, operation_id) REFERENCES EBX_DDO(script_id, operation_id));
+
+2021-10-05 15:55:23,542 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Table EBX_REL not found. Installing table.
+2021-10-05 15:55:23,542 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level DBU.1 not found. Upgrading...
+2021-10-05 15:55:23,551 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_REL (
+	update_id NVARCHAR(50) NOT NULL ,
+	t_stamp NUMBER(24),
+	product_info NVARCHAR(50),
+	CONSTRAINT EBX_REL_PK PRIMARY KEY  (update_id));
+
+2021-10-05 15:55:23,561 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level GRS.6.0.0.pre not found. Upgrading...
+2021-10-05 15:55:23,566 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_REP (
+	repository_id NVARCHAR(12) NOT NULL ,
+	format_id NVARCHAR(32) NOT NULL ,
+	repository_label NVARCHAR(64),
+	 last_read NUMBER(24),
+	last_write NUMBER(24),
+	CONSTRAINT EBX_REP_PK PRIMARY KEY  (repository_id, format_id));
+
+2021-10-05 15:55:23,571 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level GRS.6.0.0 not found. Upgrading...
+2021-10-05 15:55:23,595 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_G_DSP (
+	dsp_id INT NOT NULL ,
+	prt_id INT NOT NULL ,
+	dsname VARCHAR(32) NOT NULL ,
+	dstype VARCHAR(1) NOT NULL ,
+	creation_date NUMBER(24) NOT NULL ,
+	termination_date NUMBER(24),
+	CONSTRAINT EBX_G_DSP_PK PRIMARY KEY  (dsp_id));
+CREATE TABLE EBX_G_DST (
+	dst_id INT NOT NULL ,
+	dstref VARCHAR(64) NOT NULL ,
+	CONSTRAINT EBX_G_DST_PK PRIMARY KEY  (dst_id));
+CREATE TABLE EBX_G_SCH (
+	sch_id INT NOT NULL ,
+	schloc VARCHAR(512) NOT NULL ,
+	CONSTRAINT EBX_G_SCH_PK PRIMARY KEY  (sch_id));
+CREATE TABLE EBX_G_TLR (
+	tlr_id INT NOT NULL ,
+	sch_id INT,
+	xs_pth VARCHAR(255),
+	cnt_tp VARCHAR(1) NOT NULL ,
+	pk_vsn INT NOT NULL ,
+	CONSTRAINT EBX_G_TLR_PK PRIMARY KEY  (tlr_id));
+CREATE TABLE EBX_G_BLK (
+	blk_id NUMBER(10) NOT NULL ,
+	content blob,
+	CONSTRAINT EBX_G_BLK_PK PRIMARY KEY  (blk_id));
+CREATE TABLE EBX_G_SHR (
+	shr_id INT NOT NULL ,
+	revisions blob NOT NULL ,
+	CONSTRAINT EBX_G_SHR_PK PRIMARY KEY  (shr_id));
+CREATE TABLE EBX_G_TRV (
+	trv_id INT NOT NULL ,
+	prt_id INT,
+	tx_id NUMBER(20) NOT NULL ,
+	txc_id NUMBER(20) NOT NULL ,
+	dstref INT,
+	prtref INT,
+	tlr_id INT NOT NULL ,
+	loc blob,
+	shr_id INT,
+	CONSTRAINT EBX_G_TRV_PK PRIMARY KEY  (trv_id));
+CREATE TABLE EBX_G_DTR (
+	dsp_id INT NOT NULL ,
+	trv_id INT NOT NULL ,
+	CONSTRAINT EBX_G_DTR_PK PRIMARY KEY  (dsp_id, trv_id));
+
+2021-10-05 15:55:23,616 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level GRS.6.0.0.migration not found. Upgrading...
+2021-10-05 15:55:23,618 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+EBX_SSE_SPECIFIC_GRS.6.0.0.declaration.specific
+
+2021-10-05 15:55:23,622 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level GRS.6.0.0.CONSTRAINTS not found. Upgrading...
+2021-10-05 15:55:23,673 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+ALTER TABLE EBX_G_TLR ALTER COLUMN sch_id  SET  NOT NULL;
+ALTER TABLE EBX_G_TLR ALTER COLUMN xs_pth  SET  NOT NULL;
+ALTER TABLE EBX_G_TLR ADD CONSTRAINT EBX_G_TLR_sch_id_FK FOREIGN KEY (sch_id) REFERENCES EBX_G_SCH(sch_id)
+CREATE INDEX EBX_G_TLR_sch_id_ix ON EBX_G_TLR (sch_id);
+ALTER TABLE EBX_G_TLR ADD CONSTRAINT EBX_G_TLR_UNQ UNIQUE  (sch_id, xs_pth, cnt_tp, pk_vsn);
+ALTER TABLE EBX_G_SCH ADD CONSTRAINT EBX_G_SCH_UNQ UNIQUE  (schloc);
+ALTER TABLE EBX_G_TRV ALTER COLUMN dstref  SET  NOT NULL;
+ALTER TABLE EBX_G_TRV ADD CONSTRAINT EBX_G_TRV_tlr_id_FK FOREIGN KEY (tlr_id) REFERENCES EBX_G_TLR(tlr_id)
+CREATE INDEX EBX_G_TRV_tlr_id_ix ON EBX_G_TRV (tlr_id);
+ALTER TABLE EBX_G_TRV ADD CONSTRAINT EBX_G_TRV_dstref_FK FOREIGN KEY (dstref) REFERENCES EBX_G_DST(dst_id)
+CREATE INDEX EBX_G_TRV_dstref_ix ON EBX_G_TRV (dstref);
+ALTER TABLE EBX_G_TRV ADD CONSTRAINT EBX_G_TRV_prtref_FK FOREIGN KEY (prtref) REFERENCES EBX_G_DST(dst_id)
+CREATE INDEX EBX_G_TRV_prtref_ix ON EBX_G_TRV (prtref);
+ALTER TABLE EBX_G_TRV ADD CONSTRAINT EBX_G_TRV_shr_id_FK FOREIGN KEY (shr_id) REFERENCES EBX_G_SHR(shr_id)
+CREATE INDEX EBX_G_TRV_shr_id_ix ON EBX_G_TRV (shr_id);
+ALTER TABLE EBX_G_TRV ADD CONSTRAINT EBX_G_TRV_prt_id_FK FOREIGN KEY (prt_id) REFERENCES EBX_G_TRV(trv_id)
+CREATE INDEX EBX_G_TRV_prt_id_ix ON EBX_G_TRV (prt_id);
+ALTER TABLE EBX_G_DTR ADD CONSTRAINT EBX_G_DTR_dsp_id_FK FOREIGN KEY (dsp_id) REFERENCES EBX_G_DSP(dsp_id)
+ALTER TABLE EBX_G_DTR ADD CONSTRAINT EBX_G_DTR_trv_id_FK FOREIGN KEY (trv_id) REFERENCES EBX_G_TRV(trv_id)
+CREATE INDEX EBX_G_DTR_trv_id_ix ON EBX_G_DTR (trv_id);
+ALTER TABLE EBX_G_DSP ADD CONSTRAINT EBX_G_DSP_prt_id_FK FOREIGN KEY (prt_id) REFERENCES EBX_G_DSP(dsp_id)
+CREATE INDEX EBX_G_DSP_prt_id_ix ON EBX_G_DSP (prt_id);
+
+2021-10-05 15:55:23,720 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level RRO.1 not found. Upgrading...
+2021-10-05 15:55:23,724 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_RRO (
+	id INT NOT NULL ,
+	mode_key NVARCHAR(50) NOT NULL ,
+	heart_beat_interval INT NOT NULL ,
+	host_name NVARCHAR(300),
+	host_address NVARCHAR(300),
+	product_version NVARCHAR(50) NOT NULL ,
+	insert_time TIMESTAMP NOT NULL ,
+	state NVARCHAR(1) NOT NULL ,
+	rro_flag INT NOT NULL ,
+	rro_request_time TIMESTAMP,
+	rro_hold_time TIMESTAMP,
+	heart_beat_time TIMESTAMP,
+	heart_beat_count INT,
+	heart_beat_max_interval INT,
+	pre_commit_count INT,
+	post_commit_count INT,
+	marked_dead_time TIMESTAMP,
+	marked_dead_origin INT,
+	system_info VARCHAR,
+	CONSTRAINT EBX_RRO_PK PRIMARY KEY  (id),
+	CONSTRAINT EBX_RRO_UNQ UNIQUE  (rro_flag));
+
+2021-10-05 15:55:23,726 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level TSA.1 not found. Upgrading...
+2021-10-05 15:55:23,746 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_XS (
+	xs_id INT NOT NULL ,
+	xs_path NVARCHAR(512) NOT NULL ,
+	state NUMBER(2) NOT NULL ,
+	last_write NUMBER(24),
+	CONSTRAINT EBX_XS_PK PRIMARY KEY  (xs_id),
+	CONSTRAINT EBX_XS_UNQ UNIQUE  (xs_path));
+CREATE SEQUENCE EBX_XS_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_TXS (
+	txs_id INT NOT NULL ,
+	table_path NVARCHAR(512) NOT NULL ,
+	table_name_in_db NVARCHAR(512),
+	table_name_in_db_for_HV NVARCHAR(512),
+	state NUMBER(2) NOT NULL ,
+	state_hv NUMBER(2) NOT NULL ,
+	last_write NUMBER(24),
+	xs_id INT NOT NULL ,
+	CONSTRAINT EBX_TXS_PK PRIMARY KEY  (txs_id),
+	CONSTRAINT EBX_TXS_UNQ UNIQUE  (xs_id, table_path));
+CREATE SEQUENCE EBX_TXS_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_CXS (
+	txs_id INT NOT NULL ,
+	cxs_id INT NOT NULL ,
+	column_path NVARCHAR(512) NOT NULL ,
+	ctp_id INT NOT NULL ,
+	column_name_in_db NVARCHAR(512) NOT NULL ,
+	state NUMBER(2) NOT NULL ,
+	last_write NUMBER(24),
+	CONSTRAINT EBX_CXS_PK PRIMARY KEY  (txs_id, cxs_id));
+CREATE TABLE EBX_IDX (
+	txs_id INT NOT NULL ,
+	idx_id INT NOT NULL ,
+	index_name NVARCHAR(512),
+	index_name_in_db NVARCHAR(512),
+	flag_pk NVARCHAR(1) CHECK (flag_pk IN ( '0', '1' )),
+	state NUMBER(2) NOT NULL ,
+	last_write NUMBER(24),
+	CONSTRAINT EBX_IDX_PK PRIMARY KEY  (txs_id, idx_id));
+CREATE SEQUENCE EBX_IDX_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_ICX (
+	idx_id INT NOT NULL ,
+	txs_id INT NOT NULL ,
+	cxs_id INT NOT NULL ,
+	column_order INT NOT NULL ,
+	CONSTRAINT EBX_ICX_PK PRIMARY KEY  (idx_id, txs_id, cxs_id));
+CREATE TABLE EBX_CTP (
+	ctp_id INT NOT NULL ,
+	column_type_name NVARCHAR(512) NOT NULL ,
+	namespace NVARCHAR(512),
+	CONSTRAINT EBX_CTP_PK PRIMARY KEY  (ctp_id),
+	CONSTRAINT EBX_CTP_UNQ UNIQUE  (ctp_id, column_type_name));
+CREATE SEQUENCE EBX_CTP_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_FCT (
+	fct_id INT NOT NULL ,
+	txs_id INT NOT NULL ,
+	cxs_id INT NOT NULL ,
+	facet_name NVARCHAR(512),
+	value_string VARCHAR,
+	value_int INT,
+	state NUMBER(2) NOT NULL ,
+	last_write NUMBER(24),
+	CONSTRAINT EBX_FCT_PK PRIMARY KEY  (fct_id),
+	CONSTRAINT EBX_FCT_UNQ UNIQUE  (fct_id, txs_id, cxs_id));
+CREATE SEQUENCE EBX_FCT_SEQ START WITH 1 INCREMENT BY 1;
+
+2021-10-05 15:55:23,763 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level TSA.2 not found. Upgrading...
+2021-10-05 15:55:23,766 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_LXS (
+	master_txs_id INT NOT NULL ,
+	list_path NVARCHAR(512) NOT NULL ,
+	aux_txs_id INT NOT NULL ,
+	CONSTRAINT EBX_LXS_PK PRIMARY KEY  (master_txs_id, aux_txs_id));
+
+2021-10-05 15:55:23,767 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level TSA.3 not found. Upgrading...
+2021-10-05 15:55:23,772 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+ALTER TABLE EBX_LXS ADD hv_column_name NVARCHAR(512) NOT NULL ;
+
+2021-10-05 15:55:23,778 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level TSA.4 not found. Upgrading...
+2021-10-05 15:55:23,784 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_RPU (
+	xs_id INT NOT NULL ,
+	name NVARCHAR(64) NOT NULL ,
+	dataspace NVARCHAR(512) NOT NULL ,
+	dataset NVARCHAR(512) NOT NULL ,
+	refresh NVARCHAR(32) NOT NULL ,
+	CONSTRAINT EBX_RPU_PK PRIMARY KEY  (xs_id, name));
+CREATE TABLE EBX_TXR (
+	xs_id INT NOT NULL ,
+	rpu_name NVARCHAR(64) NOT NULL ,
+	txs_id INT NOT NULL ,
+	table_name_in_db NVARCHAR(512) NOT NULL ,
+	state NUMBER(2) NOT NULL ,
+	created_time TIMESTAMP NOT NULL ,
+	last_refreshed_time TIMESTAMP,
+	CONSTRAINT EBX_TXR_PK PRIMARY KEY  (xs_id, rpu_name, txs_id),
+	 FOREIGN KEY (xs_id, rpu_name) REFERENCES EBX_RPU(xs_id, name));
+
+2021-10-05 15:55:23,788 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level TSA.5 not found. Upgrading...
+2021-10-05 15:55:23,793 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+ALTER TABLE EBX_TXR ADD CONSTRAINT EBX_TXR_UNQ UNIQUE  (table_name_in_db);
+ALTER TABLE EBX_TXS ADD CONSTRAINT EBX_TXS_XS_FK FOREIGN KEY (xs_id) REFERENCES EBX_XS(xs_id)
+ALTER TABLE EBX_TXR ADD CONSTRAINT EBX_TXR_XS_FK FOREIGN KEY (xs_id) REFERENCES EBX_XS(xs_id)
+ALTER TABLE EBX_TXR ADD CONSTRAINT EBX_TXR_TXS_FK FOREIGN KEY (txs_id) REFERENCES EBX_TXS(txs_id)
+
+2021-10-05 15:55:23,798 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level TSA.6 not found. Upgrading...
+2021-10-05 15:55:23,800 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+UPDATE EBX_REL SET product_info=product_info WHERE 0=1;
+
+2021-10-05 15:55:23,802 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level SSE.2 not found. Upgrading...
+2021-10-05 15:55:23,805 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_DDT (
+	script_id INT NOT NULL ,
+	txs_id INT NOT NULL ,
+	CONSTRAINT EBX_DDT_PK PRIMARY KEY  (script_id, txs_id),
+	 FOREIGN KEY (script_id) REFERENCES EBX_DDS(script_id),
+	 FOREIGN KEY (txs_id) REFERENCES EBX_TXS(txs_id));
+
+2021-10-05 15:55:23,809 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.1 not found. Upgrading...
+2021-10-05 15:55:23,829 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_HV_TX (
+	tx_id INT NOT NULL ,
+	user_id INT,
+	action_id INT,
+	home_id INT,
+	session_id INT,
+	timestamp NUMBER,
+	uuid NVARCHAR(36),
+	execution_info VARCHAR,
+	CONSTRAINT EBX_HV_TX_PK PRIMARY KEY  (tx_id));
+CREATE SEQUENCE EBX_HV_TX_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_HV_TX_STAT (
+	tx_id INT NOT NULL ,
+	instance_id INT,
+	txs INT,
+	nb_creates INT,
+	nb_updates INT,
+	nb_deletes INT);
+CREATE SEQUENCE EBX_HV_TX_STAT_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_HV_USER (
+	user_id INT NOT NULL ,
+	name VARCHAR,
+	CONSTRAINT EBX_HV_USER_PK PRIMARY KEY  (user_id));
+CREATE SEQUENCE EBX_HV_USER_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_HV_ACTION (
+	action_id INT NOT NULL ,
+	built_in_action_name NVARCHAR(50),
+	procedure_name VARCHAR,
+	CONSTRAINT EBX_HV_ACTION_PK PRIMARY KEY  (action_id));
+CREATE SEQUENCE EBX_HV_ACTION_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_HV_INSTANCE (
+	instance_id INT NOT NULL ,
+	reference NVARCHAR(64),
+	content_type NVARCHAR(1),
+	CONSTRAINT EBX_HV_INSTANCE_PK PRIMARY KEY  (instance_id));
+CREATE SEQUENCE EBX_HV_INSTANCE_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_HV_HOM (
+	home_id INT NOT NULL ,
+	home_name NVARCHAR(32),
+	home_type NVARCHAR(1),
+	CONSTRAINT EBX_HV_HOM_PK PRIMARY KEY  (home_id));
+CREATE SEQUENCE EBX_HV_HOM_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE EBX_HV_SESSION (
+	session_id INT NOT NULL ,
+	session_type NVARCHAR(512),
+	ip_address NVARCHAR(39),
+	http_id VARCHAR,
+	tracking_info VARCHAR,
+	CONSTRAINT EBX_HV_SESSION_PK PRIMARY KEY  (session_id));
+CREATE SEQUENCE EBX_HV_SESSION_SEQ START WITH 1 INCREMENT BY 1;
+
+2021-10-05 15:55:23,841 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.2 not found. Upgrading...
+2021-10-05 15:55:23,846 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE INDEX EBX_TXIX ON EBX_HV_TX (home_id, timestamp);
+
+2021-10-05 15:55:23,848 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.3 not found. Upgrading...
+2021-10-05 15:55:23,849 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+ALTER TABLE EBX_HV_HOM ALTER COLUMN home_name NVARCHAR(33);
+
+2021-10-05 15:55:23,851 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.4 not found. Upgrading...
+2021-10-05 15:55:23,854 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE TABLE EBX_HV_MERGE (
+	tx_id INT NOT NULL ,
+	merged_home_id INT NOT NULL ,
+	begin_time NUMBER NOT NULL ,
+	end_time NUMBER NOT NULL ,
+	CONSTRAINT EBX_HV_MERGE_PK PRIMARY KEY  (tx_id, merged_home_id));
+
+2021-10-05 15:55:23,856 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.5 not found. Upgrading...
+2021-10-05 15:55:23,882 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+ALTER TABLE EBX_HV_TX ALTER COLUMN user_id  SET  NOT NULL;
+ALTER TABLE EBX_HV_TX ALTER COLUMN session_id  SET  NOT NULL;
+ALTER TABLE EBX_HV_TX ALTER COLUMN action_id  SET  NOT NULL;
+DROP INDEX EBX_TXIX;
+ALTER TABLE EBX_HV_TX ALTER COLUMN home_id  SET  NOT NULL;
+CREATE INDEX EBX_TXIX ON EBX_HV_TX (home_id, timestamp, tx_id);
+ALTER TABLE EBX_HV_TX_STAT ALTER COLUMN instance_id  SET  NOT NULL;
+ALTER TABLE EBX_HV_TX_STAT ALTER COLUMN txs  SET  NOT NULL;
+ALTER TABLE EBX_HV_TX_STAT ALTER COLUMN nb_creates  SET  NOT NULL;
+ALTER TABLE EBX_HV_TX_STAT ALTER COLUMN nb_updates  SET  NOT NULL;
+ALTER TABLE EBX_HV_TX_STAT ALTER COLUMN nb_deletes  SET  NOT NULL;
+
+2021-10-05 15:55:23,890 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.6.PRE not found. Upgrading...
+2021-10-05 15:55:23,891 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+UPDATE EBX_HV_TX SET user_id=(SELECT  MIN ( u2.user_id) FROM EBX_HV_USER u1 INNER JOIN EBX_HV_USER u2 ON  u1.name= u2.name WHERE  u1.user_id=EBX_HV_TX.user_id) WHERE EBX_HV_TX.user_id IN (SELECT  u1.user_id FROM EBX_HV_USER u1 INNER JOIN EBX_HV_USER u2 ON  u1.name= u2.name AND  u2.user_id <  u1.user_id);
+DELETE  FROM EBX_HV_USER WHERE user_id > (SELECT  MIN ( u2.user_id) FROM EBX_HV_USER u2  WHERE  u2.name=EBX_HV_USER.name);
+
+2021-10-05 15:55:23,894 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.6 not found. Upgrading...
+2021-10-05 15:55:23,895 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+ALTER TABLE EBX_HV_USER ADD CONSTRAINT EBX_HV_USER_UNQ UNIQUE  (name);
+
+2021-10-05 15:55:23,896 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Patch level HVM.7 not found. Upgrading...
+2021-10-05 15:55:23,900 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] [38939dca] Executing DDL script in secure mode: 
+CREATE INDEX EBX_TX_STAT_IX ON EBX_HV_TX_STAT (tx_id);
+
+2021-10-05 15:55:23,904 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] ============================================================================
+2021-10-05 15:55:23,904 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] FINISHED REPOSITORY INSTALLATION: RepositoryDeclaration[repositoryId=00E6A8A13ABC, repositoryLabel=compensar-mvp, format=null]@1915da53
+2021-10-05 15:55:23,904 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Database: jdbc:h2:../EBX Home/ebxRepository/h2/repository;MVCC=TRUE
+2021-10-05 15:55:23,904 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] ============================================================================
+2021-10-05 15:55:23,915 MDT INFO   log.persistence 1155 [ebx-rro-1-unique] Starting repository ownership heart beat thread on entry: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Not owner.
+2021-10-05 15:55:25,157 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 5 blocs modified in Java Cache; in 515 ms.
+2021-10-05 15:55:26,715 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 199 ms.
+2021-10-05 15:55:27,704 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 5 blocs modified in Java Cache; in 488 ms.
+2021-10-05 15:55:28,121 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 186 ms.
+2021-10-05 15:55:28,126 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 0 blocs modified in Java Cache; in 1 ms.
+2021-10-05 15:55:28,367 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 213 ms.
+2021-10-05 15:55:29,168 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 3 blocs modified in Java Cache; in 281 ms.
+2021-10-05 15:55:29,365 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 189 ms.
+2021-10-05 15:55:29,739 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 192 ms.
+2021-10-05 15:55:29,938 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 190 ms.
+2021-10-05 15:55:30,698 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 181 ms.
+2021-10-05 15:55:30,885 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 179 ms.
+2021-10-05 15:55:31,332 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 192 ms.
+2021-10-05 15:55:31,553 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 205 ms.
+2021-10-05 15:55:32,119 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 184 ms.
+2021-10-05 15:55:32,331 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 204 ms.
+2021-10-05 15:55:32,953 MDT INFO   log.persistence 1155 [ebx-rro-1-unique] Heart beat #10: avgInterval=904: maxInterval=1006 ms.
+2021-10-05 15:55:32,986 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 3 blocs modified in Java Cache; in 277 ms.
+2021-10-05 15:55:33,222 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 229 ms.
+2021-10-05 15:55:33,687 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 190 ms.
+2021-10-05 15:55:33,900 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 205 ms.
+2021-10-05 15:55:34,330 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 199 ms.
+2021-10-05 15:55:34,582 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 245 ms.
+2021-10-05 15:55:35,018 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 221 ms.
+2021-10-05 15:55:35,294 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 265 ms.
+2021-10-05 15:55:35,773 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 206 ms.
+2021-10-05 15:55:36,001 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 201 ms.
+2021-10-05 15:55:36,402 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 190 ms.
+2021-10-05 15:55:36,632 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 220 ms.
+2021-10-05 15:55:38,169 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 6 blocs modified in Java Cache; in 571 ms.
+2021-10-05 15:55:39,166 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 3 blocs modified in Java Cache; in 284 ms.
+2021-10-05 15:55:39,362 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 185 ms.
+2021-10-05 15:55:39,994 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 6 blocs modified in Java Cache; in 530 ms.
+2021-10-05 15:55:40,378 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 178 ms.
+2021-10-05 15:55:40,586 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 201 ms.
+2021-10-05 15:55:40,938 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 3 blocs modified in Java Cache; in 317 ms.
+2021-10-05 15:55:41,379 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 256 ms.
+2021-10-05 15:55:41,579 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 193 ms.
+2021-10-05 15:55:41,883 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 3 blocs modified in Java Cache; in 271 ms.
+2021-10-05 15:55:42,433 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 210 ms.
+2021-10-05 15:55:42,531 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-05 15:55:42,995 MDT INFO   log.persistence 1155 [ebx-rro-1-unique] Heart beat #20: avgInterval=954: maxInterval=1015 ms.
+2021-10-05 15:55:43,193 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 6 blocs modified in Java Cache; in 605 ms.
+2021-10-05 15:55:43,565 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 184 ms.
+2021-10-05 15:55:43,763 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 99 ms.
+2021-10-05 15:55:43,866 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 99 ms.
+2021-10-05 15:55:44,067 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 101 ms.
+2021-10-05 15:55:44,164 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-05 15:55:44,260 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-05 15:55:44,351 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-05 15:55:44,637 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 196 ms.
+2021-10-05 15:55:45,481 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 6 blocs modified in Java Cache; in 606 ms.
+2021-10-05 15:55:45,855 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 182 ms.
+2021-10-05 15:55:46,092 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 225 ms.
+2021-10-05 15:55:49,973 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 6 blocs modified in Java Cache; in 3630 ms.
+2021-10-05 15:55:50,879 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 177 ms.
+2021-10-05 15:55:51,085 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 184 ms.
+2021-10-05 15:55:51,768 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 7 blocs modified in Java Cache; in 577 ms.
+2021-10-05 15:55:52,429 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 127 ms.
+2021-10-05 15:55:52,873 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 3 blocs modified in Java Cache; in 444 ms.
+2021-10-05 15:55:53,289 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 408 ms.
+2021-10-05 15:55:57,919 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 11 blocs modified in Java Cache; in 4080 ms.
+2021-10-05 15:55:59,752 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 331 ms.
+2021-10-05 15:56:00,900 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 126 ms.
+2021-10-05 15:56:02,380 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 1462 ms.
+2021-10-05 15:56:03,824 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 8 blocs modified in Java Cache; in 806 ms.
+2021-10-05 15:56:04,239 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 186 ms.
+2021-10-05 15:56:04,565 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 90 ms.
+2021-10-05 15:56:04,893 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 143 ms.
+2021-10-05 15:56:05,113 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 201 ms.
+2021-10-05 15:56:05,311 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 176 ms.
+2021-10-05 15:56:06,395 MDT INFO   log.persistence 1155 [ebx-boot] Committed 7 blocs modified in Java Cache; in 963 ms.
+2021-10-05 15:56:07,606 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 300 ms.
+2021-10-05 15:56:08,612 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 998 ms.
+2021-10-05 15:56:09,208 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 509 ms.
+2021-10-05 15:56:09,553 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 170 ms.
+2021-10-05 15:56:09,683 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 15:56:09,874 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 169 ms.
+2021-10-05 15:56:10,992 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 562 ms.
+2021-10-05 15:56:11,339 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 168 ms.
+2021-10-05 15:56:11,458 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 15:56:12,121 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 654 ms.
+2021-10-05 15:56:13,409 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 1252 ms.
+2021-10-05 15:56:14,165 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 189 ms.
+2021-10-05 15:56:15,282 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 1109 ms.
+2021-10-05 15:56:15,464 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 79 ms.
+2021-10-05 15:56:15,746 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 174 ms.
+2021-10-05 15:56:17,494 MDT INFO   log.persistence 1155 [ebx-boot] Committed 13 blocs modified in Java Cache; in 737 ms.
+2021-10-05 15:56:17,924 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 168 ms.
+2021-10-05 15:56:18,243 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 103 ms.
+2021-10-05 15:56:19,592 MDT INFO   log.persistence 1155 [ebx-boot] Committed 7 blocs modified in Java Cache; in 615 ms.
+2021-10-05 15:56:20,041 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 245 ms.
+2021-10-05 15:56:20,258 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 15:56:20,343 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 15:56:20,682 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 230 ms.
+2021-10-05 15:56:21,089 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 365 ms.
+2021-10-05 15:56:21,530 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 184 ms.
+2021-10-05 15:56:22,497 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 1126 ms.
+2021-10-05 15:56:22,850 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 167 ms.
+2021-10-05 15:56:23,155 MDT INFO   log.persistence 1155 [ebx-boot] Committed 2 blocs modified in Java Cache; in 286 ms.
+2021-10-05 15:56:23,575 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 308 ms.
+2021-10-05 15:56:23,797 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 15:56:23,885 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-05 15:56:23,995 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 103 ms.
+2021-10-05 15:56:24,169 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 165 ms.
+2021-10-05 15:56:24,378 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-05 15:56:24,469 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-05 15:56:25,357 MDT INFO   log.persistence 1155 [ebx-boot] Committed 3 blocs modified in Java Cache; in 284 ms.
+2021-10-05 15:56:25,550 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-05 15:56:27,017 MDT INFO   log.persistence 1155 [ebx-boot] Committed 8 blocs modified in Java Cache; in 844 ms.
+2021-10-05 15:56:28,299 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-05 15:56:28,384 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 15:56:29,919 MDT INFO   log.persistence 1155 [ebx-boot] Committed 13 blocs modified in Java Cache; in 1534 ms.
+2021-10-05 15:56:30,829 MDT INFO   log.persistence 1155 [ebx-boot] Committed 5 blocs modified in Java Cache; in 485 ms.
+2021-10-05 15:56:30,959 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 127 ms.
+2021-10-05 15:56:31,159 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 102 ms.
+2021-10-05 15:56:46,515 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-05 15:57:34,352 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 23 blocs modified in Java Cache; in 638 ms.
+2021-10-05 15:57:36,036 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 7 blocs modified in Java Cache; in 553 ms.
+2021-10-05 15:57:36,884 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 6 blocs modified in Java Cache; in 581 ms.
+2021-10-05 15:57:38,022 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 6 blocs modified in Java Cache; in 691 ms.
+2021-10-05 15:57:39,864 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 6 blocs modified in Java Cache; in 1212 ms.
+2021-10-05 15:57:41,240 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 13 blocs modified in Java Cache; in 1199 ms.
+2021-10-05 15:58:43,619 MDT INFO   log.persistence 1155 [ebx-rro-1-unique] Heart beat #200: avgInterval=998: maxInterval=1015 ms.
+2021-10-05 16:01:15,026 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-05 16:01:15,146 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 105 ms.
+2021-10-05 16:02:04,271 MDT INFO   log.persistence 1155 [ebx-rro-1-unique] Heart beat #400: avgInterval=1000: maxInterval=1015 ms.
+2021-10-05 16:02:14,218 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-05 16:02:25,433 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 100 ms.
+2021-10-05 16:02:38,240 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 97 ms.
+2021-10-05 16:02:58,620 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 2 blocs modified in Java Cache; in 304 ms.
+2021-10-05 16:03:22,233 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 16:03:44,153 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 16:04:00,459 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 79 ms.
+2021-10-05 16:04:15,630 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 123 ms.
+2021-10-05 16:04:18,300 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-05 16:04:18,388 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-05 16:04:18,953 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 3 blocs modified in Java Cache; in 261 ms.
+2021-10-05 16:04:22,658 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 16:04:25,000 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 25 blocs modified in Java Cache; in 2342 ms.
+2021-10-05 16:04:26,154 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 5 blocs modified in Java Cache; in 524 ms.
+2021-10-05 16:04:26,248 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-05 16:04:26,443 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 95 ms.
+2021-10-05 16:04:26,588 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 142 ms.
+2021-10-05 16:05:24,919 MDT INFO   log.persistence 1155 [ebx-rro-1-unique] Heart beat #600: avgInterval=1001: maxInterval=1015 ms.
+2021-10-05 16:05:37,701 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 110 ms.
+2021-10-05 16:06:36,006 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 115 ms.
+2021-10-05 16:07:08,907 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 16:07:19,694 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 96 ms.
+2021-10-05 16:07:27,609 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 109 ms.
+2021-10-05 16:07:29,047 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 3 blocs modified in Java Cache; in 206 ms.
+2021-10-05 16:07:30,490 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 3 blocs modified in Java Cache; in 344 ms.
+2021-10-05 16:07:37,616 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 95 ms.
+2021-10-05 16:07:38,528 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 2 blocs modified in Java Cache; in 201 ms.
+2021-10-05 16:07:59,685 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 7 blocs modified in Java Cache; in 746 ms.
+2021-10-05 16:08:00,134 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 2 blocs modified in Java Cache; in 253 ms.
+2021-10-05 16:08:09,148 MDT INFO   log.persistence 1155 [ebx-user-preferences] Committed 1 blocs modified in Java Cache; in 125 ms.
+2021-10-05 16:08:29,802 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 16:08:45,647 MDT INFO   log.persistence 1155 [ebx-rro-1-unique] Heart beat #800: avgInterval=1002: maxInterval=1015 ms.
+2021-10-05 16:11:45,150 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-05 16:11:46,656 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #0 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:47,661 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #1 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:48,665 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #2 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:49,669 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #3 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:50,674 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #4 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:51,680 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #5 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:52,686 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #6 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:53,690 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #7 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:54,694 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #8 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:55,697 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #9 to take exclusive ownership of a repository apparently owned by: id=1, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-05 16:11:56,703 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Starting repository ownership heart beat thread on entry: id=2, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Not owner.
+2021-10-05 16:12:02,922 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 730 ms.
+2021-10-05 16:12:04,075 MDT INFO   log.persistence 1155 [ebx-boot] Committed 7 blocs modified in Java Cache; in 758 ms.
+2021-10-05 16:12:05,739 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #10: avgInterval=903: maxInterval=1006 ms.
+2021-10-05 16:12:10,060 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 1516 ms.
+2021-10-05 16:12:11,787 MDT INFO   log.persistence 1155 [ebx-boot] Committed 10 blocs modified in Java Cache; in 746 ms.
+2021-10-05 16:12:13,347 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 1076 ms.
+2021-10-05 16:12:14,813 MDT INFO   log.persistence 1155 [ebx-boot] Committed 7 blocs modified in Java Cache; in 1050 ms.
+2021-10-05 16:12:15,774 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #20: avgInterval=953: maxInterval=1006 ms.
+2021-10-05 16:12:17,098 MDT INFO   log.persistence 1155 [ebx-boot] Committed 7 blocs modified in Java Cache; in 770 ms.
+2021-10-05 16:12:21,029 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 2295 ms.
+2021-10-05 16:12:22,229 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 101 ms.
+2021-10-05 16:12:22,326 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-05 16:12:22,674 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 95 ms.
+2021-10-05 16:12:24,009 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 683 ms.
+2021-10-05 16:12:24,465 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 109 ms.
+2021-10-05 16:12:24,551 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 16:12:24,961 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 202 ms.
+2021-10-05 16:12:25,372 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 109 ms.
+2021-10-05 16:12:27,324 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-05 16:12:27,914 MDT INFO   log.persistence 1155 [ebx-boot] Committed 6 blocs modified in Java Cache; in 589 ms.
+2021-10-05 16:12:28,013 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-05 16:12:28,515 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 157 ms.
+2021-10-05 16:12:42,287 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 115 ms.
+2021-10-05 16:15:16,359 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #200: avgInterval=998: maxInterval=1006 ms.
+2021-10-05 16:18:37,187 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #400: avgInterval=1001: maxInterval=1011 ms.
+2021-10-05 16:21:58,601 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #600: avgInterval=1003: maxInterval=1013 ms.
+2021-10-05 16:24:11,189 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 278 ms.
+2021-10-05 16:24:15,217 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 193 ms.
+2021-10-05 16:25:02,810 MDT INFO   log.persistence 1155 [pool-2-thread-1] Committed 1 blocs modified in Java Cache; in 106 ms.
+2021-10-05 16:25:02,967 MDT INFO   log.persistence 1155 [pool-2-thread-1] Committed 1 blocs modified in Java Cache; in 80 ms.
+2021-10-05 16:25:02,968 MDT INFO   log.persistence 1155 [pool-2-thread-1] Starting deletion of dataspace [VvDEXSNAP_1633472702697v67261] and its descendants.
+2021-10-05 16:25:02,973 MDT INFO   log.persistence 1155 [pool-2-thread-1] Deleting home [DspDataspace[Snapshot vDEXSNAP_1633472702697v67261, id=146]@68d2cfb8] from cache #2f838e1d.
+2021-10-05 16:25:03,488 MDT INFO   log.persistence 1155 [pool-2-thread-1] Committed 2 blocs modified in Java Cache; in 357 ms.
+2021-10-05 16:25:03,488 MDT INFO   log.persistence 1155 [pool-2-thread-1] Deleted dataspace [VvDEXSNAP_1633472702697v67261] in 519 ms
+2021-10-05 16:25:03,488 MDT INFO   log.persistence 1155 [pool-2-thread-1] Ended deletion of dataspace [VvDEXSNAP_1633472702697v67261] and its descendants.
+2021-10-05 16:25:44,510 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #800: avgInterval=1034: maxInterval=25816 ms.
+2021-10-05 16:27:54,543 MDT INFO   log.persistence 1155 [pool-2-thread-2] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-05 16:28:06,535 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 120 ms.
+2021-10-05 16:29:05,229 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #1000: avgInterval=1028: maxInterval=25816 ms.
+2021-10-05 16:45:49,145 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #2000: avgInterval=1016: maxInterval=25816 ms.
+2021-10-05 16:47:12,098 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-05 16:48:23,014 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 16:53:11,483 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 99 ms.
+2021-10-05 16:54:25,464 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 113 ms.
+2021-10-05 16:54:25,569 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 92 ms.
+2021-10-05 16:54:33,184 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 127 ms.
+2021-10-05 16:54:39,177 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-05 16:55:29,764 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 16:55:29,869 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 92 ms.
+2021-10-05 16:56:01,725 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 98 ms.
+2021-10-05 16:56:16,953 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-05 16:56:41,967 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 16:56:42,067 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-05 16:56:50,634 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-05 16:57:28,299 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-05 16:57:28,404 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-05 16:57:57,656 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 16:58:51,184 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-05 16:59:32,824 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 80 ms.
+2021-10-05 17:00:08,148 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 97 ms.
+2021-10-05 17:00:14,647 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 102 ms.
+2021-10-05 17:00:17,001 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 2 blocs modified in Java Cache; in 310 ms.
+2021-10-05 17:00:21,503 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 110 ms.
+2021-10-05 17:00:22,693 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 2 blocs modified in Java Cache; in 267 ms.
+2021-10-05 17:00:37,009 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 8 blocs modified in Java Cache; in 1064 ms.
+2021-10-05 17:01:02,107 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 5 blocs modified in Java Cache; in 723 ms.
+2021-10-05 17:01:02,475 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 2 blocs modified in Java Cache; in 176 ms.
+2021-10-05 17:02:27,753 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 90 ms.
+2021-10-05 17:02:27,843 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-05 17:02:32,865 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #3000: avgInterval=1012: maxInterval=25816 ms.
+2021-10-05 17:02:49,532 MDT INFO   log.persistence 1155 [pool-2-thread-3] Committed 1 blocs modified in Java Cache; in 116 ms.
+2021-10-05 17:02:50,813 MDT INFO   log.persistence 1155 [pool-2-thread-3] Committed 1 blocs modified in Java Cache; in 1252 ms.
+2021-10-05 17:02:50,814 MDT INFO   log.persistence 1155 [pool-2-thread-3] Starting deletion of dataspace [VvDEXSNAP_1633474969412v49942] and its descendants.
+2021-10-05 17:02:50,816 MDT INFO   log.persistence 1155 [pool-2-thread-3] Deleting home [DspDataspace[Snapshot vDEXSNAP_1633474969412v49942, id=152]@4f458101] from cache #2f838e1d.
+2021-10-05 17:02:51,329 MDT INFO   log.persistence 1155 [pool-2-thread-3] Committed 2 blocs modified in Java Cache; in 498 ms.
+2021-10-05 17:02:51,330 MDT INFO   log.persistence 1155 [pool-2-thread-3] Deleted dataspace [VvDEXSNAP_1633474969412v49942] in 515 ms
+2021-10-05 17:02:51,330 MDT INFO   log.persistence 1155 [pool-2-thread-3] Ended deletion of dataspace [VvDEXSNAP_1633474969412v49942] and its descendants.
+2021-10-05 17:06:11,483 MDT INFO   log.persistence 1155 [pool-2-thread-5] Committed 1 blocs modified in Java Cache; in 157 ms.
+2021-10-05 17:06:11,571 MDT INFO   log.persistence 1155 [pool-2-thread-5] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-05 17:07:46,543 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 117 ms.
+2021-10-05 17:11:04,181 MDT INFO   log.persistence 1155 [pool-2-thread-7] Committed 2 blocs modified in Java Cache; in 221 ms.
+2021-10-05 17:11:04,392 MDT INFO   log.persistence 1155 [pool-2-thread-7] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-05 17:11:04,475 MDT INFO   log.persistence 1155 [pool-2-thread-7] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-05 17:11:04,571 MDT INFO   log.persistence 1155 [pool-2-thread-7] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-05 17:11:04,572 MDT INFO   log.persistence 1155 [pool-2-thread-7] Starting deletion of dataspace [BvDEX1633475463891v99563] and its descendants.
+2021-10-05 17:11:04,578 MDT INFO   log.persistence 1155 [pool-2-thread-7] Deleting home [DspDataspace[Dataspace vDEX1633475463891v99563, id=155]@62a0d524] from cache #2f838e1d.
+2021-10-05 17:11:04,777 MDT INFO   log.persistence 1155 [pool-2-thread-7] Committed 3 blocs modified in Java Cache; in 188 ms.
+2021-10-05 17:11:04,778 MDT INFO   log.persistence 1155 [pool-2-thread-7] Deleting home [DspDataspace[Snapshot vDEX1633475463891v99563, id=154]@1a09db1d] from cache #2f838e1d.
+2021-10-05 17:11:04,781 MDT INFO   log.persistence 1155 [pool-2-thread-7] Committed 0 blocs modified in Java Cache; in 0 ms.
+2021-10-05 17:11:04,781 MDT INFO   log.persistence 1155 [pool-2-thread-7] Deleted dataspace [BvDEX1633475463891v99563] in 209 ms
+2021-10-05 17:11:04,781 MDT INFO   log.persistence 1155 [pool-2-thread-7] Ended deletion of dataspace [BvDEX1633475463891v99563] and its descendants.
+2021-10-05 17:13:46,118 MDT INFO   log.persistence 1155 [pool-2-thread-8] Committed 2 blocs modified in Java Cache; in 219 ms.
+2021-10-05 17:13:46,299 MDT INFO   log.persistence 1155 [pool-2-thread-8] Committed 1 blocs modified in Java Cache; in 155 ms.
+2021-10-05 17:13:46,299 MDT INFO   log.persistence 1155 [pool-2-thread-8] Starting deletion of dataspace [BvDEX1633475625862v91381] and its descendants.
+2021-10-05 17:13:46,309 MDT INFO   log.persistence 1155 [pool-2-thread-8] Deleting home [DspDataspace[Dataspace vDEX1633475625862v91381, id=159]@61bd4496] from cache #2f838e1d.
+2021-10-05 17:13:46,579 MDT INFO   log.persistence 1155 [pool-2-thread-8] Committed 3 blocs modified in Java Cache; in 260 ms.
+2021-10-05 17:13:46,580 MDT INFO   log.persistence 1155 [pool-2-thread-8] Deleting home [DspDataspace[Snapshot vDEX1633475625862v91381, id=158]@443b6a93] from cache #2f838e1d.
+2021-10-05 17:13:46,584 MDT INFO   log.persistence 1155 [pool-2-thread-8] Committed 0 blocs modified in Java Cache; in 1 ms.
+2021-10-05 17:13:46,584 MDT INFO   log.persistence 1155 [pool-2-thread-8] Deleted dataspace [BvDEX1633475625862v91381] in 277 ms
+2021-10-05 17:13:46,584 MDT INFO   log.persistence 1155 [pool-2-thread-8] Ended deletion of dataspace [BvDEX1633475625862v91381] and its descendants.
+2021-10-05 17:16:19,039 MDT INFO   log.persistence 1155 [pool-2-thread-9] Committed 2 blocs modified in Java Cache; in 1620 ms.
+2021-10-05 17:16:19,158 MDT INFO   log.persistence 1155 [pool-2-thread-9] Committed 1 blocs modified in Java Cache; in 80 ms.
+2021-10-05 17:16:19,158 MDT INFO   log.persistence 1155 [pool-2-thread-9] Starting deletion of dataspace [BvDEX1633475777405v66341] and its descendants.
+2021-10-05 17:16:19,166 MDT INFO   log.persistence 1155 [pool-2-thread-9] Deleting home [DspDataspace[Dataspace vDEX1633475777405v66341, id=163]@6b8396a9] from cache #2f838e1d.
+2021-10-05 17:16:19,383 MDT INFO   log.persistence 1155 [pool-2-thread-9] Committed 3 blocs modified in Java Cache; in 210 ms.
+2021-10-05 17:16:19,385 MDT INFO   log.persistence 1155 [pool-2-thread-9] Deleting home [DspDataspace[Snapshot vDEX1633475777405v66341, id=162]@3ac8f6d1] from cache #2f838e1d.
+2021-10-05 17:16:19,389 MDT INFO   log.persistence 1155 [pool-2-thread-9] Committed 0 blocs modified in Java Cache; in 0 ms.
+2021-10-05 17:16:19,389 MDT INFO   log.persistence 1155 [pool-2-thread-9] Deleted dataspace [BvDEX1633475777405v66341] in 224 ms
+2021-10-05 17:16:19,389 MDT INFO   log.persistence 1155 [pool-2-thread-9] Ended deletion of dataspace [BvDEX1633475777405v66341] and its descendants.
+2021-10-05 17:16:33,708 MDT INFO   log.persistence 1155 [pool-2-thread-10] Committed 2 blocs modified in Java Cache; in 242 ms.
+2021-10-05 17:16:33,994 MDT INFO   log.persistence 1155 [pool-2-thread-10] Committed 1 blocs modified in Java Cache; in 77 ms.
+2021-10-05 17:16:34,096 MDT INFO   log.persistence 1155 [pool-2-thread-10] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-05 17:16:34,096 MDT INFO   log.persistence 1155 [pool-2-thread-10] Starting deletion of dataspace [BvDEX1633475793460v22753] and its descendants.
+2021-10-05 17:16:34,099 MDT INFO   log.persistence 1155 [pool-2-thread-10] Deleting home [DspDataspace[Dataspace vDEX1633475793460v22753, id=167]@45005d9f] from cache #2f838e1d.
+2021-10-05 17:16:34,316 MDT INFO   log.persistence 1155 [pool-2-thread-10] Committed 3 blocs modified in Java Cache; in 212 ms.
+2021-10-05 17:16:34,317 MDT INFO   log.persistence 1155 [pool-2-thread-10] Deleting home [DspDataspace[Snapshot vDEX1633475793460v22753, id=166]@5c5065b7] from cache #2f838e1d.
+2021-10-05 17:16:34,321 MDT INFO   log.persistence 1155 [pool-2-thread-10] Committed 0 blocs modified in Java Cache; in 0 ms.
+2021-10-05 17:16:34,321 MDT INFO   log.persistence 1155 [pool-2-thread-10] Deleted dataspace [BvDEX1633475793460v22753] in 223 ms
+2021-10-05 17:16:34,321 MDT INFO   log.persistence 1155 [pool-2-thread-10] Ended deletion of dataspace [BvDEX1633475793460v22753] and its descendants.
+2021-10-05 17:16:48,447 MDT INFO   log.persistence 1155 [pool-2-thread-11] Committed 1 blocs modified in Java Cache; in 164 ms.
+2021-10-05 17:17:48,980 MDT INFO   log.persistence 1155 [pool-2-thread-12] Committed 2 blocs modified in Java Cache; in 214 ms.
+2021-10-05 17:17:49,315 MDT INFO   log.persistence 1155 [pool-2-thread-12] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-05 17:17:49,527 MDT INFO   log.persistence 1155 [pool-2-thread-12] Committed 1 blocs modified in Java Cache; in 197 ms.
+2021-10-05 17:17:49,527 MDT INFO   log.persistence 1155 [pool-2-thread-12] Starting deletion of dataspace [BvDEX1633475868762v75983] and its descendants.
+2021-10-05 17:17:49,529 MDT INFO   log.persistence 1155 [pool-2-thread-12] Deleting home [DspDataspace[Dataspace vDEX1633475868762v75983, id=171]@6781dba3] from cache #2f838e1d.
+2021-10-05 17:17:50,182 MDT INFO   log.persistence 1155 [pool-2-thread-12] Committed 3 blocs modified in Java Cache; in 644 ms.
+2021-10-05 17:17:50,183 MDT INFO   log.persistence 1155 [pool-2-thread-12] Deleting home [DspDataspace[Snapshot vDEX1633475868762v75983, id=170]@434ff2fe] from cache #2f838e1d.
+2021-10-05 17:17:50,187 MDT INFO   log.persistence 1155 [pool-2-thread-12] Committed 0 blocs modified in Java Cache; in 0 ms.
+2021-10-05 17:17:50,187 MDT INFO   log.persistence 1155 [pool-2-thread-12] Deleted dataspace [BvDEX1633475868762v75983] in 659 ms
+2021-10-05 17:17:50,187 MDT INFO   log.persistence 1155 [pool-2-thread-12] Ended deletion of dataspace [BvDEX1633475868762v75983] and its descendants.
+2021-10-05 17:17:54,660 MDT INFO   log.persistence 1155 [pool-2-thread-13] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-05 17:18:30,230 MDT INFO   log.persistence 1155 [pool-2-thread-14] Committed 1 blocs modified in Java Cache; in 474 ms.
+2021-10-05 17:18:30,458 MDT INFO   log.persistence 1155 [pool-2-thread-14] Committed 1 blocs modified in Java Cache; in 227 ms.
+2021-10-05 17:19:16,428 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #4000: avgInterval=1009: maxInterval=25816 ms.
+2021-10-05 18:15:42,213 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #5000: avgInterval=1485: maxInterval=1559755 ms.
+2021-10-05 20:28:58,311 MDT INFO   log.persistence 1155 [ebx-rro-2-unique] Heart beat #6000: avgInterval=2570: maxInterval=3287385 ms.

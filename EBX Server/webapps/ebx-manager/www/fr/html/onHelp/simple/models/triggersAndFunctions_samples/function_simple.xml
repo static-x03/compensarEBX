@@ -1,0 +1,11 @@
+﻿<xs:element name="computedValue">
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:function class="com.foo.ComputeValue">
+				<param1>...</param1>
+				<param...n>...</param...n>
+			</osd:function>
+		</xs:appinfo>
+	</xs:annotation>
+	...
+</xs:element>

@@ -1,0 +1,622 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Constraints, triggers and functions</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_model_constraints" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Data model</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/constraints.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+<h1>
+Constraints, triggers and functions</h1>
+<p>Facets allow you to define data constraints in your data models. TIBCO EBX&reg; supports XML Schema constraining facets and provides extended and programmatic facets for advanced data controls.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#xsdfacets">XML Schema supported facets</a><ul class="toc2">
+<li class="toc2"><a href="#xsdUnique">Uniqueness constraint</a></li></ul>
+</li><li class="toc1"><a href="#extendedFacets">Extended facets</a><ul class="toc2">
+<li class="toc2"><a href="#foreignKeyOldSection">Foreign keys</a></li><li class="toc2"><a href="#dynamicConstraints">Dynamic constraints</a></li><li class="toc2"><a href="#oresource">FacetOResource constraint</a></li><li class="toc2"><a href="#excludingValues">Excluding values</a></li><li class="toc2"><a href="#filled">Enumeration constraint defined using another node</a></li></ul>
+</li><li class="toc1"><a href="#programmaticFacets">Programmatic facets</a><ul class="toc2">
+<li class="toc2"><a href="#programmaticConstraints">Programmatic constraints</a></li><li class="toc2"><a href="#programmaticEnumerationConstraints">Programmatic enumeration constraints</a></li><li class="toc2"><a href="#constraintOnNull">Constraint on &#39;null&#39; values</a></li><li class="toc2"><a href="#constraintsOnTable">Constraints on table</a></li></ul>
+</li><li class="toc1"><a href="#controlPolicy">Control policy</a><ul class="toc2">
+<li class="toc2"><a href="#blocksCommit">Blocking and non-blocking constraints</a></li><li class="toc2"><a href="#checkNullInput">Check &#39;null&#39; input</a></li><li class="toc2"><a href="#ebxwhitespaces">EBX&reg; whitespace management for data types</a></li><li class="toc2"><a href="#distinguishNullFromEmptyString">Empty string management</a></li><li class="toc2"><a href="#validationMessageThreshold">Validation message threshold</a></li></ul>
+</li></ul>
+</div>
+<h2 id="xsdfacets">
+XML Schema supported facets</h2>
+<p>The tables below show the facets that are supported by different data types.</p><p><strong>Key:</strong></p><ul>
+<li><p><strong>X</strong> - Supported</p></li><li><p><strong>1</strong> - The <code>whiteSpace</code> facet can be defined, but is not interpreted by EBX&reg;</p></li><li><p><strong>2</strong> - In XML Schema, boundary facets are not allowed on the type <code>string</code>. Nevertheless, EBX&reg; allows such facets as extensions.</p></li><li><p><strong>3</strong> - The <code>osd:resource</code> type only supports the facet <code>FacetOResource</code>, which is required. See <a href="#extendedFacets">Extended Facets</a>.</p></li><li><p><strong>4</strong> - <code>osd:dataspaceKey</code>, <code>osd:datasetName</code> and <code>osd:color</code> types do not support facets. Only <a href="#programmaticConstraints">Programmatic constraints</a> are supported on these types. </p></li></ul>
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-length">length</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-minLength">min</a><a href="https://www.w3.org/TR/xmlschema-2/#dt-minLength">Length</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-maxLength">max</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-maxLength">Length</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-pattern">pattern</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-enumeration">enumeration</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-whiteSpace">white</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-whiteSpace">Space</a></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#boolean">xs:boolean</a></code></p></td><td></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#decimal">xs:decimal</a></code></p></td><td></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#dateTime">xs:dateTime</a></code></p></td><td></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#time">xs:time</a></code></p></td><td></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#date">xs:date</a></code></p></td><td></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#anyURI">xs:anyURI</a></code></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#Name">xs:Name</a></code></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#integer">xs:integer</a></code></p></td><td></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><code><a href="../models/types.html#ebxsimple">osd:resource</a></code><strong><sup>
+3</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><code><a href="../models/types.html#xsdsimple_dataspaceKey">osd:dataspaceKey</a></code><strong><sup>
+4</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><code><a href="../models/types.html#xsdsimple_datasetName">osd:datasetName</a></code><strong><sup>
+4</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td><p align="center"><strong>1</strong></p></td></tr>
+<tr>
+<td><code><a href="../models/types.html#xsdsimple_color">osd:color</a></code><strong><sup>
+4</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td><p align="center"><strong>1</strong></p></td></tr>
+</tbody>
+</table>
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-fractionDigits">fraction</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-fractionDigits">Digits</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-totalDigits">total</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-totalDigits">Digits</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-maxInclusive">max</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-maxInclusive">Inclusive</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-maxExclusive">max</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-maxExclusive">Exclusive</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-minInclusive">min</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-minInclusive">Inclusive</a></p></th><th align="center" valign="top"><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-minExclusive">min</a></p><p><a href="https://www.w3.org/TR/xmlschema-2/#dt-minExclusive">Exclusive</a></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code></p></td><td></td><td></td><td><p align="center"><strong>2</strong></p></td><td><p align="center"><strong>2</strong></p></td><td><p align="center"><strong>2</strong></p></td><td><p align="center"><strong>2</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#boolean">xs:boolean</a></code></p></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#decimal">xs:decimal</a></code></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#dateTime">xs:dateTime</a></code></p></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#time">xs:time</a></code></p></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#date">xs:date</a></code></p></td><td></td><td></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#anyURI">xs:anyURI</a></code></p></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#Name">xs:Name</a></code></p></td><td></td><td></td><td><p align="center"><strong>2</strong></p></td><td><p align="center"><strong>2</strong></p></td><td><p align="center"><strong>2</strong></p></td><td><p align="center"><strong>2</strong></p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#integer">xs:integer</a></code></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td><td><p align="center"><strong>X</strong></p></td></tr>
+<tr>
+<td><code><a href="../models/types.html#ebxsimple">osd:resource</a></code><strong><sup>
+3</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td><code><a href="../models/types.html#xsdsimple_dataspaceKey">osd:dataspaceKey</a></code><strong><sup>
+4</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td><code><a href="../models/types.html#xsdsimple_datasetName">osd:datasetName</a></code><strong><sup>
+4</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td><code><a href="../models/types.html#xsdsimple_color">osd:color</a></code><strong><sup>
+4</sup>
+</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
+</table>
+<p>Example:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="loanRate">
+	&lt;xs:simpleType>
+		&lt;xs:restriction base="xs:decimal">
+			&lt;xs:minInclusive value="4.5" />
+			&lt;xs:maxExclusive value="17.5" />
+		&lt;/xs:restriction>
+	&lt;/xs:simpleType>
+&lt;/xs:element></pre>
+<h3 id="xsdUnique">
+Uniqueness constraint</h3>
+<p> It is possible to define a uniqueness constraint, using the standard XML Schema element <code><a href="https://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions">xs:unique</a></code>. This constraint indicates that a value or a set of values has to be unique inside a table.</p><p><strong>Example:</strong></p><p> In the example below, a uniqueness constraint is defined on the &#39;publisher&#39; table, for the target field &#39;name&#39;. This means that no two records in the &#39;publisher&#39; table can have the same name.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="publisher">
+	...
+	&lt;xs:complexType>
+		&lt;xs:sequence>
+			...
+			&lt;xs:element name="name" type="xs:string" />
+			...
+		&lt;/xs:sequence>
+	&lt;/xs:complexType>
+	&lt;xs:unique name="uniqueName">
+		&lt;xs:annotation>
+			&lt;xs:appinfo>
+				&lt;osd:validation>
+					&lt;severity>error&lt;/severity>
+					&lt;message>Name must be unique in table.&lt;/message>
+					&lt;message xml:lang="en-US">Name must be unique in table.&lt;/message>
+					&lt;message xml:lang="fr-FR">Le nom doit être unique dans la table.&lt;/message>
+				&lt;/osd:validation>
+			&lt;/xs:appinfo>
+		&lt;/xs:annotation>
+		&lt;xs:selector xpath="." />
+		&lt;xs:field xpath="name" />
+	&lt;/xs:unique>
+&lt;/xs:element></pre>
+<p>A uniqueness constraint has to be defined within a table and has the following properties:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Property</strong></p></th><th valign="top"><p><strong>Description</strong></p></th><th align="center" valign="top"><p><strong>Mandatory</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>name</code> attribute </p></td><td valign="top"><p>Identifies the constraint in the data model.</p></td><td valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>xs:selector</code> element </p></td><td valign="top"><p>Indicates the table to which the uniqueness constraint applies using a restricted XPath expression (&#39;..&#39; is forbidden). It can also indicate an element within the table (without changing the meaning of the constraint).</p></td><td valign="top"><p>Yes</p></td></tr>
+<tr>
+<td valign="top"><p><code>xs:field</code> element </p></td><td valign="top"><p>Indicates the field in the context whose values must be unique, using a restricted XPath expression.</p><p>It is possible to indicate that a set of values must be unique by defining multiple <code>xs:field</code> elements.</p></td><td valign="top"><p>Yes</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Undefined values (null values) are ignored on uniqueness constraints applied to single fields. On multiple fields, undefined values are taken into account. That is, sets of values are considered as being duplicated if they have the same defined and undefined values.</p></div>
+<p>Additional localized validation messages can be defined using the element <code>osd:validation</code> under the elements <code>annotation/appinfo</code>. If no custom validation messages are defined, a built-in validation message will be used.</p><p>The uniqueness constraint can also be applied on an simple aggregated list: in this case, each value of the list has to be unique in the scope of the list and not in the scope of the table. </p><p><strong>Example:</strong></p><p> In the example below, a uniqueness constraint is defined on the &#39;title&#39; table, for the target field &#39;printedEditions&#39;. This means that an edition can appear only once in the list.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="title">
+	...
+	&lt;xs:complexType>
+		&lt;xs:sequence>
+			...
+			&lt;xs:element name="printedEditions" type="xs:string" minOccur="0" maxOccur="5"/>
+			...
+		&lt;/xs:sequence>
+	&lt;/xs:complexType>
+	&lt;xs:unique name="uniquePrintedEditions">
+		&lt;xs:annotation>
+			&lt;xs:appinfo>
+				&lt;osd:validation>
+					&lt;severity>error&lt;/severity>
+					&lt;message xml:lang="en-US">An edition must be referenced only once by this title&lt;/message>
+					&lt;message xml:lang="fr-FR">Une édition ne peut être référencée qu'une seule fois par ce livre&lt;/message>
+				&lt;/osd:validation>
+			&lt;/xs:appinfo>
+		&lt;/xs:annotation>
+		&lt;xs:selector xpath="." />
+		&lt;xs:field xpath="printedEditions"/>
+	&lt;/xs:unique>
+&lt;/xs:element></pre>
+<p>Limitations:</p><ol>
+<li><p>The target of the <code>xs:field</code> element must be in a table. </p></li><li><p>The uniqueness constraint does not apply to computed fields.</p></li><li><p>The uniqueness constraint cannot be applied on multiple fields that contains an aggregated list. </p></li><li><p>The uniqueness constraint cannot be applied on embedded lists. </p></li></ol>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/info/UniquenessConstraint.html">Uniqueness constraint in the Java API</a></li></ul>
+</div>
+<h2 id="extendedFacets">
+Extended facets</h2>
+<p>EBX&reg; provides additional constraints that are not specified in XML Schema, but that are useful for managing master data.</p><p> In order to guarantee XML Schema conformance, these extended facets are defined under the element <code>annotation/appinfo/otherFacets</code>.</p><h3 id="foreignKeyOldSection">
+Foreign keys</h3>
+<p>EBX&reg; allows to create a reference to an existing table by means of a specific facet. See <a href="../models/tables.html#foreignKey">Foreign keys</a> for more information.</p><h3 id="dynamicConstraints">
+Dynamic constraints</h3>
+<p>Dynamic constraint facets retain the semantics of XML Schema, but the value attribute is replaced with a path attribute that allows fetching the value from another element. The available dynamic constraints are:</p><ul>
+<li><p><code>length</code></p></li><li><p><code>minLength</code></p></li><li><p><code>maxLength</code></p></li><li><p><code>maxInclusive</code></p></li><li><p><code>maxExclusive</code></p></li><li><p><code>minInclusive</code></p></li><li><p><code>minExclusive</code></p></li></ul>
+<p>Using these facets, the data model can be modified dynamically.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="amount">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:minInclusive path="/domain/Loan/Pricing/AmountMini/amount" />
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	  ...
+&lt;/xs:element></pre>
+<p> In this example, the boundary of the facet <code>minInclusive</code> is not statically defined. The value of the boundary comes from the node <em>/domain/Loan/Pricing/AmountMini/amount</em>.</p><p>Restrictions:</p><ul>
+<li><p>Target field cannot be an aggregated list. That is, it cannot define <code>maxOccurs</code> = 1.</p></li><li><p>Data type of the target field must be compatible with the facet. That is, it must be:</p><ul>
+<li><p>of type <code>integer</code> for facets <code>length</code>, <code>minLength</code> and <code>maxLength</code>.</p></li><li><p>compatible with the data type of the field holding the facet for facets <code>maxInclusive</code>, <code>maxExclusive</code>, <code>minInclusive</code> and <code>minExclusive</code>. </p></li></ul>
+</li><li><p>Target field cannot be in a table if the field holding the facet is not in a table.</p></li><li><p>Target field must be in the same table or outside a table if the field holding the facet is in a table.</p></li><li><p>If the target field is under one or more aggregated lists, the field holding the facet must also be under these aggregated lists. That is: the field holding the facet must be in the same list occurrence as the target field, or in a parent occurrence, so that the target field refers to a single value, from an XPath perspective.</p></li></ul>
+<h3 id="oresource">
+FacetOResource constraint</h3>
+<p>This facet must be defined for every definition using the type <code>osd:resource</code>, to specify the subset of available packaged resource files as an enumeration. For more information on this type, see <a href="./types.html#oresource">osd:resource type</a>. It has the following attributes:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>moduleName</code></p></td><td class="ebx_definitionListDefinition"><p>Indicates, using an alias, the EBX&reg; module that contains the resource. If the resource is contained in the current module, the alias must be preceded by &quot;wbp&quot;. Otherwise, the alias must be one of the values defined in the element <code>&lt;dependencies&gt;</code> in the file <code>module.xml</code>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>resourceType</code></p></td><td class="ebx_definitionListDefinition"><p>Represents the resource type that is one of the following values: &#39;Image&#39;, &#39;JavaScript&#39;, &#39;Style sheet&#39;, &#39;HTML&#39;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>relativePath</code></p></td><td class="ebx_definitionListDefinition"><p>Indicates in which directory the resources will be located. This directory must be located under the directory that corresponds to the resource type. For example, for an &quot;Image&quot; type resource, the directory www/common/images/, located at the same level as the directory WEB-INF/ of the target module, will be used and the relative path will have to be defined from this. Furthermore, if a resource is defined in a localized directory (www/fr/ for example), it will only be taken into account if another resource with the same name is defined in the directory www/common/.</p></td></tr>
+</table>
+<p>This facet has the same behavior as an enumeration facet: the values are collected by recursively listing all the files in the local path in the specified resource type directory in the specified module.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="promotion" type="osd:resource">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:FacetOResource osd:moduleName="wbp"
+					osd:resourceType="ext-images" osd:relativePath="promotion/" />
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation> 
+&lt;/ xs:element></pre>
+<p>For an overview of the standard directory structure of an EBX&reg; module (Java EE web application), see <a href="../models/modules_packaging.html#structure">Module structure</a>.</p><h3 id="excludingValues">
+Excluding values</h3>
+<h4 id="excludeValue">
+excludeValue constraint</h4>
+<p>This facet verifies that a value is not the same as the specified excluded value.</p><p>In this example, the empty string is excluded from the allowed values.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="roleName">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:excludeValue value="">
+					&lt;osd:validation> 
+						&lt;severity>error&lt;/severity>
+			 			&lt;message>Please select address role(s).&lt;/message> 
+					&lt;/osd:validation>
+				&lt;/osd:excludeValue>
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	&lt;xs:simpleType type="xs:string" />
+&lt;/xs:element></pre>
+<h4 id="excludeSegment">
+excludeSegment constraint</h4>
+<p>This facet verifies that a value is not included in a range of values. Boundaries are excluded.</p><p><strong>Example:</strong></p><p>In this example, values between 20000 and 20999 are not allowed.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="zipCode">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:excludeSegment minValue="20000" maxValue="20999">
+					&lt;osd:validation> 
+						&lt;severity>error&lt;/severity>
+			 			&lt;message>Postal code not valid.&lt;/message> 
+					&lt;/osd:validation>
+				&lt;/osd:excludeSegment>
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	&lt;xs:simpleType type="xs:string" />
+&lt;/xs:element></pre>
+<h3 id="filled">
+Enumeration constraint defined using another node</h3>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p> This kind of constraint is obsolete. You should use <a href="../models/tables.html#foreignKey">foreign key constraint</a>. It has limitations, in particular Quick search and sort operations in the user interface will use the raw value of the field instead of the labels defined through the constraint. </p></div>
+<p>By default, an enumeration facet is described statically in XML Schema.</p><p>The content of an enumeration facet can also be provided dynamically by a list of simple elements in the data model.</p><p><strong>Example:</strong></p><p>In this example, the content of an enumeration facet is sourced from the node <code>CountryList</code>.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:annotation>
+	&lt;xs:appinfo>
+		&lt;osd:otherFacets>
+			&lt;osd:enumeration osd:path="../CountryList" />
+		&lt;/osd:otherFacets>
+	&lt;/xs:appinfo>
+&lt;/xs:annotation></pre>
+<p>The referred node <code>CountryList</code>: </p><ul>
+<li><p>Must be an aggregated list, that is, <code>maxOccurs</code> &gt; 1.</p></li><li><p>Must be a list of elements of the same type as the node with the enumeration facet.</p></li><li><p>Must be a node outside a table if the node with the enumeration facet is not inside a table.</p></li><li><p>Must be a node outside a table or in the same table as the node with the enumeration facet if the node with this enumeration is inside a table.</p></li><li><p>If the target field is under one or more aggregated lists, the field holding the facet must also be under these aggregated lists. That is: the field holding the facet must be in the same list occurrence as the target field, or in a parent occurrence, so that the target field refers to a single value, from an XPath perspective.</p></li></ul>
+<p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="FacetEnumBasedOnList">
+	&lt;xs:complexType>
+		&lt;xs:sequence>
+			&lt;xs:element name="CountryList" maxOccurs="unbounded">
+				&lt;xs:simpleType>
+					&lt;xs:restriction base="xs:string">
+						&lt;xs:enumeration value="DE" osd:label="Germany" />
+						&lt;xs:enumeration value="AT" osd:label="Austria" />
+						&lt;xs:enumeration value="BE" osd:label="Belgium" />
+						&lt;xs:enumeration value="JP" osd:label="Japan" />
+						&lt;xs:enumeration value="KR" osd:label="Korea" />
+						&lt;xs:enumeration value="CN" osd:label="China" />
+					&lt;/xs:restriction>
+				&lt;/xs:simpleType>
+			&lt;/xs:element>
+			&lt;xs:element name="CountryChoice" type="xs:string">
+				&lt;xs:annotation>
+					&lt;xs:appinfo>
+						&lt;osd:otherFacets>
+							&lt;osd:enumeration osd:path="../CountryList" />
+						&lt;/osd:otherFacets>
+					&lt;/xs:appinfo>
+				&lt;/xs:annotation>
+			&lt;/xs:element>
+		&lt;/xs:sequence>
+	&lt;/xs:complexType>
+&lt;/xs:element></pre>
+<h2 id="programmaticFacets">
+Programmatic facets</h2>
+<p>A programmatic constraint can be added to any XML element declaration for a simple type.</p><p>In order to guarantee XML Schema conformance, programmatic constraints are specified under the element <code>annotation/appinfo/otherFacets</code>.</p><h3 id="programmaticConstraints">
+Programmatic constraints</h3>
+<p>A programmatic constraint is defined by a Java class that implements the interface <code><a target="_blank" href="../Java_API/com/orchestranetworks/schema/Constraint.html"><code>Constraint</code></a></code>.</p><p>As additional parameters can be defined, the implemented Java class must conform to the JavaBean protocol.</p><p><strong>Example:</strong></p><p>In the example below, the Java class must define the methods: <code>getParam1()</code>, <code>setParam1(String)</code>, <code>getParamX()</code>, <code>setParamX(String)</code>, etc.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="amount">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:constraint class="com.foo.CheckAmount">
+					&lt;param1>...&lt;/param1>
+					&lt;param...n>...&lt;/param...n>
+				&lt;/osd:constraint>
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:element></pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/package-summary.html#JavaBeans">JavaBean specifications</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/JavaBeanVersion.html"><code>JavaBeanVersion</code></a></li></ul>
+</div>
+<h3 id="programmaticEnumerationConstraints">
+Programmatic enumeration constraints</h3>
+<p>An enumeration constraint adds an ordered list of values to a basic programmatic constraint. This facet allows selecting a value from a list. It is defined by a Java class that implements the interface <code><a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintEnumeration.html"><code>ConstraintEnumeration</code></a></code>.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="amount">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:constraintEnumeration class="com.foo.CheckAmountInEnumeration">
+					&lt;param1>...&lt;/param1>
+					&lt;param...n>...&lt;/param...n>
+				&lt;/osd:constraintEnumeration>
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:element></pre>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p> Quick search and sort operations in the user interface will use the raw value of the field instead of its label. Consider whether this enumeration can be replaced by a <a href="../models/tables.html#foreignKey">foreign key constraint</a> to a table that defines the same set of values. </p></div>
+<h3 id="constraintOnNull">
+Constraint on &#39;null&#39; values</h3>
+<p>In some cases, a value is only mandatory if some conditions are satisfied, for example, if another field has a given value. In this case, the standard XML Schema attribute <code>minOccurs</code> is insufficient because it is static. </p><p>In order to check if a value is mandatory according to its context, the following requirements must be satisfied:</p><ol>
+<li><p>A programmatic constraint must be defined by a Java class (see above).</p></li><li><p>This class must implement the interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintOnNull.html"><code>ConstraintOnNull</code></a>.</p></li><li><p>The XML Schema cardinality attributes must specify that the element is optional (<code>minOccurs=&quot;0&quot;</code> and <code>maxOccurs=&quot;1&quot;</code> ).</p></li></ol>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>By default, constraints on &#39;null&#39; values are not checked upon user input. In order to enable a check at the input, the <a href="#checkNullInput">&#39;checkNullInput&#39; property</a> must be set. Also, if the element is terminal, the dataset must also be activated.</p></div>
+<p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="amount" minOccurs="0" maxOccurs="1">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:constraint class="com.foo.CheckIfNull">
+					&lt;param1>...&lt;/param1>
+					&lt;param...n>...&lt;/param...n>
+				&lt;/osd:constraint>
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:element></pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/package-summary.html#JavaBeans">JavaBean specifications</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/JavaBeanVersion.html"><code>JavaBeanVersion</code></a></li></ul>
+</div>
+<h3 id="constraintsOnTable">
+Constraints on table</h3>
+<p>A constraint on table is defined by a Java class that implements the interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintOnTable.html"><code>ConstraintOnTable</code></a>. It can only be defined on table nodes.</p><p>As additional parameters can be defined. the implemented Java class must conform to the JavaBean protocol.</p><p><strong>Example:</strong></p><p>In the example below, the Java class must define the methods: <code>getParam1()</code>, <code>setParam1(String)</code>, <code>getParamX()</code>, <code>setParamX(String)</code>, etc.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="myTable" type="MyTableType" minOccurs="0" maxOccurs="unbounded">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:table>
+				&lt;primaryKeys>/key&lt;/primaryKeys>
+			&lt;/osd:table>
+			&lt;osd:otherFacets>
+				&lt;osd:constraint class="com.foo.checkTable">
+					&lt;param1>...&lt;/param1>
+					&lt;param...n>...&lt;/param...n>
+				&lt;/osd:constraint>
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>For performance reasons, constraints on tables are only checked when getting the validation report of a dataset or table. This means that these constraints are not checked when updates, such as record insertions, deletions or modifications, occur on tables. However, the internal incremental validation framework will optimize the validation cost of these constraints if dependencies are defined. For more information, see <a href="../references/performance.html#validation">Validation performance</a>.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/package-summary.html#JavaBeans">JavaBean specifications</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/JavaBeanVersion.html"><code>JavaBeanVersion</code></a></li></ul>
+</div>
+<h2 id="controlPolicy">
+Control policy</h2>
+<h3 id="blocksCommit">
+Blocking and non-blocking constraints</h3>
+<p>When an update in the repository is performed, and this update adds a validation error according to a given constraint, it is possible to specify whether the new error blocks the update (and cancels the transaction) or if it is considered as non-blocking (so that the update can be committed and the error can be corrected later). The element <code>blocksCommit</code> within the element <code>osd:validation</code> allows this specification, with the following supported values: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>onInsertUpdateOrDelete</code></p></td><td class="ebx_definitionListDefinition"><p>Specifies that the constraint must always remain valid after an operation (dataset update, dataset deletion, record creation, update or deletion). In this case, any operation that would violate the constraint is rejected and the values remain unchanged.</p><p>This is the default and mandatory policy for primary key constraints, data type conversion constraints (an integer or a date must be well-written) and also structural constraints in mapped tables. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>onUserSubmit-checkModifiedValues</code></p></td><td class="ebx_definitionListDefinition"><p>Specifies that the constraint must remain valid whenever a user modifies the associated value and submits a form. In this case, any form input that would violate the constraint is rejected and the values remain unchanged.</p><p>This is the default policy for all blocking constraints mentioned in the previous case. For example, a foreign key constraint is by default not blocking (a record referred to by other records can be deleted, etc.), except in the context of a form submit. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>never</code></p></td><td class="ebx_definitionListDefinition"><p>Specifies that the constraint must never block operations. In this case, any operation that would violate the constraint is allowed. In the context of the user interface, this constraint does not block the form submission if the user sets a value that violates this constraint. </p></td></tr>
+</table>
+<p>On foreign key constraints, the control policy that blocks all operations does not apply to filtered records. That is, a foreign key constraint is not blocking if a referenced record exists but does not satisfy a foreign key filter. In this case, updates are not rejected and a validation error occurs. </p><p>It is not possible to specify a control policy on structural constraints that are defined in mapped tables. That is, this property is not available for fixed length, maximum length, maximum number of digits, and decimal place constraints due to the validation policy of the underlying RDBMS blocking constraints.</p><p>This property does not apply to archive imports and when merging dataspaces. That is, all blocking constraints, except structural constraints, are always disabled when importing archives and merging dataspaces.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/labels_error_messages.html#validationMessage">Facet validation message with severity</a></li><li><a href="../models/tables.html#foreignKey">Foreign keys</a></li></ul>
+</div>
+<h4>
+XML Schema facet</h4>
+<p>The control policy is described by the element <code>osd:validation</code> in <code>annotation/appinfo</code> under the definition of the facet.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="zipCode">
+	&lt;xs:simpleType>
+		&lt;xs:restriction base="xs:string">
+			&lt;xs:minInclusive value="1000">
+				&lt;xs:annotation>
+					&lt;xs:appinfo>
+						&lt;osd:validation>
+							&lt;blocksCommit>onInsertUpdateOrDelete&lt;/blocksCommit>
+						&lt;/osd:validation>
+					&lt;/xs:appinfo>
+				&lt;/xs:annotation>
+			&lt;/xs:minInclusive>
+		&lt;/xs:restriction>
+	&lt;/xs:simpleType>
+&lt;/xs:element></pre>
+<h4>
+XML Schema enumeration facet</h4>
+<p> The control policy is described by the element <code>osd:enumerationValidation</code> in <code>annotation/appinfo</code> under the definition of the field. </p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="Gender">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:enumerationValidation>
+				&lt;blocksCommit>onInsertUpdateOrDelete&lt;/blocksCommit>
+			&lt;/osd:enumerationValidation>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	&lt;xs:simpleType>
+		&lt;xs:restriction base="xs:string">
+			&lt;xs:enumeration value="0" osd:label="male" />
+			&lt;xs:enumeration value="1" osd:label="female" />
+		&lt;/xs:restriction>
+	&lt;/xs:simpleType>
+&lt;/xs:element></pre>
+<h4>
+EBX&reg; facet</h4>
+<p>The control policy is described by the element <code>osd:validation</code> under the definition of the facet (which is defined in <code>annotation/appinfo/otherFacets</code>). </p><p>The control policy with values <code>onInsertUpdateOrDelete</code> and <code>onUserSubmit-checkModifiedValues</code> is only available on <code>osd:excludeSegment</code>, <code>osd:excludeValue</code> and <code>osd:tableRef</code> EBX&reg; facets. </p><p>The control policy with the value <code>never</code> can be defined on all EBX&reg; facets. On programmatic constraints, the control policy with the value <code>never</code> can only be set directly during the setup of the corresponding constraint. See <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintContext.html#setBlocksCommitToNever--"><code>ConstraintContext.setBlocksCommitToNever</code></a> and <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintContextOnTable.html#setBlocksCommitToNever--"><code>ConstraintContextOnTable.setBlocksCommitToNever</code></a> in the Java API for more information. </p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="price" type="xs:decimal">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:minInclusive path="../priceMin">
+					&lt;osd:validation>
+						&lt;blocksCommit>onInsertUpdateOrDelete&lt;/blocksCommit>
+					&lt;/osd:validation>
+				&lt;/osd:minInclusive>
+			&lt;/osd:otherFacets>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+<h3 id="checkNullInput">
+Check &#39;null&#39; input</h3>
+<p>According to the EBX&reg; default validation policy, in order to allow temporarily incomplete input, a mandatory element is not checked for completion upon user input. Rather, it is verified at the dataset validation only. If completion must be checked immediately upon user input, the element must additionally specify the attribute <code>osd:checkNullInput=&quot;true&quot;</code>. This property is ignored if defined on an aggregated list (<code>maxOccurs</code> &gt; 1).</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>A value is mandatory if the data model specifies a mandatory element, either statically, using <code>minOccurs=&quot;1&quot;</code>, or dynamically, using a constraint on &#39;null&#39;. For terminal elements, mandatory values are only checked for an activated dataset. For non-terminal elements, the dataset does not need to be activated.</p></div>
+<p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="amount" osd:checkNullInput="true" minOccurs="1">
+	...
+&lt;/xs:element></pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#constraintOnNull">Constraint on &#39;null&#39;</a></li><li><a href="#ebxwhitespaces">Whitespace management</a></li><li><a href="#distinguishNullFromEmptyString">Empty string management</a></li></ul>
+</div>
+<h3 id="ebxwhitespaces">
+EBX&reg; whitespace management for data types</h3>
+<p>According to XML Schema (see <a href="https://www.w3.org/TR/xmlschema-2/#rf-whiteSpace">https://www.w3.org/TR/xmlschema-2/#rf-whiteSpace</a>), whitespace handling must follow one of the procedures <em>preserve</em>, <em>replace</em> or <em>collapse</em>: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>preserve</p></td><td class="ebx_definitionListDefinition"><p>No normalization is performed, the value is unchanged.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>replace</p></td><td class="ebx_definitionListDefinition"><p>All occurrences of <code>#x9</code> (tab), <code>#xA</code> (line feed) and <code>#xD</code> (carriage return) are replaced with <code>#x20</code> (space).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>collapse</p></td><td class="ebx_definitionListDefinition"><p>After the processing according to the replace procedure, contiguous sequences of <code>#x20</code> are then collapsed to a single <code>#x20</code>, and any leading or trailing <code>#x20</code>s are removed. </p></td></tr>
+</table>
+<h4>
+General whitespace handling</h4>
+<p>EBX&reg; complies with the XML Schema recommendation:</p><ul>
+<li><p>For fields of type <code>xs:string</code>, whether a primary key element or not, whitespaces are always preserved and an empty string is never converted to <code>null</code>.</p></li><li><p>For other fields (non-<code>xs:string</code> type), whitespaces are always collapsed and empty strings are converted to <code>null</code>.</p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p>Exceptions:</p><ul>
+<li><p>For fields of type <code>osd:html</code> or <code>osd:password</code>, whitespaces are always preserved and empty strings are converted to <code>null</code>.</p></li><li><p>For fields of type <code>xs:string</code> that define the property <code>osd:checkNullInput=&quot;true&quot;</code>, an empty string is interpreted as <code>null</code> at user input by EBX&reg;. </p></li></ul>
+</p></div>
+<h4 id="whitespaces_userInputs">
+Whitespace handling upon user input</h4>
+<p>The rules described in the previous section are applied in the user interface, but leading and trailing whitespaces are removed upon user input. That is, in the user interface, whitespaces are by default always trimmed upon user input. Other input methods (Import XML/CSV, Data services, API updates) are not trimmed from the user interface. </p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p>Exceptions:</p><ul>
+<li><p>For fields of type <code>osd:password</code>, whitespaces are not trimmed upon user input.</p></li><li><p>For foreign key fields, whitespaces are not trimmed upon user input.</p></li></ul>
+</p></div>
+<p>It is possible to indicate in a data model that whitespaces should not be trimmed upon user input. The attribute <code>osd:trim=&quot;disable&quot;</code> can be set on the fields that allow leading and trailing whitespaces upon user input.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="field" osd:trim="disable" type="xs:string">
+	...
+&lt;/xs:element></pre>
+<h4 id="whitespaces_pk">
+Whitespace handling for primary keys of type string</h4>
+<p>For primary key columns of type <code>xs:string</code>, a default EBX&reg; constraint is defined. This constraint forbids empty strings and non-collapsed whitespace values at validation. </p><p>However, if the primary key node specifies its own <code>xs:pattern</code> facet, this facet overrides the default EBX&reg; constraint. For example, the specific pattern &quot;<code>.*</code>&quot; would accept any string, although this is not recommended.</p><p>The default constraint allows handling certain ambiguities. For example, it would be difficult for a user to distinguish between the following strings: &quot;12 34&quot; and &quot;12  34&quot;. For generic values, this would not create conflicts, however, errors would occur for primary keys.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/tables.html">Tables and relationships</a></li></ul>
+</div>
+<h3 id="distinguishNullFromEmptyString">
+Empty string management</h3>
+<h4>
+Default conversion</h4>
+<p>For nodes of type <code>xs:string</code>, no distinction is made at user input between an empty string and a <code>null</code> value. That is, an empty string value is automatically converted to <code>null</code> at user input. </p><h4>
+Distinction between empty strings and &#39;null&#39; value</h4>
+<p>There are certain cases where the distinction is made between an empty string and the <code>null</code> value, such as when:</p><ul>
+<li><p>A primary key defines a pattern that allows empty strings.</p></li><li><p>An element defines a foreign key constraint and the target table has a single primary key defining a pattern that allows empty strings.</p></li><li><p>An element defines a static enumeration that contains an empty string.</p></li><li><p>An element defines a dynamic enumeration to another element with one of the aforementioned cases.</p></li></ul>
+<p>If the distinction is made between an empty string and a <code>null</code> value, this implies the following behaviors:</p><ul>
+<li><p>An empty string will not be converted to <code>null</code> at user input,</p></li><li><p>Input fields for nodes of type <code>xs:string</code> will display an additional button for setting the value of the node to <code>null</code>,</p></li><li><p>At validation time, an empty string will be considered to be a compliant value with regard to the <code>minOccurs=&quot;1&quot;</code> property.</p></li></ul>
+<h3 id="validationMessageThreshold">
+Validation message threshold</h3>
+<p>It is possible to specify at the data model level the maximum number of validation messages allowed per constraint when performing a validation. </p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:schema ...>
+	...
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:validation>
+				&lt;validationMessageThreshold>250&lt;/validationMessageThreshold>
+			&lt;/osd:validation>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:schema></pre>
+<p>The threshold is considered for each constraint defined in a data model and in each dataset validation report. When the threshold is reached by a constraint, the validation of the constraint is stopped and an error message indicating that the threshold has been reached is added to the validation report. </p><p>The validation message threshold is set by default to <code>1000</code> if it is not defined in the data model. It is not allowed to set an unlimited number of validation messages. Also, the specified validation message threshold must be greater or equal than 100. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/service/ValidationReport.html#hasConstraintsWithTooManyMessages--"><code>ValidationReport.hasConstraintsWithTooManyMessages</code></a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

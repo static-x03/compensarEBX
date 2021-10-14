@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction aux espaces de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="userdataspace_intro" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Espaces de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataspace/userdataspace_intro.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Espaces de données</span></div>
+<h1>
+Introduction aux espaces de donn&eacute;es</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#overview">Pr&eacute;sentation</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Fonction d&#39;un espace de donn&eacute;es</a></li><li class="toc2"><a href="#id1s2">Concepts de base li&eacute;s aux espaces de donn&eacute;es</a></li></ul>
+</li><li class="toc1"><a href="#navigation">Utilisation de l&#39;interface utilisateur de la section Espace de donn&eacute;es</a></li></ul>
+</div>
+<h2 id="overview">
+Pr&eacute;sentation</h2>
+<h3 id="id1s1">
+Fonction d&#39;un espace de donn&eacute;es</h3>
+<p>Le cycle de vie des donn&eacute;es est souvent complexe. Il est parfois n&eacute;cessaire d&#39;entretenir une version courante des donn&eacute;es tout en travaillant sur des &eacute;volutions futures. De plus, il faut conserver une trace des &eacute;tats interm&eacute;diaires. TIBCO EBX&reg; rend ces d&eacute;marches possibles gr&acirc;ce aux espaces de donn&eacute;es et aux images.</p><p>Un espace de donn&eacute;es est un conteneur qui isole diff&eacute;rentes versions de jeux de donn&eacute;es et les organise. Des espaces de donn&eacute;es enfants peuvent &ecirc;tre cr&eacute;&eacute;s &agrave; partir d&#39;un espace de donn&eacute;es. Un espace de donn&eacute;es enfant est initialis&eacute; avec le m&ecirc;me &eacute;tat que son parent au moment de sa cr&eacute;ation. Ainsi, des modifications peuvent &ecirc;tre effectu&eacute;es isol&eacute;ment dans l&#39;espace de donn&eacute;es enfant, sans impacter l&#39;espace de donn&eacute;es parent ni d&#39;autres espaces de donn&eacute;es. Lorsque les modifications dans l&#39;espace de donn&eacute;es enfant sont termin&eacute;es, cet espace de donn&eacute;es peut &ecirc;tre fusionn&eacute; avec son parent.</p><p>Une image est une copie statique d&#39;un espace de donn&eacute;es qui capture son &eacute;tat et tout son contenu &agrave; un moment donn&eacute;. Les images peuvent &ecirc;tre consult&eacute;es, export&eacute;es, et compar&eacute;es &agrave; d&#39;autres espaces de donn&eacute;es.</p><p align="center"><img alt="/lifecycle.png" src="../resources/images/user_dataspace/lifecycle.png"></img></p><h3 id="id1s2">
+Concepts de base li&eacute;s aux espaces de donn&eacute;es</h3>
+<p>La compr&eacute;hension des termes suivants est recommand&eacute;e pour l&#39;utilisation des espaces de donn&eacute;es :</p><ul>
+<li><p><a href="../glossary/simple_glossary.html#dataspace">espace de donn&eacute;es</a></p></li><li><p><a href="../glossary/simple_glossary.html#snapshot">image</a></p></li><li><p><a href="../glossary/simple_glossary.html#dataset">jeu de donn&eacute;es</a></p></li><li><p><a href="../glossary/simple_glossary.html#merge">fusion</a></p></li><li><p><a href="../glossary/simple_glossary.html#refdataspace">espace de donn&eacute;es de r&eacute;f&eacute;rence</a></p></li></ul>
+<h2 id="navigation">
+Utilisation de l&#39;interface utilisateur de la section Espace de donn&eacute;es</h2>
+<p>Les espaces de donn&eacute;es sont cr&eacute;&eacute;s, consult&eacute;s et modifi&eacute;s dans la section <strong>Espaces de donn&eacute;es</strong>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Seuls les utilisateurs autoris&eacute;s peuvent acc&eacute;der &agrave; cet &eacute;cran via la &#39;Perspective avanc&eacute;e&#39;.</p></div>
+<p>Le panneau de navigation affiche l&#39;organisation hi&eacute;rarchique des espaces de donn&eacute;es existants, tandis que l&#39;espace de travail affiche les informations concernant l&#39;espace de donn&eacute;es s&eacute;lectionn&eacute; et liste ses images.</p><p align="center"><img alt="/DataSpace.png" src="../resources/images/user_dataspace/DataSpace.png" align="middle"></img></p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_dataspace/userdataspace_create.html">Cr&eacute;ation d&#39;un espace de donn&eacute;es</a></li><li><a href="../user_dataspace/userdataspace_snapshot.html">Images</a></li></ul>
+</div>
+<div class="ebx_seealso">
+<h5>
+Concepts apparentés</h5>
+<ul>
+<li><a href="../user_data/userdata_intro.html">Jeux de donn&eacute;es</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Espaces de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

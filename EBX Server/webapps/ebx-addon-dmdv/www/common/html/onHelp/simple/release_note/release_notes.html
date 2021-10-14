@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - All Release Notes</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="release_note" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Release Notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=release_note/release_notes.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Release Notes</span></div>
+<h1>
+All Release Notes</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Version 2.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">New features</a></li><li class="toc2"><a href="#id1s2">Changes in Functionality</a></li><li class="toc2"><a href="#id1s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id1s4">Closed Issues</a></li><li class="toc2"><a href="#id1s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id2">Version 2.0.1</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Bug fixes</a></li><li class="toc2"><a href="#id2s2">Deployment note</a></li></ul>
+</li><li class="toc1"><a href="#id3">Version 2.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Data value graphs</a></li><li class="toc2"><a href="#id3s2">All graph types</a></li><li class="toc2"><a href="#id3s3">Deprecated APIs</a></li></ul>
+</li><li class="toc1"><a href="#id4">Version 1.4.6</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id5">Release Notes 1.4.5</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Changes and updates</a></li><li class="toc2"><a href="#id5s2">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id6">Release Notes 1.4.4</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id7">Release Notes 1.4.3</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id8">Release Notes 1.4.2</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">Updates and changes</a></li></ul>
+</li><li class="toc1"><a href="#id9">Release Notes 1.4.1</a><ul class="toc2">
+<li class="toc2"><a href="#id9s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id10">Release Notes 1.4.0</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">New features</a></li></ul>
+</li><li class="toc1"><a href="#id11">Release Notes 1.3.0</a><ul class="toc2">
+<li class="toc2"><a href="#id11s1">New features</a></li><li class="toc2"><a href="#id11s2">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id12">Release Notes 1.2.1</a><ul class="toc2">
+<li class="toc2"><a href="#id12s1">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id13">Release Notes 1.2.0</a><ul class="toc2">
+<li class="toc2"><a href="#id13s1">New features and enhancements</a></li></ul>
+</li><li class="toc1"><a href="#id14">Release Notes 1.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id14s1">New features and enhancements</a></li><li class="toc2"><a href="#id14s2">Known limitations</a></li><li class="toc2"><a href="#id14s3">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id15">Release Notes 1.0.2</a><ul class="toc2">
+<li class="toc2"><a href="#id15s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#id16">Release Notes 1.0.1</a><ul class="toc2">
+<li class="toc2"><a href="#id16s1">Bug fixes</a></li></ul>
+</li><li class="toc1"><a href="#releaseNotes">Release Notes 1.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id17s1">Overview of features</a></li><li class="toc2"><a href="#id17s2">Data model graphs</a></li><li class="toc2"><a href="#id17s3">Model graph API</a></li><li class="toc2"><a href="#id17s4">Data value and relationship graphs</a></li><li class="toc2"><a href="#id17s5">Value graph API</a></li><li class="toc2"><a href="#id17s6">Known limitations</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Version 2.1.0</h2>
+<p><em>Released: July 2021</em></p><h3 id="id1s1">
+New features</h3>
+<p>This release includes the following new features:</p><ul>
+<li><p>When viewing a data model graph, the search scope in the filter pane now includes fields. It also now automatically pares down display of data model elements containing the filter text as you type. </p></li><li><p>In graphs generated using the <strong>Display selected data</strong> service: </p><ul>
+<li><p>The filter pane now allows you to search for data values contained in the graph. The list of data model elements is reduced as you type to only show those elements that contain the value you are searching for. </p></li><li><p>The number of nodes available to open displays below node labels. When there are 10 or more node available, a table icon displays. Clicking the icon displays a list of records and allows you to select those that you want to display.</p></li></ul>
+</li><li><p>In graphs generated using the <strong>Display data using configuration</strong> service:</p><ul>
+<li><p>The filter pane now allows you to search for data values contained in the graph. The list of data model elements is reduced as you type to only show those elements that contain the value you are searching for. </p></li><li><p>When opening the context menu to display related nodes, the number of available nodes is included. If 10 or more nodes are available when you expand related nodes, a pop-up displays and allows you to select the nodes you want to display.</p></li></ul>
+</li></ul>
+<h3 id="id1s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id1s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third party libraries.</p><h3 id="id1s4">
+Closed Issues</h3>
+<p>This release contains the following closed issues:</p><ul>
+<li><p><em>[DMDV-2186]</em> The link style does not reset to the default when clearing the field.</p></li><li><p><em>[DMDV-2185]</em> The <strong>Edit graph display</strong> screen does not work on IE11.</p></li></ul>
+<h3 id="id1s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Any saved data model graph based on a duplicated model will refer to the original model and not the duplicated model. Since a saved graph is linked to the XML schema, this behavior is a result of data model duplication not duplicating the schema file name. Embedded models are not affected; only models in modules.</p></li><li><p>If all nodes to expand in a data value graph belong to the same table, the expand service includes the table name. When a table filter is used, the service to expand nodes cannot ascertain the table name to expand. Instead, the following generalized service labels display: <strong>Expand targets</strong>, <strong>Expand sources</strong>, <strong>Expand children</strong>, or <strong>Expand parents</strong>.</p></li><li><p>After running the <strong>Center</strong> service on a table, any of its expanded groups are collapsed.</p></li><li><p>Data model graphs are not automatically refreshed to reflect updates to displayed tables and foreign keys.</p></li><li><p>Orphan groups defined at the root of a data model are not displayed in graphs. However, fields defined at this level do display.</p></li><li><p>After resizing a node on a saved graph, the system still displays the default size for the node.</p></li><li><p>Data value graphs do not automatically refresh to reflect updates to displayed data, or nodes.</p></li><li><p>When using the containment type for a self-referencing node, it does not display in the graph.</p></li><li><p>The template configuration cannot be changed at runtime for custom data model graphs—those created using the Java API.</p></li><li><p>In data value graphs, users can move the graph but not graph nodes.</p></li><li><p>On Firefox 52 ESR, performance issues may occur when trying to display a data model graph that includes many tables.</p></li><li><p>Node position is recalculated after expanding. Therefore, node position may change.</p></li><li><p>When a table in a group is hidden, and the group is collapsed, the table&#39;s link still displays.</p></li><li><p>Graph templates include the option to show hidden fields, but not hidden tables.</p></li><li><p>Full screen mode is not supported on IE10 or Microsoft Edge.</p></li></ul>
+<h2 id="id2">
+Version 2.0.1</h2>
+<p><strong>Release Date: May 2021</strong></p><h3 id="id2s1">
+Bug fixes</h3>
+<p>The following issues were fixed in this release:</p><ul>
+<li><p><strong>[DMDV-2075]</strong> Clicking the save button in the Graphical Configuration overrides custom modifications.</p></li><li><p><strong>[DMDV-2119]</strong> An incorrect message displays when generating a data model that has a FK field that points to a dataspace that does not exist.</p></li><li><p><strong>[DMDV-2142]</strong> A PDF cannot be exported when viewing a data value graph. using the <strong>Display data using configuration</strong> service.</p></li></ul>
+<h3 id="id2s2">
+Deployment note</h3>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>When you deploy the TIBCO EBX® Data Model and Data Visualization Add-on, you must also deploy the TIBCO EBX® Digital Asset Manager Add-on. Otherwise, some features are inaccessible.</p></div>
+<h2 id="id3">
+Version 2.0.0</h2>
+<p><strong>Release Date: March 2021</strong></p><h3 id="id3s1">
+Data value graphs</h3>
+<p>Data value graphs in this release contain the following new features and updates:</p><ul>
+<li><p>A visual editor is now available to create and edit data value and relationship graphs. The editor allows you to drag-and-drop to add tables and relationships to a graph. The editor provides the following enhancements and advantages over manual graph creation:</p><ul>
+<li><p>You get immediate visual feedback on changes to the configuration.</p></li><li><p>The add-on automatically handles the creation of settings required to add tables, create links to display relationships, and setting options to customize display.</p></li><li><p>The editor is accessible from a table even when no graph exists. This prevents you from having to navigate in EBX® to the <strong>Administration</strong> panel in the <strong>Advanced perspective</strong> to create a new graph.</p></li></ul>
+<p>The following image shows the new editor:</p><p><img alt="/editor-overview-1.png" src="./resources/images/editor-overview-1.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p>Use the panel on the left-hand side to add and change the appearance of graph elements. For example, you can drag a table from left-to-right to add it to the graph.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p>The <strong>Preview</strong> pane provides real-time visual feedback and allows you to: add and remove relationships, remove tables, open a detailed view of the table configuration.</p></td></tr>
+</table>
+<p>For more information on using the editor, see <a href="../user_guide/user_data_value_graph_quick_start.html">Quick start</a>.</p></li><li><p>When viewing a data value graph, you can now change configuration settings using the new editor (described above). As shown below, you can access the editor by selecting the highlighted icon.</p><p><img alt="/edit-config-1.png" src="./resources/images/edit-config-1.png"></img></p></li><li><p>You can now display digital assets managed by the TIBCO EBX® Digital Asset Manager Add-on on data value graph nodes. See <a href="../user_guide/user_data_value_graph_damImages.html">Displaying digital assets on nodes</a>.</p><p>You can add an asset from the following screens:</p><ul>
+<li><p>A table configuration&#39;s <strong>Node style</strong> tab:</p><p><img alt="/dam-display-4.png" src="./resources/images/dam-display-4.png"></img></p></li><li><p>By dragging from the <strong>Image</strong> palate in the graphical editor:</p><p><img alt="/dam-display-2.png" src="./resources/images/dam-display-2.png"></img></p></li></ul>
+</li><li><p>A new link configuration option allows you to set the label that displays in a node&#39;s context menu. This property is optional and if you do not specify a custom label, the label of the table that will be expanded displays.</p><p><img alt="/link-config-label.png" src="./resources/images/link-config-label.png"></img></p></li><li><p>When displaying relationships as lines, you can now set an arrow direction to meet business requirements. Use a link configuration&#39;s <strong>Link orientation</strong> option to set the following options:</p><p><img alt="/arrow-direction.png" src="./resources/images/arrow-direction.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p>Set to <strong>One way arrow (Left side)</strong>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p>Set to <strong>One way arrow (Right side)</strong>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3)</p></td><td class="ebx_definitionListDefinition"><p>Set to <strong>Two way arrow</strong>.</p></td></tr>
+</table>
+</li></ul>
+<h3 id="id3s2">
+All graph types</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>All graphs now have an undo option. Note that a history of actions is not maintained. This option only rolls back the most recent change to a graph.</p></li><li><p>Graphs can now display TIBCO EBX® associations over foreign keys, link tables, and XPath. In data model graphs you can choose the colors used to display the different association types.</p></li></ul>
+<h3 id="id3s3">
+Deprecated APIs</h3>
+<p>The <code>isDisplayed()</code> method was removed from the <code>NodeContext</code> class.</p><h2 id="id4">
+Version 1.4.6</h2>
+<p><strong>Released: February 2021</strong></p><h3 id="id4s1">
+Bug fixes</h3>
+<p><strong>[DMDV-2037]</strong> The export, change orientation, and full-screen buttons do not work when viewing a graph via a workflow step.</p><h2 id="id5">
+Release Notes 1.4.5</h2>
+<p><strong>Released: January 2021</strong></p><h3 id="id5s1">
+Changes and updates</h3>
+<p>The following libraries were updated in this release:</p><ul>
+<li><p>Apache Standard TagLib library to version 1.2.3.</p></li><li><p>Spring framework library to version 5.2.9.</p></li><li><p>Jackson databind library to version 2.11.2.</p></li></ul>
+<h3 id="id5s2">
+Bug fixes</h3>
+<p><strong>[DMDV-1893]</strong> The add-on services do not work when TIBCO EBX® is embedded in an iframe.</p><h2 id="id6">
+Release Notes 1.4.4</h2>
+<p><strong>Release Date: October 20, 2020</strong></p><h3 id="id6s1">
+Bug fixes</h3>
+<p><strong>[DMDV-1866]</strong> Some images do not display correctly when using a custom URL for your TIBCO EBX® server.</p><h2 id="id7">
+Release Notes 1.4.3</h2>
+<p><strong>Release Date: September 18, 2020</strong></p><h3 id="id7s1">
+Bug fixes</h3>
+<p><strong>[DMDV-1794]</strong> A deadlock in the add-on affects the server where EBX® is running.</p><h2 id="id8">
+Release Notes 1.4.2</h2>
+<p><strong>Release Date: June 23, 2020</strong></p><h3 id="id8s1">
+Updates and changes</h3>
+<p>The jQuery and Jackson Databind libraries were updated and the SLF4J library was removed.</p><h2 id="id9">
+Release Notes 1.4.1</h2>
+<p><strong>Release Date: April 20, 2020</strong></p><h3 id="id9s1">
+Bug fixes</h3>
+<p><strong>[DMDV-1698]</strong> A deadlock in the add-on affects the server where EBX® is running.</p><h2 id="id10">
+Release Notes 1.4.0</h2>
+<p><strong>Release Date: February 20, 2020</strong></p><h3 id="id10s1">
+New features</h3>
+<p>The sections below highlight new in this release:</p><ul>
+<li><p><a href="#data-model-features-140">New data model graph features</a></p></li><li><p><a href="#data-value-graph-140">New data value graph features</a></p></li></ul>
+<h4 id="data-model-features-140">
+New data model graph features</h4>
+<p>Data model graphs can now display multiple data models. When a graph includes a table from an outside data model, users can right-click to select the <strong>Display external model</strong> service. Each outside data model displays using alternate colors to differentiate between them. Normal graph interaction is available when displaying multiple models. For example, users can apply templates to change appearance, re-arrange, filter, save and share the graphs. An additional feature for graphs containing multiple models is the level selector. This allows users to change the level of the graphs detail to: <strong>Field</strong>, <strong>Table</strong>, or <strong>Model</strong>. Choosing a level expands graph components to the selected level of detail and automatically resizes the graph. </p><p>The following image shows a data model graph with external models shaded and the base data model highlighted like a group:</p><p><img alt="/external-model-graph.png" src="./resources/images/external-model-graph.png"></img></p><h5>
+Filter pane and table selection</h5>
+<p>The data model filter pane and table selection screens have been updated with:</p><ul>
+<li><p>Options to display and hide external data models.</p></li><li><p>An <img alt="/eye-icon-shadow.png" src="./resources/images/eye-icon-shadow.png" width="24"></img> icon to indicate that a graph is displaying a table from an outside model, but the model is hidden.</p></li><li><p>Tabs that contain all, displayed, and hidden tables and data models. </p></li></ul>
+<h4 id="data-value-graph-140">
+New data value graph features</h4>
+<p>In addition to the option of adding one of the icons provided with the add-on, you can now update a table node style to include a custom icon. This functionality is provided through the new <strong>Image URL</strong> option when viewing a configured table&#39;s <strong>Node Style</strong> tab. The URL must point to an image located in the same domain as TIBCO EBX®.</p><p>The following image shows an example of adding a custom image to a node with a URL:</p><p><img alt="/url-for-node-image.png" src="./resources/images/url-for-node-image.png"></img></p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Saved data model graphs from previous add-on versions cannot be migrated and will be deleted.</p></div>
+<h2 id="id11">
+Release Notes 1.3.0</h2>
+<p><strong>Release Date: November 8, 2019</strong></p><h3 id="id11s1">
+New features</h3>
+<p>The sections below highlight new in this release:</p><ul>
+<li><p><a href="#features-130">New graph features</a></p></li><li><p><a href="#api-features-130">API features</a></p></li></ul>
+<h4 id="features-130">
+New graph features</h4>
+<p>The following updates have been made to graph functionality:</p><ul>
+<li><p>Administrators can set a new configuration option to automatically expand child and source nodes to display their respective parents and targets. When enabled, the add-on automatically expands nodes on graph open or when a user expands an existing node to display these child/source nodes.</p></li><li><p>As shown below, when viewing data value and relationship graphs, users can now change node shapes:</p><p><img alt="/change-node-shape.png" src="./resources/images/change-node-shape.png"></img></p></li><li><p>To improve the feel of the interface, the tooltip design has been updated and as shown below, graph button display locations have been changed:</p><p><img alt="/new-button-location.png" src="./resources/images/new-button-location.png"></img></p></li></ul>
+<h4 id="api-features-130">
+API features</h4>
+<p>This release contains the following new and updated API features:</p><ul>
+<li><p>A custom service can now be written using the add-on&#39;s API to display a default data value graph based on record selection. See <a href="../developer_guide/dev_default_data_value.html">Displaying a default data value graph</a> for a sample implementation.</p></li><li><p>Data value graph features including, but not limited to, <strong>Overview</strong> box display, access to detailed record views, and availability of contextual menu options can be enabled/disabled. The new <code>GraphDataFeatures</code> enumerates available features. </p></li></ul>
+<h3 id="id11s2">
+Bug Fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[DMDV-1323]</strong> An exception is thrown when accessing a table.</p></li><li><p><strong>[DMDV-1355]</strong> Datasets based on external models were not working as expected due to a bug in the add-on.</p></li></ul>
+<h2 id="id12">
+Release Notes 1.2.1</h2>
+<p><strong>Release Date: August 6, 2019</strong></p><h3 id="id12s1">
+Bug Fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[DMDV-1229]</strong> Users can run <strong>Display selected data</strong> service from the <strong>Actions</strong> menu of the <strong>History</strong> table.</p></li><li><p><strong>[DMDV-1230]</strong> Users can run <strong>Display data model</strong> service from the <strong>Actions</strong> menu of the <strong>Permission</strong> table.</p></li></ul>
+<h2 id="id13">
+Release Notes 1.2.0</h2>
+<p><strong>Release Date: June 20, 2019</strong></p><h3 id="id13s1">
+New features and enhancements</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>The <strong>Display data model graph</strong> service is now available to run when viewing a data model in the Data Modeler Assistant area.</p></li><li><p>By default, the ability to view a data value and relationship graph no longer requires configuration. The new <strong>Display selected data</strong> service is available from table <strong>Actions</strong> menus. Selected records and relationships display using default settings. In addition to standard navigation and export features, users can search for and toggle display of nodes and relationships. See <a href="../user_guide/user_data_value_graph_overview.html#default_graphs">Default graphs</a> for more information.</p><p>The following image highlights some of the default features:</p><p><img alt="/display_selected_data.png" src="./resources/images/display_selected_data.png" width="550"></img></p></li><li><p>Data value graph services can now be called from a perspective or workflow. See <a href="../user_guide/user_graphs_perspectives_workflows.html">Graphs in perspectives and workflows</a> for more information.</p></li><li><p>The API now allows you to create custom node templates that determine node appearance. Customizable node components include, but are not limited to, images and data tables. See <a href="../developer_guide/dev_node_template_overview.html">Node templates</a> for more information.</p><p>The following image provides an example of a custom node:</p><p><img alt="/node_template_example.png" src="./resources/images/node_template_example.png"></img></p></li></ul>
+<h2 id="id14">
+Release Notes 1.1.0</h2>
+<p><strong>Release Date: February 22, 2019</strong></p><h3 id="id14s1">
+New features and enhancements</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>Data value graph orientation has been updated. When administrators configure or users view a graph, they can specify that nodes display: Left-to-right, Right-to-left, Top-down, or Bottom-up.</p></li><li><p>Dynamic labels can now be defined for data value graph nodes and links. The following types of labels can be defined: </p><ul>
+<li><p>Default: Label text can be directly entered, or data model elements selected. Labels based on data model elements automatically update based on changes to the associated value.</p></li><li><p>Localized: In addition to sharing the same features as default labels, these labels can leverage the EBX® localization feature.</p></li><li><p>Programmatic: Label definitions can be implemented in a Java class.</p></li></ul>
+</li><li><p>Node and link styles can now be based on the evaluation of an XPath expression. For example, you could specify that all graph nodes that refer to an employee with a status of inactive are colored red. You can also use a Java class to define programmatic styles for links. </p></li><li><p>Links and their corresponding values can now be filtered out of data value graphs. A conditional filter is used for each defined foreign key in the graph. If the filter evaluates to true, the relationship is removed.</p></li><li><p>Data model graphs can now be shared with other users.</p></li></ul>
+<h3 id="id14s2">
+Known limitations</h3>
+<p>This release contains the following known limitations:</p><ul>
+<li><p>The indicator and node label position are incorrect when expanded with many containment levels.</p></li><li><p>When using a curved line to display a link, the arrow doesn&#39;t exactly align with the line.</p></li></ul>
+<h3 id="id14s3">
+Bug Fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[DMDV-258]</strong> The <strong>Load a graph</strong> menu displays even when users do not have permission to view any of a dataset&#39;s tables.</p></li><li><p><strong>[DMDV-753]</strong> When updating a record label in a parent dataset, the external dataset&#39;s node label is not updated.</p></li><li><p><strong>[DMDV-828]</strong> When generating a model graph, fields are still displayed even when set to <strong>Not a data node</strong> in the data model.</p></li></ul>
+<h2 id="id15">
+Release Notes 1.0.2</h2>
+<p><strong>Release Date: January 11, 2019</strong></p><h3 id="id15s1">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[DMDV-867]</strong> The <strong>Display data model</strong> service cannot generate a graph when the data model links to an external table, which in turn links to another external table.</p></li></ul>
+<h2 id="id16">
+Release Notes 1.0.1</h2>
+<p><strong>Release Date: December 3, 2018</strong></p><h3 id="id16s1">
+Bug fixes</h3>
+<p>This release contains the following bug fixes:</p><ul>
+<li><p><strong>[36371]</strong> Provide an API to display or hide the Close button.</p></li><li><p><strong>[36394]</strong> Due to low resolution, images of exported graphs are blurry. This prevents users from being able to zoom in and get detailed information.</p></li><li><p><strong>[36840]</strong> The <strong>Display data using configuration</strong> service does not work on a table row toolbar.</p></li></ul>
+<h2 id="releaseNotes">
+Release Notes 1.0.0</h2>
+<p><strong>Release Date: October 26, 2018</strong></p><h3 id="id17s1">
+Overview of features</h3>
+<p>By generating interactive graphs of your data, relationships, and data structure, the EBX® Data Model and Data Visualization Add-on allows you to:</p><ul>
+<li><p>View <em>data structure</em> by rendering data model graphs. Data model graphs are not limited to EBX® data sources. Using the API, graphs can be generated from external sources.</p></li><li><p>View <em>data values and relationships</em> by rendering graphs that show selected values and their relationships.</p></li></ul>
+<p>The following sections highlight additional features and functionality of the EBX® Data Model and Data Visualization Add-on.</p><h3 id="id17s2">
+Data model graphs</h3>
+<p>By default, no configuration is required to display data model graphs. You can display a graph by running the <strong>Display data model</strong> service from a table or dataset <strong>Actions</strong> menu. What displays in a graph depends on the model content from which it was generated and the template settings. The following image and table describe data model graph components. </p><img alt="/data_model_graph_overview.png" src="./resources/images/data_model_graph_overview.png"></img><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) Groups and Tables</p></td><td class="ebx_definitionListDefinition"><p>A box is automatically drawn around components included in a group. You can collapse, expand, re-size and rearrange groups. The bottom-right corner of the images shows a collapsed group. Tables display their labels and fields. Standard DMA icons are used to indicate keys and relationships.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) Relationships</p></td><td class="ebx_definitionListDefinition"><p>Arrows indicate foreign key relationships and their direction. The labels correspond to each foreign key field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3) Underlined field, plus icon, and italic fields.</p></td><td class="ebx_definitionListDefinition"><p>An underlined field belongs to a table located outside of the current dataset. The plus icon next to a field indicates you can expand to display more information, such as fields included in a complex type. Fields in italics represent inherited fields.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>4) Table located outside of the current dataset</p></td><td class="ebx_definitionListDefinition"><p>When a table is located outside of the current dataset, it will be shaded in the graph. The color of the shade is editable in the template.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>5) Orphan fields</p></td><td class="ebx_definitionListDefinition"><p>Fields that are not part of a table display without a title. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>6) Display additional fields</p></td><td class="ebx_definitionListDefinition"><p>When a table holds more fields than can display, use the arrow icon to expand/collapse. </p></td></tr>
+</table>
+<p>For more information on interacting with data model graphs, see <a href="../user_guide/user_data_model_graph_interacting.html">Interacting with data model graphs</a>.</p><p>You can save and load data model graphs. When loading a saved graph the add-on can help you visualize changes to model structure. As shown below, updated graphs highlight new items in green, changed items in blue, and deleted items in red (colors may differ depending on configuration):</p><img alt="/model_changes_in_graph.png" src="./resources/images/model_changes_in_graph.png"></img><h3 id="id17s3">
+Model graph API</h3>
+<p>The EBX® Data Model and Data Visualization Add-on&#39;s API allows you to generate custom data model graphs from external sources and customize templates to alter look and feel. See <a href="../developer_guide/dev_external_model.html">Generating a model graph from an external source</a> for more details. Additionally, you can create a custom service from which users can generate a custom data model graph. See <a href="../developer_guide/dev_external_model.html#dev_external_model_custom_service">Generating from a service</a> for more details.</p><h3 id="id17s4">
+Data value and relationship graphs</h3>
+<p>A data value graph is a visual representation of how data values relate to each other. A graph can display relationships between multiple data models. Administrators configure the way relationships render when users run the <strong>Display values and relationships</strong> service by assigning a display type to each relationship. The table below describes the available types:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Type</p></th><th><p>Example and description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>As Lines</p></td><td><p>As shown in the following image when you set the display to lines, values display in rectangular nodes and lines between nodes represent relationships.</p><p><img alt="/lineage_example.png" src="./resources/images/lineage_example.png" width="400"></img></p></td></tr>
+<tr>
+<td valign="top"><p>As Containers</p></td><td><p>As shown in the following image containers show a parent/child relationship as nodes within nodes. Outer nodes are the parents of the smaller, inner nodes.</p><p><img alt="/containment_example.png" src="./resources/images/containment_example.png"></img></p></td></tr>
+</tbody>
+</table>
+<p>The following image highlights some of the data value and relationship graph features; see <a href="../user_guide/user_data_value_graph_config_overview.html">Configuring graphs</a> for more details:</p><img alt="/data-value-graph-options.png" src="./resources/images/data-value-graph-options.png"></img><h3 id="id17s5">
+Value graph API</h3>
+<p>The EBX® Data Model and Data Visualization Add-on&#39;s API allows you to:</p><ul>
+<li><p>Generate an existing data value and relationship graph for display in a UI tab. See <a href="../developer_guide/dev_data_value_relationship.html">Data value and relationship graph options</a> for more details.</p></li><li><p>Write a custom service from which users can generate an existing data value and relationship graph. See <a href="../developer_guide/dev_data_value_relationship.html#dev_data_value_relationship_custom_service">Displaying a graph from a custom service</a> for more information.</p></li><li><p>Create a custom filter for data value and relationship graphs. See <a href="../developer_guide/dev_data_value_relationship.html#dev_data_value_relationship_filter">Filtering data values and relationships</a> for more details.</p></li></ul>
+<h3 id="id17s6">
+Known limitations</h3>
+<p>The EBX® Data Model and Data Visualization Add-on has the following known limitations:</p><ul>
+<li><p>Any saved data model graph based on a duplicated model will refer to the original model and not the duplicated model. Since a saved graph is linked to the XML schema, this behavior is a result of data model duplication not duplicating the schema file name. Embedded models are not affected; only models in modules.</p></li><li><p>If all nodes to expand in a data value graph belong to the same table, the expand service includes the table name. When a table filter is used, the service to expand nodes cannot ascertain the table name to expand. Instead, the following generalized service labels display: <strong>Expand targets</strong>, <strong>Expand sources</strong>, <strong>Expand children</strong>, or <strong>Expand parents</strong>.</p></li><li><p>After running the <strong>Center</strong> service on a table, any of its expanded groups are collapsed.</p></li><li><p>The <strong>Display data model</strong> service is not available in the EBX® Data Modeler Assistant (DMA).</p></li><li><p>Data model graphs are not automatically refreshed to reflect updates to displayed tables and foreign keys.</p></li><li><p>Orphan groups defined at the root of a data model are not displayed in graphs. However, fields defined at this level do display.</p></li><li><p>After resizing a node on a saved graph, the system still displays the default size for the node.</p></li><li><p>Data value graphs do not automatically refresh to reflect updates to displayed data, or nodes.</p></li><li><p>When using the containment type for a self-referencing node, it does not display in the graph.</p></li><li><p>The template configuration cannot be changed at runtime for custom data model graphs—those created using the Java API.</p></li><li><p>In data value graphs, users can move the graph but not graph nodes.</p></li><li><p>On Firefox 52 ESR, performance issues may occur when trying to display a data model graph that includes many tables.</p></li><li><p>Node position is recalculated after expanding. Therefore, node position may change.</p></li><li><p>When a table in a group is hidden, and the group is collapsed, the table&#39;s link still displays.</p></li><li><p>Graph templates include the option to show hidden fields, but not hidden tables.</p></li><li><p>Full screen mode is not supported on IE10 or Microsoft Edge.</p></li><li><p>In workflows, no user task is available to run visualization services.</p></li><li><p>The <strong>Display data values and relationships</strong> service is not available for perspectives.</p></li><li><p>The add-on cannot generate a data value and relationship graph that includes more than 2000 nodes.</p></li></ul>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

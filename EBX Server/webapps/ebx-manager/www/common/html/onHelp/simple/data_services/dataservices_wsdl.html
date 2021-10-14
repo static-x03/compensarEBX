@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - WSDL generation</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dataservices_wsdl" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/dataservices_wsdl.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1 id="wsdl">
+WSDL generation</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Supported standard</a></li><li class="toc1"><a href="#types">Operation types</a></li><li class="toc1"><a href="#id3">WSDL download methods</a><ul class="toc2">
+<li class="toc2"><a href="#buildFromUI">WSDL download from the user interface</a></li><li class="toc2"><a href="#buildFromWSDLConnector">WSDL download from HTTP protocol</a></li></ul>
+</li><li class="toc1"><a href="#WSDLConnector_Example">HTTP examples</a></li></ul>
+</div>
+<h2 id="id1">
+Supported standard</h2>
+<p>TIBCO EBX&reg; generates a WSDL that complies with the <a href="https://www.w3.org/TR/2001/NOTE-wsdl-20010315">W3C Web Services Description Language 1.1</a> standard. </p><h2 id="types">
+Operation types</h2>
+<p>A WSDL can be generated for different types of operations:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Operation type</strong></p></th><th valign="top"><p><strong>WSDL description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>custom</code></p></td><td valign="top"><p>WSDL for EBX&reg; add-ons.</p></td></tr>
+<tr>
+<td valign="top"><p><code>dataset</code></p></td><td valign="top"><p>WSDL for dataset and replication operations.</p></td></tr>
+<tr>
+<td valign="top"><p><code>directory</code></p></td><td valign="top"><p>WSDL for default EBX&reg; directory operations. It is also possible to filter data using the <code><a href="#tablePathsParameter">tablePaths</a></code> or <code><a href="#operationsParameter">operations</a></code> parameters.</p></td></tr>
+<tr>
+<td valign="top"><p><code>repository</code></p></td><td valign="top"><p>WSDL for dataspace or snapshot management operations.</p></td></tr>
+<tr>
+<td valign="top"><p><code>tables</code></p></td><td valign="top"><p>WSDL for operations on the tables of a specific dataset. </p></td></tr>
+<tr>
+<td valign="top"><p><code>userInterface</code></p></td><td valign="top"><p> Deprecated since version 5.8.1. This operation type has been replaced by <code>administration</code>. While the user interface management operations are still available for backward compatibility reasons, it is recommended to no longer use this type. </p><p> WSDL for user interface management operations (these operations can only be accessed by administrators). </p></td></tr>
+<tr>
+<td valign="top"><p><code>administration</code></p></td><td valign="top"><p>WSDL for administration operations like: </p><ul>
+<li><p>user interface management</p></li></ul>
+<p>These operations can only be accessed by administrators.</p></td></tr>
+<tr>
+<td valign="top"><p><code>workflow</code></p></td><td valign="top"><p>WSDL for EBX&reg; workflow management operations.</p></td></tr>
+</tbody>
+</table>
+<h2 id="id3">
+WSDL download methods</h2>
+<p>EBX&reg; supports the following methods: </p><ul>
+<li><p>from the user interface</p></li><li><p>from HTTP protocol</p></li></ul>
+<p>A WSDL can only be downloaded by authorized profiles:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Operation type</strong></p></th><th valign="top"><p><strong>Access right permissions </strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>custom</code></p></td><td valign="top"><p>All profiles, if at least one web service is registered.</p></td></tr>
+<tr>
+<td valign="top"><p><code>dataset</code></p></td><td valign="top"><p>All profiles.</p></td></tr>
+<tr>
+<td valign="top"><p><code>directory</code></p></td><td valign="top"><p>All profiles, if the following conditions are valid:</p><ul>
+<li><p>No specific directory implementation is used. (The built-in Administrator role is only subject to this condition).</p></li></ul>
+<ul>
+<li><p>Global access permissions are defined for the administration.</p></li><li><p>&#39;Directory&#39; dataset permissions have writing access for the current profile.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p><code>repository</code></p></td><td valign="top"><p>All profiles.</p></td></tr>
+<tr>
+<td valign="top"><p><code>tables</code></p></td><td valign="top"><p>All profiles.</p></td></tr>
+<tr>
+<td valign="top"><p><code>userInterface</code></p></td><td valign="top"><p> Deprecated since version 5.8.1. This operation type has been replaced by <code>administration</code>. While the user interface management operations are still available for backward compatibility reasons, it is recommended to no longer use this type. </p><p> Built-in administrator role or delegated administrator profiles, if all conditions are valid: </p><ul>
+<li><p>Global access permissions are defined for the administration.</p></li><li><p>&#39;User interface&#39; dataset permissions have writing access for the current profile.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p><code>administration</code></p></td><td valign="top"><p> Built-in administrator role or delegated administrator profiles, if all conditions are valid: </p><ul>
+<li><p>Global access permissions are defined for the administration.</p></li><li><p>&#39;Administration&#39; dataset permissions have write access for the current profile.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p><code>workflow</code></p></td><td valign="top"><p>All profiles.</p></td></tr>
+</tbody>
+</table>
+<h3 id="buildFromUI">
+WSDL download from the user interface</h3>
+<p>An authorized user can download an EBX&reg; WSDL from the data services administration area.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>See <a href="../user_dataservice/userdataservice_actions.html#dataspace">Generating a WSDL for dataspace operations</a> in the user guide for more information. </p></div>
+<h3 id="buildFromWSDLConnector">
+WSDL download from HTTP protocol</h3>
+<p>An application can download an EBX&reg; WSDL using <code>GET</code> or <code>POST</code> HTTP method. The application has to be authenticated using a profile with appropriate rights.</p><h4 id="HttpConnectorTechInfos">
+URL format</h4>
+<blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/{type}[/{dataspace}[/{dataset}]]?{queryParameters}</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>&lt;ebx-dataservices&gt;</code> corresponds to the &#39;ebx-dataservices.war&#39; web application&#39;s path. The path is composed by multiple, or none, URI segments followed by the web application&#39;s name. </p></li><li><p><code>{type}</code> corresponds to the <a href="#types">operation type</a>.</p></li><li><p><code>{dataspace}</code> corresponds to the dataspace or snapshot identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset name.</p></li><li><p><code>{queryParameters}</code> corresponds to common or dedicated operation parameters passed through the URL.</p></li></ul>
+<h4 id="WSDLConnector_Parameters">
+Parameters</h4>
+<p>A request parameter can be specified by one of the following methods:</p><ul>
+<li><p>a <code>PathParam</code> which corresponds to a path segment from the URL (recommended)</p></li><li><p>a <code>QueryParam</code> which corresponds to a standard HTTP parameter with value.</p></li></ul>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Parameter name</strong></p></th><th valign="top"><p><strong><code>PathParam</code></strong></p></th><th valign="top"><p><strong><code>QueryParam</code></strong></p></th><th valign="top"><p><strong>Required</strong></p></th><th valign="top"><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>WSDL</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>Specifies the WSDL download operation.</p><p>Empty value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>login</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>no</p></td><td valign="top"><p>Specifies the user identifier.</p><p>Required when the standard authentication method is used.</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>password</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>no</p></td><td valign="top"><p>Specifies the user password.</p><p>Required when the standard authentication method is used.</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>type</code></p></td><td valign="top"><p>yes</p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>Specifies the <a href="#types">operation type</a>.</p><p>Possible values are: <code>custom</code>, <code>dataset</code>, <code>directory</code>, <code>administration</code>, <code>userInterface</code>, <code>repository</code>, <code>tables</code> or <code>workflow</code>.</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>branch</code></p><p><code>version</code></p></td><td valign="top"><p>yes</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>(*)</p></td><td valign="top"><p>Specifies the dataspace or the snapshot identifier.</p><p>(*) required for <code>tables</code> and <code>dataset</code> types, ignored otherwise.</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>instance</code></p></td><td valign="top"><p>yes</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>(*)</p></td><td valign="top"><p>Specifies the dataset name.</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p id="tablePathsParameter"><code>tablePaths</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>no</p></td><td valign="top"><p>Specifies the list of table paths.</p><p>Optional for <code>tables</code> or <code>directory</code> types, ignored otherwise.</p><p>If not defined, all tables are selected.</p><p>Each table path is separated by a comma character.</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p id="operationsParameter"><code>operations</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>no</p></td><td valign="top"><p>Allows generating a WSDL for an operations subset.</p><p>Optional for <code>tables</code> or <code>directory</code> operation types, ignored otherwise. If not defined, all operations for the given type are generated.</p><p>This parameter&#39;s value is a concatenation of one or more of the following characters:</p><ul>
+<li><p>C = Count record(s)</p></li><li><p>D = Delete record(s)</p></li><li><p>E = Get credentials</p></li><li><p>G = Get changes</p></li><li><p>I = Insert record(s)</p></li><li><p>U = Update record(s)</p></li><li><p>R = Read operations (equivalent to CEGS)</p></li><li><p>S = Select record(s)</p></li><li><p>W = Write operations (equivalent to DIU)</p></li></ul>
+<p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>namespaceURI</code></p></td><td valign="top"><p>yes</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>(**)</p></td><td valign="top"><p>Specifies the unique name space URI of the custom web service.</p><p>(**)Is required when <code>type</code> parameter is set to <code>custom</code>, ignored otherwise.</p><p><code>URI</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p><code>attachmentFilename</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>(***)</p></td><td valign="top"><p>Specifies the attachment file name.</p><p>(***) optional if <code>isContentInAttachment</code> parameter is defined and set to <code>true</code>, ignored otherwise.</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td valign="top"><p id="isContentInAttachmentParameter"><code>isContentInAttachment</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>no</p></td><td valign="top"><p>Specifies if the WSDL is downloaded as an attachment.</p><p><code>Boolean</code> type value.</p><p>Default value is <code>false</code>.</p></td></tr>
+<tr>
+<td valign="top"><p><code>targetNamespace</code></p></td><td valign="top"><p>no</p></td><td valign="top"><p>yes</p></td><td valign="top"><p>no</p></td><td valign="top"><p>Overrides the target namespace URI of the WSDL.</p><p><code>URI</code> type value.</p><p>Default value is <code>urn:ebx:ebx-dataservices</code>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Message body</h4>
+<p>No message body is required.</p><h4>
+HTTP codes</h4>
+<p>An HTTP code is always returned. Errors are indicated by a code above 400.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Status code</strong></p></th><th valign="top"><p><strong>Information</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>200</code><em> (OK)</em></p></td><td valign="top"><p>The WSDL content was successfully generated and is returned by the request (optionally in an <a href="#isContentInAttachmentParameter">attachment</a>). </p></td></tr>
+<tr>
+<td valign="top"><p><code>400</code><em> (Bad request)</em></p></td><td valign="top"><p>The request is incorrect. This occurs when:</p><ul>
+<li><p>A request element is incorrect.</p></li><li><p>The unicity check on table names contains at least one error.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p><code>401</code><em> (Unauthorized)</em></p></td><td valign="top"><p>Request requires an authenticated user.</p></td></tr>
+<tr>
+<td valign="top"><p><code>403</code><em> (Forbidden)</em></p></td><td valign="top"><p>Request is not allowed for the authenticated user.</p></td></tr>
+<tr>
+<td valign="top"><p><code>405</code><em> (Method not allowed)</em></p></td><td valign="top"><p>Request is not allowed in this configuration.</p></td></tr>
+<tr>
+<td valign="top"><p><code>500</code><em> (Internal error)</em></p></td><td valign="top"><p>Request generates an error (a stack trace and a detailed error message are returned).</p></td></tr>
+</tbody>
+</table>
+<h4>
+Response body</h4>
+<p>The response body depends on the returned status code and on the requested WSDL content.</p><ul>
+<li><p><code>200</code><em> (OK)</em>: the HTTP header <code>Content-Type</code> is set to <code>text/xml;charset=UTF-8</code>.</p><p>If the content is in attachment, the HTTP header <code>Content-Disposition</code> is set to <code>attachment; filename*=UTF-8&#39;&#39;&lt;filename.wsdl&gt;</code>.</p></li><li><p><code>4xx</code>: A detailed message is returned in the body. The HTTP header <code>Content-Type</code> is set to <code>text/html;charset=utf-8</code>.</p></li></ul>
+<h2 id="WSDLConnector_Example">
+HTTP examples</h2>
+<p>Some of the following examples are displayed in two methods: <code>PathParam</code> and <code>QueryParam</code>. </p><ul>
+<li><p>The WSDL will contain all repository operations, using standard authentication method.</p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/repository?WSDL&amp;login=&lt;login&gt;&amp;password=&lt;password&gt;</code></p></li><li><p>The WSDL will contain all workflow operations.</p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/workflow?WSDL</code></p></li><li><p>The WSDL will contain all tables operations for the <code>&#39;dataset1&#39;</code> dataset in <code>&#39;dataspace1&#39;</code> dataspace.</p><p><code>PathParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/tables/dataspace1/dataset1?WSDL</code></p><p><code>QueryParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/tables?WSDL&amp;branch=&lt;dataspace1&gt;&amp;instance=&lt;dataset1&gt;</code></p></li><li><p>The WSDL will contain all tables with only read operations for the <code>&#39;dataset1&#39;</code> dataset in <code>&#39;dataspace1&#39;</code> dataspace.</p><p><code>PathParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/tables/dataspace1/dataset1?WSDL&amp;operations=R</code></p><p><code>QueryParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/tables?WSDL&amp;branch=dataspace1&amp;instance=dataset1&amp;operations=R</code></p></li><li><p>The WSDL will contain the two selected tables operations for the <code>&#39;dataset1&#39;</code> dataset in <code>&#39;dataspace1&#39;</code> dataspace.</p><p><code>PathParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/tables/dataspace1/dataset1?WSDL&amp;tablePaths=/root/table1,/root/table2</code></p><p><code>QueryParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/tables?WSDL&amp;branch=dataspace1&amp;instance=dataset1&amp;tablePaths=/root/table1,/root/table2</code></p></li><li><p>The WSDL will contain custom web service operations for the dedicated URI.</p><p><code>PathParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/custom/urn:ebx-test:com.orchestranetworks.dataservices.WSDemo?WSDL</code></p><p><code>QueryParam</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/custom?WSDL&amp;namespaceURI=urn:ebx-test:com.orchestranetworks.dataservices.WSDemo</code></p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

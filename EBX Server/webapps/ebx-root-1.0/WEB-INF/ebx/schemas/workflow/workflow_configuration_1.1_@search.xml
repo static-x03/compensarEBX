@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<search>
+<!-- 
+ ****** Schema[module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/workflow/workflow_configuration_1.1.xsd, iid=016]
+ -->
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/configuration/notificationMessage/documentation/localizedDocumentations/description</field>
+        <searchStrategy>@Text</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/configuration/notificationMessage/documentation/localizedDocumentations/label</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/configuration/notificationMessage/message/localizedDocumentations/description</field>
+        <searchStrategy>@Text</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/configuration/notificationMessage/message/localizedDocumentations/label</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/configuration/notificationMessage/type</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+</search>

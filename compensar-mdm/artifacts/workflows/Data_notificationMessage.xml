@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <configuration>
+        <notificationMessage>
+            <id>1</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>[OfferedTo] Work item notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                    <label>[Proposé] Notification de bon de travail</label>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>[OfferedTo] New work item</label>
+                    <description>Today at ${system.time}, a new work item has been offered to you. You may accept it.</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                    <label>[Proposé] Nouveau bon de travail</label>
+                    <description>Aujourd'hui à ${system.time}, un nouveau bon de travail vous a été proposé. Vous pouvez le prendre en charge.</description>
+                </localizedDocumentations>
+            </message>
+        </notificationMessage>
+        <notificationMessage>
+            <id>2</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>[AllocatedTo] Work item notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                    <label>[Alloué] Notification de bon de travail</label>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>[AllocatedTo] New work item</label>
+                    <description>Today at ${system.time}, a new work item has been allocated to you.</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                    <label>[Alloué] Nouveau bon de travail</label>
+                    <description>Aujourd'hui à ${system.time}, un nouveau bon de travail vous a été alloué.</description>
+                </localizedDocumentations>
+            </message>
+        </notificationMessage>
+        <notificationMessage>
+            <id>3</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Work item notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>${workflow.workItem.label} Task for ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Workflow Task Notification&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:#0066CC; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Workflow Task Notification&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Workflow Step - ${workflow.workItem.label}&lt;/td&gt;&#13;
+&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt; On ${system.date} at ${system.time}, a workflow step was created &lt;br /&gt;&#13;
+    &lt;a href=${workflow.workItem.link}&gt;Click Here to ${workflow.currentStep.label} &lt;/a&gt;&lt;br/&gt;&#13;
+Workflow step label: ${workflow.currentStep.label} for ${workflow.workItem.offeredTo}&lt;br/&gt;&#13;
+Workflow step description: ${workflow.currentStep.description}&lt;br/&gt;&#13;
+&#13;
+Workflow instance label: ${workflow.process.label}&lt;br/&gt;&#13;
+Workflow instance description: ${recordNameValue} ${workflow.process.description}&lt;br/&gt;&#13;
+&#13;
+Last updated by: ${currentUserLabel}&lt;br/&gt;&#13;
+&lt;br/&gt;&#13;
+&lt;strong&gt;Last comment from user &lt;em&gt;${workflow.lastComment}&lt;/em&gt;&lt;/strong&gt;&lt;br/&gt;&#13;
+&#13;
+&#13;
+&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;br/&gt;&#13;
+This message may contain confidential, proprietary or legally privileged information and is intended only for the use of the addressee named above. No confidentiality or privilege is waived or lost by any mis-transmission. If you are not the intended recipient of this message you are hereby notified that you must not use, disseminate, copy it in any form or take any action in reliance on it. If you have received this message in error please delete it and any copies of it and notify the sender immediately.&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>4</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Workflow Complete notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Workflow has been completed for ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Workflow Completion&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:#3d7a00; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Workflow Completion&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Workflow Completion Notification&lt;/td&gt;&#13;
+&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt;On ${system.date} at ${system.time}, this workflow was completed &lt;br /&gt;&#13;
+&lt;br/&gt;&#13;
+&#13;
+Workflow instance label: ${workflow.process.label}&lt;br/&gt;&#13;
+Workflow instance description: ${recordNameValue} ${workflow.process.description}&lt;br/&gt;&#13;
+Last updated by: ${currentUserLabel}&lt;br/&gt;&#13;
+&#13;
+&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;br/&gt;&#13;
+This message may contain confidential, proprietary or legally privileged information and is intended only for the use of the addressee named above. No confidentiality or privilege is waived or lost by any mis-transmission. If you are not the intended recipient of this message you are hereby notified that you must not use, disseminate, copy it in any form or take any action in reliance on it. If you have received this message in error please delete it and any copies of it and notify the sender immediately.&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>5</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Work item reminder</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>REMINDER: ${workflow.workItem.label} Task for ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Workflow Task Reminder&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:#b73000; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Workflow Task Reminder&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Workflow Step - ${workflow.workItem.label}&lt;/td&gt;&#13;
+&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt; On ${userTaskCreateDateTime}, a workflow step was created:  &lt;br /&gt;&#13;
+    &lt;strong&gt; -- It is now ${system.date} at ${system.time} and this task is waiting for your completion.&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;&#13;
+    &lt;a href=${workflow.workItem.link}&gt;Click Here to ${workflow.currentStep.label} &lt;/a&gt;&lt;br/&gt;&#13;
+Workflow step label: ${workflow.currentStep.label} for ${workflow.workItem.offeredTo}&lt;br/&gt;&#13;
+Workflow step description: ${workflow.currentStep.description}&lt;br/&gt;&#13;
+&#13;
+Workflow instance label: ${workflow.process.label}&lt;br/&gt;&#13;
+Workflow instance description: ${recordNameValue} ${workflow.process.description}&lt;br/&gt;&#13;
+&#13;
+Last updated by: ${currentUserLabel}&lt;br/&gt;&#13;
+&lt;br/&gt;&#13;
+&lt;strong&gt;Last comment from user &lt;em&gt;${workflow.lastComment}&lt;/em&gt;&lt;/strong&gt;&lt;br/&gt;&#13;
+&#13;
+&#13;
+&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;br/&gt;&#13;
+This message may contain confidential, proprietary or legally privileged information and is intended only for the use of the addressee named above. No confidentiality or privilege is waived or lost by any mis-transmission. If you are not the intended recipient of this message you are hereby notified that you must not use, disseminate, copy it in any form or take any action in reliance on it. If you have received this message in error please delete it and any copies of it and notify the sender immediately.&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>6</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Project Cancelled notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Project has been cancelled for workflow ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Project Cancelled&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:black; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Project Cancelled&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Project Cancelled Notification&lt;/td&gt;&#13;
+&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt;On ${system.date} at ${system.time}, this workflow was completed and the project was cancelled&lt;br /&gt;&#13;
+&lt;br/&gt;&#13;
+&#13;
+Workflow instance label: ${workflow.process.label}&lt;br/&gt;&#13;
+Workflow instance description: ${recordNameValue} ${workflow.process.description}&lt;br/&gt;&#13;
+Last updated by: ${currentUserLabel}&lt;br/&gt;&#13;
+Reason for cancellation: ${cancelReason}&lt;br/&gt;&#13;
+&#13;
+&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;br/&gt;&#13;
+This message may contain confidential, proprietary or legally privileged information and is intended only for the use of the addressee named above. No confidentiality or privilege is waived or lost by any mis-transmission. If you are not the intended recipient of this message you are hereby notified that you must not use, disseminate, copy it in any form or take any action in reliance on it. If you have received this message in error please delete it and any copies of it and notify the sender immediately.&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>8</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Project Rejected notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Project has been rejected for workflow ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Project Rejected&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:black; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Project Rejected&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Project Rejected Notification&lt;/td&gt;&#13;
+&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt;On ${system.date} at ${system.time}, this workflow was completed and the project was rejected&lt;br /&gt;&#13;
+&lt;br/&gt;&#13;
+&#13;
+Workflow instance label: ${workflow.process.label}&lt;br/&gt;&#13;
+Workflow instance description: ${recordNameValue} ${workflow.process.description}&lt;br/&gt;&#13;
+Last updated by: ${currentUserLabel}&lt;br/&gt;&#13;
+&lt;br/&gt;&#13;
+&lt;strong&gt;Last comment from user &lt;em&gt;${workflow.lastComment}&lt;/em&gt;&lt;/strong&gt;&lt;br/&gt;&#13;
+&#13;
+&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;br/&gt;&#13;
+This message may contain confidential, proprietary or legally privileged information and is intended only for the use of the addressee named above. No confidentiality or privilege is waived or lost by any mis-transmission. If you are not the intended recipient of this message you are hereby notified that you must not use, disseminate, copy it in any form or take any action in reliance on it. If you have received this message in error please delete it and any copies of it and notify the sender immediately.&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>11</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Project Complete notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Project has been completed for ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Project Completion&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:black; background-color:#00D600; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Project Completion&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Project Completion Notification&lt;/td&gt;&#13;
+&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt;On ${system.date} at ${system.time}, this Project was completed &lt;br /&gt;&#13;
+&lt;br/&gt;&#13;
+&#13;
+Workflow instance label: ${workflow.process.label}&lt;br/&gt;&#13;
+Workflow instance description: ${recordNameValue} ${workflow.process.description}&lt;br/&gt;&#13;
+Last updated by: ${currentUserLabel}&lt;br/&gt;&#13;
+&#13;
+&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;br/&gt;&#13;
+This message may contain confidential, proprietary or legally privileged information and is intended only for the use of the addressee named above. No confidentiality or privilege is waived or lost by any mis-transmission. If you are not the intended recipient of this message you are hereby notified that you must not use, disseminate, copy it in any form or take any action in reliance on it. If you have received this message in error please delete it and any copies of it and notify the sender immediately.&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>12</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Workflow Step Error Notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>${workflow.currentStep.label} Step for ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Workflow Step Error notification&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:#b73000; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Workflow Step Error notification&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Workflow Step - ${workflow.currentStep.label}&lt;/td&gt;&#13;
+&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt; On ${system.date} at ${system.time}, an error occurred in this workflow step &lt;br /&gt;&#13;
+    Login to EBX and go to "Active workflows" view to check the issue and fix/replay the step in error.&lt;br/&gt;&#13;
+Workflow step label: ${workflow.currentStep.label}&lt;br/&gt;&#13;
+Workflow step description: ${workflow.currentStep.description}&lt;br/&gt;&#13;
+&#13;
+Workflow instance label: ${workflow.process.label}&lt;br/&gt;&#13;
+&#13;
+&#13;
+&lt;br/&gt;&#13;
+&#13;
+&#13;
+&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+&lt;/table&gt;&#13;
+&lt;br/&gt;&#13;
+This message may contain confidential, proprietary or legally privileged information and is intended only for the use of the addressee named above. No confidentiality or privilege is waived or lost by any mis-transmission. If you are not the intended recipient of this message you are hereby notified that you must not use, disseminate, copy it in any form or take any action in reliance on it. If you have received this message in error please delete it and any copies of it and notify the sender immediately.&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;&#13;
+</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>13</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Workflow Conflicts Found when merging changes with Master notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Conflicts found when merging changes with Master for ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Workflow Conflicts Found when merging changes with Master&lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:#F90B2B; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Workflow Conflicts Found&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Conflicts Found Notification&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt;Conflicts have been found when attempting to merge this workflow with the Master and has been routed to the Review Conflicts step for resolution.&lt;br/&gt;&lt;/td&gt;&#13;
+&lt;br/&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;&#13;
+    &lt;table cellspacing="0" cellpadding="0"&gt;&#13;
+  &lt;tr&gt;&#13;
+  &lt;td&gt;&lt;strong&gt;Workflow label:  &lt;/strong&gt;&lt;/td&gt;&#13;
+  &lt;td&gt;${workflow.process.label}&lt;br/&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+&lt;td&gt;&lt;strong&gt;Workflow description:  &lt;/strong&gt;&lt;/td&gt;&#13;
+&lt;td&gt;${recordNameValue} ${workflow.process.description}&lt;br/&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+    &lt;/table&gt;&#13;
+    &lt;/td&gt;&#13;
+    &lt;/tr&gt;&#13;
+    &lt;tr&gt;&#13;
+    &lt;td&gt;&lt;strong&gt;Last updated by:&lt;/strong&gt;  ${currentUserLabel}&lt;br/&gt;&lt;/td&gt;&#13;
+    &lt;/tr&gt;&#13;
+    &lt;/table&gt;&#13;
+  &lt;br&gt;&#13;
+&#13;
+&#13;
+&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+        <notificationMessage>
+            <id>14</id>
+            <documentation>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Custom Workflow Conflicts Found due to Partial Merge notification</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </documentation>
+            <message>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Conflicts found due to Partial Merge for ${workflow.process.label}</label>
+                    <description>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&#13;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&#13;
+&lt;head&gt;&#13;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt; &lt;title&gt;MDM Workflow Conflicts Found due to Partial Merge &lt;/title&gt;&#13;
+&#13;
+&lt;style&gt;&#13;
+&#13;
+body {&#13;
+background-color: #ffffff;&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:15px; line-height:1.2em; color:#333; }&#13;
+&#13;
+&#13;
+.tableglobal {&#13;
+-moz-border-radius:6px;&#13;
+-webkit-border-radius:6px;&#13;
+border-radius:6px;&#13;
+}&#13;
+&#13;
+&#13;
+.tabletitle {&#13;
+&#13;
+font-family: Calibri, "Lucida Grande", Helvetica, Arial; font-size:18px; font-weight:bold; color:white; background-color:#F90B2B; }&#13;
+&#13;
+.tablesubtitle {&#13;
+&#13;
+background-color:#CCC;&#13;
+&#13;
+}&#13;
+&#13;
+&#13;
+&lt;/style&gt;&#13;
+&lt;/head&gt;&#13;
+&#13;
+&lt;body&gt;&#13;
+&lt;table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableglobal"&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2" class="tabletitle"&gt;MDM Workflow Conflicts Found&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td width="83%" class="tablesubtitle"&gt;Conflicts Found Notification&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+    &lt;td colspan="2"&gt;Conflicts have been found due to Partial Merge for this workflow and has been routed to the Review Conflicts step for resolution.&lt;br/&gt;&lt;/td&gt;&#13;
+&lt;br/&gt;&#13;
+&lt;tr&gt;&#13;
+&lt;td&gt;&#13;
+    &lt;table cellspacing="0" cellpadding="0"&gt;&#13;
+  &lt;tr&gt;&#13;
+  &lt;td&gt;&lt;strong&gt;Workflow label:  &lt;/strong&gt;&lt;/td&gt;&#13;
+  &lt;td&gt;${workflow.process.label}&lt;br/&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+  &lt;tr&gt;&#13;
+&lt;td&gt;&lt;strong&gt;Workflow description:  &lt;/strong&gt;&lt;/td&gt;&#13;
+&lt;td&gt;${recordNameValue} ${workflow.process.description}&lt;br/&gt;&lt;/td&gt;&#13;
+  &lt;/tr&gt;&#13;
+    &lt;/table&gt;&#13;
+    &lt;/td&gt;&#13;
+    &lt;/tr&gt;&#13;
+    &lt;tr&gt;&#13;
+    &lt;td&gt;&lt;strong&gt;Last updated by:&lt;/strong&gt;  ${currentUserLabel}&lt;br/&gt;&lt;/td&gt;&#13;
+    &lt;/tr&gt;&#13;
+    &lt;/table&gt;&#13;
+  &lt;br&gt;&#13;
+&#13;
+&#13;
+&#13;
+&lt;/body&gt;&#13;
+&lt;/html&gt;</description>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </message>
+            <type>html</type>
+        </notificationMessage>
+    </configuration>
+</root>

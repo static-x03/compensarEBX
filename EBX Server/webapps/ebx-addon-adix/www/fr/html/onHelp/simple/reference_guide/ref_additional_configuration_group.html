@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Additional configuration domain</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_additional_configuration_group_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_additional_configuration_group.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</span></div>
+<h1>
+Additional configuration domain</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_additional_configuration_group_top">Function</a><ul class="toc2">
+<li class="toc2"><a href="#ref_additional_configuration_group_import_preference">Import preference</a></li><li class="toc2"><a href="#id1s2">Default option values for Import and Export</a></li><li class="toc2"><a href="#global_permissions">Global permissions</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_additional_configuration_group_top">
+Function</h2>
+<p>The <strong>Additional configuration</strong> domain contains some additional configuration options for dataspace and import preferences and permissions.</p><h3 id="ref_additional_configuration_group_import_preference">
+Import preference</h3>
+<p>These options allow you to set some additional import preferences.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Force precision as displayed</p></td><td valign="top"><p>Specifies the accuracy of numbers when importing Excel. </p><p>If set to &#39;Yes&#39;: The displayed value of numbers in each cell will be read and imported. If set to &#39;No&#39;: The accuracy value of numbers in each cell will be read and imported. Default value: &#39;No&#39;. This feature is only applied to the Number format cells (Number is used for general display of numbers). For the other format cells, the accuracy value in each cell will be read and imported.</p></td></tr>
+<tr>
+<td valign="top"><p>Display precision setting in UI</p></td><td valign="top"><p>Specifies whether to display the &#39;Force precision as displayed&#39; option in user interface. If &#39;No&#39;: The &#39;Force precision as displayed&#39; option is not displayed on the Excel import configuration screens. If &#39;Yes&#39;: The option is displayed on the Excel import configuration screens and user can change its value. Default value: &#39;No&#39;.</p></td></tr>
+<tr>
+<td valign="top"><p>Allow transient record context management</p></td><td valign="top"><p>A transient record context holds temporary values used when creating a new, or updating an existing record. If table triggers are activated and you enable this option, the <code>handleNewContext()</code> method will be called when creating or updating records during import or transfer. Please refer to the EBX® API documentation for more information about the <code>handleNewContext()</code> method.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id1s2">
+Default option values for Import and Export</h3>
+<p>The <strong>Import/Export</strong> table allows you to define default settings for each import and export format. For descriptions hover your mouse over each property and click the &#39;?&#39; icon to open the associated tooltip. </p><h3 id="global_permissions">
+Global permissions</h3>
+<p>The <strong>Global permissions</strong> table allows you to define which screens display for profiles during import and export. It also allows you to specify the import modes accessible by specific profiles for import services. Each configuration record for permissions contains tabs that allow you to specify the user or role these settings apply to and set permissions for each supported data exchange format.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Profile</p></td><td valign="top"><p>Defines the user/role on which the permission applies.</p></td></tr>
+<tr>
+<td valign="top"><p>Restriction policy</p></td><td valign="top"><p>Defines whether the permission is restrictive or not. If more than one set of permissions is associated with the same profile, the Restrictive policy setting determines whether the least restrictive or most restrictive policy settings apply.</p></td></tr>
+<tr>
+<td valign="top"><p>Configuration</p></td><td valign="top"><p>Defines the permission on the Configuration screen.</p></td></tr>
+<tr>
+<td valign="top"><p>Mapping</p></td><td valign="top"><p>Defines the permission on the Mapping table &amp; Mapping column screen.</p></td></tr>
+<tr>
+<td valign="top"><p>Simulation</p></td><td valign="top"><p>Defines the permission to access the Simulation screen</p></td></tr>
+<tr>
+<td valign="top"><p>Update or insert</p></td><td valign="top"><p>Grant permissions for a specific profile to access a set of import modes:</p></td></tr>
+<tr>
+<td valign="top"><p>Update only</p></td><td valign="top"><p>Grant permissions for a specific profile to access a set of import modes:</p></td></tr>
+<tr>
+<td valign="top"><p>Insert only</p></td><td valign="top"><p>Grant permissions for a specific profile to access a set of import modes:</p></td></tr>
+<tr>
+<td valign="top"><p>Replace all content</p></td><td valign="top"><p>Grant permissions for a specific profile to access a set of import modes:</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

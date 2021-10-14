@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for maintaining toolbars, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0"	schemaLocation="../common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:extensions class="com.orchestranetworks.ui.toolbar.internal.CtbSchemaExtension" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.toolbars" />
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- Root -->
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="toolbarNode" type="ToolbarNodeType" maxOccurs="unbounded" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ToolbarNodeType -->
+	<xs:complexType name="ToolbarNodeType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id </primaryKeys>
+					<defaultLabel osd:class="com.orchestranetworks.ui.toolbar.internal.CtbLabelRendererNode" />
+					<recordForm osd:class="com.orchestranetworks.ui.toolbar.internal.CtbUIFormNode" />
+				</osd:table>
+				<osd:otherFacets>
+					<osd:constraint osd:class="com.orchestranetworks.ui.toolbar.internal.CtbToolbarNodeConstraint" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:autoIncrement/>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.ui.toolbar.internal.CtbConstraintsNode" />
+						</osd:otherFacets>
+						<osd:defaultView>
+							<hidden>true</hidden>
+							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parent" type="xs:string" minOccurs="0"	maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.parent" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>../../toolbarNode</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="xs:string" minOccurs="1"	maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.type" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbNodeTypeConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ordering" type="xs:int" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.ordering" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="toolbar" type="ToolbarItem" minOccurs="0"	maxOccurs="1" />
+			<xs:element name="actionButton" type="ActionButtonItem"	minOccurs="0" maxOccurs="1" />
+			<xs:element name="menuButton" type="MenuButtonItem"	minOccurs="0" maxOccurs="1" />
+			<xs:element name="separator" type="SeparatorItem" minOccurs="0" maxOccurs="1" />
+			<xs:element name="menuGroup" type="MenuGroupItem" minOccurs="0" maxOccurs="1" />
+			<xs:element name="actionMenuItem" type="ActionMenuItem" minOccurs="0" maxOccurs="1" />
+			<xs:element name="subMenuItem" type="SubMenuItem"  minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Toolbar item type -->
+	<xs:complexType name="ToolbarItem" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanToolbar" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode.toolbar" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.toolbar.name" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.ui.toolbar.internal.CtbToolbarNameConstraintOnNull" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" type="DocumentationType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="location" type="toolbarLocationEnum" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.toolbar.location" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Action button item type -->
+	<xs:complexType name="ActionButtonItem" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanActionButton"	osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode.actionButton" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="service" type="ServiceType" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.actionButton.service" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" type="DocumentationType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="display" type="ButtonDisplay" minOccurs="0"	maxOccurs="1" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.actionButton.display" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<displayMode>expanded</displayMode>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Menu button item type -->
+	<xs:complexType name="MenuButtonItem" 	osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanMenuButton"	osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode.menuButton" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="display" type="ButtonDisplay" minOccurs="0"	maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.menuButton.display" />
+					<xs:appinfo>
+						<osd:defaultView>
+							<displayMode>expanded</displayMode>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!--Separator item type -->
+	<xs:complexType name="SeparatorItem" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanSeparator" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode.separator" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="width" type="xs:int" minOccurs="1"	maxOccurs="1" default="20">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+							<hiddenInSearch>true</hiddenInSearch>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Menu group item type -->
+	<xs:complexType name="MenuGroupItem"	osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanMenuGroup" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode.menuGroup" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="type" type="xs:string" minOccurs="0"
+				maxOccurs="1" osd:checkNullInput="true" default="LOCAL">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.menuGroup.type" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration
+								class="com.orchestranetworks.ui.toolbar.internal.CtbMenuGroupTypeConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="serviceGroup" type="ServiceGroupType"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="menuBuilder" type="MenuBuilderType"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Action menu item type -->
+	<xs:complexType name="ActionMenuItem"
+		osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanActionMenuItem"
+		osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode.actionMenuItem" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="service" type="ServiceType" minOccurs="1"
+				maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.toolbarNode.actionMenuItem.service" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!--Sub Menu Item type -->
+	<xs:complexType name="SubMenuItem"
+		osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanSubMenuItem"
+		osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.toolbarNode.subMenuItem" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="documentation" type="DocumentationType" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ButtonDisplay -->
+	<xs:complexType name="ButtonDisplay"
+		osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanButtonDisplay">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.buttonDisplay" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="layout" type="xs:string" minOccurs="0"
+				maxOccurs="1" default="TEXT_AND_ICON_LEFT" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.buttonDisplay.layout" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration
+								class="com.orchestranetworks.ui.toolbar.internal.CtbButtonLayoutEnumeration" />
+							<osd:constraint
+								class="com.orchestranetworks.ui.toolbar.internal.CtbButtonDisplayConstraintOnNull" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="icon" type="IconType" minOccurs="0"
+				maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.buttonDisplay.icon" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="highlightedButton" type="xs:boolean"
+				minOccurs="0" maxOccurs="1" default="false" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.buttonDisplay.highlightedButton" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint
+								class="com.orchestranetworks.ui.toolbar.internal.CtbButtonDisplayConstraintOnNull" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Toolbar node documentation -->
+	<xs:complexType name="DocumentationType" osd:class="com.onwbp.base.text.bean.LabelDescription" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.DocumentationType"/>
+			<xs:appinfo>
+				<osd:defaultView>
+					<widget osd:class="com.orchestranetworks.workflowLauncher.customToolbar.documentation.widget.CtbBeanLabelWidgetFactory"/>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="osdId" type="xs:string" minOccurs="0"/>
+			<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded" osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale"
+				osd:access="RW">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale" minOccurs="0" maxOccurs="1" />
+						<xs:element name="label" type="xs:string" minOccurs="0"	maxOccurs="1" />
+						<xs:element name="description" minOccurs="0" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Icon type -->
+	<xs:complexType name="IconType" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanToolbarItemButtonIcon" osd:access="RW">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.ui.toolbar.internal.CtbUIBeanToolbarButtonIcon" />
+				<osd:defaultView>
+					<displayMode>expanded</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" minOccurs="0" maxOccurs="1" default="css">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration osd:label="Standard" value="css" />
+						<xs:enumeration osd:label="Image URL" value="url" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="reference" type="xs:string" minOccurs="0" 	maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Service type -->
+	<xs:complexType name="ServiceType" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanService" osd:access="RW">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:defaultView>
+					<widget osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanServiceWidgetFactory" />
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceKey" type="xs:string" minOccurs="0" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.serviceType.serviceKey"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServiceKeyEnumeration"/>
+							<osd:constraint class="com.orchestranetworks.ui.toolbar.internal.CtbServiceKeyConstraintOnNull"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="launcherDefinition" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.serviceType.launcherDefinition"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.workflowLauncher.customToolbar.enumerations.WorkflowToLaunchEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="target" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true" default="c">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.serviceType.target"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbBeanServiceTargetConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modalSize" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true" default="l">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.serviceType.modalSize" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbBeanServiceModalSizeConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modalWidth" type="xs:int" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.serviceType.modalWidth" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modalHeight" type="xs:int" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.serviceType.modalHeight" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resizable" type="xs:boolean" minOccurs="1" maxOccurs="1" osd:checkNullInput="true" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.serviceType.resizable" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="serviceParameters" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanServiceParameter" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.serviceType.serviceParameters" />
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="name" maxOccurs="1" minOccurs="1" type="xs:Name">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.serviceType.serviceParameters.name" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="value" maxOccurs="1" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.serviceType.serviceParameters.value" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Service group type -->
+	<xs:complexType name="ServiceGroupType" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanServiceGroup" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ServiceGroupType" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceGroupKey" type="xs:string"
+				minOccurs="0" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceGroupType.serviceGroupKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServiceGroupsConstraintEnumeration" />
+							<osd:constraint class="com.orchestranetworks.ui.toolbar.internal.CtbServiceGroupNameConstraintOnNull" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="excludedServiceGroups" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceGroupType.excludedServiceGroups" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServiceGroupsInSpecificGroupConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="excludedServices" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceGroupType.excludedServices" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServicesInSpecificGroupConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="filteringPolicy" type="xs:string" minOccurs="0" maxOccurs="1" osd:checkNullInput="true" default="DEFAULT_FILTERING">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceGroupType.filteringPolicy" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServiceGroupFilteringPolicyConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Menu group type -->
+	<xs:complexType name="MenuBuilderType" osd:class="com.orchestranetworks.ui.toolbar.internal.CtbBeanMenuBuilder" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.MenuBuilderType" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="menuBuilderKey" type="xs:string" minOccurs="0" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MenuBuilderType.menuBuilderKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbMenuBuilderConstraintEnumeration" />
+							<osd:constraint class="com.orchestranetworks.ui.toolbar.internal.CtbMenuBuilderNameConstraintOnNull" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="excludedServiceGroups" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceGroupType.excludedServiceGroups" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServiceGroupsInSpecificMenuBuilderConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="excludedServices" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceGroupType.excludedServices" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServicesInSpecificMenuBuilderConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="filteringPolicy" type="xs:string" minOccurs="0" maxOccurs="1" osd:checkNullInput="true" default="DEFAULT_FILTERING">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceGroupType.filteringPolicy" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServiceGroupFilteringPolicyConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Toolbar location type -->
+	<xs:simpleType name="toolbarLocationEnum">
+		<xs:annotation>
+			<xs:documentation osd:id="simpleType.toolbarLocationEnum" />
+			<xs:appinfo>
+				<osd:otherFacets>
+					<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbLocationEnumeration" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<!-- Ajax components -->
+	<xs:complexType name="com.orchestranetworks.ui.toolbar.internal.CtbBeanServiceWidgetParameters">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.ui.toolbar.internal.CtbBeanServiceWidgetParameters"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+
+	<xs:complexType name="com.orchestranetworks.workflowLauncher.customToolbar.documentation.ajax.CtbBeanServiceUpdateDocumentationAjax">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.workflowLauncher.customToolbar.documentation.ajax.CtbBeanServiceUpdateDocumentationAjax"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+
+
+</xs:schema>

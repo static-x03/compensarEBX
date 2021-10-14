@@ -1,0 +1,273 @@
+.ebx_JavaAPIPopupWrapper {
+	margin-left: 1ex;
+}
+
+.ebx_JavaAPIPopup {
+	background-image: url(../images/icons/ebx_open.svg);
+	height: 22px; /* height of the line */
+	width: 22px;
+	vertical-align: -7px;
+}
+
+.yui-skin-sam .yui-layout,
+html.yui-skin-sam .yui-layout .yui-layout-unit div.yui-layout-bd {
+	border: none;
+	background-color: #F0F0F0;
+}
+
+/***START navigation ***/
+
+#ebx_NavigationPages {
+	padding: 10px;
+}
+
+
+html.yui-skin-sam .yui-layout-unit-left .yui-layout-unit-center div.yui-layout-bd {
+	background-color: #FFFFFF;
+}
+
+.yui-layout-unit-left .yui-layout-unit-bottom,
+html.yui-skin-sam .yui-layout-unit-left .yui-layout-unit-bottom div.yui-layout-bd {
+	background-color: #FAFAFA;
+}
+
+#ebx_NavigationToc h4 + ul {
+	margin: 0.5em 0;
+}
+
+#ebx_NavigationToc h4 {
+	padding-top: 0.8em;
+	margin: 0 0.5em;
+	font-weight: bold;
+}
+
+/**START resize bar **/
+.yui-skin-sam #layout-doc .yui-resize-proxy .yui-layout-handle-r,
+.yui-skin-sam #layout-doc .yui-resize-proxy .yui-layout-handle-t {
+	border: none;
+	background-color: #C0C0C0;
+}
+
+html.yui-skin-sam .yui-resize .yui-resize-handle-active {
+	background-color: #C0C0C0;
+}
+/**END resize bar **/
+
+/***END navigation ***/
+
+/***START header ***/
+
+#ebx_Header {
+	background-image: url(../images/ebx_Logo_white.png);
+	background-repeat: no-repeat;
+	padding-top: 10px;
+	color: #FFFFFF;
+	font-family: ebx_font_title, Helvetica, Arial, sans-serif;
+	font-size: 22px;
+	height: 40px;
+}
+
+#ebx_SearchForm {
+	position: absolute;
+	top: 6px;
+	right: 10px;
+}
+
+#ebx_SearchForm .ebx_queryInput {
+	font-family: ebx_font_text, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	padding: 0 8px;
+	width: 50ex;
+	height: 28px;
+	box-sizing:border-box;
+	border: 1px solid #808080;
+	border-radius: 4px;/*{input-borderRadius}*/
+}
+#ebx_SearchForm .ebx_queryInput:focus {
+	outline: none;
+	box-shadow: 0 0 0 1px #808080;
+}
+
+#ebx_SearchForm .ebx_submitButton {
+	vertical-align: top;
+	margin-left: 5px;
+	border: none;
+	border-radius: 100%;
+	padding: 6px; /* icon is 16px*16px and the button must be 28px*28px (28-16)/2=6*/
+}
+
+#ebx_SearchForm .ebx_submitButton:hover {
+	outline: none;
+	background-color: rgba(255,255,255,.2);
+}
+#ebx_SearchForm .ebx_submitButton:active {
+	outline: none;
+	background-color: rgba(255,255,255,.4);
+}
+#ebx_SearchForm .ebx_submitButton:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px #FFFFFF;
+}
+
+/***END header ***/
+
+/***START workspace ***/
+
+#ebx_WorkspaceContentFrame {
+	border: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#ebx_WorkspaceTitle {
+}
+
+#ebx_WorkspaceTitleContent {
+	display: none;
+}
+
+#ebx_WorkspaceControls {
+	display: none;
+
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+#ebx_SimplePageButton,
+#ebx_PrintButton,
+#ebx_PDFButton {
+	visibility: hidden;
+	margin-right: 10px;
+}
+#ebx_SimplePageButton:last-child,
+#ebx_PrintButton:last-child,
+#ebx_PDFButton:last-child {
+	margin-right: 0;
+}
+
+#ebx_PDFButton {
+	background-image: url(../images/icons/ebx_pdf.svg);
+}
+#ebx_PrintButton {
+	background-image: url(../images/icons/ebx_print.svg);
+}
+#ebx_SimplePageButton {
+	background-image: url(../images/icons/ebx_simplePage.svg);
+}
+
+/***END workspace ***/
+
+/***START tree ***/
+
+td.ygtvcontent {
+	white-space: nowrap;
+	padding-right: 10px;
+}
+
+.ygtvdepthcell,
+.ygtvtn,
+.ygtvtm,
+.ygtvtmh,
+.ygtvtmhh,
+.ygtvtp,
+.ygtvtph,
+.ygtvtphh,
+.ygtvln,
+.ygtvlm,
+.ygtvlmh,
+.ygtvlmhh,
+.ygtvlp,
+.ygtvlph,
+.ygtvlphh {
+	background-image: none;
+}
+
+.ygtvtp a.ygtvspacer,
+.ygtvlp a.ygtvspacer {
+	background-position: 0 -30px;
+}
+.ygtvtph a.ygtvspacer,
+.ygtvtphh a.ygtvspacer,
+.ygtvlph a.ygtvspacer,
+.ygtvlphh a.ygtvspacer {
+	background-position: 0 -40px;
+}
+.ygtvtm a.ygtvspacer,
+.ygtvlm a.ygtvspacer {
+	background-position: 0 -50px;
+}
+.ygtvtmh a.ygtvspacer,
+.ygtvtmhh a.ygtvspacer,
+.ygtvlmh a.ygtvspacer,
+.ygtvlmhh a.ygtvspacer {
+	background-position: 0 -60px;
+}
+
+.ygtvtn,
+.ygtvln {
+	cursor: auto;
+}
+.ygtvtn a.ygtvspacer,
+.ygtvln a.ygtvspacer {
+	visibility: hidden;
+}
+
+.ygtvcell a.ygtvspacer {
+	text-decoration: none;
+	display: inline-block;
+	height: 10px; /* yui-master-copy: 22px */
+	width: 10px; /* yui-master-copy: 18px */
+	margin: 6px 4px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+}
+
+.ygtvrow .ygtvlabel,
+.ygtvrow .ygtvfocus .ygtvlabel,
+.ygtvrow .ygtvfocus {
+	background-color: transparent;
+	margin: 0;
+}
+
+.ygtvlabel,
+.ygtvlabel:link,
+.ygtvlabel:visited,
+.ygtvlabel:hover {
+    cursor: default;
+}
+a.ygtvlabel,
+a.ygtvlabel:link,
+a.ygtvlabel:visited,
+a.ygtvlabel:hover {
+    cursor: pointer;
+}
+
+.ygtvtm a.ygtvspacer,
+.ygtvtmh a.ygtvspacer,
+.ygtvtp a.ygtvspacer,
+.ygtvtph a.ygtvspacer,
+.ygtvlm a.ygtvspacer,
+.ygtvlmh a.ygtvspacer,
+.ygtvlp a.ygtvspacer,
+.ygtvlph a.ygtvspacer {
+	background-image: url(../images/icons/ebx_SmallIcon_sprite_dark.png);
+}
+
+table.ygtvtable:hover {
+	background-color: #E0E0E0;
+}
+
+table.ygtvtable.ebx_Selected {
+	background-color: #C0C0C0;
+}
+
+
+.ygtvrow .ygtvlabel,
+.ygtvrow .ygtvfocus .ygtvlabel,
+.ygtvrow .ygtvfocus {
+	background-color: transparent;
+	margin: 0;
+}
+/***END tree ***/

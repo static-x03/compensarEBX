@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Images</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dataspace_snapshot" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Espaces de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataspace/userdataspace_snapshot.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Espaces de données</span></div>
+<h1>
+Images</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Pr&eacute;sentation des images</a></li><li class="toc1"><a href="#creation">Cr&eacute;ation d&#39;une image</a></li><li class="toc1"><a href="#id3">Visualisation de contenu d&#39;une image</a></li><li class="toc1"><a href="#information">Informations de l&#39;image</a></li><li class="toc1"><a href="#id5">Comparaison d&#39;une image</a></li><li class="toc1"><a href="#id6">Validation d&#39;une image</a></li><li class="toc1"><a href="#id7">Export d&#39;une image</a></li><li class="toc1"><a href="#closing">Fermeture d&#39;une image</a></li></ul>
+</div>
+<h2 id="id1">
+Pr&eacute;sentation des images</h2>
+<p>Une image est une copie en lecture seule d&#39;un espace de donn&eacute;es. Une image sert de r&eacute;f&eacute;rence de l&#39;&eacute;tat et du contenu d&#39;un espace de donn&eacute;es &agrave; un instant donn&eacute;.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#snapshot">image</a></li></ul>
+</div>
+<h2 id="creation">
+Cr&eacute;ation d&#39;une image</h2>
+<p>Une image est cr&eacute;&eacute;e en s&eacute;lectionnant un espace de donn&eacute;es dans le panneau de navigation, puis en cliquant sur le bouton &#39;Cr&eacute;er une image&#39; sous le menu &#39;Actions&#39;.</p><p>Les informations suivantes sont requises :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Identifiant</p></td><td class="ebx_definitionListDefinition"><p>Identifiant unique de l&#39;image. Le mod&egrave;le suivant doit &ecirc;tre respect&eacute;: [a-zA-Z0-9_:.\-\|]*.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Libell&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; et description localis&eacute;s associ&eacute;s &agrave; l&#39;image.</p></td></tr>
+</table>
+<h2 id="id3">
+Visualisation de contenu d&#39;une image</h2>
+<p>Pour visualiser le contenu d&#39;une image, ouvrir l&#39;image, puis s&eacute;lectionner <em>Actions &gt; Voir ou &eacute;diter les jeux de donn&eacute;es</em> dans l&#39;espace de travail.</p><h2 id="information">
+Informations de l&#39;image</h2>
+<p>Certaines propri&eacute;t&eacute;s associ&eacute;es &agrave; une image peuvent &ecirc;tre modifi&eacute;es en s&eacute;lectionnant l&#39;image, puis <em>Actions &gt; Informations</em> dans l&#39;espace de travail de la section <em>Espaces de donn&eacute;es</em>.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Documentation</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; et description localis&eacute;s associ&eacute;s &agrave; l&#39;image.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mode relationnel</p></td><td class="ebx_definitionListDefinition"><p>Indique que les tables des jeux de donn&eacute;es pr&eacute;sents dans cet espace de donn&eacute;es sont contenues dans une base de donn&eacute;es relationnelle. Il ne sera pas possible de cr&eacute;er des images et des espaces de donn&eacute;es enfants.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Strat&eacute;gie de chargement</p></td><td class="ebx_definitionListDefinition"><p>Toute modification de ce champ requiert de red&eacute;marrer le serveur. Pour un espace de donn&eacute;es en mode s&eacute;mantique, la strat&eacute;gie par d&eacute;faut, &#39;Charger et d&eacute;charger &agrave; la demande&#39;, permet de lib&eacute;rer la m&eacute;moire si n&eacute;cessaire. En contrepartie, cela implique un co&ucirc;t de chargement quand la ressource acc&eacute;d&eacute;e l&#39;est pour la premi&egrave;re fois depuis le red&eacute;marrage du serveur ou quand elle a &eacute;t&eacute; d&eacute;charg&eacute;e depuis. La strat&eacute;gie &#39;Chargement forc&eacute;&#39; est recommand&eacute;e pour les espaces de donn&eacute;es et images &agrave; vie longue et qui sont intensivement utilis&eacute;es. Pour un espace de donn&eacute;es en mode relationnel, les strat&eacute;gies sont &#39;Aucune&#39; (d&eacute;faut) ou &#39;Pr&eacute;validation&#39;.</p><p>Seul l&#39;administrateur a le droit de modifier cette option.Voir <a href="../user_dataspace/userdataspace_actions.html#loadingStrategy">Strat&eacute;gie de chargement</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Politique de fusion des enfants</p></td><td class="ebx_definitionListDefinition"><p>Un espace de donn&eacute;es peut d&eacute;finir une politique qui d&eacute;finit la mani&egrave;re de fusionner un espace de donn&eacute;es enfant. La politique par d&eacute;faut est &#39;Autoriser des erreurs de validation dans le r&eacute;sultat&#39;. Une autre politique, la &#39;Fusion pr&eacute;-validante&#39;, permet de s&#39;assurer que le r&eacute;sultat de la fusion est valide avant d&#39;effectuer d&eacute;finitivement la fusion. La politique de fusion des enfants est uniquement appliqu&eacute;e en utilisant les interfaces utilisateur. Ce param&eacute;trage est ignor&eacute; pour une fusion programmatique (incluant les t&acirc;ches automatiques des workflows de donn&eacute;es).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Propri&eacute;taire</p></td><td class="ebx_definitionListDefinition"><p>L&#39;utilisateur poss&eacute;dant l&#39;image, et qui est autoris&eacute; &agrave; en modifier les informations et les permissions. Le propri&eacute;taire d&#39;une image n&#39;est pas obligatoirement son cr&eacute;ateur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Tri des espaces enfants</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit l&#39;ordre d&#39;affichage des espaces de donn&eacute;es enfants dans l&#39;arbre des espaces de donn&eacute;es. Si non d&eacute;fini, l&#39;ordre d&eacute;fini par le parent est pris en compte. La valeur par d&eacute;faut est &#39;par libell&eacute;&#39;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Changer le propri&eacute;taire</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit si le propri&eacute;taire de l&#39;image a le droit de modifier l&#39;attribut &quot;Propri&eacute;taire&quot;. Si la valeur est &quot;Non habilit&eacute;&quot;, seul l&#39;administrateur a le droit d&#39;effectuer cette modification.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Changer les permissions</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie si un utilisateur qui est propri&eacute;taire de l&#39;espace de donn&eacute;es a le droit de modifier les permissions de cet espace de donn&eacute;es. Si ce n&#39;est pas le cas, seul un administrateur ou un &#39;super propri&eacute;taire&#39; de l’espace de donn&eacute;es a le droit de modifier les permissions.</p></td></tr>
+</table>
+<h2 id="id5">
+Comparaison d&#39;une image</h2>
+<p>Il est possible de comparer le contenu d&#39;une image &agrave; celui d&#39;une autre image ou d&#39;un espace de donn&eacute;es dans le r&eacute;f&eacute;rentiel. Pour effectuer une comparaison, ouvrir l&#39;image, puis s&eacute;lectionner <em> Actions &gt; Comparer</em> dans l&#39;espace de travail. L&#39;assistant permet de choisir une autre image ou un espace de donn&eacute;es &agrave; comparer avec l&#39;image courante.</p><p>Pour une comparaison plus rapide, qui ignore les champs avec une valeur h&eacute;rit&eacute;e ou calcul&eacute;e, s&eacute;lectionner le filtre &#39;Valeurs persistantes seulement&#39;.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../references/builtin.html#compare">Compare contents</a></li></ul>
+</div>
+<h2 id="id6">
+Validation d&#39;une image</h2>
+<p>Le contenu d&#39;une image peut &ecirc;tre valid&eacute; globalement en utilisant le service de validation au niveau de l&#39;image. Ce service est accessible en s&eacute;lectionnant <em>Actions &gt; Valider</em> dans l&#39;espace de travail.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Pour utiliser ce service, l&#39;utilisateur doit avoir la permission de valider tous les jeux de donn&eacute;es contenus dans l&#39;image.</p></div>
+<h2 id="id7">
+Export d&#39;une image</h2>
+<p>Le contenu d&#39;une image peut &ecirc;tre export&eacute; dans une archive en s&eacute;lectionnant <em>Actions &gt; Exporter</em> dans l&#39;espace de travail. L&#39;archive est sauvegard&eacute;e sur le syst&egrave;me de fichiers du serveur, o&ugrave; seul un administrateur peut la r&eacute;cup&eacute;rer.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Voir <a href="../engine/repository_administration.html#archive">Archives directory</a> dans le Guide d&#39;administration.</p></div>
+<p>Pour r&eacute;aliser un export, les informations suivantes sont requises :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom du fichier archive &agrave; cr&eacute;er</p></td><td class="ebx_definitionListDefinition"><p>Le nom de l&#39;archive export&eacute;e.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Type d&#39;export</p></td><td class="ebx_definitionListDefinition"><p>Le contenu complet de l&#39;espace de donn&eacute;es, Mises &agrave; jour avec leur contenu complet (*), Mises &agrave; jour seules (*). </p><p><em>(*)&nbsp;:&nbsp;les mises &agrave; jour &agrave; exporter sont s&eacute;lectionn&eacute;es dans les pages suivantes.</em></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Jeu de donn&eacute;es (ou arbre de jeux de donn&eacute;es) &agrave; exporter</p></td><td class="ebx_definitionListDefinition"><p>Les jeux de donn&eacute;es de cette image &agrave; exporter. Pour chaque jeu de donn&eacute;es, il est possible de choisir si les donn&eacute;es, les permissions et les informations doivent &ecirc;tre export&eacute;es.</p></td></tr>
+</table>
+<h2 id="closing">
+Fermeture d&#39;une image</h2>
+<p>Si une image n&#39;est plus utilis&eacute;e, elle peut &ecirc;tre ferm&eacute;e. D&egrave;s qu&#39;elle est ferm&eacute;e, l&#39;image n’apparaît plus dans la section &#39;Espaces de donn&eacute;es&#39; de l&#39;interface utilisateur et n&#39;est plus accessible.</p><p>Un administrateur peut rouvrir une image ferm&eacute;e, tant qu&#39;elle n&#39;a pas &eacute;t&eacute; purg&eacute;e du r&eacute;f&eacute;rentiel.</p><p>Pour fermer une image, s&eacute;lectionner <em>Actions &gt; Fermer l&#39;image</em>.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#closing_dataspaces">Closing unused dataspaces and snapshots</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Espaces de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

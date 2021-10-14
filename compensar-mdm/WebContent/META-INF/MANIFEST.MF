@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: 
+Implementation-Title: Web application 'compensar-mdm' for Pers
+Implementation-Version: 1.0 [build 1] yyyy-mm-dd
+Implementation-Vendor: TIBCO Software Inc.

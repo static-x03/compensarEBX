@@ -1,0 +1,28 @@
+{
+  "parent": "http://.../BooksByAuthors/members/author0",
+  "content": [
+    {
+      "label": "Germinal",
+      "memberValue": "book01",
+      "isLeaf": false,
+      "member": "http://.../BooksByAuthors/members/author0/members/book1",
+      ...
+    },
+    ...
+    {
+      "label": "La bête humaine",
+      "memberValue": "book32",
+      "isLeaf": false,
+      "member": "http://.../BooksByAuthors/members/author0/members/book32",
+      ...
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../BooksByAuthors/members/author0/members?pageAction=next&amp;pageCursor=book32",
+    "lastPage": "http://.../BooksByAuthors/members/author0/members?pageAction=last"
+  }
+}
+
+

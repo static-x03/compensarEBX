@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:
+      [[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UILangAttribute]]>
+<head>
+  [[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIHeaderTag]]
+  [[header]]
+  [[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIDynamicCSS]]
+  [[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIModulesCSS]]
+
+  <script type="text/javascript">
+    function notifyParent() {
+      EBX_Utils.notifyContextChange(undefined, undefined, EBX_Utils.getCurrentPageStack());
+
+      var windowsStack = EBX_Utils.getWindowStackToHybridParentFrame();
+      if (windowsStack && (windowsStack.length > 1)) {
+        //hybrid mode and is a modal
+        parent.EBX_Utils.closeInternalPopup();
+      }
+
+      var win = window;
+
+      do {
+        var callback = win["EBX_HybridModeOnError"];
+        if (callback) {
+          return true;
+        }
+
+        if (win === window.top) {
+          return false;
+        }
+
+        win = win.parent;
+      } while (true);
+    }
+  </script>
+</head>
+<body [[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIBodyCSSClasses]]>
+[[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIDynamicJS]]
+[[bottom]]
+[[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIModulesJS]]
+[[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIErrorState]]
+[[javaclass:com.orchestranetworks.manager.core.uicomponent.layout.UIJScriptBuilderComponent]]
+</body>
+</html>

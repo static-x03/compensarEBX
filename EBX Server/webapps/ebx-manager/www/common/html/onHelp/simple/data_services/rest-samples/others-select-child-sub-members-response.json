@@ -1,0 +1,25 @@
+{
+  "parent": "http://.../EmployeesByDepartment/members/HR",
+  "content": [
+    {
+      "label": "Recruitment and hiring",
+      "memberValue": "department01",
+      "members": "http://.../EmployeesByDepartment/members/HR/submembers/department01/members",
+      "submembers": "http://.../EmployeesByDepartment/members/HR/submembers/department01/submembers",
+      ...
+    },
+    {
+      "label": "Training and development",
+      "memberValue": "department32",
+      "members": "http://.../EmployeesByDepartment/members/HR/submembers/department32/members",
+      "submembers": "http://.../EmployeesByDepartment/members/HR/submembers/department32/submembers",
+      ...
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../EmployeesByDepartment/members/HR/submembers?pageAction=next&amp;pageCursor=department32",
+    "lastPage": "http://.../EmployeesByDepartment/members/HR/submembers?pageAction=last"
+  }
+}

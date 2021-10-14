@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Declaring a user service</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_uiservices_declare" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; User interface &gt; User services</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_interface/user_services_declare.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+<h1 id="declare">
+Declaring a user service</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Declaration interface</a></li><li class="toc1"><a href="#id2">Life cycle and threading model</a></li><li class="toc1"><a href="#id3">Registration</a></li><li class="toc1"><a href="#id4">Service properties</a></li><li class="toc1"><a href="#id5">Service activation scope</a></li><li class="toc1"><a href="#id6">Web component declaration</a><ul class="toc2">
+<li class="toc2"><a href="#webComponent">Parameters declaration and availability in workflows and perspectives</a></li><li class="toc2"><a href="#serviceExtensions">User service extension</a></li></ul>
+</li><li class="toc1"><a href="#serviceGroup">User service groups</a><ul class="toc2">
+<li class="toc2"><a href="#serviceGroup_builtins">Built-in User Service Groups</a></li><li class="toc2"><a href="#serviceGroup_declaration">Declaring a User Service Group</a></li><li class="toc2"><a href="#serviceGroup_association">Associating a service to a group</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Declaration interface</h2>
+<p>The following table lists, per nature, the interface that the declaration class of a user service must implement:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Nature</strong></p></th><th><p> Declaration <strong>Interface </strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><code>Dataspace</code></td><td valign="top"><code>UserServiceDeclaration.OnDataspace</code></td></tr>
+<tr>
+<td valign="top"><code>Dataset</code></td><td valign="top"><code>UserServiceDeclaration.OnDataset</code></td></tr>
+<tr>
+<td valign="top"><code>TableView</code></td><td valign="top"><code>UserServiceDeclaration.OnTableView</code></td></tr>
+<tr>
+<td valign="top"><code>Record</code></td><td valign="top"><code>UserServiceDeclaration.OnRecord</code></td></tr>
+<tr>
+<td valign="top"><code>Hierarchy</code></td><td valign="top"><code>UserServiceDeclaration.OnHierarchy</code></td></tr>
+<tr>
+<td valign="top"><code>HierarchyNode</code></td><td valign="top"><code>UserServiceDeclaration.OnHierarchyNode</code></td></tr>
+<tr>
+<td valign="top"><code>Association</code></td><td valign="top"><code>UserServiceDeclaration.OnAssociation</code></td></tr>
+<tr>
+<td valign="top"><code>AssociationRecord</code></td><td valign="top"><code>UserServiceDeclaration.OnAssociationRecord</code></td></tr>
+</tbody>
+</table>
+<h2 id="id2">
+Life cycle and threading model</h2>
+<p>The user service declaration class is instantiated at the TIBCO EBX&reg; startup and must be coded to be thread-safe. This is usually not an issue as most implementations should be immutable classes.</p><h2 id="id3">
+Registration</h2>
+<p>A user service declaration must be registered by a module or a data model.</p><p>Registration by a module is achieved by the module registration servlet by a code similar to:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomRegistrationServlet extends ModuleRegistrationServlet 
+{
+	@Override
+	public void handleServiceRegistration(ModuleServiceRegistrationContext aContext)
+	{
+		// Register custom user service declaration.
+		aContext.registerUserService(new CustomServiceDeclaration());
+	}
+}</pre>
+<p>For more information on the module registration servlet, see <a href="../models/modules_packaging.html#registration">module registration</a> and <a target="_blank" href="../Java_API/com/orchestranetworks/module/ModuleRegistrationServlet.html"><code>ModuleRegistrationServlet</code></a>.</p><p>Registration by a data model is achieved by a code similar to:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomSchemaExtensions implements SchemaExtensions
+{
+	@Override
+	public void defineExtensions(SchemaExtensionsContext aContext)
+	{
+		// Register custom user service declaration.
+		aContext.registerUserService(new CustomServiceDeclaration());
+	}
+}</pre>
+<p>For more information on data model extensions, see <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaExtensions.html"><code>SchemaExtensions</code></a>.</p><h2 id="id4">
+Service properties</h2>
+<p>The properties of a user service include its <em>label</em>, <em>description</em>, <em>confirmation message</em> and the <em>group</em> that owns the service. All are optional but it is a good practice to at least define the label.</p><p>For more information, see <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/declaration/UserServiceDeclaration.html#defineProperties-com.orchestranetworks.userservice.declaration.UserServicePropertiesDefinitionContext-"><code>UserServiceDeclaration.defineProperties</code></a>.</p><h2 id="id5">
+Service activation scope</h2>
+<p>The activation scope defines on which selection the service is available.</p><p>Example of a service activation definition:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomServiceDeclaration implements UserServiceDeclaration.OnTableView
+{	
+	...
+	
+	@Override
+	public void defineActivation(ActivationContextOnTableView aContext)
+	{
+		// activates the service in all dataspaces except the "Reference" branch.
+		aContext.includeAllDataspaces(DataspaceType.BRANCH);
+		aContext.excludeDataspacesMatching(Repository.REFERENCE, DataspaceChildrenPolicy.NONE);
+
+		// activates the service only on tables "table01" and "table03".
+		aContext.includeSchemaNodesMatching(
+			CustomDataModelPath._Root_Table01.getPathInSchema(),
+			CustomDataModelPath._Root_Table03.getPathInSchema());
+
+		// service will be enabled only when at least one record is selected.
+		aContext.forbidEmptyRecordSelection();
+
+		// service will not be displayed in hierarchical views (neither in the
+		// top toolbar, nor in the hierarchy nodes' menu).
+		aContext.setDisplayForLocations(
+			ActionDisplaySpec.HIDDEN,
+			ToolbarLocation.HIERARCHICAL_VIEW_TOP,
+			ToolbarLocation.HIERARCHICAL_VIEW_NODE);
+
+		// service will be considered as disabled if not explicitly enabled
+		// via the UI.
+		aContext.setDefaultPermission(UserServicePermission.getDisabled());
+	}
+}</pre>
+<p>For more information about declaring the activation scope, see <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/declaration/UserServiceDeclaration.html#defineActivation-U-"><code>UserServiceDeclaration.defineActivation</code></a>.</p><p>For more information about the resolution of the user service availability, see <a href="../references/permissions.html#servicePermissionResolution">Resolving permissions on services</a>.</p><h2 id="id6">
+Web component declaration</h2>
+<h3 id="webComponent">
+Parameters declaration and availability in workflows and perspectives</h3>
+<p>User services are automatically available as web components with a set of built-in parameters depending on the service&#39;s nature. To define custom parameters and/or set the service web component as available when configuring a workflow user task, a perspective menu action or a toolbar web component action, <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/declaration/UserServiceDeclaration.html#declareWebComponent-com.orchestranetworks.userservice.declaration.WebComponentDeclarationContext-"><code>UserServiceDeclaration.declareWebComponent</code></a> must be used.</p><p>Example of a web component declaration:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomServiceDeclaration implements UserServiceDeclaration.OnDataset
+{
+	...
+	
+	@Override
+	public void declareWebComponent(WebComponentDeclarationContext aContext)
+	{
+		// makes this web component available when configuring a workflow user task.
+		aContext.setAvailableAsWorkflowUserTask(true);
+
+		// adds a custom input parameter.
+		aContext.addInputParameter(
+			"source",
+			UserMessage.createInfo("Source"),
+			UserMessage.createInfo("Source of the imported data."));
+		
+		// modifies the built-in "instance" parameter to be "input/output" instead of "input".
+		aContext.getBuiltInParameterForOverride("instance").setOutput(true);
+	}
+}
+</pre>
+<p>See <a href="../references/manager_component_ref.html">Using TIBCO EBX&reg; as a Web Component</a> for more information.</p><h3 id="serviceExtensions">
+User service extension</h3>
+<p>It is possible to extend existing user services (built-in or custom) in order to add input/output parameters when using these services as web components.</p><p>In order to do so, a user service extension must first be registered by a module or a data model.</p><p>Registration by a module is achieved by the module registration servlet by code similar to:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomRegistrationServlet extends ModuleRegistrationServlet 
+{
+	...
+	
+	@Override
+	public void handleServiceRegistration(ModuleServiceRegistrationContext aContext)
+	{
+		// Register user service extension declaration.
+		aContext.registerUserServiceExtension(new ServiceExtensionDeclaration());
+	}
+}</pre>
+<p>For more information on the module registration servlet, see <a href="../models/modules_packaging.html#registration">module registration</a> and <a target="_blank" href="../Java_API/com/orchestranetworks/module/ModuleRegistrationServlet.html"><code>ModuleRegistrationServlet</code></a>.</p><p>Registration by a data model is achieved by a code similar to:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomSchemaExtensions implements SchemaExtensions
+{
+	...
+	
+	@Override
+	public void defineExtensions(SchemaExtensionsContext aContext)
+	{
+		// Register user service extension declaration.
+		aContext.registerUserServiceExtension(new ServiceExtensionDeclaration());
+	}
+}</pre>
+<p>For more information on the data model extension, see <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaExtensions.html"><code>SchemaExtensions</code></a>.</p><h2 id="serviceGroup">
+User service groups</h2>
+<p>User service groups are used to organize the display of user services in menus and permission management screens.</p><p>The following types of service groups are available:</p><ul>
+<li><p><a href="#serviceGroup_builtins">Built-in User Service Groups</a> provided by EBX&reg;,</p></li><li><p><a href="#serviceGroup_declaration">Custom User Service Groups</a> declared in a module.</p></li></ul>
+<p>The link between groups and services is made upon service declaration. See <a href="#serviceGroup_association">Associating a service to a group</a>.</p><h3 id="serviceGroup_builtins">
+Built-in User Service Groups</h3>
+<p>Available built-in service groups:</p><table class="ebx_definitionList">
+<th class="ebx_definitionListHeader"><p>Service Group Key</p></th><th class="ebx_definitionListHeader"><p>Description</p></th><tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>@ebx-importExport</code></p></td><td class="ebx_definitionListDefinition"><p>Group containing all built-in import and export services provided by EBX&reg;. In the default menus, these services are displayed in an &quot;Import / Export&quot; sub-menu.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>@ebx-views</code></p></td><td class="ebx_definitionListDefinition"><p>Group containing services to display in the &#39;Views&#39; menu. Unlike other service groups, services associated with this group are not displayed in the default menus, but only in the &#39;Views&#39; menu displayed in the non-customizable part of the table top toolbar. These services can still be added manually to a custom toolbar.</p></td></tr>
+</table>
+<h3 id="serviceGroup_declaration">
+Declaring a User Service Group</h3>
+<p>User Service Groups must be declared while registering the module, using the method <a target="_blank" href="../Java_API/com/orchestranetworks/module/ModuleServiceRegistrationContext.html#registerServiceGroup-com.orchestranetworks.service.ServiceGroupKey-com.onwbp.base.text.UserMessage-com.onwbp.base.text.UserMessage-"><code>ModuleServiceRegistrationContext.registerServiceGroup</code></a>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomRegistrationServlet extends ModuleRegistrationServlet 
+{
+	...
+	
+	@Override
+	public void handleServiceRegistration(ModuleServiceRegistrationContext aContext)
+	{
+		// In CustomModuleConstants,
+		// CUSTOM_SERVICE_GROUP_KEY = ServiceGroupKey.forServiceGroupInModule("customModule", "customGroup")
+		
+		// registers CUSTOM_SERVICE_GROUP_KEY service group
+		aContext.registerServiceGroup(
+			CustomModuleConstants.CUSTOM_SERVICE_GROUP_KEY,
+			UserMessage.createInfo("Custom group"),
+			UserMessage.createInfo("This group contains services related to..."));
+	}
+}
+</pre>
+<h3 id="serviceGroup_association">
+Associating a service to a group</h3>
+<p>The association of a service with a group is made at its <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/declaration/UserServiceDeclaration.html">declaration</a>, using the method <a target="_blank" href="../Java_API/com/orchestranetworks/userservice/declaration/UserServicePropertiesDefinitionContext.html#setGroup-com.orchestranetworks.service.ServiceGroupKey-"><code>UserServicePropertiesDefinitionContext.setGroup</code></a>:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class CustomServiceDeclaration implements UserServiceDeclaration.OnDataset
+{
+	...
+	
+	@Override
+	public void defineProperties(UserServicePropertiesDefinitionContext aContext)
+	{
+		// associates the current service to the CUSTOM_SERVICE_GROUP_KEY group
+		aContext.setGroup(CustomModuleConstants.CUSTOM_SERVICE_GROUP_KEY);
+	}
+}
+</pre>
+<p>A service can be associated with either a built-in or a custom service group. In the latter case, this service will be displayed in this built-in group, just like other built-in services belonging to this group.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface &gt; User services</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

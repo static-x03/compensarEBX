@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Workflow model</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_workflow_model" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=workflow/workflowmodel.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide</span></div>
+<h1>
+Workflow model</h1>
+<p>The workflow offers two types of steps: &#39;library&#39; or &#39;specific&#39;. </p><p>&#39;Library&#39; is a bean defined in <code>module.xml</code> and is reusable. Using the &#39;library&#39; bean improves the ergonomics: parameters are dynamically displayed in the definition screens.</p><p>A &#39;specific&#39; object is a bean defined only by its class name. In this case, the display is not dynamic.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#beanCategories">Bean categories</a></li><li class="toc1"><a href="#scriptTask">Sample of ScriptTask</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Java Code</a></li></ul>
+</li><li class="toc1"><a href="#scriptTaskBean">Sample of ScriptTaskBean</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Java Code</a></li><li class="toc2"><a href="#id3s2">Configuration through module.xml</a></li></ul>
+</li><li class="toc1"><a href="#userTask">Samples of UserTask</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Service declaration via module.xml</a></li><li class="toc2"><a href="#id4s2">A more complex UserTask</a></li></ul>
+</li><li class="toc1"><a href="#condition">Samples of Condition</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Java Code</a></li></ul>
+</li><li class="toc1"><a href="#conditionBean">Sample of ConditionBean</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Java Code</a></li><li class="toc2"><a href="#id6s2">Configuration through module.xml</a></li></ul>
+</li><li class="toc1"><a href="#subWorkflowsInvocationBean">Sample of SubWorkflowsInvocationBean</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">Java Code</a></li><li class="toc2"><a href="#id7s2">Configuration through module.xml</a></li></ul>
+</li><li class="toc1"><a href="#waitTaskBean">Sample of WaitTaskBean</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">Java Code</a></li><li class="toc2"><a href="#id8s2">Configuration through module.xml</a></li></ul>
+</li><li class="toc1"><a href="#actionPermissionsOnWorkflow">Sample of ActionPermissionsOnWorkflow</a><ul class="toc2">
+<li class="toc2"><a href="#id9s1">Java Code</a></li><li class="toc2"><a href="#id9s2">Configuration through module.xml</a></li></ul>
+</li><li class="toc1"><a href="#workflowTriggerBean">Sample of WorkflowTriggerBean</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">Java Code</a></li><li class="toc2"><a href="#id10s2">Configuration through module.xml</a></li></ul>
+</li><li class="toc1"><a href="#trigger">Sample of trigger starting a process instance</a><ul class="toc2">
+<li class="toc2"><a href="#id11s1">Sample</a></li></ul>
+</li></ul>
+</div>
+<h2 id="beanCategories">
+Bean categories</h2>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th align="left"><p><strong>Step</strong></p></th><th align="left"><p><strong>Library</strong></p></th><th>Specific</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><strong>Scripts</strong></p></td><td><p> ScriptTaskBean </p></td><td>ScriptTask</td></tr>
+<tr>
+<td><p><strong>Conditions</strong></p></td><td><p> ConditionBean </p></td><td>Condition</td></tr>
+<tr>
+<td><p><strong>User task</strong></p></td><td>UserTask</td><td></td></tr>
+</tbody>
+</table>
+<h2 id="scriptTask">
+Sample of ScriptTask</h2>
+<h3 id="id2s1">
+Java Code</h3>
+<p>A script task has to override the method <code>execute</code> as in the following example: </p><pre class="brush: java; toolbar: false; gutter: false;">
+public class NppScriptTask_CreateWorkingBranch extends ScriptTask
+{
+    public void executeScript(ScriptTaskContext aContext) throws OperationException
+    {
+        Repository repository = aContext.getRepository();
+        String initialBranchString = aContext.getVariableString("initialBranch");
+        AdaptationHome initialBranch = repository.lookupHome(HomeKey.forBranchName(initialBranchString));
+        if (initialBranch == null)
+            throw OperationException.createError("Null value for initialBranch");
+
+        HomeCreationSpec spec = new HomeCreationSpec();
+        spec.setParent(initialBranch);
+        spec.setKey(HomeKey.forBranchName("Name"));
+        spec.setOwner(Profile.EVERYONE);
+        spec.setHomeToCopyPermissionsFrom(initialBranch);
+        AdaptationHome newHome = repository.createHome(spec, aContext.getSession());
+                //feeds dataContext
+        aContext.setVariableString("workingBranch", newHome.getKey().getName());
+    }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTask.html">com.orchestranetworks.workflow.ScriptTask</a></li></ul>
+</div>
+<h2 id="scriptTaskBean">
+Sample of ScriptTaskBean</h2>
+<h3 id="id3s1">
+Java Code</h3>
+<p>A script task bean has to override the method <code>executeScript</code> as in the following example:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class ScriptTaskBean_CreateBranch extends ScriptTaskBean
+{
+    private String initialBranchName;
+
+    private String newBranch;
+
+    public String getInitialBranchName()
+    {
+        return this.initialBranchName;
+    }
+
+    public void setInitialBranchName(String initialBranchName)
+    {
+        this.initialBranchName = initialBranchName;
+    }
+
+    public String getNewBranch()
+    {
+        return this.newBranch;
+    }
+
+    public void setNewBranch(String newBranch)
+    {
+        this.newBranch = newBranch;
+    }
+
+    public void executeScript(ScriptTaskBeanContext aContext) throws OperationException
+    {
+        final Repository repository = aContext.getRepository();
+
+        String initialBranchName = this.getInitialBranchName();
+        final AdaptationHome initialBranch = repository.lookupHome(HomeKey.forBranchName(initialBranchName));
+        final HomeCreationSpec spec = new HomeCreationSpec();
+        spec.setParent(initialBranch);
+        spec.setKey(HomeKey.forBranchName(XsFormats.SINGLETON.formatDateTime(new Date())));
+        spec.setOwner(Profile.EVERYONE);
+        spec.setHomeToCopyPermissionsFrom(initialBranch);
+        final AdaptationHome branchCreate = repository.createHome(spec, aContext.getSession());
+        this.setNewBranch(branchCreate.getKey().getName());
+    }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTaskBean.html">com.orchestranetworks.workflow.ScriptTaskBean</a></li></ul>
+</div>
+<h3 id="id3s2">
+Configuration through module.xml</h3>
+<p>A script task bean must be declared in <code>module.xml</code>:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;module>
+    &lt;beans>
+        &lt;bean className="com.orchestranetworks.workflow.genericScriptTask.ScriptTaskBean_CreateBranch">
+            &lt;documentation xml:lang="fr-FR">
+                &lt;label>Créer une branche&lt;/label>
+                &lt;description>
+                    Ce script permet de créer une branche
+                &lt;/description>
+            &lt;/documentation>
+            &lt;documentation xml:lang="en-US">
+                &lt;label>Create a branch&lt;/label>
+                &lt;description>
+                    This script creates a branch
+                &lt;/description>
+            &lt;/documentation>
+            &lt;properties>
+                &lt;property name="initialBranchName" input="true">
+                    &lt;documentation xml:lang="fr-FR">
+                        &lt;label>Branche initiale&lt;/label>
+                        &lt;description>
+                            Nom de la branche initiale.
+                        &lt;/description>
+                    &lt;/documentation>
+                    &lt;documentation xml:lang="en-US">
+                        &lt;label>Initial branch&lt;/label>
+                        &lt;description>
+                            Initial branch name.
+                        &lt;/description>
+                    &lt;/documentation>
+                &lt;/property>
+                &lt;property name="newBranch" output="true">
+                    &lt;documentation xml:lang="fr-FR">
+                        &lt;label>Nouvelle branche&lt;/label>
+                        &lt;description>
+                            Nom de la branche créée
+                        &lt;/description>
+                    &lt;/documentation>
+                    &lt;documentation xml:lang="en-US">
+                        &lt;label>New branch&lt;/label>
+                        &lt;description>
+                            Created branch name.
+                        &lt;/description>
+                    &lt;/documentation>
+                &lt;/property>
+            &lt;/properties>
+        &lt;/bean>
+    &lt;/beans>
+&lt;/module></pre>
+<h2 id="userTask">
+Samples of UserTask</h2>
+<h3 id="id4s1">
+Service declaration via module.xml</h3>
+<p>A built-in service can be declared in <code>module.xml</code> to be used in the user task definition.</p><pre class="brush: xml; toolbar: false; gutter: false;">
+ &lt;services>
+ 	&lt;service name="ServiceModule">
+	    &lt;resourcePath>/service.jsp&lt;/resourcePath>
+	    &lt;type>branch&lt;/type>
+       	&lt;documentation xml:lang="fr-FR">
+           	&lt;label>Workflow service&lt;/label>
+               &lt;description>
+               	Ce service permet de ...
+               &lt;/description>
+		&lt;/documentation>
+           &lt;documentation xml:lang="en-US">
+           	&lt;label>Service workflow&lt;/label>
+               &lt;description>
+               	The purpose of this service is ...
+               &lt;/description>
+		&lt;/documentation>
+           &lt;properties>
+         		&lt;property name="param1" input="true">
+                &lt;documentation xml:lang="fr-FR">
+                    &lt;label>Param1&lt;/label>
+                    &lt;description>Param1 ...&lt;/description>
+                &lt;/documentation>
+           &lt;/property>
+           &lt;property name="param2" output="true">
+           &lt;/property>
+       &lt;/properties>
+	&lt;/service>
+    &lt;serviceLink serviceName="adaptationService">
+        &lt;importFromSchema>
+            /WEB-INF/ebx/schema/schema.xsd
+        &lt;/importFromSchema>
+    &lt;/serviceLink>
+&lt;/services></pre>
+<h3 id="id4s2">
+A more complex UserTask</h3>
+<p>The GUI is quite similar as the example above. The field &#39;Rule&#39; must be filled to define the class extending the &#39;UserTask&#39; to invoke.</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class NppUserTask_ValidateProduct extends UserTask
+{
+    public void handleWorkItemCompletion(UserTaskWorkItemCompletionContext context)
+        throws OperationException
+    {
+        if (context.getCompletedWorkItem().isRejected())
+        {
+            context.setVariableString(NppConstants.VAR_VALIDATION, "KO");
+            context.completeUserTask();
+        }
+        else if (context.checkAllWorkItemMatchStrategy())
+        {
+            context.setVariableString(NppConstants.VAR_VALIDATION, "OK");
+            context.completeUserTask();
+        }
+    }
+
+    public void handleCreate(UserTaskCreationContext context) throws OperationException
+    {
+        CreationWorkItemSpec spec = CreationWorkItemSpec.forOfferring(NppConstants.ROLE_PVALIDATOR);
+        spec.setNotificationMail("1");
+        context.createWorkItem(spec);
+        context.setVariableString(NppConstants.VAR_VALIDATION, "validating");
+    }
+}
+</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/UserTask.html">com.orchestranetworks.workflow.UserTask</a></li></ul>
+</div>
+<h2 id="condition">
+Samples of Condition</h2>
+<h3 id="id5s1">
+Java Code</h3>
+<p>The method <code>evaluate</code> has to be overridden: </p><pre class="brush: java; toolbar: false; gutter: false;">
+public class NppCondition_IsValidationOK extends Condition
+{
+    public boolean evaluateCondition(ConditionContext context) throws OperationException
+    {
+        String validation = context.getVariableString("validationResult");
+        boolean hasError = "KO".equals(validation);
+        return !hasError;
+    }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/Condition.html">com.orchestranetworks.workflow.Condition</a></li></ul>
+</div>
+<h2 id="conditionBean">
+Sample of ConditionBean</h2>
+<h3 id="id6s1">
+Java Code</h3>
+<p>The method <code>evaluateCondition</code> has to be overridden as in the following sample:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class ConditionBean_IsBranchValid extends ConditionBean
+{
+    private String branchName;
+
+    public String getBranchName()
+    {
+        return this.branchName;
+    }
+
+    public void setBranchName(String branchName)
+    {
+        this.branchName = branchName;
+    }
+
+    public boolean evaluateCondition(ConditionBeanContext aContext) throws OperationException
+    {
+        final Repository repository = aContext.getRepository();
+        Severity severityForValidation = Severity.ERROR;
+        String branchToTestName = this.getBranchName();
+        final AdaptationHome branchToTest = repository.lookupHome(HomeKey.forBranchName(branchToTestName));
+        if (branchToTest.getValidationReportsMap(severityForValidation) != null
+            &amp;&amp; branchToTest.getValidationReportsMap(severityForValidation).size() > 0)
+        {
+            return false;
+        }
+        return true;
+    }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ConditionBean.html">com.orchestranetworks.workflow.ConditionBean</a></li></ul>
+</div>
+<h3 id="id6s2">
+Configuration through module.xml</h3>
+<p>The condition bean must be declared in <code>module.xml</code>:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;module>
+    &lt;beans>
+        &lt;bean className="com.orchestranetworks.workflow.genericScriptTask.ConditionBean_IsBranchValid">
+            &lt;documentation xml:lang="fr-FR">
+                &lt;label>Branche valide ?&lt;/label>
+                &lt;description>
+                    Ce script permet de tester si une branche est valide.
+                &lt;/description>
+            &lt;/documentation>
+            &lt;documentation xml:lang="en-US">
+                &lt;label>Branch valid ?&lt;/label>
+                &lt;description>
+                    This script allows to check if a branch is valid.
+                &lt;/description>
+            &lt;/documentation>
+            &lt;properties>
+                &lt;property name="branchName" input="true">
+                    &lt;documentation xml:lang="fr-FR">
+                        &lt;label>Branche à contrôler&lt;/label>
+                        &lt;description>
+                            Nom de la branche à valider.
+                        &lt;/description>
+                    &lt;/documentation>
+                    &lt;documentation xml:lang="en-US">
+                        &lt;label>Branch to check&lt;/label>
+                        &lt;description>
+                            Branch name to check.
+                        &lt;/description>
+                    &lt;/documentation>
+                &lt;/property>
+            &lt;/properties>
+        &lt;/bean>
+    &lt;/beans>
+&lt;/module></pre>
+<h2 id="subWorkflowsInvocationBean">
+Sample of SubWorkflowsInvocationBean</h2>
+<h3 id="id7s1">
+Java Code</h3>
+<pre class="brush: java; toolbar: false; gutter: false;">
+public class MySubWorkflowsInvocationBean extends SubWorkflowsInvocationBean
+{
+	@Override
+	public void handleCreateSubWorkflows(SubWorkflowsCreationContext aContext)
+		throws OperationException
+	{
+		final ProcessLauncher subWorkflow1 = aContext.registerSubWorkflow(
+			AdaptationName.forName("validateProduct"),
+			"validateProduct1");
+		subWorkflow1.setLabel(UserMessage.createInfo("Validate the new product by marketing"));
+		subWorkflow1.setInputParameter("workingBranch", aContext.getVariableString("workingBranch"));
+		subWorkflow1.setInputParameter("code", aContext.getVariableString("code"));
+		subWorkflow1.setInputParameter("service", aContext.getVariableString("marketing"));
+
+		final ProcessLauncher subWorkflow2 = aContext.registerSubWorkflow(
+			AdaptationName.forName("validateProduct"),
+			"validateProduct2");
+		subWorkflow2.setLabel(UserMessage.createInfo("Validate the new product by direction"));
+		subWorkflow2.setInputParameter("workingBranch", aContext.getVariableString("workingBranch"));
+		subWorkflow2.setInputParameter("code", aContext.getVariableString("code"));
+		subWorkflow2.setInputParameter("service", aContext.getVariableString("direction"));
+
+		// Conditional launching.
+		if (aContext.getVariableString("productType").equals("book"))
+		{
+			final ProcessLauncher subWorkflow3 = aContext.registerSubWorkflow(
+				AdaptationName.forName("generateISBN"),
+				"generateISBN");
+			subWorkflow3.setLabel(UserMessage.createInfo("Generate ISBN"));
+			subWorkflow3.setInputParameter(
+				"workingBranch",
+				aContext.getVariableString("workingBranch"));
+			subWorkflow3.setInputParameter("code", aContext.getVariableString("code"));
+		}
+
+		aContext.launchSubWorkflows();
+	}
+	@Override
+	public void handleCompleteAllSubWorkflows(SubWorkflowsCompletionContext aContext)
+		throws OperationException
+	{
+		aContext.getCompletedSubWorkflows();
+		final ProcessInstance validateProductMarketing = aContext.getCompletedSubWorkflow("validateProduct1");
+		final ProcessInstance validateProductDirection = aContext.getCompletedSubWorkflow("validateProduct2");
+		if (aContext.getVariableString("productType").equals("book"))
+		{
+			final ProcessInstance generateISBN = aContext.getCompletedSubWorkflow("generateISBN");
+			aContext.setVariableString("isbn", generateISBN.getDataContext().getVariableString(
+				"newCode"));
+		}
+
+		if (validateProductMarketing.getDataContext().getVariableString("Accepted").equals("true")
+			&amp;&amp; validateProductDirection.getDataContext().getVariableString("Accepted").equals(
+				"true"))
+			aContext.setVariableString("validation", "ok");
+	}
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/SubWorkflowsInvocationBean.html">com.orchestranetworks.workflow.SubWorkflowsInvocationBean</a></li></ul>
+</div>
+<h3 id="id7s2">
+Configuration through module.xml</h3>
+<p><code>SubWorkflowsInvocationBean</code> bean must be declared in <code>module.xml</code>:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;module>
+    &lt;beans>
+        &lt;bean className="com.orchestranetworks.workflow.test.MySubWorkflowsInvocationBean"/>
+    &lt;/beans>
+&lt;/module></pre>
+<h2 id="waitTaskBean">
+Sample of WaitTaskBean</h2>
+<h3 id="id8s1">
+Java Code</h3>
+<pre class="brush: java; toolbar: false; gutter: false;">
+public class MyWaitTaskBean extends WaitTaskBean
+{
+	@Override
+	public void onStart(WaitTaskOnStartContext aContext)
+	{
+		Map&lt;String, String> params = new HashMap&lt;String, String>();
+		params.put("resumeId", aContext.getResumeId());
+		myMethod.callWebService(params);
+	}
+
+	@Override
+	public void onResume(WaitTaskOnResumeContext aContext) throws OperationException
+	{
+		// Defines a specific mapping.
+		aContext.setVariableString("code", aContext.getOutputParameters().get("isbn"));
+		aContext.setVariableString("comment", aContext.getOutputParameters().get("isbnComment"));
+	}
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/WaitTaskBean.html">com.orchestranetworks.workflow.WaitTaskBean</a></li></ul>
+</div>
+<h3 id="id8s2">
+Configuration through module.xml</h3>
+<p><code>WaitTaskBean</code> bean must be declared in <code>module.xml</code>:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;module>
+    &lt;beans>
+        &lt;bean className="com.orchestranetworks.workflow.test.MyWaitTaskBean"/>
+    &lt;/beans>
+&lt;/module></pre>
+<h2 id="actionPermissionsOnWorkflow">
+Sample of ActionPermissionsOnWorkflow</h2>
+<h3 id="id9s1">
+Java Code</h3>
+<pre class="brush: java; toolbar: false; gutter: false;">
+package com.orchestranetworks.workflow.test;
+
+import com.orchestranetworks.service.*;
+import com.orchestranetworks.workflow.*;
+import com.orchestranetworks.workflow.ProcessExecutionContext.*;
+
+/**
+ */
+public class MyDynamicPermissions extends ActionPermissionsOnWorkflow
+{
+
+    public ActionPermission getActionPermission(
+        WorkflowPermission aWorkflowAction,
+        ActionPermissionsOnWorkflowContext aContext)
+    {
+        if (WorkflowPermission.VIEW.equals(aWorkflowAction)
+            || WorkflowPermission.CREATE_PROCESS.equals(aWorkflowAction))
+            return ActionPermission.getEnabled();
+        return ActionPermission.getDisabled();
+    }
+
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ActionPermissionsOnWorkflow.html">com.orchestranetworks.workflow.ActionPermissionsOnWorkflow</a></li></ul>
+</div>
+<h3 id="id9s2">
+Configuration through module.xml</h3>
+<p><code>ActionPermissionsOnWorkflow</code> bean must be declared in <code>module.xml</code>:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;module>
+    &lt;beans>
+        &lt;bean className="com.orchestranetworks.workflow.test.MyDynamicPermissions"/>
+    &lt;/beans>
+&lt;/module>
+</pre>
+<h2 id="workflowTriggerBean">
+Sample of WorkflowTriggerBean</h2>
+<h3 id="id10s1">
+Java Code</h3>
+<pre class="brush: java; toolbar: false; gutter: false;">
+public class MyWorkflowTriggerBean extends WorkflowTriggerBean
+{
+	@Override
+	public void handleAfterProcessInstanceStart(
+		WorkflowTriggerAfterProcessInstanceStartContext aContext) throws OperationException
+	{
+		final DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+		final MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] After process instance start");
+		spec.setBody("The workflow '"
+			+ policy.formatUserMessage(aContext.getProcessInstance().getLabel())
+			+ "' has been created.");
+
+		spec.sendMail(Locale.US);
+	}
+
+	@Override
+	public void handleBeforeProcessInstanceTermination(
+		WorkflowTriggerBeforeProcessInstanceTerminationContext aContext) throws OperationException
+	{
+		final DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+
+		final MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] Before process instance termination");
+		spec.setBody("The workflow '"
+			+ policy.formatUserMessage(aContext.getProcessInstance().getLabel())
+			+ "' has been completed. The created product is: '"
+			+ aContext.getVariableString(NppConstants.VAR_CODE) + "'.");
+
+		spec.sendMail(Locale.US);
+	}
+
+	@Override
+	public void handleAfterWorkItemCreation(WorkflowTriggerAfterWorkItemCreationContext aContext)
+		throws OperationException
+	{
+		DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+
+		MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] After work item creation");
+		WorkItem workItem = aContext.getWorkItem();
+		State state = workItem.getState();
+		String body = "The work item '" + policy.formatUserMessage(workItem.getLabel())
+			+ "' has been created. \n The step id is : " + aContext.getCurrentStepId()
+			+ ". \n The work item is in state : " + policy.formatUserMessage(state.getLabel());
+
+		if (workItem.getOfferedTo() != null)
+			body += "\n The role is :" + workItem.getOfferedTo().format();
+		if (workItem.getUserReference() != null)
+			body += "\n The user is :" + workItem.getUserReference().format();
+
+		spec.setBody(body);
+
+		spec.sendMail(Locale.US);
+	}
+
+	@Override
+	public void handleBeforeWorkItemStart(WorkflowTriggerBeforeWorkItemStartContext aContext)
+		throws OperationException
+	{
+		DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+
+		MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] Before work item start");
+		spec.setBody("The work item '"
+			+ policy.formatUserMessage(aContext.getWorkItem().getLabel())
+			+ "' has been started. \n  The current step id is : "
+			+ aContext.getCurrentStepId()
+			+ ". \n The work item user is: '"
+			+ DirectoryHandler.getInstance(aContext.getRepository()).displayUser(
+				aContext.getWorkItem().getUserReference(),
+				aContext.getSession().getLocale()) + "'.");
+
+		spec.sendMail(Locale.US);
+	}
+
+	@Override
+	public void handleBeforeWorkItemAllocation(
+		WorkflowTriggerBeforeWorkItemAllocationContext aContext) throws OperationException
+	{
+		DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+
+		MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] Before work item allocation");
+		spec.setBody("The work item '"
+			+ policy.formatUserMessage(aContext.getWorkItem().getLabel())
+			+ "' has been allocated. \n  The current step id is: "
+			+ aContext.getCurrentStepId()
+			+ ". \n  The work item user is: '"
+			+ DirectoryHandler.getInstance(aContext.getRepository()).displayUser(
+				aContext.getUserReference(),
+				aContext.getSession().getLocale()) + "'.");
+
+		spec.sendMail(Locale.US);
+	}
+
+	@Override
+	public void handleBeforeWorkItemDeallocation(
+		WorkflowTriggerBeforeWorkItemDeallocationContext aContext) throws OperationException
+	{
+		DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+
+		MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] Before work item deallocation");
+		spec.setBody("The work item '"
+			+ policy.formatUserMessage(aContext.getWorkItem().getLabel())
+			+ "' has been deallocated. \n  The current step id is: "
+			+ aContext.getCurrentStepId()
+			+ ". \n  The old work item user is: '"
+			+ DirectoryHandler.getInstance(aContext.getRepository()).displayUser(
+				aContext.getWorkItem().getUserReference(),
+				aContext.getSession().getLocale()) + ".");
+
+		spec.sendMail(Locale.US);
+
+	}
+
+	@Override
+	public void handleBeforeWorkItemReallocation(
+		WorkflowTriggerBeforeWorkItemReallocationContext aContext) throws OperationException
+	{
+		DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+
+		MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] Before work item reallocation");
+		spec.setBody("The work item '"
+			+ policy.formatUserMessage(aContext.getWorkItem().getLabel())
+			+ "' has been reallocated. \n  The current step id is: "
+			+ aContext.getCurrentStepId()
+			+ ". \n  The work item user is: '"
+			+ DirectoryHandler.getInstance(aContext.getRepository()).displayUser(
+				aContext.getUserReference(),
+				aContext.getSession().getLocale())
+			+ "'. The old work item user is: '"
+			+ DirectoryHandler.getInstance(aContext.getRepository()).displayUser(
+				aContext.getWorkItem().getUserReference(),
+				aContext.getSession().getLocale()) + "'.");
+
+		spec.sendMail(Locale.US);
+
+	}
+	@Override
+	public void handleBeforeWorkItemTermination(
+		WorkflowTriggerBeforeWorkItemTerminationContext aContext) throws OperationException
+	{
+		DisplayPolicy policy = DisplayPolicyFactory.getPolicyForSession(aContext.getSession());
+
+		MailSpec spec = aContext.createMailSpec();
+		spec.notify(NotificationType.TO, "supervisor@mail.com");
+
+		spec.setSubject("[TRIGGER] Before work item termination");
+		spec.setBody("The work item '"
+			+ policy.formatUserMessage(aContext.getWorkItem().getLabel())
+			+ "' has been terminated. \n  The current step id is: " + aContext.getCurrentStepId()
+			+ ". \n  The work item has been accepted ? " + aContext.isAccepted());
+
+		spec.sendMail(Locale.US);
+	}
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/workflow/WorkflowTriggerBean.html">com.orchestranetworks.workflow.WorkflowTriggerBean</a></li></ul>
+</div>
+<h3 id="id10s2">
+Configuration through module.xml</h3>
+<p><code>WorkflowTriggerBean</code> bean must be declared in <code>module.xml</code>:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;module>
+    &lt;beans>
+        &lt;bean className="com.orchestranetworks.workflow.test.MyWorkflowTriggerBean"/>
+    &lt;/beans>
+&lt;/module></pre>
+<h2 id="trigger">
+Sample of trigger starting a process instance</h2>
+<h3 id="id11s1">
+Sample</h3>
+<pre class="brush: java; toolbar: false; gutter: false;">
+public class TriggerWorkflow extends TableTrigger
+{
+    public void handleAfterModify(AfterModifyOccurrenceContext aContext) throws OperationException
+    {
+        ValueContext currentRecord = aContext.getOccurrenceContext();
+        String code = (String) currentRecord.getValue(Path.parse("/code"));
+
+        //Get published process
+        PublishedProcessKey processPublishedKey = PublishedProcessKey.forName("productProcess");
+                //Defines process instance
+            ProcessLauncher launcher = ProcessLauncherHelper.createLauncher(
+            processPublishedKey,
+            aContext.getProcedureContext());
+        //initialize Data Context
+        launcher.setInputParameter("code", "/root/Client[./code=\"" + code + "\"]");
+        launcher.setInputParameter("workingBranch", aContext.getAdaptationHome().getKey().getName());
+
+        //Starts process        
+        launcher.launchProcess();
+
+    }
+      //...
+}</pre>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

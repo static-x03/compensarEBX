@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+			xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_0.xsd"
+	    metadata-complete="true"
+      version="3.0">
+	<servlet>
+		<servlet-name>FrontServlet</servlet-name>
+		<servlet-class>com.onwbp.front.FrontServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FrontServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<resource-env-ref>
+		<description>
+			Data Services JMS queue for incoming SOAP requests sent by other applications.
+			Attention: if the main configuration does not activate JMS
+			through the property 'ebx.jms.activate', then this environment entry will be
+			ignored by EBX® runtime.
+		</description>
+		<resource-env-ref-name>jms/EBX_QueueIn</resource-env-ref-name>
+		<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+	</resource-env-ref>
+	<resource-env-ref>
+		<description>
+			Data Services JMS queue for failures. It contains incoming SOAP requests 
+			for which an error has occurred. This allows replaying these messages if necessary.
+			Attention: to be used at runtime, the main configuration shall activate JMS
+			through the property 'ebx.jms.activate', and also the queue for failures
+			through the property 'ebx.jms.activate.queueFailure'.
+		</description>
+		<resource-env-ref-name>jms/EBX_QueueFailure</resource-env-ref-name>
+		<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+	</resource-env-ref>
+	<resource-env-ref>
+		<description>
+			D3 Master Communication JMS queue (only for D3 mode 'slave' or 'hub').
+			It specifies the name of the communication queue to send SOAP message to the Master D3 node.
+			Attention: if the main configuration does not activate JMS and D3 (slave, hub or master node)
+			through the property 'ebx.d3.mode', 'ebx.jms.activate' and 'ebx.jms.d3.activate' then this
+			environment entry will be ignored by EBX® runtime.
+		</description>
+		<resource-env-ref-name>jms/EBX_D3MasterQueue</resource-env-ref-name>
+		<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+	</resource-env-ref>
+	<resource-env-ref>
+		<description>
+			D3 Reply JMS queue (for all D3 mode except 'single' mode).
+			It specifies the name of the reply queue for D3 node conversation.
+			Attention: if the main configuration does not activate JMS and D3 (slave, hub or master node)
+			through the property 'ebx.d3.mode', 'ebx.jms.activate' and 'ebx.jms.d3.activate' then this
+			environment entry will be ignored by EBX® runtime.
+		</description>
+		<resource-env-ref-name>jms/EBX_D3ReplyQueue</resource-env-ref-name>
+		<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+	</resource-env-ref>
+	<resource-env-ref>
+		<description>
+			D3 Archive JMS queue (for all D3 mode except 'single' mode).
+			It specifies the name of transfer archive queue to receive archives.
+			Attention: if the main configuration does not activate JMS and D3 (slave, hub or master node)
+			through the property 'ebx.d3.mode', 'ebx.jms.activate' and 'ebx.jms.d3.activate' then this
+			environment entry will be ignored by EBX® runtime.
+		</description>
+		<resource-env-ref-name>jms/EBX_D3ArchiveQueue</resource-env-ref-name>
+		<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+	</resource-env-ref>
+	<resource-env-ref>
+		<description>
+			D3 Communication JMS queue (for all D3 mode except 'single' mode).
+			It specifies the name of the communication queue to receive SOAP messages.
+			Attention: if the main configuration does not activate JMS and D3 (slave, hub or master node)
+			through the property 'ebx.d3.mode', 'ebx.jms.activate' and 'ebx.jms.d3.activate' then this
+			environment entry will be ignored by EBX® runtime.
+		</description>
+		<resource-env-ref-name>jms/EBX_D3CommunicationQueue</resource-env-ref-name>
+		<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+	</resource-env-ref>
+
+	<!--
+		For more information, see EBX® documentation. For J2EE reference, see
+		J2EE 1.4 specification, section "J2EE.5.4.1.2 Declaration of Resource
+		Manager Connection Factory References in Deployment Descriptor".
+	-->
+	<resource-ref>
+		<description>
+			JDBC data source for EBX® Repository.
+			Attention: if the main configuration specifies the property
+			'ebx.persistence.url', then this environment entry will be
+			ignored by EBX® runtime.
+		</description>
+		<res-ref-name>jdbc/EBX_REPOSITORY</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<resource-ref>
+		<description>
+			Java Mail session used to send e-mails from EBX®.
+			Attention: if the main configuration does not set 'ebx.mail.activate'
+			to 'true', or if it specifies the property 'ebx.mail.smtp.host', then this
+			environment entry will be ignored by EBX® runtime.
+		</description>
+		<res-ref-name>mail/EBX_MAIL_SESSION</res-ref-name>
+		<res-type>javax.mail.Session</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<resource-ref>
+		<description>
+			JMS connection factory used by EBX® to create connections with
+			the JMS provider configured in the operational environment of the application server.
+			Attention: if the main configuration does not activate JMS
+			through the property 'ebx.jms.activate', then this environment entry will be
+			ignored by EBX® runtime.
+		</description>
+		<res-ref-name>jms/EBX_JMSConnectionFactory</res-ref-name>
+		<res-type>javax.jms.ConnectionFactory</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+</web-app>

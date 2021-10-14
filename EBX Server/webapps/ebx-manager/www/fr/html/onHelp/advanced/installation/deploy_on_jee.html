@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Java EE deployment</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="installation_deploy_j2ee" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=installation/deploy_on_jee.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+<h1>
+Java EE deployment</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#JEEComponents">Software components</a></li><li class="toc1"><a href="#embeddedThirdParty">Embedded third-party libraries</a></li><li class="toc1"><a href="#thirdParty">Required third-party libraries</a><ul class="toc2">
+<li class="toc2"><a href="#ebx_lz4">Data compression library</a></li><li class="toc2"><a href="#databaseDrivers">Database drivers</a></li><li class="toc2"><a href="#smtp_library">SMTP and emails</a></li><li class="toc2"><a href="#ssl">Secure Socket Layer (SSL)</a></li><li class="toc2"><a href="#jms">Java Message Service (JMS)</a></li><li class="toc2"><a href="#xmlCatalogAPI">XML Catalog API</a></li></ul>
+</li><li class="toc1"><a href="#id5">Web applications</a><ul class="toc2">
+<li class="toc2"><a href="#appsBuiltin">EBX&reg; built-in web applications</a></li><li class="toc2"><a href="#appsCustom">Custom web applications</a></li></ul>
+</li><li class="toc1"><a href="#ebx_webapp">Deployment details</a><ul class="toc2">
+<li class="toc2"><a href="#dd_intro">Introduction</a></li><li class="toc2"><a href="#id6s2">User interface and web access</a></li><li class="toc2"><a href="#dataSource">Data source of the EBX&reg; repository</a></li><li class="toc2"><a href="#smtp">Mail sessions</a></li><li class="toc2"><a href="#jms_factory">JMS connection factory</a></li><li class="toc2"><a href="#jms_dataServices">JMS for data services</a></li><li class="toc2"><a href="#jarsScanner">JAR files scanner</a></li></ul>
+</li><li class="toc1"><a href="#examples">Installation notes</a></li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p>This chapter details deployment specifications for TIBCO EBX&reg; on a Java application server. For specific information regarding supported application servers and inherent limitations, see <a href="supported_env.html">Supported environments.</a></p><h2 id="JEEComponents">
+Software components</h2>
+<p>EBX&reg; uses the following components:</p><ul>
+<li><p>Library <code>ebx.jar</code></p></li><li><p><a href="#embeddedThirdParty">Embedded</a> and <a href="#thirdParty">required</a> third-party Java libraries </p></li><li><p><a href="#appsBuiltin">EBX&reg; built-in web applications</a> and optional <a href="#appsCustom">custom web applications</a></p></li><li><p><a href="../installation/properties.html">EBX&reg; main configuration file</a></p></li><li><p><a href="../engine/repository_administration.html">EBX&reg; repository</a></p></li><li><p><a href="../engine/directory.html">Default user and roles directory</a>, integrated within the EBX&reg; repository, or a third-party system (LDAP, RDBMS) for the user authentication</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/supported_env.html">Supported environments</a></li></ul>
+</div>
+<h2 id="embeddedThirdParty">
+Embedded third-party libraries</h2>
+<p> To increase EBX&reg; independence and interoperability, it embeds its own third-party libraries. Even if some of them have been modified, preventing conflicts, others must remain unchanged since they are official Java APIs. </p><p> The ones that can produce conflicts are: </p><ul>
+<li><p>Apache Geronimo JSON</p></li><li><p>Javax Activation</p></li><li><p>Javax Annotations</p></li><li><p>Javax JSON Bind</p></li><li><p>Javax SAAJ API</p></li><li><p>Javax WS RS</p></li><li><p>Javax XML Bind</p></li></ul>
+<p>For more information regarding the versions or the details of the Third-Party Library, please refer to the: <code>TIB_ebx_6.0.1_license.pdf</code>.</p><p> Since those libraries are already integrated, custom web applications should not include them anew, otherwise linkage errors can occur. Furthermore, they should not be deployed aside from the <code>ebx.jar</code> library for the same reasons. </p><h2 id="thirdParty">
+Required third-party libraries</h2>
+<p>EBX&reg; requires several third-party Java libraries. These libraries must be deployed and be accessible from the class-loader of <code>ebx.jar</code>. Depending on the application server and the Java runtime environment being used, these libraries may already be present or may need to be added manually.</p><h3 id="ebx_lz4">
+Data compression library</h3>
+<p> The library named <code>ebx-lz4.jar</code> must be deployed separately from <code>ebx.jar</code>. It contains several compression implementations: JNI dedicated architecture libraries and Java fallbacks. It is possible to ensure optimal compression and decompression performance for EBX&reg; repository by following prerequisites. If prerequisites can not be validated, EBX&reg; will function in Java fallbacks safe or unsafe, but its performance will be degraded. The default location for <code>ebx-lz4.jar</code> library is beside <code>ebx.jar</code>. </p><p> To verify the compression implementation actually used by the EBX&reg; repository, please check the value of &#39;Compression&#39; in &#39;Administration &gt; System Information&#39;, section &#39;Repository information&#39;. It should be &#39;<code>JNI - validated</code>&#39; for optimal performance. Otherwise, it will be &#39;<code>Java[Safe|Unsafe] - validated</code>&#39; for Java fallbacks. </p><h4>
+Performance prerequisites</h4>
+<p> The JNI access is allowed to the following operating system architectures: <code>i386</code>, <code>x86</code>, <code>amd64</code>, <code>x86_64</code>, <code>aarch64</code> or <code>ppc64le</code>. To verify this value, please check the value of &#39;Operating system architecture&#39; in &#39;Administration &gt; System Information&#39;, section &#39;System information&#39;. </p><p> To enable JNI access for <code>ebx-lz4.jar</code>, the library should be loaded by the <strong>system class loader</strong> (also known as the application class loader). The deployment may be done by following the <a href="#examples">specific instructions for your application server</a>. </p><h3 id="databaseDrivers">
+Database drivers</h3>
+<p>The EBX&reg; repository requires a database. Generally, the required driver is configured along with a data source, if one is used. Depending on the database defined in the main configuration file, one of the following drivers is required. Keep in mind that, whichever database you use, the version of the JDBC client driver must be equal to or higher than the version of the database server.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>H2</p></td><td class="ebx_definitionListDefinition"><p>Version 1.3.170 validated. Any 1.3.X version should be suitable. Note that H2 is not supported in production environments.</p><p><a target="_blank" href="http://www.h2database.com/">http://www.h2database.com/</a></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Oracle JDBC</p></td><td class="ebx_definitionListDefinition"><p>Oracle database 12cR2 is validated on their latest patch set update.</p><p>Determine the driver that should be used according to the database server version and the Java runtime environment version. Download the <code>ojdbc8.jar</code> certified library with JDK 8.</p><p><a href="https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html">Oracle database JDBC drivers download</a>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>SQL Server JDBC</p></td><td class="ebx_definitionListDefinition"><p>SQL Server 2012 SP4 and greater, with all corrective and maintenance patches applied, are validated.</p><p>Remember to use an up-to-date JDBC driver, as some difficulties have been encountered with older versions.</p><p>Include the <code>mssql-jdbc-8.4.1.jre8.jar</code> or <code>mssql-jdbc-8.4.1.jre11.jar</code> library, depending on the Java runtime environment version you use.</p><p><a href="https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server#available-languages">Download Microsoft JDBC Driver 8.4.1 for SQL Server (zip)</a>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>PostgreSQL</p></td><td class="ebx_definitionListDefinition"><p>PostgreSQL 9.6 and above validated</p><p>Include the latest JDBC driver version 4.2 released for your database server and Java runtime environment.</p><p><a href="https://jdbc.postgresql.org/download.html">PostgreSQL JDBC drivers download</a>. </p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/deploy_on_jee.html#dataSource">Data source of the EBX&reg; repository</a></li><li><a href="../installation/properties.html#ebxPersistence">Configuring the EBX&reg; repository</a></li></ul>
+</div>
+<h3 id="smtp_library">
+SMTP and emails</h3>
+<p> According to the web application server being used, the library <code>JavaMail API</code> for email management may already be provided, or must be added manually. </p><p> EBX&reg; requires a library that is compatible with version 1.2 of this API. See <a href="../installation/properties.html#smtp">Activating and configuring SMTP and emails</a> for more information on the configuration. </p><p> To facilitate manual installation, the <code>javax.mail-1.5.6.jar</code> has been provided and placed under the <code>ebx.software/lib/lib-mail</code> directory. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="https://www.oracle.com/java/technologies/javamail.html">JavaMail</a></li></ul>
+</div>
+<h3 id="ssl">
+Secure Socket Layer (SSL)</h3>
+<p>These libraries are required if your web applications use SSL features.</p><ul>
+<li><p><code>jsse.jar</code>: <a href="https://www.oracle.com/java/technologies/jsse-v103-for-cdc-v102.html">https://www.oracle.com/java/technologies/jsse-v103-for-cdc-v102.html</a></p></li><li><p><code>ibmjsse.jar</code>: <a href="https://www.ibm.com/developerworks/java/jdk/security/">https://www.ibm.com/developerworks/java/jdk/security/</a></p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a></li></ul>
+</div>
+<h3 id="jms">
+Java Message Service (JMS)</h3>
+<p>When using JMS, version 1.1 or higher is required.</p><p>Depending on whether a Java EE application server or a Servlet/Java Server Pages (JSP) implementation is being used, the library required is as follows:</p><ul>
+<li><p>For an application server based on Java EE (Java Platform Enterprise Edition), the required JMS provider library is available by default. See <a href="https://www.oracle.com/java/technologies/java-ee-glance.html">https://www.oracle.com/java/technologies/java-ee-glance.html</a> for more information.</p></li><li><p>For a Servlet/Java Server Pages (JSP) implementation using Java SE (Java Platform Standard Edition), for example Apache Tomcat, a JMS provider library such as <a href="https://activemq.apache.org">Apache ActiveMQ</a> may need to be added. See <a href="https://www.oracle.com/java/technologies/java-se-glance.html">https://www.oracle.com/java/technologies/java-se-glance.html</a> for more information.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>In EBX&reg;, the supported JMS model is exclusively Point-to-Point (PTP). PTP systems allow working with queues of messages.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a></li></ul>
+</div>
+<h3 id="xmlCatalogAPI">
+XML Catalog API</h3>
+<p>A library holding the XML Catalog API, introduces by the JAVA SE 9, is required if your web applications are running over a Java Runtime Environment 8 or below, except when a WebLogic 14c application server is used. To ease the installation steps, the following library has been bundled aside from <code>ebx.jar</code>, in the <em>EBX&reg; CD</em>. </p><ul>
+<li><p><code>xml-apis-1.4.01.jar</code>, version 1.4.01, from August 20, 2011</p></li></ul>
+<p>See <a href="#examples">Installation notes</a> for more information.</p><h2 id="id5">
+Web applications</h2>
+<p>EBX&reg; provides pre-packaged EARs that can be deployed directly if your company has no custom EBX&reg; module web applications to add. If deploying custom web applications as EBX&reg; modules, it is recommended to rebuild an EAR containing the custom modules packaged at the same level as the built-in web applications.</p><p>For more information, see the note on <a href="#ear_packaging">repackaging the EBX&reg; EAR</a> at the end of this chapter.</p><h3 id="appsBuiltin">
+EBX&reg; built-in web applications</h3>
+<p>EBX&reg; includes the following built-in web applications.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Web application name</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="middle"><p><code>ebx</code></p></td><td valign="middle"><p> EBX&reg; entry point, which handles the initialization on start up. See <a href="#ebx_webapp">Deployment details</a> for more information. </p></td><td align="center" valign="middle"><p>Yes</p></td></tr>
+<tr>
+<td valign="middle"><p><code>ebx-root-1.0</code></p></td><td valign="middle"><p> EBX&reg; root web application. Any application that uses EBX&reg; requires the root web application to be deployed. </p></td><td align="center" valign="middle"><p>Yes</p></td></tr>
+<tr>
+<td valign="middle"><p><code>ebx-ui</code></p></td><td valign="middle"><p> EBX&reg; user interface web application. </p></td><td align="center" valign="middle"><p>Yes</p></td></tr>
+<tr>
+<td valign="middle"><p><code>ebx-manager</code></p></td><td valign="middle"><p> EBX&reg; user interface web application. </p></td><td align="center" valign="middle"><p>Yes</p></td></tr>
+<tr>
+<td valign="middle"><p><code>ebx-dma</code></p></td><td valign="middle"><p> EBX&reg; data model assistant, which helps with the creation of data models through the user interface. </p><p><strong>Note:</strong> The data model assistant requires the <code>ebx-manager</code> user interface web application to be deployed. </p></td><td align="center" valign="middle"><p>Yes</p></td></tr>
+<tr>
+<td valign="middle"><p><code>ebx-dataservices</code></p></td><td valign="middle"><p> EBX&reg; data services web application. Data services allow external interactions with the EBX&reg; repository using the <a href="../data_services/dataservices_execution.html">SOAP operations</a> and Web Services Description Language <a href="../data_services/dataservices_wsdl.html">WSDL generation</a> standards or using the <a href="../data_services/dataservices_rest_v1.html">Built-in RESTful services</a>. </p><p><strong>Note:</strong> The EBX&reg; web service generator requires the deployment of the <code>ebx-manager</code> user interface web application. </p></td><td align="center" valign="middle"><p>Yes</p></td></tr>
+</tbody>
+</table>
+<h3 id="appsCustom">
+Custom web applications</h3>
+<p>It is possible to extend and customize the behavior of EBX&reg; by deploying custom web applications which conform to the EBX&reg; module requirements.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/modules_packaging.html">Packaging TIBCO EBX&reg; modules</a></li><li><a href="../installation/properties.html#undeployedModules">Declaring modules as undeployed</a></li></ul>
+</div>
+<h2 id="ebx_webapp">
+Deployment details</h2>
+<h3 id="dd_intro">
+Introduction</h3>
+<p>This section describes the various options available to deploy the &#39;<code>ebx</code>&#39; web application. These options are available in its deployment descriptor (<code>WEB-INF/web.xml</code>) and are complemented by the properties defined in the main configuration file.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>For JBoss application servers, any unused resources must be removed from the <code>WEB-INF/web.xml</code> deployment descriptor.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a></li><li><a href="../installation/supported_env.html#applicationServers">Supported application servers</a></li></ul>
+</div>
+<h3 id="id6s2">
+User interface and web access</h3>
+<p>The web application &#39;<code>ebx</code>&#39; (packaged as <code>ebx.war</code>) contains the servlet <code>FrontServlet</code>, which handles the initialization and serves as the sole user interface entry point for the EBX&reg; web tools.</p><h4>
+Configuring the deployment descriptor for &#39;FrontServlet&#39;</h4>
+<p>In the file <code>WEB-INF/web.xml</code> of the web application &#39;<code>ebx</code>&#39;, the following elements must be configured for <code>FrontServlet</code>:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>/web-app/servlet/load-on-startup</code></p></td><td class="ebx_definitionListDefinition"><p>To ensure that <code>FrontServlet</code> initializes upon EBX&reg; start up, the <code>web.xml</code> deployment descriptor must specify the element <code>&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</code>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>/web-app/servlet-mapping/url-pattern</code></p></td><td class="ebx_definitionListDefinition"><p><code>FrontServlet</code> must be mapped to the path &#39;<code>/</code>&#39;.</p></td></tr>
+</table>
+<h4>
+Configuring the application server for &#39;FrontServlet&#39;</h4>
+<ul>
+<li><p><code>FrontServlet</code> must be authorized to access other contexts, such as <code>ServletContext</code>.</p><p>For example, on Tomcat, this configuration is performed using the attribute <code>crossContext</code> in the configuration file <code>server.xml</code>, as follows: </p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;Context path="/ebx" docBase="(...)" crossContext="true"/>
+</pre>
+</li><li><p>When several EBX&reg; Web Components are to be displayed on the same HTML page, for instance using iFrames, it may be required to disable the management of cookies due to limitations present in some Internet browsers.</p><p>For example, on Tomcat, this configuration is provided by the attribute <code>cookies</code> in the configuration file <code>server.xml</code>, as follows:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;Context path="/ebx" docBase="(...)" cookies="false"/>
+</pre>
+</li></ul>
+<h3 id="dataSource">
+Data source of the EBX&reg; repository</h3>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the EBX&reg; main configuration specifies the property <code>ebx.persistence.url</code>, then the environment entry below will be ignored by EBX&reg; runtime. This option is only provided for convenience; it is always recommended to use a fully-configurable datasource. In particular, the size of the connection pool must be set according to the number of concurrent users. See <a href="../installation/properties.html#ebxPersistence">Configuring the EBX&reg; repository</a> for more information on this property.</p></div>
+<p>The JDBC datasource for EBX&reg; is specified in the deployment descriptor <code>WEB-INF/web.xml</code> of the &#39;<code>ebx</code>&#39; web application as follows:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Reserved resource name</strong></p></th><th valign="top"><p><strong>Default JNDI name</strong></p></th><th valign="top"><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>jdbc/EBX_REPOSITORY</code></p></td><td valign="top"><p>Weblogic: <code>EBX_REPOSITORY</code></p><p>JBoss: <code>java:/EBX_REPOSITORY</code></p></td><td valign="top"><p>JDBC data source for EBX&reg; Repository.</p><p>Java type: <code>javax.sql.DataSource</code></p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#ebxPersistence">Configuring the EBX&reg; repository</a></li><li><a href="../engine/repository_administration.html#privileges">Rules for the database access and user privileges</a></li></ul>
+</div>
+<h3 id="smtp">
+Mail sessions</h3>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the EBX&reg; main configuration does not set <code>ebx.mail.activate</code> to &#39;true&#39;, or if it specifies the property <code>ebx.mail.smtp.host</code>, then the environment entry below will be ignored by EBX&reg; runtime. See <a href="../installation/properties.html#smtp">SMTP</a> in the EBX&reg; main configuration properties for more information on these properties.</p></div>
+<p>SMTP and email is declared in the deployment descriptor <code>WEB-INF/web.xml</code> of the &#39;<code>ebx</code>&#39; web application as follows:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Reserved resource name</strong></p></th><th valign="top"><p><strong>Default JNDI name</strong></p></th><th valign="top"><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>mail/EBX_MAIL_SESSION</code></p></td><td valign="top"><p>Weblogic: <code>EBX_MAIL_SESSION</code></p><p>JBoss: <code>java:/EBX_MAIL_SESSION</code></p></td><td valign="top"><p>Java Mail session used to send emails from EBX&reg;.</p><p>Java type: <code>javax.mail.Session</code></p></td></tr>
+</tbody>
+</table>
+<h3 id="jms_factory">
+JMS connection factory</h3>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the EBX&reg; main configuration does not activate JMS through the property <code>ebx.jms.activate</code>, the environment entry below will be ignored by the EBX&reg; runtime. See <a href="../installation/properties.html#jms">JMS</a> in the EBX&reg; main configuration properties for more information on this property.</p></div>
+<p>The JMS connection factory is declared in the deployment descriptor <code>WEB-INF/web.xml</code> of the &#39;<code>ebx</code>&#39; web application as follows:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Reserved resource name</strong></p></th><th valign="top"><p><strong>Default JNDI name</strong></p></th><th valign="top"><p><strong>Description</strong></p></th><th valign="top"><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>jms/EBX_JMSConnectionFactory</code></p></td><td valign="top"><p>Weblogic: <code>EBX_JMSConnectionFactory</code></p><p>JBoss: <code>java:/EBX_JMSConnectionFactory</code></p></td><td valign="top"><p>JMS connection factory used by EBX&reg; to create connections with the JMS provider configured in the operational environment of the application server.</p><p>Java type: <code>javax.jms.ConnectionFactory</code></p></td><td valign="top"><p>Yes</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>For deployment on WildFly, JBoss and WebLogic application servers with JNDI capabilities, you must update <code>EBX.ear</code> or <code>EBXForWebLogic.ear</code> for additional mappings of all required resource names to JNDI names.</p></div>
+<h3 id="jms_dataServices">
+JMS for data services</h3>
+<p>To configure data services to use JMS instead of the default HTTP, you must configure the <a href="#jms_factory">JMS connection factory</a> and the following queues, declared in the <code>WEB-INF/web.xml</code> deployment descriptor of the &#39;<code>ebx</code>&#39; web application. This is the only method for configuring JMS for data services.</p><p>When a SOAP request is received, the SOAP response is optionally returned if the header field <code>JMSReplyTo</code> is defined. If so, the fields <code>JMSCorrelationID</code> and <code>JMSType</code> are retained.</p><p>See <a href="../installation/properties.html#jms">JMS</a> for more information on the associated EBX&reg; main configuration properties.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the EBX&reg; main configuration does not activate JMS through the property <code>ebx.jms.activate</code>, then the environment entries below will be ignored by EBX&reg; runtime. See <a href="../installation/properties.html#jms">JMS</a> in the EBX&reg; main configuration properties for more information on this property.</p></div>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Reserved resource name</strong></p></th><th valign="top"><p><strong>Default JNDI name</strong></p></th><th valign="top"><p><strong>Description</strong></p></th><th valign="top"><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>jms/EBX_QueueIn</code></p></td><td valign="top"><p>Weblogic: <code>EBX_QueueIn</code></p><p>JBoss: <code>java:/jms/EBX_QueueIn</code></p></td><td valign="top"><p>JMS queue for incoming SOAP requests sent to EBX&reg; by other applications.</p><p>Java type: <code>javax.jms.Queue</code></p></td><td valign="top"><p>No</p></td></tr>
+<tr>
+<td valign="top"><p><code>jms/EBX_QueueFailure</code></p></td><td valign="top"><p>Weblogic: <code>EBX_QueueFailure</code></p><p>JBoss: <code>java:/jms/EBX_QueueFailure</code></p></td><td valign="top"><p>JMS queue for failures. It contains incoming SOAP requests for which an error has occurred. This allows replaying these messages if necessary.</p><p>Java type: <code>javax.jms.Queue</code></p><p><strong>Note:</strong> For this property to be read, the main configuration must also activate the queue for failures through the property <code>ebx.jms.activate.queueFailure</code>. See <a href="../installation/properties.html#jms">JMS</a> in the EBX&reg; main configuration properties for more information on these properties.</p></td><td valign="top"><p>No</p></td></tr>
+</tbody>
+</table>
+<h3 id="jarsScanner">
+JAR files scanner</h3>
+<p>To speed up the web applications server startup, the JAR files scanner configuration should be modified to exclude, at least, the <code>ebx.jar</code> and <code>ebx-addons.jar</code> libraries.</p><p>For example, on Tomcat, this should be performed in the <code>tomcat.util.scan.DefaultJarScanner.jarsToSkip</code> property from the <code>catalina.properties</code> file.</p><h2 id="examples">
+Installation notes</h2>
+<p>EBX&reg; can be deployed on any Java EE application server that supports Servlet 3.0 up to 5.0 except. The following documentation on Java EE deployment and installation notes are available:</p><ul>
+<li><p><a href="../deployment_examples/jbosseap7_1.html">Installation note for JBoss EAP 7.1.x</a></p></li><li><p><a href="../deployment_examples/tomcat9.html">Installation note for Tomcat 9.x</a></p></li><li><p><a href="../deployment_examples/websphere9.html">Installation note for WebSphere AS 9</a></p></li><li><p><a href="../deployment_examples/weblogic14c.html">Installation note for WebLogic 14c</a></p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>The EBX&reg; installation notes on Java EE application servers do not replace the native documentation for each application server.</p></li><li><p>These are <em>not</em> general installation recommendations, as the installation process is determined by architectural decisions, such as the technical environment, application mutualization, delivery process, and organizational decisions.</p></li><li><p id="ear_packaging">In these examples, no additional EBX&reg; modules are deployed. To deploy additional modules, the best practice is to rebuild an EAR with the module as a web application at the same level as the other EBX&reg; modules. The web application must declare its class path dependency as specified by the Java™ 2 Platform Enterprise Edition Specification, v1.4:</p><blockquote><p><em><strong>J2EE.8.2 Optional Package Support</strong></em></p><p><em>(...)</em></p><p><em>A JAR format file (such as a JAR file, WAR file, or RAR file) can reference a JAR file by naming the referenced JAR file in a Class-Path header in the Manifest file of the referencing JAR file. The referenced JAR file is named using a URL relative to the URL of the referencing JAR file. The Manifest file is named META-INF/MANIFEST.MF in the JAR file. The Class-Path entry in the Manifest file is of the form:</em></p><p><em><code>Class-Path: list-of-jar-files-separated-by-spaces</code></em></p></blockquote><p>In an &quot;industrialized&quot; process, it is strongly recommended to develop a script that automatically builds the EAR, with the custom EBX&reg; modules, the EBX&reg; web applications, as well as all the required shared libraries.</p></li><li><p>In order to avoid unpredictable behavior, the guideline to follow is to avoid any duplicates of <code>ebx.jar</code> or other libraries in the class-loading system.</p></li><li><p> In case of deployment on Oracle WebLogic server, please refer to the <a href="../models/modules_packaging.html#structure">Module structure</a> section. </p></li></ul>
+</p></div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

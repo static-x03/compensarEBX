@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - D3 JMS Configuration</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="d3_jms_config" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/d3_jms_config.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+<h1>
+D3 JMS Configuration</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#jms_d3">JMS for distributed data delivery (D3)</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Common declarations on primary and replica nodes (for shared queues)</a></li><li class="toc2"><a href="#id1s2">Optional declarations on primary nodes (for replica-specific queues)</a></li><li class="toc2"><a href="#id1s3">Examples of JMS configuration</a></li></ul>
+</li></ul>
+</div>
+<h2 id="jms_d3">
+JMS for distributed data delivery (D3)</h2>
+<p>To configure D3 to use JMS instead of the default HTTP and TCP protocols, you must configure the <a href="../installation/deploy_on_jee.html#jms_factory">JMS connection factory</a> and the following queues declared in the <code>WEB-INF/web.xml</code> deployment descriptor of the &#39;<code>ebx</code>&#39; web application.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the TIBCO EBX&reg; main configuration does not activate JMS and D3 (&#39;slave&#39;, &#39;hub&#39; or &#39;master&#39; node) through the properties <code>ebx.d3.mode</code>, <code>ebx.jms.activate</code> and <code>ebx.jms.d3.activate</code>, then the environment entries below will be ignored by EBX&reg; runtime. See <a href="../installation/properties.html#jms">JMS</a> and <a href="../installation/properties.html#jms">Distributed data delivery (D3)</a> in the EBX&reg; main configuration properties for more information on these properties.</p></div>
+<h3 id="id1s1">
+Common declarations on primary and replica nodes (for shared queues)</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Reserved resource name</strong></p></th><th valign="top"><p><strong>Default JNDI name</strong></p></th><th valign="top"><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>jms/EBX_D3MasterQueue</code></p></td><td valign="top"><p>Weblogic: <code>EBX_D3MasterQueue</code></p><p>JBoss: <code>java:/jms/EBX_D3MasterQueue</code></p></td><td valign="top"><p>D3 primary JMS queue (only for D3 mode &#39;slave&#39; or &#39;hub&#39;). It specifies the queue name used to send SOAP requests to the D3 primary node. The message producer sets the primary node repository ID as a value of the header field <code>JMSType</code>.</p><p>Java type: <code>javax.jms.Queue</code></p></td></tr>
+<tr>
+<td valign="top"><p><code>jms/EBX_D3ReplyQueue</code></p></td><td valign="top"><p>Weblogic: <code>EBX_D3ReplyQueue</code></p><p>JBoss: <code>java:/jms/EBX_D3ReplyQueue</code></p></td><td valign="top"><p>D3 Reply JMS queue (for all D3 modes except the &#39;single&#39; mode). It specifies the name of the reply queue for receiving SOAP responses. The consumption is filtered using the header field <code>JMSCorrelationID</code>.</p><p>Java type: <code>javax.jms.Queue</code></p></td></tr>
+<tr>
+<td valign="top"><p><code>jms/EBX_D3ArchiveQueue</code></p></td><td valign="top"><p>Weblogic: <code>EBX_D3ArchiveQueue</code></p><p>JBoss: <code>java:/jms/EBX_D3ArchiveQueue</code></p></td><td valign="top"><p>D3 JMS Archive queue (for all D3 modes except the &#39;single&#39; mode). It specifies the name of the transfer archive queue used by the D3 node. The consumption is filtered using the header field <code>JMSCorrelationID</code>. If the archive weight is higher than the threshold specified in the property <code>ebx.jms.d3.archiveMaxSizeInKB</code>, the archive will be divided into several sequences. Therefore, the consumption is filtered using the header fields <code>JMSXGroupID</code> and <code>JMSXGroupSeq</code> instead.</p><p>Java type: <code>javax.jms.Queue</code></p></td></tr>
+<tr>
+<td valign="top"><p><code>jms/EBX_D3CommunicationQueue</code></p></td><td valign="top"><p>WebLogic: <code>EBX_D3CommunicationQueue</code></p><p>JBoss: <code>java:/jms/EBX_D3CommunicationQueue</code></p></td><td valign="top"><p>D3 JMS Communication queue (for all D3 modes except &#39;single&#39; mode). It specifies the name of the communication queue where the requests are received. The consumption is filtered using the header field <code>JMSType</code> which corresponds to the current repository ID.</p><p>Java type: <code>javax.jms.Queue</code></p></td></tr>
+</tbody>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>These JNDI names are set by default, but can be modified inside the web application archive <code>ebx.war</code>, included in <code>EBXForWebLogic.ear</code> (if using Weblogic) or in <code>EBX.ear</code> (if using JBoss, Websphere or other application servers).</p></div>
+<h3 id="id1s2">
+Optional declarations on primary nodes (for replica-specific queues)</h3>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Used for ascending compatibility prior to 5.5.0 or for mono-directional queues topology.</p></div>
+<p>The deployment descriptor of the primary node must be manually modified by declaring specific communication and archive queues for each replica node. It consists in adding resource names in &#39;web.xml&#39; inside &#39;ebx.war&#39;. The replica-specific node queues can be used by one or more replica nodes.</p><p>Resources can be freely named, but the physical names of their associated queue must correspond to the definition of replica nodes for resources <code>jms/EBX_D3ArchiveQueue</code> and <code>jms/EBX_D3CommunicationQueue</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Physical queue names matching: on registration, the replica node sends the communication and archive physical queue names. These queues are matched by physical queue name among all resources declared on the primary node. If unmatched, the registration fails.</p></div>
+<h3 id="id1s3">
+Examples of JMS configuration</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p></p></th><th valign="top"><p><strong>Shared queues</strong></p></th><th valign="top"><p><strong>Specific queues</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><strong>Primary-Replica nodes architecture</strong></p></td><td valign="top"><p><a href="#jms_schema_master_slave_shared">Between a primary node and two replica nodes with shared queues</a></p></td><td valign="top"><p><a href="#jms_schema_master_slave_specific">Between a primary node and a replica node with replica-specific queues</a></p></td></tr>
+<tr>
+<td valign="top"><p><strong>Hub-Hub architecture</strong></p></td><td valign="top"><p><a href="#jms_schema_hub_hub_shared">Between two hub nodes with shared queues</a></p></td><td valign="top"><p><a href="#jms_schema_hub_hub_specific">Between two hub nodes with replica-specific queues</a></p></td></tr>
+</tbody>
+</table>
+<h4 id="jms_schema_master_slave_shared">
+Between a primary node and two replica nodes with shared queues</h4>
+<p align="center"><img alt="/D3_JMS_configuration_master-slave_shared.png" src="../resources/images/d3/D3_JMS_configuration_master-slave_shared.png"></img></p><p></p><h4 id="jms_schema_master_slave_specific">
+Between a primary node and a replica node with replica-specific queues</h4>
+<p align="center"><img alt="/D3_JMS_configuration_master-slave_specific.png" src="../resources/images/d3/D3_JMS_configuration_master-slave_specific.png"></img></p><p></p><h4 id="jms_schema_hub_hub_shared">
+Between two hub nodes with shared queues</h4>
+<p align="center"><img alt="/D3_JMS_configuration_hub-hub_shared.png" src="../resources/images/d3/D3_JMS_configuration_hub-hub_shared.png"></img></p><p></p><h4 id="jms_schema_hub_hub_specific">
+Between two hub nodes with replica-specific queues</h4>
+<p align="center"><img alt="/D3_JMS_configuration_hub-hub_specific.png" src="../resources/images/d3/D3_JMS_configuration_hub-hub_specific.png"></img></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Distributed Data Delivery (D3)</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

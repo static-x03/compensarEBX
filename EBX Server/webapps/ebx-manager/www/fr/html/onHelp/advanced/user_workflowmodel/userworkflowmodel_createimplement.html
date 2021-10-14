@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Mod&eacute;lisation du workflow</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="wm_wm" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de workflow</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_workflowmodel/userworkflowmodel_createimplement.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+<h1>
+Mod&eacute;lisation du workflow</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#creation">Cr&eacute;ation d&#39;un mod&egrave;le de workflow</a></li><li class="toc1"><a href="#step">Impl&eacute;mentation des &eacute;tapes</a><ul class="toc2">
+<li class="toc2"><a href="#progressStrategy">Strat&eacute;gie d&#39;avancement de l&#39;&eacute;tape suivante</a></li><li class="toc2"><a href="#hiddenInGraphicalView">Masqu&eacute;e dans la vue graphique</a></li></ul>
+</li><li class="toc1"><a href="#step_user">T&acirc;che utilisateur</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Mode</a></li><li class="toc2"><a href="#id3s2">Liste de profils</a></li><li class="toc2"><a href="#id3s3">Service</a></li><li class="toc2"><a href="#termination">Configuration</a></li></ul>
+</li><li class="toc1"><a href="#step_script">T&acirc;che autonome</a><ul class="toc2">
+<li class="toc2"><a href="#workflow.scriptTask.library">Script de la biblioth&egrave;que</a></li><li class="toc2"><a href="#id4s2">Scripts sp&eacute;cifiques</a></li></ul>
+</li><li class="toc1"><a href="#step_condition">Conditions</a><ul class="toc2">
+<li class="toc2"><a href="#workflow.condition.library">Condition de la biblioth&egrave;que</a></li><li class="toc2"><a href="#id5s2">Conditions sp&eacute;cifiques</a></li></ul>
+</li><li class="toc1"><a href="#subworkflows">Appels &agrave; des sous-workflows</a></li><li class="toc1"><a href="#waitTasks">T&acirc;ches d&#39;attente</a></li><li class="toc1"><a href="#workflowdiagram">Visualisation du diagramme de workflow</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">A propos</a></li><li class="toc2"><a href="#actions">Actions</a></li><li class="toc2"><a href="#view">Vue</a></li><li class="toc2"><a href="#buttons">Boutons</a></li><li class="toc2"><a href="#id8s5">Edit</a></li><li class="toc2"><a href="#features">Fonctionnalit&eacute;s</a></li></ul>
+</li></ul>
+</div>
+<h2 id="creation">
+Cr&eacute;ation d&#39;un mod&egrave;le de workflow</h2>
+<p>Un mod&egrave;le de workflow peut &ecirc;tre cr&eacute;&eacute; &agrave; partir de la section &#39;Mod&egrave;le de workflow&#39;. La seule information requise &agrave; la cr&eacute;ation est un nom de mod&egrave;le unique dans le r&eacute;f&eacute;rentiel.</p><p>Les &eacute;tapes du mod&egrave;le de workflow sont initialis&eacute;es avec une transition initiale. Pour impl&eacute;menter le mod&egrave;le de workflow, il faut d&eacute;finir la s&eacute;quence des &eacute;tapes qui suivent cette transition initiale.</p><h2 id="step">
+Impl&eacute;mentation des &eacute;tapes</h2>
+<p>Un mod&egrave;le de workflow d&eacute;finit des &eacute;tapes correspondant &agrave; des op&eacute;rations et des conditions. Les &eacute;tapes possibles sont les suivantes :</p><ul>
+<li><p>T&acirc;che utilisateur</p></li><li><p>T&acirc;che automatique</p></li><li><p>Condition</p></li><li><p>Appel &agrave; des sous-workflows</p></li><li><p>T&acirc;che d&#39;attente</p></li></ul>
+<p id="datacontext">Un contexte de donn&eacute;es est li&eacute; &agrave; chaque workflow de donn&eacute;es. Ce contexte de donn&eacute;es peut &ecirc;tre utilis&eacute; pour d&eacute;finir des variables, qui pourront &ecirc;tre utilis&eacute;es en entr&eacute;e et/ou en sortie dans les diff&eacute;rentes &eacute;tapes du workflow.</p><h3 id="progressStrategy">
+Strat&eacute;gie d&#39;avancement de l&#39;&eacute;tape suivante</h3>
+<p>Pour chaque type d&#39;&eacute;tape (sauf les t&acirc;ches utilisateurs &agrave; multi bons de travail), une propri&eacute;t&eacute; est disponible pour pr&eacute;ciser la strat&eacute;gie d&#39;avancement pour l&#39;&eacute;tape suivante. A la terminaison de l&#39;&eacute;tape, cette strat&eacute;gie est &eacute;valu&eacute;e pour conditionner la navigation lors de l&#39;ex&eacute;cution du workflow. Par d&eacute;faut, la strat&eacute;gie d&#39;avancement est &#39;Afficher la table des bons de travail&#39;. Dans ce cas, apr&egrave;s l&#39;ex&eacute;cution de l&#39;&eacute;tape, la table des bons de travail est automatiquement affich&eacute;e pour s&eacute;lectionner le prochain bon de travail &agrave; ouvrir. </p><p>Une autre strat&eacute;gie est disponible&nbsp;:&nbsp;&#39;Ouvrir automatiquement l&#39;&eacute;tape suivante&#39;. Cette strat&eacute;gie permet &agrave; l&#39;utilisateur de garder la main sur ce workflow et d&#39;ex&eacute;cuter directement l&#39;&eacute;tape suivante. Si, &agrave; la suite de cette ex&eacute;cution, un bon de travail est atteint et que l&#39;utilisateur connect&eacute; peut le d&eacute;marrer, le bon de travail est automatiquement ouvert (si plusieurs bons de travail sont atteints, le premier cr&eacute;&eacute; est ouvert). Sinon, la strat&eacute;gie d&#39;avancement de l&#39;&eacute;tape suivante est &eacute;valu&eacute;e. Si aucun bon de travail n&#39;est finalement atteint, la table des bons de travail est affich&eacute;e. </p><p>Cette strat&eacute;gie est pr&eacute;conis&eacute;e pour ex&eacute;cuter plusieurs &eacute;tapes &agrave; la suite sans repasser par la corbeille de t&acirc;ches. </p><p>Il existe actuellement plusieurs limitations qui font que cette strat&eacute;gie peut &ecirc;tre ignor&eacute;e. Dans ce cas, la table des bons de travail est automatiquement affich&eacute;e. Le cas o&ugrave; cette propri&eacute;t&eacute; est ignor&eacute;e est le suivant&nbsp;:&nbsp;si l&#39;&eacute;tape courante est une t&acirc;che utilisateur avec plus d&#39;un bon de travail. </p><p>Dans le cas des conditions, deux autres strat&eacute;gies sont propos&eacute;es : &#39;Si vrai, ouvrir automatiquement l&#39;&eacute;tape suivante&#39; et &#39;Si faux, ouvrir automatiquement l&#39;&eacute;tape suivante&#39;. Ces strat&eacute;gies permettent de conditionner la strat&eacute;gie &agrave; appliquer en fonction du r&eacute;sultat de la condition. </p><p> Dans le cas des appels sous-workflows, une propri&eacute;t&eacute; d&eacute;di&eacute;e &quot;Sous-workflow de premier plan&quot; est disponible pour la strat&eacute;gie d&#39;avancement. Pour la strat&eacute;gie d&#39;avancement &quot;Ouvrir automatiquement le prochain bon de travail&quot;, un sous-workflow de premier plan doit &ecirc;tre s&eacute;lectionn&eacute;. Seuelemnt les t&acirc;ches de ce sous-workflow de premier plan et leurs strat&eacute;gies d&#39;avancement seront &eacute;valu&eacute;es. Veuillez noter les r&egrave;gles sp&eacute;cifiques de la propri&eacute;t&eacute; sous-workflow de premier plan. </p><ul>
+<li><p> Si un seul sous-workflow est deploy&eacute;, il sera automatiquement consid&eacute;r&eacute; comme premier plan, </p></li><li><p> La propri&eacute;t&eacute; de sous-workflow de premier plan sera ignor&eacute; si l&#39;&eacute;tape pr&eacute;c&eacute;dante n&#39;a pas sa strat&eacute;gie d&#39;avancement d&eacute;finit sur &quot;Ouvrir automatiquement le prochain bon de travail&quot;, </p></li><li><p> When all the sub-workflow are completed, and if the last completed sub-workflow is the foreground one, then the progress strategy defined on the sub-workflow invocation step is evaluated: if the progress strategy is « automatically open the next step », the next step can be opened without displaying the inbox. In all cases, the progress strategy of the last step of the sub-workflow is always ignored. Quand tous les sous-workflows sont temrin&eacute;s et que le dernier compl&eacute;t&eacute; est celui de premier plan, dans ce cas, la strat&eacute;gie d&#39;avancement de l&#39;appel sous-workflow sera &eacute;valu&eacute;e: si la strat&eacute;gie est &quot;Ouvrir automatiquement le prochain bon de travail&quot;, la prochaine &eacute;tape sera ouverte au lieu d&#39;ouvrir la corbeille. Dans tous les cas, la strat&eacute;gie d&#39;avancement de la derni&egrave;re &eacute;tape du sous-workflow sera ignor&eacute;e. </p></li></ul>
+<h3 id="hiddenInGraphicalView">
+Masqu&eacute;e dans la vue graphique</h3>
+<p>Pour chaque type d&#39;&eacute;tat, une propri&eacute;t&eacute; est disponible pour d&eacute;finir quelles &eacute;tapes doivent &ecirc;tre masqu&eacute;es dans la vue graphique de workflow par d&eacute;faut.</p><p>Si cette propri&eacute;t&eacute; est activ&eacute;e, l&#39;&eacute;tape sera automatiquement masqu&eacute;e dans la vue graphique de workflow pour les utilisateurs non-administrateurs (ni administrateurs built-in, ni administrateurs de workflow). </p><h2 id="step_user">
+T&acirc;che utilisateur</h2>
+<p>Une t&acirc;che utilisateur est une &eacute;tape qui n&eacute;cessite une action de la part d&#39;un utilisateur humain. Son libell&eacute; et sa description peuvent &ecirc;tre localis&eacute;s.</p><h3 id="id3s1">
+Mode</h3>
+<p> Pour des raisons de compatibilit&eacute; ascendante, deux modes de t&acirc;che utilisateur sont disponibles&nbsp;:&nbsp;le mode par d&eacute;faut et le mode de compatibilit&eacute;. </p><p>Dans le mode par d&eacute;faut, une t&acirc;che utilisateur g&eacute;n&egrave;re un seul bon de travail. Ce mode propose d&#39;avantage de fonctionnalit&eacute;s, comme proposer un bon de travail &agrave; une liste de profils, ou afficher les avatars directement dans la vue graphique de workflow.</p><p>Dans le mode de compatibilit&eacute;, une t&acirc;che utilisateur peut g&eacute;n&eacute;rer plusieurs bons de travail.</p><p> Par d&eacute;faut, le service de cr&eacute;ation de t&acirc;che utilisateur est masqu&eacute; en mode compatiblit&eacute;. Pour l&#39;afficher, il faut activer une propri&eacute;t&eacute; dans le fichier <code>ebx.properties</code>. Pour plus d&#39;informations, voir <a href="../installation/properties.html#ebx.workflow.userTask.legacyMode.activation">Disabling user task legacy mode</a>. </p><h3 id="id3s2">
+Liste de profils</h3>
+<p>La d&eacute;finition des profils d&#39;une t&acirc;che utilisateur varie en fonction du mode de la t&acirc;che utilisateur.</p><h4 id="step_user_offeredToList">
+[Mode par d&eacute;faut] Propos&eacute;e aux profils suivants</h4>
+<p>Les profils d&eacute;finis sont les r&ocirc;les ou les utilisateurs auxquels la t&acirc;che utilisateur est propos&eacute;e. Lors de l&#39;ex&eacute;cution de la t&acirc;che utilisateur, un seul bon de travail est g&eacute;n&eacute;r&eacute;. Si un seul utilisateur est d&eacute;fini, le bon de travail est automatiquement allou&eacute; &agrave; cet utilisateur. Si un r&ocirc;le est d&eacute;fini, le bon de travail est propos&eacute; aux membres du r&ocirc;le. Si plusieurs utilisateurs et r&ocirc;les sont d&eacute;finis, le bon de travail est propos&eacute; &agrave; la fois &agrave; ces utilisateurs et aux membres de ces r&ocirc;les.</p><h4>
+[Mode de compatibilit&eacute;] Participants</h4>
+<p>Les participants sont les r&ocirc;les ou les utilisateurs auxquels la t&acirc;che utilisateur est destin&eacute;e. Par d&eacute;faut, lors de l&#39;ex&eacute;cution de la t&acirc;che utilisateur, un bon de travail est g&eacute;n&eacute;r&eacute; par profil. Si un profil est un utilisateur, le bon de travail est automatiquement allou&eacute; &agrave; cet utilisateur. Si un profil est un r&ocirc;le, le bon de travail est propos&eacute; aux membres du r&ocirc;le.</p><h4>
+For more information</h4>
+<div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="#extension">Extension</a></li></ul>
+</div>
+<h3 id="id3s3">
+Service</h3>
+<p>TIBCO EBX&reg; propose les services pr&eacute;d&eacute;finis suivants :</p><ul>
+<li><p>Acc&eacute;der &agrave; des donn&eacute;es</p></li><li><p>Acc&eacute;der &agrave; l&#39;interface de fusion des espace de donn&eacute;es</p></li><li><p>Acc&eacute;der &agrave; un espace de donn&eacute;es</p></li><li><p>Comparer deux contenus</p></li><li><p>Cr&eacute;er un nouvel enregistrement</p></li><li><p>Dupliquer un enregistrement</p></li><li><p>Exporter les donn&eacute;es depuis une table au format CSV</p></li><li><p>Exporter les donn&eacute;es depuis une table au format XML</p></li><li><p>Fusionner un espace de donn&eacute;es</p></li><li><p>Importer les donn&eacute;es dans une table depuis un fichier CSV</p></li><li><p>Importer les donn&eacute;es dans une table depuis un fichier XML</p></li><li><p>Valider un espace de donn&eacute;es, une image ou un jeu de donn&eacute;es</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../references/builtin.html">Services pr&eacute;d&eacute;finis de EBX&reg;</a></li></ul>
+</div>
+<h3 id="termination">
+Configuration</h3>
+<h4 id="enableReject">
+Options g&eacute;n&eacute;rales &gt; Rejet activ&eacute;</h4>
+<p>Par d&eacute;faut, seulement l&#39;action <em>accepter</em> est propos&eacute;e &agrave; l&#39;utilisateur lorsqu&#39;il enregistre sa d&eacute;cision.</p><p>Il est possible d&#39;activer l&#39;action &#39;rejeter&#39; en positionnant ce champ &agrave; &#39;Oui&#39;.</p><h4 id="enableConfirmationRequest">
+Options g&eacute;n&eacute;rales &gt; Demande de confirmation activ&eacute;e</h4>
+<p>Par d&eacute;faut, quand un utilisateur enregistre sa d&eacute;cision en cliquant sur le bouton &#39;Accepter&#39; ou &#39;Rejeter&#39;, une demande de confirmation est affich&eacute;e.</p><p>Il est possible de d&eacute;sactiver cette demande de confirmation de la d&eacute;cision en positionnant ce champ &agrave; &#39;Non&#39;.</p><h4 id="commentsEnabled">
+Options g&eacute;n&eacute;rales &gt; Activation des commentaires</h4>
+<p>Par d&eacute;faut, les commentaires sont activ&eacute;s. Lorsqu&#39;un bon de travail est ouvert, un bouton &#39;Commentaires&#39; est affich&eacute; et permet &agrave; l&#39;utilisateur de saisir un commentaire.</p><p>Il est possible de masquer ce bouton &#39;Commentaires&#39; en positionnant cette propri&eacute;t&eacute; &agrave; <em>Non</em>.</p><h4 id="commentsRequired">
+Options g&eacute;n&eacute;rales &gt; Caract&egrave;re obligatoire du commentaire</h4>
+<p>Par d&eacute;faut, le commentaire associ&eacute; &agrave; un bon de travail est optionnel.</p><p>Il est possible de forcer l&#39;utilisateur &agrave; saisir un commentaire avant d&#39;enregistrer sa d&eacute;cision en positionnant ce champ sur le comportement attendu&nbsp;:&nbsp;&#39;toujours obligatoire&#39;, &#39;obligatoire seulement si le bon de travail a &eacute;t&eacute; accept&eacute;&#39; ou &#39;obligatoire seulement si le bon de travail a &eacute;t&eacute; rejet&eacute;&#39;.</p><h4 id="customizedLabels">
+Options g&eacute;n&eacute;rales &gt; Libell&eacute;s personnalis&eacute;s</h4>
+<p>Durant l&#39;ex&eacute;cution des t&acirc;ches utilisateur, l&#39;utilisateur peut accepter ou rejeter son bon de travail en cliquant sur le bouton correspondant. Dans la mod&eacute;lisation de workflow, il est possible pour certaines t&acirc;ches utilisateur de d&eacute;finir un libell&eacute; et un message de confirmation personnalis&eacute;s pour ces boutons. Cette fonctionnalit&eacute; est particuli&egrave;rement utile pour ajouter une signification particuli&egrave;re &agrave; l&#39;action d&#39;accepter ou rejeter un bon de travail. </p><h4>
+[Mode de compatibilit&eacute;] Terminaison &gt; Crit&egrave;re de fin de t&acirc;che</h4>
+<p> Une t&acirc;che utilisateur peut &ecirc;tre assign&eacute;e &agrave; plusieurs <em>participants</em> et g&eacute;n&eacute;rer plusieurs bons de travail durant l&#39;ex&eacute;cution du workflow. Lors de la d&eacute;finition d&#39;une t&acirc;che utilisateur dans le mod&egrave;le de workflow, il est possible de s&eacute;lectionner un des crit&egrave;res pr&eacute;d&eacute;finis qui d&eacute;terminent quand une t&acirc;che utilisateur est termin&eacute;e, en se basant sur le statut des bons de travail associ&eacute;s. Lorsque la condition de sortie de la t&acirc;che utilisateur sera remplie, le workflow de donn&eacute;es avancera jusqu&#39;&agrave; l&#39;&eacute;tape suivante d&eacute;finie dans le mod&egrave;le. </p><p> Par exemple, pour le cas d&#39;une t&acirc;che utilisateur qui demande la validation de l&#39;enregistrement d&#39;un produit, il est possible de d&eacute;signer trois participants. Le crit&egrave;re de fin de t&acirc;che permet de pr&eacute;ciser si l&#39;enregistrement du produit doit &ecirc;tre valid&eacute; par les trois participants, ou uniquement par le premier utilisateur &agrave; r&eacute;pondre. </p><p>Le crit&egrave;re de fin de t&acirc;che par d&eacute;faut est &#39;Quand tous les bons de travail ont &eacute;t&eacute; accept&eacute;s&#39;.</p><p><strong>Remarque :</strong> Si une extension de service surcharge la m&eacute;thode <code>UserTask.handleWorkItemCompletion</code> pour g&eacute;rer la fin de la t&acirc;che utilisateur, c&#39;est &agrave; la charge du d&eacute;veloppeur de l&#39;extension de v&eacute;rifier dans le code de cette m&eacute;thode que le crit&egrave;re de fin de t&acirc;che d&eacute;finie dans l&#39;interface a &eacute;t&eacute; satisfait. Voir <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/UserTask.html#handleWorkItemCompletion-com.orchestranetworks.workflow.UserTaskWorkItemCompletionContext-"><code>UserTask.handleWorkItemCompletion</code></a> dans la JavaDoc pour plus d&#39;informations.</p><h4 id="rejectTolerance">
+[Mode de compatibilit&eacute;] Terminaison &gt; Tol&eacute;rance de rejet</h4>
+<p> Par d&eacute;faut, si un utilisateur rejette un bon de travail durant l&#39;ex&eacute;cution d&#39;un workflow, la t&acirc;che utilisateur est positionn&eacute;e en erreur et l&#39;avancement du workflow est stopp&eacute;. </p><p> Pour changer ce comportement par d&eacute;faut, il est possible de d&eacute;finir un nombre de bons de travail rejet&eacute;s &agrave; tol&eacute;rer. Tant que la limite de rejets tol&eacute;r&eacute;s n&#39;est pas d&eacute;pass&eacute;e, aucune erreur ne se produit et c&#39;est le crit&egrave;re de fin de t&acirc;che qui d&eacute;termine quand la t&acirc;che utilisateur est termin&eacute;e. </p><p>Les crit&egrave;res de fin de t&acirc;che suivants tol&egrave;rent automatiquement tous les rejets :</p><ul>
+<li><p>&#39;Quand tous les bons de travail ont &eacute;t&eacute; accept&eacute;s ou rejet&eacute;s&#39;</p></li><li><p>&#39;Quand tous les bons de travail ont &eacute;t&eacute; accept&eacute;s, ou d&egrave;s qu&#39;un bon de travail a &eacute;t&eacute; rejet&eacute;&#39;</p></li></ul>
+<h4 id="extension">
+Extension</h4>
+<p>Il est possible d&#39;&eacute;tendre programmatiquement le comportement de la t&acirc;che afin que cette derni&egrave;re s&#39;ins&egrave;re plus finement dans le contexte du workflow. Par exemple si un comportement sp&eacute;cifique est n&eacute;cessaire, pour la cr&eacute;ation du bon de travail ou pour terminer la t&acirc;che de l&#39;utilisateur. </p><p>La r&egrave;gle sp&eacute;cifi&eacute;e est une classe Java Bean qui doit &eacute;tendre la classe <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/UserTask.html"><code>UserTask</code></a>.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Si une r&egrave;gle est sp&eacute;cifi&eacute;e et la m&eacute;thode <code>handleWorkItemCompletion</code> surcharg&eacute;e, la strat&eacute;gie de fin n&#39;est plus automatiquement contr&ocirc;l&eacute;e. C&#39;est au d&eacute;veloppeur de la v&eacute;rifier dans cette m&eacute;thode.</p></div>
+<h4 id="notification">
+Notification</h4>
+<p>Une notification par courrier &eacute;lectronique peut &ecirc;tre envoy&eacute;e aux utilisateurs quand des &eacute;v&eacute;nements sp&eacute;cifiques se produisent. Pour chaque &eacute;v&eacute;nement, vous pouvez sp&eacute;cifier un message type &agrave; utiliser.</p><p>En outre, il est possible de d&eacute;finir un profil, auquel une copie de chaque courrier envoy&eacute; sera transmise.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Mod&egrave;les de message g&eacute;n&eacute;riques</a></li></ul>
+</div>
+<h4 id="reminder">
+Relance</h4>
+<p>Des courriers &eacute;lectroniques de relance pour les bons de travail propos&eacute;s ou allou&eacute;s et inachev&eacute;s peuvent &ecirc;tre envoy&eacute;s aux utilisateurs concern&eacute;s de mani&egrave;re p&eacute;riodique.</p><p>Le contenu des courriers de relance d&eacute;pend de l&#39;&eacute;tat courant du bon de travail. En effet, si le bon de travail est propos&eacute;, la notification utilisera le mod&egrave;le de courrier &eacute;lectronique &#39;Bons de travail propos&eacute;s&#39; ; si le bon de travail est allou&eacute;, la notification utilisera le mod&egrave;le &#39;Bons de travail allou&eacute;s&#39;.</p><h4 id="deadline">
+Ech&eacute;ance</h4>
+<p>Une t&acirc;che utilisateur peut avoir une &eacute;ch&eacute;ance. Quand cette date est atteinte et si les bons de travail associ&eacute;s n&#39;ont pas &eacute;t&eacute; termin&eacute;s, un courrier &eacute;lectronique sp&eacute;cifique est envoy&eacute; aux utilisateurs concern&eacute;s. Ce courrier &eacute;lectronique va alors &ecirc;tre renvoy&eacute; tous les jours jusqu&#39;&agrave; l&#39;ach&egrave;vement de la t&acirc;che.</p><p>Il y a deux types d&#39;&eacute;ch&eacute;ances&nbsp;:&nbsp;</p><ul>
+<li><p><em>Ech&eacute;ance absolue :</em> une date du calendrier.</p></li><li><p><em>Ech&eacute;ance relative :</em> dur&eacute;e (en heures, jours ou mois). La dur&eacute;e est &eacute;valu&eacute;e &agrave; partir d&#39;une date de r&eacute;f&eacute;rence&nbsp;:&nbsp;d&eacute;but d&#39;une t&acirc;che utilisateur ou d&eacute;but d&#39;un workflow. </p></li></ul>
+<h2 id="step_script">
+T&acirc;che autonome</h2>
+<p>Il existe deux types de t&acirc;ches automatiques :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Script de la biblioth&egrave;que</p></td><td class="ebx_definitionListDefinition"><p>EBX&reg; fournit des scripts de la biblioth&egrave;que pr&eacute;d&eacute;finis, qui peuvent &ecirc;tre utilis&eacute;s directement.</p><p>Les scripts de la biblioth&egrave;que sp&eacute;cifiques doivent &ecirc;tre d&eacute;clar&eacute;s dans un fichier <code>module.xml</code>. Un script de la biblioth&egrave;que sp&eacute;cifique doit d&eacute;finir son libell&eacute;, sa description et ses param&egrave;tres. Quand un utilisateur s&eacute;lectionne un script de la biblioth&egrave;que dans une &eacute;tape d&#39;un mod&egrave;le de donn&eacute;es, les param&egrave;tres associ&eacute;s sont affich&eacute;s dynamiquement.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Script sp&eacute;cifique</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie une classe Java qui ex&eacute;cute des actions sp&eacute;cifiques. La classe associ&eacute;e doit &ecirc;tre dans le m&ecirc;me module que celui associ&eacute; au mod&egrave;le de workflow. Ses libell&eacute;s et ses descriptions ne sont pas affich&eacute;s dynamiquement aux utilisateurs dans un mod&egrave;le de workflow.</p></td></tr>
+</table>
+<p><a href="../models/modules_packaging.html">Packaging TIBCO EBX&reg; modules</a></p><h3 id="workflow.scriptTask.library">
+Script de la biblioth&egrave;que</h3>
+<p>EBX&reg; inclut les scripts de la biblioth&egrave;que pr&eacute;d&eacute;finis suivants :</p><ul>
+<li><p>Cr&eacute;er un espace de donn&eacute;es</p></li><li><p>Cr&eacute;er une image</p></li><li><p>Fusionner un espace de donn&eacute;es</p></li><li><p>Importer une archive</p></li><li><p>Fermer un espace de donn&eacute;es</p></li><li><p>Modifier une variable du contexte de donn&eacute;es</p></li><li><p>Envoyer un courrier &eacute;lectronique</p></li><li><p>Supprimer des enregistrements (Note&nbsp;:&nbsp;ce script peut supprimer plusieurs enregistrements &agrave; la fois)</p></li></ul>
+<p>Les scripts de la biblioth&egrave;que sont des classes qui &eacute;tendent la classe <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTaskBean.html"><code>ScriptTaskBean</code></a>. En compl&eacute;ment des scripts de la biblioth&egrave;que pr&eacute;d&eacute;finis, vous pouvez d&eacute;finir des scripts de la biblioth&egrave;que additionnels pour les utiliser dans les mod&egrave;les de workflows. Leurs libell&eacute;s et descriptions peuvent &ecirc;tre localis&eacute;s.</p><p>La m&eacute;thode <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTaskBean.html#executeScript-com.orchestranetworks.workflow.ScriptTaskBeanContext-"><code>ScriptTaskBean.executeScript</code></a> est appel&eacute;e lorsque le workflow de donn&eacute;es atteint l&#39;&eacute;tape correspondante.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>La m&eacute;thode <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTaskBean.html#executeScript-com.orchestranetworks.workflow.ScriptTaskBeanContext-"><code>ScriptTaskBean.executeScript</code></a> ne doit cr&eacute;er aucun <code>Thread</code>. En effet, le moteur de workflow passera &agrave; l&#39;&eacute;tape suivante quand le script se terminera. L&#39;ex&eacute;cution d&#39;une partie du script en mode asynchrone ne garantit donc pas sa terminaison avant le passage &agrave; l&#39;&eacute;tape suivante.</p></div>
+<p>Voir <a href="../workflow/workflowmodel.html#scriptTaskBean">l&#39;exemple</a>.</p><p>Il est possible de param&eacute;trer dynamiquement les variables du script de la biblioth&egrave;que, si son impl&eacute;mentation suit la sp&eacute;cification Java Bean. Les variables doivent &ecirc;tre d&eacute;clar&eacute;es comme param&egrave;tres du script de la biblioth&egrave;que dans le fichier <code>module.xml</code>. Le contexte des donn&eacute;es n&#39;est pas accessible depuis le Java bean.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Certains scripts de biblioth&egrave;que pr&eacute;d&eacute;finis sont marqu&eacute;s comme &quot;obsol&egrave;tes&quot; car ils ne sont pas compatibles avec internationalisation. Il est recommand&eacute; d&#39;utiliser les nouvelles t&acirc;ches qui sont compatibles avec internationalisation.</p></div>
+<h3 id="id4s2">
+Scripts sp&eacute;cifiques</h3>
+<p>Les scripts sp&eacute;cifiques ont la particularit&eacute; d&#39;&eacute;tendre la classe <a href="../workflow/workflowmodel.html#scriptTask">Sample of ScriptTask</a>.</p><p>La m&eacute;thode <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTask.html#executeScript-com.orchestranetworks.workflow.ScriptTaskContext-"><code>ScriptTask.executeScript</code></a> est appel&eacute;e lorsque le workflow de donn&eacute;es atteint l&#39;&eacute;tape correspondante.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>La m&eacute;thode <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ScriptTask.html#executeScript-com.orchestranetworks.workflow.ScriptTaskContext-"><code>ScriptTask.executeScript</code></a> ne doit cr&eacute;er aucun <code>Thread</code>. En effet, le moteur de workflow passera &agrave; l&#39;&eacute;tape suivante quand le script se terminera. L&#39;ex&eacute;cution d&#39;une partie du script en mode asynchrone ne garantit donc pas sa terminaison avant le passage &agrave; l&#39;&eacute;tape suivante.</p></div>
+<p>Voir <a href="../workflow/workflowmodel.html#scriptTask">l&#39;exemple</a>.</p><p>Il n&#39;est pas possible de param&eacute;trer dynamiquement les variables d&#39;un script sp&eacute;cifique. Toutefois, le contexte des donn&eacute;es est accessible depuis le Java Bean.</p><h2 id="step_condition">
+Conditions</h2>
+<p>Les conditions sont des &eacute;tapes d&eacute;cisionnelles du workflow.</p><p>Il existe deux types de conditions qui, une fois d&eacute;finies, peuvent &ecirc;tre utilis&eacute;es dans les &eacute;tapes de mod&eacute;lisation du workflow :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Condition de la biblioth&egrave;que</p></td><td class="ebx_definitionListDefinition"><p>EBX&reg; fournit des conditions de la biblioth&egrave;que pr&eacute;d&eacute;finies, qui peuvent &ecirc;tre utilis&eacute;es directement.</p><p>Les conditions de la biblioth&egrave;que sp&eacute;cifiques doivent &ecirc;tre d&eacute;clar&eacute;es dans un fichier <code>module.xml</code>. Une condition de la biblioth&egrave;que sp&eacute;cifique doit d&eacute;finir son libell&eacute;, sa description et ses param&egrave;tres. Quand un utilisateur s&eacute;lectionne une condition de la biblioth&egrave;que dans une &eacute;tape d&#39;un mod&egrave;le de donn&eacute;es, les param&egrave;tres associ&eacute;s sont affich&eacute;s dynamiquement.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Condition sp&eacute;cifique</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie une classe Java qui impl&eacute;mente une condition sp&eacute;cifique. La classe associ&eacute;e doit &ecirc;tre dans le m&ecirc;me module que celui associ&eacute; au mod&egrave;le de workflow. Ses libell&eacute;s et ses descriptions ne sont pas affich&eacute;s dynamiquement aux utilisateurs dans un mod&egrave;le de workflow.</p></td></tr>
+</table>
+<p><a href="../models/modules_packaging.html">Packaging TIBCO EBX&reg; modules</a></p><h3 id="workflow.condition.library">
+Condition de la biblioth&egrave;que</h3>
+<p>EBX&reg; inclut les conditions de la biblioth&egrave;que pr&eacute;d&eacute;finies suivantes :</p><ul>
+<li><p>Espace de donn&eacute;es modifi&eacute; ?</p></li><li><p>Espace de donn&eacute;es valide ?</p></li><li><p>Derni&egrave;re t&acirc;che utilisateur accept&eacute;e ?</p></li><li><p>Valeur nulle ou vide ?</p></li><li><p>Valeurs &eacute;gales ?</p></li></ul>
+<p>Les conditions de la biblioth&egrave;que sont des classes qui &eacute;tendent la classe <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/ConditionBean.html"><code>ConditionBean</code></a>. En compl&eacute;ment aux conditions de la biblioth&egrave;que pr&eacute;d&eacute;finies, vous pouvez d&eacute;finir des conditions de la biblioth&egrave;que additionnelles pour les utiliser dans des mod&egrave;les de donn&eacute;es. Leurs libell&eacute;s et descriptions peuvent &ecirc;tre localis&eacute;s.</p><p>Voir <a href="../workflow/workflowmodel.html#conditionBean">l&#39;exemple</a>.</p><p>Il est possible de param&eacute;trer dynamiquement les variables de la condition de la biblioth&egrave;que, si son impl&eacute;mentation suit la sp&eacute;cification Java Bean. Les variables doivent &ecirc;tre d&eacute;clar&eacute;es comme param&egrave;tres du script de la biblioth&egrave;que dans le <code>module.xml</code>. Le contexte des donn&eacute;es n&#39;est pas accessible depuis le Java bean.</p><h3 id="id5s2">
+Conditions sp&eacute;cifiques</h3>
+<p>Les conditions sp&eacute;cifiques ont la particularit&eacute; d&#39;&eacute;tendre la classe <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/Condition.html"><code>Condition</code></a>.</p><p>Voir <a href="../workflow/workflowmodel.html#condition">l&#39;exemple</a> dans l&#39;API Java.</p><p>Il n&#39;est pas possible de param&eacute;trer dynamiquement les variables d&#39;une condition sp&eacute;cifique. Toutefois, le contexte des donn&eacute;es est accessible depuis le Java bean.</p><h2 id="subworkflows">
+Appels &agrave; des sous-workflows</h2>
+<p>Les &eacute;tapes du type appel &agrave; des sous-workflows positionnent le workflow de donn&eacute;es courant dans l&#39;&eacute;tat &quot;en attente&quot; et lancent un ou plusieurs sous-workflows.</p><p>Il est possible d&#39;inclure un autre mod&egrave;le de workflow dans le mod&egrave;le de workflow courant en d&eacute;finissant un appel unique &agrave; ce sous-workflow dans une &eacute;tape.</p><p>Si plusieurs sous-workflows sont appel&eacute;s par une &eacute;tape, ils sont ex&eacute;cut&eacute;s simultan&eacute;ment, en parall&egrave;le. Tous les sous-workflows doivent &ecirc;tre termin&eacute;s pour que le workflow parent passe &agrave; l&#39;&eacute;tape suivante. Le libell&eacute; et la description de chaque sous-workflow peuvent &ecirc;tre localis&eacute;s. </p><p> The property « Foreground sub-workflow » is useful to precise the progress strategy when several sub-workflows are launched. If the previous step progress strategy is « directly open the next step », this property defines which sub-workflow should be considered in the foreground (only one sub-workflow can hold this behavior). Only the work items which have been generated in this foreground sub-workflow will be able to be opened automatically without passing by the inbox. If only one sub-workflow is defined, this property is ignored (the single sub-workflow is automatically considered in the foreground). La propri&eacute;t&eacute; &quot;Sous-workflow de premier plan&quot; est utile pour d&eacute;terminer la strat&eacute;gie d&#39;avancement quand plusieurs sous-workflows sont lanc&eacute;s. Si la strat&eacute;gie d&#39;avancement de l&#39;&eacute;tape pr&eacute;c&eacute;dante est &quot;Ouvrir automatiquement le prochain bon de travail&quot;, cette propri&eacute;t&eacute; d&eacute;finit quel sous-workflow sera consid&eacute;r&eacute; de premier plan (seulement un peu avoir ce comportement). Seul les bon de travail g&eacute;n&eacute;r&eacute; dans ce sous-workflow de premier plan pourront &ecirc;tre ouvert automatiquement sans passer par la corbeille. Pour plus d&#39;information, veuillez vous r&eacute;f&eacute;rez &agrave; la strat&eacute;gie d&#39;avancement&nbsp;:&nbsp;<a href="#progressStrategy">Strat&eacute;gie d&#39;avancement de l&#39;&eacute;tape suivante</a></p><p>Deux types d&#39;appels &agrave; des sous-workflows existent :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Statique</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit un ou plusieurs sous-workflows &agrave; lancer chaque fois que cette &eacute;tape est ex&eacute;cut&eacute;e dans un workflow de donn&eacute;es. Pour chaque sous-workflow, il est possible de sp&eacute;cifier ses libell&eacute;s et ses descriptions, ainsi que les mappings d&#39;entr&eacute;e et de sortie dans son contexte de donn&eacute;es.</p><p>Ce mode est utile quand on sait &agrave; l&#39;avance quels sous-workflows doivent &ecirc;tre lanc&eacute;s, et comment le mapping de sortie doit &ecirc;tre realis&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Dynamique</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie une classe Java qui impl&eacute;mente un appel sp&eacute;cifique &agrave; des sous-workflows. Tous les workflows qui peuvent &eacute;ventuellement &ecirc;tre appel&eacute;s comme sous-workflows par le code doivent &ecirc;tre d&eacute;clar&eacute;s comme d&eacute;pendances.</p><p>Le contexte de donn&eacute;es est directement accessible depuis le Java bean.</p><p>Les appels de sous-workflows dynamiques doivent &ecirc;tre d&eacute;clar&eacute;s dans un fichier <code>module.xml</code>.</p><p>Ce mode est utile quand le lancement des sous-workflows est conditionnel (par exemple, lorsqu&#39;il d&eacute;pend d&#39;une variable du contexte de donn&eacute;es), ou quand le mapping de sortie d&eacute;pend de l&#39;ex&eacute;cution des diff&eacute;rents sous-workflows.</p></td></tr>
+</table>
+<h2 id="waitTasks">
+T&acirc;ches d&#39;attente</h2>
+<p>Une &eacute;tape d&#39;attente dans un mod&egrave;le de workflow met le workflow en pause en attendant la r&eacute;ception d&#39;un &eacute;v&eacute;nement donn&eacute;.</p><p>Lorsqu&#39;une t&acirc;che d&#39;attente est appel&eacute;e, le moteur de workflow g&eacute;n&egrave;re un identifiant unique de r&eacute;veil li&eacute; &agrave; la t&acirc;che d&#39;attente. Cet identifiant est requis pour r&eacute;veiller la t&acirc;che d&#39;attente et, par cons&eacute;quent, le workflow associ&eacute;.</p><p>Une t&acirc;che d&#39;attente sp&eacute;cifie quel profil est autoris&eacute; &agrave; r&eacute;veiller la t&acirc;che d&#39;attente&nbsp;;&nbsp;et la classe Java qui impl&eacute;mente un bean de t&acirc;che d&#39;attente : <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/WaitTaskBean.html"><code>WaitTaskBean</code></a>.</p><p> Le contexte de donn&eacute;es du workflow est directement accessible &agrave; partir du Java bean.</p><p>Les beans de t&acirc;che d&#39;attente doivent &ecirc;tre d&eacute;clar&eacute;s dans un fichier <code>module.xml</code>.</p><p>Le bean de t&acirc;che d&#39;attente est d&#39;abord appel&eacute; lorsque le workflow est mis en pause. L&#39;identifiant de r&eacute;veil est alors disponible pour appeler un web service, par exemple. Puis, le bean de t&acirc;che d&#39;attente est appel&eacute; lorsque la t&acirc;che d&#39;attente est r&eacute;veill&eacute;e. De cette fa&ccedil;on, le contexte de donn&eacute;es peut &ecirc;tre mis &agrave; jour en fonction des param&egrave;tres re&ccedil;us.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>L&#39;administrateur built-in est toujours autoris&eacute; &agrave; r&eacute;veiller un workflow.</p></div>
+<h2 id="workflowdiagram">
+Visualisation du diagramme de workflow</h2>
+<h3 id="id8s1">
+A propos</h3>
+<p>Lorsqu&#39;un mod&egrave;le de workflow est d&eacute;fini, il est possible de le visualiser sous forme d&#39;un diagramme qui se rapproche de la norme BPMN. </p><p>Ce service est accessible en vue par d&eacute;faut dans l&#39;&eacute;diteur de mod&egrave;les de workflow et permet de faire l&#39;int&eacute;gralit&eacute; des actions de cr&eacute;ation, d&#39;&eacute;dition et de suppression.</p><p>Notez &eacute;galement que ce diagramme s&#39;inspire des normes BPMN mais n&#39;en est pas une stricte impl&eacute;mentation, puisque les concepts du workflow d&#39;EBX&reg; sont l&eacute;g&egrave;rement diff&eacute;rents.</p><h4 id="diagramsave">
+Sauvegarde de la mise en page</h4>
+<p>Il est possible de sauvegarder la mise en page du diagramme et de le sauvegarder. Notez toutefois que la sauvegarde est globale et non locale&nbsp;;&nbsp;elle est donc partag&eacute;e par tous les utilisateurs.</p><h3 id="actions">
+Actions</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Exporter en PNG</p></td><td class="ebx_definitionListDefinition"><p>Cr&eacute;e une image PNG du mod&egrave;le.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Exporter en SVG</p></td><td class="ebx_definitionListDefinition"><p>Cr&eacute;e une image SVG du mod&egrave;le.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Exporter en PDF</p></td><td class="ebx_definitionListDefinition"><p>Cr&eacute;er un document PDF bas&eacute; sur le mod&egrave;le workflow.</p></td></tr>
+</table>
+<h3 id="view">
+Vue</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mise en page &gt; Mise en page par d&eacute;faut</p></td><td class="ebx_definitionListDefinition"><p>Applique la mise en page par d&eacute;faut.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Affichage &gt; Afficher/Masquer la grille</p></td><td class="ebx_definitionListDefinition"><p>Affiche la grille lorsque celle-ci est invisible, sinon masque la grille.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Affichage &gt; Zoomer</p></td><td class="ebx_definitionListDefinition"><p>Fait un zoom sur le diagramme. Pour aller plus vite, vous pouvez utiliser Ctrl + molette vers le haut avec votre souris se trouvant dans la zone du diagramme.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Affichage &gt; D&eacute;zoomer</p></td><td class="ebx_definitionListDefinition"><p>Fait un d&eacute;zoom sur le diagramme. Pour aller plus vite, vous pouvez utiliser Ctrl + molette vers le bas avec votre souris se trouvant dans la zone du diagramme, voir <a href="#view">Vue</a></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Vues de plan &gt; Hi&eacute;rarchie</p></td><td class="ebx_definitionListDefinition"><p>Si elle est activ&eacute;e, affiche la vue hi&eacute;rarchique du mod&egrave;le de workflow.</p></td></tr>
+</table>
+<h3 id="buttons">
+Boutons</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Sauvegarder</p></td><td class="ebx_definitionListDefinition"><p>Sauvegarde la mise en page.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Sauvegarder et fermer</p></td><td class="ebx_definitionListDefinition"><p>Sauvegarde la mise en page et ferme le service.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Recharger</p></td><td class="ebx_definitionListDefinition"><p>Annule les modifications de la mise en page en cours et recharge la mise en page pr&eacute;c&eacute;demment sauvegard&eacute;e.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Fermer</p></td><td class="ebx_definitionListDefinition"><p>Ferme le service.</p></td></tr>
+</table>
+<h3 id="id8s5">
+Edit</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Cr&eacute;ation</p></td><td class="ebx_definitionListDefinition"><p>Au survol ou &agrave; la s&eacute;lection d&#39;un lien, un bouton &#39;+&#39; apparaît. Ce dernier sert &agrave; la cr&eacute;ation d&#39;une &eacute;tape.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Suppression</p></td><td class="ebx_definitionListDefinition"><p>SUPPR</p><p>Le raccourci clavier &quot;SUPPR&#39;&quot; supprime le noeud s&eacute;lectionn&eacute;.</p><p>NB: cette action est irr&eacute;versible.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Barre d&#39;outils</p></td><td class="ebx_definitionListDefinition"><p>Au survol ou &agrave; la s&eacute;lection d&#39;un noeud, une barre d&#39;outils s&#39;affiche. Elle sert &agrave; :</p><ul>
+<li><p>&Eacute;diter une &eacute;tape.</p></li><li><p>Supprimer une &eacute;tape.</p></li><li><p>Dupliquer une &eacute;tape.</p></li><li><p>Ajouter une redirection vers une &eacute;tape existante.</p></li><li><p>Afficher ou cacher dans la vue d&#39;ex&eacute;cution.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>&Eacute;diter un noeud</p></td><td class="ebx_definitionListDefinition"><p>Le double-clic permet d&#39;&eacute;diter rapidement une &eacute;tape.</p></td></tr>
+</table>
+<h3 id="features">
+Fonctionnalit&eacute;s</h3>
+<p>La vue graphique offre &eacute;galement des fonctionnalit&eacute;s additionnelles </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Annuler l&#39;action pr&eacute;c&eacute;dente</p></td><td class="ebx_definitionListDefinition"><p>CTRL + Z</p><p>Les actions ci-dessous ne seront pas affect&eacute;es par ce raccourci&nbsp;:&nbsp;</p><ul>
+<li><p>Cr&eacute;ation/Suppression/Edition/Duplication d&#39;une &eacute;tape</p></li><li><p>D&eacute;placement de liens</p></li><li><p>Afficher/Cacher dans la vue d&#39;ex&eacute;cution</p></li><li><p>Recharger</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Zoomer/Dezoomer</p></td><td class="ebx_definitionListDefinition"><p>Bouton du milieu de la souris puis roulette / CTRL puis roulette</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>S&eacute;lection multiple</p></td><td class="ebx_definitionListDefinition"><p>cliquer sur le noeud ou lien &agrave; s&eacute;lectionner tout en appuyant sur la touche CTRL / Dessiner un rectangle de s&eacute;lection (Il faut attendre 1 seconde apr&egrave;s le clic pour activer la zone de s&eacute;lection)</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Personnaliser le trac&eacute; des liens</p></td><td class="ebx_definitionListDefinition"><p> Lorsqu&#39;on clique sur un lien, on peut d&eacute;placer chaque segment gr&acirc;ce aux carr&eacute;s de s&eacute;lection qui apparaissent sur les coins de chaque ar&ecirc;te, ou fractionner le segment en d&eacute;pla&ccedil;ant le cercle qui apparaît au milieu de chaque segment</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Aper&ccedil;u</p></td><td class="ebx_definitionListDefinition"><p>Un panneau est maintenant disponible avec un diagramme de workflow miniaturis&eacute; qui pourra &ecirc;tre utilis&eacute; pour la navigation. Il sera possible de le r&eacute;duire, l&#39;agrandir et le d&eacute;placer dans la surface correspondant &agrave; la vue du diagramme de workflow. </p></td></tr>
+</table>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

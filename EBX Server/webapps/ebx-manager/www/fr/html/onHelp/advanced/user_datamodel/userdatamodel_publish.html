@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Publication du mod&egrave;le de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_publication" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Publication et gestion de versions des modèles de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_publish.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Publication et gestion de versions des modèles de données</span></div>
+<h1>
+Publication du mod&egrave;le de donn&eacute;es</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">A propos des publications</a></li><li class="toc1"><a href="#pub_modes">Modes de publication</a></li><li class="toc1"><a href="#id3">Mode de publication &quot;Embarqu&eacute;&quot;</a><ul class="toc2">
+<li class="toc2"><a href="#create_publication">Consultation et cr&eacute;ation des publications</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+A propos des publications</h2>
+<p>Chaque jeu de donn&eacute;es dans le r&eacute;f&eacute;rentiel TIBCO EBX&reg; bas&eacute; sur un <strong>mod&egrave;le de donn&eacute;es embarqu&eacute;</strong> est associ&eacute; &agrave; une publication d&#39;un mod&egrave;le de donn&eacute;es, et non directement au mod&egrave;le de donn&eacute;es d&eacute;fini dans le <strong>Data Model Assistant</strong>. Une publication est cr&eacute;&eacute;e la premi&egrave;re fois qu&#39;un mod&egrave;le de donn&eacute;es est publi&eacute; en utilisant le bouton <strong>Publier</strong> du panneau de navigation. Il est possible, &agrave; partir d&#39;une publication, de cr&eacute;er des jeux de donn&eacute;es dont la structure sera bas&eacute;e sur la structure du mod&egrave;le de donn&eacute;es publi&eacute;.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Le bouton <strong>Publier</strong> est uniquement affich&eacute; pour les utilisateurs qui ont le droit de publier le mod&egrave;le de donn&eacute;es. Voir <a href="../user_datamodel/userdatamodel_configuring.html#permissions">Permissions du mod&egrave;le de donn&eacute;es</a> pour plus d&#39;informations.</p></div>
+<p>Les jeux de donn&eacute;es &eacute;tant bas&eacute;s sur des publications, les modifications faites sur le mod&egrave;le de donn&eacute;es n&#39;impacteront pas les jeux de donn&eacute;es existants. Les jeux de donn&eacute;es seront impact&eacute;s uniquement lors de la mise &agrave; jour d&#39;une publication existante.</p><h2 id="pub_modes">
+Modes de publication</h2>
+<p>Un mod&egrave;le de donn&eacute;es peut &ecirc;tre publi&eacute; en mode &quot;Embarqu&eacute;&quot; ou &quot;Dans un module&quot;. Le mode de publication &quot;Embarqu&eacute;&quot; g&eacute;n&egrave;re une publication g&eacute;r&eacute;e et persist&eacute;e dans le r&eacute;f&eacute;rentiel EBX&reg; et poss&egrave;de des fonctionnalit&eacute;s sp&eacute;cifiques d&eacute;di&eacute;es &agrave; la gestion de version. Le mode de publication &quot;Dans un module&quot; cr&eacute;e un fichier XML Schema Document (XSD) &agrave; l&#39;int&eacute;rieur d&#39;un module qui n&#39;est pas g&eacute;r&eacute; par le r&eacute;f&eacute;rentiel EBX&reg;.</p><p>Selon la configuration du mod&egrave;le de donn&eacute;es, EBX&reg; d&eacute;termine automatiquement le processus de publication &agrave; utiliser lorsque l&#39;on clique sur le bouton <strong>Publier</strong> dans le panneau de navigation. Quand un mod&egrave;le de donn&eacute;es sp&eacute;cifie le mode de publication &quot;Dans un module&quot; ainsi qu&#39;un fichier XSD &agrave; cibler, le processus de publication g&eacute;n&egrave;re le fichier XSD dans le module d&eacute;fini dans la configuration.</p><h2 id="id3">
+Mode de publication &quot;Embarqu&eacute;&quot;</h2>
+<p>La premi&egrave;re fois qu&#39;un mod&egrave;le de donn&eacute;es est publi&eacute; en mode embarqu&eacute;, une nouvelle publication avec le m&ecirc;me nom que le mod&egrave;le est automatiquement cr&eacute;&eacute;e dans le r&eacute;f&eacute;rentiel. Si diff&eacute;rentes publications ont &eacute;t&eacute; cr&eacute;&eacute;es &agrave; partir du mod&egrave;le, s&eacute;lectionnez celle &agrave; mettre &agrave; jour.</p><p>Voir <a href="#create_publication">Consultation et cr&eacute;ation des publications</a> pour plus d&#39;informations sur l&#39;utilisation de diff&eacute;rentes publications.</p><p>Pendant le processus de publication, si le mod&egrave;le de donn&eacute;es a d&eacute;j&agrave; &eacute;t&eacute; publi&eacute;, il est possible de visualiser dans une interface de comparaison les diff&eacute;rences structurelles introduites par la nouvelle publication.</p><p>Le processus de publication permet aussi de cr&eacute;er une image en lecture seule de l&#39;&eacute;tat actuel du mod&egrave;le de donn&eacute;es. Cette image sera utile si un pr&eacute;c&eacute;dent &eacute;tat du mod&egrave;le doit &ecirc;tre restaur&eacute; apr&egrave;s plusieurs modifications et publications du mod&egrave;le de donn&eacute;es.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Les images sont des archives statiques du mod&egrave;le de donn&eacute;es et ne doivent pas &ecirc;tre confondues avec les <em>versions</em> du mod&egrave;le de donn&eacute;es, qui sont des &eacute;ditions du mod&egrave;le &eacute;voluant en parall&egrave;le. Voir <a href="../user_datamodel/userdatamodel_versioning.html">Gestion des versions du mod&egrave;le de donn&eacute;es embarqu&eacute;</a> pour plus d&#39;informations sur les versions des mod&egrave;les de donn&eacute;es.</p></div>
+<h3 id="create_publication">
+Consultation et cr&eacute;ation des publications</h3>
+<p>Pour acc&eacute;der aux publications existantes du mod&egrave;le de donn&eacute;es courant, s&eacute;lectionnez &quot;G&eacute;rer les publications&quot; dans son menu <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>&quot;Actions&quot; du mod&egrave;le de donn&eacute;es</strong></a> dans le panneau de navigation. Vous pourrez consulter les d&eacute;tails des publications et en cr&eacute;er de nouvelles.</p><p>Dans certains cas, il faudra utiliser plusieurs publications du m&ecirc;me mod&egrave;le de donn&eacute;es afin de permettre &agrave; diff&eacute;rents jeux de donn&eacute;es d&#39;&ecirc;tre bas&eacute;s sur des &eacute;tats diff&eacute;rents du mod&egrave;le. L&#39;utilisation de plusieurs publications doit &ecirc;tre r&eacute;alis&eacute;e avec pr&eacute;caution. En effet, les utilisateurs devront s&eacute;lectionner la publication &agrave; mettre &agrave; jour lors de la publication du mod&egrave;le de donn&eacute;es et doivent donc avoir connaissance de l&#39;utilisation de ces diff&eacute;rentes publications. La cr&eacute;ation d&#39;une nouvelle publication est disponible uniquement pour les utilisateurs ayant le r&ocirc;le &quot;Administrateur&quot;.</p><p>Pour cr&eacute;er une nouvelle publication, s&eacute;lectionnez &quot;G&eacute;rer les publications&quot; dans le menu <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>&quot;Actions&quot; du mod&egrave;le de donn&eacute;es</strong></a> dans le panneau de navigation, puis cliquez sur le bouton <strong>Cr&eacute;er une publication</strong>. Le nom donn&eacute; &agrave; la publication doit &ecirc;tre unique dans le r&eacute;f&eacute;rentiel. Apr&egrave;s sa cr&eacute;ation, la nouvelle publication est vide et ne repr&eacute;sente pas un mod&egrave;le de donn&eacute;es. Pour pouvoir &ecirc;tre utilis&eacute;e par des jeux de donn&eacute;es, la publication doit &ecirc;tre mise &agrave; jour en publiant le mod&egrave;le de donn&eacute;es. </p><p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html">Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Publication et gestion de versions des modèles de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - EBX&reg; 5.9 to EBX&reg; 6 Migration Guide </title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="index_migrationGuideFrom5" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=releasenotes/6.0_migrationFrom5.x.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel"><a href="./index.html">Release Notes</a></span></div>
+<h1>
+EBX&reg; 5.9 to EBX&reg; 6 Migration Guide </h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#introduction">Introduction</a></li><li class="toc1"><a href="#upgradeSteps">Steps to upgrade your EBX&reg; 5 environment</a></li><li class="toc1"><a href="#upgradeWithAddons">Upgrading EBX&reg; 5.9 environment with add-ons</a><ul class="toc2">
+<li class="toc2"><a href="#upgradeWithAddonsDataModelIncludes">Data model includes</a></li><li class="toc2"><a href="#id3s2">Data models modified by an add-on</a></li><li class="toc2"><a href="#id3s3">Data models using add-ons Java classes</a></li></ul>
+</li></ul>
+</div>
+<h2 id="introduction">
+Introduction</h2>
+<p>In this release, the relational database internal persistence formats and structures have been redesigned to support larger volumes of data, and large numbers of dataspaces and snapshots. Although the repository migration is automatic on server startup, it requires beforehand cleaning the data models used. </p><h2 id="upgradeSteps">
+Steps to upgrade your EBX&reg; 5 environment</h2>
+<p>To upgrade your version of EBX&reg;, perform the steps detailed in the following table. </p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p>Migrating a repository to EBX&reg; 6.x is final: once a repository has started on version 6, it will be forbidden to start on a 5.9 version. This implies that a backup of the 5.9 repository must be made prior to migrating. </p></p></div>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p>Migration from a 5.9.x repository is the only supported case. If your repository is on an older version, you must first deploy a 5.9.x EBX&reg; and run it on your repository, so that the following steps can be performed. </p></p></div>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 1 – Server shutdown</p></td><td class="ebx_definitionListDefinition"><p>Shut down your EBX&reg; 5.9 application server instance. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 2 – Repository backup</p></td><td class="ebx_definitionListDefinition"><p> Back up your EBX&reg; 5.9 repository, namely the relational database objects that have names starting with the current repository prefix (<code>ebx.persistence.table.prefix</code>).</p><p>To facilitate the next steps, back up and delete the EBX&reg; logs, or move them to a distinct folder. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 3 – Server restart</p></td><td class="ebx_definitionListDefinition"><p>Restart your EBX&reg; 5.9 application server instance. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 4 – Dataspace and workflows cleanup</p></td><td class="ebx_definitionListDefinition"><p> Closed dataspaces are not migrated (that is, they are deleted). If you intend to keep such dataspaces, you must re-open them prior to migrating. If you do not intend to keep them, it is a good practice to delete and purge them. </p><p> To decrease the duration of the migration, consider deleting all of the completed workflows and clean up the workflow history. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 5 – Data models cleanup</p></td><td class="ebx_definitionListDefinition"><p> The automatic migration requires that all data models used by the repository datasets compile without errors. This strict policy has been adopted to prevent unintended loss of data, and to reach a consistent repository state at the end of the server startup. </p><p>The goal of this step is to ensure that all data models used by at least one dataset in the repository have no error.</p><p>To ensure that this is the case, first you must read the data model compilation reports:</p><ol>
+<li><p>The data model compilation reports are displayed in the &#39;kernel&#39; log, from the server startup up to the line containing:</p><p><code>******** EBX(R) started and initialized. ********</code></p></li><li><p>In this part of the log, any data model compilation report begins with:</p><p><code>****** Schema</code></p></li><li><p>Any error message begins with:</p><p><code>error [</code></p></li></ol>
+<p><strong>Note</strong>: Data model compilation reports are also available through Web access, on the page Administration &gt; Technical configuration &gt; Modules and data models. Each report must be expanded individually.</p><p>In case a data model is in error, you must correct it. Alternatively, you can delete the datasets based on the data model in error if these datasets are no longer used (but note that you must delete the datasets in all dataspaces defining a dataset based on the data model; an alternative is to use a custom property when deploying on EBX&reg; 6, which will globally exclude all datasets based on a schema or a list of schemas; see step 11). </p><p>After you determine that all cleanup is done, delete the log, and then return to step 3 (restart the application server), to make sure that no data models are still in error. </p><p><strong>Note</strong>: If the DAMA add-on is used: the APIs marked as deprecated in DAMA 1.8.x are no longer available in DAMA 2.0.0. If a data model declares these deprecated APIs, then to prevent compilation errors, update the data model to use the most recent APIs.</p><p>Refer to the Digital Asset Manager documentation for the list of deprecated APIs and their replacements. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 6 – Cleanup if add-ons are used</p></td><td class="ebx_definitionListDefinition"><p>If your EBX&reg; 5.9 environment contains deployed add-ons, an additional manual intervention is necessary. It is detailed in <a href="#upgradeWithAddons">the next section</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 7 – Server shutdown</p></td><td class="ebx_definitionListDefinition"><p>Shut down your EBX&reg; 5.9 application server instance. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 8 – Repository backup (&quot;clean&quot; repository)</p></td><td class="ebx_definitionListDefinition"><p>Repeat backing up your EBX&reg; 5.9 repository, as described in step 2. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 9 – Java compilation against EBX&reg; 6</p></td><td class="ebx_definitionListDefinition"><p> Due to the conversion of some classes to interfaces in EBX&reg; 6, all custom Java code should be recompiled against the new version. (Otherwise, the <code>java.lang.IncompatibleClassChangeError</code> error occurs at runtime.) </p><p> This step provides the opportunity to assess some of the backward compatibility issues documented in the <a href="6.0.html#BackwardCompatibility">release note</a> and those coming from the add-ons. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 10 – EBX&reg; 6 deployment with your code</p></td><td class="ebx_definitionListDefinition"><p> Replace all <code>ebx*.war</code> and <code>ebx.jar</code> files deployed on your application server with the new artefacts provided with EBX&reg; 6. See <a href="../installation/deploy_on_jee.html">Java EE deployment</a> for more information. </p><p> If you use EBX&reg; add-ons, then replace all <code>ebx-addon-*.war</code> files and <code>ebx-addons.jar</code> files with those provided with the new bundle complying with EBX&reg; 6. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Step 11 – EBX&reg; 6 startup and automatic migration </p></td><td class="ebx_definitionListDefinition"><p>Restart the application server instance, now deployed with EBX&reg; 6. </p><p> In the case where at least a data model is still in error, the automatic migration is automatically stopped and a log details which datasets are concerned by these errors. To ease the corrections, the logs also provide a suggestion feeding the property <code>ebx.migration.5to6.excludeAllDatasetsOnDataModels</code> with the locations of the failing schemas, in the expected format. You then have two options: </p><ul>
+<li><p> If you accept these datasets to be excluded from the migration, copy this property to <code>ebx.properties</code>. </p></li><li><p> If you do not accept this suggestion, you must return to step 3. </p></li></ul>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p> In both cases, make sure to delete the directory <code>${<a href="../installation/properties.html#rootDirectory">ebx.repository.directory</a>}/indexes-(...)/</code>, so that it does not interfere with the next migration attempt. </p></div>
+<p> If no data model is in error, then the database schema and data are automatically migrated. This process might take time, depending on the volume of data. </p></td></tr>
+</table>
+<h2 id="upgradeWithAddons">
+Upgrading EBX&reg; 5.9 environment with add-ons</h2>
+<p>This section details the step 6 above. This step ensures that no custom data models depend on retired add-ons. </p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p>The following add-ons are no longer supported in EBX&reg; 6: </p><ul>
+<li><p>TIBCO EBX Match and Cleanse (codename daqa): It is renamed Match and Merge and is replaced by a new add-on (codename mame).</p></li><li><p>TIBCO EBX Rules Portfolio Add-on (codename rpfl): It is progressively replaced with new core scripting.</p></li><li><p>TIBCO EBX Information Governance Add-on (codename igov).</p></li><li><p>TIBCO EBX Add-on for Oracle Hyperion EPM (codename hmfh).</p></li><li><p>TIBCO EBX Graph View Add-on (codename gram).</p></li><li><p>TIBCO EBX Activity Monitoring Add-on (codename mtrn).</p></li></ul>
+</p></div>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p><strong>The final step of the automatic migration deletes the datasets created by the retired add-ons listed above. It also deletes their dataspace when this dataspace was also created by the add-on. (Usually, these dataspaces are accessed in the Administration area of the user interface.)</strong></p></p></div>
+<h3 id="upgradeWithAddonsDataModelIncludes">
+Data model includes</h3>
+<p>This sub-step ensures that all custom data models no longer include a retired add-on data model.</p><p>To our knowledge, this issue occurs only for the daqa add-on, so it is used as an example in this section.</p><p>To look for data model includes, you must read the data model compilation reports:</p><ol>
+<li><p>The data model compilation reports are all displayed in the &#39;kernel&#39; log, from the server startup up to the line containing:</p><p><code>******** EBX(R) started and initialized. ********</code></p></li><li><p>In this part of the log, any data model compilation report begins with:</p><p><code>****** Schema</code></p></li><li><p>Inclusion of a data model belonging to daqa displays the following text in its report:</p><p><code>Include: Module: ebx-addon-daqa</code></p></li></ol>
+<p><strong>Note</strong>: Data model compilation reports are also available through Web access, on the page Administration &gt; Technical configuration &gt; Modules and data models. Each report must be expanded individually.</p><p> In case a data model is using the module <code>ebx-addon-daqa</code>, you must take the following steps: </p><ol>
+<li><p>Remove the <code>include</code> directive specifying the data model of module <code>ebx-addon-daqa</code> (<code>/WEB_INF/ebx/schema/ebx-addon-daqa-types.xsd</code>). </p></li><li><p>Remove elements based on the data types it defines (mainly <code>DaqaMetaData</code>).</p></li><li><p>Modify other data model features that used the removed elements (for example, indexes).</p></li></ol>
+<h3 id="id3s2">
+Data models modified by an add-on</h3>
+<p>A data model can be enriched by a specific add-on if it defines the property <code>osd:addon</code> under <code>schema/annotation/appinfo</code>. As a consequence this property should be removed if a custom data model refers to an add-on that is no longer supported (if this is not done a warning will be added to the compilation report of the data model). </p><h3 id="id3s3">
+Data models using add-ons Java classes</h3>
+<p> In case a custom data model uses a Java extension provided by a retired add-on, this extension must be removed. Here is a non-exhaustive list: </p><ul>
+<li><p> rpfl: Using the data model extension <code>com.orchestranetworks.addon.rpfl.DefaultSchemaExtension</code>. </p></li><li><p>tese: Using the table filter <code>com.orchestranetworks.addon.tese.SearchTableFilter</code>. </p></li><li><p>dqid: Using the trigger <code>com.orchestranetworks.addon.dqid.controller.DQIdTrigger</code>. </p></li><li><p>igov: Using <code>com.orchestranetworks.addon.igov.IGovLabelingSchemaDocumentation</code>. </p></li><li><p>global: Some toolbars defined by the data models can use add-ons user services. </p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel"><a href="./index.html">Release Notes</a></span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

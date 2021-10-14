@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for Simple Workflow, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="../common_1.0.xsd" />
+	<xs:include schemaLocation="./workflow_types_1.1.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<!-- schema - java binding  -->
+			<ebxbnd:binding targetDirectory="../_ebx-core-workflow/src/">
+				<javaPathConstants typeName="com.orchestranetworks.workflow.impl.definition.WfsPaths">
+					<nodes prefix="" root="/root/definition" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<!-- schema extension -->
+			<osd:extensions class="com.orchestranetworks.workflow.impl.definition.WfsDefinitionModelExtension" />
+			<osd:inheritance>
+				<dataSetInheritance>all</dataSetInheritance>
+			</osd:inheritance>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.workflow_definition" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="definition" osd:access="--">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.definition" />
+						<xs:appinfo>
+							<osd:trigger class="com.orchestranetworks.workflow.impl.definition.WfsProcessDefinitionTrigger" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="process" type="ProcessDefinition">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.definition.process" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="pnode" type="PNode" />
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="plink" type="PLink" />
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="pcoordinate" type="PCoordinate" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--
+		******************************************************************************
+		UI Services for Pnode table
+		******************************************************************************
+	-->
+
+	<xs:complexType name="CleanWfDefinitionTables">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.workflow.impl.execution.permissions.WfPermissionCleanWFTables"  resourcePath="/wfserviceDispatcher?command=cleanWfDefinitionTables">
+				</osd:service>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.cleanWfDefinitionTables" />
+		</xs:annotation>
+	</xs:complexType>
+	<!--
+		******************************************************************************
+		UI Ajax components
+		******************************************************************************
+	-->
+	<xs:complexType name="AjaxComponentDisplayBeanParameters">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.workflow.impl.definition.ui.WfAjaxComponentDisplayBeanParameters" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxComponentDisplayServiceParameters">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.workflow.impl.definition.ui.WfAjaxComponentDisplayServiceParameters" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxComponentWorkflowWizards">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.workflow.impl.definition.ui.WfAjaxComponentWorkflowWizards" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxComponentDataContextWizard">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.workflow.impl.definition.ui.WfAjaxComponentDataContextWizard" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>
+

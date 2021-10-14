@@ -1,0 +1,10 @@
+{
+  "label": "Emile Zola",
+  "memberValue": "author0",
+  "isLeaf": true,
+  "member":"http://.../BooksByAuthors/members/author0",
+  "parent":"http://.../BooksByAuthors/members",
+  "details":"http://.../data/v1/BReference/Books/root/authors/author0",
+  "members":"http://.../BooksByAuthors/members/author0/members/",
+  "submembers": null
+}

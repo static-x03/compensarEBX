@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="soapwsdl_introduction" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/soapwsdl_introduction.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Introduction</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#interactions">Interactions</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Input and output message encoding</a></li><li class="toc2"><a href="#tracking">Tracking information</a></li><li class="toc2"><a href="#inputParameters">Session parameters</a></li><li class="toc2"><a href="#exceptions">Exception handling</a></li></ul>
+</li><li class="toc1"><a href="#security">Security</a><ul class="toc2">
+<li class="toc2"><a href="#authentication">Authentication</a></li><li class="toc2"><a href="#overridingSecurity">Overriding the SOAP security header</a></li><li class="toc2"><a href="#lookupMecanism">Lookup mechanism</a></li></ul>
+</li><li class="toc1"><a href="#comparative">SOAP and REST comparative</a></li><li class="toc1"><a href="#limitations">Limitations</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Date, time &amp; dateTime format</a></li><li class="toc2"><a href="#id5s2">SOAP naming convention</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>Data services allow external systems to interact with the data governed in the TIBCO EBX&reg; repository using the SOAP/Web Services Description Language (WSDL) standards.</p><p>In order to invoke <a href="../data_services/dataservices_execution.html">SOAP operations</a>, for an integration use case, a <a href="../data_services/dataservices_wsdl.html">WSDL</a> must be generated from a data model. It will be possible to perform operations such as:</p><ul>
+<li><p>Selecting, inserting, updating, deleting, or counting records</p></li><li><p>Selecting dataset values</p></li><li><p>Getting the differences on a table between dataspaces or snapshots, or between two datasets based on the same data model</p></li><li><p>Getting the credentials of records</p></li></ul>
+<p>Other generic WSDLs can be generated and allow performing operations such as:</p><ul>
+<li><p>Creating, merging, or closing a dataspace</p></li><li><p>Creating or closing a snapshot</p></li><li><p>Validating a dataset, dataspace, or a snapshot</p></li><li><p>Starting, resuming or ending a data workflow</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>See <a href="#comparative">SOAP and REST comparative</a>.</p></div>
+<h2 id="interactions">
+Interactions</h2>
+<h3 id="id2s1">
+Input and output message encoding</h3>
+<p>All input messages must be <em>exclusively</em> in UTF-8. All output messages are in UTF-8.</p><h3 id="tracking">
+Tracking information</h3>
+<p>Depending on the data services operation being called, it may be possible to specify session tracking information.</p><ul>
+<li><p>Example for a SOAP operation, the request header contains:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;SOAP-ENV:Header> 
+	&lt;!-- optional security header here --> 
+	&lt;m:session xmlns:m="urn:ebx-schemas:dataservices_1.0"> 
+		&lt;trackingInformation>String&lt;/trackingInformation> 
+	&lt;/m:session> 
+&lt;/SOAP-ENV:Header></pre>
+</li></ul>
+<h3 id="inputParameters">
+Session parameters</h3>
+<p>Depending on the data services operation being called, it is possible to specify session input parameters. They are defined in the request body.</p><ul>
+<li><p>Example for a SOAP operation, the optional request header contains:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;SOAP-ENV:Header>
+	&lt;!-- optional security header here -->
+	&lt;m:session xmlns:m="urn:ebx-schemas:dataservices_1.0">
+		&lt;!-- optional trackingInformation header here --> 
+		&lt;inputParameters>
+			&lt;parameter>
+				&lt;name>String&lt;/name>
+				&lt;value>String&lt;/value>
+			&lt;/parameter>
+			&lt;!-- for some other parameters, copy complex
+			     element 'parameter' -->
+		&lt;/inputParameters>
+	&lt;/m:session>
+&lt;/SOAP-ENV:Header></pre>
+</li></ul>
+<h3 id="exceptions">
+Exception handling</h3>
+<p>In case of unexpected server error upon execution of:</p><ul>
+<li><p>A SOAP operation, a SOAP exception response is returned to the caller via the <code>soap:Fault</code> element. For example:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;soapenv:Fault>
+	&lt;faultcode>soapenv:java.lang.IllegalArgumentException&lt;/faultcode>
+	&lt;faultstring />
+	&lt;faultactor>admin&lt;/faultactor>
+	&lt;detail>
+		&lt;m:StandardException xmlns:m="urn:ebx-schemas:dataservices_1.0">
+			&lt;code>java.lang.IllegalArgumentException&lt;/code>
+			&lt;label/>
+			&lt;description>java.lang.IllegalArgumentException:
+				Parent home not found at
+				com.orchestranetworks.XX.YY.ZZ.AA.BB(AA.java:44) at
+				com.orchestranetworks.XX.YY.ZZ.CC.DD(CC.java:40) ...
+			&lt;/description>
+		&lt;/m:StandardException>
+	&lt;/detail>
+&lt;/soapenv:Fault>
+</pre>
+</li></ul>
+<h2 id="security">
+Security</h2>
+<h3 id="authentication">
+Authentication</h3>
+<p>Authentication is mandatory to access to data. Several authentication methods are available and described below. The descriptions are ordered by priority (EBX&reg; applies the highest priority authentication method first).</p><ul>
+<li id="basic"><p>&#39;Basic Authentication Scheme&#39; method is based on the HTTP-Header <code>Authorization</code> in base 64 encoding, as described in <a href="https://tools.ietf.org/html/rfc2617#section-2">RFC 2617 (Basic Authentication Scheme)</a>.</p><pre class="brush: plain; toolbar: false; gutter: false;">
+If the user agent wishes to send the userid "Alibaba" and password "open sesame",
+it will use the following header field:
+&gt; Authorization: Basic QWxpYmFiYTpvcGVuIHNlc2FtZQ==
+</pre>
+</li><li id="standard"><p>&#39;Standard Authentication Scheme&#39; is based on the HTTP <code>Request</code>. User and password are extracted from request parameters. For more information on request parameters, see <a href="../data_services/dataservices_wsdl.html#WSDLConnector_Parameters">Parameters</a> section.</p></li><li id="soapSecurityHeader"><p>The &#39;SOAP Security Header Authentication Scheme&#39; method is based on the <a target="_blank" href="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0.pdf">Web Services Security UsernameToken Profile 1.0</a> specification. </p><p>By default, the type <code>PasswordText</code> is supported. This is done with the following SOAP-Header defined in the WSDL:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;SOAP-ENV:Header>
+	&lt;wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/04/secext">
+		&lt;wsse:UsernameToken>
+			&lt;wsse:Username>String&lt;/wsse:Username>
+			&lt;wsse:Password Type="wsse:PasswordText">String&lt;/wsse:Password>
+		&lt;/wsse:UsernameToken>
+	&lt;/wsse:Security>
+&lt;/SOAP-ENV:Header>
+</pre>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only available for <a href="../data_services/dataservices_execution.html">SOAP operations</a>.</p></div>
+</li><li id="soapSpecificHeader"><p>The &#39;SOAP Specific Header Authentication Scheme&#39;. </p><p>For more information, see <a href="#overridingSecurity">Overriding the SOAP security header</a>.</p></li></ul>
+<h3 id="overridingSecurity">
+Overriding the SOAP security header</h3>
+<p>It is possible to override the default WSS header in order to define another security authentication mechanism. Such an override is taken into account for both HTTP and JMS. To define and override, use the &#39;SOAP Header Security declaration&#39; configuration settings under Administration &gt; Lineage, which includes the following fields:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Schema location</p></td><td class="ebx_definitionListDefinition"><p>The URI of the Security XML Schema to import into the WSDL.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Target namespace</p></td><td class="ebx_definitionListDefinition"><p>The target namespace of elements in the schema.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Namespace prefix</p></td><td class="ebx_definitionListDefinition"><p>The prefix for the target namespace.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Message name</p></td><td class="ebx_definitionListDefinition"><p>The message name to use in the WSDL.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Root element name</p></td><td class="ebx_definitionListDefinition"><p>The root element name of the security header. The name must be the same as the one declared in the schema.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>wsdl:part element name</p></td><td class="ebx_definitionListDefinition"><p>The name of the <code>wsdl:part</code> of the message.</p></td></tr>
+</table>
+<p>The purpose of overriding the default security header is to change the declaration of the WSDL message matching the security header so that it contains the following:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;wsdl:definitions ... xmlns:MyPrefix="MyTargetNameSpace" ...
+  ...
+  &lt;xs:schema ...>
+    &lt;xs:import namespace="MyTargetNameSpace" schemaLocation="MySchemaURI"/>
+    ...
+  &lt;/xs:schema>
+  ...
+  &lt;wsdl:message name="MySecurityMessage">
+    &lt;wsdl:part name="MyPartElementName" element="MyPrefix:MySecurityRootElement"/>
+  &lt;/wsdl:message>
+  ...
+  &lt;wsdl:operation name="...">
+    &lt;soap:operation soapAction="..." style="document"/>
+    &lt;wsdl:input>
+      &lt;soap:body use="literal"/>
+      &lt;soap:header message="impl:MySecurityMessage" part="MyPartElementName" use="literal"/>
+  ...
+  &lt;/wsdl:operation>
+&lt;/wsdl:definitions></pre>
+<p>The corresponding XML Schema header declaration would be as follows:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="MyNameSpace"
+		xmlns:MyPrefix="MyNameSpace">
+  &lt;element name="MySecurityRootElement" type="MyPrefix:SpecificSecurity"/>
+  &lt;complexType name="SpecificSecurity">
+    &lt;sequence>
+      &lt;element name="AuthToken" type="string"/>
+    &lt;/sequence>
+  &lt;/complexType>
+&lt;/schema></pre>
+<p>A SOAP message using the XML schema and configuration above would have the following header:</p><pre class="brush: xml; toolbar: false; gutter: false;">
+&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                   xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  &lt;SOAP-ENV:Header>
+    &lt;m:MySecurityRootElement xmlns:m="MyNameSpace">
+      &lt;AuthToken>String&lt;/AuthToken>
+    &lt;/m:MySecurityRootElement>
+    ...
+  &lt;/SOAP-ENV:Header>
+  &lt;SOAP-ENV:Body>
+    ...
+  &lt;/SOAP-ENV:Body>
+&lt;/SOAP-ENV:Envelope></pre>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only available for <a href="../data_services/dataservices_execution.html">SOAP operations</a>.</p></div>
+<h3 id="lookupMecanism">
+Lookup mechanism</h3>
+<p> Because EBX&reg; offers several authentication methods, a lookup mechanism based on conditions was set to know which method should be applied for a given request. The method application conditions are evaluated according to the authentication scheme priority. If the conditions are not satisfied, the server evaluates the next method. The following table presents the available authentication methods for each supported protocol and their application conditions. They are ordered from the highest priority to the lowest. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th align="center" valign="top"><p><strong> Operation / Protocol </strong></p></th><th align="center" valign="top"><p><strong> Authentication methods and application conditions </strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="middle"><p>SOAP / JMS</p></td><td valign="top"><p><a href="#soapSecurityHeader">SOAP Security Header</a></p><ul>
+<li><p>The SOAP request is received over the JMS protocol.</p></li><li><p>The SOAP header content must contains a <code>Security</code> element.</p></li></ul>
+<p><a href="#soapSpecificHeader">SOAP Specific Header</a></p><ul>
+<li><p>The SOAP request is received over the JMS protocol.</p></li><li><p>The SOAP header content must not contain a <code>Security</code> element.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="middle"><p>SOAP / HTTP</p></td><td valign="top"><p><a href="#basic">Basic</a></p><ul>
+<li><p> The HTTP request must hold an <code>Authorization</code> header. </p></li><li><p><code>Authorization</code> header value must start with the word <code>Basic</code>. </p></li><li><p> No <code>login</code> is provided in the URL parameters. </p></li></ul>
+<p><a href="#standard">Standard</a></p><ul>
+<li><p> The HTTP request must not hold an <code>Authorization</code> header. </p></li><li><p> A <code>login</code> and a <code>password</code> are provided in the URL parameters. </p></li></ul>
+<p><a href="#soapSecurityHeader">SOAP Security Header</a></p><ul>
+<li><p>The SOAP header content must contain a <code>Security</code> element.</p></li><li><p> The HTTP request must not hold an <code>Authorization</code> header. </p></li><li><p> No <code>login</code> is provided in the URL parameters. </p></li></ul>
+<p><a href="#soapSpecificHeader">SOAP Specific Header</a></p><ul>
+<li><p>The SOAP header content must not contain a <code>Security</code> element.</p></li><li><p> The HTTP request must not hold an <code>Authorization</code> header. </p></li><li><p> No <code>login</code> is provided in the URL parameters. </p></li></ul>
+</td></tr>
+<tr>
+<td valign="middle"><p>WSDL / HTTP</p></td><td valign="top"><p><a href="#basic">Basic</a></p><ul>
+<li><p> The HTTP request must not hold an <code>Authorization</code> header. </p></li><li><p><code>Authorization</code> header value must start with the word <code>Basic</code>. </p></li><li><p> No <code>login</code> is provided in the URL parameters. </p></li></ul>
+<p><a href="#standard">Standard</a></p><ul>
+<li><p> The HTTP request must not hold an <code>Authorization</code> header. </p></li><li><p> A <code>login</code> and a <code>password</code> are provided in the URL parameters. </p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<p> In case of multiple authentication methods present in the same request, EBX&reg; will return an HTTP code <code>401 Unauthorized</code>. </p><h2 id="comparative">
+SOAP and REST comparative</h2>
+<p></p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Operations</strong></p></th><th align="center" valign="top"><p><strong>SOAP</strong></p></th><th align="center" valign="top"><p><strong>REST</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><strong>Data</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Select metadata</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select or count records (with filter and/or view publication)</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Selector for possible enumeration values (with filter)</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Prepare for creation or duplication</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Insert, update or delete records</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select or count history records (with filter and/or view publication)</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select node values from dataset</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Update node value from dataset</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Get table or dataset changes between dataspaces or snapshots</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Get credentials for records</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Generate service contract</p></td><td align="center"><p>WSDL</p></td><td align="center"><p>OpenAPI</p></td></tr>
+<tr>
+<td><p><strong>Views</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Look up published table views</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p><strong>Dataspaces</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Select dataspace or snapshot information</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Select root or children dataspaces, or select snapshots</p></td><td align="center"><p></p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Create, close, merge a dataspace</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Create, close a snapshot</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p>Validate a dataspace or a snapshot</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Validate a dataset</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+<tr>
+<td><p>Locking, unlocking a dataspace</p></td><td align="center"><p>X</p></td><td align="center"><p>X</p></td></tr>
+<tr>
+<td><p><strong>Workflow</strong></p></td><td><p></p></td><td><p></p></td></tr>
+<tr>
+<td><p>Start, resume or end a workflow</p></td><td align="center"><p>X</p></td><td align="center"><p></p></td></tr>
+</tbody>
+</table>
+<h2 id="limitations">
+Limitations</h2>
+<h3 id="id5s1">
+Date, time &amp; dateTime format</h3>
+<p>Data services only support the following date and time formats:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Type</strong></p></th><th valign="top"><p><strong>Format</strong></p></th><th valign="top"><p><strong>Example</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>xs:date</p></td><td><p>yyyy-MM-dd</p></td><td><p>2007-12-31</p></td></tr>
+<tr>
+<td><p>xs:time</p></td><td><p>HH:mm:ss or HH:mm:ss.SSS</p></td><td><p>11:55:00</p></td></tr>
+<tr>
+<td><p>xs:dateTime</p></td><td><p>yyyy-MM-ddTHH:mm:ss or yyyy-MM-ddTHH:mm:ss.SSS</p></td><td><p>2007-12-31T11:55:00</p></td></tr>
+</tbody>
+</table>
+<h3 id="id5s2">
+SOAP naming convention</h3>
+<p>Due to the naming convention of the data service operations, each table defined within a data model must have a unique name for the WSDL generation.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

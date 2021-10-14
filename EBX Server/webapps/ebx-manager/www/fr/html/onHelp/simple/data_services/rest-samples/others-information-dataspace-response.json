@@ -1,0 +1,25 @@
+{
+  "content": {
+    "key": "BReference",
+    "documentation": [
+      {
+        "locale": "en-US",
+        "label": "Master Data - Reference",
+        "description": "Reference dataspace in EBX."
+      },
+      {
+        "locale": "fr-FR",
+        "label": "Données - Référence",
+        "description": "Espace de données référence de EBX."
+      }
+    ],
+    "closed": false,
+    "locked": false,
+    "parent": null,
+    "administration": false,
+    "relationalMode": false,
+    "owner": "Badministrator",
+    "creator": "Badministrator",
+    "creationDate": "2019-04-28T19:49:04.838"
+  }
+}

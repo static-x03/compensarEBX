@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Comparison operators</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="testComparisonOperatorsAndFunctions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; SQL in EBX®</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=sql/ComparisonOperatorsAndFunctions_generated.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+<h1>
+Comparison operators</h1>
+<p>The table below lists all the SQL comparison operators supported by EBX&reg;, along with their standard SQL syntax. Some operators may have optional parameters: they are surrounded by square brackets.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Operator syntax</strong></p></th><th><p><strong>Description and example(s)</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>value1 = value2</p></td><td><p>Equals</p><p><code>SELECT 1 = 0 :&nbsp; false</code></p><p><code>SELECT 4 = 4 :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>value1 &lt;&gt; value2</p></td><td><p>Not equals</p><p><code>SELECT 1 &lt;&gt; 0 :&nbsp; true</code></p><p><code>SELECT 4 &lt;&gt; 4 :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>value1 &gt; value2</p></td><td><p>Greater than</p><p><code>SELECT 1 &gt; 0 :&nbsp; true</code></p><p><code>SELECT 4 &gt; 4 :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>value1 &gt;= value2</p></td><td><p>Greater than or equal</p><p><code>SELECT 1 &gt;= 0 :&nbsp; true</code></p><p><code>SELECT 4 &gt;= 4 :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>value1 &lt; value2</p></td><td><p>Lower than</p><p><code>SELECT 1 &lt; 0 :&nbsp; false</code></p><p><code>SELECT 4 &lt; 4 :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>value1 &lt;= value2</p></td><td><p>Less than or equal</p><p><code>SELECT 1 &lt;= 0 :&nbsp; false</code></p><p><code>SELECT 4 &lt;= 4 :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>value IS NULL</p></td><td><p>Whether value is null</p><p><code>SELECT 1 IS NULL :&nbsp; false</code></p><p><code>SELECT NULL IS NULL :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>value IS NOT NULL</p></td><td><p>Whether value is not null</p><p><code>SELECT 1 IS NOT NULL :&nbsp; true</code></p><p><code>SELECT NULL IS NOT NULL :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>value1 IS DISTINCT FROM value2</p></td><td><p>Whether two values are not equal, treating null values as the same</p><p><code>SELECT 1 IS DISTINCT FROM 1 :&nbsp; false</code></p><p><code>SELECT 1 IS DISTINCT FROM 4 :&nbsp; true</code></p><p><code>SELECT 1 IS DISTINCT FROM NULL :&nbsp; true</code></p><p><code>SELECT NULL IS DISTINCT FROM NULL :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>value1 IS NOT DISTINCT FROM value2</p></td><td><p>Whether two values are equal, treating null values as the same</p><p><code>SELECT 1 IS NOT DISTINCT FROM 1 :&nbsp; true</code></p><p><code>SELECT 1 IS NOT DISTINCT FROM 4 :&nbsp; false</code></p><p><code>SELECT 1 IS NOT DISTINCT FROM NULL :&nbsp; false</code></p><p><code>SELECT NULL IS NOT DISTINCT FROM NULL :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>value1 BETWEEN value2 AND value3</p></td><td><p>Whether value1 is greater than or equal to value2 and less than or equal to value3</p><p><code>SELECT 4 BETWEEN 3 AND 10 :&nbsp; true</code></p><p><code>SELECT 1 BETWEEN 3 AND 10 :&nbsp; false</code></p></td></tr>
+<tr>
+<td><p>value1 NOT BETWEEN value2 AND value3</p></td><td><p>Whether value1 is greater than or equal to value2 and less than or equal to value3</p><p><code>SELECT 4 NOT BETWEEN 3 AND 10 :&nbsp; false</code></p><p><code>SELECT 1 NOT BETWEEN 3 AND 10 :&nbsp; true</code></p></td></tr>
+<tr>
+<td><p>string1 LIKE string2</p></td><td><p>Whether string1 matches pattern string2. The wildcard &#39;%&#39; represent zero, one or multiple characters. To find if string1 starts with a sequence, use pattern &#39;sequence%&#39;. The matching is case sensitive. To do a case insensitive matching, use UPPER (or LOWER) on string1 and pattern.</p><p><code>SELECT firstname FROM employee WHERE name LIKE &#39;S%&#39; :&nbsp; John, Jennifer</code></p><p><code>SELECT firstname FROM employee WHERE UPPER(name) LIKE &#39;SM%&#39; :&nbsp; John</code></p><p><code>SELECT firstname FROM employee WHERE name LIKE &#39;_m%&#39; :&nbsp; John</code></p></td></tr>
+<tr>
+<td><p>string1 NOT LIKE string2</p></td><td><p>Whether string1 does not matches pattern string2. The wildcard &#39;%&#39; represent zero, one or multiple characters. To find if string1 does not start with a sequence, use pattern &#39;sequence%&#39;. The matching is case sensitive. To do a case insensitive matching, use UPPER (por LOWER) on string1 and pattern.</p><p><code>SELECT firstname FROM employee WHERE name NOT LIKE &#39;S%&#39; :&nbsp; Maria</code></p><p><code>SELECT firstname FROM employee WHERE UPPER(name) NOT LIKE &#39;SM%&#39; :&nbsp; Maria, Jennifer</code></p><p><code>SELECT firstname FROM employee WHERE name NOT LIKE &#39;_m%&#39; :&nbsp; Maria, Jennifer</code></p></td></tr>
+<tr>
+<td><p>value IN (value [, value]*)</p></td><td><p>Whether value is equal to a value in a list</p><p><code>SELECT firstname FROM employee WHERE name IN (&#39;Smith&#39;, &#39;Hamilton&#39;) :&nbsp; John, Maria</code></p></td></tr>
+<tr>
+<td><p>value NOT IN (value [, value]*)</p></td><td><p>Whether value is not equal to every value in a list</p><p><code>SELECT firstname FROM employee WHERE name NOT IN (&#39;Smith&#39;, &#39;Hamilton&#39;) :&nbsp; Jennifer</code></p></td></tr>
+<tr>
+<td><p>value IN (sub-query)</p></td><td><p>Whether value is equal to a row returned by sub-query</p><p><code>SELECT e.firstname FROM employee e WHERE e.department.id IN (SELECT d.id FROM department d WHERE d.name=&#39;IT&#39;) :&nbsp; John</code></p></td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

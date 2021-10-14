@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - Configuration overview and examples</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_configuring_sample_overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Information Search Add-on Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_configuring_sample.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Information Search Add-on Documentation</span></div>
+<h1 id="user_configuring_sample_overview_top">
+Configuration overview and examples</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_configuring_overview">Configuration overview</a></li><li class="toc1"><a href="#user_configuring_example">Creating a basic configuration</a><ul class="toc2">
+<li class="toc2"><a href="#user_configuring_sample_sensitivity">Search sensitivity</a></li></ul>
+</li><li class="toc1"><a href="#user_configuring_global_example">Configuring global search</a></li></ul>
+</div>
+<h2 id="user_configuring_overview">
+Configuration overview</h2>
+<p>Administrators can configure the add-on to search data local to where the search was executed, or to search data spanning multiple datasets and dataspaces. The following two configuration examples are provided to get you started: </p><ul>
+<li><p><a href="#user_configuring_example">Creating a basic configuration</a></p></li><li><p><a href="#user_configuring_global_example">Configuring global search</a></p></li></ul>
+<p>As described below, basic configuration entails:</p><ul>
+<li><p>setting search criteria for, and registering a data model. This includes setting options such as search sensitivity and permissions. The criteria you specify applies to any table included in this data model that users can search.</p></li><li><p>determining which tables users can search. Because of the model-driven configuration, you only need to setup a table one time. Users can run a search on the table regardless of its dataset location.</p></li><li><p>indicating the field(s) that the add-on searches when users run queries. This includes specifying the field, and search algorithm applied to queries on this field. Each algorithm processes data differently. The ability to apply algorithms to individual fields, based on that field&#39;s data type, helps ensure that searches return the most relevant results.</p></li></ul>
+<p>In addition to the previously mentioned options, you can also:</p><ul>
+<li><p><a href="../user_guide/user_configuring_synonyms.html">Create synonyms used to return results when a query does not find an exact match.</a></p></li><li><p><a href="../user_guide/user_configuring_webservices.html">Expose add-on functionality as a webservice.</a></p></li><li><p><a href="../user_guide/user_configuring_algorithms.html">Configure your own search algorithm.</a></p></li><li><p><a href="../user_guide/user_configuring_filtering.html">Set values to be excluded from a search.</a></p></li><li><p><a href="../user_guide/user_configuring_preferences.html">Set up search history.</a></p></li></ul>
+<h2 id="user_configuring_example">
+Creating a basic configuration</h2>
+<p>The sample presented in this section demonstrates a configuration that enables search on a single field in a table. Use the same steps to enable search for multiple tables and fields. If you have questions regarding an option not discussed in the instructions, click the property&#39;s tooltip to obtain more information.</p><p>To enable EBX® Information Search Add-on:</p><ol>
+<li><p>Navigate to <em>Administration &gt; Data quality &amp; analytics &gt; EBX® Information Search Add-on &gt; Configuration &gt; Model</em>. Create a new record.</p></li><li><p>Select the data model you want to register. At this stage you can also specify the default search sensitivity that the add-on applies to all tables included in this data model. This value plays an important role in returning the most relevant values. When set too high, potentially correct results may be overlooked. On the other hand, a search may return irrelevant results when the sensitivity is too low. As a recommended practice you can test the setting to ensure the add-on returns the best results (<a href="#user_configuring_sample_sensitivity">Search sensitivity</a>).</p><p align="left"><img alt="/new_model_config_1.png" src="./resources/images/new_model_config_1.png"></img></p></li><li><p>Save, but do not close your configuration.</p></li><li><p>Specify the table on which you want to enable search by selecting the <strong>Searched tables</strong> tab and creating a new record.</p><p align="left"><img alt="/config_search_2.png" src="./resources/images/config_search_2.png"></img></p></li><li><p>After adding a table, save, but do not close the record.</p></li><li><p>Select the <strong>Searched fields</strong> tab and create a new record to indicate the field you want the add-on to search. Additionally, you can specify the following criteria:</p><ul>
+<li><p>Chose a primary, and optionally, a secondary search algorithm. Depending on the field&#39;s data type, you can choose from pre-existing phonetic, or distance based algorithms. Alternatively, you can create your own algorithm. See <a href="../user_guide/user_configuring_algorithms.html">Working with algorithms</a> for more information.</p></li><li><p>Use a Java class to filter the search. If you have created any filtered values in the add-on&#39;s configuration, use the default class (<code>com.orchestranetworks.addon.tese.SearchValueFilter</code>) to filter out values. Alternatively, you can create and specify your own custom class to filter values. See <a href="../user_guide/user_configuring_filtering.html">Excluding values from searches</a> for more information.</p></li><li><p>Allow the add-on to return synonyms when an exact match is not found. You can limit available synonyms to a single group, or enable multiple groups. See <a href="../user_guide/user_configuring_synonyms.html">Expanding searches with synonyms</a> for more information.</p></li></ul>
+</li><li><p>After saving and closing the field record, you can continue to configure additional fields on this table. When finished, save and close out of the configuration.</p></li></ol>
+<p>Users that can access datasets and tables configured to use the add-on can run the search service from either <strong>Actions</strong> menu. At any time you can use the <strong>Model</strong>, <strong>Searched tables</strong>, <strong>Searched fields</strong>, and other configuration groups to add, or alter configuration information.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_configuring_filtering.html">Excluding values from search results</a></li><li><a href="../user_guide/user_configuring_algorithms.html">Working with algorithms</a></li><li><a href="../user_guide/user_configuring_synonyms.html">Expanding search with synonyms</a></li></ul>
+</div>
+<h3 id="user_configuring_sample_sensitivity">
+Search sensitivity</h3>
+<p>Generally, when you lower the sensitivity, searches return more results. For example, when searching for &quot;Alice&quot; with a setting of 70, a search may return &quot;Alice&quot;. After lowering the sensitivity to 60, the search would still include the previous result, but may also include &quot;Aliz&quot; and &quot;Alric&quot;.</p><h2 id="user_configuring_global_example">
+Configuring global search</h2>
+<p>When enabling global search, you associate a user profile with one, or more <em>contexts</em> that point to tables. When a user profile performs a global search, it will include all tables from the linked contexts. To include a table in a context, register the table&#39;s containing model and the table with the add-on, and configure search options for the desired fields. These steps are demonstrated in the <a href="#user_configuring_example">Creating a basic configuration</a> heading above. The example below uses previously configured tables.</p><p>To enable global search:</p><ol>
+<li><p>Navigate to <em>Administration &gt; Data quality &amp; analytics &gt; EBX® Information Search Add-on &gt; Configuration</em>.</p></li><li><p>Open the <strong>Permission</strong> table and create a new record.</p></li><li><p>Select the desired profile from the drop-down list, then add a context. If no context exists:</p><ul>
+<li><p>Open the <strong>Context</strong> drop-down and select <strong>+ Create</strong>, or create a new record in the <strong>Context</strong> table.</p></li><li><p>Supply a code and optionally a custom title.</p></li><li><p>Use the <strong>Dataspace</strong>, <strong>Dataset</strong>, and <strong>Tables</strong> fields to include tables in this context. Remember, you can only add tables that have been previously configured in the add-on.</p></li></ul>
+</li><li><p>After adding all desired contexts, save and close. The global search icon will now be available for the user, or users included in the role, registered in the <strong>Permission</strong> table.</p><p><img alt="/global_search.png" src="./resources/images/global_search.png"></img></p></li></ol>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>To use the global search feature for any dataspace, it must remain enabled in the <strong>Reference</strong> dataspace permissions.</p></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

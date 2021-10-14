@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Configuration du mod&egrave;le de workflow</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="wm_actions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de workflow</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_workflowmodel/userworkflowmodel_actions.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+<h1>
+Configuration du mod&egrave;le de workflow</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#information">Informations</a></li><li class="toc1"><a href="#configuration">Propri&eacute;t&eacute;s du mod&egrave;le de workflow</a></li><li class="toc1"><a href="#datacontext">Contexte de donn&eacute;es</a></li><li class="toc1"><a href="#viewsCustomization">Personnalisation des vues d&#39;ex&eacute;cution de workflow</a></li><li class="toc1"><a href="#permissions">Permissions sur les workflows de donn&eacute;es associ&eacute;s</a></li><li class="toc1"><a href="#workflow_history">Historique des images du mod&egrave;le de workflow</a></li><li class="toc1"><a href="#id7">Suppression d&#39;un mod&egrave;le de workflow</a></li></ul>
+</div>
+<h2 id="information">
+Informations</h2>
+<p>Pour visualiser et &eacute;diter les informations concernant le propri&eacute;taire et la documentation du mod&egrave;le de workflow, s&eacute;lectionnez &quot;Informations&quot; dans le menu <a href="../user_workflowmodel/userworkflowmodel_intro.html#introduction">&quot;Actions&quot; du mod&egrave;le de workflow</a> dans le panneau de navigation.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Propri&eacute;taire</p></td><td class="ebx_definitionListDefinition"><p>Personne pouvant &eacute;diter les informations du mod&egrave;le de workflow et d&eacute;finir des r&egrave;gles de permission.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Documentation locale</p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; et description associ&eacute;s au mod&egrave;le de workflow localis&eacute;s.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Activation</p></td><td class="ebx_definitionListDefinition"><p><em>Cette propri&eacute;t&eacute; est obsol&egrave;te.</em> Sp&eacute;cifie si un mod&egrave;le de workflow est activ&eacute;. Un mod&egrave;le de workflow doit &ecirc;tre activ&eacute; pour pouvoir &ecirc;tre publi&eacute;.</p></td></tr>
+</table>
+<h2 id="configuration">
+Propri&eacute;t&eacute;s du mod&egrave;le de workflow</h2>
+<p>La configuration d&#39;un mod&egrave;le de workflow est accessible depuis le panneau de navigation.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Module</p></td><td class="ebx_definitionListDefinition"><p>Module contenant les ressources Java sp&eacute;cifiques (extension de t&acirc;che utilisateur, script et conditions sp&eacute;cifiques).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Notification de d&eacute;marrage</p></td><td class="ebx_definitionListDefinition"><p>Liste des profils qui doivent recevoir une notification (choisie dans la liste des mod&egrave;les de messages) quand un workflow d&eacute;marre.</p><p>Voir <a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Mod&egrave;les de message g&eacute;n&eacute;riques</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Notification de fin</p></td><td class="ebx_definitionListDefinition"><p>Liste des profils qui doivent recevoir une notification (choisie dans la liste des mod&egrave;les de messages), quand un workflow se termine. La notification n&#39;est envoy&eacute;e que si le workflow a &eacute;t&eacute; termin&eacute; &quot;normalement&quot; (pas par une action d&#39;administration).</p><p>Voir <a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Mod&egrave;les de message g&eacute;n&eacute;riques</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Notification d&#39;erreur</p></td><td class="ebx_definitionListDefinition"><p>Liste des profils qui recevront une notification (choisie dans la liste des mod&egrave;les de messages) quand un workflow est mis en d&#39;erreur.</p><p>Voir <a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Mod&egrave;les de message g&eacute;n&eacute;riques</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Priorit&eacute;</p></td><td class="ebx_definitionListDefinition"><p>Par d&eacute;faut, chaque workflow associ&eacute; &agrave; ce mod&egrave;le sera lanc&eacute; avec cette priorit&eacute;. Cette valeur est facultative. Si aucune valeur n&#39;est d&eacute;finie ici, et une priorit&eacute; par d&eacute;faut est d&eacute;finie pour le r&eacute;f&eacute;rentiel, la prioriti&eacute; par d&eacute;faut pour le r&eacute;f&eacute;rentiel sera appliqu&eacute;e &agrave; tous les workflows et bons de travail sans priorit&eacute;. </p><p>Voir <a href="../user_dataworkflow/userdataworkflow_workitems.html#workitem_priorities">Priorit&eacute; de bons de travail</a> pour plus d&#39;informations.</p><p><strong>Note :</strong> Seuls les utilisateurs d&eacute;finis en tant qu&#39;administrateurs de workflows seront autoris&eacute;s &agrave; modifier la priorit&eacute; des workflows de donn&eacute;es associ&eacute;s manuellement.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="quickLaunch"><p>Activer le lancement direct</p></td><td class="ebx_definitionListDefinition"><p>Par d&eacute;faut, lorsqu&#39;un workflow est lanc&eacute;, il est propos&eacute; &agrave; l&#39;utilisateur de saisir une documentation pour le nouveau workflow dans un formulaire interm&eacute;diaire. Cette documentation est facultative. Positionner la propri&eacute;t&eacute; &quot;Activer le lancement direct&quot; &agrave; &quot;Oui&quot; permet d&#39;&eacute;viter cette &eacute;tape de documentation et de lancer directement le workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="synchronousLaunch"><p>Ouvrir automatiquement la premi&egrave;re &eacute;tape</p></td><td class="ebx_definitionListDefinition"><p>Permet de conditionner la navigation, suite &agrave; un lancement de workflow. Par d&eacute;faut, une fois le workflow lanc&eacute;, la table courante (lanceurs de workflow ou monitoring &gt; publications) est automatiquement affich&eacute;e.</p><p>Activer cette propri&eacute;t&eacute; permet au cr&eacute;ateur du workflow de garder la main sur le workflow lanc&eacute;. Si, suite &agrave; l&#39;ex&eacute;cution de la premi&egrave;re &eacute;tape du workflow, un bon de travail est atteint, et que ce bon de travail peut &ecirc;tre d&eacute;marr&eacute; par le lanceur de workflow, le bon de travail est automatiquement ouvert (si plusieurs bons de travail sont atteints, le premier cr&eacute;&eacute; est ouvert). Cela &eacute;vite au lanceur de s&eacute;lectionner le bon de travail correspondant dans la corbeille de t&acirc;ches.</p><p>Si aucun bon de travail n&#39;est atteint, la strat&eacute;gie d&#39;avancement de l&#39;&eacute;tape suivante est &eacute;valu&eacute;e.</p><p>Si aucun bon de travail n&#39;est finalement ouvert, la table &agrave; partir de laquelle le workflow a &eacute;t&eacute; lanc&eacute; est affich&eacute;e.</p><p><strong>Limitation :</strong> Cette propri&eacute;t&eacute; est ignor&eacute;e si la premi&egrave;re &eacute;tape est un appel de sous-workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Trigger de workflowr</p></td><td class="ebx_definitionListDefinition"><p>Composant interceptant les &eacute;v&eacute;n&eacute;ments principaux d&#39;un workflow.</p><p>Ce bean doit &ecirc;tre d&eacute;clar&eacute; dans un fichier <code>module.xml</code>. Voir <a href="../workflow/workflowmodel.html#workflowTriggerBean">l&#39;exemple</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Permissions</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit les permissions pour les actions li&eacute;es au workflows de donn&eacute;es associ&eacute;s au mod&egrave;le de workflow.</p><p>Ce bean doit &ecirc;tre d&eacute;clar&eacute; dans un fichier <code>module.xml</code>. Voir <a href="../workflow/workflowmodel.html#actionPermissionsOnWorkflow">l&#39;exemple</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Permissions programmatiques</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le composant g&eacute;rant les permissions du workflow. S&#39;il est d&eacute;fini, il remplace l&#39;ensemble des permissions d&eacute;finies dans la propri&eacute;t&eacute; &#39;Permissions&#39;.</p></td></tr>
+</table>
+<h2 id="datacontext">
+Contexte de donn&eacute;es</h2>
+<p>La configuration du contexte de donn&eacute;es est accessible depuis le panneau de navigation.</p><p>Chaque workflow poss&egrave;de un contexte de donn&eacute;es qui lui est propre, lui permettant ainsi de disposer d&#39;un espace de donn&eacute;es local durant son ex&eacute;cution. Cela permet de stocker et faire varier des valeurs qui orienteront l&#39;ex&eacute;cution du workflow.</p><p>Le contexte de donn&eacute;es est d&eacute;fini par une liste de variables. Chaque variable poss&egrave;de les propri&eacute;t&eacute;s suivantes :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom</p></td><td class="ebx_definitionListDefinition"><p>Identifiant de la variable.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Valeur par d&eacute;faut</p></td><td class="ebx_definitionListDefinition"><p>Si d&eacute;finie, la variable sera initialis&eacute;e avec cette valeur par d&eacute;faut.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Param&egrave;tre d&#39;entr&eacute;e</p></td><td class="ebx_definitionListDefinition"><p>&#39;Oui&#39; doit &ecirc;tre coch&eacute; pour d&eacute;finir cette variable comme un param&egrave;tre d&#39;entr&eacute;e.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Param&egrave;tre de sortie</p></td><td class="ebx_definitionListDefinition"><p>&#39;Oui&#39; doit &ecirc;tre coch&eacute; pour d&eacute;finir cette variable comme un param&egrave;tre de sortie. Sinon, la variable ne sera pas affich&eacute;e dans la liste des param&egrave;tres de sortie, dans l&#39;interface de d&eacute;finition d&#39;une t&acirc;che.</p></td></tr>
+</table>
+<h2 id="viewsCustomization">
+Personnalisation des vues d&#39;ex&eacute;cution de workflow</h2>
+<p>La personnalisation des vues d&#39;ex&eacute;cution de workflow est accessible depuis le panneau de navigation.</p><p>Cette personnalisation permet de configurer les colonnes sp&eacute;cifiques des vues de bons de travail et de workflows (corbeille, monitoring des bons de travail, monitoring des workflows actifs et workflows termin&eacute;s). Pour chaque colonne sp&eacute;cifique, il est possible d&#39;associer une expression qui peut contenir des variables du contexte de donn&eacute;es qui seront &eacute;valu&eacute;es lors de l&#39;affichage du workflow.</p><h2 id="permissions">
+Permissions sur les workflows de donn&eacute;es associ&eacute;s</h2>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Administration de workflow</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; ex&eacute;cuter des t&acirc;ches d&#39;administration sur les workflows. Les actions d&#39;administration sont : rejouer une &eacute;tape, r&eacute;veiller un workflow, terminer un workflow, d&eacute;sactiver une publication et d&eacute;publier. Pour pouvoir ex&eacute;cuter ces actions, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; administrer les workflows.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Administration de workflow &gt; Rejouer une &eacute;tape</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; rejouer une &eacute;tape de workflow. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour rejouer une &eacute;tape, un bouton est disponible dans la section &quot;Monitoring &gt; Workflows actifs&quot;. Un profil qui a la permission &quot;Administration de workflow&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; rejouer une &eacute;tape de workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Administration de workflow &gt; Terminer un workflow</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; terminer et supprimer un workflow. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour terminer et supprimer un workflow en cours, un bouton est disponible dans la section &quot;Monitoring &gt; Workflows actifs&quot;. Pour supprimer un workflow termin&eacute;, un bouton est disponible dans la section &quot;Workflows termin&eacute;s&quot;. Un profil qui a la permission &quot;Administration de workflow&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; terminer un workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Administration de workflow &gt; Forcer le r&eacute;veil d&#39;un workflow</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; forcer le r&eacute;veil d&#39;un workflow en attente. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour r&eacute;veiller un workflow, un bouton est disponible dans la section &quot;Monitoring &gt; Workflows actifs&quot;. Un profil qui a la permission &quot;Administration de workflow&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; r&eacute;veiller un workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Administration de workflow &gt; D&eacute;sactiver une publication</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; d&eacute;sactiver une publication de workflow. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour d&eacute;sactiver, un bouton est disponible dans la section &quot;Monitoring &gt; Publications&quot; uniquement pour les publications actives. Un profil qui a la permission &quot;Administration de workflow&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; d&eacute;sactiver une publication.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Administration de workflow &gt; D&eacute;publier</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; d&eacute;publier une publication de workflow. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour d&eacute;publier, un bouton est disponible dans la section &quot;Monitoring &gt; Publications&quot; pour les publications d&eacute;sactiv&eacute;es uniquement. Un profil qui a la permission &quot;Administration de workflow&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; d&eacute;publier.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Gestion de l&#39;allocation</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; g&eacute;rer l&#39;allocation des bons de travail. Les actions d&#39;allocation sont : allouer les bons de travail, r&eacute;allouer les bons de travail et d&eacute;sallouer les bons de travail. Pour pouvoir ex&eacute;cuter ces actions, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; g&eacute;rer l&#39;allocation des workflows.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Gestion de l&#39;allocation &gt; Allouer les bons de travail</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; allouer les bons de travail. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour allouer un bon de travail, un bouton est disponible dans la section &quot;Monitoring &gt; Bons de travail&quot; uniquement pour les bons de travail propos&eacute;s. Un profil qui a la permission &quot;Gestion de l&#39;allocation&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; allouer les bons de travail.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Gestion de l&#39;allocation &gt; R&eacute;allouer les bons de travail</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; r&eacute;allouer les bons de travail. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour r&eacute;allouer, un bouton est disponible dans la section &quot;Monitoring &gt; Bons de travail&quot; uniquement pour les bons de travail allou&eacute;s. Un profil qui a la permission &quot;Gestion de l&#39;allocation&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; r&eacute;allouer les bons de travail.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Gestion de l&#39;allocation &gt; D&eacute;sallouer les bons de travail</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; d&eacute;sallouer les bons de travail. Pour pouvoir ex&eacute;cuter cette action, ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows&quot;. Pour d&eacute;sallouer, un bouton est disponible dans la section &quot;Monitoring &gt; Bons de travail&quot; uniquement pour les bons de travail allou&eacute;s. Un profil qui a la permission &quot;Gestion de l&#39;allocation&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action sp&eacute;cifique. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; d&eacute;sallouer les bons de travail.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="permissions_create"><p>Lancer les workflows</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; lancer manuellement de nouveaux workflows. Cette permission permet de lancer des workflows &agrave; partir des publications actives dans la section &quot;Lanceurs de workflow&quot;. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; lancer les workflows.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Visualiser les workflows</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; visualiser les workflows. Par d&eacute;faut, un utilisateur final peut uniquement voir les bons de travail qui lui sont propos&eacute;s ou allou&eacute;s dans la section &quot;Boîte de r&eacute;ception&quot;. Cette permission permet en plus de visualiser les publications, workflows et bons de travail associ&eacute;s &agrave; ce mod&egrave;le de workflow dans les sections &quot;Monitoring&quot; et &quot;Workflows termin&eacute;s&quot;. Ce profil b&eacute;n&eacute;ficie automatiquement de la permission &quot;Visualiser les workflows termin&eacute;s&quot;. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; visualiser les workflows.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Visualiser les workflows &gt; Le cr&eacute;ateur d&#39;un workflow peut le visualiser</p></td><td class="ebx_definitionListDefinition"><p>Si activ&eacute;, le cr&eacute;ateur d&#39;un workflow a la permission de visualiser les workflows qu&#39;il a lanc&eacute;s. Cette permission restreinte lui donne acc&egrave;s aux workflows qu&#39;il a lanc&eacute;s et aux bons de travail associ&eacute;s dans les sections &quot;Monitoring &gt; Workflows actifs&quot;, &quot;Monitoring &gt; Bons de travail&quot; et &quot;Workflows termin&eacute;s&quot;. La valeur par d&eacute;faut est &quot;Non&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Visualiser les workflows &gt; Visualiser les workflows termin&eacute;s</p></td><td class="ebx_definitionListDefinition"><p>D&eacute;finit le profil autoris&eacute; &agrave; visualiser les workflows termin&eacute;s. Cette permission permet de visualiser les workflows termin&eacute;s dans la section &quot;Workflows termin&eacute;s&quot; et d&#39;acc&eacute;der &agrave; leur historique. Un profil qui a la permission &quot;Visualiser les workflows&quot; est automatiquement autoris&eacute; &agrave; effectuer cette action. L&#39;administrateur built-in est toujours autoris&eacute; &agrave; visualiser les workflows termin&eacute;s.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Un utilisateur n&#39;ayant aucun privil&egrave;ge particulier pourra voir un bon de travail uniquement si celui-ci lui est propos&eacute; ou personnellement allou&eacute;.</p></div>
+<div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_dataworkflow/userdataworkflow_admin.html">Administration d&#39;un workflow</a></li></ul>
+</div>
+<h2 id="workflow_history">
+Historique des images du mod&egrave;le de workflow</h2>
+<p>L&#39;historique des images d&#39;un mod&egrave;le de workflow peut &ecirc;tre g&eacute;r&eacute; sous <strong>Actions &gt; Afficher l&#39;historique des publications</strong>.</p><p>La table d&#39;historique affiche toutes les images contenant le mod&egrave;le de workflow et indique si le mod&egrave;le a &eacute;t&eacute; publi&eacute;. Pour chaque image, il est possible d&#39;exporter ou d&#39;afficher le mod&egrave;le de workflow correspondant en utilisant le bouton <strong>Actions</strong>.</p><h2 id="id7">
+Suppression d&#39;un mod&egrave;le de workflow</h2>
+<p>Un mod&egrave;le de workflow peut &ecirc;tre supprim&eacute;. Cependant, toute version publi&eacute;e auparavant reste accessible dans la section Workflows de Donn&eacute;es. D&#39;autre part, si un mod&egrave;le de workflow est recr&eacute;&eacute; avec un nom identique, lors d&#39;une publication, un message demandera la confirmation de remplacement de la publication pr&eacute;c&eacute;dente.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_workflowmodel/userworkflowmodel_publish.html">Publication d&#39;un mod&egrave;le de workflow</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

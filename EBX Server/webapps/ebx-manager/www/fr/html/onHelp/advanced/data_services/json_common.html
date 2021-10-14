@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Common</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="json_common" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; REST data services &gt; JSON Formats</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/json_common.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; REST data services &gt; JSON Formats</span></div>
+<h1>
+Common</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#id2">Global structure</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">JSON Response body</a></li></ul>
+</li><li class="toc1"><a href="#formValidationReport">Form validation report</a></li><li class="toc1"><a href="#id4">Content</a><ul class="toc2">
+<li class="toc2"><a href="#pagination">Pagination</a></li><li class="toc2"><a href="#simpleTypes">Content of simple type</a></li><li class="toc2"><a href="#insertRecordsResponse">Insert operation report</a></li><li class="toc2"><a href="#deleteRecordsResponse">Delete operation report</a></li></ul>
+</li><li class="toc1"><a href="#insertUpdateOperation">Update modes</a></li><li class="toc1"><a href="#id6">Known limitations</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Field values</a></li><li class="toc2"><a href="#id6s2">Indexing and search strategy</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p> The common specifications are used in both <a href="../data_services/json_compact.html">compact</a> and <a href="../data_services/json_extended.html">Extended</a> formats. </p><h2 id="id2">
+Global structure</h2>
+<h3 id="id2s1">
+JSON Response body</h3>
+<h4 id="formDataCategory">
+Form data category</h4>
+<p>The response body contains a JSON <code>Object</code> per handled resources. That is, the JSON root <code>Object</code> for a single handled resource is a JSON <code>Object</code> as well as for multiple handled resources. The several properties are directly placed into the JSON <code>Object</code>. </p><ul>
+<li id="validationReportSuccess"><p>If the insert/update of a single record request or update field in table/dataset request was successful, the <code>code</code> JSON property may be absent and if not, it corresponds to the HTTP response code associated to the handled resource. The validation report is always present. Some properties are optional and added when requested using request parameters. See <a href="../data_services/dataservices_rest_v1.html#formDataOperation">Form data operations</a> for more information. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "validation": [
+    {
+      "level": "error",
+      "message": "Field 'Value' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/value"
+    },
+    {
+      "level": "error",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    },
+    {
+      "level": "warning",
+      "message": "Value 'AD150' is prohibited.",
+      "blocksCommit": "never",
+      "pathInRecord": "/code"
+    }
+  ]
+}</pre>
+</li><li id="validationReportSuccess_multiple"><p>If the insert multiple record request was successful, the <code>code</code> JSON property may be absent and if not, it corresponds to the HTTP response code associated to the handled resource. The validation report is always present. Some properties are optional and added when requested using request parameters. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "label": "My Lable1",
+      "details": "http://.../root/table/1",
+      "foreignKey": "1",
+      "validation": [
+        {
+          "level": "error",
+          "message": "Field 'Value' is mandatory.",
+          "blocksCommit": "never",
+          "pathInRecord": "/value"
+        },
+        {
+          "level": "error",
+          "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+          "blocksCommit": "onUserSubmit-checkModifiedValues",
+          "pathInRecord": "/code"
+        },
+        {
+          "level": "warning",
+          "message": "Value 'AD150' is prohibited.",
+          "blocksCommit": "never",
+          "pathInRecord": "/code"
+        }
+      ]
+    },
+    {
+      "label": "My Lable2",
+      "details": "http://.../root/table/2",
+      "foreignKey": "2",
+      "validation": [
+        {
+          "level": "error",
+          "message": "Field 'Value' is mandatory.",
+          "blocksCommit": "never",
+          "pathInRecord": "/value"
+        },
+        {
+          "level": "error",
+          "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+          "blocksCommit": "onUserSubmit-checkModifiedValues",
+          "pathInRecord": "/code"
+        },
+        {
+          "level": "warning",
+          "message": "Value 'AD150' is prohibited.",
+          "blocksCommit": "never",
+          "pathInRecord": "/code"
+        }
+      ]
+    }
+  ]
+}</pre>
+</li><li id="validationReportFail"><p>If the insert/update of a single record request or update field in table/dataset failed, the response body corresponds to a JSON <code>Exception handling</code> response. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "code": 422,
+  "errors": [
+    {
+      "level": "error",
+      "userCode": "Validation",
+      "message": "Field 'Category' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/category"
+    },
+    {
+      "level": "error",
+      "userCode": "Validation",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    }
+  ]
+}</pre>
+</li><li id="validationsReportFail_multiple"><p>If the insert multiple record request failed, the response body corresponds to a JSON <code>Exception handling</code> response. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "code": 422,
+  "errors": [
+    {
+      "level": "error",
+      "rowIndex": 0,
+      "userCode": "Validation",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    },
+    {
+      "level": "error",
+      "rowIndex": 0,
+      "userCode": "Validation",
+      "message": "Field 'Value Less Than' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/less_than_value"
+    },
+    {
+      "level": "error",
+      "rowIndex": 1,
+      "userCode": "Validation",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    },
+    {
+      "level": "error",
+      "rowIndex": 1,
+      "userCode": "Validation",
+      "message": "Field 'Value Less Than' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/less_than_value"
+    }
+  ]
+}</pre>
+</li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_common.html#formValidationReport">Form validation report</a></li><li><a href="../data_services/restapi_introduction.html#exceptions">Exception handling</a></li></ul>
+</div>
+<h2 id="formValidationReport">
+Form validation report</h2>
+<p>This report can be retrieve by using the <a href="../data_services/dataservices_rest_v1.html#formDataOperation">Form data operations</a>. It provides every validation constraint on the requested resource. </p><p>Those constraints have the following properties:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>message</code></p></td><td><p><code>String</code></p></td><td><p>Description of the constraint.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>blocksCommit</code></p></td><td><p><code>String</code></p></td><td><p>Control policy of the constraint. The possible values are: <code>onInsertUpdateOrDelete</code>, <code>onUserSubmit-checkModifiedValues</code>, <code>never</code>. </p><p>See <a href="../models/constraints.html#blocksCommit">Blocking and non-blocking constraints</a> for more information. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>level</code></p></td><td><p><code>String</code></p></td><td><p>Severity level of the constraint. The possible values are: <code>info</code>, <code>warning</code>, <code>error</code> or <code>fatal</code>. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p><code>pathInDataset</code></p></td><td><p><code>String</code></p></td><td><p>Relative field path starting from the schema node.</p></td><td><p>No(**)</p></td></tr>
+<tr>
+<td><p><code>pathInRecord</code></p></td><td><p><code>String</code></p></td><td><p>Relative field path starting from the table node.</p></td><td><p>No (*)</p></td></tr>
+</tbody>
+</table>
+<p>(*) Only available for record and record field operations.</p><p>(**) Only available for dataset operations.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#formDataCategory">Form data category</a></li></ul>
+</div>
+<h2 id="id4">
+Content</h2>
+<h3 id="pagination">
+Pagination</h3>
+<p>This feature allows to return a limited and parameterizable number of data. Pagination can be applied to data of the following types: records, association values, selection node values, selectors and dataspaces. A context named <code>pagination</code> is always returned. This context allows browsing data similarly to the UI. </p><p>The pagination is always enabled.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#dataspaceSelect">Beta feature: Select dataspaces or snapshots</a></li></ul>
+</div>
+<p>Detailed information related to this context can be found hereafter: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="firstPage"><code>firstPage</code></p></td><td><p><code>String</code> or <code>null</code> (*) </p></td><td><p>URL to access the first page.</p></td><td><p>Yes (**)</p></td></tr>
+<tr>
+<td><p id="previousPage"><code>previousPage</code></p></td><td><p><code>String</code> or <code>null</code> (*) </p></td><td><p>URL to access the previous page.</p></td><td><p>Yes (**)</p></td></tr>
+<tr>
+<td><p id="nextPage"><code>nextPage</code></p></td><td><p><code>String</code> or <code>null</code> (*) </p></td><td><p>URL to access the next page.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="lastPage"><code>lastPage</code></p></td><td><p><code>String</code> or <code>null</code> (*) </p></td><td><p>URL to access the last page.</p></td><td><p>Yes (**)</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>(*) Only defines if data is available in this context and not in the response. </p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>(**) Not present on selector.</p></div>
+<h3 id="simpleTypes">
+Content of simple type</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Examples</strong></p></th><th><p><strong>Meta type</strong></p></th><th><p><strong><a href="https://swagger.io/docs/specification/data-models/data-types/"> OpenAPI </a></strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>xs:string</code></p><p><code>xs:Name</code></p><p><code>osd:text</code></p></td><td><p><code>String</code> (Unicode characters, cf. <a href="https://www.ietf.org/rfc/rfc4627.txt">RFC4627</a>) </p></td><td><p>&quot;A text&quot;</p><p>&quot;The escape of \&quot;special character\&quot; is preceded by a backslash.&quot; </p><p>null</p></td><td><p><code>string</code></p><p><code>name</code></p><p><code>text</code></p></td><td><p>type: <code>string</code></p><p>format: <code>n/a</code></p></td></tr>
+<tr>
+<td><p><code>osd:html</code></p></td><td><p><code>String</code> (Unicode characters, cf. <a href="https://www.ietf.org/rfc/rfc4627.txt">RFC4627</a>) </p></td><td><p> &quot;&lt;p&gt;An HTML tag can thus be written without trouble&lt;/p&gt;&quot; </p></td><td><p><code>html</code></p></td><td><p>type: <code>string</code></p><p>format: <code>html</code></p></td></tr>
+<tr>
+<td><p><code>osd:email</code></p></td><td><p><code>String</code> (Unicode characters, cf. <a href="https://www.ietf.org/rfc/rfc4627.txt">RFC4627</a>) </p></td><td><p>&quot;employee@mycompany.com&quot;</p></td><td><p><code>email</code></p></td><td><p>type: <code>string</code></p><p>format: <code>email</code></p></td></tr>
+<tr>
+<td><p><code>osd:locale</code></p></td><td><p><code>String</code> (Language tag, cf. <a href="https://www.ietf.org/rfc/rfc1766.txt">RFC1766</a>) </p></td><td><p>&quot;en-US&quot;</p></td><td><p><code>locale</code></p></td><td><p>type: <code>string</code></p><p>format: <code>locale</code></p></td></tr>
+<tr>
+<td><p><code>xs:string</code></p><p>(Foreign key)</p></td><td><p><code>String</code></p><p>contains the value of the formatted foreign key.</p></td><td><p><code>&quot;0&quot;</code></p><p><code>&quot;true|99&quot;</code></p></td><td><p><code>foreignKey</code></p></td><td><p>type: <code>string</code></p><p>format: <code>n/a</code></p></td></tr>
+<tr>
+<td><p><code>xs:boolean</code></p></td><td><p><code>Boolean</code></p></td><td><p>true</p><p>false</p><p>null</p></td><td><p><code>boolean</code></p></td><td><p>type: <code>boolean</code></p><p>format: <code>n/a</code></p></td></tr>
+<tr>
+<td><p><code>xs:decimal</code></p></td><td><p><code>Number</code> or <code>null</code></p></td><td><p>-10.5</p><p>20.001</p><p>15</p><p>-1e-13</p></td><td><p><code>decimal</code></p></td><td><p>type: <code>number</code></p><p>format: <code>double</code></p></td></tr>
+<tr>
+<td><p><code>xs:date</code></p></td><td><p><code>String</code> with format: &quot;yyyy-MM-dd&quot; </p></td><td><p>&quot;2015-04-13&quot;</p></td><td><p><code>date</code></p></td><td><p>type: <code>string</code></p><p>format: <code>date</code></p></td></tr>
+<tr>
+<td><p><code>xs:time</code></p></td><td><p><code>String</code> with format: </p><ul>
+<li><p>&quot;HH:mm:ss&quot;</p></li><li><p>&quot;HH:mm:ss.SSS&quot;</p></li></ul>
+</td><td><p>&quot;11:55:00&quot;</p><p>&quot;11:55:00.000&quot;</p></td><td><p><code>time</code></p></td><td><p>type: <code>string</code></p><p>format: <code>date-time</code></p></td></tr>
+<tr>
+<td><p><code>xs:dateTime</code></p></td><td><p><code>String</code> with format: </p><ul>
+<li><p>&quot;yyyy-MM-ddTHH:mm:ss&quot;</p></li><li><p>&quot;yyyy-MM-ddTHH:mm:ss.SSS&quot;</p></li></ul>
+</td><td><p>&quot;2015-04-13T11:55:00&quot;</p><p>&quot;2015-04-13T11:55:00.000&quot;</p></td><td><p><code>dateTime</code></p></td><td><p>type: <code>string</code></p><p>format: <code>date-time</code></p></td></tr>
+<tr>
+<td><p><code>xs:anyURI</code></p></td><td><p><code>String</code> (Uniform Resource Identifier, cf. <a href="https://tools.ietf.org/html/rfc3986">RFC3986</a>) </p></td><td><p>&quot;https://fr.wikipedia.org/wiki/Ren&eacute;_Descartes&quot;</p></td><td><p><code>anyURI</code></p></td><td><p>type: <code>string</code></p><p>format: <code>uri</code></p></td></tr>
+<tr>
+<td><p><code>xs:int</code></p><p><code>xs:integer</code></p></td><td><p><code>Number</code> or <code>null</code></p></td><td><p>1596</p></td><td><p><code>int</code></p></td><td><p>type: <code>integer</code></p><p>format: <code>int32</code></p></td></tr>
+<tr>
+<td><p><code>osd:resource</code></p></td><td><p><code>String</code></p><p>contains the resource formatted value.</p></td><td><p>&quot;ebx-tutorial:ext-images:frontpages/Bach.jpg&quot;</p></td><td><p><code>resource</code></p></td><td><p>type: <code>string</code></p><p>format: <code>n/a</code></p></td></tr>
+<tr>
+<td><p><code>osd:color</code></p></td><td><p><code>String</code> with format: &quot;#[A-Fa-f0-9]{6}&quot; </p><p>contains the formatted value for the color.</p></td><td><p>&quot;#F6E0E0&quot;</p></td><td><p><code>color</code></p></td><td><p>type: <code>string</code></p><p>format: <code>n/a</code></p></td></tr>
+<tr>
+<td><p><code>osd:datasetName</code></p></td><td><p><code>String</code> with format: &quot;[a-zA-Z_][-a-zA-Z0-9_.]*&quot; and 64 characters max. </p><p>contains the formatted value of the dataset name.</p></td><td><p>&quot;ebx-tutorial&quot;</p></td><td><p><code>dataset</code></p></td><td><p>type: <code>string</code></p><p>format: <code>n/a</code></p></td></tr>
+<tr>
+<td><p><code>osd:dataspaceKey</code></p></td><td><p><code>String</code> with format: <code>[BV][a-zA-Z0-9_:.\-\|]+</code> and 33 characters max. </p><p>contains the formatted key value of the dataspace.</p></td><td><p>&quot;Bebx-tutorial&quot;</p></td><td><p><code>dataspace</code></p></td><td><p>type: <code>string</code></p><p>format: <code>n/a</code></p></td></tr>
+</tbody>
+</table>
+<h3 id="insertRecordsResponse">
+Insert operation report</h3>
+<p>When invoking the insert operation with a record table, it can optionally return a report. The report includes a JSON <code>Object</code> that contains the following properties: </p><ul>
+<li><p><code>rows</code> contains a JSON <code>Array</code>, where each element corresponds to the result of a request element. </p></li><li><p><code>code</code> contains an <code>int</code> of JSON <code>Number</code> type, and allows to know whether the record has been inserted or updated. This property is included if, and only if, the <code>updateOrInsert</code> parameter is set to <code>true</code>. </p></li><li><p><code>foreignKey</code> contains a <code>string</code> of JSON <code>String</code> type, corresponding to the content to be used as a foreign key for this record. This property is included if, and only if, the parameter <code>includeForeignKey</code> is set to <code>true</code>. </p></li><li><p><code>label</code> contains a <code>string</code> of JSON <code>String</code> type, and allows to retrieve the record label. This property is included if, and only if, the parameter <code>includeLabel</code> is set to <code>yes</code>. </p></li><li><p><code>details</code> containing a <code>string</code> of JSON <code>String</code> type, corresponding to the resource URL. This property is included if, and only if, the parameter <code>includeDetails</code> is set to <code>true</code>. </p></li></ul>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "code": 204,
+      "foreignKey": "62",
+      "label": "Claude Debussy",
+      "details": "http://.../root/individu/62"
+    },
+    {
+      "code": 201,
+      "foreignKey": "195",
+      "label": "Camille Saint-Sa&euml;ns",
+      "details": "http://.../root/individu/195"
+    }
+  ]
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#insert">Insert operation</a></li></ul>
+</div>
+<h3 id="deleteRecordsResponse">
+Delete operation report</h3>
+<p>When invoking the delete operation, a report is returned. The report includes a JSON <code>Object</code> that contains the following properties: </p><ul>
+<li><p><code>deletedCount</code> containing an integer of JSON <code>Number</code> type, corresponds to the number of deleted records. </p></li><li><p><code>occultedCount</code> containing an integer of JSON <code>Number</code> type, corresponds to the number of occulted records. </p></li><li><p><code>inheritedCount</code> containing an integer of JSON <code>Number</code> type, corresponds to the number of inherited records. </p></li></ul>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "deletedCount": 1,
+  "inheritedCount": 0,
+  "occultedCount": 0
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#deleteOperation">Delete operation</a></li></ul>
+</div>
+<h2 id="insertUpdateOperation">
+Update modes</h2>
+<p>The <code>byDelta</code> mode allows to ignore data model elements that are missing from the JSON source document. This mode is enabled (by default) through RESTful operations. The following table summarizes the behavior of insert and update operations when elements are not included in the source document. </p><p>See the RESTful data services operations <a href="../data_services/dataservices_rest_v1.html#update">update</a> and <a href="../data_services/dataservices_rest_v1.html#insert">insert</a>, as well as <a target="_blank" href="../Java_API/com/orchestranetworks/service/ImportSpec.html#setByDelta-boolean-"><code>ImportSpec.setByDelta</code></a> in the Java API for more information. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>State in the JSON source document </strong></p></th><th><p><strong>Behavior</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>The property does not exist in the source document </p></td><td valign="top"><p><strong>If the <code>byDelta</code> mode is activated (default): </strong></p><ul>
+<li><p>For the <code>update</code> operation, the field value remains unchanged. </p></li><li><p>For the <code>insert</code> operation, the behavior is the same as when the <code>byDelta</code> mode is disabled. </p></li></ul>
+<p><strong>If the <code>byDelta</code> mode is disabled through the RESTful operation parameter: </strong></p><p>The target field is set to one of the following values: </p><ul>
+<li><p>If the element defines a default value, the target field is set to that default value. </p></li><li><p>If the element is of a type other than a string or list, the target field value is set to <code>null</code>. </p></li><li><p>If the element is an aggregated list, the target field value is set to an empty list value. </p></li><li><p>If the element is a string that differentiates <code>null</code> from an empty string, the target field value is set to <code>null</code>. If it is a string that does not differentiate the two, an empty string. </p></li><li><p>If the element (simple or complex) is hidden in the data services, the target value remains unchanged. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/access_properties_categories.html#defaultViewHiddenInDataServices">Hiding a field in Data Services</a></li></ul>
+</div>
+</li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>The user performing the import must have the required permissions to create or change the target field value. Otherwise, the operation will be aborted. </p></div>
+</td></tr>
+<tr>
+<td valign="top"><p>The element is present and its value is <code>null</code> (for example, <code>&quot;content&quot;: null</code>) </p></td><td valign="top"><p>The target field is always set to <code>null</code> except for lists, in which case it is not supported. </p></td></tr>
+</tbody>
+</table>
+<h2 id="id6">
+Known limitations</h2>
+<h3 id="id6s1">
+Field values</h3>
+<p>The value of fields <code>xs:date</code>, <code>xs:time</code> and <code>xs:dateTime</code> does not contain a time zone associated with the JSON-primitive type. </p><h3 id="id6s2">
+Indexing and search strategy</h3>
+<p><a href="../data_services/json_extended.html#metaDataFilterable">Filterable</a> and <a href="../data_services/json_extended.html#metaDataSortable">sortable</a> values from the metadata are limited to the default search strategy. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/indexing.html">Search</a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; REST data services &gt; JSON Formats</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

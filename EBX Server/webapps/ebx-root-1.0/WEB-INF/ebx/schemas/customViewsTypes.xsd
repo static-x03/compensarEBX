@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.viewsPreferences" />
+		</xs:appinfo>
+	</xs:annotation>
+	<!--Table definition --> 
+	<xs:complexType name="tabularViewOnSingleTableType" osd:access="RW" osd:class="com.orchestranetworks.service.preferences.TabularViewOnSingleTable">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="columns" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.columns" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableColumnConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="usingDataModelOrdering">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.usingDataModelOrdering" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="fixedColumns" maxOccurs="unbounded" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.fixedColumns" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableColumnConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="initialQueryEnabled" minOccurs="0" default="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.initialQueryEnabled"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean">
+						<xs:enumeration value="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.initialQueryEnabled.enabled"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="false">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.initialQueryEnabled.disabled"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="paginationLimit" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.paginationLimit" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.view.PaginationLimitConstraintEnumeration"/>
+                    	</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="allowGridEditing" minOccurs="1" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.allowGridEdit" />
+				</xs:annotation>
+				<xs:simpleType>
+		    		<xs:restriction base="xs:boolean">
+		    			<xs:enumeration value="true">
+		    				<xs:annotation>
+		    					<xs:documentation osd:id="complexType.TableViewType.allowGridEdit.enabled" />
+		    				</xs:annotation>
+		    			</xs:enumeration>
+		    			<xs:enumeration value="false">
+		    				<xs:annotation>
+		    					<xs:documentation osd:id="complexType.TableViewType.allowGridEdit.disabled" />
+		    				</xs:annotation>
+		    			</xs:enumeration>
+		    		</xs:restriction>
+		    	</xs:simpleType>
+			</xs:element>
+			<xs:element name="disableCreateAndDuplicateInGridEditing" type="xs:boolean" minOccurs="0" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.disableCreateAndDuplicateInGridEditing" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="toolbarTableTop" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.toolbarTableTop" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbToolbarConstraintEnumeration"/>
+                    		</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="toolbarTableRow" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.toolbarTableRow" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbToolbarConstraintEnumeration"/>
+                    		</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="predicate" minOccurs="0" osd:access="RW">
+				<xs:complexType osd:class="com.onwbp.adaptation.perspective.views.ViewCriteria">
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.predicate" />
+						<xs:appinfo>
+							<osd:uiBean class="com.onwbp.adaptation.perspective.views.ViewCriteriaUI" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="filterExpression" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.predicate.filterExpression" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="order" osd:class="com.orchestranetworks.service.preferences.RequestSortCriterionBean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.order" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nodePath" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.order.nodePath" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="isAscending" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.tabularViewOnSingleTable.order.isAscending" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="hierarchicalViewType" osd:access="RW" osd:class="com.orchestranetworks.service.preferences.HierarchicalView">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TableViewType.hierarchicalView" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="configuration" minOccurs="0" osd:access="RW">
+				<xs:complexType osd:class="com.orchestranetworks.service.preferences.HierarchyExpression">
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.configuration" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.service.preferences.HierarchyExpressionUI" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="hierarchyExpression" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.configuration.hierarchyExpression" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="popupMode">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.popupMode" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="pruned">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.pruned" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="displayOrphans">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.displayOrphans" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="toolbarHierarchyTop" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.toolbarTableTop" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbToolbarConstraintEnumeration"/>
+                    		</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="detectCycle">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.detectCycle" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="detectLeaf">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.detectLeaf" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="childrenCountDetection">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.childrenCountDetection" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="pruneRecursiveOrphanLeaves">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.pruneRecursiveOrphanLeaves" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="displayChildrenOfFilteredNodes">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.displayChildrenOfFilteredNodes" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="incompleteTernaryJointLink">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.incompleteTernaryJointLink" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>		
+			<xs:element minOccurs="0" name="rootConfiguration" osd:class="com.orchestranetworks.service.preferences.HierarchyRootNodeConfiguration">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.rootConfiguration" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="displayRootNode">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.rootConfiguration.isDisplayingRootNode" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:boolean" />
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="rootNodeLabel" type="Label">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.TableViewType.hierarchicalView.rootConfiguration.rootNodeLabel" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>	
+</xs:schema>

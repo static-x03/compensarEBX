@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Installation note for Tomcat 9.x</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="installation_jee_tomcat" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=deployment_examples/tomcat9.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+<h1>
+Installation note for Tomcat 9.x</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Requirements</a></li><li class="toc1"><a href="#id3">Tomcat Application Server installation</a></li><li class="toc1"><a href="#id4">EBX&reg; home directory configuration</a></li><li class="toc1"><a href="#id5">Tomcat Application Server and Java Virtual Machine configuration</a></li><li class="toc1"><a href="#id6">EBX&reg; and third-party libraries deployment</a></li><li class="toc1"><a href="#id7">EBX&reg; web applications deployment</a></li><li class="toc1"><a href="#id8">EBX&reg; application start</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>This chapter describes a <em>quick installation example</em> of TIBCO EBX&reg; on Tomcat Application Server. </p></li><li><p>It does not replace the <a href="https://tomcat.apache.org/tomcat-9.0-doc/">documentation</a> of this application server. </p></li><li><p>They are <em>not</em> general installation recommendations, as the installation process is determined by architectural decisions, such as the technical environment, application mutualization, delivery process, and organizational decisions. </p></li><li><p>Tomcat 10.x is not supported.</p></li><li><p>The complete description of the components needed by EBX&reg; is given in chapter <a href="../installation/deploy_on_jee.html">Java EE deployment</a>. </p></li><li><p>To avoid unpredictable behavior, the guideline to follow is to avoid any duplicates of <code>ebx.jar</code>, <code>ebx-lz4.jar</code> or other libraries in the class-loading system. </p></li><li><p>The description below uses the variable name <code>$CATALINA_HOME</code> to refer to the Tomcat installation directory, and from which most relative paths are resolved. However, if the <code>$CATALINA_BASE</code> directory has been set for a multiple instances configuration, it should be used for each of these references. </p></li></ul>
+</p></div>
+<h2 id="id2">
+Requirements</h2>
+<ul>
+<li><p>Java SE 8 or 11</p></li><li><p>Apache Tomcat 9.x</p></li><li><p>Database and JDBC driver</p></li><li><p>EBX&reg; CD</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/supported_env.html">Supported environments</a></li></ul>
+</div>
+<h2 id="id3">
+Tomcat Application Server installation</h2>
+<ol>
+<li><p> Download Tomcat 9.x core binary distributions from: </p><p><a href="https://tomcat.apache.org/download-90.cgi"> https://tomcat.apache.org/download-90.cgi </a></p></li><li><p>Run the installer or extract the archive and perform a standard installation with default options </p></li></ol>
+<h2 id="id4">
+EBX&reg; home directory configuration</h2>
+<ol>
+<li><p>Create <em>EBX_HOME</em> directory, for example <code>C:\EBX\home</code>, or <code>/home/ebx</code></p></li><li><p>Copy from <em>EBX&reg; CD</em> the <code>ebx.software/files/ebx.properties</code> file to <em>EBX_HOME</em>. In our example, we will have the following file: </p><p><code>C:\EBX\home\ebx.properties</code>, or <code>/home/ebx/ebx.properties</code></p></li><li><p>If needed, edit the <code>ebx.properties</code> file to override the default database. By default the standalone H2 database is defined. The property key <code>ebx.persistence.factory</code> must be uncommented for other supported databases and the <code>h2.standalone</code> one must be commented. </p></li></ol>
+<h2 id="id5">
+Tomcat Application Server and Java Virtual Machine configuration</h2>
+<ol>
+<li><p>Modify <code>$CATALINA_HOME/conf/server.xml</code> (or <code>$CATALINA_BASE/conf/server.xml</code>) file by adding the following line to the &lt;Host&gt; element: </p><p><code>&lt;Context path=&quot;/ebx&quot; crossContext=&quot;true&quot; docBase=&quot;ebx.war&quot;/&gt;</code></p><p>In our example, we will have:</p><p><code>&lt;Host name=...&gt;</code></p><p><code>... ...</code></p><p><code>&lt;Context path=&quot;/ebx&quot; crossContext=&quot;true&quot; docBase=&quot;ebx.war&quot;/&gt;</code></p><p><code>... ...</code></p><p><code>&lt;/Host&gt;</code></p></li><li><p>Modify the <code>$CATALINA_HOME/conf/catalina.properties</code> (or <code>$CATALINA_BASE/conf/catalina.properties</code>) file by adding the following lines to the <code>tomcat.util.scan.DefaultJarScanner.jarsToSkip</code> property: </p><p><code>ebx.jar,\</code></p><p><code>ebx-addons.jar,\</code></p><p><code>ebx-lz4.jar,\</code></p></li><li><p>Configure the Java Virtual Machine properties</p><ul>
+<li><p>For Windows&#39; Command Prompt launch</p><p>Set the environment variables by creating a <code>setenv.bat</code> file either into <code>$CATALINA_HOME\bin</code> or <code>$CATALINA_BASE\bin</code>. This file will hold, at least, the following lines: </p><pre class="brush: bash; toolbar: false; gutter: false;">
+set EBX_HOME="&lt;path_to_the_directory_ebx_home>"
+set EBX_OPTS="-Debx.home=%EBX_HOME% -Debx.properties=%EBX_HOME%\ebx.properties"
+set JAVA_OPTS="%EBX_OPTS% %JAVA_OPTS%"
+set CLASSPATH="&lt;$CATALINA_HOME_or_$CATALINA_BASE>\compress\ebx-lz4.jar;%CLASSPATH%"</pre>
+<p>Where &lt;$CATALINA_HOME_or_$CATALINA_BASE&gt; must be replaced by <code>%CATALINA_HOME%</code> or <code>%CATALINA_BASE%</code> if they have been configured. Otherwise this piece of text must be replaced by the Tomcat installation directory&#39;s path. </p></li><li><p>For Windows users that have installed Tomcat as a service</p><p>Set Java options through the Tomcat service manager GUI (Java tab).</p><p>Be sure to set options on separate lines in the <em>Java Options</em> field of the GUI: </p><pre class="brush: bash; toolbar: false; gutter: false;">
+-Debx.home=&lt;path_to_the_directory_ebx_home>
+-Debx.properties=&lt;path_to_the_directory_ebx_home>\ebx.properties
+</pre>
+<p>Update the service using the //US// parameter to set the proper classpath value. </p><pre class="brush: bash; toolbar: false; gutter: false;">
+C:\> tomcat9 //US//Tomcat9 --Classpath=&lt;$CATALINA_HOME_or_$CATALINA_BASE>\compress\ebx-lz4.jar;%CLASSPATH%
+</pre>
+<p>Where &lt;$CATALINA_HOME_or_$CATALINA_BASE&gt; must be replaced by <code>%CATALINA_HOME%</code> or <code>%CATALINA_BASE%</code> if they have been configured. Otherwise this piece of text must be replaced by the Tomcat installation directory&#39;s path. </p></li><li><p>For Unix shell launch</p><p>Set the environment variables by creating a <code>setenv.sh</code> file either into <code>$CATALINA_HOME/bin</code> or <code>$CATALINA_BASE/bin</code>. This file will hold, at least, the following lines: </p><pre class="brush: bash; toolbar: false; gutter: false;">
+EBX_HOME="&lt;path_to_the_directory_ebx_home>"
+EBX_OPTS="-Debx.home=${EBX_HOME} -Debx.properties=${EBX_HOME}/ebx.properties"
+export JAVA_OPTS="${EBX_OPTS} ${JAVA_OPTS}"
+export CLASSPATH="&lt;$CATALINA_HOME_or_$CATALINA_BASE>/compress/ebx-lz4.jar:${CLASSPATH}"
+</pre>
+<p>Where &lt;$CATALINA_HOME_or_$CATALINA_BASE&gt; must be replaced by <code>${CATALINA_HOME}</code> or <code>${CATALINA_BASE}</code> if they have been configured. Otherwise this piece of text must be replaced by the Tomcat installation directory&#39;s path. </p></li></ul>
+<p><em>Caution</em>: Accounts used to launch EBX&reg; must have create/update/delete rights on <em>EBX_HOME</em> directory. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>&lt;path_to_the_directory_ebx_home&gt; is the directory where we copied <code>ebx.properties</code>. In our example, it is <code>C:\EBX\home</code>, or <code>/home/ebx</code>. </p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>For a <a href="../installation/deploy_on_jee.html#ebx_lz4">Data compression library</a> native installation, ensure to only reference it in the <em>CLASSPATH</em> environment variable. </p></div>
+</li></ol>
+<h2 id="id6">
+EBX&reg; and third-party libraries deployment</h2>
+<ol>
+<li><p>Copy third-party libraries from the <em>EBX&reg; CD</em> to <code>$CATALINA_HOME/lib/</code> (or <code>$CATALINA_BASE/lib/</code>) directory, except for the <a href="../installation/deploy_on_jee.html#ebx_lz4">Data compression library</a>. In our example, we will have: </p><p><code>$CATALINA_HOME/lib/javax.mail-1.5.6.jar</code> coming from <code>ebx.software/lib/lib-mail</code> directory. </p><p><code>$CATALINA_HOME/lib/h2-1.4.196.jar</code> (default persistence factory) coming from <code>ebx.software/lib/lib-h2</code> directory. </p><p><code>$CATALINA_HOME/lib/xml-apis-1.4.01.jar</code> coming from <code>ebx.software/lib/lib-xml-apis</code> directory. </p><p>The exact description of these components is given in chapter <a href="../installation/deploy_on_jee.html#JEEComponents">Software components</a>. Obviously, if those components are already deployed on the class-loading system, they do not have to be duplicated. </p></li><li><p>Create a directory dedicated to the <a href="../installation/deploy_on_jee.html#ebx_lz4">Data compression library</a> (for example <code>$CATALINA_HOME/compress</code> or <code> $CATALINA_BASE/compress</code>) and copy it there. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Ensure that the library is copied in the directory pointed out by the previously updated <em>CLASSPATH</em> environment variable. </p></div>
+</li><li><p>Copy from <em>EBX&reg; CD</em> the <code>ebx.software/lib/ebx.jar</code> file to <code>$CATALINA_HOME/lib/</code> (or <code>$CATALINA_BASE/lib/</code>) directory. In our example, we will have: </p><p><code>$CATALINA_HOME/lib/ebx.jar</code></p></li></ol>
+<h2 id="id7">
+EBX&reg; web applications deployment</h2>
+<ol>
+<li><p>Copy from the <em>EBX&reg; CD</em> the war files in <code>ebx.software/webapps/wars-packaging</code> to the <code>$CATALINA_HOME/webapps/</code> (or <code>$CATALINA_BASE/webapps/</code>) directory. In our example, we will have: </p><p><code>$CATALINA_HOME/webapps/ebx.war</code>: Initialization servlet for EBX&reg; applications </p><p><code>$CATALINA_HOME/webapps/ebx-root-1.0.war</code>: Provides a common default module for data models </p><p><code>$CATALINA_HOME/webapps/ebx-manager.war</code>: Master Data Management web application </p><p><code>$CATALINA_HOME/webapps/ebx-dataservices.war</code>: Data Services web application </p><p><code>$CATALINA_HOME/webapps/ebx-dma.war</code>: Data Model Assistant web application </p><p><code>$CATALINA_HOME/webapps/ebx-ui.war</code>: User Interface web application </p></li></ol>
+<h2 id="id8">
+EBX&reg; application start</h2>
+<ol>
+<li><p>After Tomcat launch, run EBX&reg; web application by entering the following URL in the browser: <a target="_blank" href="http://localhost:8080/ebx/">http://localhost:8080/ebx/</a></p></li><li><p>At first launch, <a href="../installation/configuration_wizard.html"> EBX&reg; Wizard </a> helps to configure the default properties of the initial repository. </p></li></ol>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

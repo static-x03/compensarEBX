@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Additional properties</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_model_additional" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Data model</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/access_properties_categories.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+<h1>
+Additional properties</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#defaultValue">Default values</a></li><li class="toc1"><a href="#accessproperties">Access properties</a></li><li class="toc1"><a href="#id3">Information</a></li><li class="toc1"><a href="#defaultView">Default view</a><ul class="toc2">
+<li class="toc2"><a href="#defaultViewHidden">Hiding a field or a table in the default view</a></li><li class="toc2"><a href="#defaultViewHiddenInViews">Hiding groups and fields in views</a></li><li class="toc2"><a href="#defaultViewHiddenInSearch">Hiding a field in structured search tools</a></li><li class="toc2"><a href="#defaultViewHiddenInDataServices">Hiding a field in Data Services</a></li><li class="toc2"><a href="#viewForAdvancedSelection">Defining a view for the combo box selector of a foreign key</a></li><li class="toc2"><a href="#id4s6">Customizing a default widget</a></li><li class="toc2"><a href="#id4s7">Customizing REST data services</a></li></ul>
+</li><li class="toc1"><a href="#comparison_mode">Comparison mode</a></li><li class="toc1"><a href="#applyLastModification">Apply last modifications policy</a></li><li class="toc1"><a href="#categories">Categories</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">Filters on data</a></li><li class="toc2"><a href="#id7s2">Predefined categories</a></li><li class="toc2"><a href="#id7s3">Restriction</a></li></ul>
+</li></ul>
+</div>
+<h2 id="defaultValue">
+Default values</h2>
+<p>In a data model, it is possible to specify a default value for a field using the attribute <code>default</code>. This property is used to assign a default value if no value is defined for a field.</p><p>The default value is displayed in the user input field at the creation time. That is, the default value will be displayed when creating a new record or adding a new occurrence to an aggregated list. </p><p><strong>Example:</strong></p><p>In this example, the element specifies a default string value.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="fieldWithDefaultValue" type="xs:string" default="aDefaultValue" />
+
+</pre>
+<h2 id="accessproperties">
+Access properties</h2>
+<p>The attribute <code>osd:access</code> defines the access mode, that is, whether the data of a particular data model node can be read and/or written. This attribute must have one of the following values: <code>RW</code>, <code>R-</code>, <code>CC</code> or <code>--</code>.</p><p>For each XML Schema node, three types of adaptation are possible:</p><ol>
+<li><p><em>Adaptation terminal node</em></p><p> This node is displayed with an associated value in TIBCO EBX&reg;. When accessed using the method <code>Adaptation.get()</code>, it uses the adaptation search algorithm.</p></li><li><p><em>Adaptation non-terminal node</em></p><p>This node is a complex type that is only displayed in EBX&reg; if it has one child node that is also an adaptation terminal node. It has no value of its own. When accessed using the method <code>Adaptation.get()</code>, it returns <code>null</code>.</p></li><li><p><em>Non-adaptable node</em></p><p>This node is not an adaptation terminal node and has no child adaptation terminal nodes. This node is never displayed in EBX&reg;. When accessing using the method <code>Adaptation.get()</code>, it returns the node default value if one is defined, otherwise it returns <code>null</code>. </p></li></ol>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/Adaptation.html"><code>Adaptation</code></a></li></ul>
+</div>
+<table width="100%">
+<thead>
+<tr>
+<th><p><strong>Access mode</strong></p></th><th><p><strong>Behavior</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><code>RW</code></p></td><td valign="top"><p><em>Adaptation terminal node</em>: value can be read and written in EBX&reg;.</p></td></tr>
+<tr>
+<td valign="top"><p><code>R-</code></p></td><td valign="top"><p><em>Adaptation terminal node</em>: value can only be read in EBX&reg;.</p></td></tr>
+<tr>
+<td valign="top"><p><code>CC</code></p></td><td valign="top"><p><em>Cut</em>: This is not an adaptation terminal node and none of its children are adaptation terminal nodes. This &quot;instruction&quot; has priority over any child node regardless of the value of their <em>access</em> attribute.</p></td></tr>
+<tr>
+<td valign="top"><p><code>--</code></p></td><td valign="top"><p>If the node is a simple type, it is not adaptable. If the node is a complex type, it is not an adaptation terminal node and does not define any child nodes.</p><p>The <code>root</code> node of a data model must specify this access mode.</p></td></tr>
+<tr>
+<td valign="top"><p>Default</p></td><td valign="top"><p> If the <em>access</em> attribute is not defined: </p><ul>
+<li><p>If the node is a computed value, it is considered to be <code>R-</code></p></li><li><p>If the node is a simple type and its value is not computed, it is considered to be <code>RW</code></p></li><li><p>If the node is an aggregated list, it is then a terminal value and is considered to be <code>RW</code></p></li><li><p>Otherwise, it is not an adaptation terminal node and it does not define anything about its child nodes.</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p><p>In this example, the element is adaptable because it is an adaptation terminal node.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="proxyIpAddress" type="xs:string" osd:access="RW"/>
+</pre>
+<h2 id="id3">
+Information</h2>
+<p> The element <code>osd:information</code> allows specifying additional information. This information can then be used by the integration code, for any purpose, by calling the method <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html#getInformation--"><code>SchemaNode.getInformation</code></a>.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="misc" type="xs:string">
+		&lt;xs:annotation>
+		  &lt;xs:appinfo>
+			&lt;osd:information>
+			 This is the text information of miscellaneous element.
+			&lt;/osd:information>
+		  &lt;/xs:appinfo>
+		&lt;/xs:annotation>
+&lt;/xs:element>
+</pre>
+<h2 id="defaultView">
+Default view</h2>
+<h3 id="defaultViewHidden">
+Hiding a field or a table in the default view</h3>
+<p>It is possible for a table or field inside a table to be hidden by default in EBX&reg; by using the element <code>osd:defaultView/hidden</code>. This property is used to hide elements from the default view of a dataset without defining specific access permissions. That is, elements hidden by default will not be visible in any default forms and views, whether tabular or hierarchical, generated from the structure of the associated data model.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>If an element is configured to be hidden in the default view of a dataset, then the access permissions associated with this field will not be evaluated.</p></li><li><p>It is possible to display a field that is hidden in the default view of a dataset by defining a view. Only in this case will the access permissions associated with this field be evaluated to determine whether the field will be displayed or not.</p></li><li><p>It is not possible to display a table that is hidden in the default view of a dataset (in the navigation pane).</p></li></ul>
+</p></div>
+<p><strong>Example:</strong></p><p>In this example, the element is hidden in the default view of a dataset.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="hiddenField" type="xs:string" minOccurs="0"/>
+	  &lt;xs:annotation>
+		&lt;xs:appinfo>
+		  &lt;osd:defaultView>
+			 &lt;hidden>true&lt;/hidden>
+		  &lt;/osd:defaultView>
+		&lt;/xs:appinfo>
+	  &lt;/xs:annotation>
+&lt;/xs:element>
+</pre>
+<h3 id="defaultViewHiddenInViews">
+Hiding groups and fields in views</h3>
+<p>It is possible for a field or a group to be hidden in all views of a table by using the element <code>osd:defaultView/hiddenInViews</code>. This property is used to hide elements from the tabular (including the default tabular view) and hierarchical views of a dataset without defining specific access permissions. That is, hidden elements will not be visible in any views, whether tabular or hierarchical, created from the structure of the associated data model. However, hidden elements in views will be displayed in forms. </p><p>To specify whether or not to hide an element in all views, use the <code>osd:defaultView/hiddenInViews=&quot;true|false&quot;</code> element.</p><p>If this property is set to <code>true</code>, then the element will not be selectable when creating a custom view. As a consequence, the element will not be displayed in all views of a table in a dataset. </p><p>If a group is configured as hidden in views, then all the fields nested under this group will not be displayed respectively in the views of the table. </p><h3 id="defaultViewHiddenInSearch">
+Hiding a field in structured search tools</h3>
+<p>To specify whether or not to hide an element in structured search tools, use the element <code>osd:defaultView/hiddenInSearch=&quot;true|false|textSearchOnly&quot;</code>.</p><p>If this property is set to <code>true</code>, then the field will not be selectable in the text and typed search tools of a dataset.</p><p>If this property is set to <code>textSearchOnly</code>, then the field will not be selectable only in the text search of a dataset but will be selectable in the typed search.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>If a group is configured as hidden in search tools or only in the text search, then all the fields nested under this group will not be displayed respectively in the search tools or only in the text search.</p><p>In all cases, the field will remain searchable in the quick search tool. A field can be excluded from all search tools, including the quick search, by defining a specific search strategy. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/indexing.html#strategyVoid">Excluding a field from search (&#39;Void&#39; indexing)</a></li></ul>
+</div>
+</p></div>
+<p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="hiddenFieldInSearch" type="xs:string" minOccurs="0"/>
+	  &lt;xs:annotation>
+		&lt;xs:appinfo>
+		  &lt;osd:defaultView>
+			 &lt;hiddenInSearch>true&lt;/hiddenInSearch>
+		  &lt;/osd:defaultView>
+		&lt;/xs:appinfo>
+	  &lt;/xs:annotation>
+&lt;/xs:element>
+</pre>
+<p>In this example, the element is hidden in the text and typed search tools of a dataset.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="hiddenFieldOnlyInTextSearch" type="xs:string" minOccurs="0"/>
+	  &lt;xs:annotation>
+		&lt;xs:appinfo>
+		  &lt;osd:defaultView>
+			 &lt;hiddenInSearch>textSearchOnly&lt;/hiddenInSearch>
+		  &lt;/osd:defaultView>
+		&lt;/xs:appinfo>
+	  &lt;/xs:annotation>
+&lt;/xs:element>
+</pre>
+<p>In this example, the element is hidden only in the text search tool of a dataset.</p><h3 id="defaultViewHiddenInDataServices">
+Hiding a field in Data Services</h3>
+<p>To specify whether or not to hide an element in data services, use the element <code>osd:defaultView/hiddenInDataServices</code>. For more information, see <a href="../data_services/dataservices_execution.html#hiddenInDataServices">Disabling fields from data model</a>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><ul>
+<li><p>If a group is configured as being hidden, then all the fields nested under this group will be considered as hidden by data services.</p></li></ul>
+</p></div>
+<p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="hiddenFieldInDataService" type="xs:string" minOccurs="0"/>
+	  &lt;xs:annotation>
+		&lt;xs:appinfo>
+		  &lt;osd:defaultView>
+			 &lt;hiddenInDataServices>true&lt;/hiddenInDataServices>
+		  &lt;/osd:defaultView>
+		&lt;/xs:appinfo>
+	  &lt;/xs:annotation>
+&lt;/xs:element></pre>
+<p>In this example, the element is hidden in the Data Service select operation.</p><h3 id="viewForAdvancedSelection">
+Defining a view for the combo box selector of a foreign key</h3>
+<p> It is possible to specify a published view that will be used to display the target table or the hierarchical view of a foreign key for a smoother selection. If a view has been defined, the selector will be displayed in the user interface in the combo box of this foreign key. The definition of a view can be done by using the XML Schema element <code>osd:defaultView/widget/viewForAdvancedSelection</code>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><ul>
+<li><p>This property can only be defined on foreign key fields.</p></li><li><p>The published view must be associated with the target table of the foreign key.</p></li><li><p>If the published view does not exist, then the advanced selection is not available in the foreign key field.</p></li></ul>
+</p></div>
+<p><strong>Example:</strong></p><p>In this example, the name of a published view is defined to display the target table of a foreign key in the advanced selection. </p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="catalog_ref" type="xs:string" minOccurs="0"/>
+	  &lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:otherFacets>
+				&lt;osd:tableRef>
+					&lt;tablePath>/root/Catalogs&lt;/tablePath>
+				&lt;/osd:tableRef>
+		  	&lt;/osd:otherFacets>
+		  &lt;osd:defaultView>
+			 &lt;widget>
+			 	&lt;viewForAdvancedSelection>catalogView&lt;/viewForAdvancedSelection>
+			 &lt;/widget>
+		  &lt;/osd:defaultView>
+		&lt;/xs:appinfo>
+	  &lt;/xs:annotation>
+&lt;/xs:element></pre>
+<p>See <a href="../user_datamodel/userdatamodel_elementproperties.html#Combobox_selector">Combo-box selector</a> for more information.</p><h3 id="id4s6">
+Customizing a default widget</h3>
+<p>A widget can be defined using the data model assistant. See <a href="../user_datamodel/userdatamodel_elementproperties.html#Widget"> Default view &gt; Widget </a> for more information.</p><h3 id="id4s7">
+Customizing REST data services</h3>
+<p>Default view configuration is managed in REST data services through the <a href="../data_services/restapi_introduction.html#sessionChannel">session channel</a>. </p><h2 id="comparison_mode">
+Comparison mode</h2>
+<p>The attribute <code>osd:comparison</code> can be included on a terminal node element in order to set its comparison mode. This mode controls how differences are detected for the element during comparisons. The possible values for the attribute are:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>default</p></td><td class="ebx_definitionListDefinition"><p>Element is visible during comparisons of its data.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>ignored</p></td><td class="ebx_definitionListDefinition"><p>No changes will be detected when comparing two versions of the content in records or datasets.</p><p>During a merge, the data values of an ignored element are not merged when contents are updated, even if the values are different. For new content, the values of ignored elements are merged.</p><p>During an archive import, values of ignored elements are not imported when contents are updated. For new content, the values of ignored elements are imported.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><ul>
+<li><p>If a group is configured as being ignored during comparisons, then all the fields nested under this group will also be ignored.</p></li><li><p>If a terminal field does not include the attribute <code>osd:comparison</code>, then it will be included by default during comparisons.</p></li></ul>
+<p><strong>Restrictions:</strong></p><ul>
+<li><p>This property cannot be defined on non-terminal fields.</p></li><li><p>Primary key fields cannot be ignored during comparison.</p></li></ul>
+</p></div>
+<p><strong>Example:</strong></p><p>In this example, the first element is explicitly ignored during comparison, the second element is explicitly included.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="fieldExplicitlyIgnoredInComparison"
+	type="xs:string" minOccurs="0" osd:comparison="ignored"/>
+&lt;xs:element name="fieldExplicitlyNotIgnoredInComparison"
+	type="xs:string" minOccurs="0" osd:comparison="default"/></pre>
+<h2 id="applyLastModification">
+Apply last modifications policy</h2>
+<p>The attribute <code>osd:applyLastModification</code> can be defined on a terminal node element in order to specify if this element must be included or not in the &#39;apply last modifications&#39; service that can be executed in a table of a dataset. </p><p>The possible values for the attribute are:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>default</p></td><td class="ebx_definitionListDefinition"><p>Last modifications can be applied to this element.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>ignored</p></td><td class="ebx_definitionListDefinition"><p>This element is ignored from the apply last modifications service. That is, the last modification that has been performed on this element cannot be applied to other records.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><ul>
+<li><p>If a group is configured as being ignored by the &#39;apply last modifications&#39; service, then all fields nested under this group will also be ignored.</p></li><li><p>If a terminal field does not include the attribute <code>osd:applyLastModification</code>, then it will be included by default in the apply last modifications service.</p></li></ul>
+<p><strong>Restriction:</strong></p><ul>
+<li><p>This property cannot be defined on non-terminal fields.</p></li></ul>
+</p></div>
+<p><strong>Example:</strong></p><p>In this example, the first element is explicitly ignored in the &#39;apply last modifications&#39; service, the second element is explicitly included.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="fieldExplicitlyIgnoredInApplyLastModification"
+	type="xs:string" minOccurs="0" osd:applyLastModification="ignored"/>
+&lt;xs:element name="fieldExplicitlyNotIgnoredApplyLastModification"
+	type="xs:string" minOccurs="0" osd:applyLastModification="default"/></pre>
+<h2 id="categories">
+Categories</h2>
+<p>Categories can be used for &quot;filtering&quot;, by restricting the display of data model elements.</p><p>To create a category, add the attribute <code>osd:category</code> to a table node in the data model XSD.</p><h3 id="id7s1">
+Filters on data</h3>
+<p>In the example below, the attribute <code>osd:category</code> is added to the node in order to create a category named <em>mycategory</em>.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="rebate" osd:category="mycategory">
+	  &lt;xs:complexType>
+		&lt;xs:sequence>
+		  &lt;xs:element name="label" type="xs:string"/>
+		  &lt;xs:element name="beginDate" type="xs:date"/>
+		  &lt;xs:element name="endDate" type="xs:date"/>
+		  &lt;xs:element name="rate" type="xs:decimal"/>
+		&lt;/xs:sequence>
+	  &lt;/xs:complexType>
+&lt;/xs:element>
+</pre>
+<p>To activate a defined category filter on a dataset in the user interface, select <strong>Actions &gt; Categories &gt; <em>&lt;category name&gt;</em></strong> from the navigation pane.</p><h3 id="id7s2">
+Predefined categories</h3>
+<p>Two categories with localized labels are predefined:</p><ul>
+<li><p id="categoryHidden">Hidden</p><p>An instance node, including a table node itself, is hidden in the default view, but can be revealed by selecting <strong>Actions &gt; Categories &gt; <em>[hidden nodes]</em></strong> from the navigation pane.</p><p>A table record node is always hidden.</p></li><li><p>Constraint (deprecated)</p></li></ul>
+<h3 id="id7s3">
+Restriction</h3>
+<p>Categories do not apply to table record nodes, except the category &#39;Hidden&#39;.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

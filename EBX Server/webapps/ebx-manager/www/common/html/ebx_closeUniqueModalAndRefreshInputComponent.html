@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>EBX®</title>
+	<meta name="robots" content="noindex,nofollow">
+	<meta http-equiv="Cache-Control" Content="no-cache">
+	<meta http-equiv="Pragma" Content="no-cache">
+	<meta http-equiv="Cache" Content="no store">
+	<meta http-equiv="Expires" Content="-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="DESCRIPTION" content="EBX®">
+	<meta name="FORMAT" content="text/xhtml">
+	<meta name="CHARSET" content="UTF-8">
+	<meta name="COPYRIGHT" content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved.">
+	<script type="text/javascript">
+
+            function getParameter(queryString, parameterName){
+                // Add "=" to the parameter name (i.e. parameterName=value)
+                parameterName += "=";
+                if (queryString.length > 0) {
+                    // Find the beginning of the string
+                    var begin = queryString.indexOf(parameterName);
+                    // If the parameter name is not found, skip it, otherwise return the value
+                    if (begin != -1) {
+                        // Add the length (integer) to the beginning
+                        begin += parameterName.length;
+                        // Multiple parameters are separated by the "&" sign
+                        var end = queryString.indexOf("&", begin);
+
+                        if (end == -1) {
+                            end = queryString.length;
+                        }
+                        // Return the string
+                        return unescape(queryString.substring(begin, end));
+                    }
+                    // Return "null" if no parameter has been found
+                    return null;
+                }
+            };
+
+            function refreshNodeAndClose() {
+             	var queryString = window.location.search.substring(1);
+             	//parameter name 'tableName' is defined in UIHttpConstants
+                var nodePath = getParameter(queryString, 'facetEnum_nodePath');
+             	if(nodePath !== null)
+             		parent.EBX_FormPresenter.stackPathForUpdate(nodePath, false);
+
+                parent.EBX_Utils.closeInternalPopup();
+            };
+
+	</script>
+</head>
+<body onload="refreshNodeAndClose();">
+
+</body>
+</html>

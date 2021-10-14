@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:appinfo>
+      <ebxbnd:binding targetDirectory="../_ebx/src/">
+        <javaPathConstants typeName="com.orchestranetworks.workflowLauncher.instance.constants.WorkflowLaunchers_0_0">
+          <nodes prefix="" root="/"/>
+        </javaPathConstants>
+      </ebxbnd:binding>
+      <osd:extensions class="com.orchestranetworks.workflowLauncher.instance.WorkflowLauncherSchemaExtension"/>
+      <osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.workflowLauncher"/>
+    </xs:appinfo>
+  </xs:annotation>
+
+  <xs:complexType name="value_default_type" osd:access="RW" osd:class="com.orchestranetworks.workflowLauncher.common.beans.ValueDefaultBean">
+    <xs:sequence>
+      <xs:element name="name" type="xs:Name"/>
+      <xs:element minOccurs="0" name="value" type="xs:string"/>
+      <xs:element maxOccurs="1" minOccurs="0" name="defaultValue" type="xs:string"/>
+      <xs:element default="true" name="isDefault" type="xs:boolean" osd:category="Hidden"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="workflow_to_launch_type">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:table>
+          <primaryKeys>/name</primaryKeys>
+          <recordForm osd:class="com.orchestranetworks.workflowLauncher.definition.recordForm.WorkflowLauncherDefinitionRecordFormFactory"/>
+        </osd:table>
+      </xs:appinfo>
+      <xs:documentation osd:id="complexType.workflowToLaunchType"/>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="1" minOccurs="1" name="name" type="xs:Name">
+        <xs:annotation>
+          <xs:documentation osd:id="complexType.workflowToLaunchType.name"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="1" minOccurs="1" name="workflow_publication_name" type="workflow_publication_nameType" osd:checkNullInput="true">
+        <xs:annotation>
+          <xs:documentation osd:id="complexType.workflowToLaunchType.workflowPublicationName"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="definition" type="xs:string" osd:category="Hidden">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:otherFacets>
+              <osd:tableRef>
+                <tablePath>../../definition</tablePath>
+              </osd:tableRef>
+            </osd:otherFacets>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.launchersType.definition"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="documentation" type="DocumentationType">
+        <xs:annotation>
+          <xs:documentation osd:id="complexType.workflowToLaunchType.label"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="data_context_parameter" type="value_default_type">
+        <xs:annotation>
+          <xs:documentation osd:id="complexType.workflowToLaunchType.dataContextParameter"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="0" minOccurs="0" name="activations" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:association>
+              <tableRefInverse>
+                <fieldToSource>/workflow_launchers/association/definition</fieldToSource>
+              </tableRefInverse>
+            </osd:association>
+            <osd:defaultView>
+              <tabularView>
+                <column>/data_model</column>
+                <column>/documentation</column>
+                <column>/table</column>
+                <column>/profiles</column>
+              </tabularView>
+            </osd:defaultView>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.workflowToLaunchType.activations"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="true" name="defaultDocumentation" type="xs:boolean" osd:category="Hidden"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="com.orchestranetworks.workflowLauncher.activation.documentation.ajax.ActivationLauncherDocumentationAjax">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:ajaxComponent class="com.orchestranetworks.workflowLauncher.activation.documentation.ajax.ActivationLauncherDocumentationAjax"/>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="com.orchestranetworks.workflowLauncher.definition.dataContext.widget.DataContextTypesAjax">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:ajaxComponent class="com.orchestranetworks.workflowLauncher.definition.dataContext.widget.DataContextTypesAjax"/>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:complexType>
+  <xs:complexType name="com.orchestranetworks.workflowLauncher.definition.documentation.ajax.LauncherUpdateDocumentationAjax">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:ajaxComponent class="com.orchestranetworks.workflowLauncher.definition.documentation.ajax.LauncherUpdateDocumentationAjax"/>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="com.orchestranetworks.workflowLauncher.definition.dataContext.ajax.DataContextAjax">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:ajaxComponent class="com.orchestranetworks.workflowLauncher.definition.dataContext.ajax.DataContextAjax"/>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="launchers_type">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:table>
+          <primaryKeys>/id</primaryKeys>
+          <recordForm osd:class="com.orchestranetworks.workflowLauncher.activation.recordForm.WorkflowLauncherAssociationRecordFormFactory"/>
+        </osd:table>
+      </xs:appinfo>
+      <xs:documentation osd:id="complexType.launchersType"/>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="1" minOccurs="1" name="id" type="xs:int" osd:category="Hidden">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:autoIncrement/>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.launchersType.id"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="1" minOccurs="1" name="definition" type="xs:string" osd:checkNullInput="true">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:otherFacets>
+              <osd:tableRef>
+                <tablePath>/workflow_launchers/definition</tablePath>
+              </osd:tableRef>
+            </osd:otherFacets>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.launchersType.definition"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="documentation" type="DocumentationType">
+        <xs:annotation>
+          <xs:documentation osd:id="complexType.launchersType.label"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="true" name="defaultDocumentation" type="xs:boolean" osd:category="Hidden"/>
+      <xs:element maxOccurs="1" minOccurs="1" name="data_model" type="xs:string" osd:checkNullInput="true">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:otherFacets>
+              <osd:constraintEnumeration class="com.orchestranetworks.workflowLauncher.activation.enumerations.DataModelEnumeration"/>
+            </osd:otherFacets>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.launchersType.dataModel"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="1" minOccurs="1" name="table" type="xs:string" osd:checkNullInput="true">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:otherFacets>
+              <osd:constraintEnumeration class="com.orchestranetworks.workflowLauncher.activation.enumerations.TableEnumeration"/>
+            </osd:otherFacets>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.launchersType.table"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="1" name="profiles" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:otherFacets>
+              <osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+            </osd:otherFacets>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.launchersType.profiles"/>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="enableConfirmation" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <osd:otherFacets>
+              <osd:constraintEnumeration class="com.orchestranetworks.workflowLauncher.activation.enumerations.ConfirmationEnumeration"/>
+            </osd:otherFacets>
+          </xs:appinfo>
+          <xs:documentation osd:id="complexType.launchersType.enableConfirmation"/>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentationType" osd:access="RW" osd:class="com.onwbp.base.text.bean.LabelDescription">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription"/>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="osdId" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations" osd:access="RW"
+        osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="locale" type="osd:locale"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="label" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="description">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="99999"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="workflow_launchers" osd:access="--">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="definition" type="workflow_to_launch_type"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="association" type="launchers_type"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+
+  <xs:simpleType name="workflow_publication_nameType">
+    <xs:annotation>
+      <xs:appinfo>
+        <osd:otherFacets>
+          <osd:constraintEnumeration class="com.orchestranetworks.manager.workflowLauncher.definition.PublicationNamesConstraint"/>
+        </osd:otherFacets>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>

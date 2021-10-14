@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID"
+  metadata-complete="true"
+  version="3.0">
+
+	<display-name>ebx-ui</display-name>
+
+	<welcome-file-list>
+		<welcome-file>ui</welcome-file>
+	</welcome-file-list>
+
+	<!-- Entry point servlet -->
+	<servlet>
+		<servlet-name>UIServlet</servlet-name>
+		<servlet-class>com.orchestranetworks.x.ui.servlet.UIServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>RegisterServlet</servlet-name>
+		<servlet-class>com.orchestranetworks.x.ui.servlet.RegisterServlet</servlet-class>
+		<!-- must start after REST Toolkit server -->
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<display-name>ebx-ui-jaxrs</display-name>
+		<servlet-name>ebx-ui-jaxrs</servlet-name>
+		<servlet-class>com.orchestranetworks.rest.internal.RESTRegistrationServlet</servlet-class>
+		<init-param>
+			<param-name>RESTApplicationAbstract</param-name>
+			<param-value>com.orchestranetworks.x.ui.servlet.RestApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ebxModuleName</param-name>
+			<param-value>ebx-ui</param-value>
+		</init-param>
+		<!-- CVE-2019-17573 [https://nvd.nist.gov/vuln/detail/CVE-2019-17573] -->
+		<!-- Force the "hide-service-list-page" servlet parameter to "true" -->
+		<init-param>
+			<param-name>hide-service-list-page</param-name>
+			<param-value>true</param-value>
+		</init-param>		
+		<!-- must start before module registration servlet -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UIServlet</servlet-name>
+		<url-pattern>/ui/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UIServlet</servlet-name>
+		<url-pattern>/ui-node/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UIServlet</servlet-name>
+		<url-pattern>/ui-data/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UIServlet</servlet-name>
+		<url-pattern>/ui-dataset/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UIServlet</servlet-name>
+		<url-pattern>/ui-dataspace/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UIServlet</servlet-name>
+		<url-pattern>/sui/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>

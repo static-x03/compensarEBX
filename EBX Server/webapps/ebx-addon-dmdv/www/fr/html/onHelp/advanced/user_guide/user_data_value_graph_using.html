@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Using configured data value graphs</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_using" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Using data value graphs</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_using.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Using data value graphs</span></div>
+<h1 id="user_data_value_graph_using_topPage">
+Using configured data value graphs</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_data_value_graph_overview">Overview</a></li><li class="toc1"><a href="#user_data_value_graph_using_main">Using data value graphs</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Context menus</a></li></ul>
+</li></ul>
+</div>
+<h2 id="user_data_value_graph_overview">
+Overview</h2>
+<p>You can generate data value and relationship graphs after an administrator has created a configuration within the add-on that determines how graph elements display. When tables have multiple configurations, you may select the configuration to load.</p><h2 id="user_data_value_graph_using_main">
+Using data value graphs</h2>
+<p>When viewing graphs, you can:</p><ul>
+<li><p>Export a PDF, PNG, or SVG of the graph.</p></li><li><p>Expand the graph to fullscreen and zoom to change the magnification level.</p></li><li><p>Choose the orientation of the graph&#39;s nodes that use line relationships. The options for node orientation tell the add-on to put the source nodes in the selected position. Then it renders related nodes in the selected direction. For example, the <strong>Top-down</strong> option adds source nodes to the top of the graph and renders related nodes below.</p></li><li><p>Click and drag to change the orientation.</p></li><li><p>Expand/collapse nodes and view node and relationship details. You can access this option by right clicking on nodes. Depending on the available relationships and configuration, you can expand one node at-a-time, or expand all related nodes.</p></li><li><p>Use the <strong>Overview</strong> mini-map and <strong>Tables</strong> tab to re-orient the graph and see how styles are applied to tables, respectively. Additionally, you can move the box to a different corner of the graph by selecting its title bar and dragging.</p></li></ul>
+<p>The following image and table highlight the available features when viewing a data value graph:</p><img alt="/data-value-graph-options.png" src="./resources/images/data-value-graph-options.png"></img><div class="ebx_note">
+<h5>
+Note</h5>
+<p>It is not shown in the image above, but a double arrow displays to indicate nodes are linked multiple times using the same link.</p></div>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p>Export a PDF, PNG, or SVG of the current graph.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p>Undo your last action, change graph orientation, toggle the filter pane (shown), edit graph configuration options, and zoom. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3)</p></td><td class="ebx_definitionListDefinition"><p>Enter and exit fullscreen mode and select the &#39;?&#39; to view the documentation related to data value graphs.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>4)</p></td><td class="ebx_definitionListDefinition"><p>In the filter pane, the search field allows you to search for data values in the graph. As you enter text in the field the list of nodes narrows to only those that include the entered text. Once you find the element you are looking for, select the node to center the graph on it. The filter pane also allows you to toggle display of nodes in the graph.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>5)</p></td><td class="ebx_definitionListDefinition"><p>Selected nodes and relationships are highlighted in red.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>6)</p></td><td class="ebx_definitionListDefinition"><p>Right-click nodes and relationships to expand their context menus.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>7)</p></td><td class="ebx_definitionListDefinition"><p>Drag the mini-map in the <strong>Overview</strong> tab to re-orient the graph. You can also drag the box to any of the graph&#39;s four corners. The tables tab contains a legend to help you identify the tables containing the values displayed in the graph.</p></td></tr>
+</table>
+<p>An arrow icon on a node indicates the availability and display type of related nodes. Administrators set display types during configuration. As shown in the following image, a given node can hold up to four relationship types:</p><img alt="/data_value_node_expand_arrows.png" src="resources/images/data_value_node_expand_arrows.png" width="300"></img><h3 id="id2s1">
+Context menus</h3>
+<p>When you right-click a node or relationship, its related context menu displays and allows you to:</p><ul>
+<li><p>Expand any related nodes configured to display in this graph. When a node holds a relationship type to multiple nodes, you can expand them recursively in a given direction. For example, you might see the option to expand all of a node&#39;s targets. Nodes can expand recursively up to five levels deep.</p></li><li><p>Open the selected record, or show the link details.</p></li><li><p>If expanding related nodes would display 10 or more nodes, selecting the expand option displays a pop-up where you can choose the nodes that you want to expand. This behavior is shown below:</p><p><img alt="/select-data.png" src="./resources/images/select-data.png"></img></p></li></ul>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

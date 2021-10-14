@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: Web application 'ebx-ui' of EBX®
+Implementation-Version: 6.0.1 at 2021/06/25 19:49:19 [CEST]
+Built-By: TIBCO Software Inc.
+Class-Path: lib/ebx.jar lib/ebx-lz4.jar
+Created-By: TIBCO Software Inc.
+Build-Jdk: 1.8.0_241
+Implementation-Vendor: TIBCO Software Inc.
+

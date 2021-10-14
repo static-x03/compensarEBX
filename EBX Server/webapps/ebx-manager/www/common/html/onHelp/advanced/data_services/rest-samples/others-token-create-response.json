@@ -1,0 +1,4 @@
+{
+  "accessToken": "...",            // JSON String
+  "tokenType": "..."               // JSON String
+}

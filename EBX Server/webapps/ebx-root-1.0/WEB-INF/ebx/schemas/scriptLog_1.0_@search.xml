@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-root-1.0, path: /WEB-INF/ebx/schemas/scriptLog_1.0.xsd, iid=027]
+-->
+<search>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/log/Function/dataset</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/log/Function/dataspace</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/log/Function/message</field>
+        <searchStrategy>@Text</searchStrategy>
+    </association>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/log/Function/path</field>
+        <searchStrategy>@Code</searchStrategy>
+    </association>
+</search>

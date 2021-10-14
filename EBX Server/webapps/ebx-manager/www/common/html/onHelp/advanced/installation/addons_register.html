@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Deploying and registering TIBCO EBX&reg; add-ons</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="addons_config" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=installation/addons_register.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+<h1>
+Deploying and registering TIBCO EBX&reg; add-ons</h1>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Refer to the documentation of each add-on for additional installation and configuration information in conjunction with this documentation.</p></div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#deploy">Deploying an add-on module</a></li><li class="toc1"><a href="#register">Registering an add-on module</a></li><li class="toc1"><a href="#activate">Activating an add-on module</a></li><li class="toc1"><a href="#delete">Deleting an add-on module</a></li></ul>
+</div>
+<h2 id="deploy">
+Deploying an add-on module</h2>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><strong>Each add-on bundle version is intended to run with a specific EBX&reg; version and all its fix releases. Make sure that the EBX&reg; and add-on bundle versions are compatible, otherwise the add-on registration will abort.</strong></p></div>
+<p>The web application deployment descriptor for the add-on module must specify that class definitions and resources from the web application are to be loaded in preference to classes from the parent and server classloaders.</p><p>For example, on WebSphere Application Server, this can be done by setting <code>&lt;context-priority-classloader&gt;true&lt;/context-priority-classloader&gt;</code> in the <code>web-app</code> element of the deployment descriptor.</p><p>On WebLogic, include <code>&lt;prefer-web-inf-classes&gt;true&lt;/prefer-web-inf-classes&gt;</code> in <code>weblogic.xml</code>.</p><p>See the documentation on class loading of your application server for more information.</p><p>The EBX&reg; add-on common JAR file, named <code>lib/ebx-addons.jar</code>, must be copied in the library directory shared by all web applications.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The add-on log level can be managed in the <a href="./properties.html#addonThreshold">main configuration file</a>.</p></div>
+<h2 id="register">
+Registering an add-on module</h2>
+<p>Registering an add-on makes its configuration available in the admin section. Add-on features are only available to end-users when the add-on is also <a href="#activate">activated</a>.</p><p>To register a new EBX&reg; add-on in the repository:</p><ol>
+<li><p>Navigate to the &#39;Administration&#39; area.</p></li><li><p>Click the down-arrow in the navigation pane and select <strong>Technical configuration &gt; Add-ons registration</strong>.</p></li><li><p>On the <strong>Registered add-ons</strong> page, click the <strong>+</strong> button to create a new entry.</p></li><li><p>Select the add-on you are registering.</p></li><li><p>Click on <strong>Save</strong>.</p></li></ol>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Unregistering an add-on will not delete any existing configuration, but will make it available in the UI until the add-on is registered again.</p></div>
+<h2 id="activate">
+Activating an add-on module</h2>
+<p>Activating an add-on makes its features available to the end-users. Only registered add-ons can be activated.</p><p>To activate an EBX&reg; add-on in the repository:</p><ol>
+<li><p>Navigate to the &#39;Administration&#39; area.</p></li><li><p>Click the down-arrow in the navigation pane and select <strong>Technical configuration &gt; Add-ons registration</strong>.</p></li><li><p>Select the registered add-on you are activating and enable the &#39;Activation&#39; field.</p></li><li><p>Click on <strong>Save</strong>.</p></li></ol>
+<h2 id="delete">
+Deleting an add-on module</h2>
+<p>To delete an add-on module from the EBX&reg; repository:</p><ol>
+<li><p>Navigate to the &#39;Administration&#39; area.</p></li><li><p>Click the down-arrow in the navigation pane and select <strong>Technical configuration &gt; Add-ons registration</strong>.</p></li><li><p>On the <strong>Registered add-ons</strong> page, tick the box corresponding to the add-on to be deleted.</p></li><li><p>In the &#39;Actions&#39; menu, select &#39;Delete&#39;.</p></li><li><p>Close and purge the Administration datasets related to the previously used add-on, as well as the including dataspaces.</p><p>When an add-on is no longer deployed, a dataspace corresponding to the Administration dataset will then appear in the list of Reference children under the dataspaces. When an add-on module is no longer deployed, it is thus necessary to close/delete and purge manually all data/dataspaces related to the add-on.</p></li></ol>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

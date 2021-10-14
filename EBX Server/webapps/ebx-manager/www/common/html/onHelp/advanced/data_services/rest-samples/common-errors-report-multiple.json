@@ -1,0 +1,37 @@
+{
+  "code": 422,
+  "errors": [
+    {
+      "level": "error",
+      "rowIndex": 0,
+      "userCode": "Validation",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    },
+    {
+      "level": "error",
+      "rowIndex": 0,
+      "userCode": "Validation",
+      "message": "Field 'Value Less Than' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/less_than_value"
+    },
+    {
+      "level": "error",
+      "rowIndex": 1,
+      "userCode": "Validation",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    },
+    {
+      "level": "error",
+      "rowIndex": 1,
+      "userCode": "Validation",
+      "message": "Field 'Value Less Than' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/less_than_value"
+    }
+  ]
+}

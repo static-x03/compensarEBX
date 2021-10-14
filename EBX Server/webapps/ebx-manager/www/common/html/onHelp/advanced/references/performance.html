@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Performance guidelines</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_performance" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Other</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/performance.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Other</span></div>
+<h1>
+Performance guidelines</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Basic performance checklist</a><ul class="toc2">
+<li class="toc2"><a href="#javaExtensions">Expensive programmatic extensions</a></li><li class="toc2"><a href="#id1s2">Directory integration</a></li><li class="toc2"><a href="#id1s3">Aggregated lists</a></li></ul>
+</li><li class="toc1"><a href="#semanticCheckList">Checklist for dataspace usage</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Insufficient memory</a></li><li class="toc2"><a href="#id2s2">Reorganizing database tables</a></li></ul>
+</li><li class="toc1"><a href="#memory">Memory management</a><ul class="toc2">
+<li class="toc2"><a href="#monitoring">Monitoring</a></li><li class="toc2"><a href="#tuningHardware">Tuning hardware resources</a></li></ul>
+</li><li class="toc1"><a href="#validation">Validation performance</a></li><li class="toc1"><a href="#id5">Mass updates</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Transaction threshold</a></li><li class="toc2"><a href="#id5s2">Triggers</a></li></ul>
+</li><li class="toc1"><a href="#id6">Accessing tables</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Functionalities</a></li><li class="toc2"><a href="#id6s2">Query on tables</a></li><li class="toc2"><a href="#fetchSize">Setting a fetch size</a></li></ul>
+</li><li class="toc1"><a href="#id7">Applications server</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">Configuration</a></li><li class="toc2"><a href="#id7s2">Startup</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Basic performance checklist</h2>
+<p>While TIBCO EBX&reg; is designed to support large volumes of data, several common factors can lead to poor performance. Addressing the key points discussed in this section will solve the usual performance bottlenecks.</p><h3 id="javaExtensions">
+Expensive programmatic extensions</h3>
+<p>For reference, the table below details the programmatic extensions that can be implemented.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Use case</strong></p></th><th valign="top"><p><strong>Programmatic extensions that can be involved</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Validation</p></td><td><ul>
+<li><p><a target="_blank" href="../Java_API/com/orchestranetworks/schema/Constraint.html">programmatic constraints</a></p></li><li><p><a target="_blank" href="../Java_API/com/orchestranetworks/schema/ValueFunction.html">computed values</a></p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>Table access</p></td><td><ul>
+<li><p><a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaExtensionsContext.html#setAccessRuleOnOccurrence-com.orchestranetworks.schema.Path-com.orchestranetworks.service.AccessRule-">record-level permission rules</a></p></li><li><p><a target="_blank" href="../Java_API/com/onwbp/adaptation/AdaptationFilter.html">programmatic filters</a></p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>EBX&reg; content display</p></td><td><ul>
+<li><p><a target="_blank" href="../Java_API/com/orchestranetworks/schema/ValueFunction.html">computed values</a></p></li><li><p><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIBeanEditor.html">UI Components</a></p></li><li><p><a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaExtensionsContext.html#setAccessRuleOnNode-com.orchestranetworks.schema.Path-com.orchestranetworks.service.AccessRule-">node-level permission rules</a></p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>Data update</p></td><td><ul>
+<li><p><a target="_blank" href="../Java_API/com/orchestranetworks/schema/trigger/package-summary.html">triggers</a></p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<p>For large volumes of data, using algorithms of high computational complexity has a serious impact on performance. For example, the complexity of a constraint&#39;s algorithm is <em> O(n <sup>
+2</sup>
+)</em>. If the data size is 100, the resulting cost is proportional to 10 000 (this generally produces an immediate result). However, if the data size is 10 000, the resulting cost will be proportional to 10 000 000. </p><p>Another reason for slow performance is calling external resources. Local caching usually solves this type of problem.</p><p>If one of the use cases above displays poor performance, it is recommended to track the problem, either by code analysis or by using a Java profiling tool.</p><h3 id="id1s2">
+Directory integration</h3>
+<p>Authentication and permissions management involve the <a href="../engine/directory.html">user and roles directory</a>.</p><p> If a specific directory implementation is deployed and accesses an external directory, it can be useful to ensure that local caching is performed. In particular, one of the most frequently called methods is <a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/Directory.html#isUserInRole-com.orchestranetworks.service.UserReference-com.orchestranetworks.service.Role-"><code>Directory.isUserInRole</code></a>.</p><h3 id="id1s3">
+Aggregated lists</h3>
+<p> In a data model, when an element&#39;s cardinality constraint <code>maxOccurs</code> is greater than 1 and no <code>osd:table</code> is declared on this element, it is implemented as a Java <code>List</code>. This type of element is called an <a href="../models/types.html#aggregatedList">aggregated list</a>, as opposed to a table. </p><p>It is important to consider that there is no specific optimization when accessing aggregated lists, in terms of iterations, user interface display, etc. Besides performance concerns, aggregated lists are limited with regard to many functionalities that are supported by tables. See <a href="../models/tables.html">tables introduction</a> for a list of these features.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>For the reasons stated above, aggregated lists should be used only for small volumes of simple data (one or two dozen records), with no advanced requirements for their identification, lookups, permissions, etc. For larger volumes of data (or more advanced functionalities), it is recommended to use <code>osd:table</code> declarations.</p></div>
+<h2 id="semanticCheckList">
+Checklist for dataspace usage</h2>
+<p><a href="../user_dataspace/userdataspace_intro.html">Dataspaces</a> are an invaluable tool for managing complex data life cycles. While this feature brings great flexibility, it also implies a certain overhead, which should be taken into consideration for optimizing usage patterns.</p><p>This section reviews the most common performance issues that can appear in case of an intensive use of many dataspaces containing large tables, and how to avoid them.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>Sometimes, the use of dataspaces is not strictly needed. As an extreme example, consider the case where every transaction triggers the following actions:</p><ol>
+<li><p>A dataspace is created.</p></li><li><p>The transaction modifies some data.</p></li><li><p>The dataspace is merged, closed, then deleted.</p></li></ol>
+<p>In this case, no future references to the dataspace are needed, so using it to make isolated data modifications is unnecessary. Thus, using <a target="_blank" href="../Java_API/com/orchestranetworks/service/Procedure.html"><code>Procedure</code></a> already provides sufficient isolation to avoid conflicts from concurrent operations. It would then be more efficient to directly do the modifications in the target dataspace, and get rid of the steps which concern branching and merging.</p><p>For a developer-friendly analogy, referring to a source-code management tool (CVS, SVN, etc.): when you need to perform a simple modification impacting only a few files, it is probably sufficient to do so directly on the main branch. In fact, it would be neither practical nor sustainable, with regard to file tagging/copying, if every file modification involved branching the whole project, modifying the files, then merging the dedicated branch.</p></p></div>
+<h3 id="id2s1">
+Insufficient memory</h3>
+<p>When a table is accessed, the EBX&reg; Java memory cache is used. It ensures a much more efficient access to data when this data is already loaded in the cache. However, if there is not enough space for working data, swaps between the Java heap space and the underlying database can heavily degrade overall performance.</p><p>Such an issue can be detected by monitoring the <a href="#monitoring">monitoring log file</a>. If it occurs, various actions can be considered:</p><ul>
+<li><p> reducing the number of child dataspaces that contain large tables;</p></li><li><p> or (obviously) allocating more memory, or optimizing the memory used by applications for non-EBX&reg; objects. </p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#memory">Memory management</a></li></ul>
+</div>
+<h3 id="id2s2">
+Reorganizing database tables</h3>
+<p>As with any database, inserting and deleting large volumes of data may lead to fragmented data, which can deteriorate performance over time. To resolve the issue, reorganizing the impacted database tables is necessary. See <a href="../engine/repository_administration.html#monitoring_RDBMS">Monitoring and cleanup of the relational database</a>. </p><p>A specificity of EBX&reg; is that creating dataspaces and snapshots adds new entries to tables <code>GRS_DTR</code> and <code>GRS_SHR</code>. When poor performance is experienced, it may be necessary to schedule a reorganization of these tables, for large repositories in which many dataspaces are created and deleted.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#monitoring_RDBMS">Monitoring and cleanup of the relational database</a></li></ul>
+</div>
+<h2 id="memory">
+Memory management</h2>
+<h3 id="monitoring">
+Monitoring</h3>
+<p>Indications of EBX&reg; load activity are provided by monitoring the underlying database, and also by the <a href="../installation/properties.html#ebxLog">&#39;monitoring&#39; logging category</a>.</p><p>If the numbers for <em>cleared</em> and <em>built</em> objects remain high for a long time, this is an indication that EBX&reg; is swapping on the application server.</p><h3 id="tuningHardware">
+Tuning hardware resources</h3>
+<h4>
+Disk space</h4>
+<p>The master data stored in the database is additionally indexed into persistent Lucene indexes, serving to accelerate all the queries issued by EBX&reg;. This comes at the cost of additional storage space: a rule of thumb is to plan for 10 times the space occupied in the relational database. </p><h4>
+Disk latency</h4>
+<p> In order to maintain good overall performance, it is particularly important that the disk <a href="../installation/properties.html#rootDirectory"> storing the Lucene indexes</a> has low latency. </p><h4>
+Memory allocated to the application server</h4>
+<p>Since the query engine retrieves the necessary information from persistent storage, the memory allocated to the Java Virtual Machine (usually specified by the -Xmx parameter) can be kept low. We recommend to stay below 32 GB, which should fit all reasonable use cases, and allow benefiting from the <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/performance-enhancements-7.html#compressedOop"> compressed Oops</a> feature. </p><p>Tuning the garbage collector can also benefit overall performance. This tuning should be adapted to the use case and specific Java Runtime Environment used.</p><h4>
+Memory allocated to the operating system</h4>
+<p>On the OS running the application server, it is important to leave sufficient room to the OS cache, letting it optimize access to the persistent Lucene indexes. Indeed, once these have been loaded from the file system, the OS use its memory cache to speed up subsequent accesses to this same data, and avoid reloading it from the disk every time. This is only possible if sufficient RAM has been left for this purpose. </p><h2 id="validation">
+Validation performance</h2>
+<p> The internal validation framework will optimize the work required during successive requests to update the validation report of a dataset or a table. The incremental validation process behaves as follows:</p><ul>
+<li><p>The first call to a dataset or table validation report performs a full validation of the dataset or the table.</p></li><li><p>The next call to the validation report will compute the changes performed since the last validation. The validation report will be updated according to these changes. </p></li><li><p>Validation reports are stored persistently in the TIBCO EBX&reg; repository. This reduces the amount of memory dedicated to validation reports when datasets have a large amount of validation messages. Also, validation reports are not lost when the application server restarts. </p></li><li><p>Validation reports can be reset using the API or manually in the user interface by an administrator user (this option is available from the validation report section in EBX&reg;). As a consequence, resetting validation reports must be used with caution since associated datasets or tables will be fully revalidated during the next call to their validation reports. </p><p>See <a target="_blank" href="../Java_API/com/onwbp/adaptation/Adaptation.html#resetValidationReport-boolean-"><code>Adaptation.resetValidationReport</code></a> for more information. </p></li></ul>
+<p>Certain constraints are systematically re-validated, even if no updates have occurred since the last validation. These are the constraints with <em>unknown dependencies</em>. An element has unknown dependencies if: </p><ul>
+<li><p>It specifies a <a target="_blank" href="../Java_API/com/orchestranetworks/schema/Constraint.html">programmatic constraint</a> in the default <em>unknown dependencies</em> mode.</p></li><li><p>It declares a <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ValueFunction.html">computed value</a>, or it declares a dynamic facet that depends on an element that is itself a <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ValueFunction.html">computed value</a>. </p></li><li><p>It is an <a href="../references/inheritance.html#ina"> inherited field</a> or it declares a dynamic facet that depends on a node that is itself an <a href="../references/inheritance.html#ina"> inherited field</a>.</p></li></ul>
+<p>Consequently, on large tables, it is recommended to:</p><ul>
+<li><p>Avoid constraints with unknown dependencies (or at least to minimize the number of such constraints). For programmatic constraints, the developer is able to specify two alternative modes that drastically reduce incremental validation cost: <em>local dependency</em> mode and <em>explicit dependencies</em>. For more information, see <a target="_blank" href="../Java_API/com/orchestranetworks/schema/DependenciesDefinitionContext.html#dependencies">Dependencies and validation</a>.</p></li><li><p>To use <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintOnTable.html">constraints on tables</a> instead of <a target="_blank" href="../Java_API/com/orchestranetworks/schema/Constraint.html">programmatic constraints</a> defined at field level. Indeed, if a table defines constraints at field level, then the validation process will iterate over all the records to check if the value of the associated field complies with the constraint. Using <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintOnTable.html">constraints on tables</a> gives the opportunity to execute optimized queries on the whole table.</p></li><li><p>Avoid the use of the facet <a href="https://www.w3.org/TR/xmlschema-2/#dt-pattern">pattern</a> since its check is not optimized on large tables. That is, if a field defines this facet then the validation process will iterate over all the records to check if the value of the associated field complies with the specified pattern. </p></li></ul>
+<h2 id="id5">
+Mass updates</h2>
+<p>Mass updates can involve several hundred thousands of insertions, modifications and deletions. These updates are usually infrequent (usually initial data imports), or are performed non-interactively (nightly batches). Thus, performance for these updates is less critical than for frequent or interactive operations. However, similar to classic batch processing, it has certain specific issues.</p><h3 id="id5s1">
+Transaction threshold</h3>
+<p>It is generally not advised to use a single transaction when the number of atomic updates in the transaction is beyond the order of 10 <sup>
+4</sup>
+. Large transactions require a lot of resources, in particular, memory, from EBX&reg; and from the underlying database.</p><p>To reduce transaction size, it is possible to:</p><ul>
+<li><p>Specify the property <a href="../installation/properties.html#tuning">ebx.manager.import.commit.threshold</a>. However, this property is only used for interactive archive imports performed from the EBX&reg; user interface.</p></li><li><p>Explicitly specify a <a target="_blank" href="../Java_API/com/orchestranetworks/service/ProcedureContext.html#setCommitThreshold-int-">commit threshold</a> inside the batch procedure.</p></li><li><p>Structurally limit the transaction scope by implementing <a target="_blank" href="../Java_API/com/orchestranetworks/service/Procedure.html"><code>Procedure</code></a> for a part of the task and executing it as many times as necessary.</p></li></ul>
+<p>On the other hand, specifying a very small transaction size can also hinder performance, due to the persistent tasks that need to be done for each commit.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If intermediate commits are a problem because transactional atomicity is no longer guaranteed, it is recommended to execute the mass update inside a dedicated dataspace. This dataspace will be created just before the mass update. If the update does not complete successfully, the dataspace must be closed, and the update reattempted after correcting the reason for the initial failure. If it succeeds, the dataspace can be safely merged into the original dataspace.</p></div>
+<h3 id="id5s2">
+Triggers</h3>
+<p>If required, triggers can be deactivated using the method <a target="_blank" href="../Java_API/com/orchestranetworks/service/ProcedureContext.html#setTriggerActivation-boolean-"><code>ProcedureContext.setTriggerActivation</code></a>.</p><h2 id="id6">
+Accessing tables</h2>
+<h3 id="id6s1">
+Functionalities</h3>
+<p> Tables are commonly accessed through EBX&reg; UI, data services and also through the <a target="_blank" href="../Java_API/com/onwbp/adaptation/Request.html"><code>Request</code></a> and <a target="_blank" href="../Java_API/com/orchestranetworks/query/Query.html"><code>Query</code></a> APIs. This access involves a unique set of functions, including a <em>dynamic resolution</em> process. This process behaves as follows:</p><ul>
+<li><p><strong>Inheritance</strong>: Inheritance in the dataset tree takes into account records and values that are defined in the parent dataset, using a recursive process. Also, in a root dataset, a record can inherit some of its values from the data model default values, defined by the <code>xs:default</code> attribute.</p></li><li><p><strong>Value computation</strong>: A node declared as an <code>osd:function</code> is always computed on the fly when the value is accessed. See <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ValueFunction.html#getValue-com.onwbp.adaptation.Adaptation-"><code>ValueFunction.getValue</code></a>.</p></li><li><p><strong>Filtering</strong>: An <a href="../references/xpath_ref.html">XPath predicate</a>, a <a target="_blank" href="../Java_API/com/onwbp/adaptation/AdaptationFilter.html">programmatic filter</a>, or a record-level <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaExtensionsContext.html#setAccessRuleOnOccurrence-com.orchestranetworks.schema.Path-com.orchestranetworks.service.AccessRule-">permission rule</a> requires a selection of records.</p></li><li><p><strong>Sort</strong>: A sort of the resulting records can be performed. </p></li></ul>
+<h3 id="id6s2">
+Query on tables</h3>
+<h4>
+Architecture and design</h4>
+<p>In order to improve the speed of operations on tables, persistent Lucene indexes are managed by the EBX&reg; engine.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Faster access to tables is ensured if indexes are ready and maintained in the OS memory cache. As mentioned <a href="#tuningHardware"> above</a>, it is important for the OS to have enough space allocated.</p></div>
+<h4 id="queryPerformance">
+Performance considerations</h4>
+<p>The query optimizer favors the use of indexes when computing a request result. If a query cannot take advantage of the indexes, it will be resolved in Java memory, and experience poor performance on large volumes. The following guidelines apply:</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>Only XPath predicates and SQL queries can benefit from index optimization.</p></li><li><p>Some fields and some datasets cannot be indexed, as described in section <a href="../references/indexing.html#limitations">Limitations</a>.</p></li><li><p>XPath predicates on a multivalued field cannot benefit from index optimization, except for the <code>osd:search</code> function.</p></li><li><p>XPath predicates using the <code>osd:label</code> function cannot benefit from index optimization</p></li></ul>
+</p></div>
+<p>If indexes have not yet been built, additional time is required to build and persist the indexes, on the first access to the table.</p><p>Accessing the table data blocks is required when the query cannot be computed against any index (whether for resolving a rule, filter or sort), as well as for building the index. If the table blocks are not present in memory, additional time is needed to fetch them from the database.</p><p>It is possible to get information through the <a href="#monitoring">monitoring</a> and request logging categories.</p><h4>
+Accessing and modifying a table</h4>
+<p>The following access lead to poor performance, and must be avoided:</p><ul>
+<li><p>Access a table after a few modifications, repeatedly. It implies the index state to be refreshed after each modification. The cost of refreshing makes this pattern ineffective. Instead, perform a single query and apply the modification when browsing the results.</p></li><li><p>If there is an ongoing access to the same table, concurrently to the previous case, it prevents outdated index files to be deleted. As a consequence, the size of the index on disk increases, and the server may run out of disk space in extreme cases. When the concurrent access is closed, the index size is back to normal. This is usually a sign that a Request or a Query is not properly closed.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/RequestResult.html#close--"><code>RequestResult.close</code></a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/query/QueryResult.html#close--"><code>QueryResult.close</code></a></li></ul>
+</div>
+</li></ul>
+<h4>
+Other operations on tables</h4>
+<p> The new records creations or record insertions depend on the primary key index. Thus, a creation becomes almost immediate if this index is already loaded.</p><h3 id="fetchSize">
+Setting a fetch size</h3>
+<p>In order to improve performance, a fetch size should be set according to the expected size of the result of the request on a table. If no fetch size is set, the default value will be used.</p><ul>
+<li><p>On a history table, the default value is assigned by the JDBC driver: 10 for Oracle and 0 for PostgreSQL.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>On PostgreSQL, the default value of 0 instructs the JDBC driver to fetch the whole result set at once, which could lead to an <code>OutOfMemoryError</code> when retrieving large amounts of data. On the other hand, using fetchSize on PostgreSQL will invalidate server-side cursors at the end of the transaction. If, in the same thread, you first fetch a result set with a fetchsize, then execute a procedure that commits the transaction, then, accessing the next result will raise an exception. </p></div>
+</li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/Request.html#setFetchSize-int-"><code>Request.setFetchSize</code></a></li><li><a target="_blank" href="../Java_API/com/onwbp/adaptation/RequestResult.html"><code>RequestResult</code></a></li></ul>
+</div>
+<h2 id="id7">
+Applications server</h2>
+<h3 id="id7s1">
+Configuration</h3>
+<p>To speed up the persisted data access, it is required to perform a <code>ebx-lz4.jar</code> native installation.</p><p>See <a href="../installation/deploy_on_jee.html#ebx_lz4">Data compression library</a> for more information.</p><h3 id="id7s2">
+Startup</h3>
+<p>To speed up the web applications server startup, the <a href="../installation/deploy_on_jee.html#jarsScanner">JAR files scanner</a> should be configured. </p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Other</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

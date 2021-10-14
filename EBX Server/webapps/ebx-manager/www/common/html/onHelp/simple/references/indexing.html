@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Search</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="indexingAndSearch" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Other</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/indexing.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Other</span></div>
+<h1>
+Search</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#overview">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#valueLabeling">Value-labeling</a></li><li class="toc2"><a href="#limitations">Limitations</a></li></ul>
+</li><li class="toc1"><a href="#strategiesForStringFields">Search strategies for string fields</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Basic built-in strategies for strings</a></li><li class="toc2"><a href="#defaultStrategyForStringFields">Default strategy for string fields</a></li><li class="toc2"><a href="#customStrategy">Advanced custom strategies</a></li></ul>
+</li><li class="toc1"><a href="#StrategyForPrimaryKeyFields">Search strategy for primary key fields</a></li><li class="toc1"><a href="#strategyVoid">Excluding a field from search (&#39;Void&#39; indexing)</a></li><li class="toc1"><a href="#id5">Assigning a search strategy to a field</a></li></ul>
+</div>
+<h2 id="overview">
+Overview</h2>
+<p>A search strategy defines how a field is indexed and queried. Any field is associated with a default search strategy, primarily based on its data type.</p><p>Search strategies are specified in the Data Model Assistant:</p><ul>
+<li><p>when editing a field, its search strategies can be set in the &#39;Extensions&#39; tab;</p></li><li><p>at the data model level, custom search strategies can be specified, under &#39;Extensions &gt; Search&#39; element in the left pane;</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_data/userdata_viewing.html#quicksearch">Quick Search</a></li></ul>
+</div>
+<h3 id="valueLabeling">
+Value-labeling</h3>
+<p>Value-labeling is a global feature in EBX&reg; to display user-friendly labels instead of raw values. For example, in the user interface, a foreign key field displays the label of the linked record, or a field based on a static enumeration displays the localized label associated with the raw value, as specified by the data model. </p><p> If a field supports value-labeling, the Quick search and the sort in the user interface usually apply on the displayed label, to preserve an intuitive user interface. </p><p> There are some exceptions, where raw value is still used by the quick search and the sort operation:</p><ul>
+<li><p>Boolean and Locale data types. This is a temporary limitation.</p></li><li><p>Programmatic labels and programmatic enumeration constraints (a foreign key specifying a <code>TableRefDisplay</code> or whose display depends on a <code>UILabelRenderer</code> specified on the target table, or a field constrained by a <code>ConstraintEnumeration</code>). It is recommended to use alternative solutions (display patterns and foreign keys).</p></li><li><p>Enumeration constraint defined using another node (<code>&lt;osd:enumeration osd:path=...</code>). It is recommended to use an alternative solution (a foreign key).</p></li></ul>
+<p>Obviously, if a field is displayed through a <code>UIWidget</code> (or a <code>UIBean</code>), to preserve an intuitive user interface, it is expected for the custom component to display the label (or the value, if this field does not enable value-labeling).</p><h3 id="limitations">
+Limitations</h3>
+<p>In general, the following fields are not included in the Quick search and they are not optimized for other operators: </p><ul>
+<li><p>computed fields with non-local dependency;</p></li><li><p>inherited fields.</p></li></ul>
+<p>In the specific cases of inherited dataset or history view, legacy search is used. It means that for Quick search: </p><ul>
+<li><p>all searchable fields are considered (including computed fields with non-local dependency); </p></li><li><p>it is very inefficient on tables with huge volume;</p></li><li><p>it behaves like a &#39;contains&#39;, Lucene syntax can not be used.</p></li></ul>
+<p>Regarding the Advanced Search pane, all fields will be available, except those of type <code>osd:locale</code> which are not defined as enumerations, and those of type <code>osd:resource</code>.</p><h2 id="strategiesForStringFields">
+Search strategies for string fields</h2>
+<h3 id="id2s1">
+Basic built-in strategies for strings</h3>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>&#39;Text&#39;</p></td><td class="ebx_definitionListDefinition"><p>The &#39;Text&#39; search strategy is intended to contain multiple words, such as descriptions, texts or comments. This strategy supports full-text search and fuzzy search. Sorting, and some functions ​such as the ‘equals’ and &#39;starts-with&#39; operators, are irrelevant and are not supported. This strategy is lightweight, consuming little disk space.</p><p> See also <a href="../user_data/userdata_viewing.html#quicksearch">Quick Search</a></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>&#39;Code&#39;</p></td><td class="ebx_definitionListDefinition"><p>The &#39;Code&#39; search strategy is intended for codes and identifiers. Values are considered as one single token, allowing any kind of case-sensitive and case-insensitive filter. Full-text search is irrelevant and is replaced by a &#39;contains&#39;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>&#39;Name&#39;</p></td><td class="ebx_definitionListDefinition"><p>The &#39;Name&#39; search strategy is intended for names and labels that contain only a few words. Besides having the same search capabilities as &#39;Text&#39;, &#39;Name&#39; strategy also allows sort, and supports the same filters as &#39;Code&#39;. This strategy has the most capabilities, but consumes more disk space. If the purpose of the field allows it, it is advised to choose the &#39;Text&#39;, &#39;Code&#39; or &#39;Excluded from search&#39; strategy, rather than this one.</p></td></tr>
+</table>
+<h3 id="defaultStrategyForStringFields">
+Default strategy for string fields</h3>
+<p>The &#39;Name&#39; strategy is applied to string fields by default, except:</p><ul>
+<li><p>If the field is part of the primary key, it is set by default to &#39;Code&#39;.</p></li><li><p>If the field is a foreign key, it is forced to &#39;Code&#39; and cannot be changed.</p></li><li><p>If the field has a built-in datatype extending <code>xs:string</code>, then it has a strategy adapted to this datatype; for instance <code>osd:text</code>, <code>xs:Name</code>, <code>osd:email</code>, <code>osd:html</code>, etc.</p></li></ul>
+<p>As the default strategy &#39;Name&#39; can be irrelevant and consumes more disk space, the data model compilation reports warnings for fields with the &#39;Name&#39; strategy set as default, so as to ensure that strategies are defined on purpose. It is advised to choose the &#39;Text&#39; strategy, when the length of the expected values is greater than 64, as a rough estimate. Long values (&gt; 32766 bytes once encoded into UTF-8) will not be fully indexed with &#39;Name&#39; or &#39;Code&#39; strategy. Quick search is not affected, but sorting will consider only the first 1000 characters, and some operators (&#39;equals&#39; and &#39;ends-with&#39;, ...) will not return the correct results.</p><h3 id="customStrategy">
+Advanced custom strategies</h3>
+<p>Some strategies accept parameters, for example to define stop words, or a specific language. This is done by creating a record in the &#39;Search strategies&#39; table of the &#39;Search&#39; data model extension. The new parameterized strategy will be available for selection in the &#39;Extension&#39; tab, for compatible fields.</p><h2 id="StrategyForPrimaryKeyFields">
+Search strategy for primary key fields</h2>
+<p>Primary key fields must have a sortable search strategy. This excludes the &#39;Void&#39; strategy for all data types, and the &#39;Text&#39; strategy for strings.</p><h2 id="strategyVoid">
+Excluding a field from search (&#39;Void&#39; indexing)</h2>
+<p>The &#39;Excluded from search&#39; (or <code>Void</code>) strategy deactivates indexing, making filter, search, or sort impossible. It is available for all data types, and is intended for fields that are never queried. Values can still be accessed through their record. Disabling the indexing reduces the disk space consumed and speeds up some operations like data import.</p><h2 id="id5">
+Assigning a search strategy to a field</h2>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Other</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

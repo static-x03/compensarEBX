@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Users and roles directory</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin_directory" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Technical administration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/directory.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+<h1>
+Users and roles directory</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#overview">Overview</a></li><li class="toc1"><a href="#model">Concepts</a><ul class="toc2">
+<li class="toc2"><a href="#directory">Policy</a></li><li class="toc2"><a href="#id2s2">Users </a></li><li class="toc2"><a href="#id2s3">Roles</a></li></ul>
+</li><li class="toc1"><a href="#DirectoryDefault">Default directory</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Directory content</a></li><li class="toc2"><a href="#PasswordRecovery">Password recovery procedure</a></li><li class="toc2"><a href="#AdminRecovery">Administrator recovery procedure</a></li></ul>
+</li><li class="toc1"><a href="#DirectorySpecific">Custom directory</a></li></ul>
+</div>
+<h2 id="overview">
+Overview</h2>
+<p>TIBCO EBX&reg; uses a directory for user authentication and user role definition.</p><p>A default directory is provided and integrated into the EBX&reg; repository; the &#39;Directory&#39; administration section allows defining which users can connect and what their roles are.</p><p>It is also possible to integrate another type of enterprise directory.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#userDirectory">Configuring the user and roles directory</a></li><li><a href="#DirectorySpecific">Custom directory</a></li></ul>
+</div>
+<h2 id="model">
+Concepts</h2>
+<p>In EBX&reg;, a user can be a member of several roles, and a role can be shared by several users. Moreover, a role can be included into another role. The generic term <em>profile</em> is used to describe either a user or a role.</p><p> In addition to the directory-defined roles, EBX&reg; provides the following <em>built-in roles</em>:</p><table border="1" cellpadding="5" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Role</strong></th><th><strong>Definition</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>Profile.ADMINISTRATOR</p></td><td><p>Built-in Administrator role. Allows performing general administrative tasks.</p></td></tr>
+<tr>
+<td><p>Profile.READ_ONLY</p></td><td><p>Built-in read-only role. A user associated with the read-only role can only view the EBX&reg; repository, and has no right to perform modifications in the repository.</p></td></tr>
+<tr>
+<td><p>Profile.OWNER</p></td><td><p>Dynamic built-in owner role. This role is checked dynamically depending on the current element. It is only activated if the user belongs to the profile defined as owner of the current element.</p></td></tr>
+<tr>
+<td><p>Profile.EVERYONE</p></td><td><p>All users belong to this role.</p></td></tr>
+</tbody>
+</table>
+<p>Information related to profiles is primarily defined in the directory.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Associations between users and the built-in roles <em>OWNER</em> and <em>EVERYONE</em> are managed automatically by EBX&reg;, and thus must not be modified through the directory.</p></div>
+<p>User permissions are managed separately from the directory. See <a href="../references/permissions.html">Permissions</a>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#profile">profile</a></li><li><a href="../glossary/simple_glossary.html#role">role</a></li><li><a href="../glossary/simple_glossary.html#user">user</a></li><li><a href="../glossary/simple_glossary.html#administrator">administrator</a></li><li><a href="../glossary/simple_glossary.html#directory">user and roles directory</a></li></ul>
+</div>
+<h3 id="directory">
+Policy</h3>
+<p>These properties configure the policies of the user and roles directory, for example, whether or not users can edit their own profiles.</p><h3 id="id2s2">
+Users </h3>
+<p>This table lists all the users defined in the internal directory. New users can be added from there.</p><h3 id="id2s3">
+Roles</h3>
+<p>This table lists all the users defined in the internal directory. New roles can be created in this table.</p><h2 id="DirectoryDefault">
+Default directory</h2>
+<h3 id="id3s1">
+Directory content</h3>
+<p>The default directory is represented by the dataset &#39;Directory&#39;, in the &#39;Administration&#39; area.</p><p>This dataset contains tables for users and roles, as well as users&#39; roles table, roles&#39; inclusions table and salutations table.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If a role inclusion cycle is detected, the role inclusion is ignored at the permission resolution. Refresh and check the directory validation report for cycle detection.</p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Users&#39; roles, roles&#39; inclusions and salutations tables are <a href="../models/access_properties_categories.html#categoryHidden">hidden by default</a>.</p></div>
+<p>Depending on the policies defined, users can modify information related to their own accounts, regardless of the permissions defined on the directory dataset.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>It is not possible to delete or duplicate the default directory.</p></div>
+<h3 id="PasswordRecovery">
+Password recovery procedure</h3>
+<p>In the default directory, passwords are encrypted (by default with a SHA256-like algorithm), and stored in this state. Consequently, it is impossible to retrieve lost passwords. A new password must be generated and sent to the user.</p><p>There are two options for this procedure:</p><ol>
+<li><p>A notification email is sent to the administrator, the administrator manually changes the password and sends the new password to the user.</p></li><li><p>A procedure automatically generates a new password and sends it to the user.</p></li></ol>
+<p>By default, the first option is used. To activate the second option, specify the property <code>ebx.password.remind.auto=true</code> in the <a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>For security reasons, the password recovery procedure is not available for administrator profiles. If required, use the administrator recovery procedure instead.</p></div>
+<h3 id="AdminRecovery">
+Administrator recovery procedure</h3>
+<p>If all the &#39;login/password&#39; credentials of the administrators are lost, a special procedure must be followed. A specific directory class redefines an administrator user with login &#39;admin&#39; and password &#39;admin&#39;.</p><p>To activate this procedure:</p><ul>
+<li><p>Specify the following property in the <a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a>:</p><p><code>ebx.directory.factory= com.orchestranetworks.service.directory.DirectoryDefaultRecoverFactory</code></p></li><li><p>Start EBX&reg; and wait until the procedure completes.</p></li><li><p>Reset the &#39;<code>ebx.directory.factory</code>&#39; property.</p></li><li><p>Restart EBX&reg; and connect using the &#39;admin&#39; account.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>While the &#39;<code>ebx.directory.factory</code>&#39; property is set for the recovery procedure, authentication of users will be denied.</p></div>
+<h2 id="DirectorySpecific">
+Custom directory</h2>
+<p>As an alternative to the default directory, it is possible to integrate a specific company directory. For example, an LDAP instance, a relational database or a specific directory model instantiated into EBX&reg;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/DirectoryFactory.html"><code>DirectoryFactory</code></a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

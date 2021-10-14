@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Workflow management</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin_workflow" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Technical administration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/admin_workflow.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+<h1>
+Workflow management</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Workflows</a><ul class="toc2">
+<li class="toc2"><a href="#execution">Execution of workflows</a></li><li class="toc2"><a href="#publication">Workflow publications</a></li><li class="toc2"><a href="#configuration">Configuration</a></li></ul>
+</li><li class="toc1"><a href="#interactions">Interactions</a></li><li class="toc1"><a href="#history">Workflow history</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Clean history</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Workflows</h2>
+<p>To define general parameters for the execution of data workflows, the management of workflow publications, or to oversee data workflows in progress, navigate to the &#39;Administration&#39; area. Click on the down arrow in the navigation pane and select <em>Workflow management &gt; Workflows</em>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>In cases where unexpected inconsistencies arise in the workflow execution technical tables, data workflows may encounter errors. It may then be necessary to run the operation &#39;Clean up inconsistencies in workflow execution tables&#39; from the &#39;Actions&#39; menu in the navigation pane under <em>Administration &gt; Workflow Management &gt; Workflows</em>.</p></p></div>
+<h3 id="execution">
+Execution of workflows</h3>
+<p>Various tables can be used to manage the data workflows that are currently in progress. These tables are accessible in <em>Workflow management &gt; Workflows</em> in the navigation pane.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_dataworkflow/userdataworkflow_admin.html">Administration of data workflows</a></li></ul>
+</div>
+<h4 id="executionWorkflow">
+Workflows table</h4>
+<p>The &#39;Workflows&#39; table contains instances of all data workflows in the repository, including those invoked as sub-workflows. A data workflow is a particular execution instance of a workflow model publication. This table provides access to the data context variables for all data workflows. It can be used to access the status of advancement of the data workflow in terms of current variable values, and in case of a data workflow suspension, to modify the variable values.</p><p>From the &#39;Actions&#39; menu of the &#39;Workflows&#39; table, it is possible to clear the completed data workflows that are older than a given date, by selecting the &#39;Clean from a date&#39; service. This service automatically ignores the active data workflows.</p><h4 id="executionToken">
+Tokens table </h4>
+<p>The &#39;Tokens&#39; table allows managing the progress of data workflows. Each token marks the current step being executed in a running data workflow, as well as the current state of the data workflow.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#token">token</a></li></ul>
+</div>
+<h4 id="executionWorkItem">
+Work items table </h4>
+<p>The &#39;Work items&#39; table contains all the work items associated with user tasks that currently exist. If necessary, you can manually allocate a work item to a user from this table in the case of a blockage in a data workflow. It is preferable, however, to use the buttons in the workspace of the &#39;Data workflows&#39; area whenever possible to allocate, reallocate, and deallocate work items.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#workitem">work item</a></li></ul>
+</div>
+<h4 id="executionWaitingProcessInstance">
+Waiting workflows table</h4>
+<p>The &#39;Waiting workflows&#39; table contains all the workflows waiting for an event. If needed, a service is available to clean this table: this service deletes all lines associated with a deleted workflow. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#waitTask">wait task</a></li></ul>
+</div>
+<h4 id="executionComments">
+Comment table </h4>
+<p>The &#39;Comments&#39; table contains the user&#39;s comments for main workflows and their sub-workflows.</p><h3 id="publication">
+Workflow publications</h3>
+<p>The &#39;Workflow publications&#39; table is a technical table that contains all the workflow model publications of the repository. This table associates published workflow models with their snapshots. It is not recommended to directly modify this table, but rather to use the actions available in the workflow modeling area to make changes to publications. </p><h3 id="configuration">
+Configuration</h3>
+<h4 id="configurationEmail">
+Email configuration</h4>
+<p>In order for email notifications to be sent during the data workflow execution, the following settings must be configured under &#39;Email configuration&#39;:</p><ul>
+<li><p>The URL definition field is used to build links and value mail variables in the workflow.</p></li><li><p>The &#39;From email&#39; field must be completed with the email address that will be used to send email notifications.</p></li></ul>
+<h4 id="interfaceCustomization">
+Interface customization</h4>
+<h5 id="modelingDefaultValues">
+Modeling default values</h5>
+<p>The default value for some properties can be customized in this section.</p><p>The administrator has the possibility to define the default values to be used when a new workflow model or workflow step is created in the &#39;Workflow Modeling&#39; section.</p><h5 id="viewsCustomization">
+Work items views</h5>
+<p>Specific columns are available in the inbox and in the monitoring work items tables, in the &#39;Data workflows&#39; section.</p><p>10 specific columns are available. For each specific column, a customized label can be defined.</p><h4 id="priorities">
+Priorities configuration</h4>
+<p>The property &#39;Default priority&#39; defines how data workflows and their work items across the repository display if they have no priority level. For example, if this property is set to the value &#39;Normal&#39;, any workflow and work item with no priority will appear to have the &#39;Normal&#39; priority.</p><p>The &#39;priorities&#39; table defines all priority levels available to data workflows in the repository. As many integer priority levels as needed can be added, along with their labels, which will appear when users hover over the priority icon in the work item tables. The icons that correspond to each priority level can also be selected, either from the set provided by TIBCO EBX&reg;, or by specifying a URL to an icon image file.</p><h4 id="configurationTemporal">
+Temporal tasks</h4>
+<p>Under &#39;Temporal tasks&#39;, the polling interval for time-dependent tasks in the workflow can be set, such as deadlines and reminders. If no interval value is set, the &#39;in progress&#39; steps are checked every hour.</p><h4 id="configurationInboxCounter">
+Workflow inbox counter configuration</h4>
+<p> The workflow inbox counter is refreshed asynchronously, even if the end-user does not launch any action. To adjust it, two parameters need to be set: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Cache expiry (seconds)</p></td><td class="ebx_definitionListDefinition"><p>Expiration time (in seconds) before a new update of the inbox cache. Please note that this parameter can impact the CPU load and performance since the computation time can be costly for a repository with many work items. If no value is defined, the default value is 600.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>User interface refresh periodicity (seconds)</p></td><td class="ebx_definitionListDefinition"><p>Refresh time (in seconds) between two updates of the inbox counter in the user interface. Please note that this refresh concerns all inbox counters in the user interface: inbox counters of the custom perspective, header inbox counter and Data Workflows inbox counter for the advanced perspective. If no value is defined, default value is 5. If the value is zero (or negative), the refresh is disabled. Also, the modification will only be effective after a logout/login from the user.</p></td></tr>
+</table>
+<p> Also, please note that some actions can force the inbox counter to refresh: </p><ul>
+<li><p>access on <strong>Data workflows</strong></p></li><li><p>access on any subdivision of the <strong>Data workflows section</strong></p></li><li><p>accept or reject a work item</p></li><li><p>launch a workflow</p></li></ul>
+<p> These parameters are accessible in <em>Workflow management &gt; Workflows &gt; Configuration &gt; Temporal tasks</em> in the navigation pane. </p><h2 id="interactions">
+Interactions</h2>
+<p>To manage workflow interactions, navigate to the Administration area. Click the down arrow in the navigation pane and select the entry <em>Workflow management &gt; Interactions</em>.</p><p>An <em>interaction</em> is generated automatically for every work item that is created. It is a local data context of a work item and is accessible from an EBX&reg; session. When a work item is executed, the user performs the assigned actions based upon its interaction, independently of the workflow engine. User tasks define mappings for their input and output parameters to link interactions with the overall data contexts of data workflows.</p><p>Interactions can be useful for monitoring the current parameters of work items. For example, an interaction can be updated manually by a trigger or a user service.</p><h2 id="history">
+Workflow history</h2>
+<p>To view the history data workflow execution, browse the &#39;Administration&#39; area. Click on the down arrow in the navigation pane and select <em>Workflow management &gt; Workflow history</em>.</p><p>The &#39;Workflows&#39; table contains all actions that have been performed during the execution of workflows.</p><p>This data can be viewed graphically or textually. It is especially useful to view the states of various objects related to workflows at a given moment. This includes actions on work items, variables in the data context, as well as tokens. In case of an error, a technical log is available.</p><h3 id="id3s1">
+Clean history</h3>
+<p>From the &#39;Actions&#39; menu of the &#39;Workflows&#39; table, the history of completed data workflows older than a given date can be cleared by selecting the &#39;Clear from a date&#39; service.</p><p>Only the history of workflows that have been previously cleaned (e.g. their execution data deleted) is cleared. This service automatically ignores the history associated with existing workflows. It is necessary to clear data workflows before clearing the associated history, by using the dedicated service &#39;Clear from a date&#39; from the &#39;Workflows&#39; table. Also, a scheduled &#39;Clear from a date&#39; can be used with the built-in scheduled task <em>SchedulerPurgeWorkflowMainHistory</em>.</p><p> Please note that only main processes are cleaned. In order to remove sub-processes and all related data, it will be necessary to run a &#39;standard EBX&reg; purge&#39;. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#cleanWorkflowHistory">How to clean workflow history</a></li></ul>
+</div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>An API is available to fetch the history of a workflow. Direct access to the underlying workflow history SQL tables is not supported. See <a target="_blank" href="../Java_API/com/orchestranetworks/workflow/WorkflowEngine.html#getProcessInstanceHistory-com.orchestranetworks.workflow.ProcessInstanceKey-">WorkflowEngine.getProcessInstanceHistory</a>.</p></div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Overview of persistence</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_persistenceOverview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Persistence</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/persistence_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Persistence</span></div>
+<h1>
+Overview of persistence</h1>
+<p>This chapter is an introduction to history tables and replicated tables.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The term <a href="#mapped"><em>mapped mode</em></a> refers to any tables that are stored as-is, and thus whose contents can be accessed directly in the database.</p></div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Primary persistence of managed master data</a></li><li class="toc1"><a href="#historization">Historization</a></li><li class="toc1"><a href="#replication">Replication</a></li><li class="toc1"><a href="#mapped">Mapped mode</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Overview of mapped mode</a></li><li class="toc2"><a href="#structuralConstraints">Structural constraints</a></li><li class="toc2"><a href="#mappedRestrictions">Data model restrictions due to mapped mode</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Primary persistence of managed master data</h2>
+<p>Data that is modeled in and governed by the EBX&reg; repository are primarily persisted in the relational database, using generic tables (common to all datasets and data models). </p><h2 id="historization">
+Historization</h2>
+<p>Master data tables can activate historization in order to track modifications to their data, regardless of whether they are replicated.</p><p>The history itself is in mapped mode, meaning that it can be consulted directly in the underlying database.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/history.html">History</a></li></ul>
+</div>
+<h2 id="replication">
+Replication</h2>
+<p>Replication enables direct SQL access to tables of master data, by making a copy of data in the repository to relational table replicas in the database. Replication can be enabled on any table regardless of whether it has history activated.</p><p>The replica tables are persisted in mapped mode, as their primary purpose is to make master data accessible to direct queries outside of EBX&reg;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/replication.html">Replication</a></li></ul>
+</div>
+<h2 id="mapped">
+Mapped mode</h2>
+<h3 id="id4s1">
+Overview of mapped mode</h3>
+<p>Mapped mode refers to cases where tables are persisted in the underlying relational database in a format that allows their data to be accessed directly, outside of EBX&reg;. History tables and replica tables are all examples of tables in mapped mode.</p><p>All cases of mapped mode involve automatic alterations of the database schema (the database tables, indexes, etc.) when necessary, by automatically executing required DDL statements in the background. Such procedures are always triggered at data model compilation time and the data model compilation report notifies of any resulting errors.</p><p>Another general consideration regarding mapped modes is that, in most cases, when a data model entity is removed, its corresponding database object is not deleted immediately. Instead, it is marked as disabled, which leaves the possibility of later re-enabling the object. In order to definitively drop the object and its associated data and resources from the database, it must be marked for purge. The removal then takes place during the next global purge.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/database_mapping.html">Database mapping administration</a></li><li><a href="../references/datamodel_evolutions.html">Data model evolutions</a></li></ul>
+</div>
+<h3 id="structuralConstraints">
+Structural constraints</h3>
+<p>When a mapped mode is set, some EBX&reg; data model constraints will generate a &quot;structural constraint&quot; on the underlying RDBMS schema. This concerns the following constraining facets:</p><ul>
+<li><p>facets <code>xs:maxLength</code> and <code>xs:length</code> on <code>string</code> elements;</p></li><li><p>facets <code>xs:totalDigits</code> and <code>xs:fractionDigits</code> on <code>xs:decimal</code> elements.</p></li></ul>
+<p>Databases do not support as tolerant a validation mode as EBX&reg;. Hence, the above constraints become <em>blocking constraints</em>. A blocking constraint means that updates are rejected if they do not comply: when a transaction does not comply with a blocking constraint, it is cancelled and a <a target="_blank" href="../Java_API/com/orchestranetworks/schema/ConstraintViolationException.html"><code>ConstraintViolationException</code></a> is thrown.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/constraints.html#blocksCommit">Blocking and non-blocking constraints</a></li></ul>
+</div>
+<h3 id="mappedRestrictions">
+Data model restrictions due to mapped mode</h3>
+<p>Due to the nature of persisting directly in the underlying database, some restrictions apply to all tables stored in mapped mode:</p><ul>
+<li><p><a href="../installation/supported_env.html#databases">Limitations of supported databases</a></p></li><li><p>Unlimited-length strings: All string fields, except foreign keys, of type <code>xs:string</code>, its derived types, and <code>xs:anyURI</code> must define a &#39;maxLength&#39; or &#39;length&#39; facet. Since a foreign key field is composed of the final primary key field(s) of its target table(s), this facet requirement applies to each of those final primary key fields instead of the foreign key field itself. Additionally, limitations of the underlying database concerning the maximum length of its character types apply, such as <em>VARCHAR</em> and <em>NVARCHAR2</em>.</p></li><li><p>Large lists of columns might not be indexable. Example for Oracle: the database enforces a limit on the maximum cumulated size of the columns included in an index. For strings, this size also depends on the character set. If the database server fails to create the index, you should consider redesigning your indexes, typically by using a shorter length for the concerned columns, or by including fewer columns in the index. The reasoning is that an index leading to this situation would have headers so large that it could not be efficient anyway.</p></li><li><p>Fields of type <code>type=&quot;osd:password&quot;</code> are ignored.</p></li><li><p>Terminal complex types are supported; however, they cannot be globally set to <code>null</code> at record-level.</p></li></ul>
+<p>More generally, tables in mapped mode are subject to any limitations of the underlying RDBMS. For example, the maximum number of columns in a table applies (1000 for Oracle, 1600 for PostgreSQL). Note that a history table contains twice as many fields as declared in the schema (one functional field, plus one generated field for the operation code).</p><p>Data model evolutions may also be constrained by the underlying RDBMS, depending on the existing data model.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/datamodel_evolutions.html">Data model evolutions</a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Persistence</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

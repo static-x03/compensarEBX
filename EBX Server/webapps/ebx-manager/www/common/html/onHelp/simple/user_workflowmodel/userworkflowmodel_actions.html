@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Configuring the workflow model</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="wm_actions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Workflow models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_workflowmodel/userworkflowmodel_actions.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Workflow models</span></div>
+<h1>
+Configuring the workflow model</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#information">Information associated with a workflow model</a></li><li class="toc1"><a href="#configuration">Workflow model properties</a></li><li class="toc1"><a href="#datacontext">Data context</a></li><li class="toc1"><a href="#viewsCustomization">Custom workflow execution views</a></li><li class="toc1"><a href="#permissions">Permissions on associated data workflows</a></li><li class="toc1"><a href="#workflow_history">Workflow model snapshots</a></li><li class="toc1"><a href="#id7">Deleting a workflow model</a></li></ul>
+</div>
+<h2 id="information">
+Information associated with a workflow model</h2>
+<p>To view and edit the owner and documentation of your workflow model, select &#39;Information&#39; from the <a href="../user_workflowmodel/userworkflowmodel_intro.html#introduction">workflow model &#39;Actions&#39;</a> menu for your workflow model in the navigation pane.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Owner</p></td><td class="ebx_definitionListDefinition"><p>Specifies the workflow model owner, who will have the rights to edit the workflow model&#39;s information and define its permissions.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Localized documentation</p></td><td class="ebx_definitionListDefinition"><p>Localized labels and descriptions for the workflow model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Activated</p></td><td class="ebx_definitionListDefinition"><p><em>This property is deprecated.</em> Whether the workflow model is activated. A workflow model must be activated in order to be able to be published.</p></td></tr>
+</table>
+<h2 id="configuration">
+Workflow model properties</h2>
+<p>Configuration for a workflow model is accessible in the navigation pane under &#39;Workflow model configuration&#39;.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+</tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Notification of start</p></td><td class="ebx_definitionListDefinition"><p>The list of profiles to which to send notifications, based on a template, when a data workflow is launched.</p><p>See <a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Generic message templates</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Notification of completion</p></td><td class="ebx_definitionListDefinition"><p>The list of profiles to which to send notifications, based on a template, when a data workflow is completed. The notification is only sent if the workflow has been completed under normal circumstances, that is, not due to an administration action.</p><p>See <a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Generic message templates</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Notification of error</p></td><td class="ebx_definitionListDefinition"><p>The list of profiles that will receive notifications, based on a template, when a data workflow is in error state.</p><p>See <a href="../user_workflowmodel/userworkflowmodel_intro.html#notification">Generic message templates</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Priority</p></td><td class="ebx_definitionListDefinition"><p>By default, each workflow associated with this model will be launched with this priority. Setting a priority is optional. If no priority is defined here, and a default priority is set for the repository, the repository default priority will be used for any associated workflow with no priority assigned. See <a href="../user_dataworkflow/userdataworkflow_workitems.html#workitem_priorities">Work item priorities</a> for more information.</p><p><strong>Note:</strong> Only users who are defined as workflow administrators will be able to manually modify the priority level of any associated data workflows.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="quickLaunch"><p>Activate quick launch</p></td><td class="ebx_definitionListDefinition"><p>By default, when a workflow is launched, the user is prompted to enter a documentation for the new workflow in an intermediate form. This documentation is optional. Setting the &#39;Activate quick launch&#39; property to &#39;Yes&#39; allows skipping this documentation step and proceeding directly to the workflow launch.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="synchronousLaunch"><p>Automatically open the first step</p></td><td class="ebx_definitionListDefinition"><p>Allows determining the navigation after a workflow is launched. By default, once a workflow is launched, the current table (workflow launchers or monitoring &gt; publications) is automatically displayed.</p><p>Enabling this property will allow the workflow user to keep working on the launched workflow. If, after the first workflow step is executed, a work item is reached, and this work item can be started by the workflow creator, then the work item is automatically opened (if several work items are reached, the first created is opened). This will save the user from selecting the corresponding work item from the work items inbox.</p><p>If no work item has been reached, the next step progress strategy is evaluated.</p><p>If no work item has been opened, the table from which the workflow has been launched is displayed.</p><p><strong>Limitation:</strong> This property will be ignored if the first step is a sub-workflow invocation.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflow trigger</p></td><td class="ebx_definitionListDefinition"><p>Component that intercepts the main events of a workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Permissions</p></td><td class="ebx_definitionListDefinition"><p>Permissions on actions related to the data workflows associated with the workflow model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Programmatic action permissions</p></td><td class="ebx_definitionListDefinition"><p>Defines a custom component that handles the permissions of the workflow. If set, this overrides all permissions defined in the property &#39;Permissions&#39;.</p></td></tr>
+</table>
+<h2 id="datacontext">
+Data context</h2>
+<p>The data context configuration can be accessed from the navigation pane.</p><p>Each workflow has its own data context, thus allowing to have its own local dataspace during its execution. This gives the possibility to store and to vary values that will direct the workflow execution.</p><h2 id="viewsCustomization">
+Custom workflow execution views</h2>
+<p>The workflow execution views customization can be accessed from the navigation pane.</p><p>The customization allows configuring the specific columns of the work items and workflow views (inbox, work items monitoring, active workflows monitoring and completed workflows). For each specific column, it is possible to associate an expression that can contain data context variables that will be evaluated upon display of the workflow.</p><h2 id="permissions">
+Permissions on associated data workflows</h2>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflow administration</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to perform administration actions on the workflows. The administration actions include the following: replay a step, resume a workflow, terminate a workflow, disable a publication and unpublish. In order to perform these actions, this profile is automatically granted the &quot;Visualize workflows&quot; permission. The built-in administrator always has the workflow administration rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflow administration &gt; Replay a step</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to replay a workflow step. In order to perform this action, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Active workflows&quot; section is available to replay a step. A profile with the &quot;Workflow administration&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the rights to replay a step.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflow administration &gt; Terminate workflow</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to terminate and clean a workflow. In order to perform this action, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Active workflows&quot; section is available to terminate and clean an active workflow. A button in the &quot;Completed workflows&quot; section is available to delete a completed workflow. A profile with the &quot;Workflow administration&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the rights to terminate a workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflow administration &gt; Force a workflow to resume</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to force resuming a waiting workflow. In order to perform this action, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Active workflows&quot; section is available to resume a workflow. A profile with the &quot;Workflow administration&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the right to resume a workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflow administration &gt; Disable a publication</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to disable a workflow publication. In order to perform this action, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Publications&quot; section is available to disable a publication. It is only displayed on active publications. A profile with the &quot;Workflow administration&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the rights to disable a publication.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflow administration &gt; Unpublish</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to unpublish a workflow publication. In order to perform this action, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Publications&quot; section is available to unpublish disabled publications only. A profile with the &quot;Workflow administration&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the unpublish rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Allocation management</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to manage work items allocation. The allocation actions include the following: allocate work items, reallocate work items and deallocate work items. In order to perform these actions, this profile is automatically granted the &quot;Visualize workflows&quot; permission. The built-in administrator always has the allocation management rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Allocation management &gt; Allocate work items</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to allocate work items. In order to perform these actions, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Work items&quot; section is available to allocate a work item. It is only displayed on offered work items. A profile with the &quot;Allocation management&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the work items allocation rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Allocation management &gt; Reallocate work items</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to reallocate work items. In order to perform this action, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Work items&quot; section is available to reallocate a work item. It is only displayed on allocated work items. A profile with the &quot;Allocation management&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the work items reallocation rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Allocation management &gt; Deallocate work items</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to deallocate work items. In order to perform this action, this profile is automatically granted the &quot;Visualize workflows&quot; permission. A button in the &quot;Monitoring &gt; Work items&quot; section is available to deallocate a work item. It is only displayed on allocated work items. A profile with the &quot;Allocation management&quot; permission is automatically allowed to perform this specific action. The built-in administrator always has the work items deallocation rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="permissions_create"><p>Launch workflows</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to manually launch new workflows. This permission allows launching workflows from the active publications of the &quot;Workflow launchers&quot; section. The built-in administrator always has the launch workflows rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Visualize workflows</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to visualize workflows. By default, the end-user can only see work items that have been offered or allocated to him in the &quot;Inbox&quot; section. This permission also allows visualizing the publications, workflows and work items associated with this workflow model in the &quot;Monitoring&quot; and &quot;Completed workflows&quot; sections. This profile is automatically granted the &quot;Visualize completed workflows&quot; permission. The built-in administrator always has the visualize workflows rights.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Visualize workflows &gt; The workflow creator can visualize it</p></td><td class="ebx_definitionListDefinition"><p>If enabled, the workflow creator has the permission to view the workflows he has launched. This restricted permission grants access to the workflows he launched and to the associated work items in the &quot;Monitoring &gt; Active workflows&quot;, &quot;Monitoring &gt; Work items&quot; and &quot;Completed workflows&quot; sections. The default value is &#39;No&#39;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Visualize workflows &gt; Visualize completed workflows</p></td><td class="ebx_definitionListDefinition"><p>Defines the profile that is allowed to visualize completed workflows. This permission allows visualizing completed workflows in the &quot;Completed workflows&quot; section and accessing their history. A profile with the &quot;Visualize workflows&quot; permission is automatically allowed to perform this action. The built-in administrator always has the visualize completed workflows rights.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>A user who has no specific privileges assigned can only see work items associated with this workflow that are offered or allocated to that user.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_dataworkflow/userdataworkflow_admin.html">Workflow administration</a></li></ul>
+</div>
+<h2 id="workflow_history">
+Workflow model snapshots</h2>
+<p>The history of workflow model snapshots can be managed from <strong>Actions &gt; View publications history</strong>. </p><p>The history table displays all snapshots which contain the selected workflow model and indicates if a workflow model is published. For each snapshot, the <strong>Actions</strong> button allows you to export or view the corresponding workflow model.</p><h2 id="id7">
+Deleting a workflow model</h2>
+<p>Workflow model can be deleted, however any associated publications remain accessible in the Data Workflows area. If a new workflow model is created with the same name as a deleted workflow model, publishing will prompt to replace the old publication.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_workflowmodel/userworkflowmodel_publish.html">Publishing workflow models</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Workflow models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

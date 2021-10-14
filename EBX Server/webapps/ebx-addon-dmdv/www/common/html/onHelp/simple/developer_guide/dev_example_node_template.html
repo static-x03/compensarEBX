@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Sample node template and configuration</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_example_node_template" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Developer Guide &gt; Customizing graph nodes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=developer_guide/dev_example_node_template.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Developer Guide &gt; Customizing graph nodes</span></div>
+<h1>
+Sample node template and configuration</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Node template code sample</a></li><li class="toc1"><a href="#id3">Including a template in a graph configuration</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>Once you have implemented a node template, an administrator must include the template in a value and relationship graph configuration. The following section provides a node template code sample and instructions for adding it to an existing configuration.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../developer_guide/dev_node_template_overview.html">Node templates</a></li><li><a href="../developer_guide/dev_node_elements.html">Node template elements</a></li><li><a href="../developer_guide/dev_node_value_renderer.html">Using a node value renderer</a></li></ul>
+</div>
+<h2 id="id2">
+Node template code sample</h2>
+<p>The following is a sample code for a node template:</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class nodeTemplateExample implements NodeTemplateFactory {
+
+	private static final int DEFAULT_WIDTH = 275;
+
+	public NodeTemplate build() {
+
+		NodeTemplate template = new NodeTemplate();
+		template.setShapeType(ShapeType.ROUNDED_RECTANGLE);
+
+		NodePanel rootPanel = new NodePanel();
+		rootPanel.setWidth(DEFAULT_WIDTH);
+
+		NodePanel mainPanel = new NodePanel();
+		mainPanel.setPanelLayout(PanelLayout.VERTICAL);
+		mainPanel.setBackgroundColor("#0B2265");
+		mainPanel.setMargin(MarginType.LEFT, 12);
+		mainPanel.setMargin(MarginType.TOP, 12);
+		mainPanel.setMargin(MarginType.BOTTOM, 12);
+		{
+			NodePanel imagePanel = new NodePanel();
+			imagePanel.setAlignment(AlignmentType.MIDDLE_LEFT);
+			{
+				NodeImage image = new NodeImage();
+				image.setBindingSource("/icons/w1.png");
+				image.setHeight(50);
+				image.setWidth(50);
+
+				imagePanel.addElement(image);
+			}
+
+			NodePanel table = new NodePanel();
+			{
+				NodeDataTable dataTable = new NodeDataTable();
+				dataTable.setAlignment(AlignmentType.CENTER);
+				dataTable.setNumberOfColumns(2);
+				dataTable.setColumnsWidth(new int[] { 100, 85 });
+				dataTable.setRowSeparatorColor("#0B2265");
+				dataTable.setBorderColor("#0B2265");
+				dataTable.setBackgroundColor("#A5ACAF");
+				dataTable.setTextColor("#A71930");
+				dataTable.addRowData("Name:", "${/name}");
+				dataTable.addRowData("Department:", "${/departmentID}");
+				dataTable.addRowData("Managed By:", "${/supervisorID}");
+				dataTable.setMargin(MarginType.BOTTOM, 10);
+				dataTable.setMargin(MarginType.LEFT, 10);
+				dataTable.setMargin(MarginType.RIGHT, 10);
+
+				table.addElement(dataTable);
+			}
+
+			NodeExpanderButton expand = new NodeExpanderButton();
+			expand.setTargetElement(table);
+			expand.setAlignment(AlignmentType.MIDDLE_LEFT);
+			expand.setMargin(MarginType.TOP, 5);
+			expand.setMargin(MarginType.LEFT, 10);
+			expand.setMargin(MarginType.BOTTOM, 5);
+			expand.setBackgroundColor("#A71930");
+			expand.setHeight(12);
+			expand.setWidth(12);
+
+			mainPanel.addElement(imagePanel);
+			mainPanel.addElement(expand);
+			mainPanel.addElement(table);
+
+		}
+
+		NodePanel indicatorPanel = new NodePanel();
+		{
+			NodeIndicator indicator = new NodeIndicator();
+			indicator.setOpacity(1);
+			indicator.setWidth(40);
+			indicator.setHeight(40);
+			indicator.setMargin(MarginType.LEFT, 10);
+			indicator.setAlignment(AlignmentType.CENTER);
+			indicatorPanel.addElement(indicator);
+		}
+
+		rootPanel.addElement(mainPanel);
+		rootPanel.addElement(indicatorPanel);
+		template.setPanel(rootPanel);
+
+		return template;
+	}
+
+}</pre>
+<p>The following image shows the result of implementing the above node template:</p><img alt="/node_template_example.png" src="./resources/images/node_template_example.png"></img><h2 id="id3">
+Including a template in a graph configuration</h2>
+<p>To include a node template in a graph configuration:</p><ol>
+<li><p>Navigate to <em>Administration &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Table configuration</em>.</p></li><li><p>Open the desired table configuration and select the <strong>Node Style</strong> tab.</p></li><li><p>In the <strong>Node Template</strong> field, enter the fully qualified name for the class that implements the template.</p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

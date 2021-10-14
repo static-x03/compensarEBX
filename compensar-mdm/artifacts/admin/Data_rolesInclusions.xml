@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directory>
+    <rolesInclusions>
+        <encompassingRole>COMM - Reference Data Approver</encompassingRole>
+        <includedRole>COMM</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>COMM - Reference Data Entry</encompassingRole>
+        <includedRole>COMM</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>COMM - Reference Data Self Approver</encompassingRole>
+        <includedRole>COMM - Reference Data Approver</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>COMM - Reference Data Self Approver</encompassingRole>
+        <includedRole>COMM - Reference Data Entry</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Data Approver</encompassingRole>
+        <includedRole>PERS</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Data Entry</encompassingRole>
+        <includedRole>PERS</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Data Self Approver</encompassingRole>
+        <includedRole>PERS - Data Approver</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Data Self Approver</encompassingRole>
+        <includedRole>PERS - Data Entry</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Reference Data Approver</encompassingRole>
+        <includedRole>PERS</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Reference Data Entry</encompassingRole>
+        <includedRole>PERS</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Reference Data Self Approver</encompassingRole>
+        <includedRole>PERS - Reference Data Approver</includedRole>
+    </rolesInclusions>
+    <rolesInclusions>
+        <encompassingRole>PERS - Reference Data Self Approver</encompassingRole>
+        <includedRole>PERS - Reference Data Entry</includedRole>
+    </rolesInclusions>
+</directory>

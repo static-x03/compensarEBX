@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="sql_introduction" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; SQL in EBX®</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=sql/sql_introduction.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+<h1>
+Introduction</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#introduction">Overview</a></li><li class="toc1"><a href="#data_model">Mapping data model entities</a><ul class="toc2">
+<li class="toc2"><a href="#table">Table (in data model)</a></li><li class="toc2"><a href="#field">Fields</a></li><li class="toc2"><a href="#group">Groups</a></li><li class="toc2"><a href="#associations">Associations</a></li></ul>
+</li><li class="toc1"><a href="#type">Mapping data types</a><ul class="toc2">
+<li class="toc2"><a href="#simple">Simple data types</a></li><li class="toc2"><a href="#extended">Extended simple types defined by EBX&reg;</a></li><li class="toc2"><a href="#list">List (multi-valued) types</a></li><li class="toc2"><a href="#complex_type">Complex types</a></li><li class="toc2"><a href="#tableRef">TableRef types</a></li><li class="toc2"><a href="#system_fields">System columns</a></li></ul>
+</li><li class="toc1"><a href="#syntax">SQL syntax</a><ul class="toc2">
+<li class="toc2"><a href="#standard_operators">Supported standard operators and functions</a></li><li class="toc2"><a href="#escaping_identifiers">Escaping identifiers</a></li><li class="toc2"><a href="#explain_plan">Explain plan</a></li></ul>
+</li><li class="toc1"><a href="#limitation">Limitations and performance guidelines</a></li></ul>
+</div>
+<h2 id="introduction">
+Overview</h2>
+<p> This documentation covers Structured Query Language (SQL) queries and expressions in EBX&reg;. EBX&reg; supports standard SQL queries to retrieve rows selected from one or more tables. Some EBX&reg; SQL language features are extensions to the standard. Supported EBX&reg; SQL syntax includes: table expressions (SELECT, FROM, WHERE, GROUP BY and HAVING clauses), DISTINCT, ORDER BY, LIMIT and OFFSET, combining queries (UNION [ALL]), and WITH (except RECURSIVE modifier). </p><p> The goal of this API is to provide to developers the ability to retrieve data from EBX&reg; using a well known standard. </p><p> EBX&reg; SQL is accessible through Java APIs, especially from the class <code><a target="_blank" href="../Java_API/com/orchestranetworks/query/Query.html"><code>Query</code></a></code> .&nbsp;The queries also support parameters. See <code><a target="_blank" href="../Java_API/com/orchestranetworks/query/Query.html#setParameter-int-java.lang.Object-"><code>Query.setParameter</code></a></code>. </p><h2 id="data_model">
+Mapping data model entities</h2>
+<p> The following section provides a detailed explanation about the mapping of the EBX&reg; concepts into SQL. </p><h3 id="table">
+Table (in data model)</h3>
+<p> EBX&reg; tables are mapped naturally to SQL tables. In the data model, there can be more than one EBX&reg; table with the same name. This ambiguity can occur when tables are in groups. To remove the ambiguity, use the full path of the table surrounded by double quotes (for example, <code>&quot;my_group/my_table&quot;</code> no longer conflicts with <code>&quot;other_group/my_table&quot;</code>). You can also use the entity name of the table, which is unique inside the data model. You can use the table name only if it does not collide with an entity name or another table name. </p><h3 id="field">
+Fields</h3>
+<p> In SQL Standard, the structure of a table consists of one or more columns. Every element (including fields) whose parent is an EBX&reg; table, is mapped to a column. </p><h3 id="group">
+Groups</h3>
+<p> In SQL Standard, the structure of a table consists of one or more columns. Every element whose parent is an EBX&reg; table is mapped to a column. This includes groups that are mapped to SQL columns as <em>SQL structure types</em>. </p><h3 id="associations">
+Associations</h3>
+<p> In SQL Standard, querying data among multiple tables is based on foreign keys and primary keys. These concepts in EBX&reg; are similar to those in SQL. Therefore, joins between tables in SQL can also be done using EBX&reg; foreign and primary keys. </p><h2 id="type">
+Mapping data types</h2>
+<p> Handling data through SQL is highly dependent on its data type. For example, in predicates, columns can be compared only if they have the same SQL data type. The SQL data types are types according to the type in the data model.</p><h3 id="simple">
+Simple data types</h3>
+<p>Supported standard SQL data types</p><p>This table lists all of the simple types defined in the XML Schema that are supported by EBX&reg;, along with their corresponding standard SQL types. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema type</strong></p></th><th><p><strong>SQL type</strong></p></th><th><p><strong>Java type</strong></p></th><th><p><strong>Notes</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code></p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#boolean">xs:boolean</a></code></p></td><td><p><code>BOOLEAN</code></p></td><td><p><code>java.lang.Boolean</code></p></td><td><p>Values: TRUE, FALSE, UNKNOWN</p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#decimal">xs:decimal</a></code></p></td><td><p><code>DECIMAL</code></p></td><td><p><code>java.math.BigDecimal</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#dateTime">xs:dateTime</a></code></p></td><td><p><code>TIMESTAMP</code></p></td><td><p><code>java.lang.Date</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#time">xs:time</a></code></p></td><td><p><code>TIME</code></p></td><td><p><code>java.lang.Date</code></p></td><td>The date portion of the returned <code>Date</code> is always set to &#39;1970/01/01&#39;.</td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#date">xs:date</a></code></p></td><td><p><code>DATE</code></p></td><td><p><code>java.lang.Date</code></p></td><td>The time portion of the returned <code>Date</code> is always set to the beginning of the day (that is, &#39;00:00:00&#39;).</td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#anyURI">xs:anyURI</a></code></p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.net.URI</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#Name">xs:Name</a></code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#int">xs:int</a></code></p></td><td><p><code>INT</code></p></td><td><p><code>java.lang.Integer</code></p></td><td></td></tr>
+</tbody>
+</table>
+<h3 id="extended">
+Extended simple types defined by EBX&reg;</h3>
+<p>EBX&reg; provides pre-defined simple data types. These types are defined by the internal schema <code>common-1.0.xsd</code>. Their definition is detailed in the section <a href="../models/types.html#ebxsimple">Extended simple types defined by EBX&reg;</a></p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema type</strong></p></th><th><p><strong>SQL type</strong></p></th><th><p><strong>Java class</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>osd:text</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:html</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:email</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:password</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:color</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:resource</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#anyURI">xs:anyURI</a></code> restriction)</p></td><td><p> internal type </p></td><td><p>internal class</p></td></tr>
+<tr>
+<td><p><code>osd:locale</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.util.Locale</code></p></td></tr>
+<tr>
+<td><p><code>osd:dataspaceKey</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:datasetName</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td></tr>
+</tbody>
+</table>
+<h3 id="list">
+List (multi-valued) types</h3>
+<p>Lists are handled as SQL Arrays. Their corresponding Java class is <code>java.util.List</code>.</p><h3 id="complex_type">
+Complex types</h3>
+<p>Complex types are handled as <a href="https://en.wikipedia.org/wiki/Structured_type">SQL Structured types</a>. Their corresponding Java class is <code>Object[]</code>. This applies to foreign keys (see below) and <a href="../glossary/simple_glossary.html#group">group</a>s, because they are defined through complex types. Use the <em>dot operator</em> to access fields inside the SQL Structure types. For example, use <code>address.street</code> to access the field <code>street</code> of the field <code>address</code>, if it is a complex type. When you reference a sub-field of a complex type in a query, you must always use the table name or alias: </p><ul>
+<li><p><code>SELECT customer.address.street FROM customer</code></p></li><li><p><code>SELECT c.address.street FROM customer c</code></p></li></ul>
+<h3 id="tableRef">
+TableRef types</h3>
+<p> In EBX&reg;, a table can have a primary key composed of multiple fields. Foreign keys are defined by a single field with the <a href="../models/tables.html#foreignKey"><code>osd:tableRef</code></a> declaration. The standard SQL syntax has been extended to extract the value of any targeted primary key field. In the <a href="../references/xpath_ref.html#tableRef">Extraction of foreign keys example</a>, the following SQL expressions are valid: </p><ul>
+<li><p><code>fkb.id = 123</code></p></li><li><p><code>YEAR(fkb.date) &gt; 2018</code></p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Even if the primary key is composed of only one field, the name of the field must be specified to access the value. For example, if the primary key is composed of a single <code>id</code>, <code>fkb.id</code> must be used to compare the value, as in <code>fkb.id = 123</code></p></div>
+<h3 id="system_fields">
+System columns</h3>
+<p> Apart from the fields present in a table, EBX&reg; SQL provides some extra system columns. These columns are not returned by a SQL statement, unless they are explicitly referenced. For example, &quot;<code>SELECT * FROM ...</code>&quot; does not return systems columns, but &quot;<code>SELECT systemColumnName FROM ...</code>&quot; does. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Name</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>SQL type</strong></p></th><th><p><strong>Java class</strong></p></th><th><p><strong>Examples</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>$adaptation</code></p></td><td><p>The <code><a target="_blank" href="../Java_API/com/onwbp/adaptation/Adaptation.html"><code>Adaptation</code></a></code> representing the table record.</p></td><td><p>internal type</p></td><td><p><code>com.onwbp.adaptation.Adaptation</code></p></td><td><p><code>SELECT t.&quot;$adaptation&quot; FROM myTable t WHERE t.value&gt;100</code></p></td></tr>
+<tr>
+<td><p><code>$pk</code></p></td><td><p>String representation of the primary key of the record (see <code><a target="_blank" href="../Java_API/com/onwbp/adaptation/PrimaryKey.html#syntax"><code>PrimaryKey.syntax</code></a></code>).</p></td><td><p><code>VARCHAR</code></p></td><td><p><code>java.lang.String</code></p></td><td><p><code>SELECT t.* FROM myTable1 t WHERE t.&quot;$pk&quot;=&#39;123&#39;</code></p><p><code>SELECT t.* FROM myTable2 t WHERE t.&quot;$pk&quot;=&#39;123|abc&#39;</code></p><p><code>SELECT t.&quot;$pk&quot; FROM myTable3 t WHERE t.value&gt;100</code></p><p><code>SELECT t.value FROM myTable3 t ORDER BY t.&quot;$pk&quot;</code></p></td></tr>
+</tbody>
+</table>
+<h2 id="syntax">
+SQL syntax</h2>
+<h3 id="standard_operators">
+Supported standard operators and functions</h3>
+<p> An operator is a reserved word or a character used primarily in a SQL statement&#39;s WHERE clause to perform operation(s), such as comparisons and arithmetic operations. These Operators are used to specify conditions in a SQL statement, and to serve as conjunctions for multiple conditions in a statement. EBX&reg; supports most of the SQL standard operators and functions. Some functions and operators can have optional parameters: they are surrounded by square brackets in the documentation. Generally, there are five types of operators and functions: </p><ul>
+<li><p><a href="./ComparisonOperatorsAndFunctions_generated.html">Comparison operators and functions</a></p></li><li><p><a href="./ArithmeticOpsAndFunctions_generated.html">Arithmetic operators and functions</a></p></li><li><p><a href="./LogicalOperators_generated.html">Arithmetic operators</a></p></li><li><p><a href="./StringOpsAndFunctions_generated.html">String operators and functions</a></p></li><li><p><a href="./DateAndTimeFunctions_generated.html">Date and time functions</a></p></li></ul>
+<p> The following table lists all of the operators&#39; associativity and precedence, highest to lowest. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Operator</strong></p></th><th><p><strong>Associativity</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>.</p></td><td><p>left</p></td></tr>
+<tr>
+<td><p>[ ] (array element)</p></td><td><p>left</p></td></tr>
+<tr>
+<td><p>+ - (unary plus, minus)</p></td><td><p>right</p></td></tr>
+<tr>
+<td><p>* / %</p></td><td><p>left</p></td></tr>
+<tr>
+<td><p>+ -</p></td><td><p>left</p></td></tr>
+<tr>
+<td><p>BETWEEN, IN, LIKE, CONTAINS, and so on</p></td><td><p>-</p></td></tr>
+<tr>
+<td><p>&lt; &gt; = &lt;= &gt;= &lt;&gt; !=</p></td><td><p>left</p></td></tr>
+<tr>
+<td><p>IS NULL, IS FALSE, IS NOT TRUE, and so on</p></td><td><p>-</p></td></tr>
+<tr>
+<td><p>NOT</p></td><td><p>right</p></td></tr>
+<tr>
+<td><p>AND</p></td><td><p>left</p></td></tr>
+<tr>
+<td><p>OR</p></td><td><p>left</p></td></tr>
+</tbody>
+</table>
+<h3 id="escaping_identifiers">
+Escaping identifiers</h3>
+<p> In the following cases, the identifier must be escaped by using double quotes: </p><ul>
+<li><p>when using the absolute path to identify a table (for example, &quot;/root/myTable&quot;).</p></li><li><p>when the field to identify is a reserved word (for example, &quot;user&quot;, &quot;order&quot;).</p></li><li><p>when referring to a system column with a table alias (for example, t.&quot;$adaptation&quot;, t.&quot;$pk&quot;).</p></li></ul>
+<p> The following example shows a query to illustrate all cases: </p><p><code>SELECT t.<strong>&quot;user&quot;</strong>, t.<strong>&quot;$pk&quot;</strong> FROM <strong>&quot;/root/myTable&quot;</strong> t WHERE t.<strong>&quot;order&quot;</strong> = 1</code></p><h3 id="explain_plan">
+Explain plan</h3>
+<p> EBX&reg; SQL supports <code>EXPLAIN PLAN FOR ...</code> syntax to get the plan information of a query. The result is similar to <code><a target="_blank" href="../Java_API/com/orchestranetworks/query/Query.html#explain--"><code>Query.explain</code></a></code>. </p><p>Example: <code>EXPLAIN PLAN FOR SELECT id FROM myTable</code></p><h2 id="limitation">
+Limitations and performance guidelines</h2>
+<ul>
+<li><p>Certain internal join optimizations do not support RIGHT and FULL joins, so avoid these join types if possible.</p></li><li><p>The maximum precision and scale for numeric or decimal values is 1000.</p></li><li><p>Queries using <code>GROUP BY</code> and/or aggregate functions (<code>MIN</code>, <code>MAX</code>, and so on) are not optimized, except for <code>COUNT</code>, which can be optimized in some circumstances.</p></li><li><p>Currently, <code>MIN</code> and <code>MAX</code> operators do not exploit internal indices. Instead, use the following equivalent queries, which are probably more efficient:</p><p><code>SELECT val FROM myTable ORDER BY val DESC NULLS LAST LIMIT 1</code> instead of <code>SELECT MAX(val) FROM myTable</code></p><p><code>SELECT val FROM myTable ORDER BY val LIMIT 1</code> instead of <code>SELECT MIN(val) FROM myTable</code></p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

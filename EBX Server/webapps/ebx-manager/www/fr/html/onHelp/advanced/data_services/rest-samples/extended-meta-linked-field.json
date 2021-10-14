@@ -1,0 +1,6 @@
+{
+  "relationshipField": "/au_id",
+  "tablePath": "/root/Authors",
+  "linkedFieldPath": "/birth_date",
+  "details": "http://.../BAuthors/Authors/root/Authors"
+}

@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Built-in user services</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="builtin_services" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Reference Manual &gt; Integration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=references/builtin.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Integration</span></div>
+<h1>
+Built-in user services</h1>
+<p>EBX&reg; includes a number of built-in user services. Built-in user services can be used:</p><ul>
+<li><p><a href="../user_workflowmodel/userworkflowmodel_createimplement.html#step_user">when defining workflow model tasks</a></p></li><li><p><a href="../user_introduction/gui.html#perspective">when defining perspective action menu items</a></p></li></ul>
+<p>&nbsp;</p><p>This reference page describes the built-in user services and their parameters.</p><p>&nbsp;</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#default">Access data (default service)</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#creation">Create a new record</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Input parameters</a></li><li class="toc2"><a href="#id2s2">Output parameters</a></li></ul>
+</li><li class="toc1"><a href="#duplicate">Duplicate a record</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Input parameters</a></li><li class="toc2"><a href="#id3s2">Output parameters</a></li></ul>
+</li><li class="toc1"><a href="#exportToXML">Export data to an XML file</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#exportToCSV">Export data to a CSV file</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#importFromXML">Import data from an XML file</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#importFromCSV">Import data from a CSV file</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#selectDataSpace">Access a dataspace</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#validation">Validate a dataspace, a snapshot or a dataset</a><ul class="toc2">
+<li class="toc2"><a href="#id9s1">Input parameters</a></li><li class="toc2"><a href="#id9s2">Output parameters</a></li></ul>
+</li><li class="toc1"><a href="#merge">Merge a dataspace</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">Input parameters</a></li><li class="toc2"><a href="#id10s2">Output parameters</a></li></ul>
+</li><li class="toc1"><a href="#merge.view">Access the dataspace merge view</a><ul class="toc2">
+<li class="toc2"><a href="#id11s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#compare">Compare contents</a><ul class="toc2">
+<li class="toc2"><a href="#id12s1">Input parameters</a></li></ul>
+</li><li class="toc1"><a href="#workflow">Data workflows</a><ul class="toc2">
+<li class="toc2"><a href="#id13s1">Input parameters</a></li></ul>
+</li></ul>
+</div>
+<h2 id="default">
+Access data (default service)</h2>
+<p>By default, workflows automatically consider this service as complete. That is, the &#39;Accept&#39; button is always available.</p><p>This is the default service used if no service is specified.</p><h3 id="id1s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>disableAutoComplete</code></td><td>Disable Accept at start</td><td>By default, the interaction associated with this service is directly considered as complete. Therefore, the Accept button is automatically displayed at the opening of the work item. This parameter is useful to disable this behavior. If the value is &#39;true&#39;, the developer will be in charge of completing the interaction by using SessionInteraction in a user service or a trigger, for example. The default value is &#39;false&#39;. Perspectives do not use this parameter.</td></tr>
+<tr>
+<td><code>firstCallDisplay</code></td><td>First call display mode</td><td>Defines the display mode that must be used when displaying a filtered table or a record upon first call. Default (value = &#39;auto&#39;): the display is automatically set according to the selection. View (value = &#39;view&#39;): forces the display of the tabular view or of the hierarchical view. Record (value = &#39;record&#39;): if the predicate has at least one record, forces the display of the record form.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>version</code></td><td>Snapshot</td><td>The identifier of the specified snapshot - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>viewPublication</code></td><td>View</td><td>The publication name of the view to display. The view must be configured for the selected table.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Dataset node (XPath)</td><td>The value must be a valid absolute location path in the selected dataset. The notation must conform to a simplified XPath, in its abbreviated syntax.</td></tr>
+</tbody>
+</table>
+<h2 id="creation">
+Create a new record</h2>
+<p>For a workflow, the creation service is considered complete when the first successful submit is performed (record has been created). If this service is called whereas it is already complete, the created record is displayed in update or read-only mode (depending on the user rights).</p><p> Service name parameter: <code>service=@creation</code></p><h3 id="id2s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Dataset table (XPath)</td><td>The value must be a valid absolute location path of a table in the selected dataset. The notation must conform to a simplified XPath, in its abbreviated syntax - This field is required for this service.</td></tr>
+</tbody>
+</table>
+<h3 id="id2s2">
+Output parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created</code></td><td>Created record</td><td>Contains the XPath of the created record.</td></tr>
+</tbody>
+</table>
+<h2 id="duplicate">
+Duplicate a record</h2>
+<p>For a workflow, the duplicate service is considered complete when the first successful submit is performed (record has been created). If this service is called whereas it is already complete, the created record is displayed in update or read-only mode (depending on the user rights).</p><p> Service name parameter: <code>service=@duplicate</code></p><h3 id="id3s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Record to duplicate (XPath)</td><td>The value must be a valid absolute location path of an existing record. The notation must conform to a simplified XPath, in its abbreviated syntax - This field is required for this service.</td></tr>
+</tbody>
+</table>
+<h3 id="id3s2">
+Output parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created</code></td><td>Created record</td><td>Contains the XPath of the created record.</td></tr>
+</tbody>
+</table>
+<h2 id="exportToXML">
+Export data to an XML file</h2>
+<p>The exportToXML service is considered complete when export is done and file downloaded.</p><p> Service name parameter: <code>service=@exportToXML</code></p><h3 id="id4s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>version</code></td><td>Snapshot</td><td>The identifier of the specified snapshot - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Dataset table to export (XPath)</td><td>The value must be a valid absolute location path of a table in the selected dataset. The notation must conform to a simplified XPath, in its abbreviated syntax - This field is required for this service.</td></tr>
+</tbody>
+</table>
+<h2 id="exportToCSV">
+Export data to a CSV file</h2>
+<p>Workflows consider the exportToCSV service as complete when export is done and file downloaded.</p><p> Service name parameter: <code>service=@exportToCSV</code></p><h3 id="id5s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>version</code></td><td>Snapshot</td><td>The identifier of the specified snapshot - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Dataset table to export (XPath)</td><td>The value must be a valid absolute location path of a table in the selected dataset. The notation must conform to a simplified XPath, in its abbreviated syntax - This field is required for this service.</td></tr>
+</tbody>
+</table>
+<h2 id="importFromXML">
+Import data from an XML file</h2>
+<p>Workflows consider the importFromXML service as complete when import is performed.</p><p> Service name parameter: <code>service=@importFromXML</code></p><h3 id="id6s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Dataset table to import (XPath)</td><td>The value must be a valid absolute location path of a table in the selected dataset. The notation must conform to a simplified XPath, in its abbreviated syntax - This field is required for this service.</td></tr>
+</tbody>
+</table>
+<h2 id="importFromCSV">
+Import data from a CSV file</h2>
+<p>Workflows consider the importFromCSV service as complete when import is performed.</p><p> Service name parameter: <code>service=@importFromCSV</code></p><h3 id="id7s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace - This field is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Dataset table to import (XPath)</td><td>The value must be a valid absolute location path of a table in the selected dataset. The notation must conform to a simplified XPath, in its abbreviated syntax - This field is required for this service.</td></tr>
+</tbody>
+</table>
+<h2 id="selectDataSpace">
+Access a dataspace</h2>
+<p>A workflow automatically considers that the dataspace selection service is complete.</p><p> Service name parameter: <code>service=@selectDataSpace</code></p><h3 id="id8s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>version</code></td><td>Snapshot</td><td>The identifier of the specified snapshot - A dataspace is required for this service.</td></tr>
+</tbody>
+</table>
+<h2 id="validation">
+Validate a dataspace, a snapshot or a dataset</h2>
+<p>Workflows automatically consider the validation service as complete.</p><p> Service name parameter: <code>service=@validation</code></p><h3 id="id9s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace or snapshot is required for this service.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>version</code></td><td>Snapshot</td><td>The identifier of the specified snapshot - A dataspace or snapshot is required for this service.</td></tr>
+</tbody>
+</table>
+<h3 id="id9s2">
+Output parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hasError</code></td><td>Found errors</td><td>Contains &#39;true&#39; if validation has produced errors.</td></tr>
+<tr>
+<td><code>hasFatal</code></td><td>Found fatal errors</td><td>Contains &#39;true&#39; if validation has produced fatal errors.</td></tr>
+<tr>
+<td><code>hasInfo</code></td><td>Found informations</td><td>Contains &#39;true&#39; if validation has produced informations.</td></tr>
+<tr>
+<td><code>hasWarning</code></td><td>Found warnings</td><td>Contains &#39;true&#39; if validation has produced warnings.</td></tr>
+</tbody>
+</table>
+<h2 id="merge">
+Merge a dataspace</h2>
+<p>Workflows consider the merge service as complete when merger is performed and dataspace is closed.</p><p> Service name parameter: <code>service=@merge</code></p><h3 id="id10s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+</tbody>
+</table>
+<h3 id="id10s2">
+Output parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mergeResult</code></td><td>Merge success</td><td>Contains &#39;true&#39; if merge succeeded, otherwise &#39;false&#39;.</td></tr>
+<tr>
+<td><code>mergeState</code></td><td>Merge state</td><td>Contains the return code of the merge. It is strongly recommended to parse this value by using the InteractionMergeState UIHttpManagerComponentReturnCode.</td></tr>
+</tbody>
+</table>
+<h2 id="merge.view">
+Access the dataspace merge view</h2>
+<p>The merge.view service is automatically considered complete.</p><p> Service name parameter: <code>service=@merge.view</code></p><h3 id="id11s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace is required for this service.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+</tbody>
+</table>
+<h2 id="compare">
+Compare contents</h2>
+<p>Workflows automatically consider the compare service as complete.</p><p> Service name parameter: <code>service=@compare</code></p><h3 id="id12s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code></td><td>Dataspace</td><td>The identifier of the specified dataspace - A dataspace or snapshot and a dataspace or snapshot to compare to are required for this service.</td></tr>
+<tr>
+<td><code>compare.branch</code></td><td>Dataspace to compare</td><td>The identifier of the dataspace to compare - A dataspace or snapshot and a dataspace or snapshot to compare to are required for this service.</td></tr>
+<tr>
+<td><code>compare.filter</code></td><td>Comparison filter</td><td>To ignore inheritance and function fields in the comparison (disable resolved mode), the filter &quot;persistedValuesOnly&quot; must be specified. By default, when no filter is defined, the comparison uses resolved mode.</td></tr>
+<tr>
+<td><code>compare.instance</code></td><td>Dataset to compare</td><td>The value must be the reference of a dataset that exists in the selected dataspace to compare.</td></tr>
+<tr>
+<td><code>compare.version</code></td><td>Snapshot to compare</td><td>The identifier of the snapshot to compare - A dataspace or snapshot and a dataspace or snapshot to compare to are required for this service.</td></tr>
+<tr>
+<td><code>compare.xpath</code></td><td>Table or record to compare (XPath)</td><td>The value must be a valid absolute location path of a table or a record in the selected dataset to compare. The notation must conform to a simplified XPath, in its abbreviated syntax.</td></tr>
+<tr>
+<td><code>instance</code></td><td>Dataset</td><td>The value must be the reference of a dataset that exists in the selected dataspace.</td></tr>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service, namely, the entities that the user is able to select during their session. If left blank, the default value will be used. For perspectives, the default value is always &#39;node&#39;. For workflows, the default value depends on the selected entities or service.</td></tr>
+<tr>
+<td><code>trackingInfo</code></td><td>Tracking information</td><td>Tracking information is logged into &#39;history&#39; logs. It may also be used for any other purpose like access control or additional export information.</td></tr>
+<tr>
+<td><code>version</code></td><td>Snapshot</td><td>The identifier of the specified snapshot - A dataspace or snapshot and a dataspace or snapshot to compare to are required for this service.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Table or record (XPath)</td><td>The value must be a valid absolute location path of a table or a record in the selected dataset. The notation must conform to a simplified XPath, in its abbreviated syntax.</td></tr>
+</tbody>
+</table>
+<h2 id="workflow">
+Data workflows</h2>
+<p>This service provides access to the data workflows user interfaces.</p><p> Service name parameter: <code>service=@workflow</code></p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This service is for perspectives only.</p></div>
+<h3 id="id13s1">
+Input parameters</h3>
+<table border="1" cellpadding="5%" cellspacing="0">
+<thead>
+<tr>
+<th><strong>Parameter</strong></th><th><strong>Label</strong></th><th><strong>Description</strong></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scope</code></td><td>Scope</td><td>Defines the scope of the user navigation for this service.</td></tr>
+<tr>
+<td><code>viewPublication</code></td><td>View publication</td><td>Defines the publication name of the view to apply for this service.</td></tr>
+<tr>
+<td><code>workflowView</code></td><td>Workflow view</td><td>Specifies the workflow view type. Value can be one of the following: &quot;inbox&quot;, &quot;launcher&quot;, &quot;monitoringPublications&quot;, &quot;monitoringWorkflows&quot;, &quot;monitoringWorkItems&quot; or &quot;completedWorkflows&quot;.</td></tr>
+<tr>
+<td><code>xpath</code></td><td>Filter (XPath)</td><td>An optional filter. The syntax should conform to an XPath predicate surrounded by &quot;[&quot; and &quot;]&quot;.</td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Reference Manual &gt; Integration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

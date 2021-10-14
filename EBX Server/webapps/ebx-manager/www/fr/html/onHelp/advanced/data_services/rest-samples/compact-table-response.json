@@ -1,0 +1,25 @@
+{
+  "rows": [
+    {
+      "id": 1,
+      "firstName": "Claude",
+      "lastName": "Levi-Strauss"
+    },
+    {
+      "id": 2,
+      "firstName": "Sigmoud",
+      "lastName": "Freud"
+    },
+    {
+      "id": 3,
+      "firstName": "Alfred",
+      "lastName": "Dreyfus"
+    }
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../root/individu?pageRecordFilter=./id=9&amp;pageSize=9&amp;pageAction=next",
+    "lastPage": "http://.../root/individu?pageSize=9&amp;pageAction=last"
+  }
+}

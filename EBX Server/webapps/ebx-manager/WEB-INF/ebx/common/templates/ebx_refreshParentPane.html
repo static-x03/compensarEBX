@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"[[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UILangAttribute]]>
+<head>[[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIHeaderTag]]
+    <script type="text/javascript">
+        function EBX_Utils(){
+        }
+        EBX_Utils.CSSClassSeparator = " "; /* DO NOT CHANGE : HTML/CSS Standard */
+
+        function EBX_LayoutManager(){
+        }
+        EBX_LayoutManager.isEBXBody = function(document){
+            var bodyEl = document.body;
+            
+            var classes = bodyEl.className.split(EBX_Utils.CSSClassSeparator);
+            for (var i = 0; i < classes.length; i++) {
+                if (classes[i].indexOf('ebx_') != -1) {
+                    return true;
+                }
+            }
+            
+            return false;
+        };
+        EBX_LayoutManager.isPopUp = function(){
+            try {
+                if (window.opener && window != window.opener) {
+                    return EBX_LayoutManager.isEBXBody(window.opener.document);
+                }
+            } 
+            catch (err) {
+            }
+            
+            return false;
+        };
+        
+        function basic_Redirect(returnCode, parentOrOpener){
+            if (parentOrOpener && parentOrOpener.ebx_globalRefreshEvent) {
+            	
+            	var refreshURL = parentOrOpener.EBX_Constants.getRequestLink(parentOrOpener.ebx_globalRefreshEvent);
+                parentOrOpener.location.href = refreshURL;
+            }
+        }
+        
+        function getParameter(queryString, parameterName){
+            // Add "=" to the parameter name (i.e. parameterName=value)
+            parameterName += "=";
+            if (queryString.length > 0) {
+                // Find the beginning of the string
+                var begin = queryString.indexOf(parameterName);
+                // If the parameter name is not found, skip it, otherwise return the value
+                if (begin != -1) {
+                    // Add the length (integer) to the beginning
+                    begin += parameterName.length;
+                    // Multiple parameters are separated by the "&" sign
+                    var end = queryString.indexOf("&", begin);
+                    
+                    if (end == -1) {
+                        end = queryString.length;
+                    }
+                    // Return the string
+                    return unescape(queryString.substring(begin, end));
+                }
+                // Return "null" if no parameter has been found
+                return null;
+            }
+        }
+        
+        function redirectParent(returnCode){
+            basic_Redirect(returnCode, parent);
+        }
+        
+        function redirectOpener(returnCode){
+            basic_Redirect(returnCode, window.opener);
+            window.close();
+        }
+        
+        function redirect(){
+            var queryString = window.location.search.substring(1);
+            var returnCode = getParameter(queryString, 'returnCode');
+            
+            if (EBX_LayoutManager.isPopUp()) {
+                redirectOpener(returnCode);
+            }
+            else {
+                redirectParent(returnCode);
+            }
+        }
+    </script>
+</head>
+<body onload="redirect();">
+</body>
+</html>

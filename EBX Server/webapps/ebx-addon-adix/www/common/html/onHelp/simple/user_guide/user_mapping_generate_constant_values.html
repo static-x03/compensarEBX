@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Generating constant values</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_mapping_constant_values_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Advanced Mapping Topics</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_mapping_generate_constant_values.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Advanced Mapping Topics</span></div>
+<h1 id="user_mapping_generating_constant_values">
+Generating constant values</h1>
+<h2 id="user_mapping_for_constants_top">
+Overview</h2>
+<p>The add-on allows you to populate a column&#39;s fields with a single pre-defined value during import, export, or transfer. You specify the value in the add-on mapping configuration. The example shown below demonstrates the feature with an import.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The add-on automatically creates a new column containing the constant value that isn&#39;t mapped with a column in the source.</p></div>
+<h3 id="user_mapping_constant_steps">
+Generating constant values</h3>
+<p>This example demonstrates how to generate a constant value while importing data. However, you can use similar steps for export and transfer. For example, a company needs to track where sales leads come from. Lead generators provide Excel spreadsheets that do not indicate their source. The target EBX® table has a column specifying whether the lead came from an internal department, or external vendor. Internal leads should be labeled &#39;primary&#39; and external leads &#39;secondary&#39;. To add the primary or secondary label, identify the lead generator, create a transformation function, map source and target fields, and specify the constant value.</p><p>To create a mapping that uses a transformation function to generate a constant value:</p><ol>
+<li><p>Navigate to <em>Administration &gt; Integration &gt; TIBCO EBX® Data Exchange Add-on &gt; Reference data &gt; Transformation function</em> and create a new transformation function that uses the <em>Constant Value</em> Java class. See the image below for the sample values used in this example.</p><p><img alt="/constant_value_trans_function.png" src="./resources/images/constant_value_trans_function.png"></img></p></li><li><p>Navigate to <em>Administration &gt; Integration &gt; TIBCO EBX® Data Exchange Add-on &gt; Application</em> and create source and target applications in the <strong>Application</strong> table and use the <strong>Application by type</strong> view to associate them with the appropriate types. In this example we are importing from a source spreadsheet, so we created one Excel type application (source) and one EBX type application (target). For the EBX type, you must provide the path to the published data model that the target dataset is based on.</p></li><li><p>In the <strong>Application by type</strong> table, run the <strong>Generate models</strong> service for both application types and choose <strong>Data model</strong> for both. You&#39;ll need to point to the file and provide a little information when generating the models for the Excel file. You can view your results to compare with the expected outcome. The image below shows the generated tables and fields used in this example. Notice that the source does not include the field that designates where the leads come from.</p><p><img alt="/constant_value_models.png" src="./resources/images/constant_value_models.png"></img></p></li><li><p>Use the <strong>Interface</strong> and <strong>Application interface preference</strong> tables to create an interface between the source and target applications and an application interface preference, respectively. If you have any questions about options, mouse over the label and open the tooltip for more information.</p></li><li><p>Use the corresponding tables in the <strong>Data mapping</strong> domain to create the table mapping, field mappings, and preferences for both. When creating the field mapping for the field using the transformation function:</p><ol>
+<li><p>The <strong>Source field</strong> must use the source&#39;s [No source field] option. The following image highlights the field used in this example.</p><p><img alt="/constant_value_no_source_opt.png" src="./resources/images/constant_value_no_source_opt.png"></img></p></li><li><p>Indicate the appropriate target field.</p></li><li><p>Save, but do not close.</p></li><li><p>Select the <strong>Field mapping transformation</strong> tab and create a new transformation using the previously defined transformation function. Once you&#39;ve selected the function from the list, save to refresh the page and enter any required values.</p><p><img alt="/constant_value_add_trans_function.png" src="./resources/images/constant_value_add_trans_function.png"></img></p></li><li><p>Save and close out to finish the configuration.</p></li></ol>
+</li></ol>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>After completing the configuration, users need to use the <strong>Preferences</strong> option to load the correct preferences for this transformation mapping. The image below shows the results from our example.</p></div>
+<p><img alt="/constant_value_result.png" src="./resources/images/constant_value_result.png"></img></p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

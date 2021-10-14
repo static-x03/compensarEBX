@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Importing configuration settings</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_migration_importing" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Migrating preferences and configurations</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_migration_importing.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Migrating preferences and configurations</span></div>
+<h1>
+Importing configuration settings</h1>
+<p>To import configuration and preference settings:</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Before importing, you can create a backup of you existing configuration by performing the steps in <a href="../user_guide/user_migration_exporting.html">Exporting configuration settings</a>.</p></div>
+<ol>
+<li><p>Navigate to <em>Administration &gt; Integration &gt; TIBCO EBX® Data Exchange Add-on</em> and from the dataset&#39;s <strong>Actions</strong> menu select <strong>Import XML</strong>.</p></li><li><p>On the import configuration page, specify the following:</p><ul>
+<li><p>The file to import that contains the configuration and preference data.</p></li><li><p>Optionally, choose the <strong>Replace all</strong> import mode if you want to completely overwrite existing data.</p></li><li><p>Use the checkboxes to determine the scope of the import. See the table below for information on how add-on configuration data corresponds to each option.</p></li><li><p>If you only want to include preferences owned by a specific profile, use the <strong>Preference owner</strong> menu to select this profile.</p></li></ul>
+<p><img alt="/migration-import-1.png" src="./resources/images/migration-import-1.png"></img></p></li><li><p>After selecting <strong>Import</strong>, the add-on displays a results page where you can select a tab corresponding to each imported table to see the results.</p></li></ol>
+<p>The following table shows how the scope options correspond to which data is imported:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Option</p></th><th valign="top"><p>Data imported</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p><strong>All</strong></p></td><td valign="top"><p>Everything in the add-on configuration dataset.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>Global configuration</strong></p></td><td valign="top"><p>All data under the <strong>Reference data</strong> and <strong>Additional configuration</strong> groups.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>Excel preference</strong></p></td><td valign="top"><p>All Excel preference settings in the <strong>Application</strong>, <strong>Semantic model</strong>, <strong>Data model</strong>, <strong>Data mapping</strong>, and <strong>Path</strong> groups. Additionally, the following tables from the <strong>Reference data</strong> group are included:</p><ul>
+<li><p><strong>Transformation function</strong></p></li><li><p><strong>Date time pattern</strong></p></li><li><p><strong>Validator</strong></p></li><li><p><strong>Style preference</strong></p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p><strong>CSV preference</strong></p></td><td valign="top"><p>The data specific to CSV preferences from the same locations as <strong>Excel preference</strong> with the exception of the <strong>Style preference</strong> table.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>XML configuration</strong></p></td><td valign="top"><p>The data specific to XML configuration settings from the same locations as <strong>Excel preference</strong> with the exception of the <strong>Style preference</strong> table.</p></td></tr>
+<tr>
+<td valign="top"><p><strong>SQL configuration</strong></p></td><td valign="top"><p>All SQL configuration related settings in the <strong>Application</strong>, <strong>Semantic model</strong>, <strong>Data model</strong>, <strong>Data mapping</strong>, and <strong>Path</strong> groups. Additionally, the following tables from the <strong>Reference data</strong> group are included:</p><ul>
+<li><p><strong>Transformation function</strong></p></li><li><p><strong>SQL data source</strong></p></li><li><p><strong>JNDI data source</strong></p></li><li><p><strong>Validator</strong></p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p><strong>Data transfer configuration</strong></p></td><td valign="top"><p>The data specific to data transfer configuration settings from the same locations as <strong>Excel preference</strong> with the exception of the <strong>Style preference</strong> table.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

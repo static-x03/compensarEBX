@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Audit trail</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin_audit" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Technical administration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/audit_trail.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+<h1>
+Audit trail</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#updatesDetail">Update details and disk management</a></li><li class="toc1"><a href="#id3">File organization</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">&quot;Closed&quot; audit files</a></li><li class="toc2"><a href="#id3s2">Writing to current audit files</a></li><li class="toc2"><a href="#id3s3">Example of an audit directory</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>XML audit trail is a feature that allows logging updates to XML files. This legacy feature, now deprecated, will be removed in a future version. As an alternative, please consider using the history feature, which registers table updates in the relational database; see <a href="../references/history.html">History</a>.</p></div>
+<p>Any persistent updates performed in the TIBCO EBX&reg; repository are logged to an audit trail XML file. Procedure executions are also logged, even if they do not perform any updates, as procedures are always considered to be transactions. The following information is logged:</p><ul>
+<li><p>Transaction type, such as dataset creation, record modification, record deletion, specific procedure, etc.</p></li><li><p>Dataspace or snapshot on which the transaction is executed.</p></li><li><p>Transaction source. If the action was initiated by EBX&reg;, this source is described by the user identity, HTTP session identifier and client IP address. If the action was initiated programmatically, only the user&#39;s identity is logged.</p></li><li><p>Optional &quot;trackingInfo&quot; value regarding the session</p></li><li><p>Transaction date and time (in milliseconds);</p></li><li><p>Transaction UUID (conform to the Leach-Salz variant, version 1);</p></li><li><p>Error information; if the transaction has failed.</p></li><li><p>Details of the updates performed. If there are updates and if history detail is activated, see next section.</p></li></ul>
+<h2 id="updatesDetail">
+Update details and disk management</h2>
+<p>The audit trail is able to describe all updates made in the EBX&reg; repository, at the finest level. Thus, the XML files can be quite large and the audit trail directory must be carefully supervised. The following should be taken into account:</p><ol>
+<li><p>If an archive import is executed in non-interactive mode (without a change set), the audit trail does not detail the updates; it only specifies the archive that has been imported. In this case, if it is important to keep a fine trace of the import-replace, the archive itself must be preserved.</p></li><li><p>If an archive import is executed in interactive mode (with a change set), or if a dataspace is merged to its parent, the resulting log size will nearly triple the unzipped size of the archive. Furthermore, for consistency concerns, each transaction is logged to a temporary file (in the audit trail directory) before being moved to the main file. Therefore, EBX&reg; requires <em>at least six times the unzipped size of the largest archive that may be imported</em>.</p></li><li><p>In the context of a custom procedure that performs many updates not requiring auditing, it is possible for the developer to disable the detailed history using the method <a target="_blank" href="../Java_API/com/orchestranetworks/service/ProcedureContext.html#setHistoryActivation-boolean-"><code>ProcedureContext.setHistoryActivation</code></a>.</p></li></ol>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#monitoring_file_system">EBX&reg; monitoring</a></li></ul>
+</div>
+<h2 id="id3">
+File organization</h2>
+<p>All audit trail files are stored in the directory <code>${<a href="../installation/properties.html#rootDirectory">ebx.repository.directory</a>}/History</code>.</p><h3 id="id3s1">
+&quot;Closed&quot; audit files</h3>
+<p>Each file is named as follows:</p><p><em><code>&lt;yyyy-mm-dd&gt;</code></em><code>-part</code><em><code>&lt;nn&gt;</code></em><code>.xml</code></p><p>where <em><code>&lt;yyyy-mm-dd&gt;</code></em> is the file date and <em><code>&lt;nn&gt;</code></em> is the file index for the current day.</p><h3 id="id3s2">
+Writing to current audit files</h3>
+<p>When an audit file is being written, the XML structure implies working in an &quot;open mode&quot;. The XML elements of the modifications are added to a text file named:</p><p><em><code>&lt;yyyy-mm-dd&gt;</code></em><code>-part</code><em><code>&lt;nn&gt;</code></em><code>Content.txt</code></p><p>The standard XML format is still available in an XML file that references the text file. This file is named:</p><p><em><code>&lt;yyyy-mm-dd&gt;</code></em><code>-part</code><em><code>&lt;nn&gt;</code></em><code>Ref.xml</code></p><p>These two files are then re-aggregated in a &quot;closed&quot; XML file when the repository has been cleanly shut down, or if EBX&reg; is restarted.</p><h3 id="id3s3">
+Example of an audit directory</h3>
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td><p>2004-04-05-part00.xml</p><p>2004-04-05-part01.xml</p><p>2004-04-06-part00.xml</p><p>2004-04-06-part01.xml</p><p>2004-04-06-part02.xml</p><p>2004-04-06-part03.xml</p><p>2004-04-07-part00.xml</p><p>2004-04-10-part00.xml</p><p>2004-04-11-part00Content.txt</p><p>2004-04-11-part00Ref.xml</p></td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

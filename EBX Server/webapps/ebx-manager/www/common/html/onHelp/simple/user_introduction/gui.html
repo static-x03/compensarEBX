@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Using the user interface</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="gui" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Introduction</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_introduction/gui.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Introduction</span></div>
+<h1>
+Using the user interface</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#advanced_perspective">Advanced perspective</a></li><li class="toc1"><a href="#perspective">Perspectives</a><ul class="toc2">
+<li class="toc2"><a href="#favoritePerspectives">Favorite perspectives</a></li></ul>
+</li><li class="toc1"><a href="#userPane">User pane</a><ul class="toc2">
+<li class="toc2"><a href="#avatar">Avatar</a></li><li class="toc2"><a href="#density">Density</a></li></ul>
+</li><li class="toc1"><a href="#id5">User interface features</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Resetting the navigation pane width</a></li></ul>
+</li><li class="toc1"><a href="#id6">Where to find EBX&reg; help</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">Context-sensitive help</a></li><li class="toc2"><a href="#id6s2">Contextual help on elements</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>The general layout of TIBCO EBX&reg; workspaces is entirely customizable by a perspective administrator. </p><p>If several customized perspectives have been created, the tiles icon &#39;Select perspective&#39; allows the user to switch between available perspectives.</p><p>The advanced perspective is accessible by default. </p><h2 id="advanced_perspective">
+Advanced perspective</h2>
+<p>By default, the EBX&reg; advanced perspective is available to all users, but its access can be restricted to selected profiles. The view is separated into several general areas, referred to as the following in the documentation:</p><ul>
+<li><p><strong>Header:</strong> Displays the avatar of the user currently logged in and the perspective selector. Clicking on the user&#39;s avatar gives access to the user pane.</p></li><li><p><strong>Menu bar:</strong> The functional categories accessible to the current user.</p></li><li><p><strong>Navigation pane:</strong> Displays context-dependent navigation options. For example: selecting a table in a dataset, or a work item in a workflow.</p></li><li><p><strong>Workspace:</strong> Main context-dependent work area of the interface. For example, the table selected in the navigation pane is displayed in the workspace, or the current work item is executed in the workspace.</p></li></ul>
+<p>The following functional areas are displayed according to the permissions of the current user: <em>Data</em>, <em>Dataspaces</em>, <em>Modeling</em>, <em>Data Workflow</em>, <em>Data Services</em>, and <em>Administration</em>.</p><p align="left"><img alt="/UserInterface.png" src="../resources/images/user_introduction/UserInterface.png"></img></p><h2 id="perspective">
+Perspectives</h2>
+<p>The EBX&reg; perspectives are highly configurable views with a target audience. Perspectives offer a simplified user interface to business users and can be assigned to one or more profiles. This view is split into several general areas, referred to as the following in the documentation:</p><ul>
+<li><p><strong>Header:</strong> Displays the avatar of the user currently logged in and the perspective selector (when more than one perspective is available). Clicking on the user&#39;s avatar gives access to the user pane.</p></li><li><p><strong>Navigation pane:</strong> Displays the hierarchical menu as configured by the perspective administrator. It can be expanded or collapsed to access relevant entities and services related to the user&#39;s activity.</p></li><li><p><strong>Workspace:</strong> Main context-dependent work area of the interface.</p></li></ul>
+<p>Example of a hierarchical menu:</p><p align="left"><img alt="/perspectives.png" src="../resources/images/user_introduction/perspectives.png"></img></p><h3 id="favoritePerspectives">
+Favorite perspectives</h3>
+<p> When more than one perspective is available to a user, it is possible to define one as their favorite perspective so that, when logging in, this perspective will be applied by default. To do so, an icon is available in the perspective selector next to each perspective: </p><ul>
+<li><p>A full star indicates the favorite perspective. A click on it will remove the favorite perspective.</p></li><li><p>An empty star indicates that the associated perspective is not the favorite one. A click on it will set this perspective as the favorite one.</p></li></ul>
+<p align="left"><img alt="/favoritePerspectives.png" src="../resources/images/user_introduction/favoritePerspectives.png"></img></p><h2 id="userPane">
+User pane</h2>
+<p>General EBX&reg; features are grouped in the user pane. It can be accessed by clicking on the avatar (or user&#39;s initials) in the upper right corner of any page.</p><p>The user pane is then displayed with the user avatar and gives access to the profile configuration (according to the user&#39;s rights), language selection, density selection and online documentation.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>The logout button is located on the user pane.</p></div>
+<h3 id="avatar">
+Avatar</h3>
+<p> An avatar can be defined for each user. The avatar consists in a picture, defined using a URL path; or in two letters (the user&#39;s initials by default). The background color is set automatically and cannot be modified. Regarding the image that will be used, it has to be a square format but there is no size limitation.</p><p>The avatar layout can be customized in the &#39;Ergonomics and layout&#39; section of the &#39;Administration&#39; area. It is possible to choose between the display of the avatar only, user name only, or to display both.</p><h3 id="density">
+Density</h3>
+<p>Users can now choose their display density mode between &#39;Compact&#39; and &#39;Comfortable&#39;. The display mode can be modified from the user pane.</p><h2 id="id5">
+User interface features</h2>
+<h3 id="id5s1">
+Resetting the navigation pane width</h3>
+<p>After having resized the width of the navigation pane, you can restore it to the default width by hovering over the border and double-clicking.</p><p><img alt="/navpanel_resize.png" src="../resources/images/user_introduction/navpanel_resize.png"></img></p><h2 id="id6">
+Where to find EBX&reg; help</h2>
+<p>In addition to the full standalone product documentation accessible via the <a href="#userPane">user pane</a>, help is accessible in various forms within the interface.</p><h3 id="id6s1">
+Context-sensitive help</h3>
+<p>When browsing any workspace in EBX&reg;, context-specific help is available by clicking on the question mark located to the right side of the second header. The corresponding chapter from the product documentation will be displayed.</p><h3 id="id6s2">
+Contextual help on elements</h3>
+<p>When you hover over an element for which contextual help has been defined, a question mark appears. Clicking on the question mark opens a panel with information on the element.</p><p><img alt="Contextual information on element" src="../resources/images/user_introduction/documentation_pane.png"></img></p><p>When a permalink to the element is available, a link button appears in the upper right corner of the panel.</p><p><img alt="Panel with permalink" src="../resources/images/user_introduction/documentation_pane2.png"></img></p><p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Introduction</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

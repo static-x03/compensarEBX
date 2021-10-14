@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_model_concepts" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Data model</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/intro_xml_schema.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+<h1>
+Introduction</h1>
+<p>A data model is a structural definition of the data to be managed in the TIBCO EBX&reg; repository. Data models contribute to EBX&reg;&#39;s ability to guarantee the highest level of data consistency and to facilitate data management.</p><p>Specifically, the data model is a document that conforms to the XML Schema standard (W3C recommendation). Its main features are as follows:</p><ul>
+<li><p>A rich library of well-defined <a href="../models/types.html">simple data types</a>, such as integer, boolean, decimal, date, time;</p></li><li><p>The ability to define additional <a href="../models/types.html#xsdcomplex">simple types</a> and <a href="../models/types.html#xsdcomplex">complex types</a>;</p></li><li><p>The ability to define simple lists of items, called <a href="../models/types.html#aggregatedList">aggregated lists</a>;</p></li><li><p><a href="../models/constraints.html">Validation constraints</a> (facets), for example: enumerations, uniqueness constraints, minimum/maximum boundaries.</p></li></ul>
+<p>EBX&reg; also uses the extensibility features of XML Schema for other useful information, such as:</p><ul>
+<li><p><a href="../models/types.html#ebxsimple">Predefined types</a>, for example: locale, resource, html;</p></li><li><p>Definition of <a href="../models/tables.html">tables</a> and <a href="../models/tables.html#foreignKey">foreign key constraints</a>;</p></li><li><p>Mapping data in EBX&reg; to Java beans;</p></li><li><p><a href="../models/constraints.html">Advanced validation constraints</a> (extended facets), such as dynamic enumerations;</p></li><li><p>Extensive <a href="../models/labels_error_messages.html">presentation information</a>, such as labels, descriptions, and error messages.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>EBX&reg; supports a subset of the W3C recommendations, as some features are not relevant to Master Data Management.</p></div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Editing the data model</a></li><li class="toc1"><a href="#id2">References</a></li><li class="toc1"><a href="#id3">Relationship between datasets and data models</a></li><li class="toc1"><a href="#id4">Pre-requisite for XML Schemas</a></li><li class="toc1"><a href="#id5">Conventions</a></li><li class="toc1"><a href="#reservedSchema">Schemas with reserved names</a></li></ul>
+</div>
+<h2 id="id1">
+Editing the data model</h2>
+<p>There are two different ways to define a data model:</p><ul>
+<li><p>The data model can be defined using an XML Schema editor or through the data model assistant. The data model assistant has the advantage of being integrated into the EBX&reg; user interface, abstracting the verbose underlying XML. For more information, see <a href="../user_datamodel/userdatamodel_intro.html">Introduction to data models</a>. The data model assistant allows using features that are not documented to be used outside of the DMA; e.g. Toolbars and Widgets.</p></li><li><p>By using an external XML Schema document editor. </p></li></ul>
+<h2 id="id2">
+References</h2>
+<p>For an introduction to XML Schema, see the W3Schools <a href="https://www.w3schools.com/xml/schema_intro.asp">XML Schema Tutorial</a>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="https://www.w3.org/TR/xmlschema-0/">XML Schema Part 0: Primer</a></li><li><a href="https://www.w3.org/TR/xmlschema-1/">XML Schema Part 1: Structures</a></li><li><a href="https://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes</a></li></ul>
+</div>
+<h2 id="id3">
+Relationship between datasets and data models</h2>
+<p>Each root dataset is associated with a single data model. At the dataspace creation, an associated data model is selected, on which to base the dataset.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_data/userdata_create.html">Creating a dataset</a></li></ul>
+</div>
+<h2 id="id4">
+Pre-requisite for XML Schemas</h2>
+<p>In order for an XML Schema to be accepted by EBX&reg;, it must include a global element declaration that includes the attribute <code>osd:access=&quot;--&quot;</code>.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0">
+   &lt;xs:import namespace="urn:ebx-schemas:common_1.0"
+   		schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+   &lt;xs:element name="root" osd:access="--">
+		...
+  &lt;/xs:element>
+&lt;/xs:schema>
+</pre>
+<h2 id="id5">
+Conventions</h2>
+<p>By convention, namespaces are always defined as follows:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th align="left"><p><strong>Prefix</strong></p></th><th align="left"><p><strong>Namespace</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>xs:</code></p></td><td><p><code>http://www.w3.org/2001/XMLSchema</code></p></td></tr>
+<tr>
+<td><p><code>osd:</code></p></td><td><p><code>urn:ebx-schemas:common_1.0</code></p></td></tr>
+<tr>
+<td><p><code>fmt:</code></p></td><td><p><code>urn:ebx-schemas:format_1.0</code></p></td></tr>
+<tr>
+<td><p><code>usd:</code></p></td><td><p><code>urn:ebx-schemas:userServices_1.0</code></p></td></tr>
+<tr>
+<td><p><code>emd:</code></p></td><td><p><code>urn:ebx-schemas:entityMappings_1.0</code></p></td></tr>
+</tbody>
+</table>
+<h2 id="reservedSchema">
+Schemas with reserved names</h2>
+<p>Several data models in EBX&reg; have reserved names.</p><p>All references to other data models (using the attribute <code>schemaLocation</code> for an import, include or redefine) that end with one of the following strings are reserved:</p><ul>
+<li><p>common_1.0.xsd</p></li><li><p>org_1.0.xsd</p></li><li><p>coreModel_1.0.xsd</p></li><li><p>session_1.0.xsd</p></li><li><p>userServices_1.0.xsd</p></li><li><p>entityMappings_1.0.xsd</p></li></ul>
+<p>These XSD files correspond to the schemas provided for the module <code>ebx-root-1.0</code>, at the path <code>/WEB-INF/ebx/schemas</code>. The attribute <code>schemaLocation</code> can reference the files at this location or a copy, if the file names are identical. This is useful if you want to avoid a module dependency on <code>ebx-root-1.0</code>.</p><p>For security reasons, EBX&reg; uses an internal definition for these schemas to prevent any modification.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

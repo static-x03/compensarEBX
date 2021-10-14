@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.d3_types"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="../common_1.0.xsd"/>
+	<!--
+		******************************* Types *******************************
+	-->
+	<xs:complexType name="notificationConfigurationType" osd:access="RW" osd:class="com.orchestranetworks.d3.common.D3nConfigBean">
+		<xs:sequence>
+			<xs:element name="masterReplayThreshold" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.masterReplayThreshold"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:minInclusive value="1"/>
+							<osd:maxInclusive value="100"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mailConfigLink" minOccurs="0" maxOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.mailConfigLink"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.notification.UIMailConfigLink"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isActivated" type="xs:boolean" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.isActivated"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="recipientTO" type="osd:email" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.recipientTO"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locale" type="osd:locale" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.locale"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.common.D3nLocaleConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>				
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shallGroupedEvents" type="xs:boolean" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.shallGroupedEvents"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxEvents" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.maxEvents"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:minInclusive value="2"/>
+							<osd:maxInclusive value="50"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minDurationBetweenNotifications" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.notification.minDurationBetweenNotifications"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:minInclusive value="1"/>
+							<osd:maxInclusive value="1440"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SlaveDeliveryBranch">
+		<xs:sequence>
+			<xs:element name="branch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveDeliveryBranch.branch"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="currentVersion" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveDeliveryBranch.currentVersion"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="technicalVersion" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:inheritance>
+							<sourceNode>currentVersion</sourceNode>
+						</osd:inheritance>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastUpdate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveDeliveryBranch.lastUpdate"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="broadcastTrigger" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveDeliveryBranch.broadcastTrigger"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.d3.slave.BroadcastImportTriggerConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MasterDeliveryProfile">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MasterDeliveryProfile.name"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" osd:access="RW" type="Documentation" minOccurs="0"/>
+			<xs:element name="deliveryMode" type="xs:string" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MasterDeliveryProfile.deliveryMode"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.DeliveryModeConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="linkToDeliveryBranches" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MasterDeliveryProfile.linkToDeliveryBranches"/>
+					<xs:appinfo>
+						<osd:association>
+							<linkTable>
+								<table>/root/master/branchProfileAssociation</table>
+								<fieldToSource>./deliveryProfile</fieldToSource>
+								<fieldToTarget>./branch</fieldToTarget>
+							</linkTable>
+						</osd:association>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Slave">
+		<xs:sequence>
+			<xs:element name="repositoryId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.repositoryId"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="slaveId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.slaveId"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="build" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.build"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.d3.common.ProductVersionWarningConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="communicationLayer" osd:access="RW" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.communicationLayer"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="soap" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Slave.communicationLayer.soap"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="url" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.soap.url"/>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tcpPortMin" type="xs:int">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.tcpPortMin"/>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="tcpPortMax" type="xs:int">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.tcpPortMax"/>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="authentication" type="AuthenticationType">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.authentication"/>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="jms" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Slave.communicationLayer.jms"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="communicationQueue" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.jms.communicationQueue"/>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="archiveQueue" type="xs:string">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.jms.archiveQueue"/>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="messageType" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.jms.messageType"/>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="authentication" type="AuthenticationType">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.Slave.communicationLayer.authentication"/>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" name="deliveryProfiles" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.deliveryProfiles"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/master/deliveryProfile</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UIDeliveryProfiles"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="state" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.state"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.D3SlaveStateConstraintEnumeration"/>
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UISlaveState"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="lastRefresh" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.lastRefresh"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AuthenticationType">
+		<xs:sequence>
+			<xs:element name="usernameToken">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.communicationLayer.authentication.usernameToken"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="user" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Slave.communicationLayer.authentication.usernameToken.user"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="password" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Slave.communicationLayer.authentication.usernameToken.password"/>
+								<xs:appinfo>
+									<osd:defaultView>
+										<hidden>true</hidden>
+									</osd:defaultView>
+									<osd:uiBean class="com.orchestranetworks.d3.PasswordHiddenEditor"/>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeliveryBranch">
+		<xs:sequence>
+			<xs:element name="branch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DeliveryBranch.branch"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.BranchesSelectorConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="currentVersion" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DeliveryBranch.currentVersion"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.VersionsSelectorConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="profile" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DeliveryBranch.profile"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForD3ConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="severityThreshold" type="xs:string" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DeliveryBranch.severityThreshold"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.SeverityThresholdConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="linkToDeliveryProfiles" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DeliveryBranch.linkToDeliveryProfiles"/>
+					<xs:appinfo>
+						<osd:association>
+							<linkTable>
+							 	<table>/root/master/branchProfileAssociation</table>
+							 	<fieldToSource>./branch</fieldToSource>
+							 	<fieldToTarget>./deliveryProfile</fieldToTarget>
+							</linkTable> 
+						</osd:association>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BranchesProfilesAssociation">
+		<xs:sequence>
+			<xs:element name="branch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BranchesProfilesAssociation.branch"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/master/deliveryBranch</tablePath>
+								<display osd:class="com.orchestranetworks.d3.master.ui.BranchLabelRender"/>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deliveryProfile" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BranchesProfilesAssociation.deliveryProfile"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/master/deliveryProfile</tablePath>
+							</osd:tableRef>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MasterInfos">
+		<xs:sequence>
+			<xs:element name="repositoryId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveInfos.Master.repositoryId"/>
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.d3.slave.GetMasterRepositoryIdValueFunction"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="repositoryLabel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveInfos.Master.repositoryLabel"/>
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.d3.slave.GetMasterRepositoryLabelValueFunction"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="build" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveInfos.Master.build"/>
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.d3.slave.GetMasterBuildValueFunction"/>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.d3.common.ProductVersionWarningConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="soap" osd:access="R-" minOccurs="0" osd:class="com.orchestranetworks.d3.slave.bean.MasterCommunicationLayerBeanForHTTP">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveInfos.Master.communicationLayer.soap"/>
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.d3.slave.GetMasterCommunicationLayerFunction"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="url" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SlaveInfos.Master.communicationLayer.soap.url"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="userName" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SlaveInfos.Master.communicationLayer.soap.authentication.usernameToken.user"/>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="jms" osd:access="R-" minOccurs="0" osd:class="com.orchestranetworks.d3.slave.bean.MasterCommunicationLayerBeanForJMS">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveInfos.Master.communicationLayer.jms"/>
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.d3.slave.GetMasterCommunicationLayerFunction"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="communicationQueue" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SlaveInfos.Master.communicationLayer.jms.communicationQueue"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="userName" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SlaveInfos.Master.communicationLayer.jms.authentication.usernameToken.user"/>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Documentation" osd:access="RW" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Documentation"/>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescription"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Documentation.localizedDocumentations"/>
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale"/>
+						<xs:element minOccurs="0" name="label" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Documentation.localizedDocumentations.label"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="description">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Documentation.localizedDocumentations.description"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="History">
+		<xs:sequence>
+			<xs:element name="id" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.id"/>
+					<xs:appinfo>
+						<osd:autoIncrement/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="slaveId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.slaveId"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="repositoryId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.repositoryId"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="branch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.branch"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="startDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.startDate"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.status"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UIHistoryDeliveryStatus"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.DeliveryStatusConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="dateOfEvent" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.dateOfEvent"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profile" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.profile"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForD3ConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="DeliveredArchive" osd:access="RW" osd:class="com.orchestranetworks.d3.master.DeliveredArchive">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.DeliveredArchive"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="branch" type="xs:string" minOccurs="0" osd:category="Hidden"/>
+						<xs:element name="broadcastVersion" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.DeliveredArchive.broadcastVersion"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="slaveVersion" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.DeliveredArchive.slaveVersion"/>
+							</xs:annotation>
+						</xs:element> 
+						<xs:element minOccurs="0" name="fullResync" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.DeliveredArchive.fullResync"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="md5Sum" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.History.DeliveredArchive.md5Sum"/>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="message" type="osd:text">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.message"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="stackTrace" type="osd:text">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.stackTrace"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UIStackTraceEditor"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="replayIndex" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.replayIndex"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="nextReplay" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.nextReplay"/>
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.d3.master.NextReplayFunctionInHistory"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="uuid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.History.uuid"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadcastHistory">
+		<xs:sequence>
+			<xs:element name="uuid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.uuid"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="branch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.branch"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.version"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.startDate"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string" minOccurs="0" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.status"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UIHistoryDeliveryStatus"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.DeliveryStatusConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateOfEvent" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.dateOfEvent"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isFullResync" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.isFullResync"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="userReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.userReference"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForD3ConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="slavesNotified" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.slavesNotified"/>
+					<xs:appinfo>
+						<osd:select>
+							<xpath>/root/master/history[uuid = ${../uuid}]</xpath>
+						</osd:select>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="message" type="osd:text">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.message"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="stackTrace" type="osd:text">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.BroadcastHistory.stackTrace"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UIStackTraceEditor"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SlaveRegistrationLog">
+		<xs:sequence>
+			<xs:element name="uuid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.uuid"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="slaveId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.slaveId"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="repositoryId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Slave.repositoryId"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.startDate"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.status"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UIHistoryDeliveryStatus"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.d3.master.constraint.DeliveryStatusConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateOfEvent" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.dateOfEvent"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="userReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.userReference"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForD3ConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="branchesNotified" type="xs:string" minOccurs="0" maxOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.branchesNotified"/>
+					<xs:appinfo>
+						<osd:select>
+							<xpath>/root/master/history[uuid = ${../uuid}]</xpath>
+						</osd:select>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="message" type="osd:text">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.message"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="stackTrace" type="osd:text">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SlaveRegistrationLog.stackTrace"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.d3.master.ui.UIStackTraceEditor"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

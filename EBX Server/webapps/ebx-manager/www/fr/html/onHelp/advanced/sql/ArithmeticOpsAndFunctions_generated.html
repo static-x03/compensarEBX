@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Arithmetic operators and functions</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="testArithmeticOpsAndFunctions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; SQL in EBX®</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=sql/ArithmeticOpsAndFunctions_generated.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+<h1>
+Arithmetic operators and functions</h1>
+<p>The table below lists all the SQL arithmetic operators and functions supported by EBX&reg;, along with their standard SQL syntax. Some functions may have optional parameters: they are surrounded by square brackets.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Operator syntax</strong></p></th><th><p><strong>Description and example(s)</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>+ numeric</p></td><td><p>Returns numeric</p><p><code>SELECT +4 :&nbsp; 4</code></p></td></tr>
+<tr>
+<td><p>- numeric</p></td><td><p>Returns numeric</p><p><code>SELECT -4 :&nbsp; -4</code></p></td></tr>
+<tr>
+<td><p>numeric1 + numeric2</p></td><td><p>Returns numeric1 plus numeric2</p><p><code>SELECT 18 + 4 :&nbsp; 22</code></p></td></tr>
+<tr>
+<td><p>numeric1 - numeric2</p></td><td><p>Returns numeric1 minus numeric2</p><p><code>SELECT 18 - 4 :&nbsp; 14</code></p></td></tr>
+<tr>
+<td><p>numeric1 * numeric2</p></td><td><p>Returns numeric1 multiplied by numeric2</p><p><code>SELECT 18 * 4 :&nbsp; 72</code></p></td></tr>
+<tr>
+<td><p>numeric1 / numeric2</p></td><td><p>Returns numeric1 divided by numeric2</p><p><code>SELECT 18 / 4 :&nbsp; 4</code></p></td></tr>
+<tr>
+<td><p>ABS(numeric)</p></td><td><p>Returns the absolute value of numeric</p><p><code>SELECT ABS(-243.5) :&nbsp; 243.5</code></p></td></tr>
+<tr>
+<td><p>ACOS(numeric)</p></td><td><p>Returns the arc cosine of numeric</p><p><code>SELECT ACOS(-1) :&nbsp; 3.141592653589793</code></p></td></tr>
+<tr>
+<td><p>ASIN(numeric)</p></td><td><p>Returns the arc sine of numeric</p><p><code>SELECT ABS(0.25) :&nbsp; 0.25</code></p></td></tr>
+<tr>
+<td><p>ATAN(numeric)</p></td><td><p>Returns the arc tangent of numeric</p><p><code>SELECT ATAN(2.5) :&nbsp; 1.1902899496825317</code></p></td></tr>
+<tr>
+<td><p>ATAN2(numeric, numeric)</p></td><td><p>Returns the arc tangent of the numeric coordinates</p><p><code>SELECT ATAN2(0.50, 1) :&nbsp; 0.4636476090008061</code></p></td></tr>
+<tr>
+<td><p>CEIL(numeric)</p></td><td><p>Rounds numeric up, and returns the smallest number that is greater than or equal to numeric</p><p><code>SELECT CEIL(25.75) :&nbsp; 26</code></p></td></tr>
+<tr>
+<td><p>CEILING(numeric)</p></td><td><p>Rounds numeric up, and returns the smallest number that is greater than or equal to numeric</p><p><code>SELECT CEILING(25.75) :&nbsp; 26</code></p></td></tr>
+<tr>
+<td><p>COS(numeric)</p></td><td><p>Returns the cosine of numeric</p><p><code>SELECT COS(2) :&nbsp; -0.4161468365471424</code></p></td></tr>
+<tr>
+<td><p>COT(numeric)</p></td><td><p>Returns the cotangent of numeric</p><p><code>SELECT COT(6) :&nbsp; -3.436353004180128</code></p></td></tr>
+<tr>
+<td><p>DEGREES(numeric)</p></td><td><p>Converts numeric from radians to degrees</p><p><code>SELECT DEGREES(1.5) :&nbsp; 85.94366926962348</code></p></td></tr>
+<tr>
+<td><p>EXP(numeric)</p></td><td><p>Returns e raised to the power of numeric</p><p><code>SELECT EXP(1) :&nbsp; 2.718281828459045</code></p></td></tr>
+<tr>
+<td><p>FLOOR(numeric)</p></td><td><p>Rounds numeric down, and returns the largest number that is less than or equal to numeric</p><p><code>SELECT FLOOR(25.75) :&nbsp; 25</code></p></td></tr>
+<tr>
+<td><p>LN(numeric)</p></td><td><p>Returns the natural logarithm (base e) of numeric</p><p><code>SELECT LN(2) :&nbsp; 0.6931471805599453</code></p></td></tr>
+<tr>
+<td><p>LOG10(numeric)</p></td><td><p>Returns the base-10 logarithm of numeric</p><p><code>SELECT LOG10(2) :&nbsp; 0.3010299956639812</code></p></td></tr>
+<tr>
+<td><p>MOD(numeric1, numeric2)</p></td><td><p>Returns the remainder (modulus) of numeric1 divided by numeric2. The result is negative only if numeric1 is negative</p><p><code>SELECT MOD(18, 4) :&nbsp; 2</code></p></td></tr>
+<tr>
+<td><p>POWER(numeric1, numeric)</p></td><td><p>Returns numeric1 raised to the power of numeric2</p><p><code>SELECT POWER(4, 2) :&nbsp; 16.0</code></p></td></tr>
+<tr>
+<td><p>RADIANS(numeric)</p></td><td><p>Converts numeric from degrees to radians</p><p><code>SELECT RADIANS(180) :&nbsp; 3.141592653589793</code></p></td></tr>
+<tr>
+<td><p>RAND([seed])</p></td><td><p>Returns a random double using numeric as the seed value if specified</p><p><code>SELECT RAND(6) :&nbsp; 0.9891840064573959</code></p></td></tr>
+<tr>
+<td><p>RAND_INTEGER([seed,] numeric)</p></td><td><p>Generates a random integer between 0 and numeric - 1 inclusive, initializing the random number generator with seed if specified</p><p><code>SELECT RAND_INTEGER(100, 5) :&nbsp; 0</code></p><p><code>SELECT RAND_INTEGER(6, 100) :&nbsp; 11</code></p></td></tr>
+<tr>
+<td><p>ROUND(numeric1, numeric2)</p></td><td><p>Rounds numeric1 to numeric2 places right to the decimal point</p><p><code>SELECT ROUND(135.375, 2) :&nbsp; 135.38</code></p></td></tr>
+<tr>
+<td><p>SIGN(numeric)</p></td><td><p>Returns the signum of numeric</p><p><code>SELECT SIGN(255.5) :&nbsp; 1</code></p></td></tr>
+<tr>
+<td><p>SIN(numeric)</p></td><td><p>Returns the sine of numeric</p><p><code>SELECT SIN(2) :&nbsp; 0.9092974268256817</code></p></td></tr>
+<tr>
+<td><p>SQRT(numeric)</p></td><td><p>Returns the square root of numeric</p><p><code>SELECT SQRT(64) :&nbsp; 8.0</code></p></td></tr>
+<tr>
+<td><p>TAN(numeric)</p></td><td><p>Returns the tangent of numeric</p><p><code>SELECT TAN(1.75) :&nbsp; -5.52037992250933</code></p></td></tr>
+<tr>
+<td><p>TRUNCATE(numeric1[, numeric2])</p></td><td><p>Truncates numeric1 to 0 (if no numeric2 specified) places right to the decimal point</p><p><code>SELECT TRUNCATE(135.375) :&nbsp; 135</code></p><p><code>SELECT TRUNCATE(135.375, 2) :&nbsp; 135.37</code></p></td></tr>
+</tbody>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; SQL in EBX®</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

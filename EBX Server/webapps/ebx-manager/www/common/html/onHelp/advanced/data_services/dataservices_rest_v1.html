@@ -1,0 +1,1876 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Built-in RESTful services</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dataservices_rest_v1" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; REST data services</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/dataservices_rest_v1.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; REST data services</span></div>
+<h1>
+Built-in RESTful services</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#introduction">Introduction</a></li><li class="toc1"><a href="#id2">Request</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">HTTP method</a></li><li class="toc2"><a href="#URLDefinition">URL</a></li><li class="toc2"><a href="#requestHeaders">Header fields</a></li><li class="toc2"><a href="#commonParameters">Common parameters</a></li><li class="toc2"><a href="#id2s5">Message body</a></li></ul>
+</li><li class="toc1"><a href="#id3">Response</a><ul class="toc2">
+<li class="toc2"><a href="#responseHeaders">Header fields</a></li><li class="toc2"><a href="#httpCode">HTTP codes</a></li><li class="toc2"><a href="#id3s3">Message body</a></li></ul>
+</li><li class="toc1"><a href="#adminOperation">Administration operations</a><ul class="toc2">
+<li class="toc2"><a href="#directoryOperation">Directory operations</a></li><li class="toc2"><a href="#userInterfaceOperation">User interface operations</a></li><li class="toc2"><a href="#systemInformation">System information operation</a></li></ul>
+</li><li class="toc1"><a href="#authOperation">Token authentication operations</a><ul class="toc2">
+<li class="toc2"><a href="#authTokenCreation">Create token operation</a></li><li class="toc2"><a href="#authChangePassword">Change password operation</a></li><li class="toc2"><a href="#id5s3">Revoke token operation</a></li></ul>
+</li><li class="toc1"><a href="#dataOperation">Data operations</a><ul class="toc2">
+<li class="toc2"><a href="#selectOperation">Select operation</a></li><li class="toc2"><a href="#prepareOperation">Prepare operations</a></li><li class="toc2"><a href="#insert">Insert operation</a></li><li class="toc2"><a href="#update">Update operation</a></li><li class="toc2"><a href="#deleteOperation">Delete operation</a></li><li class="toc2"><a href="#countOperation">Count operation</a></li><li class="toc2"><a href="#locking">Optimistic locking</a></li><li class="toc2"><a href="#inheritance">Inheritance</a></li><li class="toc2"><a href="#lookupViews">Look up table views operation</a></li></ul>
+</li><li class="toc1"><a href="#formDataOperation">Form data operations</a><ul class="toc2">
+<li class="toc2"><a href="#insertForm">Form insert operation</a></li><li class="toc2"><a href="#updateForm">Form update operation</a></li></ul>
+</li><li class="toc1"><a href="#dataspaceOperation">Beta feature: Dataspace operations</a><ul class="toc2">
+<li class="toc2"><a href="#dataspaceSelect">Beta feature: Select dataspaces or snapshots</a></li><li class="toc2"><a href="#dataspaceCreate">Beta feature: Create a child dataspace or a snapshot</a></li><li class="toc2"><a href="#id8s3">Beta feature: Locking a dataspace</a></li><li class="toc2"><a href="#id8s4">Beta feature: Unlocking a dataspace</a></li><li class="toc2"><a href="#id8s5">Beta feature: Merge a dataspace</a></li><li class="toc2"><a href="#id8s6">Beta feature: Close a dataspace or a snapshot</a></li></ul>
+</li><li class="toc1"><a href="#openApiOperation">OpenAPI operations</a><ul class="toc2">
+<li class="toc2"><a href="#id9s1">Overview</a></li><li class="toc2"><a href="#id9s2">Generate OpenAPI document</a></li></ul>
+</li><li class="toc1"><a href="#id10">Limitations</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">General limitations</a></li><li class="toc2"><a href="#compactFormatLimitations">Compact format limitations</a></li><li class="toc2"><a href="#id10s3">Read operations</a></li><li class="toc2"><a href="#id10s4">Write operations</a></li><li class="toc2"><a href="#id10s5">Directory operations</a></li><li class="toc2"><a href="#id10s6">OpenAPI operations</a></li></ul>
+</li></ul>
+</div>
+<h2 id="introduction">
+Introduction</h2>
+<p>The architecture used is called ROA (Resource-Oriented Architecture), it can be an alternative to SOA (Service-Oriented Architecture). The chosen resources are readable and/or writable by third-party systems, according to the request content.</p><p>The HATEOAS approach of the built-in RESTful services also allows to experience an intuitive and straightforward navigation, which implies that the data details could be obtained through a link.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>All operations are stateless.</p></div>
+<h2 id="id2">
+Request</h2>
+<p>This chapter describes the elements to use in order to build a conform REST request, such as: the HTTP method, the URL format, the header fields and the message body.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/restapi_introduction.html#interactions">Interactions</a></li><li><a href="../data_services/restapi_introduction.html#security">Security</a></li></ul>
+</div>
+<h3 id="id2s1">
+HTTP method</h3>
+<p>Considered HTTP methods for built-in RESTful services, are:</p><ul>
+<li><p><code>GET</code>: used to select master data defined in the URL (the URL size limit depends on the application server or on the browser, that must be lower than or equal to 2KB).</p></li><li><p><code>POST</code>: used to insert one or more records in a table or to select the master data defined in the URL (the size limit is 2MB or more depending on the application server. Each parameter is limited to a value containing 1024 characters).</p></li><li><p><code>PUT</code>: used to update the master data defined in the URL.</p></li><li><p><code>DELETE</code>: used to delete either the record defined in the URL or multiple records defined with the table URL and the record table in the message body.</p></li></ul>
+<h3 id="URLDefinition">
+URL</h3>
+<p>REST URL contains:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/{categoryVersion}/{specificPath}[:{extendedAction}]?{queryParameters}</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>&lt;ebx-dataservices&gt;</code> corresponds to the &#39;ebx-dataservices.war&#39; web application&#39;s path. The path is composed by multiple, or none, URI segments followed by the web application&#39;s name. </p></li><li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a>.</p></li><li><p><code>{categoryVersion}</code> corresponds to the category version: current value is <code>v1</code>.</p></li><li><p><code>{specificPath}</code> corresponds to a specific path inside the category.</p></li><li><p><code>{extendedAction}</code> corresponds to the extended action name (optional).</p></li><li><p><code>{queryParameters}</code> corresponds to <a href="../data_services/dataservices_rest_v1.html#commonParameters">common</a> or dedicated operation parameters passed by the URL.</p></li></ul>
+<h4 id="operationCategory">
+Operation category</h4>
+<p>It specializes the operation, it is added in the path of the URL in <code>{category}</code> and it takes one of the following values:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>admin</code></p></td><td class="ebx_definitionListDefinition"><p id="adminCategory">Administration operations reserved to administrators. </p><p>See <a href="#adminOperation">Administration operations</a> for more information. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>auth</code></p></td><td class="ebx_definitionListDefinition"><p id="authCategory">Manage token authentication method.</p><p>See <a href="#authOperation">Token authentication operations</a> and <a href="../data_services/restapi_introduction.html#token">Token Authentication Scheme </a> for more information. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>data</code> or <code>data-compact</code></p></td><td class="ebx_definitionListDefinition"><p id="dataCategory">Lists dataset content, requests a table, a record or a field record content, including modified operations on dataset node, table, record and record field. A compact format is available to ease interaction for simple use cases. </p><p>Manages dataspace and snapshot life cycle.</p><p>See <a href="#dataOperation">Data operations</a>, <a href="#dataspaceOperation">Beta feature: Dataspace operations</a> and <a href="#compactFormatLimitations">Compact format limitations</a> for more information. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="formDataCategory"><code>form-data</code> or <code>form-data-compact</code></p></td><td class="ebx_definitionListDefinition"><p>Validates incoming data and returns a report before inserting or updating a dataset node, record or record field. A compact format is available to ease interaction for simple use cases. </p><p>See <a href="#formDataOperation">Form data operations</a> and <a href="#compactFormatLimitations">Compact format limitations</a> for more information. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>history</code></p></td><td class="ebx_definitionListDefinition"><p id="historyCategory">Lists history dataset content, requests a history table, a history of a record or a history record. </p><p>See <a href="#dataOperation">Data operations</a> for more information. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/history.html">History</a></li></ul>
+</div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>open-api</code></p></td><td class="ebx_definitionListDefinition"><p>Generates the OpenAPI document of the selected resource.</p><p>See <a href="#openApiOperation">OpenAPI operations</a> for more information. </p></td></tr>
+</table>
+<h3 id="requestHeaders">
+Header fields</h3>
+<p>These header field definitions are used by TIBCO EBX&reg;.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>Accept</code></p></td><td class="ebx_definitionListDefinition"><p>Used to specify content types by order of preference to be used in the response, the first supported one will be chosen and specified in the response header <code>Content-Type</code>. Currently, the only supported one is <code>application/json</code>. If none is supported, the result depends on the <code>ebx.dataservices.rest.request.checkAccept</code> property:</p><ul>
+<li><p>If <code>true</code>, an HTTP error response is returned with code <code>406</code>.</p></li><li><p>If <code>false</code>, the response is returned with the default content type, that is <code>application/json</code>.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#dataServices">Configuring data services</a></li></ul>
+</div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>Accept-Language</code></p></td><td class="ebx_definitionListDefinition"><p>Used for specifying the preferred locale for the response. The supported locales are defined in the schema model.</p><p>If none of the preferred locale are supported, the default locale for the current model is used.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>Authorization</code></p></td><td class="ebx_definitionListDefinition"><p>Used for &#39;Basic Authentication Scheme&#39; and &#39;Token Authentication Scheme&#39; methods, otherwise the request is rejected.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/restapi_introduction.html#authentication">Authentication</a></li></ul>
+</div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="Content_Type"><code>Content-Type</code></p></td><td class="ebx_definitionListDefinition"><p>Used to specify the request body media type. The supported types are <code>application/json</code> and <code>application/x-www-form-urlencoded</code>. The request value is checked and if it is not supported, then an HTTP error message is returned with the code <code>415</code><em> (Unsupported media type)</em>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#dataServices">Configuring data services</a></li></ul>
+</div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="X_Requested_With"><code>X-Requested-With</code></p></td><td class="ebx_definitionListDefinition"><p>If present and in case of authentication failure, prevents the addition of the <code>WWW-Authenticate</code> header in the response.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#WWW_Authenticate">Response header <code>WWW-Authenticate</code></a></li></ul>
+</div>
+</td></tr>
+</table>
+<p>See <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC2616</a> for more information about HTTP Header Field Definitions.</p><h3 id="commonParameters">
+Common parameters</h3>
+<p>These optional parameters are available for all data service operations.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>disableRedirectionToLastBroadcast</code></p></td><td><p id="disableRedirectionToLastBroadcast">This parameter only has impact on a D3 architecture.</p><p>If <code>true</code>, access to a delivery dataspace on a D3 primary node is not redirected to the last broadcast snapshot. Otherwise, access to such a dataspace is always redirected to the last broadcast snapshot.</p><p>If the specified dataspace is not a delivery dataspace on a D3 primary node, this parameter is ignored.</p><p><code>Boolean</code> type value. If this parameter is not present, the default is <code>false</code> (redirection to a D3 master enabled), unless the configuration property <a href="../installation/properties.html#dataServices">ebx.dataservices.disableRedirectionToLastBroadcast.default</a> has been set.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/d3.html#master">Primary node</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>ebx-indent</code></p><p><code>indent</code> (deprecated since 6.0.0)</p></td><td><p id="ebxIndent">Specifies if the response should be indented, to be easier to read for a human.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p></td></tr>
+<tr>
+<td><p id="ebxChannel"><code>ebx-channel</code></p></td><td><p>Specifies the <a href="../data_services/restapi_introduction.html#sessionChannel">session channel</a>. </p><p><code>String</code> type, possible values are:</p><ul>
+<li><p><code>dataServices</code></p></li><li><p><code>ui</code></p></li></ul>
+<p>The default value is <code>dataServices</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/dataservices/rest/Constants.Data.html#PARAM_EBX_CHANNEL"><code>Constants.Data.PARAM_EBX_CHANNEL</code></a></li></ul>
+</div>
+</td></tr>
+</tbody>
+</table>
+<h3 id="id2s5">
+Message body</h3>
+<p> It contains the request data using the JSON format, see <a href="../data_services/json_extended.html#request">Extended JSON request body</a> and <a href="../data_services/json_compact.html#request">Compact JSON request body</a> . </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Requests may define a message body only when using <code>POST</code> or <code>PUT</code> HTTP methods.</p></div>
+<h2 id="id3">
+Response</h2>
+<p>This chapter describes the responses returned by built-in RESTful services.</p><ul>
+<li><p>See <a href="../data_services/restapi_introduction.html#exceptions">Exception handling</a> for details on standard error handling (where the HTTP code is greater than or equal to <code>300</code>).</p></li></ul>
+<h3 id="responseHeaders">
+Header fields</h3>
+<p>These header field definitions are used by EBX&reg;.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>Content-Language</code></p></td><td class="ebx_definitionListDefinition"><p>Indicates the locale used in the response for labels and descriptions.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>Content-Type</code></p></td><td class="ebx_definitionListDefinition"><p>Indicates the response body content type.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>Location</code></p></td><td class="ebx_definitionListDefinition"><p>If a new record has been successfully inserted, the query URL for this record is returned by this field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="WWW_Authenticate"><code>WWW-Authenticate</code></p></td><td class="ebx_definitionListDefinition"><p>This header field is added to the HTTP response when authentication fails with the 401 <em>(Unauthorized)</em> HTTP code. Its value consists of a list with at least one authentication method applicable to the request URI. It is present if and only if the following conditions are verified:</p><ul>
+<li><p>the &#39;Basic Authentication Scheme&#39; method is enabled and</p></li><li><p>the <code>X-Requested-With</code> HTTP header is not present.</p></li></ul>
+<p>If the client is able to interpret the authentication method, it is possible to resubmit the request providing the appropriate credentials.</p><p>The administration property <a href="../installation/properties.html#dataServices">ebx.dataservices.rest.auth.tryBasicAuthentication</a> must be set to <code>true</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#X_Requested_With">Request header <code>X-Requested-With</code></a></li><li><a href="../data_services/restapi_introduction.html#authentication">Authentication</a></li></ul>
+</div>
+</td></tr>
+</table>
+<h3 id="httpCode">
+HTTP codes</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The request has been successfully handled.</p></td></tr>
+<tr>
+<td><p><code>201</code><em> (Created)</em></p></td><td><p>A new record has been created, in this case, the header field <code>Location</code> is returned with its resource URL.</p></td></tr>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The request has been successfully handled but no response body is returned.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request URL or body is not well-formed or contains invalid content.</p></td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Permission was denied to read or modify the specified resource for the authenticated user.</p><p>This error is also returned when the user:</p><ul>
+<li><p>is not allowed to modify a field mentioned in the request message body.</p></li><li><p>is not allowed to access the REST connector.</p><p>For more details, see <a href="../data_services/restapi_introduction.html#globalPermissions">Global permissions</a>.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The resource specified in the URL cannot be found.</p></td></tr>
+<tr>
+<td><p><code>406</code><em> (Not acceptable)</em></p></td><td><p>Content type defined in the request&#39;s <code>Accept</code> parameter is not supported. This error can be returned only if the EBX&reg; property <code>ebx.rest.request.checkAccept</code> is set to <code>true</code>.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p>A concurrent modification has occurred.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#locking">Optimistic locking</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>415</code><em> (Unsupported media type)</em></p></td><td><p>The request content is not supported, the request header value <code>Content-Type</code> is not supported by the operation.</p></td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>The new resource&#39;s content cannot be accepted for semantic reasons.</p></td></tr>
+<tr>
+<td><p><code>500</code><em> (Internal error)</em></p></td><td><p>Unexpected error thrown by the application. Error details can usually be found in EBX&reg; logs.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id3s3">
+Message body</h3>
+<p>The response body content&#39;s format depends on the HTTP code value:</p><ul>
+<li><p>HTTP codes from <code>200</code> included to <code>300</code> excluded: the content format depends on the associated request (<a href="../data_services/json_extended.html#response">Extended JSON</a> and <a href="../data_services/json_compact.html#response">Compact JSON</a> samples).</p><p>With the exception of code <code>204</code><em> (No content)</em>.</p></li><li><p>HTTP codes greater than or equal to <code>300</code>: the content describes the error. See <a href="../data_services/restapi_introduction.html#exceptions">JSON</a> for details on the format. </p></li></ul>
+<h2 id="adminOperation">
+Administration operations</h2>
+<p>Administration operations are related to:</p><ul>
+<li><p>the administration category.</p></li><li><p>the administration dataspaces accessible through the <code>data</code> category.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> administration category and administration dataspaces can only be used by administrators. </p></div>
+<h3 id="directoryOperation">
+Directory operations</h3>
+<p>The EBX&reg; default directory configuration is manageable with built-in RESTful services. The users and roles tables, the mailing lists and other objects are concerned. For more information, see <a href="../engine/directory.html">Users and roles directory</a>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Triggers are present on the directory&#39;s tables, ensuring the data consistency. </p></div>
+<p>The URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/data/v1/Bebx-directory/ebx-directory</code></p></blockquote><h4>
+Directory configuration operations</h4>
+<p> The EBX&reg; default directory configuration is manageable like dataset nodes. It can be accessed and modified through the <code>data</code> category operations. Each field is self-described when metadata is requested. </p><p>See <a href="../data_services/dataservices_rest_v1.html#selectOperation">select</a> and <a href="../data_services/dataservices_rest_v1.html#update">update</a> operations for more information. </p><h4>
+Mailing lists operations</h4>
+<p> There are two default mailing lists that can be configured in the EBX&reg; directory: one for everybody and one for administrators. These lists can be handled like dataset nodes through the <code>data</code> category operations. </p><p>See <a href="../data_services/dataservices_rest_v1.html#selectOperation">select</a> and <a href="../data_services/dataservices_rest_v1.html#update">update</a> operations for more information. </p><h4>
+Directory users operations</h4>
+<p> Users can be manipulated like records of the <code>data</code> category using the operations of the latter. For security purposes, an administrator cannot delete himself. The user&#39;s salutation must be chosen among the ones available in the &#39;salutations&#39; table. </p><p>See <a href="../data_services/dataservices_rest_v1.html#selectOperation">select</a>, <a href="../data_services/dataservices_rest_v1.html#update">update</a>, <a href="../data_services/dataservices_rest_v1.html#insert">insert</a> and <a href="../data_services/dataservices_rest_v1.html#deleteOperation">delete</a> operations for more information. </p><h4>
+Directory roles operations</h4>
+<p> Roles are records of the <code>data</code> category and can be managed with its operations. EBX&reg; roles are assigned to users through the &#39;usersRoles&#39; association table. &#39;usersRoles&#39; is automatically fed when the directory is administered through the user interface. However, it is not the case through data services and role assignments require manual operations. Roles inclusions are specified in the &#39;rolesInclusions&#39; association table. As for the &#39;usersRoles&#39; table, the management of roles inclusions requires manual operations. Each table is self-descriptive when metadata is requested. </p><p>See <a href="../data_services/dataservices_rest_v1.html#selectOperation">select</a>, <a href="../data_services/dataservices_rest_v1.html#update">update</a>, <a href="../data_services/dataservices_rest_v1.html#insert">insert</a> and <a href="../data_services/dataservices_rest_v1.html#deleteOperation">delete</a> operations for more information. </p><h3 id="userInterfaceOperation">
+User interface operations</h3>
+<p> The EBX&reg; user interface can be opened or closed to users for maintenance needs. Handled information is similar to what is contained in the UI tab &#39;Administration&#39; &gt; &#39;User interface configuration&#39; &gt; &#39;Advanced perspective&#39; &gt; &#39;Graphical interface configuration&#39; &gt; &#39;Application locking&#39;. </p><p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/data/v1/Bebx-manager/ebx-manager/domain/toolStatus</code></p></blockquote><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/admin_frontend.html#applicationLocking">Application locking</a></li></ul>
+</div>
+<h4>
+Retrieve user interface state</h4>
+<p>User interface status and the unavailability message are accessible like dataset nodes.</p><p>See <a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a> and the <a href="../data_services/json_extended.html#openCloseUserInterfaceResponse">Extended JSON</a> or <a href="../data_services/json_compact.html#openCloseUserInterfaceResponse">Compact JSON</a> example, for more information. </p><h4>
+Open or close user interface</h4>
+<p> User interface status and the unavailability message can be modified like dataset nodes using the update operation. To open the user interface set the content of <code>toolStatus</code> to <code>true</code>, or to <code>false</code> to close it. </p><p>See <a href="../data_services/dataservices_rest_v1.html#update">Update operation</a> and the <a href="../data_services/json_extended.html#openCloseUserInterfaceRequest">Extended JSON</a> or <a href="../data_services/json_compact.html#openCloseUserInterfaceRequest">Compact JSON</a> examples, for more information. </p><h3 id="systemInformation">
+System information operation</h3>
+<p>This operation returns system information on the EBX&reg; server. This is accepted for <code>GET</code> and <code>POST</code> HTTP methods. Warning: no update will be possible in the <code>POST</code> HTTP method because the request body is ignored. The information returned is the same as the information contained in the log header <code>kernel.log</code> or in the UI tab &#39;Administration&#39; &gt; &#39;System Information&#39;. The response contains several keys, labels, and values representing the configuration and status of EBX&reg;. The mode of representation of the response may be flat or hierarchical.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/admin/v1/systemInformation</code></p></blockquote><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a></li><li><a href="../engine/repository_administration.html">Repository administration</a></li></ul>
+</div>
+<h4>
+Parameters</h4>
+<p>The following parameter is applicable.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td id="systemInformationMode"><p><code>systemInformationMode</code></p></td><td><p>Specifies the returned mode:</p><ul>
+<li><p><code>flat</code>: A flat representation under the following information groups: <code>bootInfoEBX</code>, <code>repositoryInfo</code> and <code>bootInfoVM</code>.</p></li><li><p><code>hierarchical</code>: A hierarchical representation.</p></li></ul>
+<p><code>String</code> type, default value is <code>flat</code>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The system information was successfully returned.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request is not correct, it contains one of the following errors:</p><ul>
+<li><p>the HTTP method is not <code>GET</code> nor <code>POST</code>,</p></li><li><p>the HTTP parameter <code>systemInformationMode</code> is not correct,</p></li><li><p>the operation is not supported.</p></li><li><p>the request path is invalid.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>The user is not an administrator.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Response body</h4>
+<p> It is returned, if and only if, the HTTP code is <code>200 (OK)</code>. The content structure depends on the provided parameter <code>systemInformationMode</code> or its default value. </p><p> See the <a href="../data_services/json_others.html#systemInformationFlat">JSON</a> example of the flat representation. </p><p> See the <a href="../data_services/json_others.html#systemInformationHierarchical">JSON</a> example of the hierarchical representation. </p><h2 id="authOperation">
+Token authentication operations</h2>
+<p>These operations allow to create or revoke an authentication token. Authentication tokens have a timeout period. If a token is not used to access the EBX&reg; server within this period, it will automatically be revoked. This timeout period is refreshed on each access to EBX&reg; server.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The token timeout is modifiable through the administration property <a href="../installation/properties.html#dataServices">ebx.dataservices.rest.auth.token.timeout</a> (the default value is 30 minutes).</p></div>
+<h3 id="authTokenCreation">
+Create token operation</h3>
+<p>This operation requires using the <code>POST</code> HTTP method with a request containing the user&#39;s credentials and, optionally, <a href="../data_services/restapi_introduction.html#inputParameters">session parameters</a>.</p><p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/auth/v1/token:create</code></p></blockquote><h4>
+Message body</h4>
+<p> A message body must be defined in the HTTP request. It necessarily contains one of the following set of data: </p><ul>
+<li><p> A <code>login</code> and a <code>password</code> value. Both JSON attributes are mandatory and of <code>String</code> types. </p><p> See <a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/Directory.html#authenticateUserFromLoginPassword-java.lang.String-java.lang.String-"><code>Directory.authenticateUserFromLoginPassword</code></a> for more information. </p></li><li><p> The <code>specific</code> JSON attribute set to <code>true</code>. When activated, this flag allows to performed a user authentication against the whole HTTP request. Warning, even if <code>login</code> and <code>password</code> attributes are defined in the JSON request&#39;s body, setting <code>specific</code> to <code>true</code> lead to a specific user authentication. </p><p> See <a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/Directory.html#authenticateUserFromHttpRequest-javax.servlet.http.HttpServletRequest-"><code>Directory.authenticateUserFromHttpRequest</code></a> for more information. </p></li></ul>
+<p> See the <a href="../data_services/json_others.html#tokenCreateRequest">JSON</a> examples of a token creation request. </p><h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The token was successfully created.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>For one of the following reasons:</p><ul>
+<li><p>the syntax is not correct,</p></li><li><p>the HTTP method is not <code>POST</code>,</p></li><li><p>the operation is not supported.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>For one of the following reasons:</p><ul>
+<li><p>The <code>login</code> and/or <code>password</code> is/are incorrect.</p></li><li><p>Authentication data for other methods is defined.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>For one of the following reasons:</p><ul>
+<li><p><code>PasswordMustChange</code>: The password must be changed (only available with the default directory). See <a href="#authChangePassword">Change password operation</a>.</p></li><li><p><code>RestrictedAccess</code>: User access is closed for maintenance or other actions (reserved to administrators).</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<h4>
+Response body</h4>
+<p> If the HTTP code is <code>200 (OK)</code>, the body holds the token value and its type. </p><p> See the <a href="../data_services/json_others.html#tokenCreateResponse">JSON</a> example of a token creation response. </p><p>The token can later be used to authenticate a user by setting the HTTP-Header <code>Authorization</code> accordingly.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/restapi_introduction.html#token">&#39;Token authentication Scheme&#39; method</a></li></ul>
+</div>
+<h3 id="authChangePassword">
+Change password operation</h3>
+<p>This operation modifies the password of an existing user account. It can be used in an authenticated context: <code>login</code> parameter, if present, is checked against the current session or taken from it, if absent. It could also be used in an unauthenticated context, for example when the <a href="#authTokenCreation">Create token operation</a> aborts with the HTTP code <code>422</code><em> (Unprocessable entity)</em> with reason: <code>PasswordMustChange</code>.</p><p>It requires the use of:</p><ul>
+<li><p>the EBX&reg; default directory</p></li><li><p>the <code>POST</code> HTTP method</p></li><li><p>the message body containing the structure specified below</p></li></ul>
+<p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/auth/v1/user:changePassword</code></p></blockquote><h4>
+Message body</h4>
+<p> The message body must be defined in the request. It necessarily contains a <code>password</code> and a <code>passwordNew</code>, the <code>login</code> is optional (all are <code>String</code>). </p><p> See the <a href="../data_services/json_others.html#changePasswordRequest">JSON</a> example of a password change and token creation request. </p><h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The password has been changed.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>For one of the following reasons:</p><ul>
+<li><p>the EBX&reg; default directory is required,</p></li><li><p>the syntax is not correct,</p></li><li><p>the HTTP method is not <code>POST</code>,</p></li><li><p>the provided <code>login</code> and the user&#39;s session one mismatch</p></li><li><p>the operation is not supported.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>For the following reason:</p><ul>
+<li><p>The <code>login</code> and/or <code>password</code> is/are incorrect.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>For one of the following reasons:</p><ul>
+<li><p><code>PasswordChangeAbort</code>: <code>passwordNew</code> is empty.</p></li><li><p><code>PasswordChangeAbort</code>: <code>passwordNew</code> is equal to <code>password</code>.</p></li><li><p><code>PasswordChangeAbort</code>: <code>password</code> is incorrect.</p></li><li><p><code>RestrictedAccess</code>: User access is closed for maintenance or other actions (reserved to administrators).</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<h4>
+Response body</h4>
+<p> If HTTP code <code>204 (No content)</code> is returned, then the password has been modified. </p><h3 id="id5s3">
+Revoke token operation</h3>
+<p>This operation requires using the <code>POST</code> HTTP method. No message body is needed.</p><p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/auth/v1/token:revoke</code></p></blockquote><h4>
+Header fields</h4>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>Authorization</code></p></td><td class="ebx_definitionListDefinition"><p>This field is required, <code>tokenType</code> and <code>accessToken</code> fields must have the values returned from the &quot;token create&quot; operation.</p><pre class="brush: plain; toolbar: false; gutter: false;">
+&gt; Authorization: &lt;tokenType&gt; &lt;accessToken&gt;</pre>
+</td></tr>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The token has been revoked successfully.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>For one of the following reasons:</p><ul>
+<li><p>the configuration is not activated,</p></li><li><p>the syntax is incorrect,</p></li><li><p>the HTTP method is not <code>POST</code>,</p></li><li><p>the operation is not supported.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+</tbody>
+</table>
+<h2 id="dataOperation">
+Data operations</h2>
+<p>The <code>data</code> category operations concern the datasets, the dataset fields, tables, records or record fields.</p><p>The <code>data-compact</code> category operations concern the dataset fields, tables, records or record fields.</p><p>The <code>history</code> category operations concern historized content from datasets, tables, records or record fields.</p><p>The <code>form-data</code> category operations concern the dataset fields, records or record fields when constraints must remain valid on content creation or update.</p><p>The <code>form-data-compact</code> category operations concern the dataset fields, records or record fields when constraints must remain valid on content creation or update.</p><p>See <a href="#formDataOperation">Form data operations</a> for more information.</p><h3 id="selectOperation">
+Select operation</h3>
+<p>Select operation returns hierarchical content. This operation may use one of the following methods:</p><ul>
+<li><p><code>GET</code> HTTP method,</p></li><li><p><code>POST</code> HTTP method without message body or</p></li><li><p><code>POST</code> HTTP method with a message body, with <code>:select</code> URL extended action and optionally <a href="../data_services/restapi_introduction.html#inputParameters">session parameters</a>.</p></li></ul>
+<p>URL formats are:</p><ul>
+<li><p><strong>Dataset tree</strong>, depending on <a href="#operationCategory">operation category</a>:</p><p>The <code>data</code> category returns the hierarchy of the selected dataset, this includes group and table nodes.</p><p>The <code>history</code> category returns the hierarchy of the selected history dataset, this includes the pruned groups for history table nodes only.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}[:select]</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Terminal nodes and sub-nodes are not included.</p></div>
+</li><li><p><strong>Dataset node</strong>: the <code>data</code> or <code>data-compact</code> category returns the terminal nodes contained in the selected node.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}[:select]</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Not applicable with the <code>history</code> category.</p></div>
+</li><li><p><strong>Table</strong>, depending on <a href="#operationCategory">operation category</a>:</p><p>the <code>data</code> or <code>data-compact</code> category returns the table content and/or metadata, current page records and URLs for pagination.</p><p>The <code>history</code> category returns the history table content and/or metadata, current page records and URLs for pagination.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}[:select]</code></p></blockquote><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#countOperation">Count operation</a></li><li><a href="#lookupViews">Look up table views operation</a></li></ul>
+</div>
+</li><li><p><strong>Record</strong>, depending on <a href="#operationCategory">operation category</a>:</p><p>the <code>data</code> or <code>data-compact</code> category returns the record content and/or metadata.</p><p>The <code>history</code> category returns history record content and/or metadata.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}[:select]</code></p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}[:select]?primaryKey={xpathExpression}</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The record access by the primary key (<code>primaryKey</code> parameter) is limited to its root node. It is recommended to use the encoded primary key, available in the <code>details</code> field in order to override this limitation. Similarly, for a history record, use the encoded primary key, available in the <code>historyDetails</code> field.</p></div>
+</li><li><p><strong>Field</strong>, depending on <a href="#operationCategory">operation category</a>:</p><p>the <code>data</code> or <code>data-compact</code> category returns the field record content where structure depends on its type.</p><p>The <code>history</code> category returns the field history record content where structure depends on its type.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}/{pathInRecord}[:select]</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The field must be either an association node, a selection node, a terminal node or above.</p></div>
+</li></ul>
+<p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a> (possible values are: <code>data</code> or <code>data-compact</code>).</p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{pathInDataset}</code> corresponds to the path of the dataset node, that can be a group node or a table node.</p></li><li><p><code>{encodedPrimaryKey}</code> corresponds to the encoded representation of the primary key.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/dataservices/rest/RESTEncodingHelper.html"><code>RESTEncodingHelper</code></a></li></ul>
+</div>
+</li><li><p><code>{xpathExpression}</code> corresponds to the record primary key, using the XPath expression.</p></li><li><p><code>{pathInRecord}</code> corresponds to the path starting from the table node.</p></li><li><p><code>:select</code> extended action is required when POST HTTP method is used with a body message.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following parameters are applicable to the select operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>includeContent</code></p></td><td><p id="includeContent">Includes the <code>content</code> field with the content corresponding to the selection.</p><p><code>Boolean</code> type, default value is <code>true</code>.</p></td></tr>
+<tr>
+<td><p><code>includeDetails</code></p></td><td><p id="selectIncludeDetails">Includes the <code>details</code> field in the metadata and in the content, for each indirect reachable resource. The returned value corresponds to its URL resource.</p><p>Type <code>Boolean</code>, default value is <code>true</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#includeMeta">includeMeta</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>includeHistory</code></p></td><td><p id="includeHistory">Includes those fields for a historized content:</p><ul>
+<li><p>The <code>history</code> property in the metadata. The returned value corresponds to a boolean value.</p></li><li><p>The <code>historyDetails</code> property in the content and for each indirectly reachable resource. This point is coupled to the <a href="#selectIncludeDetails">includeDetails</a> parameter. The returned value corresponds to its URL resource.</p></li></ul>
+<p><code>Boolean</code> type, default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The <code>includeHistory</code> parameter is ignored in the <code>history</code> category, the default value is <code>true</code>.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#includeMeta">includeMeta</a></li><li><a href="#selectIncludeDetails">includeDetails</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>includeLabel</code></p></td><td><p id="includeLabel">Includes the <code>label</code> field associated with each simple type <code>content</code>.</p><p>Possible values are:</p><ul>
+<li><p><code>yes</code>: the <code>label</code> is included for the foreign key, enumeration, record and selector values.</p></li><li><p><code>all</code>: the <code>label</code> field is included, as for the <code>yes</code> value and also for the <a href="../data_services/json_extended.html#simpleTypes">Content of simple type</a>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html#displayOccurrence-java.lang.Object-boolean-com.orchestranetworks.instance.ValueContext-java.util.Locale-"><code>SchemaNode.displayOccurrence</code></a></li></ul>
+</div>
+</li><li><p><code>no</code>: the <code>label</code> field is not included (integration use case). </p></li></ul>
+<p><code>String</code> type, default value is <code>yes</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The <code>label</code> field is not included if it is equal to the <code>content</code> field.</p></div>
+</td></tr>
+<tr>
+<td><p><code>includeMeta</code></p></td><td><p id="includeMeta">Includes the <code>meta</code> field corresponding to the description of the structure returned in the <code>content</code> field. </p><p><code>Boolean</code> type, default value is <code>false</code>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_extended.html#metaData">Metadata</a></li><li><a href="#includeHistory">includeHistory</a></li><li><a href="#selectIncludeDetails">includeDetails</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>includeOpenApiDetails</code></p></td><td><p id="includeOpenApiDetails"> Includes the OpenAPI specification URL for each describable node. </p><p>Type <code>Boolean</code>, default value is <code>false</code>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> This query parameter is ignored if the <a href="#selectIncludeDetails">includeDetails</a> one is set to <code>false</code>. </p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#openApiOperation">OpenAPI operations</a></li><li><a href="#selectIncludeDetails">includeDetails</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>includeSelector</code></p></td><td><p id="includeSelector">Includes the <code>selector</code> field in the response, for each indirect reachable resource. The returned value corresponds to its URL resource. </p><p>Type <code>Boolean</code>, default value is <code>true</code>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#selector">selector</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>includeSortCriteria</code></p></td><td><p id="includeSortCriteria">Includes the <code>sortCriteria</code> field corresponding to the list of sort criteria applied. </p><p>The sort criteria parameters are added by using:</p><ul>
+<li><p><a href="#sort">sort</a></p></li><li><p><a href="#sortOnLabel">sortOnLabel</a></p></li><li><p><a href="#viewPublication">viewPublication</a></p></li></ul>
+<p><code>Boolean</code> type, default value is <code>false</code>.</p><p>Example <a href="../data_services/json_extended.html#sortCriteria">JSON</a></p></td></tr>
+<tr>
+<td><p><code>includeTechnicals</code></p></td><td><p id="includeTechnicals">Includes the internal technical data.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored with the <code>history</code> category.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_extended.html#technicals">Technical data</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>includeValidation</code></p></td><td><p id="includeValidation">Includes the validation report corresponding to the selection.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored with the <code>history</code> category.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#selectIncludeDetails">includeDetails</a></li></ul>
+</div>
+</td></tr>
+</tbody>
+</table>
+<h4 id="selectTableParameters">
+Table parameters</h4>
+<p>The following parameters are applicable to tables, associations and selection nodes.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>filter</code></p></td><td><p id="filter">Quick search predicate or complete <a href="../references/xpath_ref.html">XPath predicate</a> expression defines the field values to which the request is applied. If empty, all records will be retrieved.</p><p><code>String</code> type value.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The history code operation value is usable with <code>ebx-operationCode</code> path field from the <code>meta</code> section associated with this field.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#sortByRelevancy">sort by relevancy</a></li></ul>
+</div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/xpath_ref.html#searchPredicate">Search predicate</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>historyMode</code></p></td><td><p id="historyMode">Specifies the filter context applied on table.</p><p><code>String</code> type, possible values are:</p><ul>
+<li><p><code>CurrentDataSpaceOnly</code>: history in current dataspace</p></li><li><p><code>CurrentDataSpaceAndAncestors</code>: history in current dataspace and ancestors</p></li><li><p><code>CurrentDataSpaceAndMergedChildren</code>: history in current dataspace and merged children</p></li><li><p><code>AllDataSpaces</code>: history in all dataspaces</p></li></ul>
+<p>The default value is <code>CurrentDataSpaceOnly</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#historyCategory"><code>history</code></a></li></ul>
+</div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored with the <code>data</code> category.</p></div>
+</td></tr>
+<tr>
+<td><p><code>includeOcculting</code></p></td><td><p id="includeOcculting">Includes the records in occulting mode.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#inheritance">Inheritance</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>primaryKey</code></p></td><td><p id="primaryKey">Search a record by a primary key, using the XPath expression. The <a href="../references/xpath_ref.html">XPath predicate</a> expression should only contain field(s) of the primary key and all of them. Fields are separated by the operator <code>and</code>. A field is represented by one of the following possibilities according to its simple type: </p><ul>
+<li><p>For the <code>date</code>, <code>time</code> or <code>dateTime</code> types: use the <code>date-equal(path, value)</code></p></li><li><p>For other types: indicate the <code>path</code>, the <code>=</code> operator and the <code>value</code>.</p></li></ul>
+<p>Example with a composed primary key: <code>./pk1i=1 and date-equal(./pk2d,&#39;2015-11-13&#39;)</code></p><p>The response will only contain the corresponding record, otherwise an error is returned. Consequently, the other table parameters are ignored (as <a href="#filter">filter</a>, <a href="#viewPublication">viewPublication</a>, <a href="#sort">sort</a>, etc.)</p><p><code>String</code> type value.</p></td></tr>
+<tr>
+<td><p><code>pageFirstRecordFilter</code></p></td><td><p><em>Deprecated since version 5.9.0</em>, replaced by <code>pageRecordFilter</code></p></td></tr>
+<tr>
+<td><p><code>pageRecordFilter</code></p></td><td><p id="pageRecordFilter">Specifies a server side built filter, for pagination, pointing to a record. This filter is <strong>strongly</strong> linked to the <code>pageAction</code> value and should not be modified on the client side. The filter takes the form of a record <a href="../references/xpath_ref.html">XPath predicate</a> expression used to figure out the pagination contexts.</p><p><code>String</code> type.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_common.html#pagination">Pagination</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>pageAction</code></p></td><td><p id="pageAction">Specifies the pagination action to perform from the identifier held by <code>pageRecordFilter</code>.</p><p><code>String</code> type, default value is <code>first</code>. The possible values are:</p><ul>
+<li><p><code>first</code></p></li><li><p><code>previous</code></p></li><li><p><code>next</code></p></li><li><p><code>last</code></p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/RequestPagination.html"><code>RequestPagination</code></a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>pageSize</code></p></td><td><p id="paramPageSize">Specifies the number of records per page.</p><p><code>Integer</code> type, default value is based on the user preferences.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#dataServices">ebx.dataservices.pagination.maxSize.default</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>sort</code></p></td><td><p id="sort">Specifies that the operation result will be sorted according to the specified criteria. The criteria are composed of one or more criterion, the result will be sorted by priority from the left. A criterion is composed of the field path and, optionally, the sorting order (ascending or descending, on value or on label). This parameter can be combined with:</p><ol>
+<li><p>the <a href="#sortOnLabel">sortOnLabel</a> parameter as a new criteria added after the <code>sort</code>.</p></li><li><p>the <a href="#viewPublication">viewPublication</a> parameter as a new criteria added after the <code>sort</code>.</p></li></ol>
+<p>The value structure is as follows:</p><blockquote><p><code>&lt;path1&gt;:&lt;order&gt;;...;&lt;pathN&gt;:&lt;order&gt;</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>&lt;path1&gt;</code> corresponds to the field path in priority <code>1</code>.</p></li><li><p><code>&lt;order&gt;</code> corresponds to the sorting order, with one of the following values:</p><ul>
+<li><p><code>asc</code>: ascending order on value (default),</p></li><li><p><code>desc</code>: descending order on value,</p></li><li><p><code>lasc</code>: ascending order on label,</p></li><li><p><code>ldesc</code>: descending order on label.</p></li></ul>
+</li></ul>
+<p><code>String</code> type, the default value orders according to the primary key fields (ascending order on value).</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The history code operation value is usable with the <code>ebx-operationCode</code> path field from the <code>meta</code> section associated with this field.</p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored when the <a href="#sortByRelevancy">sort by relevancy</a> is activated.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/Request.html#setSortCriteria-com.onwbp.adaptation.RequestSortCriteria-"><code>Request.setSortCriteria</code></a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>sortByRelevancy</code></p></td><td><p id="sortByRelevancy">Specifies that the operation result will be sorted by relevancy, only if this condition is fulfill:</p><ul>
+<li><p> The <a href="../user_data/userdata_viewing.html#quicksearch">Quick Search</a> is activated by specifying an <code>osd:search</code> predicate directly in the <a href="#filter">filter</a> parameter. </p></li></ul>
+<p><code>String</code> type. The possible values are:</p><ul>
+<li><p><code>lasc</code>: ascending order on label,</p></li><li><p><code>ldesc</code>: descending order on label.</p></li></ul>
+<p>If the sort by relevancy is activated, the following parameters are ignored: <a href="#sort">sort</a>, <a href="#sortOnLabel">sortOnLabel</a>, <a href="#sortPriority">sortPriority</a> and sort criteria defined through the <a href="#viewPublication">viewPublication</a>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/xpath_ref.html#searchPredicate">Search predicate</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>sortOnLabel</code></p></td><td><p id="sortOnLabel">Specifies that the operation result will be sorted according to the record label. This parameter can be combined with:</p><ol>
+<li><p>the <a href="#sort">sort</a> parameter as a new criteria added before the <code>sortOnLabel</code>.</p></li><li><p>the <a href="#viewPublication">viewPublication</a> parameter as a new criteria added after the <code>sortOnLabel</code>.</p></li></ol>
+<p>The value structure is as follows:</p><blockquote><p><code>&lt;order&gt;</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>&lt;order&gt;</code> corresponds to the sorting order, with one of the following values:</p><ul>
+<li><p><code>lasc</code>: ascending order on label,</p></li><li><p><code>ldesc</code>: descending order on label.</p></li></ul>
+</li></ul>
+<p>The behavior of this parameter is described in the section <a href="../models/tables.html#defaultLabel">defaultLabel</a>.</p><p><code>String</code> type value.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#sortOnLabelLimitation">Limitation</a></li></ul>
+</div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored when the <a href="#sortByRelevancy">sort by relevancy</a> is activated.</p></div>
+</td></tr>
+<tr>
+<td><p><code>sortPriority</code></p></td><td><p id="sortPriority">Overrides the default priority of sort groups:</p><ul>
+<li><p><code>sort</code></p></li><li><p><code>sortOnLabel</code></p></li><li><p><code>sortFromView</code></p></li></ul>
+<p>Comma separated <code>String</code> type, default value is: <code>sort,sortOnLabel,sortFromView</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored when the <a href="#sortByRelevancy">sort by relevancy</a> is activated.</p></div>
+</td></tr>
+<tr>
+<td><p><code>viewPublication</code></p></td><td><p id="viewPublication">Specifies the name of the published view. This parameter can be combined with:</p><ol>
+<li><p>the <a href="#filter">filter</a> parameter as the logical <code>and</code> operation.</p></li><li><p>the <a href="#sort">sort</a> parameter as a new criteria added before the <code>viewPublication</code>.</p></li><li><p>the <a href="#sortOnLabel">sortOnLabel</a> parameter as new criteria added before the <code>viewPublication</code>.</p></li></ol>
+<p>The behavior of this parameter is described in the section <a href="../references/manager_component_ref.html#viewPublication">EBX&reg; as a Web Component</a>.</p><p><code>String</code> type value.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The sort criteria, defined through this parameter, is ignored when the <a href="#sortByRelevancy">sort by relevancy</a> is activated.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#lookupViews">Look up table views operation</a></li></ul>
+</div>
+</td></tr>
+</tbody>
+</table>
+<h4 id="selectorParameters">
+Selector parameters</h4>
+<p>The following parameters are only applicable to fields that return an enumeration, foreign key or <code>osd:resource</code> (Example <a href="../data_services/json_extended.html#selectorResponse">JSON</a>). By default, a pagination mechanism is always enabled. Some selector&#39;s select operations require input values. Thus, the uses of <code>POST</code> HTTP method <a href="../data_services/json_extended.html#recordRequest">message body</a> allows to provide a record content. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="selector"><code>selector</code></p></td><td><p>Specifies whether:</p><ul>
+<li><p><code>true</code>: returns all possible values (includes their labels)</p></li><li><p><code>false</code>: returns the current values for the current field.</p></li></ul>
+<p><code>Boolean</code> type, default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored with the <code>history</code> category.</p></div>
+</td></tr>
+<tr>
+<td><p id="firstElementIndex"><code>firstElementIndex</code></p></td><td><p>Specifies the index of the first element returned by the selector. Must be an integer higher than or equal to <code>0</code>.</p><p><code>Integer</code> type, default value is <code>0</code>.</p></td></tr>
+<tr>
+<td><p id="selectorPageSize"><code>pageSize</code></p></td><td><p>Specifies the number of elements per page.</p><p><code>Integer</code> type, default value is based on the user preferences.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#dataServices">ebx.dataservices.pagination.maxSize.default</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p id="selectorFilter"><code>selectorFilter</code></p></td><td><p>Specifies the filter of the selector.</p><p><code>String</code> type value, the syntax complies with the <a href="../user_data/userdata_viewing.html#quicksearch">Quick Search</a>. </p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The selected resource is successfully retrieved.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request is incorrect. This occurs when:</p><ul>
+<li><p>The selected field in a record or a dataset is sub-terminal,</p></li><li><p>The XPath predicate of the <code>filter</code> parameter is malformed or contains unfilterable nodes.</p></li><li><p>The XPath predicate of the <code>primaryKey</code> parameter is malformed or is not a record primary key.</p></li><li><p>The sort criteria of the <code>sort</code> parameter have an invalid syntax or contain unsortable nodes.</p></li><li><p><code>pageAction</code> parameter value is not included in allowed values, or <code>pageRecordFilter</code> is malformed or non-existent when selecting next or previous page.</p></li><li><p><code>pageSize</code> parameter value is below 2.</p></li><li><p>The table view for the <code>viewPublication</code> parameter is either hierarchical, non-existent or non-published.</p></li><li><p>The <code>selector</code> parameter is used for a non-enumerated node, or the <code>firstElementIndex</code> is negative, higher than or equal to the number of values.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>The selected resource is hidden for the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource is not found.</p></td></tr>
+</tbody>
+</table>
+<h4 id="selectResponse">
+Response body</h4>
+<p>After a successful dataset, table, record or field selection, the result is returned in the response body. The content depends on the provided parameters and selected data. </p><p> Examples: <a href="../data_services/json_extended.html#DataCategoryResponseBody"> Extended JSON</a>, <a href="../data_services/json_compact.html#DataCategoryResponseBody"> Compact JSON</a>. </p><h3 id="prepareOperation">
+Prepare operations</h3>
+<p>Prepare for creation or duplication operations are used to create a new transient record with an initial content or with the content of a record to duplicate. A transient record corresponds to a content that is not persisted yet. Default values and fields, initialized by table triggers, are considered. Only field values with, at least, read-only access permissions are returned. These operations can optionally return metadata to improve and assist data capture on the client side. Auto-incremented fields are only returned in the metadata. By enabling the selector parameter, a transient record&#39;s field can be queried to the retrieve possible values of an enumerated field, a foreign key, etc. Furthermore, selector&#39;s select operations allows to provide input <a href="../data_services/json_extended.html#recordRequest">record data</a> to manage use cases like getting metadata on a custom programmatic enumeration, etc. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/schema/trigger/TableTrigger.html#handleNewContext-com.orchestranetworks.schema.trigger.NewTransientOccurrenceContext-"><code>TableTrigger.handleNewContext</code></a></li></ul>
+</div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_elementproperties.html#defaultValue">Default value</a></li></ul>
+</div>
+<p>After being modified on the client side, the record can be submitted to be persisted using the built-in <a href="#insertForm">Form insert operation</a> or <a href="#insert">Insert operation</a> operations.</p><p>These prepare operations may use one of the following methods:</p><ul>
+<li><p><code>GET</code> HTTP method,</p></li><li><p><code>POST</code> HTTP method without message body or</p></li><li><p><code>POST</code> HTTP method with a message body and optionally <a href="../data_services/restapi_introduction.html#inputParameters">session parameters</a>.</p></li></ul>
+<p>Available URL formats are:</p><ul>
+<li><p><strong>Prepare for creation</strong></p><ul>
+<li><p><strong>Record:</strong></p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{tablePath}:prepareForCreation</code></p></blockquote></li><li><p><strong>Record field:</strong></p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{tablePath}:prepareForCreation/{pathInRecord}</code></p></blockquote></li></ul>
+</li><li><p><strong>Prepare for duplication</strong></p><ul>
+<li><p><strong>Record:</strong></p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{tablePath}/{encodedPrimaryKey}:prepareForDuplication</code></p></blockquote></li><li><p><strong>Record field:</strong></p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{tablePath}/{encodedPrimaryKey}:prepareForDuplication/{pathInRecord}</code></p></blockquote></li></ul>
+</li></ul>
+<p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a> (possible values are: <code>data</code> or <code>data-compact</code>).</p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{tablePath}</code> corresponds to the table path node.</p></li><li><p><code>{encodedPrimaryKey}</code> corresponds to the encoded representation of the primary key.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/dataservices/rest/RESTEncodingHelper.html"><code>RESTEncodingHelper</code></a></li></ul>
+</div>
+</li><li><p><code>{pathInRecord}</code> corresponds to the path starting from the table node.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following parameters are applicable to the prepare operations:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>includeDetails</code></p></td><td><p id="includeDetailsPrepareOperation">Includes the <code>details</code> field in the metadata and the content, for each indirect reachable resource. The returned value corresponds to its URL resource.</p><p>Type <code>Boolean</code>, default value is <code>true</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#includeMetaPrepareOperation">includeMeta</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td id="includeMetaPrepareOperation"><p><code>includeMeta</code></p></td><td><p>Includes the <code>meta</code> field holding the description of the structure returned in the <code>content</code> field.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_extended.html#metaData">Metadata</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>includeSelector</code></p></td><td><p>Includes the <code>selector</code> field in the content, for each indirect reachable resource. The returned value corresponds to its URL resource.</p><p>Type <code>Boolean</code>, default value is <code>true</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#selector">selector</a></li></ul>
+</div>
+</td></tr>
+</tbody>
+</table>
+<h4>
+Selector parameters</h4>
+<p>The available parameters are similar to the selector operation ones.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectorParameters">Selector parameters</a></li></ul>
+</div>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The selected resource has been successfully retrieved.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request is incorrect. This occurs when:</p><ul>
+<li><p>The selected field in a record is sub-terminal,</p></li><li><p><code>pageSize</code> parameter value is below 2, or is a string different from <code>unbounded</code>.</p></li><li><p>The <code>selector</code> parameter is used for a non-enumerated node, or the <code>firstElementIndex</code> is negative, higher than or equal to the number of values.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>The selected resource is hidden from the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource could not be found.</p></td></tr>
+</tbody>
+</table>
+<h4 id="selectTransientRecordResponse">
+Response body</h4>
+<p>After a successful prepare for a creation or duplication request, the transient record is returned in the response body. The content depends on the provided parameters and selected data. However, it takes a format similar to the select operation record. </p><p> Examples: <a href="../data_services/json_extended.html#DataCategoryRecordResponseBody"> Extended JSON</a>, <a href="../data_services/json_compact.html#DataCategoryRecordResponseBody"> Compact JSON</a>. </p><h3 id="insert">
+Insert operation</h3>
+<p>Insert operation uses the <code>POST</code> HTTP method. A body message is required to specify data. This operation supports the insertion of one or more records in a single transaction. Moreover, it is also possible to update record(s) through parameterization.</p><ul>
+<li><p><strong>Record</strong>: insert a new record or modify an existing one in the selected table.</p></li><li><p><strong>Record table</strong>: insert or modify one or more records in the selected table, while securing a consistent answer. Operations are executed sequentially, in the order defined on the client side. When an error occurs during a table operation, all updates are cancelled and the client receives an error message with detailed information.</p></li></ul>
+<blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a> (possible values are: <code>data</code> or <code>data-compact</code>).</p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{pathInDataset}</code> corresponds to the path of the table node.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following parameters are applicable with the insert operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>includeDetails</code></p></td><td><p id="insertIncludeDetails">Includes the <code>details</code> field in the content to access to the details of the data. The returned value corresponds to its URL resources.</p><p>Type <code>Boolean</code>, the default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only applicable on the <strong>record table</strong>.</p></div>
+</td></tr>
+<tr>
+<td><p><code>includeForeignKey</code></p></td><td><p id="insertIncludeForeignKey">Includes the <code>foreignKey</code> field in the answer for each record. The returned value corresponds to the value of a foreign key field that was referencing this record.</p><p><code>Boolean</code> type, the default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only applicable on the <strong>record table</strong>.</p></div>
+</td></tr>
+<tr>
+<td><p><code>includeLabel</code></p></td><td><p>Includes the <code>label</code> field in the answer for each record.</p><p>Possible values are:</p><ul>
+<li><p><code>yes</code>: the <code>label</code> field is included.</p></li><li><p><code>no</code>: the <code>label</code> field is not included (use case: integration). </p></li></ul>
+<p><code>String</code> type, the default value is <code>no</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only applicable on the <strong>record table</strong>.</p></div>
+</td></tr>
+<tr>
+<td><p><code>updateOrInsert</code></p></td><td><p id="insertUpdateOrInsert">Specifies the behavior when the record to insert already exists:</p><ul>
+<li><p>If <code>true</code>: the existing record is updated with new data.</p><p>For a request on a <strong>record table</strong>, the <code>code</code> field is added to the report in order to specify if this is an insert <code>201</code> or an update <code>204</code>.</p></li><li><p>If <code>false</code> (default value): a client error is returned and the operation is aborted.</p></li></ul>
+<p><code>Boolean</code> type value.</p></td></tr>
+<tr>
+<td><p><code>blockingConstraintsDisabled</code></p></td><td><p id="insertBlockingConstraintsDisabled">Specifies whether blocking constraints are ignored, if so, the operation is committed regardless of the validation error created, otherwise, the operation would be aborted.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><p>See <a href="../models/constraints.html#blocksCommit">Blocking and non-blocking constraints</a> for more information. </p></td></tr>
+</tbody>
+</table>
+<h4 id="insertRequest">
+Message body</h4>
+<p>The request must define a message body. The format depends on the inserted object type:</p><ul>
+<li><p><strong>Record</strong>: similar to the select operation of a record but without the record&#39;s header (example <a href="../data_services/json_extended.html#recordRequest"> Extended JSON</a>, <a href="../data_services/json_compact.html#recordRequest"> Compact JSON</a>). </p></li><li><p><strong>Record table</strong>: Similar to the select operation on a table but without the pagination information (example <a href="../data_services/json_extended.html#recordTableRequest"> Extended JSON</a>, <a href="../data_services/json_compact.html#recordTableRequest"> Compact JSON</a>). </p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#inheritance">Inheritance</a></li></ul>
+</div>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>If the request relates to a <strong>record table</strong>.</p><p>The insert request was applied successfully, an optional report is returned in the response body.</p></td></tr>
+<tr>
+<td><p><code>201</code><em> (Created)</em></p></td><td><p>If the request relates to a <strong>record</strong>.</p><p>A new record has been created, in this case, the header field <code>Location</code> is returned with its resource URL.</p></td></tr>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>If the request relates to a <strong>record</strong>.</p><p>Only available if <code>updateOrInsert</code> is <code>true</code>, an existing record has been successfully updated, in this case, the header field <code>Location</code> is returned with its resource URL.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request is incorrect. This occurs when the body message structure does not comply with what was mentioned in <a href="#insertRequest">Message body</a>.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Authenticated user is not allowed to create a record or the request body contains a read-only field.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource is not found.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p>Concurrent modification, only available if <code>updateOrInsert</code> is <code>true</code>, the <a href="#locking">Optimistic locking</a> is activated and the content has changed in the meantime, it must be reloaded before update.</p></td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>The request cannot be processed. This occurs when:</p><ul>
+<li><p>A blocking validation error occurs (only available if <code>blockingConstraintsDisabled</code> is <code>false</code>).</p></li><li><p>The record cannot be inserted because a record with the same primary key already exists (only available if <code>updateOrInsert</code> is <code>false</code>). </p></li><li><p>The record cannot be inserted because the definition of the primary key is either non-existent or incomplete.</p></li><li><p>The record cannot be updated because the value of the primary key cannot be modified.</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<h4 id="insertResponse">
+Response body</h4>
+<p>The response body format depends on the inserted object type:</p><ul>
+<li><p><strong>Record</strong>: is empty if the operation was executed successfully. The header field <code>Location</code> is returned with its URL resource.</p></li><li><p><strong>Record table</strong>: (optional) contains a table of element(s), corresponding to the insert operation report (example <a href="../data_services/json_common.html#insertRecordsResponse">JSON</a>). This report is automatically included in the response body, if at least one of the following options is set:</p><ul>
+<li><p><code>includeForeignKey</code></p></li><li><p><code>includeLabel</code></p></li><li><p><code>includeDetails</code></p></li></ul>
+</li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#inheritance">Inheritance</a></li></ul>
+</div>
+<h3 id="update">
+Update operation</h3>
+<p>This operation allows the modification of a single dataset or record. The <code>PUT</code> HTTP method must be used. Available URL formats are:</p><ul>
+<li><p><strong>Dataset node</strong>: modifies the values of terminal nodes contained in the selected node.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}</code></p></blockquote></li><li><p><strong>Record</strong>: modifies the content of selected record.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Also available for <code>POST</code> HTTP method. In this case, the URL must point to the table and the parameter <code>updateOrInsert</code> must be set to <code>true</code>.</p></div>
+</li><li><p><strong>Field</strong>: update of a single field of the selected record.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}/{pathInRecord}</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The field must be either a terminal node or above.</p></div>
+</li></ul>
+<p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a> (possible values are: <code>data</code> or <code>data-compact</code>).</p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{pathInDataset}</code> corresponds to the path of the dataset node:</p><ul>
+<li><p>For dataset node operations, this must be any terminal node or above except table node,</p></li><li><p>For record and field operations, this corresponds to the table node.</p></li></ul>
+</li><li><p><code>{encodedPrimaryKey}</code> corresponds to the encoded representation of the primary key.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/dataservices/rest/RESTEncodingHelper.html"><code>RESTEncodingHelper</code></a></li></ul>
+</div>
+</li><li><p><code>{pathInRecord}</code> corresponds to the path starting from the table node.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>Here are the parameters applicable with the update operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>blockingConstraintsDisabled</code></p></td><td><p id="updateBlockingConstraintsDisabled">Specifies whether blocking constraints are ignored, if so, the operation is committed regardless of the validation error created, otherwise, the operation would be aborted.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><p>See <a href="../models/constraints.html#blocksCommit">Blocking and non-blocking constraints</a> for more information. </p></td></tr>
+<tr>
+<td><p><code>byDelta</code></p></td><td><p id="updateByDelta">Specifies the behavior for setting value of nodes that are not defined in the request body. This is described in the <a href="../data_services/json_common.html#insertUpdateOperation">Update modes</a> section. </p><p><code>Boolean</code> type, the default value is <code>true</code>. </p></td></tr>
+<tr>
+<td><p><code>checkNotChangedSinceLastUpdateDate</code></p></td><td><p id="updateCheckNotChangedSinceLastUpdateDate">Timestamp in datetime format used to ensure that the record has not been modified since the last read. Also see the <a href="#locking">Optimistic locking</a> section.</p><p><code>DateTime</code> type value.</p></td></tr>
+</tbody>
+</table>
+<h4 id="updateFormMessageBody">
+Message body</h4>
+<p>The request must define a message body.</p><p>The structure is the same as for:</p><ul>
+<li><p> the dataset node (sample <a href="../data_services/json_extended.html#nodeRequest"> Extended JSON</a>, <a href="../data_services/json_compact.html#nodeRequest"> Compact JSON</a>), </p></li><li><p> the record (sample <a href="../data_services/json_extended.html#recordRequest"> Extended JSON</a>, <a href="../data_services/json_compact.html#recordRequest"> Compact JSON</a>), </p></li><li><p> the record fields (sample <a href="../data_services/json_extended.html#recordFieldsRequest"> Extended JSON</a>, <a href="../data_services/json_compact.html#recordFieldsRequest"> Compact JSON</a>), </p></li></ul>
+<p>depending on the updated scope, by only keeping the <code>content</code> entry.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#inheritance">Inheritance</a></li></ul>
+</div>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The record, field or dataset node has been successfully updated. </p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request is incorrect. This occurs when the body request structure does not comply.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Authenticated user is not allowed to update the specified resource or the request body contains a read-only field.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource is not found.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p>Concurrent modification, the <a href="#locking">Optimistic locking</a> is activated and the content has changed in the meantime, it must be reloaded before the update.</p></td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>The request cannot be processed. This occurs when:</p><ul>
+<li><p>A blocking validation error occurs (only available if <code>blockingConstraintsDisabled</code> is <code>false</code>).</p></li><li><p>The record cannot be updated because the value of the primary key cannot be modified.</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<h3 id="deleteOperation">
+Delete operation</h3>
+<p>The operation uses the <code>DELETE</code> HTTP method.</p><p>Two URL formats are available:</p><ul>
+<li><p><strong>Record</strong>: delete a record specified in the URL.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/data/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}</code></p></blockquote></li><li><p><strong>Record table</strong>: deletes several records in the specified table, while providing a consistent answer. This mode requires a body message containing a record table. The deletions are executed sequentially, according to the order defined in the table. When an error occurs during a table operation, all deletions are cancelled and an error message is displayed with detailed information.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/data/v1/{dataspace}/{dataset}/{pathInDataset}</code></p></blockquote></li></ul>
+<p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{pathInDataset}</code> corresponds to the path of the table node.</p></li><li><p><code>{encodedPrimaryKey}</code> corresponds to the encoded representation of the primary key.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/dataservices/rest/RESTEncodingHelper.html"><code>RESTEncodingHelper</code></a></li></ul>
+</div>
+</li></ul>
+<p>In a child dataset context, this operation modifies the <code>inheritanceMode</code> property value of the record as follows:</p><ul>
+<li><p>A record with inheritance mode set to <code>inherit</code> or <code>overwrite</code> becomes <code>occult</code>.</p></li><li><p>A record with inheritance mode set to <code>occult</code> becomes <code>inherit</code> if the <code>inheritIfInOccultingMode</code> operation parameter is set to <code>true</code> or is undefined, otherwise there is no change.</p></li><li><p>A record with inheritance mode set to <code>root</code> is simply deleted.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#inheritance">Inheritance</a></li></ul>
+</div>
+<h4>
+Parameters</h4>
+<p>Here are the following parameters applicable with delete operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>includeOcculting</code></p></td><td><p>Includes occulted records.</p><p><code>Boolean</code> type, the default value is <code>false</code>.</p></td></tr>
+<tr>
+<td><p><code>inheritIfInOccultingMode</code></p></td><td><p><em>Deprecated since version 5.8.1</em> While it remains available for backward compatibility reasons, it will eventually be removed in a future version. </p><p>Inherits the record if it is in occulting mode.</p><p><code>Boolean</code> type, the default value is <code>true</code>.</p></td></tr>
+<tr>
+<td><p><code>checkNotChangedSinceLastUpdateDate</code></p></td><td><p id="deleteCheckNotChangedSinceLastUpdateDate">Timestamp in datetime format used to ensure that the record has not been modified since the last read. Also see the <a href="#locking">Optimistic locking</a> section.</p><p><code>DateTime</code> type value.</p></td></tr>
+<tr>
+<td><p><code>blockingConstraintsDisabled</code></p></td><td><p id="deleteBlockingConstraintsDisabled">Specifies whether blocking constraints are ignored, if so, the operation is committed regardless of the validation error created, otherwise, the operation would be aborted.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><p>See <a href="../models/constraints.html#blocksCommit">Blocking and non-blocking constraints</a> for more information. </p></td></tr>
+</tbody>
+</table>
+<h4 id="deleteRequest">
+Message body</h4>
+<p>The request must define a message body only when deleting several records:</p><ul>
+<li><p><strong>Record table</strong>: The message contains a table of elements related to a record, with for each element one of the following properties:</p><ul>
+<li><p><code>details</code>: corresponds to the record URL, it is returned by the select operation.</p></li><li><p><code>primaryKey</code>: corresponds to the primary key of the record, using the XPath expression.</p></li><li><p><code>foreignKey</code>: corresponds to the value that a foreign key would have if it referred to a record.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/PrimaryKey.html"><code>PrimaryKey</code></a></li></ul>
+</div>
+<p> Examples: <a href="../data_services/json_extended.html#deleteMultipleRecordsRequest"> Extended JSON</a>, <a href="../data_services/json_compact.html#deleteMultipleRecordsRequest"> Compact JSON</a>. </p></li></ul>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The operation has been executed successfully. A report is returned in the response body.</p></td></tr>
+<tr>
+<td><p><code>400</code><em>(Bad request)</em></p></td><td><p>The request is incorrect. This occurs when:</p><ul>
+<li><p>the structure of the message body does not comply with <a href="#deleteRequest">Message body</a>.</p></li><li><p>the message body contains a record table while the URL specifies a record.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Authenticated user is not allowed to delete or occult the specified record.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected record is not found. In the child dataset context, it should be necessary to use the <code>includeOcculting</code> parameter.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p>Concurrent modification, The <a href="#locking">Optimistic locking</a> is activated and the content has changed in the meantime, it must be reloaded before deleting the record.</p><p>The parameter value <code>checkNotChangedSinceLastUpdateDate</code> exists but does not correspond to the actual last update date of the record.</p></td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>Only available if <code>blockingConstraintsDisabled</code> is <code>false</code>, the operation fails because of a blocking validation error.</p></td></tr>
+</tbody>
+</table>
+<h4 id="deleteResponse">
+Response body</h4>
+<p>After a successful record deletion or occulting, a report is returned in the response body. It contains the number of deleted, occulted and inherited record(s).</p><p>Example <a href="../data_services/json_common.html#deleteRecordsResponse">JSON</a>.</p><h3 id="countOperation">
+Count operation</h3>
+<p>Count operation may use one of the following methods:</p><ul>
+<li><p><code>GET</code> HTTP method,</p></li><li><p><code>POST</code> HTTP method without message body or</p></li><li><p><code>POST</code> HTTP method with message body but without <code>content</code> field on root.</p></li></ul>
+<p>The URL formats are:</p><ul>
+<li><p><strong>Dataset node</strong>: the <code>data</code> category returns the number of terminal nodes contained in the selected node.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}:count</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Not applicable with the <code>history</code> category.</p></div>
+</li><li><p><strong>Table</strong> depending on the <a href="#operationCategory">operation category</a>:</p><p>the <code>data</code> category returns the number of table records.</p><p>The <code>history</code> category returns the number of table history records.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}:count</code></p></blockquote></li><li><p><strong>Field</strong> depending on the <a href="#operationCategory">operation category</a>:</p><p>the <code>data</code> category counts the record fields.</p><p>The <code>history</code> category counts the history record field.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}/{pathInRecord}:count</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The field must be either an association node, a selection node, a terminal node or above.</p></div>
+</li></ul>
+<p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a> (possible values are: <code>data</code> or <code>data-compact</code>).</p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{pathInDataset}</code> corresponds to the path of the dataset node, that can be a group node or a table node.</p></li><li><p><code>{encodedPrimaryKey}</code> corresponds to the encoded representation of the primary key.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/dataservices/rest/RESTEncodingHelper.html"><code>RESTEncodingHelper</code></a></li></ul>
+</div>
+</li><li><p><code>{pathInRecord}</code> corresponds to the path starting from the table node.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following parameters are applicable to the count operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>count</code></p></td><td><p>This parameter is deprecated since 6.0.0 and has been replaced by the extended action from the URL. It is used to specify whether this is a count operation or a selection operation.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Table parameters</h4>
+<p>The following parameters are applicable to tables, associations and selection nodes.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>filter</code></p></td><td><p id="filterCount"><a href="../references/xpath_ref.html">XPath predicate</a> expression defines the field values to which the request is applied. If empty, all records will be considered.</p><p><code>String</code> type value.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The history code operation value is usable with the <code>ebx-operationCode</code> path field from the <code>meta</code> section associated with this field.</p></div>
+</td></tr>
+<tr>
+<td><p><code>historyMode</code></p></td><td><p>Specifies the filter context applied on table.</p><p><code>String</code> type, possible values are:</p><ul>
+<li><p><code>CurrentDataSpaceOnly</code>: history in current dataspace</p></li><li><p><code>CurrentDataSpaceAndAncestors</code>: history in current dataspace and ancestors</p></li><li><p><code>CurrentDataSpaceAndMergedChildren</code>: history in current dataspace and merged children</p></li><li><p><code>AllDataSpaces</code>: history in all dataspaces</p></li></ul>
+<p>The default value is <code>CurrentDataSpaceOnly</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#historyCategory"><code>history</code></a></li></ul>
+</div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored with the <code>data</code> category.</p></div>
+</td></tr>
+<tr>
+<td><p><code>includeOcculting</code></p></td><td><p>Includes the records in occulting mode.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p></td></tr>
+<tr>
+<td><p><code>viewPublication</code></p></td><td><p id="viewPublicationCount">Specifies the name of the published view to be considered during the count execution. This parameter can be combined with:</p><ul>
+<li><p>the <a href="#filterCount">filter</a> parameter as the logical <code>and</code> operation.</p></li></ul>
+<p>The behavior of this parameter is described in the section <a href="../references/manager_component_ref.html#viewPublication">EBX&reg; as a Web Component</a>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Selector parameters</h4>
+<p>The following parameters are only applicable to fields that return an enumeration, foreign key or <code>osd:resource</code>.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>selector</code></p></td><td><p>Specifies whether:</p><ul>
+<li><p><code>true</code>: returns the number of all possible values</p></li><li><p><code>false</code>: returns the number of possible values for the current field.</p></li></ul>
+<p><code>Boolean</code> type, default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This parameter is ignored with the <code>history</code> category.</p></div>
+</td></tr>
+<tr>
+<td><p><code>selectorFilter</code></p></td><td><p>Specifies the filter of the selector.</p><p><code>String</code> type value, the syntax complies with the <a href="../user_data/userdata_viewing.html#quicksearch">Quick Search</a>. </p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The selected resource is successfully counted.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request is incorrect. This occurs when:</p><ul>
+<li><p>The selected field in a record or a dataset is sub-terminal.</p></li><li><p>The selected dataset field is a dataset tree.</p></li><li><p>The XPath predicate of the <code>filter</code> parameter is malformed or contains unfilterable nodes.</p></li><li><p>The table view for the <code>viewPublication</code> parameter is either hierarchical, non-existent or non-published.</p></li><li><p>The <code>selector</code> parameter is used for a non-enumerated node, or the <code>firstElementIndex</code> is negative, higher than or equal to the number of values.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>The selected resource is hidden for the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource is not found.</p></td></tr>
+</tbody>
+</table>
+<h3 id="locking">
+Optimistic locking</h3>
+<p>To prevent an update or a delete operation on a record that was previously read but may have changed in the meantime, an optimistic locking mechanism is provided.</p><p>To enable optimistic locking, a select request must set the parameter <code>includeTechnicals</code> to <code>true</code>. </p><p> See <a href="../data_services/json_extended.html#technicals">Technical data</a> for more information. </p><p>The value of the <code>lastUpdateDate</code> property must be included in the following update request. If the record has been changed since the specified time, the update or delete will be cancelled.</p><ul>
+<li><p><strong>Record</strong>: update whole or partial content of the selected record.</p><p>The property <code>lastUpdateDate</code> should be added to the request body to prevent update of a modified record. </p><p> See the <a href="../data_services/json_extended.html#recordRequest">JSON</a> example of a record. </p></li><li><p><strong>Field</strong>: update of a single field of the selected record.</p><p>The property value <code>lastUpdateDate</code> must be declared in the request URL by the <code>checkNotChangedSinceLastUpdateDate</code> parameter to prevent the update of a modified record.</p></li></ul>
+<p>The property value <code>lastUpdateDate</code> can also be used in the request URL <code>checkNotChangedSinceLastUpdateDate</code> parameter to prevent deletion on a modified record.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The <code>checkNotChangedSinceLastUpdateDate</code> parameter may be used more than once but only on the same record. This implies that if the request URL returns more than one record, the request will fail.</p></div>
+<h3 id="inheritance">
+Inheritance</h3>
+<p> EBX&reg; inheritance features are supported by built-in RESTful services using specific properties and automatic behaviors. In most cases, the inheritance state will be automatically computed by the server according to the record and field definition or content. Every action that modifies a record or a field may have an indirect impact on those states. In order to fully handle the inheritance life cycle, direct modifications of the state are allowed under certain conditions. Forbidden or incoherent explicit alteration attempts are ignored. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/inheritance.html">Inheritance and value resolution</a></li></ul>
+</div>
+<h4>
+Record inheritance life cycle in built-in RESTful services</h4>
+<p><img alt="/dataservices_inheritance_state.png" src="../resources/images/dataservices/dataservices_inheritance_state.png"></img></p><h4 id="inheritanceProperties">
+Inheritance properties</h4>
+<p> The following table describes properties related to the EBX&reg; inheritance features. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Property</strong></p></th><th><p><strong>Location</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>inheritance</code></p></td><td><p> record or table metadata </p></td><td><p> Specifies if dataset inheritance is activated for the table. The value is computed from the data model and cannot be modified through built-in RESTful services. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_extended.html#metaDataTableInheritance"><code>inheritance</code> property in metadata. </a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p><code>inheritedField</code></p></td><td><p> field metadata </p></td><td><p> Specifies the field&#39;s value source. The source data are directly taken from the data model and cannot be modified through built-in RESTful services. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_extended.html#metaDataInheritanceField"><code>inheritedField</code> property in metadata. </a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td rowspan="2"><p><code>inheritanceMode</code></p></td><td><p> record in child dataset </p></td><td><p> Specifies the record&#39;s inheritance state. To set a record&#39;s inheritance from <code>overwrite</code> to <code>inherit</code>, its <code>inheritanceMode</code> value must be explicitly provided in the request. In this specific case, the <code>content</code> property will be ignored if present. <code>occult</code> and <code>root</code> explicit values are always ignored. An <code>overwrite</code> explicit value without a <code>content</code> property is ignored. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Inherited record&#39;s fields are necessarily <code>inherit</code>. </p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Root records in child dataset will always be <code>root</code>. </p></div>
+<p> Possible values are: <code>root</code>, <code>inherit</code>, <code>overwrite</code>, <code>occult</code>. For more information, see <a href="../references/inheritance.html#dataSetInheritanceRecords">Record lookup mechanism</a>. </p></td></tr>
+<tr>
+<td><p> field in <code>overwrite</code> record </p></td><td><p> Specifies the field&#39;s inheritance state. To set a field&#39;s inheritance to <code>inherit</code>, its <code>inheritanceMode</code> value must be explicitly provided in the request. The <code>content</code> property will be ignored in this case. <code>overwrite</code> explicit value without a <code>content</code> property is ignored. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><code>inheritanceMode</code> at field level does not appear for <code>root</code>, <code>inherit</code> and <code>occult</code> records. </p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><code>inheritedFieldMode</code> and <code>inheritanceMode</code> properties cannot be both set on the same field. </p></div>
+<p> Possible values are: <code>inherit</code>, <code>overwrite</code>. For more information, see <a href="../references/inheritance.html">Inheritance and value resolution</a>. </p></td></tr>
+<tr>
+<td><p><code>inheritedFieldMode</code></p></td><td><p> inherited field </p></td><td><p> Specifies the inherited field&#39;s inheritance state. To set a field&#39;s inheritance to <code>inherit</code>, its <code>inheritedFieldMode</code> value must be explicitly provided in the request. The <code>content</code> property will be ignored in this case. <code>overwrite</code> explicit values without a <code>content</code> property are ignored. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><code>inheritedFieldMode</code> and <code>inheritanceMode</code> properties cannot be both set on the same field. </p></div>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><code>inheritedFieldMode</code> has priority over the <code>inheritanceMode</code> property. </p></div>
+<p> Possible values are: <code>inherit</code>, <code>overwrite</code>. For more information, see <a href="../references/inheritance.html#fieldInheritanceLookup">Value lookup mechanism</a>. </p></td></tr>
+</tbody>
+</table>
+<h3 id="lookupViews">
+Look up table views operation</h3>
+<p>The &quot;look up published views&quot; operation may use one of the following methods:</p><ul>
+<li><p><code>GET</code> HTTP method or</p></li><li><p><code>POST</code> HTTP method without message body.</p></li></ul>
+<p>The URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/&lt;ebx-dataservices&gt;/rest/data/v1/{dataspace}/{dataset}/{tablePath: [^:]*}:publishedViews</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the image identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{tablePath: [^:]*}</code> corresponds to the table path.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>No specific parameter for this operation.</p><h4>
+Codes HTTP</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>Information successfully returned.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>Incorrect request, contains an error.</p></td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>The specified resource read permission has been denied to the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource cannot be found.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Response body</h4>
+<p>It contains a collection of authorized view information (including the access URI).</p><p>Example: <a href="../data_services/json_others.html#viewsSearchResponse">JSON</a>.</p><h2 id="formDataOperation">
+Form data operations</h2>
+<p>The form-data category operations concern the dataset fields, records or record fields when creating or modifying content must comply with constraints on user form submit. They are intended to be used in a user form management context.</p><p> The request body of an operation is very similar to the equivalent operation of the <code>data</code> category in the sens that an incoming data validation feature and a result report has been added to the response. The data validation can not be deactivated, a parameter <code>blockingConstraintsDisabled</code> from the <code>data</code> category operations is not applicable. The validation phase fails when, at least, one constraint with a <code>blocksCommit</code> level set to <code>onInsertUpdateOrDelete</code> or <code>onUserSubmit-checkModifiedValues</code> is violated. </p><p> See <a href="../models/constraints.html#blocksCommit">Blocking and non-blocking constraints</a> for more information. </p><h3 id="insertForm">
+Form insert operation</h3>
+<p>Insert form uses the <code>POST</code> HTTP method and requires a message body holding the data. This operation supports one or multiple records in a single transaction. Moreover, it is also possible to update record(s).</p><ul>
+<li><p><strong>Record</strong>: validate and insert a new record or modify an existing one in the selected table.</p></li><li><p><strong>Record table</strong>: validate and insert or modify one or more records in the selected table, while securing a consistent response. Operations are executed sequentially, in the order defined on the client side. When an error occurs during a table operation, all updates are cancelled and the client receives an error message with detailed information. The maximum number of records is limited to 100.</p></li></ul>
+<blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a> (possible values are: <code>form-data</code> or <code>form-data-compact</code>).</p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier. </p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{pathInDataset}</code> corresponds to the path of the table node. </p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following parameters are applicable with this insert operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>includeDetails</code></p></td><td><p id="formDataIncludeDetails">Includes the <code>details</code> field in the answer to access the data details. The returned value corresponds to its URL resources.</p><p>Type <code>Boolean</code>, the default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only applicable for a multiple records insertion.</p></div>
+</td></tr>
+<tr>
+<td><p><code>includeForeignKey</code></p></td><td><p id="formDataIncludeForeignKey">Includes the <code>foreignKey</code> field in the answer for each record. The returned value corresponds to the value of a foreign key field that was referencing this record.</p><p><code>Boolean</code> type, the default value is <code>false</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only applicable for a multiple records insertion.</p></div>
+</td></tr>
+<tr>
+<td><p><code>includeLabel</code></p></td><td><p id="formDataIncludeLabel">Includes the <code>label</code> field in the answer for each record.</p><p>Possible values are:</p><ul>
+<li><p><code>yes</code>: the <code>label</code> field is included.</p></li><li><p><code>no</code>: the <code>label</code> field is not included (use case: integration). </p></li></ul>
+<p><code>String</code> type, the default value is <code>no</code>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Only applicable for a multiple records insertion.</p></div>
+</td></tr>
+<tr>
+<td><p><code>updateOrInsert</code></p></td><td><p id="formDataUpdateOrInsert">Specifies the behavior when the record to insert already exists:</p><ul>
+<li><p>If <code>true</code>: the existing record is updated with new data.</p></li><li><p>If <code>false</code>: a client error is returned and the operation is aborted.</p></li></ul>
+<p><code>Boolean</code> type, default value is <code>false</code>.</p></td></tr>
+</tbody>
+</table>
+<h4 id="insertFormRequest">
+Message body</h4>
+<p>The request must define a message body. The format is similar to the <code>data</code> category insert operation&#39;s <a href="#insertRequest">message body</a>. </p><h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><ul>
+<li><p> The request body holds multiple <strong>records</strong>: the insert/update request was applied successfully, a report is returned in the response body. </p></li><li><p> The request body holds only one <strong>record</strong> and <code>updateOrInsert</code> is <code>true</code>: the update request was applied successfully, a report is returned in the response body. </p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>201</code><em> (Created)</em></p></td><td><p> The request body holds only one non-existing <strong>record</strong>: a new record has been created and the header field <code>Location</code> is returned with its resource URL. Moreover, a report is returned in the response body. </p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p> The request is incorrect. This occurs when the body message structure: </p><ul>
+<li><p>does not comply with what was mentioned in <a href="#insertFormRequest">Message body</a>. </p></li><li><p>complies with what was mentioned in <a href="#insertFormRequest">Message body</a>, but number of record insert/update more than 100. </p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Authenticated user is not allowed to create a record or the request body contains a read-only field. </p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource is not found.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p>Concurrent modification, only available if <code>updateOrInsert</code> is <code>true</code>, the <a href="#locking">Optimistic locking</a> is activated and the content has changed in the meantime, it must be reloaded before update. </p></td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>The request cannot be processed. This occurs when:</p><ul>
+<li><p>A blocking constraint has been violated. In this case an appropriate report is returned in the response body. </p></li><li><p>The record cannot be inserted because another one with the same primary key already exists (only available if <code>updateOrInsert</code> is <code>false</code>). </p></li><li><p>The record cannot be inserted because the definition of the primary key is either non-existent or incomplete. </p></li><li><p>The record cannot be updated because the value of the primary key cannot be modified. </p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<h4 id="insertFormResponse">
+Response body</h4>
+<p>The response body will always hold a validation report. However in case of failure, the response body corresponds to a JSON <code>Exception handling</code> response. </p><ul>
+<li><p><strong>Record</strong>: The header field <code>Location</code> is returned with its URL resource. The validation report will be include in response body. </p></li><li><p><strong>Record table</strong>: (optional) Contains a list of validations report for each element, corresponding to the multiple validation report. </p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_common.html#formDataCategory">Form data category</a></li></ul>
+</div>
+<h3 id="updateForm">
+Form update operation</h3>
+<p>As for the <code>data</code> or <code>data-compact</code> category update operation, it allows the modification of a single dataset or record and the <code>PUT</code> HTTP method must be used. Available URL formats are: </p><ul>
+<li><p><strong>Dataset node</strong>: validates and modifies the values of terminal nodes contained in the selected node.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}</code></p></blockquote></li><li><p><strong>Record</strong>: validates and modifies the content of the selected record.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Also available for <code>POST</code> HTTP method. In this case, the URL must point to the table and the parameter <code>updateOrInsert</code> must be set to <code>true</code>.</p></div>
+</li><li><p><strong>Field</strong>: validates and update of a single field of the selected record.</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/{category}/v1/{dataspace}/{dataset}/{pathInDataset}/{encodedPrimaryKey}/{pathInRecord}</code></p></blockquote><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The field must be either a terminal node or above.</p></div>
+</li></ul>
+<p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to the <a href="#operationCategory">operation category</a> (possible values are: <code>form-data</code> or <code>form-data-compact</code>).</p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier.</p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier.</p></li><li><p><code>{pathInDataset}</code> corresponds to the path of the dataset node:</p><ul>
+<li><p>for dataset node operations, this must be any terminal node or above except table node,</p></li><li><p>for record and field operations, this corresponds to the table node.</p></li></ul>
+</li><li><p><code>{encodedPrimaryKey}</code> corresponds to the encoded representation of the record primary key.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/dataservices/rest/RESTEncodingHelper.html"><code>RESTEncodingHelper</code></a></li></ul>
+</div>
+</li><li><p><code>{pathInRecord}</code> corresponds to the path starting from the table node.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>Here are the parameters applicable with the update operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>byDelta</code></p></td><td><p id="updateFormByDelta">Specifies the behavior for setting value of nodes that are not defined in the request body. This is described in the <a href="../data_services/json_common.html#insertUpdateOperation">Update modes</a> section. </p><p><code>Boolean</code> type, the default value is <code>true</code>. </p></td></tr>
+<tr>
+<td><p><code>checkNotChangedSinceLastUpdateDate</code></p></td><td><p>Timestamp in datetime format used to ensure that the record has not been modified since the last read. Also see the <a href="#locking">Optimistic locking</a> section.</p><p><code>DateTime</code> type value.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Message body</h4>
+<p>The request must define a message body. The format is the same as for the <code>data</code> category update operation <a href="#updateFormMessageBody">message body</a>.</p><h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em>(Ok)</em></p></td><td><p> The update request was applied successful and a report is returned in the response body. </p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p> The request is incorrect. This occurs when the body request structure does not comply. </p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p> Authenticated user is not allowed to update the specified resource or the request body contains a read-only field. </p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource is not found.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p> Concurrent modification, the <a href="#locking">Optimistic locking</a> is activated and the content has changed in the meantime, it must be reloaded before the update. </p></td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p> The request cannot be processed. This occurs when:</p><ul>
+<li><p>A blocking constraint has been violated. In this case an appropriate report is returned in the response body. </p></li><li><p>The record cannot be updated because the value of the primary key cannot be modified. </p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<h4 id="updateFormResponse">
+Response body</h4>
+<p>The response body has the same format and behavior as the <a href="#insertFormResponse">Form Insert operation</a>.</p><h2 id="dataspaceOperation">
+Beta feature: Dataspace operations</h2>
+<p>These operations perform a selection or life cycle management over dataspaces.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_dataspace/userdataspace_intro.html">Dataspaces</a></li></ul>
+</div>
+<h3 id="dataspaceSelect">
+Beta feature: Select dataspaces or snapshots</h3>
+<p>Select operation may use one of the following methods: <code>GET</code> or <code>POST</code>. A pagination mechanism is always enabled.</p><p>URL formats are:</p><ul>
+<li><p><strong>Root</strong>: returns root dataspaces</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/data/v1/</code></p></blockquote></li><li><p><strong>Children</strong>: returns children dataspaces of a given dataspace</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/data/v1/{dataspace}:children</code></p></blockquote></li><li><p><strong>Snapshots</strong>: returns snapshots of a given dataspace</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/data/v1/{dataspace}:snapshots</code></p></blockquote></li><li><p><strong>Information</strong>: returns a dataspace, or a snapshot, information</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/data/v1/{dataspace}:information</code></p></blockquote></li></ul>
+<p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace&#39;s identifier or to <code>V</code> followed by the snapshot&#39;s identifier.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following query parameters are applicable to <strong>Root</strong>, <strong>Children</strong> and <strong>Snapshots</strong> operations.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="includeClosed"><code>includeClosed</code></p></td><td><p>Includes the closed dataspaces to the selection.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p></td></tr>
+<tr>
+<td><p id="includeAdministration"><code>includeAdministration</code></p></td><td><p>Includes the administration dataspaces to the selection.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p></td></tr>
+<tr>
+<td><p id="dataspacePageRecordFilter"><code>pageRecordFilter</code></p></td><td><p>Specifies a server side built filter, for pagination, pointing to a record. This filter is <strong>strongly</strong> linked to the <code>pageAction</code> value and should not be modified on the client side. The filter takes the form of a record <a href="../references/xpath_ref.html">XPath predicate</a> expression used to figure out the pagination contexts.</p><p><code>String</code> type.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_common.html#pagination">Pagination</a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p id="dataspacePageAction"><code>pageAction</code></p></td><td><p>Specifies the pagination action to perform from the identifier held by <code>pageRecordFilter</code>.</p><p><code>String</code> type, default value is <code>first</code>. The possible values are:</p><ul>
+<li><p><code>first</code></p></li><li><p><code>previous</code></p></li><li><p><code>next</code></p></li><li><p><code>last</code></p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/onwbp/adaptation/RequestPagination.html"><code>RequestPagination</code></a></li></ul>
+</div>
+</td></tr>
+<tr>
+<td><p id="dataspacePageSize"><code>pageSize</code></p></td><td><p>Specifies the maximum number of records per page.</p><p><code>Integer</code> type, default value is based on the user preferences. The value should be between <code>2</code> and <code>100</code>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em> (OK)</em></p></td><td><p>The request has been successfully handled.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request is incorrect. This occurs when:</p><ul>
+<li><p><code>pageAction</code> parameter&#39;s value is not included in allowed values.</p></li><li><p><code>pageRecordFilter</code> is malformed or non-existent when selecting next or previous page.</p></li><li><p><code>pageSize</code> parameter&#39;s value is out of bound.</p></li></ul>
+</td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>The selected resource is hidden from the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The selected resource could not be found.</p></td></tr>
+</tbody>
+</table>
+<h4>
+Response body</h4>
+<p>After a successful selection, the result is returned in the response body. The content depends on the provided parameters and selected data.</p><p>The format is linked to the selected object type:</p><ul>
+<li><p>For <strong>Root</strong>, <strong>Children</strong>, or <strong>Snapshots</strong>, see the <a href="../data_services/json_others.html#dataspacesResponse">JSON</a> example.</p></li><li><p>For <strong>Information</strong>, see the <a href="../data_services/json_others.html#dataspaceInformationResponse">JSON</a> example.</p></li></ul>
+<h3 id="dataspaceCreate">
+Beta feature: Create a child dataspace or a snapshot</h3>
+<p>Creates the dataspace or snapshot as specified. This operation use the <code>POST</code> method with a body request (with no specific query parameter).</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/instance/Repository.html#createHome-com.orchestranetworks.instance.HomeCreationSpec-com.orchestranetworks.service.Session-"><code>Repository.createHome</code></a></li></ul>
+</div>
+<p>URL format are:</p><ul>
+<li><p><strong>Dataspace</strong>:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/.../data/v1/{dataspace}:createDataspace</code></p></blockquote></li><li><p><strong>Snapshot</strong>:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/.../data/v1/{dataspace}:createSnapshot</code></p></blockquote></li></ul>
+<p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier.</p></li></ul>
+<h4>
+Request body</h4>
+<p>The body specifies the features of the dataspace or the snapshot to create.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/instance/HomeCreationSpec.html"><code>HomeCreationSpec</code></a></li></ul>
+</div>
+<p>See the <a href="../data_services/json_others.html#dataspaceCreateChild">JSON</a> example.</p><h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>201</code><em> (Created)</em></p></td><td><p>A new dataspace or snapshot has been created, in this case, the header field <code>Location</code> is returned with its resource URL.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request body is not well-formed or contains invalid content.</p></td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Permission was denied to create the specified resource for the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The resource specified in the request body cannot be found.</p></td></tr>
+<tr>
+<td><p><code>500</code><em> (Internal error)</em></p></td><td><p>Unexpected error thrown by the application. Error details can usually be found in EBX&reg; logs.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id8s3">
+Beta feature: Locking a dataspace</h3>
+<p>Locks the specified dataspace. If the dataspace is already locked:</p><ul>
+<li><p>by the same user, then the lock is kept,</p></li><li><p>by another user and during the wait duration, then the lock is acquired,</p></li><li><p>otherwise, the lock is rejected.</p></li></ul>
+<p>This operation uses the <code>POST</code> method and consumes <code>Content-Type</code> header set to:</p><ul>
+<li><p><code>application/x-www-form-urlencoded</code>: with HTTP parameters in the body or</p></li><li><p><code>application/json</code>: with HTTP parameters in the URL and <a href="../data_services/restapi_introduction.html#inputParameters">Session parameters</a> into JSON body.</p></li></ul>
+<p>When it succeeds, no response body is returned.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/permissions.html#privilegesOnDataSpace">Permissions for locking or unlocking a dataspace</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/service/extensions/LockSpec.html#lock-com.onwbp.adaptation.AdaptationHome-com.orchestranetworks.service.Session-"><code>LockSpec.lock</code></a></li></ul>
+</div>
+<p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/.../data/v1/{dataspace}:lock</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following query parameters are applicable to the operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="durationToWaitForLock"><code>durationToWaitForLock</code></p></td><td><p>When the dataspace is locked by another user, specifies the maximum duration to wait for acquiring the lock.</p><p>The duration is specified in seconds. If the value is set to <code>0</code>, then the locking attempt is perform immediately. Due to several reasons, the wait duration can not exceed <code>60</code> seconds. Otherwise, the value is overwritten with its maximum value.</p><p><code>Integer</code> type, default value is <code>0</code>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The request has been successfully handled but no response body is returned.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request URL or body is not well-formed or contains invalid content.</p></td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Permission was denied to lock the specified resource for the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The resource specified in the URL cannot be found.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p>The resource is already locked by another user, the lock is rejected after <code>durationToWaitForLock</code> parameter&#39;s value.</p></td></tr>
+<tr>
+<td><p><code>500</code><em> (Internal error)</em></p></td><td><p>Unexpected error thrown by the application. Error details can usually be found in EBX&reg; logs.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id8s4">
+Beta feature: Unlocking a dataspace</h3>
+<p>Unlocks the specified dataspace. If the dataspace is:</p><ul>
+<li><p>locked by the same user, then the lock is released,</p></li><li><p>locked by another user, the current user is an administrator, and the <code>forceByAdministrator</code> query parameter is set to <code>true</code>, then the lock is released,</p></li><li><p>not locked, the lock status is unchanged,</p></li><li><p>otherwise, the unlock is rejected.</p></li></ul>
+<p>This operation uses the <code>POST</code> method and consumes <code>Content-Type</code> header set to:</p><ul>
+<li><p><code>application/x-www-form-urlencoded</code>: with HTTP parameters in the body or</p></li><li><p><code>application/json</code>: with HTTP parameters in the URL and <a href="../data_services/restapi_introduction.html#inputParameters">Session parameters</a> into JSON body.</p></li></ul>
+<p>When it succeeds, no response body is returned.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/permissions.html#privilegesOnDataSpace">Permissions for locking or unlocking a dataspace</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/service/extensions/LockSpec.html#unlock-com.onwbp.adaptation.AdaptationHome-com.orchestranetworks.service.Session-"><code>LockSpec.unlock</code></a></li></ul>
+</div>
+<p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/.../data/v1/{dataspace}:unlock</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following query parameters are applicable to the operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="forceByAdministrator"><code>forceByAdministrator</code></p></td><td><p>When the dataspace is locked by another user, an administrator can force the unlocking.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The request has been successfully handled but no response body is returned.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request URL or body is not well-formed or contains invalid content.</p></td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Permission was denied to unlock the specified resource for the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The resource specified in the URL cannot be found.</p></td></tr>
+<tr>
+<td><p><code>409</code><em> (Conflict)</em></p></td><td><p>The resource is already locked by another user, or the current user is administrator but <code>forceByAdministrator</code> parameter is <code>false</code>, the unlock is rejected.</p></td></tr>
+<tr>
+<td><p><code>500</code><em> (Internal error)</em></p></td><td><p>Unexpected error thrown by the application. Error details can usually be found in EBX&reg; logs.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id8s5">
+Beta feature: Merge a dataspace</h3>
+<p>Merges the specified dataspace to its parent. It is possible to perform deletion, after the merge, on history and / or on data.</p><p>This operation uses the <code>POST</code> method and consumes <code>Content-Type</code> header set to:</p><ul>
+<li><p><code>application/x-www-form-urlencoded</code>: with HTTP parameters in the body or</p></li><li><p><code>application/json</code>: with HTTP parameters in the URL and <a href="../data_services/restapi_introduction.html#inputParameters">Session parameters</a> into JSON body.</p></li></ul>
+<p>When it succeeds, no response body is returned.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The merge decision step is bypassed for merges performed through data services. In such cases, the data in the child dataspace automatically overrides the data in its parent.</p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/service/ProcedureContext.html#doMergeToParent-com.onwbp.adaptation.AdaptationHome-"><code>ProcedureContext.doMergeToParent</code></a></li><li><a href="../engine/repository_administration.html#purge">Deleting data and history</a></li></ul>
+</div>
+<p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/.../data/v1/{dataspace}:merge</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following query parameters are applicable to the operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="deleteHistoryOnMerge"><code>deleteHistoryOnMerge</code></p></td><td><p>Sets whether the history associated with the specified dataspace will be deleted upon merge.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><p>When this parameter is not specified in the request, the default value is <code>false</code>. It is possible to redefine the default value by specifying the property <code>ebx.dataservices.historyDeletionOnCloseOrMerge.default</code> in the <a href="../installation/properties.html#dataServices">EBX&reg; main configuration file</a>.</p></td></tr>
+<tr>
+<td><p id="deleteDataOnMerge"><code>deleteDataOnMerge</code></p></td><td><p>Sets whether the specified dataspace and its associated snapshots will be deleted upon merge.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><p>When this parameter is not specified in the request, the default value is <code>false</code>. It is possible to redefine the default value by specifying the property <code>ebx.dataservices.dataDeletionOnCloseOrMerge.default</code> in the <a href="../installation/properties.html#dataServices">EBX&reg; main configuration file</a>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The request has been successfully handled but no response body is returned.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request URL contains invalid content.</p></td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Permission was denied to merge the specified resource for the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The resource specified in the URL cannot be found.</p></td></tr>
+<tr>
+<td><p><code>500</code><em> (Internal error)</em></p></td><td><p>Unexpected error thrown by the application. Error details can usually be found in EBX&reg; logs.</p></td></tr>
+</tbody>
+</table>
+<h3 id="id8s6">
+Beta feature: Close a dataspace or a snapshot</h3>
+<p>Closes the specified dataspace or snapshot. It is possible to perform deletion, after close, on history and / or on data.</p><p>This operation uses the <code>POST</code> method and consumes <code>Content-Type</code> header set to:</p><ul>
+<li><p><code>application/x-www-form-urlencoded</code>: with HTTP parameters in the body or</p></li><li><p><code>application/json</code>: with HTTP parameters in the URL and <a href="../data_services/restapi_introduction.html#inputParameters">Session parameters</a> into JSON body.</p></li></ul>
+<p>When it succeeds, no response body is returned.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/instance/Repository.html#closeHome-com.onwbp.adaptation.AdaptationHome-com.orchestranetworks.service.Session-"><code>Repository.closeHome</code></a></li><li><a href="../engine/repository_administration.html#purge">Deleting data and history</a></li></ul>
+</div>
+<p>URL format is:</p><blockquote><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/.../data/v1/{dataspace}:close</code></p></blockquote><p>Where:</p><ul>
+<li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier.</p></li></ul>
+<h4>
+Parameters</h4>
+<p>The following query parameters are applicable to the operation.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Parameter</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="deleteHistoryOnClose"><code>deleteHistoryOnClose</code></p></td><td><p>Sets whether the history associated with the specified dataspace will be deleted upon close.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><p>When this parameter is not specified in the request, the default value is <code>false</code>. It is possible to redefine the default value by specifying the property <code>ebx.dataservices.historyDeletionOnCloseOrMerge.default</code> in the <a href="../installation/properties.html#dataServices">EBX&reg; main configuration file</a>.</p></td></tr>
+<tr>
+<td><p id="deleteDataOnClose"><code>deleteDataOnClose</code></p></td><td><p>Sets whether the specified dataspace and its associated snapshots will be deleted upon close.</p><p><code>Boolean</code> type, default value is <code>false</code>.</p><p>When this parameter is not specified in the request, the default value is <code>false</code>. It is possible to redefine the default value by specifying the property <code>ebx.dataservices.dataDeletionOnCloseOrMerge.default</code> in the <a href="../installation/properties.html#dataServices">EBX&reg; main configuration file</a>.</p></td></tr>
+</tbody>
+</table>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>204</code><em> (No content)</em></p></td><td><p>The request has been successfully handled but no response body is returned.</p></td></tr>
+<tr>
+<td><p><code>400</code><em> (Bad request)</em></p></td><td><p>The request URL or body is not well-formed or contains invalid content.</p></td></tr>
+<tr>
+<td><p><code>401</code><em> (Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em> (Forbidden)</em></p></td><td><p>Permission was denied to close the specified resource for the authenticated user.</p></td></tr>
+<tr>
+<td><p><code>404</code><em> (Not found)</em></p></td><td><p>The resource specified in the URL cannot be found.</p></td></tr>
+<tr>
+<td><p><code>422</code><em> (Unprocessable entity)</em></p></td><td><p>A blocking constraint has been violated.</p></td></tr>
+<tr>
+<td><p><code>500</code><em>(Internal error)</em></p></td><td><p>Unexpected error thrown by the application. Error details can usually be found in EBX&reg; logs. </p></td></tr>
+</tbody>
+</table>
+<h2 id="openApiOperation">
+OpenAPI operations</h2>
+<h3 id="id9s1">
+Overview</h3>
+<p> The <a href="#operationCategory"><code>open-api</code></a> category operations comply with the OpenAPI specification 3.0.X to generate JSON documents. These documents facilitate development and consumption by structuring and describing the available REST built-in resources and the operations associated with them. </p><p> OpenAPI document HATEOAS links are available through the select data operations when using the <a href="#includeOpenApiDetails">includeOpenApiDetails</a> query parameter. </p><p> The REST OpenAPI services permissions are globally defined in <a href="../data_services/restapi_introduction.html#globalPermissions">Global permissions</a>. </p><p> Making the proper types mapping for generating a client, in a specific language, is essential. The <a href="https://swagger.io/docs/specification/data-models/data-types/">OpenAPI format </a> can be used to validate the input or to map the value to a specific type, in the chosen programming language. See <a href="../data_services/json_extended.html#simpleTypes">Content of simple type</a> for more information. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Tools that do not support a specific format may default back to the <code>type</code> alone. </p></div>
+<h3 id="id9s2">
+Generate OpenAPI document</h3>
+<p> The operation uses the <code>GET</code> or <code>POST</code> HTTP method to generate the OpenAPI document of a dataset table or a schema node. </p><p>The URL format is:</p><p><code>http[s]://&lt;host&gt;[:&lt;port&gt;]/ebx-dataservices/rest/open-api/v1/{category}/v1/{dataspace}/{dataset}/{pathInDataset}</code></p><p>Where:</p><ul>
+<li><p><code>{category}</code> corresponds to an <a href="#operationCategory">operation category</a> among <a href="#dataOperation">data</a> or <a href="#formDataOperation">form-data</a>. </p></li><li><p><code>{dataspace}</code> corresponds to <code>B</code> followed by the dataspace identifier or to <code>V</code> followed by the snapshot identifier. </p></li><li><p><code>{dataset}</code> corresponds to the dataset identifier. </p></li><li><p><code>{pathInDataset}</code> corresponds to the path of: </p><ul>
+<li><p>a table node,</p></li><li><p>a dataset terminal node or above.</p></li></ul>
+</li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> The generated document will not depend on user permissions. The whole fields will be presented. </p></div>
+<h4>
+HTTP codes</h4>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>HTTP code</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>200</code><em>(OK)</em></p></td><td><p>The request has been successfully handled.</p></td></tr>
+<tr>
+<td><p><code>401</code><em>(Unauthorized)</em></p></td><td><p>Authentication has failed.</p></td></tr>
+<tr>
+<td><p><code>403</code><em>(Forbidden)</em></p></td><td><p>Permission was denied to read the specified resource.</p></td></tr>
+<tr>
+<td><p><code>404</code><em>(Not found)</em></p></td><td><p>The resource, specified in the URL, cannot be found.</p></td></tr>
+</tbody>
+</table>
+<h2 id="id10">
+Limitations</h2>
+<h3 id="id10s1">
+General limitations</h3>
+<ul>
+<li><p>Indexes, in the request URL <code>{pathInDataset}</code> or <code>{pathInRecord}</code>, are not supported. </p></li><li><p>Nested aggregated lists are not supported.</p></li><li><p>Dataset nodes and field operations applied to nodes that are sub-terminal are not supported. </p><p>See <a href="../models/access_properties_categories.html#accessproperties">Access properties</a> for more information about terminal nodes. </p></li></ul>
+<h3 id="compactFormatLimitations">
+Compact format limitations</h3>
+<ul>
+<li><p><a href="#inheritance">Inheritance</a> is not handled in the <a href="../data_services/json_compact.html#request">compact format</a>. Use the <a href="../data_services/json_extended.html#request">extended </a> one instead. </p></li><li><p><a href="#historyCategory"><code>History category</code></a> is not supported in the <a href="../data_services/json_compact.html#request">compact format</a>. </p></li></ul>
+<h3 id="id10s3">
+Read operations</h3>
+<ul>
+<li><p>Within the <code>selector</code>, the pagination context is limited to the <code>nextPage</code> property. </p></li><li><p>When the <a href="#sortByRelevancy"><code>sortByRelevancy</code></a> parameter is activated, the ones below are ignored: <a href="#sort">sort</a>, <a href="#sortOnLabel">sortOnLabel</a>, <a href="#sortPriority">sortPriority</a> and sort criteria defined through the <a href="#viewPublication">viewPublication</a>.</p></li><li><p>Within the <code>viewPublication</code> parameter, the hierarchical view is not supported. </p></li><li><p id="sortOnLabelLimitation">The <code>sortOnLabel</code> parameter ignores programmatic labels. </p></li><li><p> The system information response&#39;s properties cannot be browsed through the REST URL with the hierarchical representation. </p><p>See <a href="#systemInformation">System information operation</a> for more information. </p></li><li><p>The prepare for creation operation does not support a dataset node.</p></li><li><p>The <a href="#dataspaceSelect">select dataspaces operation</a> does not sort them by label. </p></li><li><p>The <a href="#dataspaceSelect">select snapshots operation</a> does not sort them by creation date. </p></li><li><p>The <a href="#dataspaceSelect">select snapshots operation</a> can not include the initial snapshots. </p></li></ul>
+<h3 id="id10s4">
+Write operations</h3>
+<ul>
+<li><p>Association fields cannot be updated, therefore, the list of associated records cannot be modified directly. </p></li><li><p>Control policy <code>onUserSubmit-checkModifiedValues</code> of the user interface is not supported. To retrieve validation errors, invoke the select operation on the resource by including the <code>includeValidation</code> parameter. </p><p>See <a href="../models/constraints.html#blocksCommit">Blocking and non-blocking constraints</a> for more information. </p></li></ul>
+<h3 id="id10s5">
+Directory operations</h3>
+<ul>
+<li><p>Changing or resetting a password for a user is not supported.</p></li></ul>
+<h3 id="id10s6">
+OpenAPI operations</h3>
+<ul>
+<li><p>The document generation is not available through the user interface.</p></li><li><p>The document generation REST services does not support the YAML format.</p></li><li><p>Supports only <a href="#dataOperation">Data operations</a> and <a href="#formDataOperation">Form data operations</a> except: </p><ul>
+<li><p>Select <strong>Dataset tree</strong>, <strong>Dataset node</strong> and <strong>Field</strong> operations. </p></li><li><p>Insert or delete multiple records in a single request.</p></li><li><p>Use of the HTTP header <code>content-type: x-www-form-urlencoded</code> to send query parameters in the body request. </p></li></ul>
+</li><li><p>The <a href="../data_services/restapi_introduction.html#basic">&#39;Basic Authentication Scheme&#39; </a> is the only described method. </p></li><li><p>The document generation is not supported for custom REST toolkit services.</p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; REST data services</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Actions sur les mod&egrave;les de donn&eacute;es existants</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_actions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_actions.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</span></div>
+<h1>
+Actions sur les mod&egrave;les de donn&eacute;es existants</h1>
+<p>Lorsque le mod&egrave;le de donn&eacute;es est cr&eacute;&eacute;, des actions sont disponibles dans le menu <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>&quot;Actions&quot; du mod&egrave;le de donn&eacute;es</strong></a> dans le panneau de navigation.</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#validation">Validation du mod&egrave;le de donn&eacute;es</a></li><li class="toc1"><a href="#xsdImportExport">Import et export de mod&egrave;les de donn&eacute;es.</a></li><li class="toc1"><a href="#duplicate_model">Duplication d&#39;un mod&egrave;le de donn&eacute;es</a></li><li class="toc1"><a href="#deletion">Suppression d&#39;un mod&egrave;le de donn&eacute;es</a></li></ul>
+</div>
+<h2 id="validation">
+Validation du mod&egrave;le de donn&eacute;es</h2>
+<p>Il est possible de valider un mod&egrave;le de donn&eacute;es en s&eacute;lectionnant <strong>&quot;Actions&quot; du mod&egrave;le de donn&eacute;es &gt; Valider</strong> dans le panneau de navigation. Les &eacute;ventuels messages issus de la validation du mod&egrave;le de donn&eacute;es sont pr&eacute;sent&eacute;s dans un rapport. Depuis le rapport de validation, cliquez sur le bouton <strong>Revalider</strong> pour mettre &agrave; jour ce rapport, ou cliquez sur le bouton <strong>R&eacute;initialiser le rapport de validation</strong> pour supprimer tous les messages de validation actuellement associ&eacute;s au mod&egrave;le de donn&eacute;es afin de pouvoir relancer une validation compl&egrave;te.</p><p>Voir <a href="../references/performance.html#validation">Validation</a> pour obtenir plus d&#39;informations concernant la validation incr&eacute;mentale de donn&eacute;es.</p><h2 id="xsdImportExport">
+Import et export de mod&egrave;les de donn&eacute;es.</h2>
+<p>TIBCO EBX&reg; fournit des services int&eacute;gr&eacute;s pour importer et exporter des fichiers XML Schema Document (XSD) ou des archives (zip). Les services d&#39;import et d&#39;export sont accessibles depuis le menu <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>&quot;Actions&quot; du mod&egrave;le de donn&eacute;es</strong></a> dans le panneau de navigation. Un import ou export est toujours effectu&eacute; sur l&#39;int&eacute;gralit&eacute; du mod&egrave;le de donn&eacute;es. Lors d&#39;un import, la structure du mod&egrave;le de donn&eacute;es courant est enti&egrave;rement remplac&eacute;e par le contenu du document XML Schema correspondant au mod&egrave;le &agrave; importer. Lors d&#39;un export, le mod&egrave;le de donn&eacute;es complet est export&eacute; dans le document XML Schema ou l&#39;archive cible.</p><p>Pour importer un mod&egrave;le de donn&eacute;es, le fichier XSD correspondant doit &ecirc;tre valide et conforme aux r&egrave;gles de validation du r&eacute;f&eacute;rentiel EBX&reg;. Si le document d&eacute;clare des ressources situ&eacute;es dans un module, le module doit &ecirc;tre d&eacute;clar&eacute; aussi dans la configuration du mod&egrave;le de donn&eacute;es. Si le module n&#39;a pas &eacute;t&eacute; d&eacute;clar&eacute;, le fichier XSD ne pourra pas &ecirc;tre import&eacute;. Voir <a href="../user_datamodel/userdatamodel_configuring.html#configuration">Propri&eacute;t&eacute;s du mod&egrave;le de donn&eacute;es</a> pour plus d&#39;informations sur la d&eacute;claration des modules.</p><p>Pour importer un mod&egrave;le, s&eacute;lectionnez <em>Importer mod&egrave;le de donn&eacute;es</em> dans le menu <strong>Actions</strong> situ&eacute; dans le panneau de navigation du mod&egrave;le de donn&eacute;es. </p><p>Un document XML Schema (XSD) ou une archive (zip) peut &ecirc;tre import&eacute; &agrave; partir du syst&egrave;me de fichier local. Pour cela, s&eacute;lectionnez <em>Importer &agrave; partir d&#39;un document local</em>&nbsp;:&nbsp;</p><ul>
+<li><p><strong>Mod&egrave;le de donn&eacute;es :</strong> chemin du document XSD ou archive (zip) &agrave; importer dans le syst&egrave;me de fichiers local.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> Lorsqu&#39;une archive est import&eacute;e, celle-ci doit contenir un seul document XML Schema (XSD) &agrave; sa racine. Les documents XML correspondants aux extensions associ&eacute;es au mod&egrave;le &agrave; importer doivent aussi se situer &agrave; la racince de l&#39;archive. Ces documents XML sont automatiquement import&eacute;s si ils suivents la convention de nommage d&eacute;finie par les extensions support&eacute;es et enregistr&eacute;es dans EBX&reg;. </p></div>
+<p>Un mod&egrave;le de donn&eacute;es XSD peut aussi &ecirc;tre import&eacute; dans un module. L&#39;import d&#39;un mod&egrave;le de donn&eacute;es XSD depuis un module utilise les propri&eacute;t&eacute;s suivantes :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Module</p></td><td class="ebx_definitionListDefinition"><p>Module qui contient le mod&egrave;le de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Chemin du module</p></td><td class="ebx_definitionListDefinition"><p>Localisation physique du module sur le syst&egrave;me de fichier du serveur.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Chemin des sources</p></td><td class="ebx_definitionListDefinition"><p>Codes sources utilis&eacute;s pour configurer les &quot;R&egrave;gles et objets m&eacute;tier&quot;. Si le chemin est relatif, il sera r&eacute;solu &agrave; partir du &quot;Chemin du module&quot;.</p><p>Cette propri&eacute;t&eacute; est obligatoire si le mod&egrave;le d&eacute;finit des &eacute;l&eacute;ments programmatiques.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mod&egrave;le</p></td><td class="ebx_definitionListDefinition"><p>Mod&egrave;le de donn&eacute;es &agrave; importer.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Les fichiers XSD et XML &agrave; importer doivent &ecirc;tre encod&eacute;s en &quot;UTF-8&quot;. Les fichiers XSD et XML export&eacute;s sont toujours encod&eacute;s en &quot;UTF-8&quot;.</p></div>
+<h2 id="duplicate_model">
+Duplication d&#39;un mod&egrave;le de donn&eacute;es</h2>
+<p>Pour dupliquer un mod&egrave;le de donn&eacute;es, s&eacute;lectionnez &quot;Dupliquer&quot; dans le menu <strong>Actions</strong> du mod&egrave;le. Nommez le nouveau mod&egrave;le de donn&eacute;es. Ce nom doit &ecirc;tre unique dans le r&eacute;f&eacute;rentiel.</p><h2 id="deletion">
+Suppression d&#39;un mod&egrave;le de donn&eacute;es</h2>
+<p>Pour supprimer un mod&egrave;le de donn&eacute;es, s&eacute;lectionnez &quot;Supprimer&quot; dans le menu <a href="../user_datamodel/userdatamodel_intro.html#ui"><strong>Actions</strong> du mod&egrave;le de donn&eacute;es</a>. Quand un mod&egrave;le de donn&eacute;es est supprim&eacute;, toutes les publications associ&eacute;es au mod&egrave;le restent disponibles. Si un nouveau mod&egrave;le de donn&eacute;es est recr&eacute;&eacute; avec le m&ecirc;me nom que celui qui a &eacute;t&eacute; supprim&eacute;, le nouveau mod&egrave;le de donn&eacute;es sera r&eacute;associ&eacute; avec toutes les publications existant dans le r&eacute;f&eacute;rentiel. Au moment de la publication, il sera possible de confirmer le remplacement d&#39;une publication existante.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Seul un administrateur peut supprimer les publications d&#39;un mod&egrave;le de donn&eacute;es dans la section &quot;Administration&quot;.</p></div>
+<p>Voir <a href="../user_datamodel/userdatamodel_publish.html">Publication des mod&egrave;les de donn&eacute;es</a> pour plus d&#39;informations sur le processus de publication.</p><p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html">Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de données &gt; Implémentation des modèles de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

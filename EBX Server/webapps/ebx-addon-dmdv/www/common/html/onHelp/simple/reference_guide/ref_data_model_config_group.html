@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Data model graphs configuration group</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_data_model_config" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Reference Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_data_model_config_group.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Reference Guide</span></div>
+<h1>
+Data model graphs configuration group</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_data_model_config_overview">Overview</a></li><li class="toc1"><a href="#ref_data_model_config_config_table">Configuration table</a></li><li class="toc1"><a href="#ref_data_model_config_templates_table">Templates table</a></li><li class="toc1"><a href="#ref_data_model_config_preferences_group">Preferences group</a><ul class="toc2">
+<li class="toc2"><a href="#ref_data_model_config_savedgraph_table">Saved graph table</a></li><li class="toc2"><a href="#ref_data_model_config_node_table">Node table</a></li><li class="toc2"><a href="#ref_data_model_config_property_table"> Property table</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_data_model_config_overview">
+Overview</h2>
+<p>The settings in this group allow you to create a configuration used to display a data model. Additionally, any saved graph configurations are stored here.</p><h2 id="ref_data_model_config_config_table">
+Configuration table</h2>
+<p>Each record in the <strong>Configuration</strong> table specifies options for displaying a visual representation of a data model.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name used by this configuration.</p></td></tr>
+<tr>
+<td valign="top"><p>Graph type</p></td><td valign="top"><p>Determines whether this graph will be generated from an TIBCO EBX® data model (Schema), or from another data source (Custom). </p></td></tr>
+<tr>
+<td valign="top"><p>Publication mode</p></td><td valign="top"><p>When the graph type is set to Schema, use this property to indicate whether the data model is embedded, or in a module. The <strong>Data model</strong> drop-down will then populate with available data models of the corresponding type. </p></td></tr>
+<tr>
+<td valign="top"><p>Data model</p></td><td valign="top"><p>Specifies the data model the add-on uses to render the graph.</p></td></tr>
+<tr>
+<td valign="top"><p>Data source</p></td><td valign="top"><p>Displays when graph type is set to <strong>Custom</strong> and must specify the fully qualified path to a Java class.</p></td></tr>
+<tr>
+<td valign="top"><p>Display in dataset</p></td><td valign="top"><p>Determines whether this configuration is available when users display custom graphs from a dataset&#39;s <strong>Actions</strong> menu. </p></td></tr>
+<tr>
+<td valign="top"><p>Templates</p></td><td valign="top"><p>Specifies the template applied to this configuration. Templates determine a graph&#39;s color and display options.</p></td></tr>
+<tr>
+<td valign="top"><p>Enable table selection</p></td><td valign="top"><p>Determines whether users will have the option of selecting which tables display when generating this graph.</p></td></tr>
+</tbody>
+</table>
+<h2 id="ref_data_model_config_templates_table">
+Templates table</h2>
+<p>You can use the <strong>Templates</strong> table to customize the look and feel of a data model graph. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name used by this configuration.</p></td></tr>
+<tr>
+<td valign="top"><p>Table</p></td><td valign="top"><p>Determines border, background, and text color for tables displayed in the graph.</p></td></tr>
+<tr>
+<td valign="top"><p>External table</p></td><td valign="top"><p>Determines border, background, and text color for tables displayed in the graph that are located in a different dataset.</p></td></tr>
+<tr>
+<td valign="top"><p>Tooltip</p></td><td valign="top"><p>Specifies the background and text color for tooltips.</p></td></tr>
+<tr>
+<td valign="top">Link</td><td valign="top"><p>Sets the color for links between tables and for link labels.</p></td></tr>
+<tr>
+<td valign="top">Synchronization</td><td valign="top">If a data model related to a saved graph has been updated, the add-on can indicate where and what type of changes were made. Updated graphs highlight new items in green, changed items in blue, and deleted items in red. </td></tr>
+<tr>
+<td valign="top"><p>Highlight color</p></td><td valign="top"><p>Determines the color of links and box borders when moused, or hovered over.</p></td></tr>
+<tr>
+<td valign="top">Display options</td><td valign="top"><p>This group allows you to display/hide the following graph components:</p><ul>
+<li><p>Cardinality on links: Toggles display of link cardinality value.</p></li><li><p>Cardinality on fields: Toggles display of field cardinality value.</p></li><li><p>Labels on links: Toggles display of foreign key labels.</p></li><li><p>FK as fields: Toggles display of foreign keys as fields.</p></li><li><p>Hidden fields: Toggles display of fields that are set as hidden in the DMA.</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<h2 id="ref_data_model_config_preferences_group">
+Preferences group</h2>
+<p>The <strong>Preferences</strong> group stores information when users save a graph layout. Note that the descriptions for this group are for informational purposes only as records are automatically updated by the add-on after saving a graph. This group includes the following tables:</p><ul>
+<li><p><a href="#ref_data_model_config_savedgraph_table">Saved graph table</a></p></li><li><p><a href="#ref_data_model_config_node_table">Node table</a></p></li><li><p><a href="#ref_data_model_config_property_table"> Property table</a></p></li></ul>
+<h3 id="ref_data_model_config_savedgraph_table">
+Saved graph table</h3>
+<p>Each record in this table represent a graph that has been saved by a user.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name used by this saved graph configuration.</p></td></tr>
+<tr>
+<td valign="top"><p>Data model</p></td><td valign="top"><p>The data model represented by this graph.</p></td></tr>
+<tr>
+<td valign="top"><p>User profile</p></td><td valign="top"><p>The user profile that created this graph.</p></td></tr>
+<tr>
+<td valign="top"><p>Publication mode</p></td><td valign="top"><p>Specifies whether the graph was generated from an embedded data model or one from a module.</p></td></tr>
+<tr>
+<td valign="top"><p>Graph configuration</p></td><td valign="top"><p>The configuration used for this graph.</p></td></tr>
+<tr>
+<td valign="top"><p>Position X</p></td><td valign="top"><p>Horizontal position of the graph&#39;s root table.</p></td></tr>
+<tr>
+<td valign="top"><p>Position Y</p></td><td valign="top"><p>Vertical position of the graph&#39;s root table.</p></td></tr>
+<tr>
+<td valign="top"><p>Scale</p></td><td valign="top"><p>Indicates the graph&#39;s scale.</p></td></tr>
+<tr>
+<td valign="top"><p>Shared Policy</p></td><td valign="top"><p>Lists the profiles with whom this graph has been shared.</p></td></tr>
+<tr>
+<td valign="top"><p>Description</p></td><td valign="top"><p>The saved graph&#39;s description.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_data_model_config_node_table">
+Node table</h3>
+<p>Each record in this table registers the nodes (tables and group of tables) displayed in a saved graph.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Node path</p></td><td valign="top"><p>Corresponds to the path of the table or table group in the data model.</p></td></tr>
+<tr>
+<td valign="top"><p>Saved graph</p></td><td valign="top"><p>Indicates the graph where this node is located.</p></td></tr>
+<tr>
+<td valign="top"><p>Label</p></td><td valign="top"><p>The label of the table or group of tables as defined in the DMA.</p></td></tr>
+<tr>
+<td valign="top"><p>Is external</p></td><td valign="top"><p>Indicates whether the node is in the current, or an external dataset.</p></td></tr>
+<tr>
+<td valign="top"><p>Is root node</p></td><td valign="top"><p>Indicates whether this table is considered the graph&#39;s root node. A root node is positioned in the center of the graph and used to compute the location of other nodes.</p></td></tr>
+<tr>
+<td valign="top"><p>Is hidden</p></td><td valign="top"><p>Indicates whether the node is visible, or hidden in the saved graph.</p></td></tr>
+<tr>
+<td valign="top"><p>Width</p></td><td valign="top"><p>Width of the node.</p></td></tr>
+<tr>
+<td valign="top"><p>Height</p></td><td valign="top"><p>Height of the node.</p></td></tr>
+<tr>
+<td valign="top"><p>Position X</p></td><td valign="top"><p>Horizontal position of the node.</p></td></tr>
+<tr>
+<td valign="top"><p>Position Y</p></td><td valign="top"><p>Vertical position of the node.</p></td></tr>
+<tr>
+<td valign="top"><p>Is expanded</p></td><td valign="top"><p>When the node is a group of tables, this value indicates whether the a save was performed in the expanded, or collapsed state.</p></td></tr>
+<tr>
+<td valign="top"><p>Node specification group</p></td><td valign="top"></td></tr>
+<tr>
+<td valign="top"><p>Node path</p></td><td valign="top"><p>Corresponds to the table, or table group path.</p></td></tr>
+<tr>
+<td valign="top"><p>Dataspace</p></td><td valign="top"><p>When referring to an external node, this property corresponds to its containing dataspace.</p></td></tr>
+<tr>
+<td valign="top"><p>Dataset</p></td><td valign="top"><p>When referring to an external node, this property corresponds to its containing dataset. </p></td></tr>
+<tr>
+<td valign="top"><p>Is group field</p></td><td valign="top"><p>Indicates whether this is a group field.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_data_model_config_property_table">
+ Property table</h3>
+<p>Each record in this table registers the fields and group of fields related to the tables in the saved graph.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Property path</p></td><td valign="top"><p>Corresponds to the path of the field or group of fields.</p></td></tr>
+<tr>
+<td valign="top"><p>Node</p></td><td valign="top"><p>Path to the corresponding node. This is the table in the saved graph that contains this property.</p></td></tr>
+<tr>
+<td valign="top"><p>Label</p></td><td valign="top"><p>The property&#39;s label as defined in the DMA.</p></td></tr>
+<tr>
+<td valign="top"><p>Data type</p></td><td valign="top"><p>Indicates the property&#39;s data type.</p></td></tr>
+<tr>
+<td valign="top">Is expanded</td><td valign="top"><p>When the property is a group of fields or a complex data type, this value indicates whether the a save was performed in the expanded, or collapsed state.</p></td></tr>
+<tr>
+<td valign="top"><p>Is hidden</p></td><td valign="top"><p>Indicates whether the node is visible, or hidden when the graph was saved.</p></td></tr>
+<tr>
+<td valign="top"><p>Parent</p></td><td valign="top"><p>Indicates the path of this property&#39;s parent.</p></td></tr>
+<tr>
+<td valign="top"><p>Element type</p></td><td valign="top"><p>Displays the property&#39;s type (PK, FK, field, or group of fields).</p></td></tr>
+<tr>
+<td valign="top"><p>Is inherited</p></td><td valign="top"><p>Indicates whether the field values are inherited from another field.</p></td></tr>
+<tr>
+<td valign="top"><p>Inherited from</p></td><td valign="top"><p>Corresponds to the field path from which this field inherits.</p></td></tr>
+<tr>
+<td valign="top"><p>Is computed</p></td><td valign="top"><p>Indicates whether the field values are computed from other values.</p></td></tr>
+<tr>
+<td valign="top"><p>Cardinality</p></td><td valign="top"><p>Indicates the number of occurrences of a property within a table.</p></td></tr>
+<tr>
+<td valign="top"><p>Node Specification group</p></td><td valign="top"><p>Corresponds to the specification of the property.</p></td></tr>
+<tr>
+<td valign="top"><p>Node path</p></td><td valign="top"><p>Corresponds to the table, or table group path.</p></td></tr>
+<tr>
+<td valign="top"><p>Dataspace</p></td><td valign="top"><p>When referring to an external node, this property corresponds to its containing dataspace.</p></td></tr>
+<tr>
+<td valign="top"><p>Dataset</p></td><td valign="top"><p>When referring to an external node, this property corresponds to its containing dataset. </p></td></tr>
+<tr>
+<td valign="top"></td><td valign="top"></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

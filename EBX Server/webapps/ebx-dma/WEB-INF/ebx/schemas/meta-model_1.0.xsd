@@ -1,0 +1,3767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for Data Model Assistant, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0" elementFormDefault="unqualified">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./_reserved/common_1.0.xsd" />
+	<xs:include schemaLocation="urn:ebx:module:ebx-root-1.0:/WEB-INF/ebx/schemas/customViewsTypes.xsd" />
+	<xs:include schemaLocation="urn:ebx:module:ebx-root-1.0:/WEB-INF/ebx/schemas/toolbars/toolbars_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:extensions class="com.orchestranetworks.dma.extensions.DMAExtensions" />
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.dma.paths.MetaModel_All">
+					<nodes prefix="" root="/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.meta-model" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.root" />
+			<xs:appinfo>
+				<osd:trigger class="com.orchestranetworks.dma.triggers.DataModelTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schema" type="DataModelConfiguration">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.schema" />
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="schemasIncluded"  maxOccurs="unbounded" minOccurs="0" type="SchemaIncluded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.schemasIncluded" />
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="addons" maxOccurs="unbounded" minOccurs="0" type="Addons"/>
+				<xs:element name="node" maxOccurs="unbounded" minOccurs="0" type="Node">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.node" />
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="nodeRef" maxOccurs="unbounded" minOccurs="0" type="NodeRef">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.nodeRef" />
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="entityMappings" maxOccurs="unbounded" minOccurs="0" type="EntityMapping"/>
+				<xs:element name="service" maxOccurs="unbounded" minOccurs="0" type="Service">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.service" />
+						<xs:appinfo>
+							<osd:trigger class="com.orchestranetworks.dma.triggers.ServicesTrigger" />
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="rules" maxOccurs="unbounded" minOccurs="0" type="Rule">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.rules" />
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ajaxComponents" maxOccurs="unbounded" minOccurs="0" type="AjaxComponents">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.ajaxComponents" />
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="bindings" maxOccurs="unbounded" minOccurs="0" type="Bindings">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.bindings" />
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="replications" maxOccurs="unbounded" minOccurs="0" type="Replications"/>
+				<xs:element name="toolbarNode" type="ToolbarNodeType" maxOccurs="unbounded" minOccurs="0">
+					<xs:annotation>
+	        			<xs:appinfo>
+				            <osd:trigger class="com.orchestranetworks.dma.triggers.CtbTableTrigger" />
+	        			</xs:appinfo>
+	    			</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="toolbarUniquenessConstraint">
+			<xs:selector xpath="/root/toolbarNode"/>
+			<xs:field xpath="./toolbar/name"/>
+		</xs:unique>
+		<xs:unique name="entityMappingPathUniquenessConstraint">
+			<xs:selector xpath="/root/entityMappings"/>
+			<xs:field xpath="path"/>
+		</xs:unique>
+		<xs:unique name="entityMappingNameUniquenessConstraint">
+			<xs:selector xpath="/root/entityMappings"/>
+			<xs:field xpath="entityName"/>
+		</xs:unique>
+	</xs:element>
+	<!--
+		******************************************
+	 	Complex Types
+		******************************************
+	-->
+	<xs:complexType name="Addons">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Addons" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/id</primaryKeys>
+					<recordForm  osd:class="com.orchestranetworks.dma.ui.form.AddonFormLayout"/>
+					<defaultLabel osd:class="com.orchestranetworks.dma.renderer.AddonLabelRenderer" />
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:integer" minOccurs="1">	
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:autoIncrement/>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>				
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Addons.name" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.AddonsEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Addons.version" />
+					<xs:appinfo>
+						<osd:function  osd:class="com.orchestranetworks.dma.function.AddonVersionFunction"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="activated" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Addons.activated" />
+					<xs:appinfo>
+						<osd:function  osd:class="com.orchestranetworks.dma.function.AddonActivationFunction"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Rule">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.name" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" minOccurs="0" type="xs:string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.type" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.dma.rule.BeanTypeFunction" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.rule.BeanTypeEnumeration" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.RuleTypeUIBean" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" minOccurs="0" osd:access="RW" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.description" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="moduleName" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.moduleName" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.AllModuleWithBuiltInEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="configuration" type="RuleConfiguration" osd:access="RW" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.configuration" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="RuleConfiguration"	osd:class="com.orchestranetworks.dma.beans.RuleConfigurationBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.RuleConfigurationUIBean" />
+			</xs:appinfo>
+		</xs:annotation> 
+		<xs:sequence>
+			<xs:element name="osdClass" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.configuration.osdClass" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.javabean.introspection.JavaClassEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parameters" maxOccurs="unbounded"	minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.configuration.parameters" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.RuleParameterEnumeration">
+								<localized>false</localized>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="localizedParameters" maxOccurs="unbounded" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Rule.configuration.localizedParameters" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.RuleParameterEnumeration">
+								<localized>true</localized>
+							</osd:constraintEnumeration>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Service">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name</primaryKeys>
+					<recordForm osd:class="com.orchestranetworks.dma.ui.form.ServiceFormLayout"/>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.name" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" minOccurs="0" osd:access="RW" type="Documentation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.documentation" />
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="resourcePath" type="xs:string" minOccurs="1" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.resourcePath" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.ServiceResourcePathUIBean" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.ServicesEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="activatedForPaths" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.activatedForPaths" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.ActivatedForPathsUIBean" />
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.ServiceActivatedForPathsConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="99999" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="activatedForRegexp" default="false" minOccurs="0" osd:category="Hidden" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.activatedForRegexp" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="permission" minOccurs="0" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.permission" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecComponentLibrary" />
+					</xs:appinfo>					
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="group" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.group" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.ui.toolbar.internal.CtbServiceGroupsConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultPermission" minOccurs="0" maxOccurs="1" default="enabled">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.defaultPermission" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIServiceDefaultPermissionUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="enabled">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Service.defaultPermission.enumeration.enabled" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="disabled">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Service.defaultPermission.enumeration.disabled" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="display" minOccurs="0" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.display" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="order" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.order" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="confirmation" minOccurs="0" osd:access="RW" type="ServiceConfirmation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Service.confirmation" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AjaxComponents">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" minOccurs="1" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AjaxComponents.name" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" minOccurs="0" osd:access="RW" type="Documentation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AjaxComponents.documentation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="component" minOccurs="1" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.AjaxComponents.component" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecComponentLibrary" />
+					</xs:appinfo>	
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Table" osd:class="com.orchestranetworks.dma.beans.TableBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.TableUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="primaryKeys" maxOccurs="unbounded" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.primaryKeys" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.PrimaryKeyUIBean" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.TableFieldEnumerationOnPrimaryKey" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actions" type="TableActions" minOccurs="0"/>			
+			<xs:element name="externalTable" default="false" osd:checkNullInput="true" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.externalTable" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="historyProfile" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.historyProfile" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.HistoryProfileEnumeration" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.HistoryProfilesUIBean" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultLabel" minOccurs="0" type="DefaultLabel">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.defaultLabel" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="filter" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.filter" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FilterListEditor" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.dma.beans.ListFilterBean">
+					<xs:sequence>
+						<xs:element name="listefilter" maxOccurs="unbounded" minOccurs="0" type="Filter">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Table.filter.listefilter" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="uiFormLayout" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.uiFormLayout" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultView" minOccurs="0"  type="TableDefaultView"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TableActions" osd:class="com.orchestranetworks.dma.table.actions.TableActionsBean">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TableActions" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.table.actions.TableActionsUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mayCreateRoot" type="TableAction">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableActions.mayCreateRoot" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mayCreateOverwriting" type="TableAction">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableActions.mayCreateOverwriting" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mayCreateOcculting" type="TableAction">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableActions.mayCreateOcculting" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mayDelete" type="TableAction">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableActions.mayDelete" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="onDelete_deleteOccultingChildren" type="TableAction">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableActions.onDelete_deleteOccultingChildren" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mayDuplicate" type="TableAction">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TableActions.mayDuplicate" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TableDefaultView" osd:class="com.onwbp.base.schema.view.DefaultTableViewProperties">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Table.defaultView" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.DefaultTableViewUIBean" />
+			</xs:appinfo>
+		</xs:annotation>		
+		<xs:sequence>
+			<xs:element name="displayOfGroups" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.defaultView.displayOfGroups" />
+						<xs:appinfo>
+							<osd:otherFacets>
+								<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.TableDefaultView_DisplayOfGroupsEnumeration" />
+							</osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			<xs:element name="defaultViewForGroups" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.defaultView.defaultViewForGroups" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.TableDefaultView_DefaultViewForGroupsEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mainTabLabel" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.defaultView.mainTabLabel" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mainTabLabelLocalized" minOccurs="0" type="Label" />
+			<xs:element name="toolbars" minOccurs="0">
+				<xs:complexType osd:class="com.onwbp.base.schema.view.DefaultToolBarsProperties">
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.Table.defaultView.toolbars" />
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="tabularViewTop" type="toolBarLocation" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Table.defaultView.toolbars.tabularViewTop" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="tabularViewRow" type="toolBarLocation" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Table.defaultView.toolbars.tabularViewRow" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="recordTop" type="toolBarLocation" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Table.defaultView.toolbars.recordTop" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="hierarchyViewTop" type="toolBarLocation" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Table.defaultView.toolbars.hierarchyViewTop" />
+							</xs:annotation>
+						</xs:element>	
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+      <xs:element name="breadcrumb" type="BreadcrumbProperties" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Node">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:trigger class="com.orchestranetworks.dma.triggers.TableNodeTrigger" />
+				<osd:table>
+					<primaryKeys>/uuid</primaryKeys>
+					<recordForm  osd:class="com.orchestranetworks.dma.ui.form.TypeFormLayout"/>
+					<defaultLabel osd:class="com.orchestranetworks.dma.renderer.TypeLabelRenderer" />
+					<mayCreateRoot>never</mayCreateRoot>
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+					<defaultView>
+						<displayOfGroups>tab</displayOfGroups>
+					</defaultView>
+				</osd:table>
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.dma.constraint.CheckEntityProperties" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.uuid" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeNamespace" minOccurs="0" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.typeNamespace" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.TypeNamespaceEditor" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.typeName" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.TypeNameEditor" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" >
+						 <xs:pattern value="[a-zA-Z_][-a-zA-Z0-9_.]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nodeCategory" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.nodeCategory" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="R">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Node.nodeCategory.enumeration.R" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="C">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Node.nodeCategory.enumeration.C" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="S">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Node.nodeCategory.enumeration.S" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="baseType" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.baseType" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//node</tablePath>
+								<filter osd:class="com.orchestranetworks.dma.facet.NodeSimpleTypeTableRefFilter" />
+								<display osd:class="com.orchestranetworks.dma.facet.NodeTableRefDisplay" />
+							</osd:tableRef>
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIRefToNode" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="externalBaseType" type="ExternalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.externalBaseType"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minOccurs" minOccurs="0" type="PropertyWithMessages">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.minOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.PropertyWithMessagesUIBean">
+							<width>100</width>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxOccurs" minOccurs="0" type="PropertyWithMessages">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.maxOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.PropertyWithMessagesUIBean">
+							<width>100</width>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsDefaultValue" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.xsDefaultValue" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" minOccurs="0" osd:access="RW" type="Documentation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.documentation" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UILabelDescriptionHandlingNull" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="information" minOccurs="0" osd:access="RW" type="Information">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.information" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="conversionErrorMessage" minOccurs="0" osd:access="RW" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.conversionErrorMessage" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UILabelModuleAwareHandlingInheritance" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="constraintsSimple" type="ConstraintsSimple" />
+			<xs:element name="constraintsAdvanced" type="ConstraintsAdvanced" />
+			<xs:element name="propertiesAdvanced" type="PropertiesAdvanced" />
+			<xs:element name="linkToNodeRef" maxOccurs="0" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Node.linkToNodeRef" />
+					<xs:appinfo>
+						<osd:select>
+							<minOccurs>0</minOccurs>
+							<xpath>/root/nodeRef[nodeId =${../uuid}]</xpath>
+						</osd:select>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataModelConfiguration" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.SchemaConfigurationBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.DataModelConfigurationUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="moduleName" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.moduleName" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.ModuleEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="publicationMode" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.publicationMode" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="E">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Schema.publicationMode.enumeration.E" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="M">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Schema.publicationMode.enumeration.M" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pathInModule" minOccurs="0" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.pathInModule" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckPathInModule" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="/.*">
+							<xs:annotation>
+								<xs:documentation>
+									<osd:defaultErrorMessage osd:id="complexType.Schema.pathInModule.pattern.defaultErrorMessage" />
+								</xs:documentation>
+							</xs:annotation>
+						</xs:pattern>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="locationForClasses" type="xs:string" minOccurs="0"  maxOccurs="unbounded" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.locationForClasses" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FilePathUIBean" />
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckLocationForSources" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="disableMinOccursCheck" minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.disableMinOccursCheck" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="disableAutoIncrementTableCheck" minOccurs="0" type="xs:boolean" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.disableAutoIncrementTableCheck" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="inheritance" minOccurs="0" osd:access="RW" type="SchemaInheritance">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.inheritance" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extension" minOccurs="0" osd:access="RW" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.extension" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecComponentLibrary" />
+					</xs:appinfo>	
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentation" minOccurs="0" osd:access="RW" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.documentation" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecComponentLibrary" />
+					</xs:appinfo>	
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resourceBundle" type="xs:string" minOccurs="0" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.resourceBundle" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="enableXsdUserServices" type="xs:boolean" minOccurs="0" default="false">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.enableXsdUserServices" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validationProperties" minOccurs="0" type="ValidationProperties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SchemaIncluded" >
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:trigger class="com.orchestranetworks.dma.triggers.SchemaIncludedTrigger" />
+				<osd:table>
+					<primaryKeys>/uuid</primaryKeys>
+					<recordForm  osd:class="com.orchestranetworks.dma.ui.form.SchemaIncludedLayout"/>
+					<defaultLabel osd:class="com.orchestranetworks.dma.renderer.SchemaIncludedLabelRenderer"/>
+				</osd:table>
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.dma.constraint.SchemaIncludedCompilationConstraint" />
+					<osd:constraint class="com.orchestranetworks.dma.constraint.SchemaIncludedDuplicatedDeclaration" />
+					<osd:constraint class="com.orchestranetworks.dma.constraint.SchemaIncludedDuplicatedTypeConstraint" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="xs:string">	
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="category" minOccurs="1" default="E" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SchemaIncluded.category"/>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="E">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SchemaIncluded.category.enumeration.E"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="M">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SchemaIncluded.category.enumeration.M"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="schemaProperties" osd:access="RW" osd:class="com.onwbp.adaptation.SchemaBean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SchemaIncluded.schemaProperties" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.SchemaIncludedPropertiesUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="publicationName" minOccurs="0" type="xs:string" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SchemaIncluded.schemaProperties.publicationName" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.SchemaIncludedPublicationNameConstraintOnNull"/>
+										<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.SchemaIncludedPublicationEnumeration"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="module" minOccurs="0" type="xs:string" osd:checkNullInput="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.SchemaIncluded.schemaProperties.moduleName" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.SchemaIncludedInModuleConstraintOnNull"/>
+										<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.SchemaIncludedModuleEnumeration" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="pathInModule" minOccurs="0" type="xs:string" osd:checkNullInput="true">
+						<xs:annotation>
+								<xs:documentation osd:id="complexType.SchemaIncluded.schemaProperties.pathInModule" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.SchemaIncludedInModuleConstraintOnNull"/>
+										<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.SchemaIncludedPathInModuleEnumeration" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SchemaLocationInformation" osd:access="RW" osd:class="com.onwbp.adaptation.SchemaBean">
+		<xs:sequence>
+			<xs:element name="publicationName" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SchemaIncluded.schemaProperties.publicationName" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.schema.SchemaLocationPublicationEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="module" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SchemaIncluded.schemaProperties.moduleName" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.schema.SchemaLocationModuleEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="pathInModule" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SchemaIncluded.schemaProperties.pathInModule" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.schema.SchemaLocationPathInModuleEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uri" minOccurs="0" type="xs:string"/>
+			<xs:element name="fileName" minOccurs="0" type="xs:string"/>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SchemaInheritance" osd:class="com.orchestranetworks.dma.beans.SchemaInheritanceBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UISchemaInheritance" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataSetInheritance" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.SchemaInheritance.dataSetInheritance" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Information" osd:class="com.orchestranetworks.dma.beans.InformationBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UIInformationHandlingNull" />				
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="text" minOccurs="0" type="xs:string"  osd:distinguishNullFromEmptyString="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Documentation" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Documentation" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UILabelDescriptionModuleAware" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Documentation.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Documentation.localizedDocumentations.locale" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="label" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Documentation.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="description" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Documentation.localizedDocumentations.description" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValidationMessage" osd:class="com.orchestranetworks.dma.beans.ValidationMessageBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="severity" type="xs:string"  default="error" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.severity" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.onwbp.base.text.SeverityConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="defaultMessage" default="true" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ValidationMessage.defaultMessage" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="messageNotLocalized" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ValidationMessage.messageNotLocalized" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" minOccurs="0" osd:access="RW" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ValidationMessage.message" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NodeRef">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:trigger class="com.orchestranetworks.dma.triggers.TableNodeRefTrigger" />
+				<osd:table>
+					<primaryKeys>/uuid</primaryKeys>
+					<recordForm  osd:class="com.orchestranetworks.dma.ui.form.ElementFormLayout"/>
+					<defaultLabel osd:class="com.orchestranetworks.dma.renderer.NodeRefLabelRenderer" />
+					<mayCreateOverwriting>never</mayCreateOverwriting>
+					<mayCreateOcculting>never</mayCreateOcculting>
+					<mayCreateDeriving>never</mayCreateDeriving>
+					<mayDuplicate>never</mayDuplicate>
+					<mayDelete>never</mayDelete>
+					<defaultView>
+						<displayOfGroups>tab</displayOfGroups>
+					</defaultView>
+				</osd:table>
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.dma.constraint.CheckEntityProperties" />
+					<osd:constraint class="com.orchestranetworks.dma.constraint.CheckMappedTableProperties" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.uuid" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="elementName" osd:checkNullInput="true"  minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.elementName" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" >
+						 <xs:pattern value="[a-zA-Z_][-a-zA-Z0-9_.]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="container" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.container" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//node</tablePath>
+								<display osd:class="com.orchestranetworks.dma.facet.NodeTableRefDisplay" />
+							</osd:tableRef>
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIRefToNode" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nodeId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.nodeId"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>//node</tablePath>
+								<display osd:class="com.orchestranetworks.dma.facet.NodeTableRefDisplay" />
+							</osd:tableRef>
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIRefToNode" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="externalType" type="ExternalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.externalType"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="path" osd:category="Hidden" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.path" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.dma.function.NodePath" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="order" type="xs:int" osd:category="Hidden">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.order" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nodeCategory">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.nodeCategory" />
+					<xs:appinfo>
+						<osd:function class="com.orchestranetworks.dma.function.NodeCategory" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="R">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.NodeRef.nodeCategory.enumeration.R" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="C">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.NodeRef.nodeCategory.enumeration.C" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="S">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.NodeRef.nodeCategory.enumeration.S" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="documentation" minOccurs="0" osd:access="RW" type="Documentation">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.documentation" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UILabelDescriptionHandlingNull" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="information" minOccurs="0" osd:access="RW" type="Information">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.information" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minOccurs" minOccurs="0" type="PropertyWithMessages">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.minOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.PropertyWithMessagesUIBean">
+							<width>100</width>
+							<displayIntegerComponent>true</displayIntegerComponent>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxOccurs" minOccurs="0" type="PropertyWithMessages">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.maxOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.PropertyWithMessagesUIBean">
+							<width>100</width>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsDefaultValue" osd:distinguishNullFromEmptyString="true" osd:trim="disable" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.xsDefaultValue" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckTypedValue" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UITypedValue" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="conversionErrorMessage" minOccurs="0" osd:access="RW" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.conversionErrorMessage" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UILabelModuleAwareHandlingInheritance" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validationRules" maxOccurs="unbounded" minOccurs="0" type="ValidationRule">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.validationRules" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="computationRule" minOccurs="0" type="ComputationRule">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.computationRule" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="function" minOccurs="0" type="Function">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.function" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="constraintsSimple" minOccurs="0" type="ConstraintsSimple" />
+			<xs:element name="constraintsAdvanced" minOccurs="0" type="ConstraintsAdvanced" />
+			<xs:element name="propertiesAdvanced" minOccurs="0" type="PropertiesAdvanced">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.NodeRef.propertiesAdvanced" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PropertiesAdvanced">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PropertiesAdvanced" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>tab</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="defaultView" type="OsdDefaultView" minOccurs="0" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdTable" minOccurs="0" osd:access="RW" type="Table">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdTable" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdUiBean" minOccurs="0" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdUiBean" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdAutoIncrement" minOccurs="0" osd:access="RW" type="OsdAutoIncrement">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdAutoIncrement" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdCheckNullInput"  minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdCheckNullInput" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.OsdCheckNullInputUIBean" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdClass" minOccurs="0" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdClass" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdFunction" minOccurs="0" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdFunction" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdDisableValidation" minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdDisableValidation" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.OsdDisableValidationConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdTrigger" type="ComponentLibrarySpec" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdTrigger" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecMultiOccurrenced"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdTrim"  minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdTrim" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.OsdTrimUIBean"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.TrimPolicyConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>		
+			</xs:element>
+			<xs:element name="xsUnique" maxOccurs="unbounded" minOccurs="0" type="UniquenessConstraint">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.xsUnique" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIUniqueness" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="history" osd:access="RW"  minOccurs="0" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.history"/>
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.dma.beans.HistoryBean">
+					<xs:annotation>
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.HistoryUIBean" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="disable" default="false" minOccurs="1"  osd:checkNullInput="true">
+							<xs:simpleType>
+								<xs:restriction base="xs:boolean">
+									<xs:enumeration value="true">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.PropertiesAdvanced.history.disable.enumeration.true"/>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="false">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.PropertiesAdvanced.history.disable.enumeration.false"/>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="replication" osd:access="RW"  minOccurs="0" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.replication"/>
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.dma.beans.ReplicationPropertiesBean">
+					<xs:annotation>
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.ReplicationUIBean" />
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="disable" default="false" minOccurs="1"  osd:checkNullInput="true">
+							<xs:simpleType>
+								<xs:restriction base="xs:boolean">
+									<xs:enumeration value="true">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.PropertiesAdvanced.replication.disable.enumeration.true"/>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="false">
+										<xs:annotation>
+											<xs:documentation osd:id="complexType.PropertiesAdvanced.replication.disable.enumeration.false"/>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="osdApplyLastModification" minOccurs="0"  type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdApplyLastModification" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.ApplyLastModificationPolicyEnumeration" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.OsdApplyLastModificationUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="osdTransform" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdTransform" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdComparison" minOccurs="0"  type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdComparison" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.ComparisonModeEnumeration" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.OsdComparisonModeUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdCategory" minOccurs="0" osd:distinguishNullFromEmptyString="true" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdCategory" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.CategoryUIBean" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdUDACatalogPath" minOccurs="0" type="xs:string" osd:distinguishNullFromEmptyString="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdUDACatalogPath" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UDAUIBean" />
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdAccess" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdAccess" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.OsdAccessUIBean" />
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.OsdAccessEnumerationConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdSelect" minOccurs="0" osd:access="RW" type="OsdSelect">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdSelect" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdInheritanceSpec" minOccurs="0" osd:access="RW" type="OsdInheritanceSpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.osdInheritanceSpec" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdAssociation" minOccurs="0" type="OsdAssociation"/>
+			<xs:element name="osdLinkedField" minOccurs="0" type="osdLinkedField"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdAssociation" osd:class="com.orchestranetworks.dma.association.OsdAssociation" osd:access="RW">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="definition" minOccurs="0" osd:class="com.orchestranetworks.dma.association.OsdAssociationDefinition" osd:access="RW">
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationDefinitionUIBean" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="mode" minOccurs="1" type="xs:string" osd:checkNullInput="true">
+						<xs:annotation>
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.dma.association.OsdAssociationModeEnumerationConstraint"/>
+									</osd:otherFacets>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="tableRefInverse" minOccurs="0" type="OsdAssociationTableRefInverse" osd:access="RW">
+						<xs:annotation>
+							<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.tableRefInverse"/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="linkTable" type="OsdAssociationLinkTable" minOccurs="0" osd:access="RW">
+						<xs:annotation>
+							<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.linkTable"/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="xpathLink" type="OsdAssociationXPathLink" minOccurs="0" osd:access="RW">
+						<xs:annotation>
+							<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.xpathLink"/>
+						</xs:annotation>
+					</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+      <xs:element name="breadcrumb" type="BreadcrumbProperties" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation osd:id="simpleType.breadcrumbLabel"/>
+          <xs:appinfo>
+            <osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationBreadcrumbUIBean"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+			<xs:element name="XPathFilter" type="xs:string" minOccurs="0" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.XPathFilter"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationXPathFilterUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XPathFilterMessage" minOccurs="0" type="ValidationMessage" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>false</displaySeverity>
+								<displayValidationProperties>false</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minOccurs" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.minOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationConstraintUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxOccurs" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.maxOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationConstraintUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="constraintPredicate" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.constraintPredicate" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationConstraintUIBean">
+							<displayTextArea>true</displayTextArea>
+							<displayHelper>true</displayHelper>
+							<displayEmptyButton>false</displayEmptyButton>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="recordForm" type="ComponentLibrarySpec" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.recordForm" />
+				</xs:annotation>
+			</xs:element>		
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdAssociationTableRefInverse" osd:access="RW" osd:class="com.orchestranetworks.cce.association.SncAssociationTableRefInverse">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationTableRefInverseUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataSpace" minOccurs="0" type="DataspaceName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerBranch" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataSet" minOccurs="0" type="DatasetName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerAdaptation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataSetSchema" type="SchemaLocationInformation" minOccurs="0"/>			
+			<xs:element name="fieldToSource" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.tableRefInverse.fieldToSource"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationTableRefInverse_FieldToSourceUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdAssociationLinkTable" osd:access="RW" osd:class="com.orchestranetworks.cce.association.SncAssociationLinkTable">
+		<xs:annotation>
+				<xs:appinfo>
+					<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationLinkTableUIBean" />
+				</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataSpace" minOccurs="0" type="DataspaceName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerBranch" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataSet" minOccurs="0" type="DatasetName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerAdaptation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataSetSchema" type="SchemaLocationInformation" minOccurs="0"/>		
+			<xs:element name="table" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.linkTable.table"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fieldToSource" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.linkTable.fieldToSource"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fieldToTarget" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.linkTable.fieldToTarget"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>		
+	</xs:complexType>
+	<xs:complexType name="OsdAssociationXPathLink" osd:access="RW" osd:class="com.orchestranetworks.cce.association.SncAssociationXPathLink">
+		<xs:annotation>
+				<xs:appinfo>
+					<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationXPathLinkUIBean" />
+				</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataSpace" minOccurs="0" type="DataspaceName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerBranch" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataSet" minOccurs="0" type="DatasetName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerAdaptation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataSetSchema" type="SchemaLocationInformation" minOccurs="0"/>		
+			<xs:element name="predicate" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.OsdAssociation.xpathLink.predicate"/>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>		
+	</xs:complexType>
+	<xs:complexType name="osdLinkedField"  osd:class="com.orchestranetworks.dma.linkedField.OsdLinkedField" osd:access="RW">
+		<xs:annotation>
+				<xs:documentation osd:id="complexType.PropertiesAdvanced.osdLinkedField"/>
+				<xs:appinfo>
+					<osd:uiBean class="com.orchestranetworks.dma.linkedField.OsdLinkedFieldUIBean" />
+				</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="linkedField" type="xs:string" minOccurs="0">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdDefaultView" osd:class="com.onwbp.base.schema.view.DefaultViewProperties">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UIDefaultView" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="hidden" default="false" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hidden"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean">
+						<xs:enumeration value="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hidden.enumeration.true" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="false">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hidden.enumeration.false" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hiddenInSearch" type="xs:string" default="false" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hiddenInSearch"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.HiddenInSearchPolicyEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hiddenInViews" type="xs:string" default="false" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hiddenInViews"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.HiddenInViewsPolicyEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hiddenInDataServices" default="false" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hiddenInDataServices"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean">
+						<xs:enumeration value="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hiddenInDataServices.enumeration.true" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="false">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.hiddenInDataServices.enumeration.false" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="displayMode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.displayMode" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.NodeDisplayModeEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tabOrder" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.tabOrder" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tabularView" minOccurs="0" type="tabularViewOnSingleTableType" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.tabularView"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationTabularViewUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="associationViews" minOccurs="0" osd:access="RW" osd:class="com.onwbp.base.schema.view.AssociationViewProperties">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.associationViews"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationViewsUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="viewForAssociateAction" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.associationViews.associateView"/>
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationViewUIBean"/>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.association.OsdAssociationViewConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="viewForMoveAction" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.PropertiesAdvanced.defaultView.associationViews.moveView"/>
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.association.OsdAssociationViewUIBean"/>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.association.OsdAssociationViewConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="widgetJBSSpec" minOccurs="0" type="WidgetBuiltInSpec" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.defaultView.widget" />
+				</xs:annotation>				
+			</xs:element>
+			<xs:element name="widgetCustom" minOccurs="0" type="ComponentLibrarySpec" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Table.defaultView.widget" />
+				</xs:annotation>				
+			</xs:element>
+			<xs:element name="toolbars" minOccurs="0">
+				<xs:complexType osd:class="com.onwbp.base.schema.view.DefaultToolBarsProperties">
+					<xs:annotation>
+						<xs:documentation osd:id="complexType.Table.defaultView.toolbars" />
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="tabularViewTop" type="associationToolBarLocation" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Table.defaultView.toolbars.associationTop" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="tabularViewRow" type="associationToolBarLocation" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Table.defaultView.toolbars.associationRow" />
+							</xs:annotation>
+						</xs:element>						
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="OsdInheritanceSpec" osd:class="com.orchestranetworks.dma.beans.InheritanceBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.InheritanceUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sourceRecord" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdInheritanceSpec.sourceRecord" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sourceNode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdInheritanceSpec.sourceNode" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Bindings">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Bindings" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/targetDirectory /typeName</primaryKeys>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.dma.triggers.BindingsTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="targetDirectory" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Bindings.targetDirectory" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Bindings.typeName" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rootProperties" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Bindings.rootProperties" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.dma.beans.BindingRootProperties">
+					<xs:sequence>
+						<xs:element name="root">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Bindings.rootProperties.root" />
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.BindingRootNodeUIBean">
+										<width>180</width>
+									</osd:uiBean>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.ComplexNodeEnumeration" />
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="/.*">
+										<xs:annotation>
+											<xs:documentation>
+												<osd:defaultErrorMessage osd:id="complexType.Bindings.rootProperties.root.pattern.defaultErrorMessage" />
+											</xs:documentation>
+										</xs:annotation>
+									</xs:pattern>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="prefix" type="xs:string"  minOccurs="0" osd:distinguishNullFromEmptyString="true">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Bindings.rootProperties.prefix" />
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.BindingPrefixUIBean"/>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="relativeToRoot" minOccurs="0" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Bindings.rootProperties.relativeToRoot" />
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.BindingRelativePathUIBean"/>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Replications">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Replications" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/name</primaryKeys>
+					<recordForm osd:class="com.orchestranetworks.dma.ui.form.ReplicationFormLayout"/>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.dma.triggers.ReplicationTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" minOccurs="1" type="xs:Name">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Replications.name" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.rdb.constraint.RdbPropertyConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="properties" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.ReplicationBean" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Replications.properties" />
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dataSpace" minOccurs="1" type="DataspaceName">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Replications.properties.dataSpace" />
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.ReplicationDataSpaceUIBean"/>									
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.ReplicationDataSpaceConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dataSet" minOccurs="1" type="DatasetName">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Replications.properties.dataSet" />
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.ReplicationDataSetUIBean"/>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.ReplicationDataSetConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="refresh" minOccurs="1" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Replications.properties.refresh" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.ReplicationRefreshEnumeration"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="tables" type="ReplicationTable" minOccurs="1"  maxOccurs="unbounded"/>			
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReplicationTable" osd:class="com.orchestranetworks.dma.beans.ReplicationTableBean">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ReplicationTable" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.ReplicationTableUIBean"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tablePath" osd:checkNullInput="true" minOccurs="1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ReplicationTable.tablePath" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.TablePathUIBean"/>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.ReplicationPathTableConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameInDatabase" osd:checkNullInput="true" minOccurs="1" type="RdbProperty">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ReplicationTable.nameInDatabase" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.ReplicationTableNameInDatabaseUniquenessConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="elements" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ReplicationTable.elements" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.cce.rm.rp.RpSchemaReplicationTableElementBean">
+					<xs:sequence>
+						<xs:element name="path" osd:checkNullInput="true" minOccurs="1" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ReplicationTable.elementPath" />
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.ReplicationTableElementPathUIBean"/>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.ReplicationPathElementConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="nameInDatabase" osd:checkNullInput="true" minOccurs="1" type="RdbProperty">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ReplicationTable.element.nameInDatabase" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.ReplicationTableNameInDatabaseUniquenessConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Filter" osd:class="com.orchestranetworks.dma.beans.FilterBean">
+		<xs:sequence>
+			<xs:element name="osdBean" minOccurs="0" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Filter.osdBean" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Filter.label" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="labelLocalized" minOccurs="0" osd:access="RW" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Filter.labelLocalized" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DefaultLabel" osd:class="com.orchestranetworks.dma.beans.DefaultLabelTypeBean">
+		<xs:sequence>
+			<xs:element name="label" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DefaultLabel.label" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="labelLocalized" minOccurs="0" osd:access="RW" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DefaultLabel.labelLocalized" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIDefaultLabelOnTable" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="programmaticLabel" minOccurs="0" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DefaultLabel.programmaticLabel" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdClass" minOccurs="0" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DefaultLabel.osdClass" />
+				</xs:annotation>
+			</xs:element>
+      <xs:element name="breadcrumb" type="BreadcrumbProperties" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Label" osd:class="com.onwbp.base.text.bean.Label">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.Label" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UILabelModuleAware" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Label.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Label.localizedDocumentations.locale" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="label" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Label.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XsBoundaryConstant" osd:class="com.orchestranetworks.dma.beans.BoundaryBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.OsdBoundaryConstantUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" minOccurs="0" type="TypedFacetWithMessagesAndSeverity">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.XsBoundaryConstant.value" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exclusive" default="false" minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.XsBoundaryConstant.exclusive" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdBoundaryDynamic" osd:class="com.orchestranetworks.dma.beans.BoundaryDynamicBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.OsdBoundaryDynamicUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdBoundaryDynamic.value" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayHelper>true</displayHelper>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exclusive" default="false" minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdBoundaryDynamic.exclusive" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdTableRef" osd:class="com.orchestranetworks.dma.beans.TableRefBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.TableRefUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="externalContainer" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.externalContainer" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="externalTable" minOccurs="0">
+				<xs:complexType osd:access="RW" osd:class="com.orchestranetworks.dma.beans.TableRefBeanExternal">
+					<xs:sequence>
+						<xs:element name="containerBranch" minOccurs="0" type="DataspaceName">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerBranch" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="containerAdaptation" minOccurs="0" type="DatasetName">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.OsdTableRef.externalTable.containerAdaptation" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="externalTablePath" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.OsdTableRef.externalTable.externalTablePath" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="externalLabelPaths" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.OsdTableRef.externalTable.externalLabelPaths" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tablePath" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.tablePath" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="labelPaths" maxOccurs="unbounded" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.labelPaths" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="displayKey" minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.displayKey" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="filterSpecification" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.filterSpecification" />
+				</xs:annotation>
+				<xs:complexType osd:access="RW" osd:class="com.orchestranetworks.dma.beans.TableRefFilterBean">
+					<xs:sequence>
+						<xs:element name="predicate" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.OsdTableRef.filterSpecification.predicate" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="programmaticFilterSpec" minOccurs="0" type="ComponentLibrarySpec">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.OsdTableRef.filterSpecification.programmaticFilterSpec" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="errorMessage" minOccurs="0" type="ValidationMessage">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Facet.message" />
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+										<displayDefaultMessage>true</displayDefaultMessage>
+										<displayLabel>false</displayLabel>
+										<displaySeverity>true</displaySeverity>
+									</osd:uiBean>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="label" minOccurs="0" type="DefaultLabel">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdTableRef.label" />
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="validation" minOccurs="0" type="FacetValidationPolicy"/>
+			<xs:element name="validationMessages" minOccurs="0" type="ValidationMessage" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdSelect" osd:class="com.orchestranetworks.dma.beans.SelectBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UISelectionNode" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="xpath" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdSelect.xpath" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UISelectionPath" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="containerAdaptation" minOccurs="0" type="DatasetName">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdSelect.containerAdaptation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minOccurs" minOccurs="0" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdSelect.minOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UISelectMinOccurs">
+							<width>100</width>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minOccursErrorMessage" minOccurs="0" osd:category="Hidden" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdSelect.minOccursErrorMessage" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+							<displayDefaultMessage>true</displayDefaultMessage>
+							<displayLabel>false</displayLabel>
+							<displaySeverity>true</displaySeverity>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxOccurs" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdSelect.maxOccurs" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UISelectMaxOccurs">
+							<width>100</width>
+						</osd:uiBean>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckSelectMaxOccurs" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxOccursErrorMessage" minOccurs="0" osd:category="Hidden" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdSelect.maxOccursErrorMessage" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+							<displayDefaultMessage>true</displayDefaultMessage>
+							<displayLabel>false</displayLabel>
+							<displaySeverity>true</displaySeverity>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="constraint" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdSelect.constraint" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UISelectionNodeConstraint"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OsdAutoIncrement" osd:class="com.orchestranetworks.dma.beans.AutoIncrementBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.AutoIncrementUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="start" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdAutoIncrement.start" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="step">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OsdAutoIncrement.step" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minExclusive value="0" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="disableAutoIncrementTableCheck" minOccurs="0" type="xs:boolean" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Schema.disableAutoIncrementTableCheck" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConstraintsSimple">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ConstraintsSimple" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>tab</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="xsLength" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsLength" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayIntegerComponent>true</displayIntegerComponent>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsMinLength" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsMinLength" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayIntegerComponent>true</displayIntegerComponent>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsMaxLength" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsMaxLength" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayIntegerComponent>true</displayIntegerComponent>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsPattern" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsPattern" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsFractionDigit" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsFractionDigit" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayIntegerComponent>true</displayIntegerComponent>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsTotalDigit" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsTotalDigit" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayIntegerComponent>true</displayIntegerComponent>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsEnumeration" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsEnumeration" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.XsEnumerationUIBean" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.dma.beans.EnumerationItemBean">
+					<xs:sequence>
+						<xs:element name="value" minOccurs="0" osd:distinguishNullFromEmptyString="true" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsSimple.xsEnumeration.value" />
+								<xs:appinfo>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.CheckTypedValue" />
+									</osd:otherFacets>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.UITypedValue" />
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="osdLabel" minOccurs="0" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsSimple.xsEnumeration.osdLabel" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="localizedLabel" minOccurs="0" type="Label">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsSimple.xsEnumeration.localizedLabel" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="xsEnumerationValidation" minOccurs="0" type="FacetValidationPolicy" osd:category="hidden" osd:access="RW"/>			
+			<xs:element name="xsEnumerationValidationMessages" minOccurs="0" type="ValidationMessage" osd:category="hidden" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsMinConstants" minOccurs="0" osd:access="RW" type="XsBoundaryConstant">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsMinConstants" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xsMaxConstants" minOccurs="0" osd:access="RW" type="XsBoundaryConstant">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsSimple.xsMaxConstants" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConstraintsAdvanced">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ConstraintsAdvanced" />
+			<xs:appinfo>
+				<osd:defaultView>
+					<displayMode>tab</displayMode>
+				</osd:defaultView>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="osdDataspaceSetConstraint" minOccurs="0" osd:access="RW" osd:class="com.orchestranetworks.dma.types.dataspaceKey.DataspaceSetBean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDataspaceSetConstraint"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetDataspaceSetUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ignoreDataspacesDefaultExcludes" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false" >
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDataspaceSetConstraint.defaultExcludes" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="includes" type="DataspaceSetRestriction"  minOccurs="1" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDataspaceSetConstraint.includes"/>
+								<xs:documentation>
+									<osd:mandatoryErrorMessage osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.includes.mandatory"/>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="excludes" type="DataspaceSetRestriction" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDataspaceSetConstraint.excludes"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="filter"  type="ComponentLibrarySpec" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDataspaceSetConstraint.filter" />
+							</xs:annotation>
+						</xs:element>					
+						<xs:element name="validation" minOccurs="0" type="FacetValidationPolicy"/>
+						<xs:element name="validationMessage" minOccurs="0" type="ValidationMessage">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Facet.message" />
+									<xs:appinfo>
+										<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+											<displayDefaultMessage>true</displayDefaultMessage>
+											<displayLabel>false</displayLabel>
+											<displaySeverity>true</displaySeverity>
+											<displayValidationProperties>true</displayValidationProperties>
+										</osd:uiBean>
+									</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+		</xs:element>
+		<xs:element name="osdDatasetSetConstraint" minOccurs="0" osd:access="RW" osd:class="com.orchestranetworks.dma.types.datasetName.DatasetSetBean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint"/>
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetDatasetSetUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="branch" type="DataspaceName" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.branch"/>
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.types.datasetName.DatasetSetBranchUIBean"/>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.DataspaceSetSourceDataspaceConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="version" type="DataspaceName" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.version"/>
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.types.datasetName.DatasetSetVersionUIBean"/>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.DataspaceSetSourceDataspaceConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dataspaceSelector" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.dataspaceSelector"/>
+								<xs:appinfo>
+									<osd:uiBean class="com.orchestranetworks.dma.ui.FacetDatasetSetDataspaceSelectorUIBean"/>
+									<osd:otherFacets>
+										<osd:constraint class="com.orchestranetworks.dma.constraint.DataspaceSetSourceDataspaceConstraint"/>
+									</osd:otherFacets>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="includes" type="DatasetSetRestriction" minOccurs="1" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.includes"/>
+								<xs:documentation>
+									<osd:mandatoryErrorMessage osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.includes.mandatory"/>
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="excludes" type="DatasetSetRestriction" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.excludes"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="filter"  type="ComponentLibrarySpec" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdDatasetSetConstraint.filter" />
+							</xs:annotation>
+						</xs:element>					
+						<xs:element name="validation" minOccurs="0" type="FacetValidationPolicy"/>
+						<xs:element name="validationMessage" minOccurs="0" type="ValidationMessage">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.Facet.message" />
+									<xs:appinfo>
+										<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+											<displayDefaultMessage>true</displayDefaultMessage>
+											<displayLabel>false</displayLabel>
+											<displaySeverity>true</displaySeverity>
+											<displayValidationProperties>true</displayValidationProperties>
+										</osd:uiBean>
+									</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="osdTableRef" minOccurs="0" osd:access="RW" type="OsdTableRef">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdTableRef" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdMinDynamic" minOccurs="0" osd:access="RW" type="OsdBoundaryDynamic">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdMinDynamic" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdMaxDynamic" minOccurs="0" osd:access="RW" type="OsdBoundaryDynamic">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdMaxDynamic" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdLength" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdLength" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayHelper>true</displayHelper>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdMinLength" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdMinLength" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayHelper>true</displayHelper>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdMaxLength" minOccurs="0" type="Facet">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdMaxLength" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+							<displayHelper>true</displayHelper>
+						</osd:uiBean>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdExcludeValues" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdExcludeValues" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.OsdExcludedValuesUIBean" />
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType osd:class="com.orchestranetworks.dma.beans.ExcludeValueBean">
+					<xs:sequence>
+						<xs:element name="excludedValue" type="TypedFacetWithMessagesAndSeverity" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="osdExcludeSegment" minOccurs="0" osd:access="RW" type="ExcludeSegment">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdExcludeSegment" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraint"  type="ComponentLibrarySpec" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdConstraint" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecMultiOccurrenced"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraintOnTable"  type="ComponentLibrarySpec" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdConstraintOnTable" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecMultiOccurrenced" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraintEnumeration" minOccurs="0" osd:access="RW" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdConstraintEnumeration" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraintNomenclature" minOccurs="0" osd:access="RW" type="ComponentLibrarySpec">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdConstraintNomenclature" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraintEnumerationPath" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdConstraintEnumerationPath" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIConstraintEnumerationPath" />
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraintEnumerationPathValidation" minOccurs="0" type="FacetValidationPolicy" osd:category="hidden" osd:access="RW"/>	
+			<xs:element name="osdConstraintEnumerationPathValidationMessages" minOccurs="0" type="ValidationMessage" osd:category="hidden" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraintNomenclaturePath" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdConstraintNomenclaturePath" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIConstraintNomenclaturePath" />
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdConstraintNomenclaturePathValidation" minOccurs="0" type="FacetValidationPolicy" osd:category="hidden" osd:access="RW"/>	
+			<xs:element name="osdConstraintNomenclaturePathValidationMessages" minOccurs="0" type="ValidationMessage" osd:category="hidden" osd:access="RW">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="osdResource" minOccurs="0" type="OResource">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ConstraintsAdvanced.osdResource" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>	
+	</xs:complexType>
+	<xs:complexType name="ValidationRule" osd:access="RW" osd:class="com.onwbp.base.schema.scripting.ValidationRule">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.ValidationRulesUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" minOccurs="0" type="xs:string" />
+			<xs:element name="isConstraintOnNull" minOccurs="0" type="xs:boolean" default="false"/>
+			<xs:element name="documentation" osd:access="RW" type="Documentation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ValidationRule.documentation" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="constraintPredicate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ValidationRule.constraintPredicate" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="MessageWithSeverity">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ValidationRule.message" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="blocksCommit" minOccurs="0" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageWithSeverity" osd:access="RW" osd:class="com.onwbp.base.schema.definition.MessageWithSeverity">
+		<xs:sequence>
+			<xs:element name="severity" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MessageWithSeverity.severity" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" osd:access="RW" type="Label">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.MessageWithSeverity.message" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComputationRule" osd:access="RW" osd:class="com.onwbp.base.schema.scripting.DMAComputationRule">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.ComputationRuleUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uuid" minOccurs="0" type="xs:string" />
+			<xs:element name="predicate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ComputationRule.predicate" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Function" osd:access="RW" osd:class="com.orchestranetworks.dma.scripting.FunctionPropertiesBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.scripting.FunctionPropertiesUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="scripted" minOccurs="1" type="xs:boolean" osd:checkNullInput="true" default="false" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UniquenessConstraint" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.UniquenessBean">
+		<xs:sequence>
+			<xs:element name="field" type="xs:string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UniquenessConstraint.field" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UIUniquenessField"/>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.TableFieldEnumerationOnUniquenessConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" minOccurs="0" osd:category="Hidden" type="xs:string" />
+			<xs:element name="validation" minOccurs="0" type="FacetValidationPolicy"/>
+			<xs:element name="defaultErrorMessage" minOccurs="0" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+					<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OResource" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.OResourceBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.OResourceUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="moduleName" osd:category="hidden" type="xs:string" />
+			<xs:element name="resourceType">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OResource.resourceType" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ext-images" />
+						<xs:enumeration value="ext-jscripts" />
+						<xs:enumeration value="ext-stylesheets" />
+						<xs:enumeration value="ext-html" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="relativePath" type="xs:string" >
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.OResource.relativePath" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComponentLibrarySpec" osd:access="RW" osd:class="com.orchestranetworks.schema.extensions.JBSJavaBeanSpec">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecComponentLibraryHandlingNull" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="osdClass" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpec.osdClass" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:tableRef>
+								<tablePath>/root/rules</tablePath>
+								<display osd:class="com.orchestranetworks.dma.constraint.RuleTableRefDisplay"/>
+								<filter osd:class="com.orchestranetworks.dma.constraint.RuleTableRefFilter"/>
+							</osd:tableRef>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckJavaBean" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="param" maxOccurs="unbounded" minOccurs="0" type="JavaBeanSpecProperty">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpec.param" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="JavaBeanSpecProperty" osd:access="RW" osd:class="com.orchestranetworks.schema.extensions.JBSPropertyBean">
+		<xs:sequence>
+			<xs:element name="paramName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpecProperty.paramName" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.JavaBeanParameterNameEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="paramValue" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpecProperty.paramValue" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="locale" minOccurs="0" type="osd:locale">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpecProperty.locale" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="javaBeanXmlContent" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpecProperty.javaBean" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WidgetBuiltInSpec" osd:access="RW" osd:class="com.orchestranetworks.schema.extensions.JBSJavaBeanSpec">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UIJavaBeanSpecWidgetHandlingNull" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="osdClass" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpec.osdClass" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.WidgetBuiltInConstraint"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="param" maxOccurs="unbounded" minOccurs="0" type="JavaBeanSpecProperty">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.JavaBeanSpec.param" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PropertyWithMessages" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.FacetBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.PropertyWithMessagesUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.value" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="errorMessage" minOccurs="0" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.errorMessage" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Facet" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.FacetBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.value" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.FacetValueUIBean"/>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validation" minOccurs="0" type="FacetValidationPolicy"/>
+			<xs:element name="errorMessage" minOccurs="0" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FacetValidationPolicy" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.FacetValidationPolicy">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.FacetValidation" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="blocksCommit" minOccurs="0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.FacetValidation.blocksCommit"/>
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.FacetValidationBlocksCommitEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TypedFacetWithMessagesAndSeverity" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.FacetBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.FacetWithMessagesAndSeverityUIBean">
+					<displayTypedComponent>true</displayTypedComponent>
+				</osd:uiBean>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" minOccurs="0" osd:distinguishNullFromEmptyString="true" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.TypedPropertyWithMessages.value" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckTypedValue" />
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UITypedValue" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validation" minOccurs="0" type="FacetValidationPolicy"/>
+			<xs:element name="errorMessage" minOccurs="0" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExcludeSegment" osd:access="RW" osd:class="com.orchestranetworks.dma.beans.ExcludeSegmentBean">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.UIExcludeSegment" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="minValue" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ExcludeSegment.minValue" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckTypedValue" />
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UITypedValue" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="maxValue" type="xs:string">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ExcludeSegment.maxValue" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckTypedValue" />
+							<osd:constraint class="com.orchestranetworks.dma.constraint.CheckFacetValue" />
+						</osd:otherFacets>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.UITypedValue" />
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validation" minOccurs="0" type="FacetValidationPolicy"/>		
+			<xs:element name="errorMessage" minOccurs="0" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.Facet.message" />
+						<xs:appinfo>
+							<osd:uiBean class="com.orchestranetworks.dma.ui.MessagesUIBean">
+								<displayDefaultMessage>true</displayDefaultMessage>
+								<displayLabel>false</displayLabel>
+								<displaySeverity>true</displaySeverity>
+								<displayValidationProperties>true</displayValidationProperties>
+							</osd:uiBean>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceConfirmation" osd:class="com.orchestranetworks.dma.beans.ServiceConfirmation">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.ServiceConfirmation" />
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.ServiceConfirmationUIBean" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="confirmationValue" default="true" minOccurs="0" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceConfirmation.confirmationValue" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confirmationMessage" minOccurs="0" type="ValidationMessage">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.ServiceConfirmation.confirmationMessage" />
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValidationProperties" osd:access="RW" osd:class="com.onwbp.base.schema.definition.SchemaValidationProperties">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.validationProperties" />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="validationMessageThreshold" default="1000" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.validationProperties.messageThreshold" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataspaceSetRestriction"	osd:access="RW"  osd:class="com.orchestranetworks.schema.types.dataspace.DataspaceSetRestrictionImpl">
+		<xs:sequence>
+			<xs:element name="pattern" type="patternType" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DataspaceSetRestriction.pattern" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="xs:string" minOccurs="0" maxOccurs="1" default="branch">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DataspaceSetRestriction.type" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.types.dataspaceKey.DataspaceKeyTypeEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="includeDescendants" type="xs:string" minOccurs="0" maxOccurs="1" default="none">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DataspaceSetRestriction.includeDescendants" />					
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.types.dataspaceKey.DataspaceKeyIncludeDescendantsEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatasetSetRestriction" osd:access="RW" osd:class="com.orchestranetworks.schema.types.dataset.DatasetSetRestrictionImpl">
+		<xs:sequence>
+			<xs:element name="pattern" type="patternType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DatasetSetRestriction.pattern" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="includeDescendants" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DatasetSetRestriction.includeDescendants" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.dma.types.datasetName.DatasetNameIncludeDescendantsEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EntityMapping">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.EntityMapping" />
+				<xs:appinfo>
+					<osd:table>
+						<primaryKeys>/id</primaryKeys>
+						<recordForm  osd:class="com.orchestranetworks.dma.ui.form.EntityMappingFormLayout"/>
+						<defaultLabel osd:class="com.orchestranetworks.dma.renderer.EntityMappingLabelRenderer" />
+					</osd:table>
+				</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:integer" minOccurs="1">	
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:autoIncrement/>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>				
+			</xs:element>
+			<xs:element name="path" type="xs:string" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.EntityMapping.path" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.dma.ui.TablePathUIBean"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="entityName" minOccurs="1" osd:checkNullInput="true">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.EntityMapping.entityName" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-zA-Z_][a-zA-Z0-9_]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+		******************************************
+		End Complex Types
+		******************************************
+	-->
+	
+	<!--
+		******************************************
+		Simple Types
+		******************************************
+	-->
+	<xs:simpleType name="ExternalType" >
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.ExternalTypeUI" />
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.dma.constraint.ExternalTypeConstraint" />
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DataspaceName">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9_:.\\-\\|]*"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DatasetName">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z_][-a-zA-Z0-9_.]*"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RdbProperty">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.dma.rdb.constraint.RdbPropertyConstraint"/>
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>	
+	<xs:simpleType name="TableAction" osd:checkNullInput="true">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.TableActions" />
+			<xs:appinfo>
+				<osd:otherFacets>
+					<osd:constraintEnumeration class="com.orchestranetworks.dma.table.actions.TableActionsEnumeration"/>
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>	
+	<xs:simpleType name="toolBarLocation">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:otherFacets>
+					<osd:tableRef>
+						<tablePath>//toolbarNode</tablePath>
+						<filter osd:class="com.orchestranetworks.dma.facet.ToolbarsTableRefFilter"/>
+						<display osd:class="com.orchestranetworks.dma.facet.ToolbarsTableRefDisplay" />
+						<validation>	 
+						 	<message osd:id="simpleType.toolBarLocation.tableRef.validationMessage"/>
+						</validation>
+					</osd:tableRef>
+				</osd:otherFacets>
+				<osd:uiBean class="com.orchestranetworks.dma.ui.ToolbarsTableRefUIBean"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="associationToolBarLocation">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:otherFacets>
+					<osd:constraintEnumeration class="com.orchestranetworks.dma.facet.ToolbarsAssociationEnumeration"/>
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>		
+	<xs:simpleType name="patternType">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:otherFacets>
+					<osd:constraint class="com.orchestranetworks.dma.constraint.PatternConstraint"/>
+				</osd:otherFacets>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>		
+  <xs:complexType name="BreadcrumbProperties" osd:class="com.onwbp.base.schema.view.BreadcrumbProperties">
+    <xs:sequence>
+      <xs:element name="displayLabel" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation osd:id="simpleType.breadcrumbLabel"/>
+          <xs:appinfo>
+            <osd:otherFacets>
+              <osd:constraintEnumeration class="com.orchestranetworks.dma.constraint.BreadcrumbLabelDisplayPolicyEnumeration"/>
+            </osd:otherFacets>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+	<!--
+		******************************************
+		Ajax components
+		******************************************
+	-->
+	<xs:complexType name="AjaxWizard_SelectConstraint">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_SelectConstraint" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_internalTable">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Association_internalTable" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_ExternalForeignKey">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_ExternalForeignKey" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_ExternalTable">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_ExternalTable" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_ExternalLinkTable_ForeignKeys">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_ExternalLinkTable_ForeignKeys" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_DataSet">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_DataSet"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_XPathPredicate">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_XPathPredicate"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_XPathConstraint">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_XPathConstraint"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_XPathFilter">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_XPathFilter"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Association_ViewForAction">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.association.AjaxWizard_Association_ViewForAction"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_BoundaryDynamic">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_BoundaryDynamic" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_LengthDynamic">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_LengthDynamic" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_PrimaryKey">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_PrimaryKey" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_constraintEnumeration">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_constraintEnumeration" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_constraintNomenclature">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_constraintNomenclature" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_DatasetSet_Branch">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.types.datasetName.AjaxWizard_DatasetSet_Branch" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_DatasetSet_Version">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.types.datasetName.AjaxWizard_DatasetSet_Version" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_defaultLabel_table">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_defaultLabel_table" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableRef_defaultLabel">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableRef_defaultLabel" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_FieldsOsdDataspaceKey">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_FieldsOsdDataspaceKey" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_ForeignKey_To_CurrentTable">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_ForeignKey_To_CurrentTable" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_ForeignKey_To_CurrentTableInSpecificTable">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_ForeignKey_To_CurrentTableInSpecificTable" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_ForeignKeyInSpecificTable">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_ForeignKeyInSpecificTable" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>	
+	<xs:complexType name="AjaxWizard_ValidationRuleFormulaEditor">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_ValidationRuleFormulaEditor" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_ComputationRuleFormulaEditor">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_ComputationRuleFormulaEditor" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Inheritance_sourceRecord">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Inheritance_sourceRecord" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Inheritance_sourceNode">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Inheritance_sourceNode" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Replication_DataSet">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Replication_DataSet" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Replication_DataSpace">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Replication_DataSpace" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Select_TablePath">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Select_TablePath" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Select_Criterion">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Select_Criterion" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_table_labelling">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_table_labelling" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableField">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableField" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableRef_filter">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableRef_filter" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableRef_internalTable">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableRef_internalTable" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableRef_externalTable">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableRef_externalTable" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableRef_ViewForAdvancedSelection">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableRef_ViewForAdvancedSelection" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_JavaResources">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_JavaResources" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_JavaResources_Parameters">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_JavaResources_Parameters" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_linkedField">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_linkedField" />
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:complexType>
+	<xs:complexType name="AjaxWizard_ServiceResourcePath">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_ServiceResourcePath" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_XsUnique">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_XsUnique" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_UDACatalogPath">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_UDACatalogPath" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableRef_DataSpace">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableRef_DataSpace" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_tableRef_DatasetsInRepository">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_tableRef_DatasetsInRepository" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Tables">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Tables" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_Replication_Tables_Elements">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_Replication_Tables_Elements" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxWizard_DatasetsInRepository">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.wizard.ajax.AjaxWizard_DatasetsInRepository" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxJavaBeanSpecComponentLibraryParameters">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.ajax.AjaxJavaBeanSpecComponentLibraryParameters" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxJavaBeanSpecWidgetParameters">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.ajax.AjaxJavaBeanSpecWidgetParameters" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxModulePath">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.ajax.AjaxModulePath" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="AjaxSourceLocation">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:ajaxComponent class="com.orchestranetworks.dma.ui.ajax.AjaxSourceLocation" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:complexType>
+	<!--
+		******************************************
+		End Ajax component
+		******************************************
+	-->	
+</xs:schema>
+

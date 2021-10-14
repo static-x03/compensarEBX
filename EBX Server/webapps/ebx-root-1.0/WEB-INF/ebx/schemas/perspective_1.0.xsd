@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX(R) DMA instance [reference=Perspective] on Mon Jan 05 08:09:08 CET 2015 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+<!-- 
+	** OBSOLETE SCHEMA USED FOR MIGRATION AND JAVA BINDING GENERATION **
+	
+	Since version 5.7.0
+	Do not delete!!!
+ -->
+	<xs:include schemaLocation="./perspective_types_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="./session_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.ui.perspective.internal.PpvPathMigration">
+					<nodes prefix="" relativeToRoot="false" root="/root" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.ui.perspective.internal.PpvPathProperties">
+					<nodes prefix="" relativeToRoot="true" root="/root/properties" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.ui.perspective.internal.PpvPathMenuItem">
+					<nodes prefix="" relativeToRoot="true" root="/root/menuItem" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.perspective" />
+		</xs:appinfo>
+	</xs:annotation>
+	
+	<xs:element name="root" osd:access="--">
+		<xs:annotation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="properties" type="propertiesType" maxOccurs="1" minOccurs="1" />
+				<xs:element name="menuItem" type="menuItemType" maxOccurs="unbounded" minOccurs="0"  />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

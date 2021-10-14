@@ -1,0 +1,115 @@
+<project name="ps-mdm" default="dist" basedir=".">
+
+	<description>
+        local.common-ref.builds and bundles a war and jar file for the wwt-ebx-common-ref module.
+    </description>
+
+	<!-- Set global properties for this build -->
+	<property name="webapp.name" value="ps-mdm" />
+	<property name="local.common-ref.src" location="src" />
+	<property name="local.common-ref.build" location="webapps/${webapp.name}/WEB-INF/classes" />
+	<property name="package.name" value="${webapp.name}.war" />
+	<property name="webapp.dir" location="webapps/${webapp.name}" />
+	<property name="common-ref.jar.name" value="${webapp.name}.jar" />
+	<property name="deployment.dir" location="./deployment" />
+
+	<!-- Set Manifest Properties for this build -->
+	<property name="manifest.title" value="${webapp.name}"/>
+	
+	<!-- Set Dev-Artifacts archive properties for this build. -->
+	<property name="local.dev-artifacts.name" value="dev-artifacts.zip" />
+	<property name="local.dev-artifacts.dir" value="./artifacts" />
+	<property name="archive.title" value="dev-artifacts"/>
+	
+	<!--
+		Configure the classpath to compile against. 
+	-->
+	<path id="project.class.path">
+		
+		<fileset dir="${ebx.server.lib}">
+			<include name="*.jar" />
+		</fileset>
+		
+		<fileset dir="${deployment.dir}">
+			<include name="*.jar" />
+		</fileset>
+		
+	</path>
+
+	<!-- 
+		Delete the ${local.common-ref.build} and ${deployment.dir} directory trees 
+	-->
+	<target name="clean" description="clean up">
+		
+		<delete dir="${local.common-ref.build}" />
+
+	</target>
+	
+	<!-- 
+		Create the build directory structure used by compile 
+	-->
+	<target name="init" depends="clean">
+		
+		<mkdir dir="${local.common-ref.build}" />
+		
+	</target>
+
+	<!-- 
+		Compile the java code from ${local.common-ref.src} into ${local.common-ref.build} 
+	-->
+	<target name="compile" depends="init" description="compile the source">
+		
+		<javac srcdir="${local.common-ref.src}" destdir="${local.common-ref.build}" includeantruntime="false">
+			<classpath refid="project.class.path" />
+		</javac>
+		
+		<copy todir="${local.common-ref.build}">
+		   <fileset dir="${local.common-ref.src}" includes="**/*.properties"/>
+		</copy>
+		
+	</target>
+	
+	<!-- 
+		Create the distribution directory 
+	-->
+	<target name="dist"
+			description="generate the distribution"
+			depends="compile" >
+
+		<jar jarfile="${deployment.dir}/${package.name}" basedir="${webapp.dir}" >
+			<manifest>
+				<attribute name="Implementation-Title" value="${manifest.title}"/>
+				<attribute name="Implementation-Version" value="${implementation.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+		<jar jarfile="${deployment.dir}/${common-ref.jar.name}" basedir="${local.common-ref.build}" >
+			<manifest>
+				<attribute name="Implementation-Title" value="${common-ref.jar.name}"/>
+				<attribute name="Implementation-Version" value="${implementation.version}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+			</manifest>
+		</jar>
+		
+		<zip destfile="${deployment.dir}/${local.dev-artifacts.name}">
+		  <zipfileset dir="${local.dev-artifacts.dir}" prefix="${local.dev-artifacts.dir}"/>
+		</zip>
+
+	</target>
+
+	<!-- 
+		With all resources in place, create the war file 
+	-->
+	<target name="package" depends="compile">
+
+		<echo>=== PACKAGING ===</echo>
+
+		<war destfile="${package.file}" webxml="${temp.dir.web-inf}/web.xml" basedir="${temp.dir}">
+			<fileset dir="${pages.dir}" />
+			<lib dir="${lib.dir}" />
+			<classes dir="${temp.dir.classes}" />
+		</war>
+	</target>
+	
+</project>

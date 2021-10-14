@@ -1,0 +1,724 @@
+/* Javadoc style sheet */
+/*
+Overall document style
+*/
+
+@font-face {
+    font-family: ebx_font_title;
+    font-style: normal;
+    font-weight: 300;
+    src: url(fonts/Lato-Regular.woff) format('woff');
+}
+@font-face {
+    font-family: ebx_font_title;
+    font-style: italic;
+    font-weight: 300;
+    src: url(fonts/Lato-Italic.woff) format('woff');
+}
+
+@font-face {
+    font-family: ebx_font_text;
+    font-style: normal;
+    font-weight: 400;
+    src: url(fonts/Lato-Regular.woff) format('woff');
+}
+@font-face {
+    font-family: ebx_font_text;
+    font-style: italic;
+    font-weight: 400;
+    src: url(fonts/Lato-Italic.woff) format('woff');
+}
+
+@font-face {
+    font-family: ebx_font_text;
+    font-style: normal;
+    font-weight: 700;
+    src: url(fonts/Lato-Bold.woff) format('woff');
+}
+@font-face {
+    font-family: ebx_font_text;
+    font-style: italic;
+    font-weight: 700;
+    src: url(fonts/Lato-BoldItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: ebx_font_mono;
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/DroidSansMono.woff) format('woff');
+}
+
+body,
+ul.navList li,
+div.block {
+    font-family: ebx_font_text, Helvetica, Arial, sans-serif;
+}
+body {
+    color:#000000;
+    font-size:13px;
+    margin:0;
+}
+a:link,
+a:visited,
+a:active,
+a:link code,
+a:visited code,
+a:active code {
+    color:#606060;
+    text-decoration: none;
+}
+a:hover,
+a:focus,
+a:hover code,
+a:focus code {
+    color:#808080;
+}
+
+a[name],
+a[name]:hover {
+	text-decoration:none;
+    color:#000000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.overviewSummary caption span, .memberSummary caption span, .typeSummary caption span,
+.useSummary caption span, .constantsSummary caption span, .deprecatedSummary caption span {
+    font-family: ebx_font_title, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size:18px;
+}
+h2 {
+    font-size:18px;
+}
+h3 {
+    font-size:15px;
+}
+h4 {
+    font-size:13px;
+}
+h5 {
+    font-size:12px;
+}
+h6 {
+    font-size:11px;
+}
+ul {
+    list-style-type:disc;
+}
+pre,
+code,
+tt,
+dt code,
+table tr td dt code {
+    font-family: ebx_font_mono, monospace;
+    font-size:12px;
+}
+code, tt {
+    padding-top:4px;
+    margin-top:8px;
+    line-height:1.4em;
+	color: #0078bc;
+}
+dt code {
+    padding-top:4px;
+}
+table tr td dt code {
+    vertical-align:top;
+    padding-top:4px;
+}
+sup {
+    font-size:8px;
+}
+
+hr {
+	border-style: solid;
+	border-color: #C0C0C0;
+	border-width: 1px 0 0 0;
+}
+
+/*
+Document title and Copyright styles
+*/
+.clear {
+    clear:both;
+    height:0px;
+    overflow:hidden;
+}
+.aboutLanguage {
+    float:right;
+    padding:0px 15px;
+    font-size:11px;
+    z-index:200;
+}
+.legalCopy {
+    margin:0;
+    clear: both;
+}
+.bar a, .bar a:link, .bar a:visited, .bar a:active {
+    color:#FFFFFF;
+    text-decoration:none;
+}
+.bar a:hover, .bar a:focus {
+    color:#808080;
+}
+.tab {
+    background-color:#E0E0E0;
+    color:#ffffff;
+    padding:8px;
+    width:5em;
+    font-weight:bold;
+}
+/*
+Navigation bar styles
+*/
+.bar {
+    background-color:#C0C0C0;
+    color:#FFFFFF;
+    margin:0;
+    height:40px;
+    line-height: 40px;
+    padding: 0 10px;
+
+    white-space: nowrap;
+
+    display: inline-block;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+.topNav {
+    background-color:#C0C0C0;
+    color:#E0E0E0;
+    float:left;
+    padding:0;
+    width:100%;
+    clear:right;
+    overflow:hidden;
+    font-size:12px;
+}
+.bottomNav {
+/*
+    margin-top:10px;
+    background-color:#C0C0C0;
+    color:#FFFFFF;
+    float:left;
+    padding:0;
+    width:100%;
+    clear:right;
+    overflow:hidden;
+    font-size:12px;
+*/
+    display: none;
+}
+.subNav {
+    background-color:#FFFFFF;
+    float:left;
+    width:100%;
+    overflow:hidden;
+    font-size:12px;
+    padding: 5px 5px 5px 0px;
+}
+.subNav:last-of-type {
+	display: none;
+}
+.subNav div {
+    clear:left;
+    float:left;
+    text-transform:uppercase;
+}
+ul.navList, ul.subNavList {
+    float:left;
+    margin:0 25px 0 0;
+    padding:0;
+}
+ul.navList li {
+    list-style:none;
+    float:left;
+    padding: 0 15px;
+    font-weight: bold;
+}
+
+.subNav ul.navList:first-child li:first-child a:before {
+	content: "< ";
+}
+.subNav ul.navList:first-child li:last-child a:after {
+	content: " >";
+}
+
+.subNav ul.navList:first-child li {
+	color: #B0B0B0;
+}
+
+.subNav ul.navList:first-child li a {
+	display: inline-block;
+	padding: 0 15px;
+	margin: 0 -15px;
+	color: #606060;
+	text-decoration: none;
+}
+.subNav ul.navList:first-child li a:hover {
+	background-color: #C0C0C0;
+	color: #FFFFFF;
+}
+
+.topNav ul.navList li,
+.bottomNav ul.navList li {
+    height: 40px;
+    line-height: 40px;
+}
+.subNav ul.navList li{
+    height: 30px;
+    line-height: 30px;
+}
+ul.subNavList {
+    margin-left: 15px;
+    color: #808080;
+}
+ul.subNavList li:first-child {
+    color: #606060;
+}
+ul.subNavList li{
+    list-style:none;
+    float:left;
+}
+.topNav a:link,
+.topNav a:active,
+.topNav a:visited,
+.bottomNav a:link,
+.bottomNav a:active,
+.bottomNav a:visited {
+    color:#FFFFFF;
+    text-decoration:none;
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 0 -15px;
+    padding: 0 15px;
+}
+.topNav a:hover,
+.bottomNav a:hover {
+    text-decoration:none;
+    background-color: #A0A0A0;
+}
+
+.navBarCell1Rev {
+    color:#FFFFFF;
+    border-bottom: 3px solid #808080;
+}
+.skipNav {
+    position:absolute;
+    top:auto;
+    left:-9999px;
+    overflow:hidden;
+}
+/*
+Page header and footer styles
+*/
+.header, .footer {
+    clear:both;
+    margin:0 20px;
+    padding:5px 0 5px 20px;
+    background-color:#F0F0F0;
+}
+.indexHeader {
+    margin:10px;
+    position:relative;
+}
+.indexHeader span{
+    margin-right:15px;
+}
+.indexHeader h1 {
+    font-size:13px;
+}
+.title {
+    color:#404040;
+    margin:10px 0;
+}
+.subTitle {
+    margin:5px 0 0 0;
+}
+.header ul {
+    margin:0 0 15px 0;
+    padding:0;
+}
+.footer ul {
+    margin:20px 0 5px 0;
+}
+.header ul li, .footer ul li {
+    list-style:none;
+    font-size:13px;
+}
+/*
+Heading styles
+*/
+div.details ul.blockList ul.blockList ul.blockList li.blockList>h4,
+div.details ul.blockList ul.blockList ul.blockListLast li.blockList>h4 {
+    background-color:#E0E0E0;
+    margin:0 0 6px -8px;
+    padding:7px 8px;
+}
+ul.blockList ul.blockList ul.blockList li.blockList h3 {
+    background-color:#E0E0E0;
+    margin:0 0 6px -8px;
+    padding:7px 5px;
+}
+ul.blockList ul.blockList li.blockList h3 {
+    padding:0;
+    margin:15px 0;
+}
+ul.blockList li.blockList h2 {
+    padding:0px 0 20px 0;
+}
+/*
+Page layout container styles
+*/
+.contentContainer, .sourceContainer, .classUseContainer, .serializedFormContainer, .constantValuesContainer {
+    clear:both;
+    padding:10px 20px;
+    position:relative;
+}
+.indexContainer {
+    margin:10px;
+    position:relative;
+    font-size:13px;
+}
+.indexContainer h2 {
+    font-size:13px;
+    padding:0 0 3px 0;
+}
+.indexContainer ul {
+    margin:0;
+    padding:0;
+}
+.indexContainer ul li {
+    list-style:none;
+    padding-top:2px;
+}
+.contentContainer .description dl dt, .contentContainer .details dl dt, .serializedFormContainer dl dt {
+    font-size:12px;
+    font-weight:bold;
+    margin:10px 0 0 0;
+    color:#404040;
+}
+.contentContainer .description dl dd, .contentContainer .details dl dd, .serializedFormContainer dl dd {
+    margin:5px 0 10px 0px;
+    font-size:13px;
+}
+.serializedFormContainer dl.nameValue dt {
+    margin-left:1px;
+    font-size:1.1em;
+    display:inline;
+    font-weight:bold;
+}
+.serializedFormContainer dl.nameValue dd {
+    margin:0 0 0 1px;
+    font-size:1.1em;
+    display:inline;
+}
+/*
+List styles
+*/
+ul.horizontal li {
+    display:inline;
+    font-size:0.9em;
+}
+ul.inheritance {
+    margin:0;
+    padding:0;
+}
+ul.inheritance li {
+    display:inline;
+    list-style:none;
+}
+ul.inheritance li ul.inheritance {
+    margin-left:15px;
+    padding-left:15px;
+    padding-top:1px;
+}
+ul.blockList, ul.blockListLast {
+    margin:20px 0;
+    padding:0;
+}
+ul.blockList li.blockList, ul.blockListLast li.blockList {
+    list-style:none;
+    margin-bottom:20px;
+    line-height:1.4;
+}
+ul.blockList ul.blockList li.blockList, ul.blockList ul.blockListLast li.blockList {
+    padding:0px 20px;
+    border:1px solid #ededed;
+    background-color:#f8f8f8;
+}
+ul.blockList ul.blockList ul.blockList li.blockList, ul.blockList ul.blockList ul.blockListLast li.blockList {
+    padding:0 0 5px 8px;
+    background-color:#ffffff;
+    border:none;
+}
+ul.blockList ul.blockList ul.blockList ul.blockList li.blockList {
+    margin-left:0;
+    padding-left:0;
+    padding-bottom:15px;
+    border:none;
+}
+ul.blockList ul.blockList ul.blockList ul.blockList li.blockListLast {
+    list-style:none;
+    border-bottom:none;
+    padding-bottom:0;
+}
+table tr td dl, table tr td dl dt, table tr td dl dd {
+    margin-top:0;
+    margin-bottom:1px;
+}
+/*
+Table styles
+*/
+.overviewSummary, .memberSummary, .typeSummary, .useSummary, .constantsSummary, .deprecatedSummary {
+    width:100%;
+    border-left:1px solid #EEE;
+    border-right:1px solid #EEE;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #C0C0C0;
+}
+.overviewSummary, .memberSummary  {
+    padding:0px;
+    margin-bottom: 20px;
+}
+.overviewSummary caption, .memberSummary caption, .typeSummary caption,
+.useSummary caption, .constantsSummary caption, .deprecatedSummary caption {
+    position:relative;
+    text-align:left;
+    background-repeat:no-repeat;
+    color:#303030;
+    font-weight:bold;
+    clear:none;
+    overflow:hidden;
+    padding:0px;
+    padding-top:10px;
+    padding-left:1px;
+    margin:0px;
+    white-space:pre;
+}
+.overviewSummary caption a:link, .memberSummary caption a:link, .typeSummary caption a:link,
+.useSummary caption a:link, .constantsSummary caption a:link, .deprecatedSummary caption a:link,
+.overviewSummary caption a:hover, .memberSummary caption a:hover, .typeSummary caption a:hover,
+.useSummary caption a:hover, .constantsSummary caption a:hover, .deprecatedSummary caption a:hover,
+.overviewSummary caption a:active, .memberSummary caption a:active, .typeSummary caption a:active,
+.useSummary caption a:active, .constantsSummary caption a:active, .deprecatedSummary caption a:active,
+.overviewSummary caption a:visited, .memberSummary caption a:visited, .typeSummary caption a:visited,
+.useSummary caption a:visited, .constantsSummary caption a:visited, .deprecatedSummary caption a:visited {
+    color:#FFFFFF;
+}
+.overviewSummary caption span, .memberSummary caption span, .typeSummary caption span,
+.useSummary caption span, .constantsSummary caption span, .deprecatedSummary caption span {
+    white-space:nowrap;
+    padding: 5px 12px 7px 12px;
+    display:inline-block;
+    float:left;
+    background-color:#FFFFFF;
+    color: #606060;
+    border: none;
+    height:16px;
+    border-bottom: 3px solid #808080;
+}
+.memberSummary caption span.activeTableTab span {
+    white-space:nowrap;
+    padding-top:5px;
+    padding-left:12px;
+    padding-right:12px;
+    margin-right:10px;
+    display:inline-block;
+    float:left;
+    background-color:#808080;
+    height:16px;
+}
+.memberSummary caption span.tableTab span {
+    white-space:nowrap;
+    padding-top:5px;
+    padding-left:12px;
+    padding-right:12px;
+    margin-right:10px;
+    display:inline-block;
+    float:left;
+    background-color:#B0B0B0;
+    height:16px;
+}
+.memberSummary caption span.tableTab, .memberSummary caption span.activeTableTab {
+    padding-top:0px;
+    padding-left:0px;
+    padding-right:0px;
+    background-image:none;
+    float:none;
+    display:inline;
+}
+.overviewSummary .tabEnd, .memberSummary .tabEnd, .typeSummary .tabEnd,
+.useSummary .tabEnd, .constantsSummary .tabEnd, .deprecatedSummary .tabEnd {
+    display:none;
+    width:5px;
+    position:relative;
+    float:left;
+    background-color:#F0F0F0;
+}
+.memberSummary .activeTableTab .tabEnd {
+    display:none;
+    width:5px;
+    margin-right:3px;
+    position:relative;
+    float:left;
+    background-color:#F0F0F0;
+}
+.memberSummary .tableTab .tabEnd {
+    display:none;
+    width:5px;
+    margin-right:3px;
+    position:relative;
+    background-color:#303030;
+    float:left;
+
+}
+.overviewSummary td,
+.memberSummary td,
+.typeSummary td,
+.useSummary td,
+.constantsSummary td,
+.deprecatedSummary td {
+    text-align:left;
+    padding:0px 0px 12px 12px;
+}
+th.colOne, th.colFirst, th.colLast, .useSummary th, .constantsSummary th,
+td.colOne, td.colFirst, td.colLast, .useSummary td, .constantsSummary td{
+    vertical-align:top;
+    padding-right:0px;
+    padding-top:8px;
+    padding-bottom:3px;
+    border-bottom: 1px solid #D0D0D0;
+}
+th.colFirst, th.colLast, th.colOne, .constantsSummary th {
+    background:#FFFFFF;
+    text-align:left;
+    color:#909090;
+    font-weight:normal;
+    padding:8px 3px 3px 12px;
+}
+td.colFirst, th.colFirst {
+    white-space:nowrap;
+    font-size:13px;
+}
+td.colLast, th.colLast {
+    font-size:13px;
+}
+td.colOne, th.colOne {
+    font-size:13px;
+}
+.overviewSummary td.colFirst, .overviewSummary th.colFirst,
+.overviewSummary td.colOne, .overviewSummary th.colOne,
+.memberSummary td.colFirst, .memberSummary th.colFirst,
+.memberSummary td.colOne, .memberSummary th.colOne,
+.typeSummary td.colFirst{
+    width:25%;
+    vertical-align:top;
+}
+td.colOne a:link, td.colOne a:active, td.colOne a:visited, td.colOne a:hover, td.colFirst a:link, td.colFirst a:active, td.colFirst a:visited, td.colFirst a:hover, td.colLast a:link, td.colLast a:active, td.colLast a:visited, td.colLast a:hover, .constantValuesContainer td a:link, .constantValuesContainer td a:active, .constantValuesContainer td a:visited, .constantValuesContainer td a:hover {
+    font-weight:bold;
+}
+.tableSubHeadingColor {
+    background-color:#404040;
+}
+.altColor {
+    background-color:#FFFFFF;
+}
+/*
+Content styles
+*/
+.description pre {
+    margin-top:0;
+}
+.deprecatedContent {
+    margin:0;
+    padding:10px 0;
+}
+.docSummary {
+    padding:0;
+}
+
+ul.blockList ul.blockList ul.blockList li.blockList h3 {
+    font-style:normal;
+}
+
+div.block {
+    font-size:13px;
+}
+
+td.colLast div {
+    padding-top:0px;
+}
+
+
+td.colLast a {
+    padding-bottom:3px;
+}
+/*
+Formatting effect styles
+*/
+.sourceLineNo {
+    color:green;
+    padding:0 30px 0 0;
+}
+h1.hidden {
+    visibility:hidden;
+    overflow:hidden;
+    font-size:10px;
+}
+.block {
+    display:block;
+    margin:3px 10px 2px 0px;
+    color:#404040;
+}
+.deprecatedLabel, .descfrmTypeLabel, .memberNameLabel, .memberNameLink,
+.overrideSpecifyLabel, .packageHierarchyLabel, .paramLabel, .returnLabel,
+.seeLabel, .simpleTagLabel, .throwsLabel, .typeNameLabel, .typeNameLink {
+    font-weight:bold;
+}
+.deprecationComment, .emphasizedPhrase, .interfaceName {
+    font-style:italic;
+}
+
+div.block div.block span.deprecationComment, div.block div.block span.emphasizedPhrase,
+div.block div.block span.interfaceName {
+    font-style:normal;
+}
+
+div.contentContainer ul.blockList li.blockList h2{
+    padding-bottom:0px;
+}
+
+/* TIBCO Software Inc. additional */
+
+
+.ebx_HeaderHomeLink {
+	font-size: 22px;
+  font-family: ebx_font_title, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	line-height: 40px;
+}
+.ebx_HeaderHomeLink img {
+	margin-left: -10px;
+	margin-right: -5px;
+  vertical-align: -10px;
+}
+
+.ebx_footer {
+	display: block;
+
+	font-size: 10px;
+	color: #808080;
+	text-align: center;
+
+	padding-bottom: 10px;
+}

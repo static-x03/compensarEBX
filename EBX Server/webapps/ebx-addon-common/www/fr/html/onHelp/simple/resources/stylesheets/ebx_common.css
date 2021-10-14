@@ -1,0 +1,307 @@
+/***START text ***/
+
+@font-face {
+  font-family: ebx_font_title;
+  font-style: normal;
+  font-weight: 300;
+  src: url(../fonts/Lato-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: ebx_font_title;
+  font-style: italic;
+  font-weight: 300;
+  src: url(../fonts/Lato-Italic.woff) format('woff');
+}
+
+@font-face {
+  font-family: ebx_font_text;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Lato-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: ebx_font_text;
+  font-style: italic;
+  font-weight: 400;
+  src: url(../fonts/Lato-Italic.woff) format('woff');
+}
+
+@font-face {
+  font-family: ebx_font_text;
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Lato-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: ebx_font_text;
+  font-style: italic;
+  font-weight: 700;
+  src: url(../fonts/Lato-BoldItalic.woff) format('woff');
+}
+
+body{
+ font-family: ebx_font_text, Helvetica, Arial, sans-serif;
+ font-size: 14px;
+ color:#1E1E1E;
+}
+
+h1,
+#ebx_WorkspaceTitleContent,
+h2,
+h3,
+h4,
+h5,
+h6{
+ padding:0;
+ margin:0;
+ font-weight: normal;
+ cursor:default;
+ font-family: ebx_font_title, Helvetica, Arial, sans-serif;
+ color:#000000;
+}
+
+h1,
+#ebx_WorkspaceTitleContent{
+  font-size: 22px;
+}
+h1 {
+ padding: 20px 0;
+}
+#ebx_WorkspaceTitleContent{
+ padding: 20px;
+}
+
+h2{
+ font-size: 18px;
+  font-weight:bold;
+ margin-top:15px;
+ margin-bottom:5px;
+ border-bottom:1px solid #C0C0C0;
+}
+
+h3{
+ font-size: 16px;
+  font-weight:bold;
+ margin-top:0.8em;
+ margin-bottom:0.4em;
+}
+
+h4{
+ font-size: 15px;
+  font-weight:bold;
+ margin-top:0.8em;
+ margin-bottom:0.4em;
+}
+
+h5{
+ font-size: 14px;
+ font-weight:bold;
+ margin-top:0.8em;
+ margin-bottom:0.4em;
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a.ygtvlabel:hover{
+ text-decoration:none;
+}
+
+a,
+a:visited,
+.ygtvlabel,
+.ygtvcontent{
+ color:#606060;
+}
+a:hover,
+a:active,
+a.ygtvlabel:hover,
+.ygtvcontent:hover{
+ color:#303030;
+}
+
+.ebx_Selected .ygtvlabel{
+ color:#303030;
+}
+.ebx_Selected .ygtvlabel:hover{
+ color:#000000;
+}
+
+.ebx_seealso,
+.ebx_note,
+.ebx_attention {
+  margin: 12px 10%;
+
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  padding-left: 22px;/* 18 (icon width) + 4 (gap between icon and text) */
+  padding-top: 2px;
+}
+.ebx_seealso {
+  background-image: url(../images/icons/ebx_seealso.svg);
+}
+.ebx_note {
+  background-image: url(../images/icons/ebx_note.svg);
+}
+.ebx_attention {
+  background-image: url(../images/icons/ebx_attention.svg);
+}
+
+.ebx_seealso h5,
+.ebx_note h5,
+.ebx_attention h5 {
+ font-size: 14px;
+ margin: 0;
+ font-weight: normal;
+}
+
+.ebx_seealso p,
+.ebx_note p,
+.ebx_attention p {
+ margin-top: 0;
+}
+
+.ebx_seealso ul {
+ list-style: none;
+ margin-top: 0;
+ padding-left: 0;
+}
+.ebx_seealso li{
+  font-style:italic;
+}
+
+ol,
+ul {
+ padding-left:20px;
+}
+
+ul{
+ list-style:square;
+}
+
+/* definition lists */
+table.ebx_definitionList{
+ width:100%;
+ table-layout: fixed;
+ 
+ margin:10px 0;
+
+ border-collapse:collapse;
+
+ border-style:solid;
+ border-color:#000000;
+ border-width:2px 0;
+
+ background:none;
+}
+
+th.ebx_definitionListHeader{
+ background-color:#F0F0F0;
+
+ border-style:solid;
+ border-color:#000000;
+ border-width:2px 0;
+
+ padding:0 5px;
+ text-align:left;
+}
+
+th.ebx_definitionListHeader p{
+ background-color:#F0F0F0;
+ padding:0;
+ margin:5px 0;
+}
+
+td.ebx_definitionListTerm,
+td.ebx_definitionListDefinition{
+ border-style:solid;
+ border-color:#000000;
+ border-width:1px 0;
+ vertical-align:top;
+ padding:0 5px;
+}
+
+td.ebx_definitionListTerm{
+ font-weight:bold;
+
+ width:35%;
+ padding-right:5px;
+}
+
+/***END text ***/
+
+/***START browser override ***/
+a:focus,
+button:focus,
+:focus{
+ outline:1px solid #C0C0C0;
+ -moz-outline-radius:4px;
+}
+div:focus,
+td:focus,
+fieldset:focus,
+table:focus,
+iframe:focus,
+.yuimenuitem a:focus{
+ outline:none;
+}
+
+/***END browser override ***/
+
+.ebx_clickableIconLink {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  text-indent: 100%;/* shift the text on the right to not see it */
+  overflow: hidden;/* hide the text that overflows the area */
+  white-space: nowrap;/* avoid the text to return to new line */
+  vertical-align: -8px;
+
+  border-radius: 100%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.ebx_clickableIconLink:hover {
+  background-color: rgba(160, 160, 160, 0.2);
+}
+.ebx_clickableIconLink:active {
+  background-color: rgba(160, 160, 160, 0.4);
+}
+.ebx_clickableIconLink:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #C0C0C0;
+}
+
+/***START colors ***/
+.ebx_ColoredBackgroundBorder{
+ background-color:#BFBFBF;
+}
+
+.ebx_ColoredBackgroundBorder{
+ border-color:#BFBFBF;
+}
+
+/***END colors ***/
+
+/*** START welcome.html ***/
+#welcomeImage{
+ text-align:center;
+}
+
+#welcomeToc{
+}
+
+#welcomeToc h2{
+ margin:0
+}
+
+#welcomeToc > ul > li{
+ margin:0.7em 0;
+}
+
+#welcomeToc li{
+ margin:0.2em 0;
+}
+/*** END welcome.html ***/

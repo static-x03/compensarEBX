@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		 2001-2021
+
+		******************************************************************************
+		EBX(R) schema.
+		This schema is not meant for modifications.
+		Any modification done on this document can prevent the
+		execution of EBX(R) software.
+		******************************************************************************
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0"
+  xmlns:osd="urn:ebx-schemas:common_1.0">
+  <xs:import namespace="urn:ebx-schemas:common_1.0"
+    schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+  <xs:import namespace="urn:ebx-schemas:session_1.0"
+    schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+  <xs:annotation>
+    <xs:appinfo>
+      <osd:extensions class="com.orchestranetworks.manager.core.permissions.record.RecordPermissionsSchemaExtensions"/>
+      <osd:inheritance>
+        <dataSetInheritance>none</dataSetInheritance>
+      </osd:inheritance>
+      <ebxbnd:binding targetDirectory="../_ebx/src">
+        <javaPathConstants
+          typeName="com.orchestranetworks.permissions.record.RecordPermissionsPaths">
+          <nodes relativeToRoot="false" root="/root"/>
+        </javaPathConstants>
+      </ebxbnd:binding>
+      <osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.recordPermissions"/>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="root" osd:access="--">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="permissions" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation osd:id="element.root.permissions"/>
+          <xs:appinfo>
+            <osd:table>
+              <primaryKeys>/tablePath</primaryKeys>
+              <defaultLabel>${./tablePath}</defaultLabel>
+              <recordForm osd:class="com.orchestranetworks.manager.core.permissions.record.RecordPermissionsFormFactory"/>
+            </osd:table>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="tablePath" type="xs:string" minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation osd:id="element.root.permissions.tablePath"/>
+                <xs:appinfo>
+                  <osd:otherFacets>
+                    <osd:constraintEnumeration
+                      class="com.orchestranetworks.manager.core.permissions.record.TablePathConstraintEnumeration"/>
+                  </osd:otherFacets>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="script" type="xs:string" minOccurs="0" maxOccurs="1"
+              osd:checkNullInput="false">
+              <xs:annotation>
+                <xs:documentation osd:id="element.root.permissions.script"/>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="activated" type="xs:boolean" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+              <xs:annotation>
+                <xs:documentation osd:id="element.root.permissions.activated"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  </xs:element>
+</xs:schema>
+

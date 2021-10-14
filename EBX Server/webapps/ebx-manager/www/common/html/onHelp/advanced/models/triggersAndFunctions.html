@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Triggers and functions</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_model_triggersAndFunctions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Data model</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/triggersAndFunctions.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+<h1>
+Triggers and functions</h1>
+<p>EBX&reg; data model allows to define triggers and computed fields. It also provides auto-incremented fields</p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#computedValues">Computed values</a><ul class="toc2">
+<li class="toc2"><a href="#computedValues_disablingValidation">Disabling validation</a></li></ul>
+</li><li class="toc1"><a href="#triggers">Triggers</a><ul class="toc2">
+<li class="toc2"><a href="#triggers_dataset">Trigger on dataset</a></li><li class="toc2"><a href="#triggers_table">Trigger on table</a></li></ul>
+</li><li class="toc1"><a href="#autoIncrementedFields">Auto-incremented values</a></li></ul>
+</div>
+<h2 id="computedValues">
+Computed values</h2>
+<p>By default, data is read and persisted in the XML repository. Nevertheless, data may be the result of a computation and/or external database access, for example, an RDBMS or a central system.</p><p>EBX&reg; allows taking into account other data in the current dataset context.</p><p>This is made possible by defining <em>computation rules</em>.</p><p>A computation rule is specified in the data model using the <code>osd:function</code> element (see example below). </p><ul>
+<li><p> The value of the <em>class</em> attribute must be the qualified name of a Java class that implements the Java interface <code><a target="_blank" href="../Java_API/com/orchestranetworks/schema/ValueFunction.html"><code>ValueFunction</code></a></code></p></li><li><p>Additional parameters may be specified at the data model level, in which case the JavaBean convention is applied.</p></li></ul>
+<p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="computedValue">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:function class="com.foo.ComputeValue">
+				&lt;param1>...&lt;/param1>
+				&lt;param...n>...&lt;/param...n>
+			&lt;/osd:function>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:element></pre>
+<h3 id="computedValues_disablingValidation">
+Disabling validation</h3>
+<p>In some cases, it can be useful to disable the validation of computed values if the execution of a function is time-consuming. Indeed, if the function is attached to a table with N records, then it will be called N times when validating this table. The property <code>osd:disableValidation= &quot;true&quot;</code> specified in the data model allows to disable the validation of a computed value (see example below). </p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="computedValue" osd:disableValidation="true">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:function class="com.foo.ComputeValue">
+				...
+			&lt;/osd:function>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:element></pre>
+<h2 id="triggers">
+Triggers</h2>
+<p>Datasets or table records can be associated with methods that are automatically executed when some operations are performed, such as creations, updates, or deletions.</p><p>In the data model, these triggers must be declared under the <code>annotation/appinfo</code> element using the <code>osd:trigger</code> element. </p><h3 id="triggers_dataset">
+Trigger on dataset</h3>
+<p>For dataset triggers, a Java class that extends the abstract class <code><a target="_blank" href="../Java_API/com/orchestranetworks/schema/trigger/InstanceTrigger.html"><code>InstanceTrigger</code></a></code> must be declared inside the element <code>osd:trigger</code>.</p><p>In the case of dataset triggers, it is advised to define <code>annotation/appinfo/osd:trigger</code> tags just under the <code>root</code> element of the data model. </p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="root" osd:access="--">
+   ...
+   &lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:trigger class="com.foo.MyInstanceTrigger">
+				&lt;param1>...&lt;/param1>
+				&lt;param...n>...&lt;/param...n>
+			&lt;/osd:trigger>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+	...
+&lt;/xs:element></pre>
+<h3 id="triggers_table">
+Trigger on table</h3>
+<p>For the definition of table record triggers, a Java class that extends the abstract class <code><a target="_blank" href="../Java_API/com/orchestranetworks/schema/trigger/TableTrigger.html"><code>TableTrigger</code></a></code> must be defined inside the <code>osd:trigger</code> element. It is advised to define the <code>annotation/appinfo/osd:trigger</code> elements just under the element describing the associated table or table type.</p><p><strong>Examples:</strong></p><p>On a table element:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="myTable" type="MyTableType" minOccurs="0" maxOccurs="unbounded">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:table>
+				&lt;primaryKeys>/key&lt;/primaryKeys>
+			&lt;/osd:table>
+			&lt;osd:trigger class="com.foo.MyTableTrigger" />
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+<p>On a table type element:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:complexType name="MyTableType">
+   ...
+   &lt;xs:annotation>
+	   &lt;xs:appinfo>
+		  &lt;osd:trigger class="com.foo.MyTableTrigger">	
+			 &lt;param1>...&lt;/param1> 
+			 &lt;param...n>...&lt;/param...n> 
+		  &lt;/osd:trigger>	
+	   &lt;/xs:appinfo>
+   &lt;/xs:annotation>
+   ...
+&lt;/xs:complexType>
+</pre>
+<p>As additional parameters can be defined, the implemented Java class must conform to the JavaBean protocol. In the example above, the Java class must define the methods: <code>getParam1()</code>, <code>setParam1(String)</code>, <code>getParamX()</code>, <code>setParamX(String)</code>, etc.</p><h2 id="autoIncrementedFields">
+Auto-incremented values</h2>
+<p> It is possible to define auto-incremented values. Auto-incremented values are only allowed inside tables, and they must be of the type <code>xs:int</code> or <code>xs:integer</code>.</p><p>An auto-increment is specified in the data model using the element <code>osd:autoIncrement</code> under the element <code>annotation/appinfo</code>.</p><p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="autoIncrementedValue" type="xs:int">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:autoIncrement />
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+<p>Also, there are two optional elements, <code>start</code> and <code>step</code>:</p><ul>
+<li><p>The <code>start</code> attribute specifies the first value for this auto-increment. If this attribute is not specified, then the value <code>1</code> is set by default. </p></li><li><p>The <code>step</code> attribute specifies the step for the next value to be generated by the auto-increment. If this attribute is not specified, then the value <em>1</em> is set by default. </p></li></ul>
+<p><strong>Example:</strong></p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="autoIncrementedValue" type="xs:int">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:autoIncrement>
+				&lt;start>100&lt;/start>
+				&lt;step>5&lt;/step>
+			&lt;/osd:autoIncrement>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+<p>A field specifying an <code>osd:autoIncrement</code> has the following behavior: </p><ul>
+<li><p>The computation and allocation of the field value are performed whenever a new record is inserted and the field value is undefined.</p></li><li><p>No allocation is performed if a programmatic insertion already specifies a non-<code>null</code> value. For example, if an archive import or an XML import specifies the value, that value is preserved.</p><p>Consequently, the allocation is not performed for a record insertion in occulting or overwriting modes.</p></li><li><p>A newly allocated value is, whenever possible, unique in the scope of the repository. More precisely, the uniqueness of the allocation spans over all the datasets of the data model, and it also spans over all the dataspaces. The latter case allows the merge of a dataspace into its parent with a reasonable guarantee that there will be no conflict if the <code>osd:autoIncrement</code> is part of the records&#39; primary key.</p><p>This principle has a very specific limitation: when a mass update transaction that specifies values is performed at the same time as a transaction that allocates a value on the same field, it is possible that the latter transaction will allocate a value that will be set by the first transaction (there is no locking between different dataspaces).</p></li></ul>
+<p>Internally, the auto-increment value is stored in the &#39;Auto-increments&#39; table of the repository. In the user interface, it can be accessed by administrators in the &#39;Administration&#39; area. This field is automatically updated so that it defines the greatest value ever set on the associated <code>osd:autoIncrement</code> field, in any instance or dataspace in the repository. This value is computed, taking into account the max value found in the table being updated. </p><p>In certain cases, for example when multiple environments have to be managed (development, test, production), each with different auto-increment ranges, it may be required to avoid this &quot;max value&quot; check. This particular behavior can be achieved using the <code>disableMaxTableCheck</code> property. It is generally not recommended to enable this property unless it is absolutely necessary, as this could generate conflicts in the auto-increment values. However, this property can be set in the following ways:</p><ul>
+<li><p>Locally, by setting a parameter element in the auto-increment declaration: <code>&lt;disableMaxTableCheck&gt;true&lt;/disableMaxTableCheck&gt;</code>,</p></li><li><p>For the whole data model, by setting <code>&lt;osd:autoIncrement disableMaxTableCheck=&quot;true&quot;/&gt;</code> in the element <code>xs:appinfo</code> of the data model declaration, or</p></li><li><p>Globally, by setting the property <code>ebx.autoIncrement.disableMaxTableCheck=true</code> in the EBX&reg; main configuration file.</p><p>See <a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a>.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>When this option is enabled globally, it becomes possible to create records in the table of auto-increments, for example by importing from XML or CSV. If this option is not selected, creating records in the table of auto-increments is prohibited to ensure the integrity of the repository.</p></div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

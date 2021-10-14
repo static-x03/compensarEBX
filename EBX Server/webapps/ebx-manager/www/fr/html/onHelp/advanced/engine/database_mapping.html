@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Database mapping administration</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin_database_mapping" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Technical administration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=engine/database_mapping.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+<h1>
+Database mapping administration</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#overview">Overview</a></li><li class="toc1"><a href="#renamingColumns">Renaming columns in the database</a></li><li class="toc1"><a href="#purgingColumns">Purging columns in the database</a></li><li class="toc1"><a href="#renamingMasterTables">Renaming master tables in the database</a></li><li class="toc1"><a href="#renamingAuxTables">Renaming auxiliary tables in the database</a></li><li class="toc1"><a href="#purgingMasterTables">Purging master tables in the database</a></li></ul>
+</div>
+<h2 id="overview">
+Overview</h2>
+<p>Information and services relative to database mapping can be found in the <em>Administration</em> area.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/persistence_overview.html#mapped">Mapped modes</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/instance/DatabaseMapping.html"><code>DatabaseMapping</code></a></li></ul>
+</div>
+<h2 id="renamingColumns">
+Renaming columns in the database</h2>
+<p>This feature is available on the &#39;Columns&#39; table records, under the &#39;Actions&#39; menu. It allows renaming a column in the database.</p><p>The administrator can specify the name of each column of the data model in the database for mapped modes.</p><p>Once the service is selected on a record, a summary screen displays information regarding the selected column and the administrator is prompted to enter a new name for the column in the database.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>It is required that the new identifier begins with a letter.</p><p>Besides, the new name must be a valid column identifier, which depends on the naming rules of the underlying RDBMS.</p></p></div>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/instance/DatabaseMapping.html"><code>DatabaseMapping</code></a></li></ul>
+</div>
+<h2 id="purgingColumns">
+Purging columns in the database</h2>
+<p>This feature is available on the &#39;Columns&#39; table records, under the &#39;Actions&#39; menu. It allows purging columns in mapped structures.</p><p>A column can be purged if it has been disabled for mapped modes.</p><p>A column is disabled for mapped modes when:</p><ul>
+<li><p>the corresponding field has been removed from the data model, or</p></li><li><p>the corresponding field has been changed in the data model, in a way that is not compatible (for example: its data type has been modified), or</p></li><li><p>the defined mapped modes have been disabled locally on the corresponding fields, using the elements <code>osd:history</code> and <code>osd:replication</code>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/history.html#disableHistory">Disabling history on a specific field or group</a></li><li><a href="../references/replication.html#disable">Disabling replication on a specific field or group</a></li></ul>
+</div>
+</li></ul>
+<p>Note that this behavior will change for aggregated lists:</p><ul>
+<li><p>when deactivating a complex aggregated list, its inner fields will still be in the <code>LIVING</code> state, whereas the list node is disabled. As lists are considered as auxiliary tables in the mapping system, this information can be checked in the &#39;Tables&#39; table,</p></li><li><p>on the other hand, when the deactivation is just for inner nodes of the list, then the list will remain <code>LIVING</code>, while its children will be <code>DISABLED IN MODEL</code>.</p></li></ul>
+<p>A column can be purged only if its own state is <code>DISABLED IN MODEL</code>, or if it is an inner field of a <code>DISABLED IN MODEL</code> list.</p><h2 id="renamingMasterTables">
+Renaming master tables in the database</h2>
+<p>This feature allows renaming master tables for history tables in the database. It is not available for replicated tables since their names are specified in the data model.</p><p>Both features are available on the &#39;Tables&#39; table records, under the &#39;Actions&#39; menu.</p><p>Master tables are database tables used for persisting the tables of the data model.</p><p>The administrator can specify in the database the name of each master table corresponding to a table of the data model.</p><p>Once the service is selected on a record, a summary screen displays information regarding the selected master table and the administrator is prompted to enter a new name for the master table in the database.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>It is required that the new identifier begins with a letter and with the repository prefix.</p><p>For history tables, it is also required for the repository prefix to be followed by the history tables prefix.</p><p>Besides, the new name must be a valid table identifier, which depends on the naming rules of the underlying RDBMS.</p></p></div>
+<h2 id="renamingAuxTables">
+Renaming auxiliary tables in the database</h2>
+<p>This feature allows renaming history auxiliary tables in the database. This feature is not available for replicated tables since their names are specified in the data model.</p><p>This feature is available on the &#39;Tables&#39; table records, under the &#39;Actions&#39; menu.</p><p>Auxiliary tables are database tables used for persisting aggregated lists.</p><p>The administrator can specify in the database the name of each auxiliary table corresponding to an aggregated list of the data model.</p><p>Once the service is selected on a record, a summary screen displays information regarding the selected auxiliary table and the administrator is prompted to enter a new name for the auxiliary table in the database.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>It is required for the new identifier to begin with a letter.</p><p>It is required for the new identifier to begin with the repository prefix.</p><p>It is also required for the repository prefix to be followed by the history tables prefix.</p><p>Besides, the new name must be a valid table identifier, which depends on the naming rules of the underlying RDBMS.</p></p></div>
+<h2 id="purgingMasterTables">
+Purging master tables in the database</h2>
+<p>This feature allows purging history in the database if it is no longer used.</p><p>It is available on the &#39;Tables&#39; table records, under the &#39;Actions&#39; menu, and is only available for master tables. This feature only applies to master tables. When a master table is purged, all its auxiliary tables are purged as well.</p><p>A mapped table can be purged in the database only if it has been disabled for the corresponding mapped mode.</p><p>To disable the mapped mode for a table, follow the procedure hereafter.</p><ul>
+<li><p>Deactivate historization of the table in the data model, or</p></li><li><p>Remove the table from the data model</p></li></ul>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Technical administration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

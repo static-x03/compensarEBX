@@ -1,0 +1,8 @@
+/* overwrite here all CSS values to rebrand */
+
+#ebx_Header {
+	background-color: #C0C0C0;
+	background-position: 0 0;
+	
+	padding-left: 171px;
+}

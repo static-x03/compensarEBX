@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - The Execution domain</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="reference-execution-domain" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Information Search Add-on Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/reference_execution_domain.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Information Search Add-on Documentation</span></div>
+<h1 id="reference_execution_domain_top">
+The Execution domain</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#reference_execution_overview">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#reference_execution_user_preference_table">The User preference table</a></li><li class="toc2"><a href="#reference_execution_history_table">The History table</a></li></ul>
+</li></ul>
+</div>
+<h2 id="reference_execution_overview">
+Overview</h2>
+<p>The tables in the execution group allow you to set user preferences, view, and purge the search history.</p><h3 id="reference_execution_user_preference_table">
+The User preference table</h3>
+<p>The user preference table allows you to apply preference settings to individual users. If a preference is not defined for a user, the default preference settings will be applied.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>User</p></td><td valign="top"><p>Determines the user these preferences apply to.</p></td></tr>
+<tr>
+<td valign="top"><p>Max No. of saved searches</p></td><td valign="top"><p> Maximum number of history items that can be stored for a user profile per data model, table or global search. For example: if a value of 20 is defined, the user can have maximum of 20 records for each data model (search at dataset level), 20 records for each table (search at the table level) and 20 records with empty data model and table (search at global level). Default value: 20 </p></td></tr>
+<tr>
+<td valign="top">Display history by default</td><td valign="top">Determines whether history displays by default on the search home page.</td></tr>
+<tr>
+<td valign="top">Maximum No. of results</td><td valign="top"><p>This property determines the maximum number of records found in the search result. Only the highest ranking results are displayed. If left undefined, the number of results is unbounded.</p></td></tr>
+</tbody>
+</table>
+<h3 id="reference_execution_history_table">
+The History table</h3>
+<p>The <strong>History</strong> table displays a recorded search history for all users. To purge the history, run the <strong>Purge history</strong> service from the table&#39;s <strong>Actions</strong> menu.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Timestamp</p></td><td valign="top"><p>Date and time of the search was executed.</p></td></tr>
+<tr>
+<td valign="top"><p>Keyword</p></td><td valign="top"><p> The keyword used to search. All keywords are converted to lower case in the <strong>History</strong> table.</p></td></tr>
+<tr>
+<td valign="top">No. of results</td><td valign="top"><p>The number of results that have been found.</p></td></tr>
+<tr>
+<td valign="top">User</td><td valign="top"><p>User in charge of the search execution.</p></td></tr>
+<tr>
+<td valign="top">Data model</td><td valign="top"><p>The data model on which the search is applied. This field is specified when searching at the dataset level. If executed at the table level or global level, this field is empty.</p></td></tr>
+<tr>
+<td valign="top">Table</td><td valign="top"><p>The table on which the search is applied. This field is specified when searching at the table level. If executed at the dataset level or global level, this field is empty.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

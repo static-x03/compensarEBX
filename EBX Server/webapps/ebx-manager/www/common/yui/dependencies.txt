@@ -1,0 +1,85 @@
+ï»¿
+=====================================================
+-min: http://developer.yahoo.com/yui/articles/hosting/?animation&button&calendar&colorpicker&connection&container&cookie&datatable&editor&json&layout&logger&menu&paginator&progressbar&resize&tabview&treeview&MIN&nocombine&norollup&basepath&yui/
+CSS files can be replaced by the single declaration yui/container/assets/skins/sam/skin.css
+
+<!-- Individual YUI CSS files -->
+<link rel="stylesheet" type="text/css" href="yui/container/assets/skins/sam/container.css">
+<link rel="stylesheet" type="text/css" href="yui/menu/assets/skins/sam/menu.css">
+<link rel="stylesheet" type="text/css" href="yui/button/assets/skins/sam/button.css">
+<link rel="stylesheet" type="text/css" href="yui/calendar/assets/skins/sam/calendar.css">
+<link rel="stylesheet" type="text/css" href="yui/slider/assets/skins/sam/slider.css">
+<link rel="stylesheet" type="text/css" href="yui/colorpicker/assets/skins/sam/colorpicker.css">
+<link rel="stylesheet" type="text/css" href="yui/paginator/assets/skins/sam/paginator.css">
+<link rel="stylesheet" type="text/css" href="yui/datatable/assets/skins/sam/datatable.css">
+<link rel="stylesheet" type="text/css" href="yui/resize/assets/skins/sam/resize.css">
+<link rel="stylesheet" type="text/css" href="yui/layout/assets/skins/sam/layout.css">
+<link rel="stylesheet" type="text/css" href="yui/logger/assets/skins/sam/logger.css">
+<link rel="stylesheet" type="text/css" href="yui/tabview/assets/skins/sam/tabview.css">
+<link rel="stylesheet" type="text/css" href="yui/treeview/assets/skins/sam/treeview.css">
+<!-- Individual YUI JS files -->
+<script type="text/javascript" src="yui/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="yui/dom/dom-min.js"></script>
+<script type="text/javascript" src="yui/event/event-min.js"></script>
+<script type="text/javascript" src="yui/animation/animation-min.js"></script>
+<script type="text/javascript" src="yui/connection/connection-min.js"></script>
+<script type="text/javascript" src="yui/dragdrop/dragdrop-min.js"></script>
+<script type="text/javascript" src="yui/container/container-min.js"></script>
+<script type="text/javascript" src="yui/menu/menu-min.js"></script>
+<script type="text/javascript" src="yui/element/element-min.js"></script>
+<script type="text/javascript" src="yui/button/button-min.js"></script>
+<script type="text/javascript" src="yui/calendar/calendar-min.js"></script>
+<script type="text/javascript" src="yui/slider/slider-min.js"></script>
+<script type="text/javascript" src="yui/colorpicker/colorpicker-min.js"></script>
+<script type="text/javascript" src="yui/cookie/cookie-min.js"></script>
+<script type="text/javascript" src="yui/paginator/paginator-min.js"></script>
+<script type="text/javascript" src="yui/datasource/datasource-min.js"></script>
+<script type="text/javascript" src="yui/datatable/datatable-min.js"></script>
+<script type="text/javascript" src="yui/json/json-min.js"></script>
+<script type="text/javascript" src="yui/resize/resize-min.js"></script>
+<script type="text/javascript" src="yui/layout/layout-min.js"></script>
+<script type="text/javascript" src="yui/logger/logger-min.js"></script>
+<script type="text/javascript" src="yui/tabview/tabview-min.js"></script>
+<script type="text/javascript" src="yui/treeview/treeview-min.js"></script>
+
+======================================================
+raw: http://developer.yahoo.com/yui/articles/hosting/?animation&button&calendar&colorpicker&connection&container&cookie&datatable&editor&json&layout&logger&menu&paginator&progressbar&resize&tabview&treeview&RAW&nocombine&norollup&basepath&yui/
+
+<!-- Individual YUI CSS files -->
+<link rel="stylesheet" type="text/css" href="yui/container/assets/skins/sam/container.css">
+<link rel="stylesheet" type="text/css" href="yui/menu/assets/skins/sam/menu.css">
+<link rel="stylesheet" type="text/css" href="yui/button/assets/skins/sam/button.css">
+<link rel="stylesheet" type="text/css" href="yui/calendar/assets/skins/sam/calendar.css">
+<link rel="stylesheet" type="text/css" href="yui/slider/assets/skins/sam/slider.css">
+<link rel="stylesheet" type="text/css" href="yui/colorpicker/assets/skins/sam/colorpicker.css">
+<link rel="stylesheet" type="text/css" href="yui/paginator/assets/skins/sam/paginator.css">
+<link rel="stylesheet" type="text/css" href="yui/datatable/assets/skins/sam/datatable.css">
+<link rel="stylesheet" type="text/css" href="yui/resize/assets/skins/sam/resize.css">
+<link rel="stylesheet" type="text/css" href="yui/layout/assets/skins/sam/layout.css">
+<link rel="stylesheet" type="text/css" href="yui/logger/assets/skins/sam/logger.css">
+<link rel="stylesheet" type="text/css" href="yui/tabview/assets/skins/sam/tabview.css">
+<link rel="stylesheet" type="text/css" href="yui/treeview/assets/skins/sam/treeview.css">
+<!-- Individual YUI JS files -->
+<script type="text/javascript" src="yui/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="yui/dom/dom.js"></script>
+<script type="text/javascript" src="yui/event/event.js"></script>
+<script type="text/javascript" src="yui/animation/animation.js"></script>
+<script type="text/javascript" src="yui/connection/connection.js"></script>
+<script type="text/javascript" src="yui/dragdrop/dragdrop.js"></script>
+<script type="text/javascript" src="yui/container/container.js"></script>
+<script type="text/javascript" src="yui/menu/menu.js"></script>
+<script type="text/javascript" src="yui/element/element.js"></script>
+<script type="text/javascript" src="yui/button/button.js"></script>
+<script type="text/javascript" src="yui/calendar/calendar.js"></script>
+<script type="text/javascript" src="yui/slider/slider.js"></script>
+<script type="text/javascript" src="yui/colorpicker/colorpicker.js"></script>
+<script type="text/javascript" src="yui/cookie/cookie.js"></script>
+<script type="text/javascript" src="yui/paginator/paginator.js"></script>
+<script type="text/javascript" src="yui/datasource/datasource.js"></script>
+<script type="text/javascript" src="yui/datatable/datatable.js"></script>
+<script type="text/javascript" src="yui/json/json.js"></script>
+<script type="text/javascript" src="yui/resize/resize.js"></script>
+<script type="text/javascript" src="yui/layout/layout.js"></script>
+<script type="text/javascript" src="yui/logger/logger.js"></script>
+<script type="text/javascript" src="yui/tabview/tabview.js"></script>
+<script type="text/javascript" src="yui/treeview/treeview.js"></script>

@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Data types</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_model_type" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; Data model</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=models/types.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+<h1>
+Data types</h1>
+<p>This chapter details the data types supported by TIBCO EBX&reg;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../models/tables.html">Tables and relationships</a></li></ul>
+</div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#xsdsimple">XML Schema built-in simple types</a></li><li class="toc1"><a href="#xsdNamedSimpleType">XML Schema named simple types</a></li><li class="toc1"><a href="#xsdcomplex">XML Schema complex types</a></li><li class="toc1"><a href="#ebxsimple">Extended simple types defined by EBX&reg;</a></li><li class="toc1"><a href="#ebxcomplex">Complex types defined by EBX&reg;</a><ul class="toc2">
+<li class="toc2"><a href="#ebxUDARestrictions">Restrictions on User Defined Attributes and Catalogs</a></li></ul>
+</li><li class="toc1"><a href="#aggregatedList">Aggregated lists</a></li><li class="toc1"><a href="#includedDataModels">Including external data models</a></li></ul>
+</div>
+<h2 id="xsdsimple">
+XML Schema built-in simple types</h2>
+<p>The table below lists all the simple types defined in XML Schema that are supported by EBX&reg;, along with their corresponding Java types.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema type</strong></p></th><th><p><strong>Java class</strong></p></th><th><p><strong>Notes</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code></p></td><td><p><code>java.lang.String</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#boolean">xs:boolean</a></code></p></td><td><p><code>java.lang.Boolean</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#decimal">xs:decimal</a></code></p></td><td><p><code>java.math.BigDecimal</code></p></td><td><p>A <code>totalDigits</code> facet with a value equal to 15 is added by default to decimal fields that are contained in a mapped table (relational, historized or replicated table). However, this facet can be overwritten with a greater value in the data model.</p></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#dateTime">xs:dateTime</a></code></p></td><td><p><code>java.util.Date</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#time">xs:time</a></code></p></td><td><p><code>java.util.Date</code></p></td><td>The date portion of the returned <code>Date</code> is always set to &#39;1970/01/01&#39;.</td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#date">xs:date</a></code></p></td><td><p><code>java.util.Date</code></p></td><td>The time portion of the returned <code>Date</code> is always the beginning of the day, that is, &#39;00:00:00&#39;.</td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#anyURI">xs:anyURI</a></code></p></td><td><p><code>java.net.URI</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#Name">xs:Name</a></code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#int">xs:int</a></code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#decimal">xs:decimal</a></code> restriction)</p></td><td><p><code>java.lang.Integer</code></p></td><td></td></tr>
+<tr>
+<td><p><code><a href="https://www.w3.org/TR/xmlschema-2/#int">xs:integer</a></code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#decimal">xs:decimal</a></code> restriction)</p></td><td><p><code>java.lang.Integer</code></p></td><td>This mapping does not comply with the XML Schema recommendation. Although the XML Schema specification states that <code>xs:integer</code> has no value space limitation, this value space is, in fact, restricted by the Java specifications of the <code>java.lang.Integer</code> object.</td></tr>
+</tbody>
+</table>
+<p>The mapping between XML Schema types and Java types are detailed in the section <a href="../references/mapping_to_java.html#mapping">Mapping of data types</a>.</p><h2 id="xsdNamedSimpleType">
+XML Schema named simple types</h2>
+<p>Named simple types can be defined when designing a data model for redefining an existing built-in simple type. A <em>named simple type</em> can be reused in the data model. </p><p>Restrictions:</p><ul>
+<li><p> In the data model, only the element <code>restriction</code> is allowed in a named simple type, and even then, only derivation by restriction is supported. Notably, the elements <code>list</code> and <code>union</code> are not supported.</p></li><li><p>Facet definition is not cumulative. That is, if an element and its named type both define the same kind of facet, then the facet defined in the type is overridden by the local facet definition. However, this restriction does not apply to programmatic facets defined by the element <code>osd:constraint</code>. For <code>osd:constraint</code>, if an element and its named type both define a programmatic facet with different Java classes, the definition of these facets will be cumulative. Contrary to the XML Schema Specification, EBX&reg; is not strict regarding the definition of a facet of the same kind in an element and its named type. That is, the value of a same kind of facet defined in an element is not checked according to the one defined in the named type. However, in the case of static enumerations defined both in an element and its type, the local enumeration will be replaced by the intersection between these enumerations. </p></li><li><p>It is not possible to define different types of enumerations on both an element and its named type. For instance, you cannot specify a static enumeration in an element and a dynamic enumeration in its named type.</p></li><li><p>It is not possible to simultaneously define a pattern facet in both an element and its named type.</p></li></ul>
+<h2 id="xsdcomplex">
+XML Schema complex types</h2>
+<p>Complex types can be defined when designing a data model. A <em>named complex type</em> can be reused in the data model.</p><p>Restrictions:</p><ul>
+<li><p>In the data model, only the element <code>sequence</code> is allowed. Notably, attribute definition is not supported.</p></li><li><p>Type extensions are not supported in the current version of EBX&reg;.</p></li></ul>
+<h2 id="ebxsimple">
+Extended simple types defined by EBX&reg;</h2>
+<p>EBX&reg; provides pre-defined simple data types:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema type</strong></p></th><th><p><strong>Java class</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>osd:text</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:html</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:email</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:password</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:color</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:resource</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#anyURI">xs:anyURI</a></code> restriction)</p></td><td><p>internal class</p></td></tr>
+<tr>
+<td><p><code>osd:locale</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.util.Locale</code></p></td></tr>
+<tr>
+<td><p><code>osd:dataspaceKey</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td></tr>
+<tr>
+<td><p><code>osd:datasetName</code> (<code><a href="https://www.w3.org/TR/xmlschema-2/#string">xs:string</a></code> restriction)</p></td><td><p><code>java.lang.String</code></p></td></tr>
+</tbody>
+</table>
+<p>The above types are defined by the internal schema <code>common-1.0.xsd</code>. They are defined as follows: </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_text"><p><code>osd:text</code></p></td><td class="ebx_definitionListDefinition"><p>This type represents textual information. For a basic <code>xs:string</code>, its default user interface in EBX&reg; consists of a dedicated editor with several lines for input and display. </p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:simpleType name="text">
+	&lt;xs:restriction base="xs:string" />
+&lt;/xs:simpleType></pre>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_html"><p><code>osd:html</code></p></td><td class="ebx_definitionListDefinition"><p>This represents a character string with HTML formatting. A WYSIWYG editor is provided in EBX&reg;.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:simpleType name="html">
+	&lt;xs:restriction base="xs:string" />
+&lt;/xs:simpleType></pre>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_email"><p><code>osd:email</code></p></td><td class="ebx_definitionListDefinition"><p>This represents an email address as specified by the <a href="https://tools.ietf.org/html/rfc822#section-6">RFC822</a> standard.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:simpleType name="email">
+	&lt;xs:restriction base="xs:string" />
+&lt;/xs:simpleType></pre>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_password"><p><code>osd:password</code></p></td><td class="ebx_definitionListDefinition"><p>This represents an encrypted password. A specific editor is provided in EBX&reg;.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="password" type="osd:password" /></pre>
+<p>The default editor performs an encryption using the SHA-256 algorithm. This encryption function is also available from a Java client using the method <a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/DirectoryDefault.html#encryptString-java.lang.String-"><code>DirectoryDefault.encryptString</code></a>. </p><p>It is also possible for the default editor to use a different encryption mechanism by specifying a class that implements the interface <a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/Encryption.html"><code>Encryption</code></a>. </p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="password" type="osd:password">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:uiBean class="com.orchestranetworks.ui.UIPassword">
+				&lt;encryptionClass>package.EncryptionClassName&lt;/encryptionClass>
+			&lt;/osd:uiBean>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_locale"><p><code>osd:locale</code></p></td><td class="ebx_definitionListDefinition"><p>This represents a geographical, political or cultural location. The locale type is translated into Java by the class <code>java.util.Locale</code>. </p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:simpleType name="locale">
+	&lt;xs:restriction base="xs:string">
+		&lt;xs:enumeration value="ar" osd:label="Arabic" />
+		&lt;xs:enumeration value="ar_AE" osd:label="Arabic (United Arab Emirates)" />
+		&lt;xs:enumeration value="ar_BH" osd:label="Arabic (Bahrain)" />
+		&lt;xs:enumeration value="ar_DZ" osd:label="Arabic (Algeria)" />
+		&lt;xs:enumeration value="ar_EG" osd:label="Arabic (Egypt)" />
+		&lt;xs:enumeration value="ar_IQ" osd:label="Arabic (Iraq)" />
+			...
+		&lt;xs:enumeration value="vi_VN" osd:label="Vietnamese (Vietnam)" />
+		&lt;xs:enumeration value="zh" osd:label="Chinese" />
+		&lt;xs:enumeration value="zh_CN" osd:label="Chinese (China)" />
+		&lt;xs:enumeration value="zh_HK" osd:label="Chinese (Hong Kong)" />
+		&lt;xs:enumeration value="zh_TW" osd:label="Chinese (Taiwan)" />
+	&lt;/xs:restriction>
+&lt;/xs:simpleType></pre>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_color"><p><code>osd:color</code></p></td><td class="ebx_definitionListDefinition"><p>This represents a character string with hexadecimal RGB color formatting. A color picker <code>UIComponent</code> is provided in EBX&reg;.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:simpleType name="color">
+	&lt;xs:restriction base="xs:string" />
+&lt;/xs:simpleType></pre>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="oresource"><p><code>osd:resource</code></p></td><td class="ebx_definitionListDefinition"><p>This represents a resource packaged in a module. For more information, see <a href="../models/modules_packaging.html#packaged_resources">Packaged resources</a>. This type requires the definition of the facet <a href="./constraints.html#oresource">FacetOResource</a>.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:simpleType name="resource">
+	&lt;xs:restriction base="xs:anyURI" />
+&lt;/xs:simpleType></pre>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_dataspaceKey"><p><code>osd:dataspaceKey</code></p></td><td class="ebx_definitionListDefinition"><p>This type represents a reference to a dataspace.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="dataspaceField" type="osd:dataspaceKey" /></pre>
+<p>A specific editor is provided in EBX&reg; that displays the dataspaces that can be referenced. </p><p>It is possible to specify the dataspaces that can be referenced using the element <code>osd:dataspaceSet</code> under <code>xs:annotation/xs:appInfo</code>. If the element <code>osd:dataspaceSet</code> is not defined, then by default, only open branches can be referenced.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="dataspaceField" type="osd:dataspaceKey">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:dataspaceSet>
+				&lt;include>
+					&lt;pattern>a pattern&lt;/pattern>
+					&lt;type>all | branch | version&lt;/type>
+					&lt;includeDescendants>none | allDescendants | allBranchDescendants | allSnapshotDescendants | branchChildren | snapshotChildren&lt;/includeDescendants>
+				&lt;/include>
+				&lt;exclude>
+					&lt;pattern>a pattern&lt;/pattern>
+					&lt;type>all | branch | version&lt;/type>
+					&lt;includeDescendants>none | allDescendants | allBranchDescendants | allSnapshotDescendants | branchChildren | snapshotChildren&lt;/includeDescendants>
+				&lt;/include>
+				&lt;filter osd:class="com.foo.MyDataspaceFilter">
+					&lt;param1>...&lt;/param1>
+					&lt;param2>...&lt;/param2>
+				&lt;/filter>
+			&lt;/osd:dataspaceSet>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+<ul>
+<li><p>includes</p><p>Specifies the dataspaces that can be referenced by this field. An <code>include</code> must at least be defined. </p><p><strong><code>pattern</code>: </strong>Specifies a pattern that filters dataspaces. The pattern is checked against the name of the dataspaces. This property is mandatory. </p><p><strong><code>type</code>: </strong>Specifies the type of dataspaces that can be referenced by this field. If not defined, this restriction is applied to branches. If <code>all</code> then branches and snapshots are included. If <code>branch</code> then only branches are included. If <code>snapshot</code> then only snapshots are included. If not set, this property is <code>branch</code> by default. </p><p><strong><code>includeDescendants</code>: </strong> Specifies if children or descendants of the dataspaces that match the specified pattern are included in the set. If <code>none</code> then neither children nor descendants of the dataspaces that match the specified pattern are included. If <code>allDescendants</code> then all descendants of the dataspaces that match the specified pattern are included. If <code>allBranchDescendants</code> then all descendant branches of the dataspaces that match the specified pattern are included. If <code>allSnapshotDescendants</code> then all descendant snapshots of the dataspaces that match the specified pattern are included. If <code>directBranchChildren</code> then only direct branches of the dataspaces that match the specified pattern are included. If <code>directSnapshotChildren</code> then only direct snapshots of the dataspaces that match the specified pattern are included. If not set, this property is <code>none</code> by default. </p></li><li><p>excludes</p><p>Specifies the dataspaces that cannot be referenced by this field. Excludes are ignored if no includes are defined.</p><p><strong><code>pattern</code>: </strong>Specifies a pattern that filters dataspaces. The pattern is checked against the name of the dataspaces. This property is mandatory. </p><p><strong><code>type</code>: </strong>Specifies the type of dataspaces that can be referenced by this field. If not defined, this restriction is applied to branches. If <code>all</code> then branches and snapshots are excluded. If <code>branch</code> then only branches are excluded. If <code>snapshot</code> then only snapshots are excluded. If not set, this property is <code>branch</code> by default. </p><p><strong><code>includeDescendants</code>: </strong> Specifies if children or descendants of the datasets that match the specified pattern are excluded from the set. If <code>none</code> then neither children nor descendants of the dataspaces that match the specified pattern are excluded. If <code>allDescendants</code> then all descendants of the dataspaces that match the specified pattern are excluded. If <code>allBranchDescendants</code> then all descendant branches of the dataspaces that match the specified pattern are excluded. If <code>allSnapshotDescendants</code> then all descendant snapshots of the dataspaces that match the specified pattern are excluded. If <code>directBranchChildren</code> then only direct branches of the dataspaces that match the specified pattern are excluded. If <code>directSnapshotChildren</code> then only direct snapshots of the dataspaces that match the specified pattern are excluded. If not set, this property is <code>none</code> by default. </p></li><li><p><code>filter</code></p><p>Specifies a filter to accept or reject dataspaces in the context of a dataset or a record. This filter is only used in the dedicated input component that is associated to this field. That is, this filter is not used when validating this field. A specific constraint can be used to perform specific controls on this field.</p><p> The attribute <code>osd:class</code> specifies a Java bean that implements the interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/types/dataspace/DataspaceSetFilter.html"><code>DataspaceSetFilter</code></a>. </p></li></ul>
+<p>It is also possible to customize validation messages and the control policy associated with this type using the element <code>validation</code> under <code>xs:annotation/xs:appInfo/osd:dataspaceSet</code>. See <a href="../models/labels_error_messages.html#validationMessage">Facet validation message with severity</a> and <a href="../models/constraints.html#controlPolicy">Control policy</a> for more information. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="xsdsimple_datasetName"><p><code>osd:datasetName</code></p></td><td class="ebx_definitionListDefinition"><p>This type represents a reference to a dataset. </p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="dataset" type="osd:datasetName" /></pre>
+<p>A specific editor provided in EBX&reg; displays the datasets that can be referenced. </p><p>It is also possible to specify the datasets that can be referenced using the element <code>osd:datasetSet</code> under <code>xs:annotation/xs:appInfo</code>:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="datasetField" type="osd:datasetName">
+	&lt;xs:annotation>
+		&lt;xs:appinfo>
+			&lt;osd:datasetSet>
+				&lt;branch>productsBranch&lt;/branch>
+				&lt;version>productsVersion&lt;/version>
+				&lt;dataspaceSelector>../dataspaceField&lt;/dataspaceSelector>
+				&lt;pattern>a pattern&lt;/pattern>
+				&lt;filter osd:class="com.foo.MyDatasetFilter">
+					&lt;param1>...&lt;/param1>
+					&lt;param2>...&lt;/param2>
+				&lt;/filter>
+			&lt;/osd:datasetSet>
+		&lt;/xs:appinfo>
+	&lt;/xs:annotation>
+&lt;/xs:element></pre>
+<ul>
+<li><p><code>branch</code></p><p>Specifies the source branch. Only datasets contained in this branch will be able to be selected by a field of the type Dataset identifier (osd:datasetName).</p></li><li><p><code>version</code></p><p>Specifies the source snapshot. Only datasets contained in this snapshot will be able to be selected by a field of the type Dataset identifier (osd:datasetName).</p></li><li><p><code>dataspaceSelector</code></p><p>Specifies a field in the same data model that defines the dataspace containing the datasets that can be referenced. The specified field must be of type <code>xs:string</code> or <code>osd:dataspaceKey</code>. The value of this field must comply with the representation of a persistent identifier of a dataspace or snapshot. See <a target="_blank" href="../Java_API/com/orchestranetworks/instance/HomeKey.html#format--"><code>HomeKey.format</code></a> for more information. </p><p>The referred node must respect the restrictions existing for dynamic facets, see <a href="../models/constraints.html#dynamicConstraints">Dynamic constraints</a>.</p></li><li><p><code>includes</code></p><p>Specifies the datasets that can be referenced by this field.</p><p><strong><code>pattern</code>: </strong>Specifies a pattern that filters datasets. The pattern is checked against the name of the datasets. This property is mandatory. </p><p><strong><code>includeDescendants</code>: </strong>Specifies if children or descendants of the datasets that match the specified pattern are included in the set. If <code>none</code> then neither children nor descendants of the datasets that match the specified pattern are excluded. If <code>directChildren</code> then only direct children of the datasets that match the specified pattern are excluded. If <code>allDescendants</code> then all descendants of the datasets that match the specified pattern are excluded. If not set, this property is <code>none</code> by default. </p></li><li><p><code>excludes</code></p><p>Specifies the datasets that cannot be referenced by this field. Excludes are ignored if no includes are defined.</p><p><strong><code>pattern</code>: </strong>Specifies a pattern that filters datasets. The pattern is checked against the name of the datasets. This property is mandatory. </p><p><strong><code>includeDescendants</code>: </strong>Specifies if children or descendants of the datasets that match the specified pattern are included in the set. If <code>none</code> then neither children nor descendants of the datasets that match the specified pattern are excluded. If <code>directChildren</code> then only direct children of the datasets that match the specified pattern are excluded. If <code>allDescendants</code> then all descendants of the datasets that match the specified pattern are excluded. If not set, this property is <code>none</code> by default. </p></li><li><p><code>filter</code></p><p>Specifies a filter to accept or reject datasets in the context of a dataset or record. This filter is only used in the dedicated input component that is associated to this field. That is, this filter is not used when validating this field. A specific constraint can be used to perform specific controls on this field.</p><p>The attribute <code>osd:class</code> specifies a Java bean that implements the interface <a target="_blank" href="../Java_API/com/orchestranetworks/schema/types/dataset/DatasetSetFilter.html"><code>DatasetSetFilter</code></a>. A validation message is added to the associated field if an input dataspace reference does not match this filter. </p></li></ul>
+<p>One of the elements <code>branch</code>, <code>version</code> or <code>dataspaceSelector</code> must be defined. </p><p>It is also possible to customize validation messages and the control policy associated with this type using the element <code>validation</code> under <code>xs:annotation/xs:appInfo/osd:datasetSet</code>. See <a href="../models/labels_error_messages.html#validationMessage">Facet validation message with severity</a> and <a href="../models/constraints.html#controlPolicy">Control policy</a> for more information. </p></td></tr>
+</table>
+<h2 id="ebxcomplex">
+Complex types defined by EBX&reg;</h2>
+<p>EBX&reg; provides pre-defined complex data types:</p><table width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema type</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p><code>osd:UDA</code></p></td><td><p><strong>User Defined Attribute:</strong> This type allows any user, according to their access rights, to define a value associated with an attribute defined in a dictionary called a UDA Catalog.</p></td></tr>
+<tr>
+<td><p><code>osd:UDACatalog</code></p></td><td><p><strong>Catalog of User Defined Attributes:</strong> This type consists of a table in which attributes can be specified. This catalog is used by all <code>osd:UDA</code> elements declared in the same data model. </p></td></tr>
+</tbody>
+</table>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>osd:UDA</code></p></td><td class="ebx_definitionListDefinition"><p>A User Defined Attribute (UDA) supports both the <code>minOccurs</code> and <code>maxOccurs</code> attributes, as well as the attribute <code>osd:UDACatalogPath</code>, which specifies the path of the corresponding catalog. </p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="firstUDA" type="osd:UDA" minOccurs="0"
+	maxOccurs="unbounded" osd:UDACatalogPath="//insuranceCatalog" />
+&lt;xs:element name="secondUDA" type="osd:UDA" minOccurs="1" maxOccurs="1"
+	osd:UDACatalogPath="/root/userCatalog" />
+&lt;xs:element name="thirdUDA" type="osd:UDA" minOccurs="0" maxOccurs="1"
+	osd:UDACatalogPath="//userCatalog" /></pre>
+<p>In the manager, when working with a UDA, the editor will adapt itself to the type of the selected attribute.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>osd:UDACatalog</code></p></td><td class="ebx_definitionListDefinition"><p>Internally, a catalog is represented as a table. The parameters <code>minOccurs</code> and <code>maxOccurs</code> must be specified. </p><p>Several catalogs can be defined in the same data model.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="insuranceCatalog" type="osd:UDACatalog" minOccurs="0" maxOccurs="unbounded">
+	&lt;xs:annotation>
+		&lt;xs:documentation xml:lang="en-US">Insurance Catalog.&lt;/xs:documentation>
+		&lt;xs:documentation xml:lang="fr-FR">Catalog assurance.&lt;/xs:documentation>
+	&lt;/xs:annotation>
+&lt;/xs:element>
+&lt;xs:element name="userCatalog" type="osd:UDACatalog" minOccurs="0" maxOccurs="unbounded">
+	&lt;xs:annotation>
+		&lt;xs:documentation xml:lang="en-US">User catalog.&lt;/xs:documentation>
+		&lt;xs:documentation xml:lang="fr-FR">Catalogue utilisateur.&lt;/xs:documentation>
+	&lt;/xs:annotation>
+&lt;/xs:element>
+</pre>
+<p>Only the following types are available for creating new attributes:</p><ul>
+<li><p>xs:string</p></li><li><p>xs:boolean</p></li><li><p>xs:decimal</p></li><li><p>xs:dateTime</p></li><li><p>xs:time</p></li><li><p>xs:date</p></li><li><p>xs:anyURI</p></li><li><p>xs:Name</p></li><li><p>xs:int</p></li><li><p>osd:html</p></li><li><p>osd:email</p></li><li><p>osd:password</p></li><li><p>osd:locale</p></li><li><p>osd:text</p></li></ul>
+</td></tr>
+</table>
+<h3 id="ebxUDARestrictions">
+Restrictions on User Defined Attributes and Catalogs</h3>
+<p>The following features are unsupported on UDA elements:</p><ul>
+<li><p>Facets</p></li><li><p>Functions using the <code>osd:function</code> property</p></li><li><p>UI bean editors using the <code>osd:uiBean</code> property</p></li><li><p>The <code>osd:checkNullInput</code> property</p></li><li><p>History features</p></li><li><p>Replication</p></li><li><p>Inheritance features, using the <code>osd:inheritance</code> property</p></li></ul>
+<p>As UDA catalogs are internally considered to be tables, the restrictions that apply to tables also exist for <code>UDACatalog</code> elements.</p><h2 id="aggregatedList">
+Aggregated lists</h2>
+<p> In XML Schema, the maximum number of times an element can occur is determined by the value of the <code>maxOccurs</code> attribute in its declaration. If this value is strictly greater than 1 or is <code>unbounded</code>, the data can have multiple occurrences. If no <code>osd:table</code> declaration is included, this element is called an <em>aggregated list</em>. In Java, it is then represented as an instance of the class <code>java.util.List</code>.</p><p>The following is an example of an aggregated list that defines the pricing of a loan product, depending on the amount borrowed.</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:element name="pricing" minOccurs="0" maxOccurs="unbounded"
+	osd:access="RW">
+	&lt;xs:annotation>
+		&lt;xs:documentation>
+			&lt;osd:label>Pricing&lt;/osd:label>
+			&lt;osd:description>Pricing grid &lt;/osd:description>
+		&lt;/xs:documentation>
+	&lt;/xs:annotation>
+	&lt;xs:complexType>
+		&lt;xs:sequence>
+			&lt;xs:element name="amount" type="xs:int">
+				&lt;xs:annotation>
+					&lt;xs:documentation>
+						&lt;osd:label>Amount borrowed&lt;/osd:label>
+					&lt;/xs:documentation>
+				&lt;/xs:annotation>
+			&lt;/xs:element>
+			&lt;xs:element name="monthly" type="xs:int">
+				&lt;xs:annotation>
+					&lt;xs:documentation>
+						&lt;osd:label>Monthly payment &lt;/osd:label>
+					&lt;/xs:documentation>
+				&lt;/xs:annotation>
+			&lt;/xs:element>
+			&lt;xs:element name="cost" type="xs:int">
+				&lt;xs:annotation>
+					&lt;xs:documentation>
+						&lt;osd:label>Cost&lt;/osd:label>
+					&lt;/xs:documentation>
+				&lt;/xs:annotation>
+			&lt;/xs:element>
+		&lt;/xs:sequence>
+	&lt;/xs:complexType>
+&lt;/xs:element></pre>
+<p>Aggregated lists have a dedicated editor in EBX&reg;. This editor allows you to add or to delete occurrences.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><p>The addition of an <code>osd:table</code> declaration to an element with <code>maxOccurs &gt; 1</code> is a very important consideration that must be taken into account during the design process. An aggregated list is severely limited with respect to the many features that are supported by tables. Some features unsupported on aggregated lists that are supported on tables are:</p><ul>
+<li><p>Performance and memory optimization;</p></li><li><p>Lookups, filters and searches;</p></li><li><p>Sorting, view and display in hierarchies;</p></li><li><p>Identity constraints (primary keys and uniqueness constraints);</p></li><li><p>Detailed permissions for creation, modification, deletion and particular permissions at the record level;</p></li><li><p>Detailed comparison and merge.</p></li></ul>
+<p>Thus, <em>aggregated lists should be used only for small volumes of simple data (one or two dozen occurrences), with no advanced requirements</em>. For larger volumes of data or more advanced functionalities, it is strongly advised to use an <code>osd:table</code> declaration.</p><p>For more information on table declarations, see <a href="../models/tables.html">Tables and relationships</a>.</p></p></div>
+<h2 id="includedDataModels">
+Including external data models</h2>
+<p>Including another data model in your current model allows you to use the reusable types that are defined in that data model. You can thus use the inclusion of external data models to share data types between multiple XML Schema Documents.</p><p>To include another XML Schema Document in your model, thereby including the data types that it defines, specify the <code>xs:include</code> element as follows:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0">
+  	&lt;xs:include 	schemaLocation="./schemaToInclude.xsd"/>
+	...
+&lt;/xs:schema></pre>
+<p>The attribute <code>schemaLocation</code> is mandatory and must specify either an absolute or a relative path to the XML Schema Document to include.</p><p>The inclusion of XML Schema Documents is not namespace aware, thus all included data types must belong to the same namespace. As a consequence, including XML Schema Documents that define data types of the same name is not supported.</p><p>EBX&reg; includes extensions with specific URNs for including embedded data models and data models packaged in modules.</p><p>To include an embedded data model in a model, specify the URN defined by EBX&reg;. For example:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0">
+	&lt;xs:include schemaLocation="urn:ebx:publication:myPublication"/>
+	...
+&lt;/xs:schema></pre>
+<p>To include a data model packaged in a module, specify the specific URN defined by EBX&reg;. For example:</p><pre class="brush: xsd; toolbar: false; gutter: false;">
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0">
+	&lt;xs:include schemaLocation="urn:ebx:module:aModuleName:/WEB-INF/ebx/schema/myDataModel.xsd"/>
+	...
+&lt;/xs:schema></pre>
+<p>See <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaLocation.html"><code>SchemaLocation</code></a> for more information about specific URNs supported by EBX&reg;. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>If the packaged data model uses Java resources, the class loader of the module containing the data model will be used at runtime for resolving these resources.</p></div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; Data model</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

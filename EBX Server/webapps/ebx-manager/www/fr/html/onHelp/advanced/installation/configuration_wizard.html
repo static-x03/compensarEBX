@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Initialization and first-launch assistant</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="installation_wizard" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=installation/configuration_wizard.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+<h1>
+Initialization and first-launch assistant</h1>
+<p>Deliverables can be found on <a href="https://edelivery.tibco.com">TIBCO eDelivery</a>(an account is mandatory in order to access eDelivery, please contact <a href="https://support.tibco.com">the support team</a> to request one).</p><p>The TIBCO EBX&reg; Configuration Assistant helps with the initial configuration of the EBX&reg; repository. If EBX&reg; does not have a repository installed upon startup and if the <a href="../installation/properties.html#automatic_installation">automatic installation</a> is not enabled, the configuration assistant is launched automatically.</p><p>Before starting the configuration of the repository, make sure that EBX&reg; is correctly deployed on the application server. See <a href="../installation/deploy_on_jee.html">Java EE deployment</a>.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The EBX&reg; main configuration file must also be properly configured. See <a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a>.</p></div>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Configuration steps</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Validating the license agreement</a></li><li class="toc2"><a href="#id1s2">Configuring the repository</a></li><li class="toc2"><a href="#id1s3">Defining users in the default directory</a></li><li class="toc2"><a href="#id1s4">Validating the information entered</a></li><li class="toc2"><a href="#id1s5">Installing the EBX&reg; repository</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Configuration steps</h2>
+<p>The EBX&reg; configuration assistant guides you through the following steps:</p><ol>
+<li><p>Validating the license agreement.</p></li><li><p>Configuring the repository.</p></li><li><p>Defining users in the default user and roles directory (if a custom directory is not defined).</p></li><li><p>Validating the information entered.</p></li><li><p>Installing the EBX&reg; repository.</p></li></ol>
+<h3 id="id1s1">
+Validating the license agreement</h3>
+<p>In order to proceed with the configuration, you must read and accept the product license agreement.</p><h3 id="id1s2">
+Configuring the repository</h3>
+<p>This page displays some of the properties defined in the EBX&reg; main configuration file. You also define several basic properties of the repository in this step.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Id of the repository (<code>repositoryId</code>)</p></td><td class="ebx_definitionListDefinition"><p>Must uniquely identify the repository (in the scope of the enterprise). The identifier is 48 bits (6 bytes) long and is usually represented as 12 hexadecimal digits. This information is used for generating the Universally Unique Identifiers (UUIDs) of entities created in the repository, and also of transactions logged in the history. This identifier acts as the &quot;UUID node&quot;, as specified by RFC 4122.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Repository label</p></td><td class="ebx_definitionListDefinition"><p>Defines a user-friendly label that indicates the purpose and context of the repository.</p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html">TIBCO EBX&reg; main configuration file</a></li></ul>
+</div>
+<h3 id="id1s3">
+Defining users in the default directory</h3>
+<p>If a custom user and roles directory is not defined in the EBX&reg; main configuration file, the configuration assistant allows to define default users for the default user and roles directory.</p><p>An administrator user must be defined. You may optionally create a second user.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/directory.html">Users and roles directory</a></li></ul>
+</div>
+<h3 id="id1s4">
+Validating the information entered</h3>
+<p>Before proceeding with the installation of the repository, you can review the configuration of the repository and the information entered on the &#39;Configuration Summary&#39; page. If you need to modify information, you can return to the previous pages using the configuration assistant <strong>&lt; Back</strong> button.</p><p>Once you have verified the configuration, click the button <strong>Install the repository &gt;</strong> to proceed with the installation.</p><h3 id="id1s5">
+Installing the EBX&reg; repository</h3>
+<p>The repository installation is performed using the provided information. When the installation is complete, you are redirected to the repository login page.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

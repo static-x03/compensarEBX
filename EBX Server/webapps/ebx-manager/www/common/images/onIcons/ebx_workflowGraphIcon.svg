@@ -1,0 +1,9 @@
+<svg id="SVGRoot" width="16px" height="16px" version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<rect x=".5" y=".5" width="6" height="6" ry="1.2" style="fill:none;paint-order:normal;stroke-linejoin:round;stroke:#060606"/>
+<circle cx="3.5" cy="13.5" r="2" style="fill:none;paint-order:normal;stroke-linejoin:round;stroke:#060606"/>
+<circle cx="12.5" cy="13.5" r="2" style="fill:none;paint-order:normal;stroke-linejoin:round;stroke:#060606"/>
+<rect transform="rotate(-45)" x="4.3336" y="9.2943" width="4.0387" height="4.0387" ry="0" style="fill:none;paint-order:normal;stroke-width:.9;stroke:#060606"/>
+<path d="m3.5 11.5v-5" style="fill:none;stroke-width:1px;stroke:#000000"/>
+<path d="m6.5 3.5h3.5" style="fill:none;stroke-width:1px;stroke:#000000"/>
+<path d="m12.5 6v5.5" style="fill:none;stroke-width:1px;stroke:#000000"/>
+</svg>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Viewing the data model structure</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_tutorial_view_model" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Getting started tutorial</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_tutorial_view_model.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Getting started tutorial</span></div>
+<h1 id="user_tutorial_view_model_top">
+Viewing the data model structure</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_tutorial_view_model_overview">Overview</a></li><li class="toc1"><a href="#user_tutorial_view_model_steps">Steps</a></li><li class="toc1"><a href="#user_tutorial_view_data_model_next">What&#39;s next?</a></li></ul>
+</div>
+<h2 id="user_tutorial_view_model_overview">
+Overview</h2>
+<p>We can begin working through the use case by generating a data model graph to get familiar with the data structure. This graph will also provide information needed during later configuration steps.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The add-on requires no configuration to generate a data model graph. However, you can customize several options. See <a href="../user_guide/user_data_model_graph_customizing.html">Changing display and configuration options</a> for more information on customization. The steps below cover some data model graph features and functionality. See <a href="../user_guide/user_data_model_graph_interacting.html">Interacting with data model graphs</a> for descriptions of additional options.</p></div>
+<h2 id="user_tutorial_view_model_steps">
+Steps</h2>
+<p>To view the data model graph:</p><ol>
+<li><p>Navigate to the Supply Chain dataset that we created during set-up. </p></li><li><p>We can generate a graph using the <strong>Display data model</strong> service. This service is accessible from a dataset or table <strong>Actions</strong> menu under <strong>Visualization</strong> services. Feel free to run the service from both to observe the differences.</p></li><li><p>When viewing the graph:</p><ul>
+<li><p>Select the template settings icon and in the <strong>Display options</strong> group tick the <strong>Select all</strong> box (or just a few options), save and close. The graph now displays the selected components.</p><p><img alt="/tutorial_open_template.png" src="./resources/images/tutorial_open_template.png"></img></p></li><li><p>Drag the tables to re-arrange.</p></li><li><p>Zoom in a bit to change the perspective.</p></li><li><p>Select <strong>Save</strong> at the bottom of the screen and provide a name.</p></li></ul>
+<p>As shown below, the graph provides a clear view of how data flows. In this use case, data and physical product flow coincide. So, the Supply Chain model graph tells us that: Factories supply Assembly Plants which in turn supply Stores.</p><p><img alt="/data_model_graph_tutorial_1.png" src="./resources/images/data_model_graph_tutorial_1.png"></img></p><p>We have solved one part of the problem! Remember, the technicians said the issue stemmed from a manufacturing defect and not improper assembly. The defective parts must originate in one of the factories. But, which one? To determine this, we can generate a graph of data values and relationships and follow the data trail. Before generating this type of graph we need to configure the add-on. To help with the configuration, let&#39;s export a copy of the current data model graph for reference purposes.</p></li><li><p> Click <strong>Export</strong> at the top of the graph. Choose the desired format and action—either open or save the exported file.</p></li></ol>
+<h2 id="user_tutorial_view_data_model_next">
+What&#39;s next?</h2>
+<p>Complete the final piece of the puzzle by following along in the next section. <a href="../user_guide/user_tutorial_config.html">Solving with a data value graph</a> describes how to create a graph that will show data values and provide a report to management.</p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

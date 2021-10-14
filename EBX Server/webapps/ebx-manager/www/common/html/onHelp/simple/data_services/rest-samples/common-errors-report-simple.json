@@ -1,0 +1,19 @@
+{
+  "code": 422,
+  "errors": [
+    {
+      "level": "error",
+      "userCode": "Validation",
+      "message": "Field 'Category' is mandatory.",
+      "blocksCommit": "never",
+      "pathInRecord": "/category"
+    },
+    {
+      "level": "error",
+      "userCode": "Validation",
+      "message": "Values between 'AD100' and 'AD200' (included) are prohibited.",
+      "blocksCommit": "onUserSubmit-checkModifiedValues",
+      "pathInRecord": "/code"
+    }
+  ]
+}

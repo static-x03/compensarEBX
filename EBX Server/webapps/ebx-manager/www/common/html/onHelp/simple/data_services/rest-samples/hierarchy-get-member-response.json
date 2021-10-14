@@ -1,0 +1,15 @@
+{
+  "label": "Emile Zola",
+  "memberValue": "author0",
+  "isLeaf": null,
+  "member": "http://localhost:8080/ebx-dataservices/rest/.../BooksByAuthors/members/author0",
+  "parent": "http://localhost:8080/ebx-dataservices/rest/.../BooksByAuthors/members",
+  "details": "http://localhost:8080/ebx-dataservices/rest/.../root/authors/author0",
+  "previous": null,
+  "next": null,
+  "members": "http://localhost:8080/ebx-dataservices/rest/.../BooksByAuthors/members/author0/members/",
+  "submembers": null
+}
+
+
+

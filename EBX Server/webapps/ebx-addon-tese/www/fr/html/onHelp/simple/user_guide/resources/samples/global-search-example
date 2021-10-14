@@ -1,0 +1,2 @@
+<b>Format:</b> http://[server]:<port>/ebx-addon-tese/rest/earch/v1/global
+<b>Example:</b> http://localhost:8080/ebx-addon-tese/rest/search/v1/global?keyword=Bob

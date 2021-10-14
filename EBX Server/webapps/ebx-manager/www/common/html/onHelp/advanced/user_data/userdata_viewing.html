@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Viewing data</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="data_views" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Datasets</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/userdata_viewing.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Datasets</span></div>
+<h1>
+Viewing data</h1>
+<p>TIBCO EBX&reg; offers different ways to list records. This chapter presents how to sort, search, and display records in varying ways, and according to different user profiles, through to the concept of &#39;Views&#39;. </p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">&#39;View&#39; menu</a></li><li class="toc1"><a href="#sort">Sorting data</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Sorting by column</a></li></ul>
+</li><li class="toc1"><a href="#quicksearch">Quick Search</a><ul class="toc2">
+<li class="toc2"><a href="#quicksearchoperators">Special characters</a></li></ul>
+</li><li class="toc1"><a href="#searchfilters">Searching and filtering data</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Search on a field</a></li><li class="toc2"><a href="#severitySearch">Validation filter</a></li><li class="toc2"><a href="#specificSearch">Custom table searches</a></li></ul>
+</li><li class="toc1"><a href="#custom">Views</a><ul class="toc2">
+<li class="toc2"><a href="#description">View description</a></li><li class="toc2"><a href="#simple">Simple tabular views</a></li><li class="toc2"><a href="#hierarchies">Hierarchical views</a></li><li class="toc2"><a href="#sharing">View sharing</a></li><li class="toc2"><a href="#publication">View publication</a></li></ul>
+</li><li class="toc1"><a href="#views_management">Views management</a><ul class="toc2">
+<li class="toc2"><a href="#preferred_views">Manage recommended views</a></li><li class="toc2"><a href="#view_menu_toolbar">&#39;View&#39; menu toolbar</a></li></ul>
+</li><li class="toc1"><a href="#gridedit">Grid edit</a><ul class="toc2">
+<li class="toc2"><a href="#gridedit_copyPaste">Copy/paste</a></li></ul>
+</li><li class="toc1"><a href="#history">History</a></li></ul>
+</div>
+<h2 id="id1">
+&#39;View&#39; menu</h2>
+<p>The &#39;View&#39; drop-down menu allows accessing all available views and management features.</p><p>Views are managed directly in the &#39;View&#39; menu toolbar, available on each listed view: <a href="#view_menu_toolbar">&#39;View&#39; menu toolbar</a>.</p><p>Views can also be grouped. An administrator has to beforehand define groups in &#39;Views configuration&#39; under the &#39;Groups of views&#39; table. The end-user can then set a view as belonging to a group, through the field &#39;View group&#39; upon creation or modification of the view. See <a href="#description">&#39;View description&#39;</a> for more information.</p><h2 id="sort">
+Sorting data</h2>
+<p>Sort criteria control the order in which records are presented.</p><p>Use the &#39;Select and Sort&#39; button at the top left of the table to define specific sorting criteria.</p><p>There are two types of sorting:</p><ul>
+<li><p>sorting by relevance, used in the <a href="#quicksearch">quick search</a>,</p></li><li><p>sorting by column.</p></li></ul>
+<h3 id="id2s1">
+Sorting by column</h3>
+<p> The &#39;Sorting criteria&#39; dialog box offers: </p><ul>
+<li><p>on the left, the list of sorted columns,</p></li><li><p>on the right, the list of unsorted columns.</p></li></ul>
+<p> Use the   ←   →   arrow buttons to toggle columns from one list to another. </p><p> Use the   ↑   ↓   arrow buttons to change the priority order of the column. </p><p> To change the sort order of a column, use the &#39;ASC&#39; (ascending) or &#39;DESC&#39; (descending) button that appears on the mouse-over. </p><h2 id="quicksearch">
+Quick Search</h2>
+<p><img alt="/6.0.0-QuickSearch.png" src="../resources/images/releasenotes/6.0.0-QuickSearch.png"></img></p><p> The quick search is used to easily find a result in a tabular or hierarchical view. </p><p> It does not differentiate between upper and lower case. It allows you to search for several terms at once (separated by spaces). By default, the records found are sorted by relevance. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/indexing.html">Search</a></li></ul>
+</div>
+<h3 id="quicksearchoperators">
+Special characters</h3>
+<p> The quick search offers special characters to refine your search. </p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>+</code>...   <em>required</em></p></td><td class="ebx_definitionListDefinition"><p> Makes it required that the word be present in the result. Prevents the search engine from excluding this word from the search. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Works with <strong><code>+&quot;</code></strong>phrase<strong><code>&quot;</code></strong> or <strong><code>+(</code></strong>group<strong><code>)</code></strong>. </p></div>
+<p><em>Example:</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
++flute +bach</pre>
+<p> ↳ Finds results with required <em>flute</em> and required <em>bach</em>. Results with only <em>flute</em> or only <em>bach</em> will be ignored. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>-</code>...   <em>not</em></p></td><td class="ebx_definitionListDefinition"><p> Excludes the word from the result. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Works with <strong><code>-&quot;</code></strong>phrase<strong><code>&quot;</code></strong> or <strong><code>-(</code></strong>group<strong><code>)</code></strong>. </p></div>
+<p><em>Example:</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+bach -flute</pre>
+<p> ↳ Find results with <em>bach</em>, but without <em>flute</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p> ...<code>~</code>   <em>fuzzy</em></p></td><td class="ebx_definitionListDefinition"><p> Specifies that the search can change 2 characters of the word to find it. </p><p> To allow for a single character to change, use <strong><code>~1</code></strong>. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Works with <strong><code>&quot;</code></strong>phrase<strong><code>&quot;~</code></strong>, to change <em>2 words</em> in the phrase. </p></div>
+<p><em>Example:</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+handel~</pre>
+<p> ↳ Find results with a word that is <em>handel</em>, with 1 or 2 letters differing. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>?</code>   <em>single joker</em></p></td><td class="ebx_definitionListDefinition"><p> Replaces an unknown character. </p><p><em>Example:</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+?uttle</pre>
+<p> ↳ Finds results with a word starting with any character, and ending with <em>uttle</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>*</code>   <em>extended joker</em></p></td><td class="ebx_definitionListDefinition"><p> Replaces several unknown characters. </p><p><em>Example:</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+rachmanino*</pre>
+<p> ↳ Find results with a word beginning with <em>rachmanino</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>&quot;</code>...<code>&quot;</code>   <em>phrase</em></p></td><td class="ebx_definitionListDefinition"><p> Find the exact match of the phrase. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> Can be surrounded by   <strong><code>+</code></strong>   <strong><code>-</code></strong>   <strong><code>~</code></strong> . </p></div>
+<p><em>Example:</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+"Johann Sebastian Bach"</pre>
+<p> ↳ Find results containing exactly <em>Johann Sebastian Bach</em>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><code>(</code>...<code>)</code>   <em>group</em></p></td><td class="ebx_definitionListDefinition"><p> Allows grouping words to apply a special character <strong><code>+</code></strong> or <strong><code>-</code></strong> to them. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> You can make groups of groups. </p></div>
+<p><em>Example:</em></p><pre class="brush: plain; toolbar: false; gutter: false;">
+bach +(flute piano)</pre>
+<p> ↳ Find the results with possibly <em>bach</em>, and necessarily <em>flute</em> or <em>piano</em>. </p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p> These special characters can also be used in the documentation search engine. </p></div>
+<h2 id="searchfilters">
+Searching and filtering data</h2>
+<p> The search pane is hidden by default and accessible via the <img alt="/Open Search Pane.svg" src="../resources/images/symbols/Open Search Pane.svg"></img> icon located to the right of the quick search in the table toolbar or the hierarchical view. </p><p> The quick search and the criteria lines combine to narrow the search (restricting the result to fewer and fewer records). </p><p> It is possible to deactivate a criteria line by unchecking it. The deactivated criteria are not kept during a save. </p><p> The trashcan button <img alt="/Trash.svg" src="../resources/images/symbols/Trash.svg"></img> at the end of the line of each criterion permanently deletes the criterion. </p><p> To save the filter applied to a search, use the &#39;Save&#39; button. Saving takes into account the quick search and all active criteria. </p><p> To recall a saved filter, use the &#39;Load&#39; button. Loading replaces the quick search and the whole criteria panel. Click on the &#39;Apply&#39; button to start the new search. </p><p> When a view is applied, it ensures that it is displayed according to its configuration. All existing criteria in the search panel are therefore removed. The view can contain a set of search criteria, which are applied together with the at the same time as the view. </p><p> Some operators (such as &#39;matches&#39;) allow to use Lucene regular expressions. See <a href="https://lucene.apache.org/core/8_6_3/core/org/apache/lucene/util/automaton/RegExp.html"> technical specifications of Lucene&#39;s regex pattern</a> for more information. </p><h3 id="id4s1">
+Search on a field</h3>
+<p> All searchable fields are available. </p><h3 id="severitySearch">
+Validation filter</h3>
+<p> In field selection, the validation criteria display the records as of the last validation performed. </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p> This filtering only applies to records of the table that have been validated at least once by selecting <em>Actions &gt; Validate </em> at the table level from the workspace, or at the dataset level from the navigation pane. </p></div>
+<p> To filter on the validation severity level (independent from validation Message), use the &#39;Severity&#39; validation criterion. Available levels are: &#39;Errors&#39;, &#39;Warnings&#39; and &#39;Information&#39;. </p><p> To filter on the validation message (independent from validation Severity level), use the &#39;Message&#39; validation criterion. </p><h3 id="specificSearch">
+Custom table searches</h3>
+<p> For backward compatibility, the feature for custom searching and filtering records is still operational and accessible via the icon <img alt="/ebx_funnel.png" src="../resources/images/symbols/ebx_funnel.png"></img> in the workspace. The icon and feature are only available when at least one custom filter exists. </p><p> Additional custom filters can be specified for each table in the data model. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_interface/user_interface.html#UICustomDevSummary_TableFilter">Customizing table filter</a></li></ul>
+</div>
+<h2 id="custom">
+Views</h2>
+<p>It is possible to customize the display of tables in EBX&reg; according to the target user. There are two types of views: <a href="#simple">tabular</a> and <a href="#hierarchies">hierarchical</a>. </p><p>A view can be created by selecting <em>View &gt; Create a new view</em> in the workspace. To apply a view, select it in <em>View &gt; <em>name of the view</em></em>.</p><p>Two types of views can be created:</p><ul>
+<li><p>&#39;Simple tabular view&#39;: A table view to sort and filter the displayed records.</p></li><li><p>&#39;Hierarchical view&#39;: A tree view that links data in different tables based on their relationships.</p></li></ul>
+<h3 id="description">
+View description</h3>
+<p>When creating or updating a view, the first page allows specifying general information related to the view.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Documentation</p></td><td class="ebx_definitionListDefinition"><p>Localized label and description associated with the view.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Owner</p></td><td class="ebx_definitionListDefinition"><p>Name of the owner of the view. This user can manage and modify it. (Only available for administrators and dataset owners)</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Share with</p></td><td class="ebx_definitionListDefinition"><p>Other profiles allowed to use this view from the &#39;View&#39; menu.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Requires a permission, see <a href="../engine/admin_frontend.html#customViews_permissions">Views permissions</a>.</p></div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>View mode</p></td><td class="ebx_definitionListDefinition"><p>Simple tabular view or hierarchical view.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>View group</p></td><td class="ebx_definitionListDefinition"><p>Group to which this view belongs (if any).</p></td></tr>
+</table>
+<h3 id="simple">
+Simple tabular views</h3>
+<p>Simple tabular views offer the possibility to define criteria to filter records and also to select the columns that will be displayed in the table.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Displayed columns</p></td><td class="ebx_definitionListDefinition"><p>Specifies the columns that will be displayed in the table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Sorted columns</p></td><td class="ebx_definitionListDefinition"><p>Specifies the sort order of records in the table. See <a href="#sort">Sorting data</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Filter</p></td><td class="ebx_definitionListDefinition"><p>Defines filters for the records to be displayed in the table.</p><p>See <a href="../references/criteria_editor.html">Criteria editor</a>. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="customTabularView_gridedit">Pagination limit</p></td><td class="ebx_definitionListDefinition"><p>Forces a limit to the number of visible records.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Grid edit</p></td><td class="ebx_definitionListDefinition"><p>If enabled, users of this view can switch to grid edit, so that they can edit records directly from the tabular view.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Disable create and duplicate</p></td><td class="ebx_definitionListDefinition"><p>If &#39;Yes&#39;, users of this view cannot create nor duplicate records from the grid edit.</p></td></tr>
+</table>
+<h3 id="hierarchies">
+Hierarchical views</h3>
+<p>A hierarchy is a tree-based representation of data that allows visualizing relationships between tables. It can be structured on several relationship levels called dimension levels. Furthermore, filter criteria can be applied, to define which records will be displayed in the view.</p><h4 id="dimension">
+Hierarchy dimension</h4>
+<p>A dimension defines dependencies in a hierarchy. For example, a dimension can be specified to display products by category. You can include multiple dimension levels in a single view.</p><h4 id="configuration">
+Hierarchical view configuration options</h4>
+<p>This form allows configuring the hierarchical view options.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Display records in a new window</p></td><td class="ebx_definitionListDefinition"><p>If &#39;Yes&#39;, a new window will be opened with the record. Otherwise, it will be displayed in a new page of the same window.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Prune hierarchy</p></td><td class="ebx_definitionListDefinition"><p>If &#39;Yes&#39;, hierarchy nodes that have no children and do not belong to the target table will not be displayed.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Display orphans</p></td><td class="ebx_definitionListDefinition"><p>If &#39;Yes&#39;, hierarchy nodes without a parent will be displayed.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Display root node</p></td><td class="ebx_definitionListDefinition"><p>If &#39;No&#39;, the root node of the hierarchy will not be displayed in the view.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Root node label</p></td><td class="ebx_definitionListDefinition"><p>Localized label of the hierarchy root node.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Toolbar on top of hierarchy</p></td><td class="ebx_definitionListDefinition"><p>Allows setting the toolbar on top of the hierarchy.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Detect cycle</p></td><td class="ebx_definitionListDefinition"><p>Allow cycle detection and display in a recursive case, the oldest node record will be chosen as the cycle root. Limitation: does not work in search or pruned mode.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Detect leaf</p></td><td class="ebx_definitionListDefinition"><p>Allows detecting whether the member is a leaf or not. The leaf detection is very costly for large volumes of data. Thus, it is recommended to disable this option when the query response is delayed to display the hierarchy view. This property is always disabled for orphans&#39; parent members.</p></td></tr>
+</table>
+<p><strong>Labels</strong></p><p>For each dimension level that references another table, it is possible to define localized labels for the corresponding nodes in the hierarchy. The fields from which to derive labels can be selected using the built-in wizard.</p><p><strong>Filter</strong></p><p>The criteria editor allows creating a record filter for the view.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/criteria_editor.html">Criteria editor</a></li></ul>
+</div>
+<p><strong>Sort strategy</strong></p><p>For each dimension level, it is possible to choose one of the following sort strategies:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Default </p></td><td class="ebx_definitionListDefinition"><p>Nodes are sorted by label in alphabetical order </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Sort by columns </p></td><td class="ebx_definitionListDefinition"><p>Nodes are sorted by selected column(s). The direction (ascending/descending) can be chosen for each column. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p id="hierarchyOrdering">Sort by ordering field </p></td><td class="ebx_definitionListDefinition"><p>Nodes are sorted by a hidden numeric field, which allows users to dynamically change the order of sibling nodes in the hierarchy view. This strategy is available only if there is at least one &#39;Hidden&#39; numeric field in the table.</p><p>In order to enable this option, you must designate an eligible ordering field defined in the table on which the hierarchical view is applied. An ordering field must have the &#39;Integer&#39; data type and have a &#39;Hidden&#39; default view mode in its advanced properties in the data model definition.</p><p>Except when the ordering field is in &#39;read-only&#39; mode or when the hierarchy is filtered, any field can be repositioned.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Do not designate a field that is meant to contain data as an ordering node, as the data will be overwritten by the hierarchical view.</p></div>
+</td></tr>
+</table>
+<h4 id="hierarchyActions">
+Actions on hierarchy nodes</h4>
+<p>Each node in a hierarchical view has a menu <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img> containing contextual actions.</p><p>Leaf nodes can be dissociated from their parent record, using &#39;Detach from parent&#39;. The record then becomes an orphan node in the tree, organized under a container &quot;unset&quot; node.</p><p>Leaf nodes can also change parent nodes, using &#39;Attach to another parent&#39;. If, according to the data model, a node can have relationships to multiple parents, the node will be both under the current parent and added under the other parent node. Otherwise, the leaf node will be moved under the other parent node.</p><h3 id="sharing">
+View sharing</h3>
+<p>Users having the &#39;Share views&#39; permission on a view are able to define which users can display this view from their &#39;View&#39; menu.</p><p>To do so, simply add profiles to the &#39;Share with&#39; field of the view&#39;s configuration screen.</p><h3 id="publication">
+View publication</h3>
+<p>Users having the &#39;Publish views&#39; permission can publish views present in their &#39;View&#39; menu.</p><p>A published view is then available to all users via Web components, workflow user tasks, data services and perspectives. To publish a view, go to the &#39;View menu&#39;, click on the Edit button displayed on the mouseover of a listed view and add a &#39;Publication name&#39; to the view. </p><h2 id="views_management">
+Views management</h2>
+<h3 id="preferred_views">
+Manage recommended views</h3>
+<p>When a user logs in with no view specified, their recommended view (if any) is applied. Otherwise, the default view is applied. The &#39;Manage recommended views&#39; action allows defining assignment rules of recommended views depending on users and roles. </p><p>Available actions on recommended views are: change order of assignment rules, add a rule, edit existing rule, delete existing rule.</p><p>Thus, for a given user, the recommended views are evaluated according to the user&#39;s profile: the applied rule will be the first that matches the user&#39;s profile.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The &#39;Manage recommended view&#39; feature is only available to dataset owners.</p></div>
+<h3 id="view_menu_toolbar">
+&#39;View&#39; menu toolbar</h3>
+<p>The &#39;View&#39; menu toolbar offers the following actions:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Edit</p></td><td class="ebx_definitionListDefinition"><p>Click on the &#39;Edit&#39; button of the targeted view&#39;s toolbar to access the editable form.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Duplicate</p></td><td class="ebx_definitionListDefinition"><p>Click on the &#39;Duplicate&#39; button of the targeted view&#39;s toolbar to duplicate the view. The new view creation form pre-populates the field values from the view being duplicated.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Delete</p></td><td class="ebx_definitionListDefinition"><p>Click on the &#39;Delete&#39; button of the targeted view&#39;s toolbar to delete the view.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Define this view as my favorite</p></td><td class="ebx_definitionListDefinition"><p>Click on the &#39;Define this view as my favorite&#39; button of the targeted view&#39;s toolbar. The favorite view will automatically be applied when accessing the table. Click a second time on the button to remove the view as the user&#39;s favorite view.</p></td></tr>
+</table>
+<h2 id="gridedit">
+Grid edit</h2>
+<p>The grid edit feature allows modifying data in a table view. This feature can be accessed by clicking on the <img alt="/editButton.png" src="../resources/images/icons/editButton.png"></img> button.</p><p>Accessing the grid edit from a table view requires that the feature be previously activated in the view configuration.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#customTabularView_gridedit">Grid edit</a></li></ul>
+</div>
+<h3 id="gridedit_copyPaste">
+Copy/paste</h3>
+<p> The copy/paste of one or more cells into another one in the same table can be done through the <em>Edit</em> menu. It is also possible to use the associated keyboard shortcuts <em>Ctrl+C</em> and <em>Ctrl+V</em>. </p><p> This system does not use the operating system clipboard, but an internal mechanism. As a consequence, copying and pasting a cell in an external file will not work. Conversely, pasting a value into a table cell won&#39;t work either. </p><p> All simple type fields using built-in widgets are supported. </p><h2 id="history">
+History</h2>
+<p>The history feature allows tracking changes on master data. </p><p>The history feature must have been previously enabled at the data model level. See <a href="../user_datamodel/userdatamodel_elementproperties.html#table">Advanced properties for tables</a> for more information.</p><p>To view the history of a dataset, select <em>Actions &gt; History</em> in the navigation pane.</p><p>To view the history of a table or of a selection of records, select <em>Actions &gt; View history</em> in the workspace.</p><p>Several history modes exist, which allow viewing the history according to different perspectives:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><strong>History in current dataspace</strong></p></td><td class="ebx_definitionListDefinition"><p>The table history view displays operations on the current branch. This is the default mode.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><strong>History in current dataspace and ancestors</strong></p></td><td class="ebx_definitionListDefinition"><p>The table history view displays operations on the current branch and on all its ancestors.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><strong>History in current dataspace and merged children</strong></p></td><td class="ebx_definitionListDefinition"><p>The table history view displays operations on the current branch and on all its merged children.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p><strong>History in all dataspaces</strong></p></td><td class="ebx_definitionListDefinition"><p>The table history view displays operations on the whole branch hierarchy.</p></td></tr>
+</table>
+<p>In the history view, use the <strong>VIEW</strong> menu in order to switch to another history mode.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/history.html">History</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html">table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Datasets</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

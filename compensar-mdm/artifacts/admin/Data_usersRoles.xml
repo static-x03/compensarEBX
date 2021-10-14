@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<directory>
+    <usersRoles>
+        <role>COMM - Reference Data Approver</role>
+        <user>commRda</user>
+    </usersRoles>
+    <usersRoles>
+        <role>COMM - Reference Data Entry</role>
+        <user>commRde</user>
+    </usersRoles>
+    <usersRoles>
+        <role>COMM - Reference Data Self Approver</role>
+        <user>commRdsa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>PERS - Data Approver</role>
+        <user>persDa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>PERS - Data Entry</role>
+        <user>persDe</user>
+    </usersRoles>
+    <usersRoles>
+        <role>PERS - Data Self Approver</role>
+        <user>persDsa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>PERS - Reference Data Approver</role>
+        <user>persRda</user>
+    </usersRoles>
+    <usersRoles>
+        <role>PERS - Reference Data Entry</role>
+        <user>persRde</user>
+    </usersRoles>
+    <usersRoles>
+        <role>PERS - Reference Data Self Approver</role>
+        <user>persRdsa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Permissions User</role>
+        <user>ReadOnly</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Tech Admin</role>
+        <user>techAdminOnly</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>adminOnly</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>commRda</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>commRde</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>commRdsa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>persDa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>persDe</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>persDsa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>persRda</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>persRde</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>persRdsa</user>
+    </usersRoles>
+    <usersRoles>
+        <role>Test User</role>
+        <user>techAdminOnly</user>
+    </usersRoles>
+</directory>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:ebx-schemas:module_3.1 http://schema.orchestranetworks.com/internal/module_3.1.xsd">
+	<name>ebx-addon-dmdv</name>
+	<publicPath>ebx-addon-dmdv</publicPath>
+	<services>
+<!-- 		<service name="GraphData">
+			<resourcePath>/graphData</resourcePath>
+			<orderInMenu>2</orderInMenu>
+			<instanceActivation>
+			<scope>
+					<onRecord />
+					<permission
+						class="com.orchestranetworks.addon.dmdv.userservice.permission.data.DisplayDataAndRelationshipsPermission" />
+				</scope>
+			</instanceActivation>
+			<globalActivation>
+        	    <perspective />
+        	    <workflow />
+			</globalActivation>
+			<documentation id="services.graphData"/>
+			<confirmation disable="true" />
+			<properties>
+				<property name="branch"  input="true">
+					<documentation id="services.graphData.property.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="instance"  input="true">
+					<documentation id="services.graphData.property.dataset" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="services.graphData.property.xpath" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="configurationName" input="true">
+					<documentation id="services.graphData.property.configurationName" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="isExpandRecursively" input="true">
+					<documentation id="services.graphData.property.isExpandRecursively" />
+					<wizards>
+						<wizard type="boolean" />
+					</wizards>
+				</property>
+                <property name="trackingInfo" input="true">
+                    <documentation id="services.graphData.property.trackingInfo" />
+                </property>
+			</properties>
+		</service>
+		<service name="GraphModel" isAllowedInReservedContexts="true">
+			<resourcePath>/graphModel</resourcePath>
+			<orderInMenu>1</orderInMenu>
+			<instanceActivation>
+			<scope>
+					<onInstance />
+					<onTable />
+					<permission
+						class="com.orchestranetworks.addon.dmdv.userservice.permission.model.GraphModelPermission" />
+				</scope>
+			</instanceActivation>
+			<globalActivation>
+        	    <perspective />				
+			</globalActivation>
+			<documentation id="services.graphModel"/>
+			<confirmation disable="true" />
+			<properties>
+				<property name="branch"  input="true">
+					<documentation id="services.graphModel.property.branch" />
+				</property>
+				<property name="instance"  input="true">
+					<documentation id="services.graphModel.property.dataset" />
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="services.graphModel.property.xpath" />
+				</property>
+                <property name="trackingInfo" input="true">
+                    <documentation id="services.graphModel.property.trackingInfo" />
+                </property>
+			</properties>
+		</service>
+		<service name="CustomGraphModel">
+			<resourcePath>/displayCustomGraphModel</resourcePath>
+			<orderInMenu>1</orderInMenu>
+			<instanceActivation>
+			<scope>
+			<onInstance />
+					<permission
+						class="com.orchestranetworks.addon.dmdv.userservice.permission.model.DisplayCustomGraphModelPermission" />
+				</scope>
+			</instanceActivation>
+			<documentation id="services.customGraphModel"/>
+			<confirmation disable="true" />
+		</service>
+		<service name="LoadGraphModel">
+			<resourcePath>/loadSavedGraphModel</resourcePath>
+			<orderInMenu>2</orderInMenu>
+			<instanceActivation>
+			<scope>
+				<onInstance />
+				<onTable />
+				<permission
+						class="com.orchestranetworks.addon.dmdv.userservice.permission.model.LoadSavedGraphModelPermission" />
+			</scope>
+			</instanceActivation>
+			<globalActivation>
+        	    <perspective />				
+			</globalActivation>
+			<documentation id="services.loadGraphModel"/>
+			<confirmation disable="true" />
+			<properties>
+				<property name="branch"  input="true">
+					<documentation id="services.graphModel.property.branch" />
+				</property>
+				<property name="instance"  input="true">
+					<documentation id="services.graphModel.property.dataset" />
+				</property>
+                <property name="trackingInfo" input="true">
+                    <documentation id="services.graphModel.property.trackingInfo" />
+                </property>
+			</properties>
+		</service>
+		<service name="IncrementalData">
+			<resourcePath>/incrementalData</resourcePath>
+			<orderInMenu>3</orderInMenu>
+			<instanceActivation>
+				<scope>
+					<onRecord  />
+					<permission
+						class="com.orchestranetworks.addon.dmdv.userservice.permission.incremental.DisplaySelectedDataPermission" />
+				</scope>
+			</instanceActivation>
+			<globalActivation>
+        	    <perspective />
+        	    <workflow />
+			</globalActivation>
+			<documentation id="services.incrementalData"/>
+			<confirmation disable="true" />
+			<properties>
+				<property name="branch"  input="true">
+					<documentation id="services.graphModel.property.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="services.graphModel.property.dataset" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="services.graphModel.property.xpath" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+                    <documentation id="services.graphModel.property.trackingInfo" />
+                </property>
+			</properties>
+		</service> -->
+ 		<!-- <service name="GraphDataConfig" isAllowedInReservedContexts="true">
+			<resourcePath>/graphDataConfig</resourcePath>
+			<displayInMenu>false</displayInMenu>
+			<instanceActivation>
+				<scope>
+				<onInstance />
+				<onTable />
+					<onRecord  />
+				</scope>
+			</instanceActivation>
+			<documentation id="services.graphDataConfig"/>
+			<confirmation disable="true" />
+			<properties>
+				<property name="trackingInfo" input="true">
+                    <documentation id="services.graphModel.property.trackingInfo" />
+                </property>
+			</properties>
+		</service>
+		<service name="GraphModelForDataConfig" isAllowedInReservedContexts="true">
+			<resourcePath>/graphModel</resourcePath>
+			<displayInMenu>false</displayInMenu>
+			<instanceActivation>
+				<scope>
+					<onInstance />
+					<onTable />
+				</scope>
+			</instanceActivation>
+			<documentation id="services.graphModel"/>
+			<confirmation disable="true" />
+			<properties>
+                <property name="trackingInfo" input="true">
+                    <documentation id="services.graphModel.property.trackingInfo" />
+                </property>
+			</properties>
+		</service> -->
+	</services>
+	<ajaxComponents>
+		<ajaxComponent name="DataLinkPathAjaxProcedure"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.DataLinkPathAjaxProcedure" />
+		<ajaxComponent name="DataLinkConditionAjaxProcedure"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.DataLinkConditionAjaxProcedure" />
+		<ajaxComponent name="DataTableLabelAjaxProcedure"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.DataTableLabelAjaxProcedure" />
+		<ajaxComponent name="DataLinkLabelAjaxProcedure"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.DataLinkLabelAjaxProcedure" />
+		<ajaxComponent name="ConditionHelperAjaxProcedure"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.ConditionHelperAjaxProcedure" />
+		<ajaxComponent name="LinkStyleConditionAjaxProcedure"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.LinkStyleConditionAjaxProcedure" />
+		<ajaxComponent name="RecordDetailAjaxComponent"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.RecordDetailAjaxComponent" />
+		<ajaxComponent name="TableConfigurationDetailAjaxComponent"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.TableConfigurationDetailAjaxComponent" />
+		<ajaxComponent name="LinkConfigurationDetailAjaxComponent"
+			className="com.orchestranetworks.addon.dmdv.schema.ajax.LinkConfigurationDetailAjaxComponent" />
+	</ajaxComponents>
+</module>
+

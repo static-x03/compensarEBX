@@ -1,0 +1,21 @@
+{
+  "content": [
+    {
+      "label": "Êva Borelli",
+      "member": "http://.../BooksByAuthors/members/author105",
+      "parent": "http://.../BooksByAuthors/members",
+      ...
+    },
+    ...
+    {
+      "label": "La bête humaine",
+      "member": "http://../BooksByAuthors/members/author0/members/book32",
+      "parent": "http://../BooksByAuthors/members/author0",
+      ...
+    }
+  ]
+}
+
+
+
+

@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_2.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:ebx-schemas:module_2.4 http://schema.orchestranetworks.com/internal/module_2.4.xsd">
+	<name>ebx-root-1.0</name>
+	<publicPath>ebx-root-1.0</publicPath>
+	
+	<!-- ///////////////////////// built-in service groups ///////////////////////////////-->
+	<serviceGroups>
+		<serviceGroup name="ebx-importExport">
+			<documentation id="serviceGroup.@ebx-importExport"/>
+		</serviceGroup>
+		<serviceGroup name="ebx-views">
+			<documentation id="serviceGroup.@ebx-views"/>
+		</serviceGroup>
+	</serviceGroups>
+	
+	<!-- ///////////////////////// built-in services ///////////////////////////////-->
+	<services>
+		<service name="">
+			<documentation id="service.@default" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@default.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="version" input="true">
+					<documentation id="service.@default.properties.version" />
+					<wizards>
+						<wizard type="snapshot" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@default.properties.instance" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@default.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="viewPublication" input="true">
+					<documentation id="service.@default.properties.view" />
+					<wizards>
+						<wizard type="view" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="disableAutoComplete" input="true">
+					<documentation id="service.@default.properties.disableAutoComplete" />
+					<wizards>
+						<wizard type="boolean" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="firstCallDisplay" input="true">
+					<documentation id="service.@default.properties.firstCallDisplay" />
+					<wizards>
+						<wizard type="firstCallDisplay"/>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+			</properties>
+		</service>
+		<service name="@creation">
+			<documentation id="service.@creation" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@creation.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@creation.properties.instance" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@creation.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="created" output="true">
+					<documentation id="service.@creation.properties.created" />
+				</property>
+			</properties>
+		</service>
+		
+		
+		<service name="@duplicate">
+			<documentation id="service.@duplicate" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@duplicate.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@duplicate.properties.instance" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@duplicate.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="created" output="true">
+					<documentation id="service.@duplicate.properties.created" />
+				</property>
+			</properties>
+		</service>
+		<service name="@exportToXML">
+			<group>ebx-importExport</group>
+			<documentation id="service.@exportToXML" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@exportToXML.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="version" input="true">
+					<documentation id="service.@exportToXML.properties.version" />
+					<wizards>
+						<wizard type="snapshot"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@exportToXML.properties.instance" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@exportToXML.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</service>
+		<service name="@exportToCSV">
+			<group>ebx-importExport</group>
+			<documentation id="service.@exportToCSV" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@exportToCSV.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="version" input="true">
+					<documentation id="service.@exportToCSV.properties.version" />
+					<wizards>
+						<wizard type="snapshot"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@exportToCSV.properties.instance" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@exportToCSV.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</service>
+		<service name="@importFromXML">
+			<group>ebx-importExport</group>
+			<documentation id="service.@importToXML" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@importToXML.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@importToXML.properties.instance" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@importToXML.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</service>
+		<service name="@importFromCSV">
+			<group>ebx-importExport</group>
+			<documentation id="service.@importToCSV" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@importToCSV.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@importToCSV.properties.instance" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@importToCSV.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</service>
+		<service name="@selectDataSpace">
+			<documentation id="service.@selectDataSpace" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@selectDataSpace.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="version" input="true">
+					<documentation id="service.@selectDataSpace.properties.version" />
+					<wizards>
+						<wizard type="snapshot" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+			</properties>
+		</service><service name="@validation">
+			<documentation id="service.@validation" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@validation.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="version" input="true">
+					<documentation id="service.@validation.properties.version" />
+					<wizards>
+						<wizard type="snapshot" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@validation.properties.instance" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="hasWarning" output="true">
+					<documentation id="service.@validation.properties.hasWarning" />
+				</property>
+				<property name="hasInfo" output="true">
+					<documentation id="service.@validation.properties.hasInfo" />
+				</property>
+				<property name="hasError" output="true">
+					<documentation id="service.@validation.properties.hasError" />
+				</property>
+				<property name="hasFatal" output="true">
+					<documentation id="service.@validation.properties.hasFatal" />
+				</property>
+			</properties>
+		</service><service name="@merge">
+			<documentation id="service.@merge" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@merge.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="mergeResult" output="true">
+					<documentation id="service.@merge.properties.mergeResult" />
+				</property>
+				<property name="mergeState" output="true">
+					<documentation id="service.@merge.properties.mergeState" />
+				</property>
+			</properties>
+		</service>
+		<service name="@merge.view">
+			<documentation id="service.@merge.view" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@merge.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</service><service name="@compare">
+			<documentation id="service.@compare" />
+			<properties>
+				<property name="branch" input="true">
+					<documentation id="service.@compare.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="version" input="true">
+					<documentation id="service.@compare.properties.version" />
+					<wizards>
+						<wizard type="snapshot" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="instance" input="true">
+					<documentation id="service.@compare.properties.instance" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@compare.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="compare.branch" input="true">
+					<documentation id="service.@compare.properties.compare.branch" />
+					<wizards>
+						<wizard type="dataSpace" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="compare.version" input="true">
+					<documentation id="service.@compare.properties.compare.version" />
+					<wizards>	
+						<wizard type="snapshot" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="compare.instance" input="true">
+					<documentation id="service.@compare.properties.compare.instance" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="compare.xpath" input="true">
+					<documentation id="service.@compare.properties.compare.xpath" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="compare.filter" input="true">
+					<documentation id="service.@compare.properties.compare.compareFilter" />
+					<wizards>
+						<wizard type="compareFilter" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="scope" input="true">
+				   <documentation id="service.common.properties.scope" />
+					<wizards>
+						<wizard type="scope" />
+						<wizard type="dataContext" />
+					</wizards>
+				</property>
+				<property name="trackingInfo" input="true">
+					<documentation id="service.common.properties.trackingInfo" />
+					<wizards>
+						<wizard type="dataContext" />
+					</wizards>
+				</property>				
+			</properties>
+		</service>
+		
+		
+
+		<service name="@workflow">
+		    <type>perspective</type>
+			<documentation id="service.@workflow" />
+			<properties>
+				<property name="workflowView" input="true" value="inbox" >
+					<documentation id="service.@workflow.properties.workflowView" />
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="service.@workflow.properties.xpath" />
+				</property>
+				<property name="scope" input="true">
+					<documentation id="service.@workflow.properties.scope" />
+				</property>
+				<property name="viewPublication" input="true">
+					<documentation id="service.@workflow.properties.viewPublication" />
+				</property>
+			</properties>
+		</service>
+	</services>
+		
+	<beans>
+		<!-- //////////////////////// create a branch fr-en (deprecated, replaced by create a branch I18n) //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskCreateBranch">
+			<documentation id="library.script.createBranchObsolete" />
+			<properties>
+				<property name="initialBranch" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="label_fr" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.label_fr" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="description_fr" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.description_fr" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="label_en" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.label_en" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="description_en" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.description_en" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="newHome" input="true" output="true">
+					<documentation id="library.script.createBranchObsolete.properties.newHome" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="owner" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.owner" />
+					<wizards>
+						<wizard type="profile"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="copyPermissionsFromParent" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.copyPermissionsFromParent" />
+					<wizards>
+						<wizard type="boolean"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>	
+				<property name="branchNameForPermissionsCopy" input="true">
+					<documentation id="library.script.createBranchObsolete.properties.branchNameForPermissionsCopy" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>			
+			</properties>
+		</bean>
+	<!-- //////////////////////// create a branch i18N //////////////////////////////////////// -->
+	<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskCreateBranchI18n">
+			<documentation id="library.script.createBranch" />
+			<properties>
+				<property name="initialBranch" input="true">
+					<documentation id="library.script.createBranch.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="label" input="true">
+					<documentation id="library.script.createBranch.properties.label" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="description" input="true">
+					<documentation id="library.script.createBranch.properties.description" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="newHome" input="true" output="true">
+					<documentation id="library.script.createBranch.properties.newHome" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="owner" input="true">
+					<documentation id="library.script.createBranch.properties.owner" />
+					<wizards>
+						<wizard type="profile"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="copyPermissionsFromParent" input="true">
+					<documentation id="library.script.createBranch.properties.copyPermissionsFromParent" />
+					<wizards>
+						<wizard type="boolean"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>	
+				<property name="branchNameForPermissionsCopy" input="true">
+					<documentation id="library.script.createBranch.properties.branchNameForPermissionsCopy" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>	
+				<property name="copyValidationReportsFromParent" input="true">
+					<documentation id="library.script.createBranch.properties.copyValidationReportsFromParent" />
+					<wizards>
+						<wizard type="boolean"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="ensureBranchClosingOnWorkflowTermination" input="true">
+					<documentation id="library.script.createBranch.properties.ensureBranchClosingOnWorkflowTermination" />
+					<wizards>
+						<wizard type="boolean"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>		
+				<property name="ensureBranchDeletionOnWorkflowTermination" input="true">
+					<documentation id="library.script.createBranch.properties.ensureBranchDeletionOnWorkflowTermination" />
+					<wizards>
+						<wizard type="boolean"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>				
+			</properties>
+		</bean>
+		<!-- //////////////////////// create a version (deprecated, replaced by create a version I18n)   //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskCreateVersion">
+			<documentation id="library.script.createVersionObsolete" />
+			<properties>
+				<property name="initialBranch" input="true">
+					<documentation id="library.script.createVersionObsolete.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="label_fr" input="true">
+					<documentation id="library.script.createVersionObsolete.properties.label_fr" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="description_fr" input="true">
+					<documentation id="library.script.createVersionObsolete.properties.description_fr" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="label_en" input="true">
+					<documentation id="library.script.createVersionObsolete.properties.label_en" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="description_en" input="true">
+					<documentation id="library.script.createVersionObsolete.properties.description_en" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="newHome" input="true" output="true">
+					<documentation id="library.script.createVersionObsolete.properties.newHome" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// create a version I18n   //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskCreateVersionI18n">
+			<documentation id="library.script.createVersion" />
+			<properties>
+				<property name="initialBranch" input="true">
+					<documentation id="library.script.createVersion.properties.branch" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="label" input="true">
+					<documentation id="library.script.createVersion.properties.label" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="description" input="true">
+					<documentation id="library.script.createVersion.properties.description" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="newHome" input="true" output="true">
+					<documentation id="library.script.createVersion.properties.newHome" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="copyValidationReportsFromParent" input="true">
+					<documentation id="library.script.createVersion.properties.copyValidationReportsFromParent" />
+					<wizards>
+						<wizard type="boolean"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// close a branch //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskCloseBranch">
+			<documentation id="library.script.closeBranch" />
+			<properties>
+				<property name="branchName" input="true">
+					<documentation id="library.script.closeBranch.properties.branchName" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// set a data context variable //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskSetDataContextVariable">
+			<documentation id="library.script.setDataContextVariable" />
+			<properties>
+				<property name="variableValue" input="true" output="true">
+					<documentation id="library.script.setDataContextVariable.properties.variableValue" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// merge a branch //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskMergeBranch">
+			<documentation id="library.script.mergeBranch" />
+			<properties>
+				<property name="branchName" input="true">
+					<documentation id="library.script.mergeBranch.properties.branchName" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //// delete record -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskDeleteRecord">
+		<documentation id="library.script.deleteRecord" />
+			<properties>
+				<property name="branchName" input="true">
+					<documentation id="library.script.record.properties.branchName" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="datasetName" input="true">
+					<documentation id="library.script.record.properties.datasetName" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="library.script.record.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// import an archive //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskImportArchive">
+			<documentation id="library.script.importArchive" />
+			<properties>
+				<property name="branchName" input="true">
+					<documentation id="library.script.importArchive.properties.branchName" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="archiveName" input="true">
+					<documentation id="library.script.importArchive.properties.archiveName" />
+					<wizards>
+						<wizard type="archive"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// send an email //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ScriptTaskSendEmail">
+			<documentation id="library.script.sendEmail" />
+			<properties>
+				<property name="emailRecipient" input="true">
+					<documentation id="library.script.sendEmail.properties.emailRecipient" />
+					<wizards>
+						<wizard type="profile"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="emailRecipientCC" input="true">
+					<documentation id="library.script.sendEmail.properties.emailRecipientCC" />
+					<wizards>
+						<wizard type="profile"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="notificationMessageId" input="true">
+					<documentation id="library.script.sendEmail.properties.notificationMessageId" />
+					<wizards>
+						<wizard type="workflowEmailTemplates"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// check if data is valid //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ConditionIsBranchValid">
+			<documentation id="library.condition.isBranchValid" />
+			<properties>
+				<property name="branchName" input="true">
+					<documentation id="library.condition.isBranchValid.properties.branchName" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="adaptationName" input="true">
+					<documentation id="library.condition.isBranchValid.properties.adaptationName" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="xpath" input="true">
+					<documentation id="library.condition.isBranchValid.properties.xpath" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="severity" input="true">
+					<documentation id="library.condition.isBranchValid.properties.severity" />
+					<wizards>
+						<wizard type="severity"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// check if branch has been modified //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ConditionIsBranchModified">
+			<documentation id="library.condition.isBranchModified" />
+			<properties>
+				<property name="branchName" input="true">
+					<documentation id="library.condition.isBranchModified.properties.branchName" />
+					<wizards>
+						<wizard type="dataSpace"/>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// check if last user task has been accepted //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ConditionIsLastUserTaskAccepted">
+			<documentation id="library.condition.isLastUserTaskAccepted" />
+		</bean>
+		<!-- //////////////////////// check if two values are equals //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ConditionIsValueEqualsTo">
+			<documentation id="library.condition.isValueEqualsTo" />
+			<properties>
+				<property name="value1" input="true">
+					<documentation id="library.condition.isValueEqualsTo.properties.value1" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+				<property name="value2" input="true">
+					<documentation id="library.condition.isValueEqualsTo.properties.value2" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+		<!-- //////////////////////// check if a value is empty //////////////////////////////////////// -->
+		<bean
+			className="com.orchestranetworks.workflow.beans.ConditionIsValueNullOrEmpty">
+			<documentation id="library.condition.isValueNullOrEmpty" />
+			<properties>
+				<property name="value" input="true">
+					<documentation id="library.condition.isValueNullOrEmpty.properties.value" />
+					<wizards>
+						<wizard type="dataContext"/>
+					</wizards>
+				</property>
+			</properties>
+		</bean>
+	</beans>
+
+	<ajaxComponents>
+		<ajaxComponent name="DwfWorkItemCommentsAjaxComponent" className="com.orchestranetworks.workflow.impl.execution.ui.views.DwfWorkItemCommentsAjaxComponent"/>
+  </ajaxComponents>
+</module>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Snapshots</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dataspace_snapshot" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Dataspaces</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataspace/userdataspace_snapshot.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Dataspaces</span></div>
+<h1>
+Snapshots</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview of snapshots</a></li><li class="toc1"><a href="#creation">Creating a snapshot</a></li><li class="toc1"><a href="#id3">Viewing snapshot contents</a></li><li class="toc1"><a href="#information">Snapshot information</a></li><li class="toc1"><a href="#id5">Comparing a snapshot</a></li><li class="toc1"><a href="#id6">Validating a snapshot</a></li><li class="toc1"><a href="#id7">Export</a></li><li class="toc1"><a href="#closing">Closing a snapshot</a></li></ul>
+</div>
+<h2 id="id1">
+Overview of snapshots</h2>
+<p>A snapshot is a read-only copy of a dataspace. Snapshots exist as a record of the state and contents of a dataspace at a given point in time.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#snapshot">Snapshot</a></li></ul>
+</div>
+<h2 id="creation">
+Creating a snapshot</h2>
+<p>A snapshot can be created from a dataspace by selecting that dataspace in the navigation pane of the Dataspaces area, then selecting <strong>Actions &gt; Create a Snapshot</strong> in the workspace.</p><p>The following information is required:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Identifier</p></td><td class="ebx_definitionListDefinition"><p>Unique identifier for the snapshot.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Label</p></td><td class="ebx_definitionListDefinition"><p>Localized labels and descriptions associated with the snapshot.</p></td></tr>
+</table>
+<h2 id="id3">
+Viewing snapshot contents</h2>
+<p>To view the contents of a snapshot, select the snapshot, then select <strong>Actions &gt; View datasets</strong> from the workspace.</p><h2 id="information">
+Snapshot information</h2>
+<p>You can modify the information associated with a snapshot by selecting <strong>Actions &gt; Information</strong>.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Documentation</p></td><td class="ebx_definitionListDefinition"><p>Localized labels and descriptions associated with the snapshot.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Loading strategy</p></td><td class="ebx_definitionListDefinition"><p><em>Only administrators can modify this setting.</em> See <a href="../user_dataspace/userdataspace_actions.html#loadingStrategy">Loading strategy</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Current Owner</p></td><td class="ebx_definitionListDefinition"><p>Owner of the snapshot, who is, by default, allowed to modify its information and permissions. The owner does not necessarily have to be the creator of the snapshot.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Change owner</p></td><td class="ebx_definitionListDefinition"><p>Whether the current owner of the snapshot is allowed to give ownership to another profile by modifying its &#39;Current owner&#39; property. If the value is &#39;Forbidden&#39;, only an administrator can modify the owner.</p></td></tr>
+</table>
+<h2 id="id5">
+Comparing a snapshot</h2>
+<p>You can compare the contents of a snapshot to those of another snapshot or dataspace in the repository. To perform a comparison, select the snapshot, then select <strong>Actions &gt; Compare</strong> from the workspace.</p><p>The comparison wizard prompts you to select the dataspace or snapshot with which to compare the current snapshot.</p><p>For a faster comparison that ignores fields with inherited and computed values, select the filter &#39;Persisted values only&#39;.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/builtin.html#compare">Compare contents</a></li></ul>
+</div>
+<h2 id="id6">
+Validating a snapshot</h2>
+<p>To perform a global validation of the contents of a snapshot, select <strong>Actions &gt; Validate</strong> in the workspace.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>In order to use this service, you must have permission to validate every dataset contained in the snapshot.</p></div>
+<h2 id="id7">
+Export</h2>
+<p>To export a snapshot to an archive, open that snapshot, then select <strong>Actions &gt; Export</strong> in the workspace. Once exported, only an administrator can retrieve the archive.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>See <a href="../engine/repository_administration.html#archive">Archives directory</a> in the Administration Guide for more information.</p></div>
+<p>In order to export an archive, the following information must be specified:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Name of the archive to create</p></td><td class="ebx_definitionListDefinition"><p>The name of the exported archive.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Datasets to export</p></td><td class="ebx_definitionListDefinition"><p>The datasets to export from this snapshot. For each dataset, you can choose whether to export its data values, permissions, and information.</p></td></tr>
+</table>
+<h2 id="closing">
+Closing a snapshot</h2>
+<p>If a snapshot is no longer needed, it can be closed. Once it is closed, a snapshot no longer appears under its associated dataspace in the Dataspaces area, nor can it be accessed.</p><p>An administrator can reopen a closed dataspace as long as it has not been cleaned from the repository.</p><p>To close a snapshot, select <strong>Actions &gt; Close this snapshot</strong>.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../engine/repository_administration.html#closing_dataspaces">Closing unused dataspaces and snapshots</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Dataspaces</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

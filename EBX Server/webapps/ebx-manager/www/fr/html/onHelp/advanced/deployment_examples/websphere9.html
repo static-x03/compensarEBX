@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Installation note for WebSphere AS 9</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="installation_jee_websphere" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=deployment_examples/websphere9.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+<h1>
+Installation note for WebSphere AS 9</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#id2">Requirements</a></li><li class="toc1"><a href="#id3">WebSphere Application Server installation</a></li><li class="toc1"><a href="#id4"> WebSphere Application Server and EBX&reg; home directory configuration </a></li><li class="toc1"><a href="#id5">Data source and JDBC provider configuration</a></li><li class="toc1"><a href="#id6">Java Virtual Machine configuration</a></li><li class="toc1"><a href="#id7">EBX&reg; application deployment</a></li><li class="toc1"><a href="#id8">EBX&reg; application start</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<div class="ebx_attention">
+<h5>
+Attention</h5>
+<p><ul>
+<li><p>This chapter describes a <em>quick installation example</em> of TIBCO EBX&reg; on WebSphere Application Server. </p></li><li><p>It does not replace the <a href="https://www.ibm.com/docs/en/was/9.0.5">documentation</a> of this application server. </p></li><li><p>They are <em>not</em> general installation recommendations, as the installation process is determined by architectural decisions, such as the technical environment, application mutualization, delivery process, and organizational decisions. </p></li><li><p>The complete description of the components needed by EBX&reg; is given in chapter <a href="../installation/deploy_on_jee.html">Java EE deployment</a>. </p></li><li><p>To avoid unpredictable behavior, the guideline to follow is to avoid any duplicates of <code>ebx.jar</code>, <code>ebx-lz4.jar</code> or other libraries in the class-loading system. </p></li></ul>
+</p></div>
+<h2 id="id2">
+Requirements</h2>
+<ul>
+<li><p>WebSphere Application Server 9</p></li><li><p>Database and JDBC driver</p></li><li><p>EBX&reg; CD</p></li><li><p> No CDI features in EBX&reg;&#39;s additional modules (since CDI will be automatically disable) </p></li></ul>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/supported_env.html">Supported environments</a></li></ul>
+</div>
+<h2 id="id3">
+WebSphere Application Server installation</h2>
+<p><em> This quick installation example is performed for a Linux operating system. </em></p><ol>
+<li><p> Download WebSphere AS 9 <code>Installation Manager</code> latest version from: </p><p><a href="https://www.ibm.com/support/pages/node/609575"> https://www.ibm.com/support/pages/node/609575 </a></p></li><li><p> Run the <code>Installation Manager</code> and add the following repositories: </p><ul>
+<li><p>WebSphere Application Server V9.0:</p><p><code>http://www.ibm.com/software/repositorymanager/V9WASBase</code></p></li><li><p>WebSphere Application Server Network Deployment V9.0:</p><p><code>http://www.ibm.com/software/repositorymanager/V9WASND</code></p></li></ul>
+</li><li><p>Install the <code>WebSphere Application Server Network Deployment</code></p><p>For further installation details, refer to the <a href="https://www.ibm.com/docs/en/was/9.0.5">documentation</a>. </p></li><li><p>Run the <code>WebSphere Customization Toolbox</code> and perform a standard installation with default options: </p><ol>
+<li><p> Create profile: click &#39;Create&#39; then select &#39;Application Server&#39;, and click &#39;Next&#39; </p></li><li><p> Profile Creation Options: select &#39;Advanced profile creation&#39; and click &#39;Next&#39; </p></li><li><p>Optional Application Deployment: select those options:</p><ul>
+<li><p>Deploy the &#39;Administrative Console&#39;</p></li><li><p>Deploy the &#39;Installation Verification Tool&#39; application</p></li></ul>
+<p>Click &#39;Next&#39;</p></li><li><p> Profile Name and Location: enter a profile name (example: &#39;EbxAppSrvProfile&#39;) and a directory. In our example, we will get: </p><p><code>/opt/IBM/WebSphere/AppServer/profiles/EbxAppSrvProfile</code></p><p> Further, it will correspond to <code>&lt;PROFILE_HOME&gt;</code>. </p><p>Click &#39;Next&#39;</p></li><li><p>Node and Host Names: enter the node name (example: &#39;Node1&#39;), the server name (example: &#39;EbxServer&#39;), the host name (example: &#39;localhost&#39;), and click &#39;Next&#39; </p></li><li><p>Administrative Security: check &#39;Enable administrative security&#39; option, enter the user name, the password, and click &#39;Next&#39; </p></li><li><p>Security Certificate (part 1): select &#39;Create a new default personal certificate&#39; and &#39;Create a new root signing certificate&#39;, and click &#39;Next&#39; </p></li><li><p>Security Certificate (part 2): keep as default and click &#39;Next&#39;</p></li><li><p>Port Value Assignment: keep as default and click &#39;Next&#39;</p></li><li><p>Linux Service Definition: check &#39;Run the application server process as a Linux service&#39; option, enter the user name (example: &#39;ebx&#39;), and click &#39;Next&#39; </p></li><li><p>Web Server Definition: keep as default and click &#39;Next&#39;</p></li><li><p>Profile Creation Summary: keep as default and click &#39;Create&#39;</p></li><li><p>Profile Creation Complete: uncheck &#39;Launch the First steps console&#39; option, and click &#39;Finish&#39; </p></li></ol>
+</li></ol>
+<h2 id="id4">
+ WebSphere Application Server and EBX&reg; home directory configuration </h2>
+<ol>
+<li><p>Create the <em>EBX_HOME</em> directory, for example <code>/opt/ebx/home</code></p></li><li><p> Copy from the <em>EBX&reg; CD</em>, the <code>ebx.software/files/ebx.properties</code> file to <em>EBX_HOME</em>. In our example, we will have the following file: </p><p><code>/opt/ebx/home/ebx.properties</code>. </p></li><li><p>If needed, edit the <code>ebx.properties</code> file to override the default database. By default the standalone H2 database is defined. The property key <code>ebx.persistence.factory</code> must be uncommented for other supported databases and the <code>h2.standalone</code> one must be commented. </p></li><li><p>Create the <em>EBX_LIB</em> directory, for example <code>/opt/ebx/home/lib</code></p></li><li><p>Copy third-party libraries, from the <em>EBX&reg; CD</em> or from other sources, to the <em>EBX_LIB</em> directory. In our example, for a PostgreSQL database, we will get: </p><p><code>postgresql-X.X.X-driver.jar</code> (coming from another source than the <em>EBX&reg; CD</em>). </p><p><code>xml-apis-1.4.01.jar</code> (coming from the <code>ebx.software/lib/lib-xml-apis/</code> directory of the <em>EBX&reg; CD</em>). </p><p><code>ebx-lz4.jar</code> (coming from the <code>ebx.software/lib/</code> directory of the <em>EBX&reg; CD</em>). </p><p>The complete description of these components is given in the chapter <a href="../installation/deploy_on_jee.html">Java EE deployment</a>. If those components are already deployed on the class-loading system, they do not have to be duplicated (ex: javax.mail-1.5.6.jar is already present on the WebSphere Application Server). </p></li></ol>
+<h2 id="id5">
+Data source and JDBC provider configuration</h2>
+<ol>
+<li><p>Start the server with the following command line:</p><p>sudo &lt;PROFILE_HOME&gt;/bin/startServer.sh &lt;serverName&gt;</p><p>where:</p><p>&lt;PROFILE_HOME&gt; corresponds to the previously created profile home directory. In our example, we will get: <code>/opt/IBM/WebSphere/AppServer/profiles/EbxAppSrvProfile</code>. </p><p>&lt;serverName&gt; corresponds to the server to start. In our example, we will get: <code>EbxServer</code>. </p></li><li><p>Connect into the <code>WebSphere Integrated Solutions Console</code>, using the user name and password typed during the profile creation (Administrative Security step), by entering the following URL in the browser: </p><p><a href="https://localhost:9043/ibm/console"> https://localhost:9043/ibm/console </a></p></li><li><p>On the left menu, go to &#39;Resources &gt; JDBC &gt; Data Sources&#39;, choose the JDBC &#39;Scope&#39; (for example use &#39;Cell&#39;), and click &#39;New&#39; </p></li><li><p>Enter basic data source information:</p><ul>
+<li><p>Data source name: <code>EBX_REPOSITORY</code></p></li><li><p>JNDI name: <code>jdbc/EBX_REPOSITORY</code></p></li></ul>
+<p>Click &#39;Next&#39;</p></li><li><p>Select &#39;Create new JDBC provider&#39;, and click &#39;Next&#39;</p></li><li><p>Create a new JDBC provider: (example with a PostgreSQL database)</p><ul>
+<li><p>Database type: <code>User-defined</code></p></li><li><p>Implementation class name: <code>org.postgresql.ds.PGConnectionPoolDataSource</code></p></li><li><p>Name: <code>PostgreSQL</code></p></li></ul>
+<p>Click &#39;Next&#39;</p></li><li><p>Enter database class path information: (example with a PostgreSQL database)</p><ul>
+<li><p>Class path: <code>&lt;EBX_LIB&gt;/postgresql-X.X.X-driver.jar</code></p><p> In our example, &lt;EBX_LIB&gt; corresponds to <code>/opt/ebx/home/lib</code>. </p></li></ul>
+<p>Click &#39;Next&#39;</p></li><li><p> Keep database specific properties for the data source as default and click &#39;Next&#39; </p></li><li><p>Keep setup security aliases as default and click &#39;Next&#39;</p></li><li><p>Click &#39;Finish&#39;</p></li><li><p>Save the master configuration</p></li><li><p>Click on &#39;Data Sources &gt; <code>EBX_REPOSITORY</code>&#39; </p></li><li><p> On the right in the &#39;Configure additional properties&#39; section, click on &#39;Additional Properties&#39; and define the database account access: </p><ul>
+<li><p> Define the <code>user</code> value to the according user </p></li><li><p> Define the <code>password</code> value to the according password </p></li></ul>
+</li><li><p>Save the master configuration</p></li><li><p>Test the connection</p></li></ol>
+<h2 id="id6">
+Java Virtual Machine configuration</h2>
+<ol>
+<li><p>Click on &#39;Application Servers&#39;</p></li><li><p>Click on the server name (for example: &#39;EbxServer&#39;)</p></li><li><p>Click on &#39;Process definition&#39; under &#39;Server infrastructure &gt; Java Process Management&#39; </p></li><li><p>Click on &#39;Java Virtual Machine&#39; under &#39;Additional Properties&#39;</p></li><li><p>Add &#39;ebx.properties&#39; and &#39;ebx.home&#39; properties, in the &#39;Generic JVM arguments&#39; section, respectively set to <code>ebx.properties</code> file&#39;s path and <code>EBX_HOME</code> directory&#39;s path. </p></li><li><p>Add, in the &#39;Classpath&#39; section, the paths to the third-party libraries placed in the <code>EBX_LIB</code> directory except for the JDBC driver. In our example, we will get: </p><pre class="brush: plain; toolbar: false; gutter: false;">
+/opt/ebx/home/lib/xml-apis-1.4.01.jar
+/opt/ebx/home/lib/ebx-lz4.jar</pre>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Every library&#39;s path declaration must be on a separate line.</p></div>
+</li><li><p>Click &#39;Ok&#39;</p></li><li><p>Save the master configuration</p></li></ol>
+<h2 id="id7">
+EBX&reg; application deployment</h2>
+<ol>
+<li><p>Copy from the <em>EBX&reg; CD</em>, the <code>ebx.software/webapps/ear-packaging/EBX.ear</code> to the <code>&lt;EBX_HOME&gt;/ear</code> directory. In our example, we will get: </p><p><code>/opt/ebx/home/ear/EBX.ear</code></p></li><li><p>Connect into the <code>WebSphere Integrated Solutions Console</code>, using the user name and password typed during the profile creation (Administrative Security step), by entering the following URL in the browser: </p><p><a href="https://localhost:9043/ibm/console"> https://localhost:9043/ibm/console </a></p></li><li><p>Click on &#39;WebSphere enterprise applications&#39; under &#39;Applications &gt; Application Types&#39; </p></li><li><p>Install the EBX.ear</p><ol>
+<li><p>Enterprise Applications: click on &#39;Install&#39;</p></li><li><p>Preparing for the application installation: Browse to the EBX.ear file. In our example, it is located under the <code>/opt/ebx/home/ear</code> directory. </p><p>Click &#39;Next&#39;</p></li><li><p> How do you want to install the application?: Select &#39;Fast Path...&#39;, then click &#39;Next&#39; </p></li><li><p>Select installation options: keep as default, then click &#39;Next&#39;</p></li><li><p>Map modules to servers: select all modules, then click &#39;Next&#39;</p></li><li><p>Map resource references to resources: copy the &#39;Resource Reference&#39; value and paste it in the &#39;Target Resource JNDI Name&#39; field, for every modules, then click &#39;Next&#39; </p></li><li><p>Warnings will appear related to <code>JNDI:mail/EBX_MAIL_SESSION</code> and <code>JNDI:jms/EBX_JMSConnectorFactory</code>. This behavior is normal since these resources had not been configured. </p><p>Click &#39;Continue&#39;</p></li><li><p>Map resource environment references to resources: Copy the &#39;Resource Reference&#39; value and paste it to the &#39;Target Resource JNDI Name&#39; value, for every modules, then click &#39;Next&#39; </p></li><li><p>Warnings will appear related to unavailable resources. This behavior is normal since these resources had not been configured. </p><p>Click &#39;Continue&#39;</p></li><li><p>Map virtual hosts for Web modules: select all modules and click &#39;Next&#39;</p></li><li><p>Summary: keep as default, click &#39;Finish&#39;</p></li><li><p>If installation succeeds, &#39;Application EBX&reg; installed successfully&#39; is logged. </p><p>Click &#39;Save&#39;</p></li></ol>
+</li><li><p>On the left menu, go to &#39;Applications &gt; Enterprise Applications&#39;</p></li><li><p>Change EBX&reg; application&#39;s class loader policy</p><ol>
+<li><p>Click on EBX&reg; resource’s name</p></li><li><p>On the &#39;configuration&#39; pane, under &#39;Detail Properties&#39;, click on &#39;Class loading and update detection&#39; </p></li><li><p>Under &#39;General Properties&#39;, change &#39;Class loader order&#39; to &#39;Classes loaded with local class loader first (parent last)&#39; and click &#39;OK&#39; </p></li><li><p>Save the master configuration</p></li></ol>
+</li><li><p>On the left menu, go to &#39;Applications &gt; Enterprise Applications&#39;, select EBX&reg;, then click &#39;Start&#39; </p><p>The EBX&reg; &#39;Application status&#39; will changed to a green arrow.</p></li></ol>
+<h2 id="id8">
+EBX&reg; application start</h2>
+<ol>
+<li><p>After the launch of the WebSphere application Server, run the EBX&reg; web application by entering the following URL in the browser: </p><p><a target="_blank" href="http://localhost:9080/ebx/">http://localhost:9080/ebx/</a></p><p>or</p><p><a href="https://localhost:9443/ebx/">https://localhost:9443/ebx/</a></p></li><li><p>At first launch, <a href="../installation/configuration_wizard.html"> EBX&reg; Wizard </a> helps to configure the default properties of the initial repository. </p></li></ol>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide &gt; Installation &amp; configuration &gt; Installation notes</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

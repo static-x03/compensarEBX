@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Cr&eacute;ation du jeu de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dataset_creating" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Jeux de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/userdata_create.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+<h1>
+Cr&eacute;ation du jeu de donn&eacute;es</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Cr&eacute;ation d&#39;un jeu de donn&eacute;es racine</a></li><li class="toc1"><a href="#inheritingChildDataSet">Cr&eacute;ation d&#39;un jeu de donn&eacute;es enfant utilisant l&#39;h&eacute;ritage</a></li></ul>
+</div>
+<h2 id="id1">
+Cr&eacute;ation d&#39;un jeu de donn&eacute;es racine</h2>
+<p>Afin de cr&eacute;er un jeu de donn&eacute;es racine, qui n&#39;h&eacute;rite pas d&#39;un jeu de donn&eacute;es parent, il faut s&eacute;lectionner le menu &#39;<a href="../user_data/userdata_intro.html#ui">S&eacute;lectionner le jeu de donn&eacute;es</a>&#39; <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img>dans le panneau de navigation, cliquer sur le bouton &#39;Cr&eacute;er un jeu de donn&eacute;es&#39; dans la fen&ecirc;tre contextuelle, et suivre l&#39;assistant.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Seuls les utilisateurs autoris&eacute;s peuvent acc&eacute;der &agrave; cet &eacute;cran via la &#39;Perspective avanc&eacute;e&#39; ou via une perspective sp&eacute;cifique.</p></div>
+<p>L&#39;assistant vous permet de s&eacute;lectionner un des trois types de mod&egrave;les de donn&eacute;es, sur lequel le nouveau jeu de donn&eacute;es sera bas&eacute;&nbsp;:&nbsp;packag&eacute;, embarqu&eacute; ou externe.</p><ul>
+<li><p>Un <em>mod&egrave;le de donn&eacute;es packag&eacute;</em> est un mod&egrave;le de donn&eacute;es d&eacute;fini &agrave; l&#39;int&eacute;rieur d&#39;un module (application web).</p></li><li><p>Un <em>mod&egrave;le de donn&eacute;es embarqu&eacute;</em> est un mod&egrave;le de donn&eacute;es cr&eacute;&eacute; et publi&eacute; en utilisant l&#39;assistant de mod&egrave;les de donn&eacute;es. Il est enti&egrave;rement g&eacute;r&eacute; &agrave; l&#39;int&eacute;rieur du r&eacute;f&eacute;rentiel TIBCO EBX&reg;. Un mod&egrave;le de donn&eacute;es doit avoir &eacute;t&eacute; pr&eacute;alablement publi&eacute; pour que cette fonctionnalit&eacute; soit disponible.</p></li><li><p>Un <em>mod&egrave;le de donn&eacute;es externe</em> est un mod&egrave;le de donn&eacute;es r&eacute;f&eacute;renc&eacute; au moyen d&#39;une URI.</p></li></ul>
+<p>Apr&egrave;s avoir choisi le mod&egrave;le de donn&eacute;es sur lequel le nouveau jeu de donn&eacute;es sera bas&eacute;, vous devez fournir un nom unique, sans espaces ni caract&egrave;res sp&eacute;ciaux. Facultativement, vous pouvez donner des libell&eacute;s localis&eacute;s pour le jeu de donn&eacute;es, qui seront affich&eacute;s aux utilisateurs dans l&#39;interface en fonction de leurs pr&eacute;f&eacute;rences de langue.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Le contenu des tables n&#39;est pas copi&eacute; lors de la duplication d&#39;un jeu de donn&eacute;es.</p></div>
+<h2 id="inheritingChildDataSet">
+Cr&eacute;ation d&#39;un jeu de donn&eacute;es enfant utilisant l&#39;h&eacute;ritage</h2>
+<p>Le m&eacute;canisme d&#39;h&eacute;ritage permet d&#39;utiliser les relations parent-enfant, gr&acirc;ce auxquelles les jeux de donn&eacute;es enfants h&eacute;ritent par d&eacute;faut des valeurs de leurs jeux de donn&eacute;es anc&ecirc;tres. Pour pouvoir cr&eacute;er des jeux de donn&eacute;es enfants depuis un jeu de donn&eacute;es parent, il faut activer l&#39;h&eacute;ritage entre jeux de donn&eacute;es dans le mod&egrave;le de donn&eacute;es associ&eacute;.</p><p>Pour cr&eacute;er un jeu de donn&eacute;es enfant, cliquer sur <a href="../user_data/userdata_intro.html#ui">Cr&eacute;er ou s&eacute;lectionner un jeu de donn&eacute;es</a><img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img>dans le panneau de navigation, puis sur le bouton <img alt="/ebx_add.png" src="../resources/images/icons/ebx_add.png" width="16" height="16"></img> correspondant au jeu de donn&eacute;es parent.</p><p>Le jeu de donn&eacute;es enfant sera bas&eacute; sur le m&ecirc;me mod&egrave;le de donn&eacute;es que celui de son parent, et donc les seules informations &agrave; sp&eacute;cifier sont son nom unique, et &eacute;ventuellement les libell&eacute;s localis&eacute;s.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_data/userdata_inheritance.html">H&eacute;ritage entre jeux de donn&eacute;es</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

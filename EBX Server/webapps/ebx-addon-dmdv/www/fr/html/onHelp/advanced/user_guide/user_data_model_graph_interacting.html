@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Interacting with data model graphs</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_model_graph_interacting" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data model graphs</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_model_graph_interacting.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data model graphs</span></div>
+<h1 id="user_data_model_interacting_topPage">
+Interacting with data model graphs</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_data_model_interacting_overview">Overview</a></li><li class="toc1"><a href="#user_data_model_graph_display">How data model components display in graphs</a></li><li class="toc1"><a href="#user_data_model_graph_actions">Available actions when viewing a graph</a><ul class="toc2">
+<li class="toc2"><a href="#sharing_graphs">Sharing a graph</a></li></ul>
+</li></ul>
+</div>
+<h2 id="user_data_model_interacting_overview">
+Overview</h2>
+<p>The following sections provide descriptions of what displays in a data model graph and available interactions:</p><ul>
+<li><p><a href="#user_data_model_graph_display">How data model components display in graphs</a></p></li><li><p><a href="#user_data_model_graph_actions">Available actions when viewing a graph</a></p></li></ul>
+<h2 id="user_data_model_graph_display">
+How data model components display in graphs</h2>
+<p>What displays in a graph depends on the model content from which it was generated and the template settings. The following image and table describe data model graph components. </p><img alt="/data_model_graph_overview.png" src="./resources/images/data_model_graph_overview.png"></img><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) Groups and Tables</p></td><td class="ebx_definitionListDefinition"><p>A box is automatically drawn around components included in a group. You can collapse, expand, re-size and rearrange groups. The bottom-right corner of the image shows a collapsed group. Tables display their labels and fields. Standard DMA icons are used to indicate keys and relationships.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) Relationships</p></td><td class="ebx_definitionListDefinition"><p>Arrows indicate foreign key relationships and their direction. The labels correspond to each foreign key field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3) Underlined field, plus icon, and italic fields.</p></td><td class="ebx_definitionListDefinition"><p>An underlined field belongs to a table located outside of the current dataset. The plus icon next to a field indicates you can expand to display more information, such as when fields are included in a complex type. Fields in italics represent inherited fields.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>4) Table located outside of the current dataset</p></td><td class="ebx_definitionListDefinition"><p>When a table is located outside of the current dataset, it will be shaded in the graph. The color of the shade is editable in the template.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>5) Orphan fields</p></td><td class="ebx_definitionListDefinition"><p>Fields that are not part of a table display without a title. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>6) Display additional fields</p></td><td class="ebx_definitionListDefinition"><p>When a table holds more fields than can display, use the arrow icon to expand/collapse. </p></td></tr>
+</table>
+<h2 id="user_data_model_graph_actions">
+Available actions when viewing a graph</h2>
+<p>There are several ways in which you can interact with and customize a data model graph. Whether you decide to alter a graph or leave the defaults in place, you have the option to share it with other users. See <a href="#sharing_graphs">Sharing a graph</a> for information on sharing graphs. The following table describes what you can do when viewing a data model graph:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Action</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Navigation</p></td><td valign="top"><p>You can navigate a graph by:</p><ul>
+<li><p>Clicking and dragging in a graph&#39;s whitespace to change the view.</p></li><li><p>Dragging the highlighted rectangle in the <strong>Overview</strong> map to display the desired portion of the graph. Note that you can also move the <strong>Overview</strong> map to any of the graph&#39;s corners by selecting its title bar and dragging.</p></li><li><p>Using your mouse wheel, or keyboard arrows to scroll.</p></li></ul>
+</td></tr>
+<tr>
+<td valign="top"><p>Zooming and fullscreen</p></td><td valign="top"><p>The icons at the top of the graph screen allow you to open the graph in a fullscreen view, zoom, and reset to the original magnification.</p><p><img alt="/zoom_icons.png" src="./resources/images/zoom_icons.png"></img></p><p> Use the combination of the Ctrl key and your mouse wheel to zoom in and out. Alternatively, hold down the Ctrl key and press the + and - keys to zoom. </p></td></tr>
+<tr>
+<td valign="top"><p>Arranging graph components</p></td><td valign="top"><p>Drag and drop components to arrange them. Once the layout is satisfactory, you can save the graph for re-use.</p></td></tr>
+<tr>
+<td valign="top"><p>Showing/hiding components and changing look</p></td><td valign="top"><p>Click the <strong>Template</strong> icon to open the <strong>Graph template configuration</strong> window.</p><p><img alt="/open_template.png" src="./resources/images/open_template.png"></img></p><p>Adjust the settings as desired. If you have a question about a property or setting, open its tooltip for more information. Once you are finished, click <strong>Save</strong> to record your changes to the template. </p></td></tr>
+<tr>
+<td valign="top"><p>Locating and displaying data model elements</p></td><td valign="top"><p>Click the filter icon to choose which tables display.</p><p><img alt="/table_filter_icon.png" src="./resources/images/table_filter_icon.png"></img></p><p>A search bar displays at the top of the filter pane. As you type the name of the asset you are searching for, the list of model elements narrows to only those containing the search term. In addition to searching for a table or field, the filter tab options allow you to show all, hidden, or displayed tables in the dialog box. After selecting or unselecting the desired tables for display, click <strong>Apply</strong> to propagate your changes. Additionally, you can right click a table and select <strong>Hide</strong>. </p></td></tr>
+<tr>
+<td valign="top"><p>Exporting a graph</p></td><td valign="top"><p>Click <strong>Export</strong> at the top of the screen to export and download the current graph in either PDF, PNG, or SVG format.</p></td></tr>
+<tr>
+<td valign="top"><p>Resizing</p></td><td valign="top"><p>Group boxes automatically resize when you change the arrangement of its components. You can resize tables by clicking to select and dragging anchor points.</p></td></tr>
+<tr>
+<td valign="top"><p>Right-click menu</p></td><td valign="top"><p>When you right-click a table, you can hide or center it in the graph.</p><p><img alt="/data_model_right_click_menu.png" src="./resources/images/data_model_right_click_menu.png"></img></p></td></tr>
+<tr>
+<td valign="top"><p>Load, Save, and Close the graph</p></td><td valign="top"><p>The buttons below the graph <strong>Overview</strong> box allow you to save and close the current graph and load a different graph. For information on sharing a saved graph, see the <a href="#sharing_graphs">Sharing a graph</a> section below.</p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_data_model_graph_customizing.html">Changing display and configuration options</a></li><li><a href="../user_guide/user_data_model_graph_generating.html">Generating and loading data model graphs</a></li></ul>
+</div>
+<h3 id="sharing_graphs">
+Sharing a graph</h3>
+<p>The add-on makes it simple to share saved graphs with other users. The option to share a graph is available when saving. Once you share a graph with a user, it displays from the list of available graphs when they choose to load a graph. Any tables for which a user does not have sufficient permission to view will not display in the shared graph. Unless explicitly defined as such, recipients of a shared graph are not considered its owners. If you neither are an administrator or owner of a graph, you can only save changes to the graph&#39;s description. However, if you make other changes that impact the graph, you can save the graph using a different name to keep your changes.</p><p>To access the share feature:</p><ol>
+<li><p>Select <strong>Save</strong> at the bottom of a data model graph.</p><p><img alt="/share_graph_1.png" src="./resources/images/share_graph_1.png"></img></p></li><li><p>Provide a name for the graph and optionally include a description.</p></li><li><p>Optionally, set the graph&#39;s owner. By default, you are considered the graph&#39;s owner. However, you can use the <strong>Owner</strong> property to specify another profile as owner. Note that administrators can also edit graph owners.</p></li><li><p>Use the <strong>Share with</strong> box to select one or more users/roles with whom to share the graph.</p><p><img alt="/share_graph_2.png" src="./resources/images/share_graph_2.png"></img></p></li></ol>
+<p>Permissions for shared graphs behave as you would probably expect. Without sufficient permissions graph elements do not display. Even if you have permission to view a table that was hidden in a graph shared with you, it does not display. You would have to generate a new graph of the model to display it. If permission to view a graph element is revoked after receiving a shared graph, the impacted element does not display. </p></div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

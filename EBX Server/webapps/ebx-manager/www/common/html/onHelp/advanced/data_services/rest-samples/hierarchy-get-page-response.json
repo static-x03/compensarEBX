@@ -1,0 +1,27 @@
+{
+  "content": [
+    {
+      "label": "Honoré de Balzac",
+      "member": "http://localhost:8080/ebx-dataservices/.../BooksByAuthors/members/author1",
+      "parent": "http://localhost:8080/ebx-dataservices/.../BooksByAuthors/members",
+      ...
+    },
+
+    ...,
+
+    {
+      "label": "Jules Verne",
+      "member": "http://localhost:8080/ebx-dataservices/.../BooksByAuthors/members/author4",
+      "parent": "http://localhost:8080/ebx-dataservices/.../BooksByAuthors/members",
+      ...
+    }
+  ],
+  "pagination": {
+    "firstPage": "http://.../BooksByAuthors/members?pageAction=first&amp;pageSize=4",
+    "previousPage": "http://.../BooksByAuthors/members?pageAction=previous&amp;pageCursor=author1&amp;pageSize=4",
+    "nextPage": "http://.../BooksByAuthors/members?pageAction=next&amp;pageCursor=author4&amp;pageSize=4",
+    "lastPage": "http://.../BooksByAuthors/members?pageAction=last&amp;pageSize=4"
+  }
+}
+
+

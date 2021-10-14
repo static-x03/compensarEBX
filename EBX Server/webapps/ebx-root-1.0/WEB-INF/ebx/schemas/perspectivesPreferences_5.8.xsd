@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for perspectives, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
+    <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+    <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+    <xs:annotation>
+        <xs:appinfo>
+            <osd:inheritance>
+                <dataSetInheritance>none</dataSetInheritance>
+            </osd:inheritance>
+            <ebxbnd:binding targetDirectory="../_ebx/src/">
+                <javaPathConstants typeName="com.orchestranetworks.ui.perspective.preferences.PpvPreferencesPaths">
+                    <nodes root="/" prefix="" relativeToRoot="false"/>
+                </javaPathConstants>
+            </ebxbnd:binding>
+            <osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.perspectivesPreferences"/>
+            <osd:extensions class="com.orchestranetworks.service.preferences.PpvPreferencesExtensions" />
+        </xs:appinfo>
+    </xs:annotation>
+    <!-- 
+        Root
+    -->
+    <xs:element name="root" osd:access="--">
+        <xs:annotation>
+            <xs:documentation osd:id="ppvPreferences.element.root"/>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RecommendedPerspectives" minOccurs="0" maxOccurs="unbounded" type="RecommendedPerspectivesType">
+                    <xs:annotation>
+                        <xs:documentation osd:id="ppvPreferences.element.root.recommendedPerspectives"/>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/profile </primaryKeys>
+                                <defaultView>
+                                    <toolbars>
+                                        <tabularViewTop>recommendedPerspectivesToolbar</tabularViewTop>
+                                    </toolbars>
+                                </defaultView>
+                            </osd:table>
+                            <osd:trigger class="com.orchestranetworks.ui.perspective.preferences.recommended.PprTrigger"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:unique name="order">
+                        <xs:selector xpath="."/>
+                        <xs:field xpath="order"/>
+                    </xs:unique>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!--Table definition -->
+    <xs:complexType name="RecommendedPerspectivesType">
+        <xs:sequence>
+            <xs:element name="profile" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation osd:id="ppvPreferences.element.root.recommendedPerspectives.profile"/>
+                    <xs:appinfo>
+                        <osd:otherFacets>
+                            <osd:constraintEnumeration class="com.onwbp.base.schema.definition.ProfileForGlobalPermissionConstraintEnumeration"/>
+                        </osd:otherFacets>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="perspective" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+                <xs:annotation>
+                    <xs:documentation osd:id="ppvPreferences.element.root.recommendedPerspectives.perspective"/>
+                    <xs:appinfo>
+                        <osd:otherFacets>
+                            <osd:constraintEnumeration class="com.orchestranetworks.ui.perspective.internal.PpvPerspectiveEnumeration">
+                            	<profilePath>../profile</profilePath>
+                            </osd:constraintEnumeration>
+                        </osd:otherFacets>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="order" type="xs:int" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation osd:id="ppvPreferences.element.root.recommendedPerspectives.order"/>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

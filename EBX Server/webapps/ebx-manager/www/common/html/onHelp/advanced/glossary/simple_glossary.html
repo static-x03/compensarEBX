@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Glossary</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="simple_glossary" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Introduction</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=glossary/simple_glossary.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Introduction</span></div>
+<h1>
+Glossary</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#interface">Governance</a><ul class="toc2">
+<li class="toc2"><a href="#repository">repository</a></li><li class="toc2"><a href="#profile">profile</a></li><li class="toc2"><a href="#user">user</a></li><li class="toc2"><a href="#role">role</a></li><li class="toc2"><a href="#administrator">administrator</a></li><li class="toc2"><a href="#directory">user and roles directory</a></li><li class="toc2"><a href="#usersession">user session</a></li></ul>
+</li><li class="toc1"><a href="#datamodels">Data modeling</a><ul class="toc2">
+<li class="toc2"><a href="#datamodel">data model</a></li><li class="toc2"><a href="#field">field</a></li><li class="toc2"><a href="#pkey">primary key</a></li><li class="toc2"><a href="#fkey">foreign key</a></li><li class="toc2"><a href="#tableindatamodel">table (in data model)</a></li><li class="toc2"><a href="#group">group</a></li><li class="toc2"><a href="#reusabletype">reusable type</a></li><li class="toc2"><a href="#validation">validation rule</a></li><li class="toc2"><a href="#id2s9">data model assistant (DMA)</a></li></ul>
+</li><li class="toc1"><a href="#data">Datasets</a><ul class="toc2">
+<li class="toc2"><a href="#record">record</a></li><li class="toc2"><a href="#tableindataset">table (in dataset)</a></li><li class="toc2"><a href="#dataset">dataset</a></li><li class="toc2"><a href="#inheritance">inheritance</a></li><li class="toc2"><a href="#customtableview">views</a></li><li class="toc2"><a href="#id3s6">recommended view</a></li><li class="toc2"><a href="#id3s7">favorite view</a></li></ul>
+</li><li class="toc1"><a href="#dataspaces">Data management life cycle</a><ul class="toc2">
+<li class="toc2"><a href="#dataspace">dataspace</a></li><li class="toc2"><a href="#refdataspace">reference dataspace</a></li><li class="toc2"><a href="#merge">dataspace merge</a></li><li class="toc2"><a href="#snapshot">snapshot</a></li></ul>
+</li><li class="toc1"><a href="#history">History</a><ul class="toc2">
+<li class="toc2"><a href="#historization">historization</a></li><li class="toc2"><a href="#historyprofile">history profile</a></li><li class="toc2"><a href="#historyTableView">table history view</a></li><li class="toc2"><a href="#historyTransactionView">transaction history view</a></li></ul>
+</li><li class="toc1"><a href="#workflowmodels">Workflow modeling</a><ul class="toc2">
+<li class="toc2"><a href="#workflowmodel">workflow model</a></li><li class="toc2"><a href="#scripttask">script task</a></li><li class="toc2"><a href="#usertask">user task</a></li><li class="toc2"><a href="#condition">workflow condition</a></li><li class="toc2"><a href="#subworkflow">sub-workflow invocation</a></li><li class="toc2"><a href="#waitTask">wait task</a></li><li class="toc2"><a href="#datacontext">data context</a></li></ul>
+</li><li class="toc1"><a href="#workflows">Data workflows</a><ul class="toc2">
+<li class="toc2"><a href="#workflowpub">workflow publication</a></li><li class="toc2"><a href="#workflow">data workflow</a></li><li class="toc2"><a href="#worklist">work list</a></li><li class="toc2"><a href="#workitem">work item</a></li><li class="toc2"><a href="#token">token</a></li></ul>
+</li><li class="toc1"><a href="#dataservices">Data services</a><ul class="toc2">
+<li class="toc2"><a href="#dataservice">data service</a></li><li class="toc2"><a href="#lineage">lineage</a></li></ul>
+</li><li class="toc1"><a href="#miscellaneous">Cross-domain</a><ul class="toc2">
+<li class="toc2"><a href="#node">node</a></li></ul>
+</li></ul>
+</div>
+<h2 id="interface">
+Governance</h2>
+<h3 id="repository">
+repository</h3>
+<p>A back-end storage entity containing all the data managed by TIBCO EBX&reg;. The repository is organized into dataspaces.</p><p>See also <a href="#dataspace">dataspace</a>.</p><h3 id="profile">
+profile</h3>
+<p>The generic term for a user or a role. Profiles are used in data workflows and for defining permission rules.</p><p>See also <a href="#user">user</a>, <a href="#role">role</a>.</p><p>Related Java API <a target="_blank" href="../Java_API/com/orchestranetworks/service/Profile.html"><code>Profile</code></a>.</p><h3 id="user">
+user</h3>
+<p>An entity created in the repository in order for physical users or external systems to authenticate and access EBX&reg;. Users may be assigned roles and have other account information associated with them.</p><p>See also <a href="#directory">user and roles directory</a>, <a href="#profile">profile</a>.</p><p>Related concept <a href="../engine/directory.html">User and roles directory</a>.</p><p>Related Java API <a target="_blank" href="../Java_API/com/orchestranetworks/service/UserReference.html"><code>UserReference</code></a>.</p><h3 id="role">
+role</h3>
+<p>A user classification, used for permission rules and data workflows, which can be assigned to users. Each user may belong to multiple roles.</p><p>Whenever a role profile is specified in EBX&reg;, the behavior resulting from that designation is applied to all users that are members of that role. For example, in a workflow model, a role may be specified when defining to whom work items are offered. As a result, all users belonging to that role can receive the same work item offer.</p><p>See also <a href="#directory">user and roles directory</a>, <a href="#profile">profile</a>.</p><p>Related concept <a href="../engine/directory.html">User and roles directory</a>.</p><p>Related Java API <a target="_blank" href="../Java_API/com/orchestranetworks/service/Role.html"><code>Role</code></a>.</p><h3 id="administrator">
+administrator</h3>
+<p>A predefined role that has access to the technical administration and configuration of EBX&reg;.</p><h3 id="directory">
+user and roles directory</h3>
+<p>A directory defining the methods available for authentication when accessing the repository, all available roles, and the users authorized to access the repository with their role assignments.</p><p>See also <a href="#user">user</a>, <a href="#role">role</a>.</p><p>Related concept <a href="../engine/directory.html">User and roles directory</a>.</p><p>Related Java API <a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/Directory.html"><code>Directory</code></a>, <a target="_blank" href="../Java_API/com/orchestranetworks/service/directory/DirectoryHandler.html"><code>DirectoryHandler</code></a>.</p><h3 id="usersession">
+user session</h3>
+<p>A repository access context that is associated with a user after being authenticated against the user and roles directory.</p><p>Related concept <a href="../engine/directory.html">User and roles directory</a>.</p><p>Related Java API <a target="_blank" href="../Java_API/com/orchestranetworks/service/Session.html"><code>Session</code></a>.</p><h2 id="datamodels">
+Data modeling</h2>
+<p><em>Main documentation section <a href="../user_datamodel/userdatamodel_intro.html">Data models</a></em></p><h3 id="datamodel">
+data model</h3>
+<p>A structural definition of the data to be managed in the EBX&reg; repository. A data model includes detailed descriptions of all included data, in terms of organization, data types, and semantic relationships. The purpose of data models is to define the structure and characteristics of datasets, which are instances of data models that contain the data being managed by the repository.</p><p>See also <a href="#dataset">dataset</a>.</p><p>Related concept <a href="../user_datamodel/userdatamodel_intro.html">Data models</a>.</p><h3 id="field">
+field</h3>
+<p>A data model element that is defined with a name and a simple datatype. A field can be included in the data model directly or as a column of a table. In EBX&reg;, fields can be assigned basic constraints, such as length and size, as well as more complex validation rules involving computations. Automated value assignment using field inheritance or computations based on other data can also be defined for fields. Aggregated lists can be created by setting the cardinality of a field to allow multiple values in the same record. Fields can be arranged into groups to facilitate structural organization in the data model.</p><p>By default, fields are denoted by the icon <img alt="/ebx_attribute.png" src="../resources/images/symbols/ebx_attribute.png"></img>.</p><p>See also <a href="#record">record</a>, <a href="#group">group</a>, <a href="#tableindatamodel">table (in data model)</a>, <a href="#validation">validation rule</a>, <a href="#inheritance">inheritance</a>.</p><p>Related concepts <a href="../user_datamodel/userdatamodel_elementproperties.html">Structure elements properties</a>, <a href="../user_datamodel/userdatamodel_elementcontrols.html">Controls on data fields</a>.</p><p>Related Java API <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html"><code>SchemaNode</code></a>.</p><p>The former name (prior to version 5) of &quot;field&quot; was &quot;attribute&quot;.</p><h3 id="pkey">
+primary key</h3>
+<p>A field or a composition of multiple fields used to uniquely identify the records in a table. </p><p>Primary keys are denoted by the icon <img alt="/ebx_pkey.png" src="../resources/images/symbols/ebx_pkey.png"></img>.</p><p>Related concept <a href="../models/tables.html#tables">Tables definition</a>.</p><h3 id="fkey">
+foreign key</h3>
+<p>A field or a composition of multiple fields in one table whose field values correspond to the primary keys of another table. Foreign keys are used to reference records in one table from another table.</p><p>Foreign keys are denoted by the icon <img alt="/ebx_fkey.png" src="../resources/images/symbols/ebx_fkey.png"></img>.</p><p>See also <a href="#pkey">primary key</a>.</p><p>Related concept <a href="../models/tables.html#foreignKey">Foreign key</a>.</p><h3 id="tableindatamodel">
+table (in data model)</h3>
+<p> A data model element that is composed of fields and/or groups of fields. Every table must define at least one field to act as the unique identifier, or primary key, of records. A table in a data model can be used to create a reusable type based on the table&#39;s structure, which can then be used to create other elements of the same structure in the data model.</p><p>Tables are represented by the icon <img alt="/ebx_table.png" src="../resources/images/symbols/ebx_table.png"></img>.</p><p>See also <a href="#record">record</a>, <a href="#pkey">primary key</a>, <a href="#reusabletype">reusable type</a>.</p><h3 id="group">
+group</h3>
+<p>A classification entity used to facilitate the organization of a data model. A group can be used to collect fields, other groups, and tables. If a group contains tables, the group cannot be included within another table, as the constraint that tables cannot be nested must be respected. A group can be used to create a reusable type based on the group&#39;s structure, which can then be used to create other elements of the same structure in the data model.</p><p>Groups are represented by the icon <img alt="/ebx_group.png" src="../resources/images/symbols/ebx_group.png"></img>.</p><p>See also <a href="#reusabletype">reusable type</a>.</p><p>Related Java API <a target="_blank" href="../Java_API/com/orchestranetworks/schema/SchemaNode.html"><code>SchemaNode</code></a>.</p><h3 id="reusabletype">
+reusable type</h3>
+<p>A shared simple or complex type definition that can be used to define other elements in the data model.</p><h3 id="validation">
+validation rule</h3>
+<p>An acceptance criterion defined on a field or a table. Data is considered invalid if it does not comply with all imposed validation rules.</p><p>The former name (prior to version 5) of &quot;validation rule&quot; was &quot;constraint&quot;.</p><h3 id="id2s9">
+data model assistant (DMA)</h3>
+<p>The EBX&reg; user interface includes a tool that aids the implementation of data models. It allows defining the structure of data models, creating and editing elements, as well as configuring and publishing data models.</p><p>See also <a href="../user_datamodel/userdatamodel_intro.html">Data models</a>.</p><h2 id="data">
+Datasets</h2>
+<p><em>Main documentation section <a href="../user_data/userdata_intro.html">Datasets</a></em></p><h3 id="record">
+record</h3>
+<p>A set of field values in a table, uniquely identified by a primary key. A record is a row in the table. Each record follows the data structure defined in the data model. The data model drives the data types and cardinality of the fields found in records.</p><p>See also <a href="#tableindataset">table (in dataset)</a>, <a href="#pkey">primary key</a>.</p><p>The former name (prior to version 5) of &quot;record&quot; was &quot;occurrence&quot;.</p><h3 id="tableindataset">
+table (in dataset)</h3>
+<p>A set of records (rows) of the same structure containing data. Each record is uniquely identified by its primary key.</p><p>Tables are represented by the icon <img alt="/ebx_table.png" src="../resources/images/symbols/ebx_table.png"></img>.</p><p>See also <a href="#record">record</a>, <a href="#pkey">primary key</a>.</p><h3 id="dataset">
+dataset</h3>
+<p>A data-containing instance of a data model. The structure and behavior of a dataset are based upon the definitions provided by the data model that it is implementing. Depending on its data model, a dataset contains data in the form of tables, groups, and fields.</p><p>Datasets are represented by the icon <img alt="/ebx_instance.png" src="../resources/images/symbols/ebx_instance.png"></img>.</p><p>See also <a href="#tableindataset">table (in dataset)</a>, <a href="#field">field</a>, <a href="#group">group</a>, <a href="#customtableview">views</a>.</p><p>Related concept <a href="../user_data/userdata_intro.html">Datasets</a>.</p><p>The former name (prior to version 5) of &quot;dataset&quot; was &quot;adaptation instance&quot;.</p><h3 id="inheritance">
+inheritance</h3>
+<p>A mechanism by which data can be acquired by default by one entity from another entity. In EBX&reg;, there are two types of inheritance: dataset inheritance and field inheritance.</p><p>When enabled, dataset inheritance allows a child dataset to acquire default data values from its parent dataset. This feature can be useful when designing a data model where data declared in a parent scope will be used with the same value by default in nested child scopes. Values that are inherited from the parent can be overridden by the child. By default, dataset inheritance is disabled. It can be enabled during the data model definition.</p><p>Inheritance from the parent dataset is represented by the icon <img alt="/ebx_setInherited.png" src="../resources/images/symbols/ebx_setInherited.png"></img>.</p><p>Field inheritance is defined in the data model to automatically fetch a field value from a record in another table.</p><p>Inherited fields are represented by the icon <img alt="/ebx_setINA.png" src="../resources/images/symbols/ebx_setINA.png"></img>.</p><p>Related concept <a href="../references/inheritance.html">Inheritance and value resolution</a>.</p><h3 id="customtableview">
+views</h3>
+<p>A customizable display configuration that may be applied to viewing tables. A view can be defined for a given user or role, in order to specify whether records are displayed in a tabular or hierarchical format, as well as to set record filtering criteria.</p><p>The hierarchical view type offers a tree-based representation of the data in a table. Nodes in the tree can represent either field values or records. A hierarchical view can be useful for showing the relationships between the model data. When creating a view that uses the hierarchical format, dimensions can be selected to determine the structural representation of data. In a hierarchical view, it is possible to navigate through recursive relationships, as well as between multiple tables using foreign key relationships.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_data/userdata_viewing.html#custom">Views</a></li><li><a href="../user_data/userdata_viewing.html#hierarchies">Hierarchies</a></li></ul>
+</div>
+<h3 id="id3s6">
+recommended view</h3>
+<p>A recommended view can be defined by the dataset owner for each target profile. When a user logs in with no view specified, their recommended view (if any) is applied. Otherwise, the default view is applied.</p><p>The &#39;Manage recommended views&#39; action allows defining assignment rules for recommended views depending on users and roles.</p><p>Related concept <a href="../user_data/userdata_viewing.html#preferred_views">Recommended views</a>.</p><h3 id="id3s7">
+favorite view</h3>
+<p>When displaying a table, the user can choose to define the current as their favorite view through the &#39;View&#39; menu toolbar. </p><p>Once it has been set as the favorite, the view will be automatically applied each time this user accesses the table.</p><p>Related concept <a href="../user_data/userdata_viewing.html#view_menu_toolbar">&#39;View&#39; menu toolbar</a>.</p><h2 id="dataspaces">
+Data management life cycle</h2>
+<p><em>Main documentation section <a href="../user_dataspace/userdataspace_intro.html">Dataspaces</a></em></p><h3 id="dataspace">
+dataspace</h3>
+<p>A container entity composed of datasets. It is used to isolate different versions of datasets or to organize them.</p><p>Child dataspaces may be created based on a given parent dataspace, initialized with the state of the parent. Datasets can then be modified in the child dataspaces in isolation from their parent dataspace as well as each other. The child dataspaces can later be merged back into their parent dataspace or compared against other dataspaces.</p><p>See also <a href="#inheritance">inheritance</a>, <a href="#repository">repository</a>, <a href="#merge">dataspace merge</a>.</p><p>Related concept <a href="../user_dataspace/userdataspace_intro.html">Dataspaces</a>.</p><p>The former name (prior to version 5) of &quot;dataspace&quot; was &quot;branch&quot; or &quot;snapshot&quot;.</p><h3 id="refdataspace">
+reference dataspace</h3>
+<p>The root ancestor dataspace of all dataspaces in the EBX&reg; repository. As every dataspace merge must consist of a child merging into its parent, the reference dataspace is never eligible to be merged into another dataspace.</p><p>See also <a href="#dataspace">dataspace</a>, <a href="#merge">dataspace merge</a>, <a href="#repository">repository</a>.</p><h3 id="merge">
+dataspace merge</h3>
+<p>The integration of the changes made in a child dataspace since its creation into its parent dataspace. The child dataspace is closed after the merge has completed successfully. To perform a merge, all the differences identified between the source dataspace and the target dataspace must be reviewed, and conflicts must be resolved. For example, if an element has been modified in both the parent and child dataspace since the creation of the child dataspace, the conflict must be resolved manually by deciding which version of the element should be kept as the result of the merge.</p><p>Related concept <a href="../user_dataspace/userdataspace_actions.html#merge">Merge</a>.</p><h3 id="snapshot">
+snapshot</h3>
+<p>A static copy of a dataspace that captures its state and all of its content at a given point in time for reference purposes. A snapshot may be viewed, exported, and compared to other dataspaces, but it can never be modified directly.</p><p>Snapshots are represented by the icon <img alt="/ebx_snapshot.png" src="../resources/images/symbols/ebx_snapshot.png"></img>.</p><p>Related concept <a href="../user_dataspace/userdataspace_snapshot.html">Snapshot</a></p><p>The former name (prior to version 5) of &quot;snapshot&quot; was &quot;version&quot; or &quot;home&quot;.</p><h2 id="history">
+History</h2>
+<p><em>Main documentation section <a href="../references/history.html">History</a></em></p><h3 id="historization">
+historization</h3>
+<p>A mechanism that can be enabled at the table level to track modifications in the repository. Two history views are available when historization is activated: table history view and transaction history view. In all history views, most standard features for tables, such as export, comparison, and filtering, are available.</p><p>Activation of historization requires the configuration of a history profile. The historization of tables is not enabled by default.</p><p>See also <a href="#historyTableView">table history view</a>, <a href="#historyTransactionView">transaction history view</a>, <a href="#historyprofile">history profile</a>.</p><h3 id="historyprofile">
+history profile</h3>
+<p>A set of preferences that specify which dataspaces should have their modifications recorded in the table history, and whether transactions should fail if historization is unavailable.</p><p>See also <a href="#historyprofile">history profile</a>.</p><h3 id="historyTableView">
+table history view</h3>
+<p>A view containing a trace of all modifications that are made in a given table, including record creations, updates, and deletions. Each entry includes transactional information, such as a timestamp and the user performing the action, as well as the data at the conclusion of the transaction. This information can also be consulted at a record or dataset level.</p><p>Related technical reference <a href="../references/history.html">History</a>.</p><h3 id="historyTransactionView">
+transaction history view</h3>
+<p>A view displaying the technical and authentication data of transactions, either globally at the repository level, or at the dataspace level. As a single transaction can perform multiple actions and affect multiple tables in one or more datasets, this view shows all the modifications that have occurred across the given scope for each transaction. </p><p>Related technical reference <a href="../references/history.html">History</a>.</p><h2 id="workflowmodels">
+Workflow modeling</h2>
+<p><em>Main documentation section <a href="../user_workflowmodel/userworkflowmodel_intro.html">Workflow models</a></em></p><h3 id="workflowmodel">
+workflow model</h3>
+<p>A procedural definition of operations to be performed on data. A workflow model describes the complete path that the data must follow in order to be processed, including its states and associated actions to be taken by human users and automated scripts.</p><p>Related concept <a href="../user_workflowmodel/userworkflowmodel_intro.html">Workflow models</a>.</p><p>The former name (prior to version 5) of &quot;workflow model&quot; was &quot;workflow definition&quot;.</p><p> Workflow models are represented by the icon <img alt="/ebx_workflowGraphIcon.svg" src="../resources/images/symbols/ebx_workflowGraphIcon.svg"></img>. </p><h3 id="scripttask">
+script task</h3>
+<p>A data workflow task performed by an automated process, with no human intervention. Common script tasks include dataspace creation, dataspace merges, and snapshot creation.</p><p>Script tasks are represented by the icon <img alt="/ebx_workflowScript.svg" src="../resources/images/symbols/ebx_workflowScript.svg"></img>.</p><p>See also <a href="#workflowmodel">workflow model</a>.</p><h3 id="usertask">
+user task</h3>
+<p>A data workflow task that is made up of one or more work items performed concurrently by human users. User task work items are offered or assigned to users, depending on the workflow model. The progression of a data workflow beyond a user task depends on the satisfaction of the task termination criteria defined in the workflow model.</p><p>User tasks are represented by the icon <img alt="/ebx_workflowWorkItem.svg" src="../resources/images/symbols/ebx_workflowWorkItem.svg"></img>.</p><p>See also <a href="#workflowmodel">workflow model</a>.</p><h3 id="condition">
+workflow condition</h3>
+<p>A decision step in a data workflow. A data workflow condition describes the criteria used to decide which step will be executed next.</p><p>Workflow conditions are represented by the icon <img alt="/ebx_workflowCondition.svg" src="../resources/images/symbols/ebx_workflowCondition.svg"></img>.</p><h3 id="subworkflow">
+sub-workflow invocation</h3>
+<p>A step in a data workflow that pauses the current data workflow and launches one or more other data workflows. If multiple sub-workflows are invoked by the same sub-workflow invocation step, they will be executed concurrently, in parallel.</p><h3 id="waitTask">
+wait task</h3>
+<p>A step in a data workflow that pauses the current workflow and waits for a specific event. When the event is received, the workflow is resumed and automatically goes to the next step.</p><h3 id="datacontext">
+data context</h3>
+<p>A set of data that may be shared between steps throughout a data workflow to ensure continuity between steps.</p><h2 id="workflows">
+Data workflows</h2>
+<p><em>Main documentation section <a href="../user_dataworkflow/userdataworkflow_intro.html">Data workflows</a></em></p><h3 id="workflowpub">
+workflow publication</h3>
+<p>An instance of a workflow model that has been made available for execution to users with the appropriate permissions.</p><p>The former name (prior to version 5) of &quot;workflow publication&quot; was &quot;workflow&quot;.</p><h3 id="workflow">
+data workflow</h3>
+<p> An executed instance of a workflow model, which runs the data processing steps that are defined in the model, including user tasks, script tasks, and conditions. </p><p>See also <a href="#workflowmodel">workflow model</a>.</p><p>Related concept <a href="../user_dataworkflow/userdataworkflow_intro.html">Data workflows</a>.</p><p>The former name (prior to version 5) of &quot;data workflow&quot; was &quot;workflow instance&quot;.</p><h3 id="worklist">
+work list</h3>
+<p>A list of all published data workflows that the current user has the permissions to view. Users with the permissions to launch data workflows do so from their &#39;Work List&#39;. All outstanding work items requiring action from the user appear under their published workflows in the work list. Additionally, if the user is the administrator of data workflows, they are able to view the state of execution of those data workflows in their &#39;Work List&#39;, and may intervene if necessary.</p><h3 id="workitem">
+work item</h3>
+<p>An action that must be performed by a human user as a part of a user task.</p><p>Allocated work items are represented by the icon <img alt="/ebx_workitem.png" src="../resources/images/symbols/ebx_workitem.png"></img>.</p><p>See also <a href="#usertask">user task</a>.</p><h3 id="token">
+token</h3>
+<p>Tokens are used during data workflow management, and are visible to repository administrators.</p><h2 id="dataservices">
+Data services</h2>
+<p><em>Main documentation section <a href="../user_dataservice/userdataservice_intro.html">Data services</a></em></p><h3 id="dataservice">
+data service</h3>
+<p>EBX&reg; shares master data according to the <a href="https://en.wikipedia.org/wiki/Service-oriented_architecture">Service-oriented architecture</a> (SOA) by using XML web services. Since all data services are generated directly from models or built-in services they can be used to access part of the features available from the user interface.</p><p>Data services offer:</p><ul>
+<li><p>a WSDL model-driven and built-in generator to build a communication interface. It can be produced through the user interface or the HTTP(S) connector for a client application. XML messages are communicated to the EBX&reg; entry point.</p></li><li><p>a SOAP connector or entry point component for SOAP messages which allows external systems interacting with the EBX&reg; repository. This connector responds to requests coming from the WSDL produced by EBX&reg;. This component accepts all SOAP XML messages corresponding to the EBX&reg; WSDL generator.</p></li><li><p>A RESTful connector, or entry point for the select operations, allows external systems interrogating the EBX&reg; repository. After authenticating, it accepts the request defined in the URL and executes it according to the permissions of the authenticated user.</p></li></ul>
+<h3 id="lineage">
+lineage</h3>
+<p>A mechanism by which access rights profiles are implemented for data services. Access rights profiles are then used to access data via WSDL interfaces.</p><p>Related concept: <a href="../user_dataservice/userdataservice_actions.html#lineage">Generating a WSDL for lineage</a>.</p><h2 id="miscellaneous">
+Cross-domain</h2>
+<h3 id="node">
+node</h3>
+<p>A node is an element of a tree view or a graph. In EBX&reg;, &#39;Node&#39; can carry several meanings depending on the context of use:</p><ul>
+<li><p>In the <a href="#workflowmodels">workflow model</a> context, a node is a workflow step or condition.</p></li><li><p>In the <a href="#datamodel">data model</a> context, a node is a group, a table or a field.</p></li><li><p>In the <a href="#customtableview">hierarchy</a> context, a node represents a value of a dimension.</p></li><li><p>In an <a href="#inheritance">adaptation tree</a>, a node is a dataset.</p></li><li><p>In a <a href="#record">dataset</a>, a node is the node of the data model evaluated in the context of the dataset or the record.</p></li></ul>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Introduction</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

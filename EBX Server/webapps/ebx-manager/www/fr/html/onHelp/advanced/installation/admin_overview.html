@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Administration overview</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin_overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Administration Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=installation/admin_overview.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide</span></div>
+<h1>
+Administration overview</h1>
+<p>The Administration section in TIBCO EBX&reg; is the main point of entry for all administration tasks. In this overview are listed all the topics that an administrator needs to master. Click on your topic of interest in order to access the corresponding chapter or paragraph in the documentation. </p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#repository">Repository management</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Object cache</a></li><li class="toc2"><a href="#obsolete">Obsolete contents</a></li><li class="toc2"><a href="#id1s3">Workflow</a></li></ul>
+</li><li class="toc1"><a href="#cache">Disk space management</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Purge of logs</a></li><li class="toc2"><a href="#auditTrail">Audit trail</a></li></ul>
+</li><li class="toc1"><a href="#dataModelChanges">Data model</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Publication management </a></li><li class="toc2"><a href="#id3s2">Refresh data models</a></li></ul>
+</li><li class="toc1"><a href="#perspectives">Perspectives</a></li><li class="toc1"><a href="#administrativeDelegation">Administrative delegation</a></li></ul>
+</div>
+<h2 id="repository">
+Repository management</h2>
+<p>For storage optimization, it is recommended to maintain a repository (persistence RDBMS) to the necessary minimum. To this end, it is recommended to regularly perform a purge of snapshots and obsolete dataspaces and to consider using a backup file system.</p><p>See also <a href="../engine/repository_administration.html#cleanDataSpacesHistory">Cleaning up dataspaces, snapshots, and history</a> and <a href="../engine/repository_administration.html#purge">Deleting dataspaces, snapshots, and history</a>. </p><p>It is also possible to archive files of the file system type in order to reduce the storage costs, see <a href="../engine/repository_administration.html#archive">EBX&reg; monitoring</a>.</p><p>Administration tasks can be scheduled by means of the task scheduler, using built-in tasks, see <a href="../engine/scheduler.html">Task scheduler</a>.</p><h3 id="id1s1">
+Object cache</h3>
+<p>EBX&reg; maintains an object cache in memory. The object cache size should be managed on a case by case basis according to specific needs and requirements (pre-load option and pre-validate on the reference dataspaces, points of reference, and monitoring), while continuously monitoring the repository health reports (<code>./ebxLog/monitoring.log</code>).</p><p> See <a href="../references/performance.html#memory">Memory management</a>.</p><h3 id="obsolete">
+Obsolete contents</h3>
+<p>Keeping obsolete contents in the repository can lead to a slow server startup and slow responsiveness of the interface. It is strongly recommended to delete obsolete content. </p><p>For example: datasets referring to deleted data models or undeployed add-on modules. See <a href="../installation/addons_register.html">Deploying and registering TIBCO EBX&reg; add-ons</a>.</p><h3 id="id1s3">
+Workflow</h3>
+<h4>
+Cleanup</h4>
+<p>The workflow history and associated execution data have to be cleaned up on a regular basis. </p><p>The workflow history stores information on completed workflows, their respective steps and contexts. This leads to an ever-growing database containing obsolete history and can thus lead to poor performance of the database if not purged periodically. See <a href="../engine/admin_workflow.html#history">Workflow history</a> for more information.</p><h4>
+Email configuration</h4>
+<p>It is required to configure workflow emails beforehand in order to be able to implement workflow email notifications. See <a href="../engine/admin_workflow.html#configuration">Configuration</a> for more information.</p><h2 id="cache">
+Disk space management</h2>
+<h3 id="id2s1">
+Purge of logs</h3>
+<p>The log file size will vary according to the log level (and to the selected severity level) and disk space needs to be accordingly managed. </p><p>An automatic purge is provided with EBX&reg;, allowing to define how many days should log files be stored. After the defined period, log files are deleted.</p><p>Any customized management of the purge of logs (backup, archiving, etc.) is the user&#39;s responsibility.</p><pre class="brush: properties; toolbar: false; gutter: false;">
+#################################################
+## Directory of log files 'ebxFile:'
+## This property is used by special appender prefixed
+## by 'ebxFile:' (see log section below)
+#################################################
+ebx.logs.directory=${ebx.home}/ebxLog
+
+################################################################
+# Daily rollover threshold of log files 'ebxFile:'
+# Specifies the maximum number of backup files for daily rollover of 'ebxFile:' appenders.
+# When set to a negative value, backup log files are never purged.
+# Default value is -1.
+################################################################
+ebx.log4j.appender.ebxFile.backup.Threshold=-1
+</pre>
+<h3 id="auditTrail">
+Audit trail</h3>
+<p>EBX&reg; is provided with a default audit trail manager. Any customized management (including purge, backups, etc.) is the user&#39;s responsibility. </p><p>If the audit trail is unwanted, it is possible to fully deactivate it. See <a href="../installation/properties.html#xmlaudittrail">Activating the XML audit trail</a> and <a href="../engine/audit_trail.html">Audit trail</a> for more information. </p><h2 id="dataModelChanges">
+Data model</h2>
+<h3 id="id3s1">
+Publication management </h3>
+<p>The management of publications of <a href="../user_datamodel/userdatamodel_publish.html">embedded data models</a>. See <a href="../engine/admin_models.html">Data model administration</a> for more information on the management of these publications and the administration tasks that can be performed (delete, import and export).</p><h3 id="id3s2">
+Refresh data models</h3>
+<p>It is possible to update the data models that are using XML Schema documents not managed by EBX&reg;. See <a href="../references/tools_java_developer.html#datamodel_refresh">Data model refresh tool</a> for more information. </p><h2 id="perspectives">
+Perspectives</h2>
+<p>EBX&reg; offers extensive UI customization options. Simplified interfaces <a href="../engine/admin_frontend.html#recommendedPerspectives">(Recommended perspectives)</a> dedicated to each profile accessing the system can be parameterized by the administrator. According to the profile of the user logging in, the interface will offer more or less options and menus. This allows for a streamlined work environment. </p><p>See <a href="../engine/admin_frontend.html#perspective">Advanced perspective</a> for more information.</p><h2 id="administrativeDelegation">
+Administrative delegation</h2>
+<p>EBX&reg; is provided with the built-in administrator profile by default. An administrator can delegate administrative rights to a non-administrator user, either for specific actions or for all activities.</p><p>The administrative delegation is defined under &#39;Administration&#39; in the <a href="../engine/admin_frontend.html#globalPermissions">global permissions</a> profile.</p><p>Access to the administration section can be granted to specific profiles via the global permissions in order to delegate access rights on corresponding administration datasets.</p><p>If all necessary administrative rights have been delegated to non-administrator users, it becomes possible to disable the built-in &#39;Administrator&#39; role.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../installation/properties.html#userDirectory">Configuring the user and roles directory</a></li></ul>
+</div>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Administration Guide</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

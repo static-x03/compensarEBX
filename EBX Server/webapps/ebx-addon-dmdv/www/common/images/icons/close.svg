@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Core/Icons/Workspace/Close</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M7.4894423,1.25 L8.75,2.5105577 L6.26,5 L8.75,7.4894423 L7.4894423,8.75 L5,6.26 L2.5105577,8.75 L1.25,7.4894423 L3.739,5 L1.25,2.5105577 L2.5105577,1.25 L5,3.739 L7.4894423,1.25 Z" id="path-1"></path>
+        <rect id="path-3" x="0" y="0" width="10" height="10"></rect>
+        <filter x="-70.0%" y="-50.0%" width="240.0%" height="240.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="UI_Import-CSV" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DINT-427_Step01" transform="translate(-712.000000, -282.000000)">
+            <g id="Selected-table" transform="translate(517.000000, 278.000000)">
+                <g id="Core/Icons/Workspace/Close" transform="translate(194.000000, 3.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <g id="Core/Colors/White" mask="url(#mask-2)">
+                        <g id="Rectangle-Copy-2">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Unit core.resource</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dsl.core.resourceUnit" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=dsl/core_resourceUnit.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+<h1>
+Unit core.resource</h1>
+<p>This script unit methods that generates resource references compatible with the schema type <code>ods:resource</code>. </p><p> Example: </p><pre class="brush: text; toolbar: false; gutter: false;">
+
+uses core.resource as resource;
+
+export function getValue(): typeof record.functions.ResourceValue
+begin
+  return resource.toImage('ebx-test','on_anim_wait.gif');
+end
+</pre>
+<p></p><table>
+<thead>
+<tr>
+<th align="left" valign="top">Methods</th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoImagemoduleNamestringfilePathstringstring">function toImage(moduleName: string, filePath: string): string</a></p><p>Returns a reference to an image resource.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoIconmoduleNamestringfilePathstringstring">function toIcon(moduleName: string, filePath: string): string</a></p><p>Returns a reference to an icon resource.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoJavaScriptmoduleNamestringfilePathstringstring">function toJavaScript(moduleName: string, filePath: string): string</a></p><p>Returns a reference to an JavaScript file resource.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoStyleSheetmoduleNamestringfilePathstringstring">function toStyleSheet(moduleName: string, filePath: string): string</a></p><p>Returns a reference to an style sheet file resource.</p></td></tr>
+<tr>
+<td align="left" valign="top"><p><a href="#functiontoHtmlmoduleNamestringfilePathstringstring">function toHtml(moduleName: string, filePath: string): string</a></p><p>Returns a reference to an image resource.</p></td></tr>
+</tbody>
+</table>
+<p></p><div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#functiontoImagemoduleNamestringfilePathstringstring">function toImage(moduleName: string, filePath: string): string</a></li><li class="toc1"><a href="#functiontoIconmoduleNamestringfilePathstringstring">function toIcon(moduleName: string, filePath: string): string</a></li><li class="toc1"><a href="#functiontoJavaScriptmoduleNamestringfilePathstringstring">function toJavaScript(moduleName: string, filePath: string): string</a></li><li class="toc1"><a href="#functiontoStyleSheetmoduleNamestringfilePathstringstring">function toStyleSheet(moduleName: string, filePath: string): string</a></li><li class="toc1"><a href="#functiontoHtmlmoduleNamestringfilePathstringstring">function toHtml(moduleName: string, filePath: string): string</a></li></ul>
+</div>
+<h2 id="functiontoImagemoduleNamestringfilePathstringstring">
+function toImage(moduleName: string, filePath: string): string</h2>
+<p>Returns a reference to an image resource.</p><p><strong>Parameters :</strong></p><p>moduleName: the module name.</p><p>filePath: the local file path for the resource.</p><p><strong>Return :</strong></p><p>the resource string compatible with the schema type <code>ods:resource</code>.</p><h2 id="functiontoIconmoduleNamestringfilePathstringstring">
+function toIcon(moduleName: string, filePath: string): string</h2>
+<p>Returns a reference to an icon resource.</p><p><strong>Parameters :</strong></p><p>moduleName: the module name.</p><p>filePath: the local file path for the resource.</p><p><strong>Return :</strong></p><p>the resource string compatible with the schema type <code>ods:resource</code>.</p><h2 id="functiontoJavaScriptmoduleNamestringfilePathstringstring">
+function toJavaScript(moduleName: string, filePath: string): string</h2>
+<p>Returns a reference to an JavaScript file resource.</p><p><strong>Parameters :</strong></p><p>moduleName: the module name.</p><p>filePath: the local file path for the resource.</p><p><strong>Return :</strong></p><p>the resource string compatible with the schema type <code>ods:resource</code>.</p><h2 id="functiontoStyleSheetmoduleNamestringfilePathstringstring">
+function toStyleSheet(moduleName: string, filePath: string): string</h2>
+<p>Returns a reference to an style sheet file resource.</p><p><strong>Parameters :</strong></p><p>moduleName: the module name.</p><p>filePath: the local file path for the resource.</p><p><strong>Return :</strong></p><p>the resource string compatible with the schema type <code>ods:resource</code>.</p><h2 id="functiontoHtmlmoduleNamestringfilePathstringstring">
+function toHtml(moduleName: string, filePath: string): string</h2>
+<p>Returns a reference to an image resource.</p><p><strong>Parameters :</strong></p><p>moduleName: the module name.</p><p>filePath: the local file path for the resource.</p><p><strong>Return :</strong></p><p>the resource string compatible with the schema type <code>ods:resource</code>.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; EBX® Scripting &gt; Function field API</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,1186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Extended</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="json_extended" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+TIBCO EBX® Documentation</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=data_services/json_extended.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+<h1>
+Extended</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#id2">Global structure</a><ul class="toc2">
+<li class="toc2"><a href="#request">JSON Request body</a></li><li class="toc2"><a href="#response">JSON Response body</a></li></ul>
+</li><li class="toc1"><a href="#metaData">Metadata</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Structure for table</a></li><li class="toc2"><a href="#id3s2">Structure for field</a></li><li class="toc2"><a href="#metaDataForeignKeyObject">Structure for foreign key field</a></li><li class="toc2"><a href="#metaDataAssociationObject">Structure for the association field</a></li><li class="toc2"><a href="#metaDataLinkedFieldObject">Structure for the linked field</a></li><li class="toc2"><a href="#metaDataEnumerationObject">Structure for the enumeration dependencies</a></li></ul>
+</li><li class="toc1"><a href="#sortCriteria">Sort criteria</a></li><li class="toc1"><a href="#validationReport">Validation report</a></li><li class="toc1"><a href="#constraints">Constraints</a><ul class="toc2">
+<li class="toc2"><a href="#constraintTypes">Constraint Types</a></li></ul>
+</li><li class="toc1"><a href="#id7">Content</a><ul class="toc2">
+<li class="toc2"><a href="#nodeValue">Node value</a></li><li class="toc2"><a href="#simpleTypes">Content of simple type</a></li><li class="toc2"><a href="#groupsAndLists">Content of group and list</a></li><li class="toc2"><a href="#selectorResponse">Selector</a></li><li class="toc2"><a href="#technicals">Technical data</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p> The JSON extended format is used to retrieve master data, technical information and metadata. It is designed in an expanded way that allows to include several features such as validation, sorting and so on. To activate the extended format, the unsuffixed REST category, like <code>data</code> or <code>form-data</code>, must be used in the URL. </p><h2 id="id2">
+Global structure</h2>
+<h3 id="request">
+JSON Request body</h3>
+<p> The request body is represented by a JSON <code>Object</code> whose content varies according to the operation and the category. </p><h4 id="DataCategoryRequestBody">
+Data category</h4>
+<p> The request body contains at least a <code>content</code> property which hold master data values. </p><ul>
+<li><p id="nodeRequest"><strong>Dataset node</strong></p><p>Specifies the target values of terminal nodes under the specified node. This request is used for the dataset node update operation. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "content": {
+    "nodeName1": {
+      "content": true
+    },
+    "nodeName2": {
+      "content": 2
+    },
+    "nodeName3": {
+      "content": "Hello"
+    }
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="recordRequest"><strong>Record</strong></p><p>Specifies the target record content by setting the value of each field. For missing fields, the behavior depends on the request parameter <code>byDelta</code>. This structure is used for table record insert, record update or selector&#39;s select operation when local enumeration dependency field values are declared. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#inheritance">Inheritance</a></li></ul>
+</div>
+<p> Some technical data can be added beside the <code>content</code> property such as <code>lastUpdateDate</code>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#locking">Optimistic locking</a></li></ul>
+</div>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  ...
+  "lastUpdateDate": "2015-12-25T00:00:00.001",
+  ...
+  "content": {
+    "gender": {
+      "content": "Mr."
+    },
+    "lastName": {
+      "content": "Chopin"
+    },
+    "lastName-en": {
+      "content": "Chopin",
+      "inheritedFieldMode": "inherit"
+    },
+    "firstName": {
+      "content": "Fryderyk"
+    },
+    "firstName-en": {
+      "content": "Fr&eacute;d&eacute;ric",
+      "inheritedFieldMode": "overwrite"
+    },
+    "birthDate": {
+      "content": "1810-03-01"
+    },
+    "deathDate": {
+      "content": "1849-10-17"
+    },
+    "jobs": {
+      "content": [
+        {
+          "content": "CM"
+        },
+        {
+          "content": "PI"
+        }
+      ]
+    },
+    "infos": {
+      "content": [
+        {
+          "content": "https://en.wikipedia.org/wiki/Chopin"
+        }
+      ]
+    }
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#insert">Insert operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="recordFieldsRequest"><strong>Record fields</strong></p><p>Specifies the target values of fields under the record terminal node by setting the value of each field. For missing fields, the behavior depends on the request parameter <code>byDelta</code>. This structure is only used for table record updates. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#inheritance">Inheritance</a></li></ul>
+</div>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "content": [
+    {
+      "content": "CM"
+    },
+    {
+      "content": "PI"
+    }
+  ]
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="recordTableRequest"><strong>Record table</strong></p><p> Defines the content of one or more records by indicating the value of each field. For missing fields, the behavior depends on the <code>byDelta</code> parameter of the request. This structure is used upon insert or update records in the table. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "content": {
+        "gender": {
+          "content": "M"
+        },
+        "lastName": {
+          "content": "Saint-Sa&euml;ns"
+        },
+        "firstName": {
+          "content": "Camille"
+        },
+        "birthDate": {
+          "content": "1835-10-09"
+        },
+        ...
+      }
+    },
+    {
+      "content": {
+        "gender": {
+          "content": "M"
+        },
+        "lastName": {
+          "content": "Debussy"
+        },
+        "firstName": {
+          "content": "Claude"
+        },
+        "birthDate": {
+          "content": "1862-10-22"
+        },
+        ...
+      }
+    }
+  ]
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#insert">Insert operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li><li><p id="deleteMultipleRecordsRequest"><strong>Record table to deleted</strong></p><p> Defines one or more records. This structure is used upon deleting several records from the same table. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "details": "http://.../root/table/1"
+    },
+    {
+      "details": "http://.../root/table/2"
+    },
+    {
+      "primaryKey": "./oid=3"
+    },
+    {
+      "foreignKey": "4"
+    },
+    ...
+  ]
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#deleteOperation">Delete operation</a></li></ul>
+</div>
+</li><li><p><strong>Field</strong></p><p> Specifies the target field content. This request is used for field update. </p><p>The request has the same structure as defined in <a href="#nodeValue">node value</a> by only keeping the <code>content</code> entry. Additional entries are simply ignored. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#update">Update operation</a></li></ul>
+</div>
+</li></ul>
+<p> Only writable fields can be mentioned in the request, this excludes the following cases: </p><ul>
+<li><p>Association node,</p></li><li><p>Selection node,</p></li><li><p>Value function,</p></li><li><p>JavaBean field that does not have a setter,</p></li><li><p>Unwritable permission on node for authenticated user.</p></li></ul>
+<h3 id="response">
+JSON Response body</h3>
+<p> The response body is represented by a JSON <code>Object</code> whose content depends on the operation and the category. </p><h4 id="DataCategoryResponseBody">
+Data category</h4>
+<p> The selection operation contains two different parts. </p><p> The first one named <code>meta</code> contains the exhaustive structure of the response. </p><p> The second, regrouping <code>content</code>, <code>rows</code>, <code>pagination</code>... etc, contains the values corresponding to the request. </p><ul>
+<li><p><strong>Dataset tree</strong></p><p>Contains the hierarchy of <code>table</code> and non-terminal <code>group</code> nodes. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "meta": {
+    "fields": [
+      {
+        "name": "rootName",
+        "label": "Localized label",
+        "description": "Localized description",
+        "type": "group",
+        "pathInDataset": "/rootName",
+        "fields": [
+          {
+            "name": "settings",
+            "label": "Settings",
+            "type": "group",
+            "pathInDataset": "/rootName/settings",
+            "fields": [
+              {
+                "name": "settingA",
+                "label": "A settings label",
+                "type": "group",
+                "pathInDataset": "/rootName/settings/settingA"
+              },
+              {
+                "name": "settingB",
+                "label": "B settings label",
+                "type": "group",
+                "pathInDataset": "/rootName/settings/settingB"
+              }
+            ]
+          },
+          {
+            "name": "table1",
+            "label": "Table1 localized label",
+            "type": "table",
+            "minOccurs": 0,
+            "maxOccurs": "unbounded",
+            "pathInDataset": "/rootName/table1"
+          },
+          {
+            "name": "table2",
+            "label": "Table2 localized label",
+            "type": "table",
+            "minOccurs": 0,
+            "maxOccurs": "unbounded",
+            "pathInDataset": "/rootName/table2"
+          }
+        ]
+      }
+    ]
+  },
+  "validation": [
+    {
+      "level": "error",
+      "message": "Value must be greater than or equal to 0.",
+      "details": "http://.../rootName/settings/settingA/settingA1?includeValidation=true"
+    },
+    {
+      "level": "error",
+      "message": "Field 'Settings A2' is mandatory.",
+      "details": "http://.../rootName/settings/settingA/settingA2?includeValidation=true"
+    }
+  ],
+  "content": {
+    "rootName": {
+      "details": "http://.../rootName",
+      "openApiDetails": "http://.../open-api/.../rootName",
+      "content": {
+        "settings": {
+          "details": "http://.../rootName/settings",
+          "openApiDetails": "http://.../open-api/.../rootName/settings",
+          "content": {
+            "weekTimeSheet": {
+              "details": "http://.../rootName/settings/settingA",
+              "openApiDetails": "http://.../open-api/.../rootName/settings/settingA"
+            },
+            "vacationRequest": {
+              "details": "http://.../rootName/settings/settingB",
+              "openApiDetails": "http://.../open-api/.../rootName/settings/settingB"
+            }
+          }
+        },
+        "table1": {
+          "details": "http://.../rootName/table1",
+          "openApiDetails": "http://.../open-api/.../rootName/table1"
+        },
+        "table2": {
+          "details": "http://.../rootName/table2",
+          "openApiDetails": "http://.../open-api/.../rootName/table2"
+        }
+      }
+    }
+  }
+}</pre>
+<p>The <code>meta</code> and <code>validation</code> properties are optional. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#metaData">Metadata</a></li><li><a href="#validationReport">Validation report</a></li><li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li></ul>
+</div>
+</li><li><p><strong>Dataset node</strong></p><p>Contains the list of terminal nodes under the specified node.</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "meta": {
+    "fields": [
+      {
+        "name": "nodeName1",
+        "label": "Localized label of the field node 1",
+        "description": "Localized description",
+        "type": "boolean",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "pathInDataset": "/rootName/.../nodeName1"
+      },
+      {
+        "name": "nodeName2",
+        "label": "Localized label of the field node 2",
+        "type": "int",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "pathInDataset": "/rootName/.../nodeName2"
+      }
+    ]
+  },
+  "content": {
+    "nodeName1": {
+      "content": true
+    },
+    "nodeName2": {
+      "content": -5,
+      "validation": [
+        {
+          "level": "error",
+          "message": "Value must be greater than or equal to 0."
+        }
+      ]
+    }
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li></ul>
+</div>
+</li><li><p><strong>Table</strong></p><p>JSON <code>Object</code> containing the following properties: </p><ul>
+<li><p>(Optional) The <a href="#metaData">table meta data</a>, </p></li><li><p>(Optional) The sort criteria applied,</p></li><li><p>(Optional) The table validation report,</p></li><li><p id="rows"> The <code>rows</code> property corresponding to a JSON <code>Array</code> of the selected records. Each record is represented by an JSON <code>Object</code>. If no record is selected then the JSON <code>Array</code> is empty. </p></li><li><p>(Optional) the <code>pagination</code> property, containing <a href="../data_services/json_common.html#pagination">pagination </a> data. </p></li></ul>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "label": "Claude Levi-Strauss",
+      "details": "http://.../root/individu/1",
+      "content": {
+        "id": {
+          "content": 1
+        },
+        ...
+      }
+    },
+    {
+      "label": "Sigmoud Freud",
+      "details": "http://.../root/individu/5",
+      "content": {
+        "id": {
+          "content": 2
+        },
+        ...
+      }
+    },
+    ...
+    {
+      "label": "Alfred Dreyfus",
+      "details": "http://.../root/individu/10",
+      "content": {
+        "id": {
+          "content": 30
+        },
+        ...
+      }
+    }
+  ],
+  "sortCriteria": [
+    {
+      "path": "/name",
+      "order": "lasc"
+    },
+    ...
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../root/individu?pageRecordFilter=./id=9&amp;pageSize=9&amp;pageAction=next",
+    "lastPage": "http://.../root/individu?pageSize=9&amp;pageAction=last"
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li></ul>
+</div>
+</li><li><p id="DataCategoryRecordResponseBody"><strong>Record</strong></p><p>JSON <code>Object</code> containing: </p><ul>
+<li><p>The label,</p></li><li><p>(Optional) The record URL,</p></li><li><p>(Optional) The <a href="#technicals"> technical data </a>, </p></li><li><p>(Optional) The <a href="#metaData"> table metadata </a>, </p></li><li><p>(Optional) The record validation report,</p></li><li><p>(Optional) The inheritance mode of the record, which can be: <code>root</code>, <code>inherit</code>, <code>overwrite</code> or <code>occult</code>. </p></li><li><p>The record content.</p></li></ul>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "label": "Name1",
+  "details": "http://.../rootName/table1/pk1",
+  "creationDate": "2015-02-02T19:00:53.142",
+  "creationUser": "admin",
+  "lastUpdateDate": "2015-09-01T17:22:24.684",
+  "lastUpdateUser": "admin",
+  "inheritanceMode": "root",
+  "meta": {
+    "name": "table1",
+    "label": "Table1 localized label",
+    "type": "table",
+    "minOccurs": 0,
+    "maxOccurs": "unbounded",
+    "primaryKeys": [
+      "/pk"
+    ],
+    "inheritance": "true",
+    "fields": [
+      {
+        "name": "pk",
+        "label": "Identifier",
+        "type": "string",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "pathInRecord": "pk",
+        "filterable": true,
+        "sortable": true
+      },
+      {
+        "name": "name",
+        "label": "Name",
+        "type": "string",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "pathInRecord": "name",
+        "filterable": true,
+        "sortable": true
+      },
+      {
+        "name": "name-fr",
+        "label": "Nom",
+        "type": "string",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "inheritedField": {
+          "sourceNode": "./name"
+        },
+        "pathInRecord": "name-fr",
+        "filterable": true,
+        "sortable": true
+      },
+      {
+        "name": "parent",
+        "label": "Parent",
+        "description": "Localized description.",
+        "type": "foreignKey",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "foreignKey": {
+          "tablePath": "/rootName/table1",
+          "details": "http://.../rootName/table1"
+        },
+        "enumeration": "foreignKey",
+        "pathInRecord": "parent",
+        "filterable": true,
+        "sortable": true
+      }
+    ]
+  },
+  "content": {
+    "pk": {
+      "content": "pk1"
+    },
+    "name": {
+      "content": "Name1"
+    },
+    "name-fr": {
+      "content": "Name1",
+      "inheritedFieldMode": "inherit"
+    },
+    "parent": {
+      "content": null,
+      "selector":"http://.../rootName/table1?selector=true",
+      "validation": [
+        {
+          "level": "error",
+          "message": "Field 'Parent' is mandatory."
+        }
+      ]
+    }
+  },
+  "validation": {
+    ...
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#prepareOperation">Prepare operations</a></li></ul>
+</div>
+</li><li><p><strong>Fields</strong></p><p>For association or selection nodes, contains the target table with the associated records if, and only if, the <code>includeDetails</code> parameter is set to <code>true</code>. </p><p>For other kinds of nodes, contains the current <a href="#nodeValue">node value</a>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li></ul>
+</div>
+</li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Nodes, records and fields, property and values may be hidden depending on their resolved permissions  . </p></div>
+<h2 id="metaData">
+Metadata</h2>
+<p>This section can be activated on demand with the <a href="../data_services/dataservices_rest_v1.html#includeMeta"><code>includeMeta</code></a> parameter. It describes the structure and the JSON typing of the <code>content</code> section. </p><p>This section is deactivated by default for selection operations.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectOperation">Select operation</a></li><li><a href="../data_services/dataservices_rest_v1.html#prepareOperation">Prepare operations</a></li></ul>
+</div>
+<h3 id="id3s1">
+Structure for table</h3>
+<p>Table metadata is represented by a JSON <code>Object</code> with the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="metaDataTableName"><code>name</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the name of the authorized table defined in the model.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataTableLabel"><code>label</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the table&#39;s label. If undefined, the name of the schema node is returned. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataTableDescription"><code>description</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the table&#39;s description.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataTableType"><code>type</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the node&#39;s type, the value is always equal to: <code>table</code>. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataTableMinOccurs"><code>minOccurs</code></p></td><td><p><code>Number</code></p></td><td><p>Specifies the number of minimum authorized record(s).</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataTableMaxOccurs"><code>maxOccurs</code></p></td><td><p><code>Number</code> or <code>String</code></p></td><td><p>Specifies the number of maximum authorized record(s) or <code>unbounded</code>. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataTablePrimaryKeyFields"><code>primaryKeyFields</code></p></td><td><p><code>Array</code></p></td><td><p>Specifies the primary key composition which is represented as an array of the paths. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataTableInheritance"><code>inheritance</code></p></td><td><p><code>Boolean</code></p></td><td><p> Specifies whether the dataset inheritance is activated for the table. Its value is <code>true</code> if inheritance is activated, <code>false</code> otherwise. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/inheritance.html">Inheritance and value resolution</a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataTableFields"><code>fields</code></p></td><td><p><code>Array</code></p></td><td><p>Specifies the direct children of the record node which are represented as an array of fields. Each field may also recursively contain sub-fields. </p></td><td><p>Yes</p></td></tr>
+</tbody>
+</table>
+<h3 id="id3s2">
+Structure for field</h3>
+<p>Each authorized field is represented by a JSON <code>Object</code> with the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="metaDataName"><code>name</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the name of the authorized field defined in the model.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataLabel"><code>label</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the node&#39;s label. If undefined, the name of the schema node is returned. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataDescription"><code>description</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the field&#39;s description.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataType"><code>type</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the field&#39;s type, which can be a: <a href="#simpleTypes">simple type</a>, <code>group</code>, <code>table</code>, <a href="#metaDataForeignKey">foreignKey</a>, <a href="#metaDataAssociation">association</a>, etc. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataMinOccurs"><code>minOccurs</code></p></td><td><p><code>Number</code></p></td><td><p>Specifies the number of minimum authorized occurrence(s).</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataMaxOccurs"><code>maxOccurs</code></p></td><td><p><code>Number</code> or <code>String</code></p></td><td><p>Specifies the number of maximum authorized occurrence(s) or <code>unbounded</code>. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataReadOnly"><code>readOnly</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies whether the field access permission is defined as read-only from the data model access properties. That is, if its data can be read or written. Its value is <code>true</code> if the field is read only, <code>false</code> otherwise. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataAutoIncrement"><code>autoIncrement</code></p></td><td><p><code>Boolean</code></p></td><td><p> Specifies whether the field is auto-incremented. This property is only available for integer field type. Its value is <code>true</code> if the field is auto-incremented, <code>false</code> otherwise. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataCheckNullInput"><code>checkNullInput</code></p></td><td><p><code>Boolean</code></p></td><td><p> Specifies whether the check of the constraints on <code>null</code> fields, at user input, is activated or not. Its value is <code>true</code> when activated, <code>false</code> otherwise. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataInheritanceField"><code>inheritedField</code></p></td><td><p><code>Object</code></p></td><td><p>Holds information related to the inherited field&#39;s value source.</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "inheritedField": {
+    "sourceRecord": "/path/to/record", // (optional)
+    "sourceNode": "./path/to/Node"
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../references/inheritance.html">Inheritance and value resolution</a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataForeignKey"><code>foreignKey</code></p></td><td><p><code>Object</code></p></td><td><p>Holds information related to the target table.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#metaDataForeignKeyObject">Structure for foreign key field</a></li></ul>
+</div>
+</td><td><p>No (*)</p></td></tr>
+<tr>
+<td><p id="metaDataAssociation"><code>association</code></p></td><td><p><code>Object</code></p></td><td><p>Holds information related to the association table.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#metaDataAssociationObject">Structure for the association field</a></li></ul>
+</div>
+</td><td><p>No (*)</p></td></tr>
+<tr>
+<td><p id="metaDataEnumeration"><code>enumeration</code></p></td><td><p><code>String</code></p></td><td><p>Specifies if the field is an enumeration value. Possible values are: </p><ul>
+<li><p><code>dynamic</code></p></li><li><p><code>foreignKey</code></p></li><li><p><code>nomenclature</code></p></li><li><p><code>programmatic</code></p></li><li><p><code>resource</code></p></li><li><p><code>static</code></p></li></ul>
+<p> According to its value, indicates if the field can be used for retrieving possible values by using the <code><a href="#selector">selector</a></code> request parameter. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataEnumerationDependencies"><code>enumerationDependencies</code></p></td><td><p><code>Array</code> of JSON <code>Object</code></p></td><td><p> Specifies the metadata enumeration dependencies list. Only available for enumeration types among: <code>foreignKey</code>, <code>dynamic</code> or <code>programmatic</code>. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#metaDataEnumerationObject">Structure for the enumeration dependencies</a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataValueFunction"><code>valueFunction</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies if the field is a computed value.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataLinkedField"><code>linkedField</code></p></td><td><p><code>Object</code></p></td><td><p>Holds information related to the linked field.</p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataPathInDataset"><code>pathInDataset</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the relative field&#39;s path starting from the schema node.</p></td><td><p>No (**)</p></td></tr>
+<tr>
+<td><p id="metaDataPathInRecord"><code>pathInRecord</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the relative field&#39;s path starting from the table node.</p></td><td><p>No (*)</p></td></tr>
+<tr>
+<td><p id="metaDataFilterable"><code>filterable</code></p></td><td><p><code>Boolean</code></p></td><td><p> Specifies whether the field can be used to filter records using the <a href="../data_services/dataservices_rest_v1.html#filter"><code>filter</code></a> request parameter. </p></td><td><p>No (*)</p></td></tr>
+<tr>
+<td><p id="metaDataHiddenFilterPolicy"><code>hiddenFilterPolicy</code></p></td><td><p><code>String</code></p></td><td><p> Specifies the hidden filter policy. </p><p>The possible values are: <code>textSearchOnly</code>, <code>true</code> or <code>false</code>. </p></td><td><p>No (*)</p></td></tr>
+<tr>
+<td><p id="metaDataSortable"><code>sortable</code></p></td><td><p><code>Boolean</code></p></td><td><p> Specifies whether the field can be used in sort criteria using the <a href="../data_services/dataservices_rest_v1.html#sort"><code>sort</code></a> request parameter. </p></td><td><p>No (*)</p></td></tr>
+<tr>
+<td><p id="metaDataConstraints"><code>constraints</code></p></td><td><p><code>Array</code> of JSON <code>Object</code></p></td><td><p>Specifies the field&#39;s non-programmatic constraints.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#constraints">Constraints</a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataFields"><code>fields</code></p></td><td><p><code>Array</code> of JSON <code>Object</code></p></td><td><p>Holds the structure and typing of each field group.</p></td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<p>(*) Only available for table, record and record field operations.</p><p>(**) Only available for dataset tree operations.</p><h3 id="metaDataForeignKeyObject">
+Structure for foreign key field</h3>
+<p>The foreign key field metadata is represented by a JSON <code>Object</code>. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "dataspace": "BAuthors",
+  "dataset": "Authors",
+  "tablePath": "/root/Authors",
+  "details": "http://.../BAuthors/Authors/root/Authors"
+}</pre>
+<p>It holds the following properties:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="metaDataFKDataspace"><code>dataspace</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target dataspace or snapshot identifier. If not specifies then it corresponds to the same dataspace as the table&#39;s one. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataFKDataset"><code>dataset</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target dataset&#39;s identifier. If not specifies then it corresponds to the same dataset as the table&#39;s one. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataFKTablePath"><code>tablePath</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target table&#39;s path.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataFKDetails"><code>details</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target table&#39;s REST resource URL.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectIncludeDetails"><code>includeDetails</code> parameter </a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<h3 id="metaDataAssociationObject">
+Structure for the association field</h3>
+<p>The association field metadata is represented by a JSON <code>Object</code>. This object holds properties which depend on the association type: </p><ul>
+<li><p><code>tableRefInverse</code></p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "type": "tableRefInverse",
+  "dataspace": "BTitles",
+  "dataset": "Titles",
+  "tablePath": "/root/Titles",
+  "details": "http://.../BTitles/Titles/root/Titles",
+  "fieldToSource": "/root/Titles/au_id",
+  "filter": "./unit_price > 10"
+}</pre>
+</li><li><p><code>linkTable</code></p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "type": "linkTable",
+  "tablePath": "/root/Inventory",
+  "details": "http://.../BInventory/Inventory/root/Inventory",
+  "linkTablePath": "/root/Inventory",
+  "fieldToSource": "/root/Inventory/store",
+  "fieldToTarget": "/root/Inventory/item",
+  "filter": "./price > 10"
+}</pre>
+</li><li><p><code>xpathLink</code></p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "type": "xpathLink",
+  "tablePath": "/root/Inventory",
+  "details": "http://.../BAuthors/Authors/root/Inventory",
+  "predicate": "/root/Inventory[./price &lt; 100]",
+  "filter": "./price > 10"
+}</pre>
+</li></ul>
+<p>It holds the following properties:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="metaDataAssociationType"><code>type</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the association type. The possible values are: <code>tableRefInverse</code>, <code>linkTable</code>, <code>xpathLink</code></p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationDataspace"><code>dataspace</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target dataspace or snapshot identifier. If not specifies, then it corresponds to the same dataspace as the table&#39;s one. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationDataset"><code>dataset</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target dataset&#39;s identifier. If not specifies, then it corresponds to the same dataset as the table&#39;s one. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationTablePath"><code>tablePath</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the path of the target table.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationDetails"><code>details</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target table&#39;s REST resource URL.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectIncludeDetails"><code>includeDetails</code> parameter </a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationFieldToSource"><code>fieldToSource</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the field which refers to the source table of the association. </p><p>Defined if the association type is <code>tableRefInverse</code> or <code>linkTable</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationFieldToTarget"><code>fieldToTarget</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the path of the field to the target table.</p><p>Defined if the association type is <code>linkTable</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationLinkTablePath"><code>linkTablePath</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the path of the link table.</p><p>Defined if the association type is <code>linkTable</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationPredicate"><code>predicate</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the criteria of the association, relative to the current node. </p><p>Defined if the association type is <code>xpathLink</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataAssociationFilter"><code>filter</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the XPath predicate expression to filter the associated objects. </p></td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<h3 id="metaDataLinkedFieldObject">
+Structure for the linked field</h3>
+<p>The linked field metadata is represented by a JSON <code>Object</code>. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "relationshipField": "/au_id",
+  "tablePath": "/root/Authors",
+  "linkedFieldPath": "/birth_date",
+  "details": "http://.../BAuthors/Authors/root/Authors"
+}</pre>
+<p>It holds the following properties:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="metaDataLinkedFieldRelationshipField"><code>relationshipField</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the field&#39;s path holding the relationship used by this linked field. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataLinkedFieldTablePath"><code>tablePath</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the table&#39;s path referred by this linked field.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataLinkedFieldPath"><code>linkedFieldPath</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the path referred by this linked field.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataLinkedDetails"><code>details</code></p></td><td><p><code>URI</code></p></td><td><p>Specifies the target table&#39;s REST resource URL. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectIncludeDetails"><code>includeDetails</code> parameter </a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<h3 id="metaDataEnumerationObject">
+Structure for the enumeration dependencies</h3>
+<p>The metadata enumeration dependency object is represented by a JSON <code>Object</code>. </p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "localModify": false,
+  "dataspace": "BAuthors",
+  "dataset": "Authors",
+  "targetPath": "/root/Authors",
+  "details": "http://.../BAuthors/Authors/root/Authors"
+}</pre>
+<p>It holds the following properties:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="metaDataEnumerationDepLocalModify"><code>localModify</code></p></td><td><p><code>Boolean</code></p></td><td><p>Specifies whether the enumeration dependency field is impacted by modifications performed on a field in the same record. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataEnumerationDepDataspace"><code>dataspace</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target dataspace or snapshot identifier of the enumeration dependency. If not specified then it corresponds to the same dataspace as the record&#39;s one. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataEnumerationDepDataset"><code>dataset</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target dataset&#39;s identifier of the enumeration dependency. If not specifies then it corresponds to the same dataset as the record&#39;s one. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="metaDataEnumerationDepTargetPath"><code>targetPath</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the target path of the enumeration dependency.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="metaDataEnumerationDepDetails"><code>details</code></p></td><td><p><code>String</code></p></td><td><p> Specifies the target REST resource table URL of the enumeration dependency. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectIncludeDetails"><code>includeDetails</code> parameter </a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<h2 id="sortCriteria">
+Sort criteria</h2>
+<p>The sort criteria, applied to the request, can be returned on demand, by using the <a href="../data_services/dataservices_rest_v1.html#includeSortCriteria"><code>includeSortCriteria</code></a> parameter (deactivated by default). If it is activated, a <code>sortCriteria</code> property is directly added to the response root node. </p><p>A <code>sortCriteria</code> property is represented as a JSON <code>Array</code> that contains ordered sort criterion. Each sort criterion corresponds to a JSON <code>Object</code> with the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="path"><code>path</code></p></td><td><p><code>String</code></p></td><td><p>Field&#39;s path.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="sortCriteriaOrder"><code>order</code></p></td><td><p><code>String</code></p></td><td><p>Possible values are: <code>asc</code>, <code>lasc</code>, <code>desc</code> or <code>ldesc</code>. </p></td><td><p>Yes</p></td></tr>
+</tbody>
+</table>
+<p id="sortByRelevancy"> The <code>sortByRelevancy</code> property is represented by a JSON <code>Array</code>, itself holding a JSON <code>Object</code> with the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="sortByRelevancyOrder"><code>order</code></p></td><td><p><code>String</code></p></td><td><p>Defines whether the sort is done in ascending or descending order. Possible values are: <code>lasc</code> or <code>ldesc</code>. </p><p> See <a href="../data_services/dataservices_rest_v1.html#sortByRelevancy"> sortByRelevancy </a> for more information. </p></td><td><p>Yes</p></td></tr>
+</tbody>
+</table>
+<h2 id="validationReport">
+Validation report</h2>
+<p>The validation can be activated on demand with the <a href="../data_services/dataservices_rest_v1.html#includeValidation"><code>includeValidation</code></a> parameter (deactivated by default). If it is activated, <code>validation</code> properties are directly added on target nodes with one or several messages. For messages without target node&#39;s path, a <code>validation</code> property is added on the root node. </p><p>A <code>validation</code> property is represented by a JSON <code>Array</code>, holding a JSON <code>Object</code> per message, corresponding to a validation item, with the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="validationLevel"><code>level</code></p></td><td><p><code>String</code></p></td><td><p>Severity level of the validation item. The possible values are: <code>info</code>, <code>warn</code>, <code>error</code>, <code>fatal</code>. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="validationMessage"><code>message</code></p></td><td><p><code>String</code></p></td><td><p>Description of the validation item.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="validationDetails"><code>details</code></p></td><td><p><code>String</code></p><p>corresponding to an absolute URL.</p></td><td><p>URL of the resource associated with the validation item.</p><p>Only available on table and dataset scopes, if the associated resource exist and if it is included. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#selectIncludeDetails"><code>includeDetails</code> parameter </a></li></ul>
+</div>
+</td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<h2 id="constraints">
+Constraints</h2>
+<p>This section is automatically activated when the node has a read-write permission. It provides the non-programmatic constraints declared on the data model. </p><p>The <code>constraints</code> property is represented by a JSON <code>Array</code>. Every constraint is taking the form of a JSON <code>Object</code>. They have the following properties: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="constraintType"><code>type</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the type of the constraint</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#constraintTypes">Constraint Types</a></li></ul>
+</div>
+</td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="constraintLevel"><code>level</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the severity level of the constraint. The possible values are: <code>fatal</code>, <code>error</code>, <code>warning</code> or <code>info</code>. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="constraintContent"><code>content</code></p></td><td><p><code>Object</code></p></td><td><p> Specifies the value of the non-programmatic constraint. This value can be a simple type, like a <code>String</code>, or a JSON <code>Object</code>. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="constraintExcludeSegmentMin"><code>min</code></p></td><td><p><code>Integer</code></p></td><td><p>Specifies the minimum value for <code><a href="#excludeSegment">excludeSegment</a></code> constraint type. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="constraintExcludeSegmentMax"><code>max</code></p></td><td><p><code>Integer</code></p></td><td><p>Specifies the maximum value for <code><a href="#excludeSegment">excludeSegment</a></code> constraint type. </p></td><td><p>No</p></td></tr>
+<tr>
+<td><p id="constraintMessage"><code>message</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the validation message returned when the value of the field does not comply with the constraint. </p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="blocksCommit"><code>blocksCommit</code></p></td><td><p><code>String</code></p></td><td><p>Specifies the control policy management for blocking or non-blocking constraint.</p></td><td><p>No</p></td></tr>
+</tbody>
+</table>
+<h3 id="constraintTypes">
+Constraint Types</h3>
+<p>This section lists the non-programmatic constraints types.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>Type</strong></p></th><th><p><strong>Description</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="mandatory"><code>mandatory</code></p></td><td><p>Defines the field is mandatory</p></td></tr>
+<tr>
+<td><p id="fixedLengthStatic"><code>fixedLengthStatic</code></p></td><td><p>Defines the exact number of characters required for this field.</p></td></tr>
+<tr>
+<td><p id="fixedLengthDynamic"><code>fixedLengthDynamic</code></p></td><td><p>Points out a field which provides the exact number of characters required for this one. </p></td></tr>
+<tr>
+<td><p id="minLengthStatic"><code>minLengthStatic</code></p></td><td><p>Defines the minimum number of characters allowed for this field.</p></td></tr>
+<tr>
+<td><p id="minLengthDynamic"><code>minLengthDynamic</code></p></td><td><p>Points out a field which provides the minimum number of characters allowed for this one. </p></td></tr>
+<tr>
+<td><p id="maxLengthStatic"><code>maxLengthStatic</code></p></td><td><p>Defines the maximum number of characters allowed for this field.</p></td></tr>
+<tr>
+<td><p id="maxLengthDynamic"><code>maxLengthDynamic</code></p></td><td><p>Points out a field which provides the maximum number of characters allowed for this field. </p></td></tr>
+<tr>
+<td><p id="excludeSegment"><code>excludeSegment</code></p></td><td><p>Defines an inclusive range of not allowed values for this field.</p></td></tr>
+<tr>
+<td><p id="excludeValue"><code>excludeValue</code></p></td><td><p>Defines a list of not allowed values for this field.</p></td></tr>
+<tr>
+<td><p id="fractionDigits"><code>fractionDigits</code></p></td><td><p>Defines the maximum number of decimal allowed for this field.</p></td></tr>
+<tr>
+<td><p id="pattern"><code>pattern</code></p></td><td><p>Defines the regular expression pattern that must be match by the field&#39;s value.</p></td></tr>
+<tr>
+<td><p id="totalDigits"><code>totalDigits</code></p></td><td><p>Defines the maximum number of digits allowed for this integer or decimal field. </p></td></tr>
+<tr>
+<td><p id="boundaryMinInclusiveStatic"><code>boundaryMinInclusiveStatic</code></p></td><td><p>Defines the minimum value allowed (including the minimum value) for this field. </p></td></tr>
+<tr>
+<td><p id="boundaryMinExclusiveStatic"><code>boundaryMinExclusiveStatic</code></p></td><td><p>Defines the minimum value allowed (excluding the minimum value) for this field. </p></td></tr>
+<tr>
+<td><p id="boundaryMinInclusiveDynamic"><code>boundaryMinInclusiveDynamic</code></p></td><td><p>Defines a field that provide the minimum value allowed (including the minimum value) for this field. </p></td></tr>
+<tr>
+<td><p id="boundaryMinExclusiveDynamic"><code>boundaryMinExclusiveDynamic</code></p></td><td><p>Defines a field that provide the minimum value allowed (excluding the minimum value) for this field. </p></td></tr>
+<tr>
+<td><p id="boundaryMaxInclusiveStatic"><code>boundaryMaxInclusiveStatic</code></p></td><td><p>Defines the maximum value allowed (including maximum value) for this field. </p></td></tr>
+<tr>
+<td><p id="boundaryMaxExclusiveStatic"><code>boundaryMaxExclusiveStatic</code></p></td><td><p>Defines the maximum value allowed (excluding the maximum value) for this field. </p></td></tr>
+<tr>
+<td><p id="boundaryMaxInclusiveDynamic"><code>boundaryMaxInclusiveDynamic</code></p></td><td><p>Defines a field that provide the maximum value allowed (including the maximum value) for this field. </p></td></tr>
+<tr>
+<td><p id="boundaryMaxExclusiveDynamic"><code>boundaryMaxExclusiveDynamic</code></p></td><td><p>Defines a field that provide the maximum value allowed (excluding the maximum value) for this field. </p></td></tr>
+</tbody>
+</table>
+<h2 id="id7">
+Content</h2>
+<p>This section can be deactivated on demand with the <a href="../data_services/dataservices_rest_v1.html#includeContent"><code>includeContent</code></a> parameter (activated by default). It provides the content of the record values, dataset, or field of one of the content fields for an authorized user. It also has additional information, including labels, technical information, URLs... </p><p>The content is represented by a JSON <code>Object</code> with a property set for each sub-node. </p><h3 id="nodeValue">
+Node value</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="content"><code>content</code></p></td><td><p><a href="#simpleTypes">Content of simple type</a></p><p><a href="#groupsAndLists">Content of group and list</a></p></td><td><p>Contains the node value. Available for all nodes except for <code>association</code> and <code>selection</code>. However, their content can be retrieved by invoking the URL provided in their <code>details</code> property. </p></td><td><p><code>No</code></p></td></tr>
+<tr>
+<td><p id="details"><code>details</code></p></td><td><p><code>String</code></p><p>corresponding to an absolute REST resource URL.</p></td><td><p>Returns the node details when invoked.</p><p>The response type depends on the meta type.</p><ul>
+<li><p><code>foreignKey</code>: target record (available on table, record and field operations). </p></li><li><p><code>association</code>: target table containing the associated records (available on table and record operations). </p></li><li><p><code>selection</code>: target table containing the associated records (available on table and record operations). </p></li><li><p><code>group</code>: target dataset group node (available on dataset tree operation). </p></li><li><p><code>table</code>: target table (available on dataset tree operation). </p></li></ul>
+<p>Example:</p><p><code>http://.../BReference/dataset/root/table/pk/associationField</code></p></td><td><p><code>No</code></p></td></tr>
+<tr>
+<td><p id="label"><code>label</code></p></td><td><p><code>String</code></p></td><td><p>Contains the foreign key or enumeration label in the current locale. </p><p>The default label is returned if the current locale is not supported. </p></td><td><p><code>No</code></p></td></tr>
+<tr>
+<td><p id="inheritanceMode"><code>inheritanceMode</code></p></td><td><p><code>String</code></p></td><td><p> Contains the node&#39;s inheritance state, considering only dataset inheritance. <code>inheritedFieldMode</code> and <code>inheritanceMode</code> properties cannot be both defined on the same node. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#inheritedFieldMode"><code>inheritedFieldMode</code></a></li><li><a href="../references/inheritance.html#dataSetInheritanceRecords">Record lookup mechanism</a></li></ul>
+</div>
+</td><td><p><code>No</code></p></td></tr>
+<tr>
+<td><p id="inheritedFieldMode"><code>inheritedFieldMode</code></p></td><td><p><code>String</code></p></td><td><p> Contains the node&#39;s field inheritance state, considering dataset and field inheritance. When both inheritances are used, field inheritance has priority over the dataset one. <code>inheritedFieldMode</code> and <code>inheritanceMode</code> properties cannot be both defined on the same node. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#inheritanceMode"><code>inheritanceMode</code></a></li><li><a href="../references/inheritance.html#fieldInheritanceLookup">Value lookup mechanism</a></li></ul>
+</div>
+</td><td><p><code>No</code></p></td></tr>
+<tr>
+<td><p id="selector"><code>selector</code></p></td><td><p><code>String</code></p><p>corresponding to an absolute URL.</p></td><td><p>Contains the appropriate URL for <a href="#selector">selector</a> operation. </p><p>Example:</p><p><code>http://.../BReference/dataset/root/table/pk/enumField?selector=true</code></p></td><td><p><code>No</code></p></td></tr>
+<tr>
+<td><p id="validation"><code>validation</code></p></td><td><p><code>Array</code></p></td><td><p>Contains the validation report that concerns the current node context.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="#validationReport">Validation report</a></li></ul>
+</div>
+</td><td><p><code>No</code></p></td></tr>
+</tbody>
+</table>
+<h3 id="simpleTypes">
+Content of simple type</h3>
+<p>A simple field value is stored in a JSON <code>Object</code> and its content is the value of the <code>content</code> property. </p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/json_common.html#simpleTypes"> Simple types formats </a></li></ul>
+</div>
+<h3 id="groupsAndLists">
+Content of group and list</h3>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>XML Schema</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Examples</strong></p></th><th><p><strong>Meta type</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>Group</p><p><code>xs:complexType</code></p></td><td><p><code>Object</code></p><p>Contains a property per sub-node.</p></td><td><p>Example for a simple-occurrence group.</p><pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "road": {
+    "content": "11 rue scribe"
+  },
+  "zipcode": {
+    "content": "75009"
+  },
+  "country": {
+    "content": "France"
+  }
+}</pre>
+</td><td><p><code>group</code></p></td></tr>
+<tr>
+<td><p>List</p><p><code>maxOccurs &gt; 1</code></p></td><td><p><code>Array</code></p><p>Contains an array of all field occurrences represented by a JSON <code>Object</code>. </p><p>Each object is represented as a <a href="#nodeValue">node value</a>. </p></td><td><p>Example for a multi-occurrence field of <code>xs:int</code> type. </p><pre class="brush: json; toolbar: false; gutter: false;">
+[
+  {
+    "content": 0
+  },
+  {
+    "content": 1
+  },
+  {
+    "content": 2
+  },
+  {
+    "content": 3
+  }
+]</pre>
+<p>Example for a multi-occurrence group.</p><pre class="brush: json; toolbar: false; gutter: false;">
+[
+  {
+    "content": {
+      "road": {
+        "content": "11 rue scribe"
+      },
+      "zipcode": {
+        "content": "75009"
+      },
+      "country": {
+        "content": "France"
+      }
+    }
+  },
+  {
+    "content": {
+      "road": {
+        "content": "711 Atlantic Ave"
+      },
+      "zipcode": {
+        "content": "MA 02111"
+      },
+      "country": {
+        "content": "United States"
+      }
+    }
+  }
+]</pre>
+</td><td><p><a href="../data_services/json_common.html#simpleTypes">Meta of simple type</a>, </p><p>or</p><p><code>group</code></p></td></tr>
+</tbody>
+</table>
+<h3 id="selectorResponse">
+Selector</h3>
+<p>By invoking the URL represented by the <code>selector</code> property on a field that provides an enumeration, it returns a JSON <code>Object</code> containing the following properties: </p><ul>
+<li><p><code>rows</code> corresponding to an <code>Array</code> of JSON <code>Object</code> where each one contains two entries: the returned <code>content</code> that can be persisted and the corresponding <code>label</code>. The list of established possible items depends on the current context. </p></li><li><p>(Optional) <code>pagination</code> containing <a href="../data_services/json_common.html#pagination">pagination</a> data (activated by default). </p></li></ul>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  "rows": [
+    {
+      "content": "F",
+      "label": "feminine"
+    },
+    {
+      "content": "M",
+      "label": "masculine"
+    }
+  ],
+  "pagination": {
+    "nextPage": null
+  }
+}</pre>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../data_services/dataservices_rest_v1.html#includeSelector"> includeSelector </a></li></ul>
+</div>
+<h3 id="technicals">
+Technical data</h3>
+<p>Each returned record is completed with the properties corresponding to its technical data, containing: </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th><p><strong>JSON property</strong></p></th><th><p><strong>JSON format</strong></p></th><th><p><strong>Description</strong></p></th><th><p><strong>Required</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p id="creationDate"><code>creationDate</code></p></td><td><p><code>String</code></p></td><td><p>Creation date</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="creationUser"><code>creationUser</code></p></td><td><p><code>String</code></p></td><td><p>Creation user&#39;s identifier.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="lastUpdateDate"><code>lastUpdateDate</code></p></td><td><p><code>String</code></p></td><td><p>Last update date.</p></td><td><p>Yes</p></td></tr>
+<tr>
+<td><p id="lastUpdateUser"><code>lastUpdateUser</code></p></td><td><p><code>String</code></p></td><td><p>Last update user&#39;s identifier.</p></td><td><p>Yes</p></td></tr>
+</tbody>
+</table>
+<pre class="brush: json; toolbar: false; gutter: false;">
+{
+  ...
+  "creationDate": "2015-12-24T19:00:53.158",
+  "creationUser": "admin",
+  "lastUpdateDate": "2015-12-25T00:00:00.001",
+  "lastUpdateUser": "admin",
+  ...
+}</pre>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">TIBCO EBX® Documentation</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

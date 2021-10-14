@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for event broker, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.eventbroker.manager.EvbPaths">
+					<nodes prefix="" root="/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:extensions class="com.orchestranetworks.eventbroker.manager.EvbSchemaExtension" />
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.eventBroker" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="evbTopic" maxOccurs="unbounded" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.evbTopic" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/id</primaryKeys>
+								<defaultLabel osd:class="com.orchestranetworks.eventbroker.manager.EvbUITopicLabel"></defaultLabel>
+								<mayCreateOverwriting>never</mayCreateOverwriting>
+								<mayCreateOcculting>never</mayCreateOcculting>
+								<mayCreateDeriving>never</mayCreateDeriving>
+								<mayDuplicate>never</mayDuplicate>
+								<mayDelete>never</mayDelete>
+							</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbTopic.id"/>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="documentation" type="DocumentationType" osd:access="RW">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbTopic.documentation"/>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="status" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbTopic.status"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.eventbroker.manager.EvbStatusEnumerationConstraint"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="isRegistered" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbTopic.isRegistered"/>
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.eventbroker.manager.EvbTopicIsRegisteredValueFunction"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="subscribers" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbTopic.subscribers"/>
+									<xs:appinfo>
+										<osd:association>
+											<linkTable>
+												<table>/root/evbLink</table>
+												<fieldToSource>./evbTopic</fieldToSource>
+												<fieldToTarget>./evbSubscriber</fieldToTarget>
+											</linkTable>
+										</osd:association>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="evbSubscriber" maxOccurs="unbounded" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.evbSubscriber" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/id</primaryKeys>
+								<defaultLabel osd:class="com.orchestranetworks.eventbroker.manager.EvbUISubscriberLabel"></defaultLabel>
+								<mayCreateOverwriting>never</mayCreateOverwriting>
+								<mayCreateOcculting>never</mayCreateOcculting>
+								<mayCreateDeriving>never</mayCreateDeriving>
+								<mayDuplicate>never</mayDuplicate>
+								<mayDelete>never</mayDelete>
+							</osd:table>
+							<osd:otherFacets>
+								<osd:constraint class="com.orchestranetworks.eventbroker.manager.EvbUISubscriberConstraint"/>
+							</osd:otherFacets>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.id"/>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="documentation" type="DocumentationType" osd:access="RW">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.documentation"/>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="moduleName" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.moduleName"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.eventbroker.manager.EvbModuleEnumerationConstraint"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="status" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.status"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.eventbroker.manager.EvbStatusEnumerationConstraint"/>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="isRegistered" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.isRegistered"/>
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.eventbroker.manager.EvbSubscriberIsRegisteredValueFunction"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="hasMatcher" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.hasMatcher"/>
+									<xs:appinfo>
+										<osd:function class="com.orchestranetworks.eventbroker.manager.EvbSubscriberHasMatcherValueFunction"/>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="className" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.className"/>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="topics" type="xs:string" minOccurs="0" maxOccurs="0">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbSubscriber.topics"/>
+									<xs:appinfo>
+										<osd:association>
+											<linkTable>
+												<table>/root/evbLink</table>
+												<fieldToSource>./evbSubscriber</fieldToSource>
+												<fieldToTarget>./evbTopic</fieldToTarget>
+											</linkTable>
+										</osd:association>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="evbLink" maxOccurs="unbounded" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.evbLink" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/evbTopic /evbSubscriber</primaryKeys>
+								<mayCreateOverwriting>never</mayCreateOverwriting>
+								<mayCreateOcculting>never</mayCreateOcculting>
+								<mayCreateDeriving>never</mayCreateDeriving>
+								<mayDuplicate>never</mayDuplicate>
+								<mayDelete>never</mayDelete>
+							</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="evbTopic" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbLink.evbTopic"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/evbTopic</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="evbSubscriber" type="xs:string">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.evbLink.evbSubscriber"/>
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:tableRef>
+												<tablePath>/root/evbSubscriber</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--
+		******************************* Complex type ****************************
+	-->
+	<xs:complexType name="DocumentationType" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescriptionOnCurrentLocale" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="localizedDocumentations" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations"/>
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.locale"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="label" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.label"/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="description" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.description"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+		******************************* UI Services ****************************
+	-->
+	<xs:complexType name="ActivateTopic">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/evbTopic{+}" resourcePath="/evbServiceDispatcher?command=activateTopic"/>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.ActivateTopic" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DeactivateTopic">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/evbTopic{+}" resourcePath="/evbServiceDispatcher?command=deactivateTopic"/>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.DeactivateTopic" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DeleteTopic">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.eventbroker.manager.DeleteTopicServicePermission" activatedForPaths="/root/evbTopic{+}" resourcePath="/evbServiceDispatcher?command=deleteTopic"/>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.DeleteTopic" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="ActivateSubscriber">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/evbSubscriber{+}" resourcePath="/evbServiceDispatcher?command=activateSubscriber"/>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.ActivateSubscriber" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DeactivateSubscriber">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service activatedForPaths="/root/evbSubscriber{+}" resourcePath="/evbServiceDispatcher?command=deactivateSubscriber"/>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.DeactivateSubscriber" />
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="DeleteSubscriber">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:service class="com.orchestranetworks.eventbroker.manager.DeleteSubscriberServicePermission" activatedForPaths="/root/evbSubscriber{+}" resourcePath="/evbServiceDispatcher?command=deleteSubscriber"/>
+			</xs:appinfo>
+			<xs:documentation osd:id="complexType.DeleteSubscriber" />
+		</xs:annotation>
+	</xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Utilisation de l&#39;interface utilisateur de la section Workflow de donn&eacute;es</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="workflow_ui" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Workflows de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_dataworkflow/userdataworkflow_ui.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Workflows de données</span></div>
+<h1>
+Utilisation de l&#39;interface utilisateur de la section Workflow de donn&eacute;es</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#access">Navigation dans l&#39;interface utilisateur</a></li><li class="toc1"><a href="#id2">R&egrave;gles de navigation</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">Corbeille de bons de travail</a></li><li class="toc2"><a href="#id2s2">Lanceurs de workflow</a></li></ul>
+</li><li class="toc1"><a href="#tableViews">Vues personnalis&eacute;es</a></li><li class="toc1"><a href="#specificColumns">Colonnes sp&eacute;cifiques</a></li><li class="toc1"><a href="#id5">Filtrage d&#39;items dans les vues</a></li><li class="toc1"><a href="#graphical">Vue graphique d&#39;un workflow de donn&eacute;es</a></li></ul>
+</div>
+<h2 id="access">
+Navigation dans l&#39;interface utilisateur</h2>
+<p>La fonctionnalit&eacute; workflows de donn&eacute;es se trouve dans la section <strong>Workflows de donn&eacute;es</strong> dans l&#39;interface utilisateur de TIBCO EBX&reg;.</p><p><img alt="/userdataworkflow_area.png" src="../resources/images/user_dataworkflow/userdataworkflow_area.png"></img></p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Seuls les utilisateurs autoris&eacute;s peuvent acc&eacute;der &agrave; cet &eacute;cran via la &#39;Perspective avanc&eacute;e&#39; ou via une perspective sp&eacute;cifique. Seuls les utilisateurs autoris&eacute;s peuvent acc&eacute;der &agrave; ces interfaces sp&eacute;cifiques. </p></div>
+<p>Le panneau de navigation est compos&eacute; de plusieurs items. Ces items sont visibles en fonction des permissions globales associ&eacute;es. Les diff&eacute;rents items sont :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm" id="access_inbox"><p>Boîte de r&eacute;ception des bons de travail</p></td><td class="ebx_definitionListDefinition"><p>Tous les bons de travail qui vous sont allou&eacute;s ou propos&eacute;s, pour lesquels vous devez effectuer les actions sp&eacute;cifi&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Lanceurs de workflow</p></td><td class="ebx_definitionListDefinition"><p>Liste des publications de workflow &agrave; partir desquelles vous pouvez lancer des workflows de donn&eacute;es, en fonction de vos permissions.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Monitoring</p></td><td class="ebx_definitionListDefinition"><p>Vues pour le monitoring des workflows de donn&eacute;es en cours pour lesquels vous avez les permissions n&eacute;cessaires de visualisation.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Publications</p></td><td class="ebx_definitionListDefinition"><p>Publications pour lesquelles vous avez les permissions n&eacute;cessaires de visualisation. Si vous disposez de permissions d&#39;administration suppl&eacute;mentaires, vous pouvez &eacute;galement d&eacute;sactiver la possibilit&eacute; de lancer les workflows de donn&eacute;es depuis une publication &agrave; partir de cette vue.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Workflows actifs</p></td><td class="ebx_definitionListDefinition"><p>Workflows de donn&eacute;es, en cours d&#39;ex&eacute;cution, pour lesquels vous avez les permissions n&eacute;cessaires de visualisation. Si vous disposez de permissions d&#39;administration suppl&eacute;mentaires, vous pouvez &eacute;galement effectuer des actions d&#39;administration &agrave; partir de cette vue, comme par exemple red&eacute;marrer une &eacute;tape, ou terminer un workflow en cours.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Bons de travail</p></td><td class="ebx_definitionListDefinition"><p>Bons de travail pour lesquels vous avez les permissions n&eacute;cessaires de visualisation. Si vous disposez de permissions d&#39;administration suppl&eacute;mentaires, vous pouvez &eacute;galement effectuer des actions d&#39;administration &agrave; partir de cette vue, comme par exemple allouer les bons de travail aux utilisateurs ou r&ocirc;les.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Workflows termin&eacute;s</p></td><td class="ebx_definitionListDefinition"><p>Workflows de donn&eacute;es, dont l&#39;ex&eacute;cution est termin&eacute;e, pour lesquels vous avez les permissions n&eacute;cessaires de visualisation. Si vous disposez de permissions d&#39;administration suppl&eacute;mentaires, vous pouvez &eacute;galement nettoyer les workflows termin&eacute;s &agrave; partir de cette vue.</p></td></tr>
+</table>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p><p>Chaque section est accessible par composant web, par exemple pour int&eacute;gration avec un portail, ou programmatiquement par la classe <code>ServiceKey</code> dans l&#39;API Java.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../references/manager_component_ref.html">Using TIBCO EBX&reg; as a Web Component</a></li><li><a target="_blank" href="../Java_API/com/orchestranetworks/service/ServiceKey.html"><code>ServiceKey</code></a></li></ul>
+</div>
+</p></div>
+<h2 id="id2">
+R&egrave;gles de navigation</h2>
+<h3 id="id2s1">
+Corbeille de bons de travail</h3>
+<p>Par d&eacute;faut, une fois qu&#39;un bon de travail est ex&eacute;cut&eacute;, la corbeille de bons de travail est affich&eacute;e.</p><p>Ce comportement peut &ecirc;tre modifi&eacute; en fonction de la strat&eacute;gie d&#39;avancement de l&#39;&eacute;tape suivante. Cette strat&eacute;gie permet d&#39;enchaîner plusieurs &eacute;tapes &agrave; la suite sans repasser par la corbeille de t&acirc;ches.</p><p>Voir <a href="../user_workflowmodel/userworkflowmodel_createimplement.html#progressStrategy">la strat&eacute;gie d&#39;avancement d&#39;une &eacute;tape de workflow</a> dans la mod&eacute;lisation de workflow.</p><h3 id="id2s2">
+Lanceurs de workflow</h3>
+<p>Par d&eacute;faut, une fois qu&#39;un workflow est lanc&eacute;, la table des lanceurs de workflow est affich&eacute;e.</p><p>Ce comportement est modifiable dans la configuration du mod&egrave;le&nbsp;:&nbsp;il est possible d&#39;ouvrir directement la premi&egrave;re &eacute;tape sans afficher la table des lanceurs de workflow.</p><p>Voir <a href="../user_workflowmodel/userworkflowmodel_actions.html#synchronousLaunch">l&#39;ouverture automatique de la premi&egrave;re &eacute;tape d&#39;un workflow</a> dans la mod&eacute;lisation de workflow.</p><h2 id="tableViews">
+Vues personnalis&eacute;es</h2>
+<p>Il est possible de d&eacute;finir des vues sur les diff&eacute;rentes tables du workflow et de b&eacute;n&eacute;ficier de tous les m&eacute;canismes associ&eacute;s (dont la publication).</p><p>Les permissions pour cr&eacute;er et g&eacute;rer les vues des tables de workflows sont les m&ecirc;mes que les permissions des vues de tables de donn&eacute;es. Il peut s&#39;av&eacute;rer n&eacute;cessaire de modifier les permissions dans la section &#39;Administration&#39; pour b&eacute;n&eacute;ficier de cette fonctionnalit&eacute;, en s&eacute;lectionnant <em>Gestion des workflows &gt; Workflows</em>.</p><p>Voir les <a href="../user_data/userdata_viewing.html#custom">Vues</a> pour plus d&#39;informations.</p><h2 id="specificColumns">
+Colonnes sp&eacute;cifiques</h2>
+<p>Par d&eacute;faut, les colonnes sp&eacute;cifiques sont masqu&eacute;es dans les vues qui peuvent en b&eacute;n&eacute;ficier (corbeille, monitoring des bons de travail, monitoring des workflows actifs et workflows termin&eacute;s). </p><p> Il faut cr&eacute;er une vue personnalis&eacute;e et l&#39;appliquer pour afficher les colonnes sp&eacute;cifiques souhait&eacute;es. Pour chaque bon de travail ou workflow, la correspondance d&eacute;finie dans le mod&egrave;le de workflow associ&eacute; est alors appliqu&eacute;e. Si une expression est d&eacute;finie pour une colonne et contient des variables du contexte de donn&eacute;es, ces variables sont &eacute;valu&eacute;es lors de son affichage. Si une expression contient des expressions natives qui d&eacute;pendent de la locale, l&#39;expression est &eacute;valu&eacute;e dans la locale par d&eacute;faut.</p><h2 id="id5">
+Filtrage d&#39;items dans les vues</h2>
+<p>Dans certaines vues, comme la &#39;Boîte de r&eacute;ception&#39; des bons de travail, vous pouvez filtrer les lignes affich&eacute;es dans les tables en fonction de leur &eacute;tat. Dans ces vues, un menu est disponible &agrave; cet effet pour s&eacute;lectionner l&#39;&eacute;tat correspondant au filtre attendu.</p><p><img alt="/userdataworkflow_filter.png" src="../resources/images/user_dataworkflow/userdataworkflow_filter.png"></img></p><h2 id="graphical">
+Vue graphique d&#39;un workflow de donn&eacute;es</h2>
+<p>En tant qu&#39;utilisateur avec un bon de travail &agrave; effectuer, ou en tant que superviseur ou administrateur de workflow de donn&eacute;es, vous pouvez suivre l&#39;avancement ou l&#39;historique d&#39;ex&eacute;cution d&#39;un workflow de donn&eacute;es. Pour cela, cliquer sur le bouton &#39;Afficher&#39; <img alt="/ebx_open.png" src="../resources/images/icons/ebx_open.png" class="ebx_appButton"></img> dans la colonne &#39;Workflow de donn&eacute;es&#39; des tables de l&#39;interface de workflows de donn&eacute;es. Ce bouton ouvre une pop-up qui affiche une vue interactive graphique de l&#39;ex&eacute;cution du workflow de donn&eacute;es. Dans cette vue, vous pouvez suivre l&#39;avancement global de l&#39;ex&eacute;cution, et s&eacute;lectionner une &eacute;tape individuelle afin de consulter le d&eacute;tail de ses informations.</p><p>Si des &eacute;tapes ont &eacute;t&eacute; d&eacute;finies comme masqu&eacute;es dans la mod&eacute;lisation de workflow, elles sont automatiquement masqu&eacute;es dans la vue graphique de workflow pour les utilisateurs non-administrateurs (non-administrateurs built-in et non-administrateurs de workflow). Un bouton est disponible pour afficher les &eacute;tapes masqu&eacute;es. Le choix des utilisateurs (montrer ou masquer les &eacute;tapes) est sauvegard&eacute; par utilisateur, par publication, pendant la session utilisateur.</p><p>Pour les t&acirc;ches utilisateur dans le nouveau mode (un seul bon de travail), les informations principales &agrave; propos du bon de travail unique sont directement affich&eacute;es dans la vue graphique de workflow, si elles sont disponibles&nbsp;:&nbsp; l&#39;avatar de l&#39;utilisateur associ&eacute; au bon de travail et la d&eacute;cison qui a &eacute;t&eacute; prise pour le bon de travail (accept&eacute; ou rejet&eacute;).</p><p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Workflows de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

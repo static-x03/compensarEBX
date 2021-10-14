@@ -1,0 +1,27 @@
+{
+  "parent": "http://.../BooksByAuthors/members",
+  "content": [
+    {
+      "label": "Emile Zola",
+      "member": "http://.../BooksByAuthors/members/author0",
+      ...
+    },
+    {
+      "label": "Honoré de Balzac",
+      "member": "http://.../BooksByAuthors/members/author1",
+      ...
+    },
+    {
+      "label": "Jules Verne",
+      "member": "http://.../BooksByAuthors/members/author4",
+      ...
+    },
+    ...
+  ],
+  "pagination": {
+    "firstPage": null,
+    "previousPage": null,
+    "nextPage": "http://.../BooksByAuthors/members?pageAction=next&amp;pageCursor=author4",
+    "lastPage": "http://.../BooksByAuthors/members?pageAction=last"
+  }
+}

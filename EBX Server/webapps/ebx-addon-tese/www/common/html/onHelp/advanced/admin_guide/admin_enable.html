@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Information Search Add-on Documentation - Configuring search</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="admin-enable" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Information Search Add-on Documentation &gt; Administrator Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=admin_guide/admin_enable.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Information Search Add-on Documentation &gt; Administrator Guide</span></div>
+<h1 id="admin-enable-top">
+Configuring search</h1>
+<p>When configuring a targeted search, you create records that:</p><ul>
+<li><p>register searchable datasets with the add-on.</p></li><li><p>set permissions for profiles that determine the datasets targeted when users run searches. The permissions you set in the add-on do not conflict with existing EBX® permissions. A targeted search only returns results from the tables and fields that users have sufficient permission to view. </p></li></ul>
+<p>After you complete configuration, users can perform a targeted search via the main EBX® menu. The scope of a targeted search is always the same. This differs from the EBX® quick search feature that returns data from the location where a search is run. For example, datasets A, B, and C are registered with the add-on and permissions link the Steward profile with A and C. It makes no difference as to the users current dataset location. When a user in the Steward profile runs a targeted search, they will get results only from datasets A and C. </p><p>To configure targeted search:</p><ol>
+<li><p>Register searchable datasets with the add-on:</p><p><img alt="/config-search-1.png" src="./resources/images/config-search-1.png"></img></p><ol>
+<li><p>Open the <strong>Administration</strong> panel and navigate to <em>Data quality &amp; analytics &gt; TIBCO EBX® Information Search Add-on &gt; Searchable datasets</em>.</p></li><li><p>Select the &#39;+&#39; icon to create a new record. Empty fields display.</p></li><li><p>Enter a unique identifier in the <strong>Code</strong> field.</p></li><li><p>Use the <strong>Dataspace</strong> and <strong>Dataset</strong> menus to specify the dataset you want to make available for targeted searches. </p></li><li><p>Optionally, enter text in the <strong>Custom title</strong> field to add a title that displays at the top of the search page.</p></li><li><p>Use the <strong>Search template</strong> menu to specify the template used when searching this dataset. The list of available templates depends on search templates configured for the data model. At a minimum the <strong>Default search template</strong> is available which uses default search strategies based on field data types. See the EBX® documentation for more information about search strategies and templates. </p><p>The following shows a completed record.</p><p><img alt="/config-search-2.png" src="./resources/images/config-search-2.png"></img></p></li></ol>
+</li><li><p>Set permissions to determine search scope:</p><p><img alt="/config-search-3.png" src="./resources/images/config-search-3.png"></img></p><ol>
+<li><p>Select the <strong>Permissions</strong> table.</p></li><li><p>Select the &#39;+&#39; icon to create a new record. Empty fields display. As described in the next steps, this record is used to link a user profile with one or more datasets that set the scope for a targeted search.</p></li><li><p>Use the <strong>Profile</strong> menu to specify the desired user profile or role. When this profile runs a targeted search, it will include the datasets you specify in the following step.</p></li><li><p>Add datasets using the <strong>Searchable datasets</strong> group:</p><p><img alt="/config-search-4.png" src="./resources/images/config-search-4.png"></img></p><ol>
+<li><p>Click the &#39;+&#39; icon to include an additional dataset.</p></li><li><p>Use the drop-down to select the desired dataset.</p></li></ol>
+</li></ol>
+<p>After saving and closing, the targeted search icon will now be available for the user, or users included in the profile.</p><p><img alt="/global_search.png" src="./resources/images/global_search.png"></img></p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

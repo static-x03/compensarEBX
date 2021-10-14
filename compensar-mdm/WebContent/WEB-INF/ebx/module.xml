@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_2.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:ebx-schemas:module_2.4 http://schema.orchestranetworks.com/module_2.4.xsd">
+	<name>compensar-mdm</name>
+	<publicPath>compensar-mdm</publicPath>
+	
+	<services>
+		<!-- Built-in EBX services extensions-->
+	</services>
+
+	<beans>
+		<bean className="com.orchestranetworks.ps.scripttask.SetContextValueScriptTask">
+            <documentation xml:lang="en-US">
+                <label>Set context value</label>
+                <description>
+                    Set a value to a context variable
+                </description>
+            </documentation>
+            <properties>
+                <property name="inputValue" input="true">
+                    <documentation xml:lang="en-US">
+                        <label>Input Value</label>
+                        <description>
+                           Value to set in the context
+                        </description>
+                    </documentation>
+                </property>
+                <property name="outputValue" output="true">
+                    <documentation xml:lang="en-US">
+                        <label>Output Value</label>
+                        <description>
+                           Output value to set it to
+                        </description>
+                    </documentation>
+                </property>
+            </properties>
+        </bean>
+		<bean className="com.orchestranetworks.ps.scripttask.SetValueScriptTask">
+		    <documentation xml:lang="en-US">
+				<label>Set value</label>
+				<description>
+				    Set a value to a field
+				</description>
+		    </documentation>
+		    <properties>
+				<property name="dataspace" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Data space</label>
+					<description>
+					   The data space where the value to set is located
+					</description>
+				    </documentation>
+				</property>
+				<property name="dataset" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Data set</label>
+					<description>
+					    The data set where the value to set is located
+					</description>
+				    </documentation>
+				</property>
+				<property name="xpath" input="true">
+				    <documentation xml:lang="en-US">
+					 <label>XPath</label>
+					<description>
+					   XPath to the record where the value to set is located
+					</description>
+				    </documentation>
+				</property>
+				<property name="path" input="true">
+					<documentation xml:lang="en-US">
+					<label>Path</label>
+					<description>
+					   Path to the field to set
+					</description>
+				    </documentation>
+				</property>
+				<property name="value" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Value</label>
+					<description>
+					   Value to set in the selected field
+					</description>
+				    </documentation>
+				</property>
+		    </properties>
+		</bean>
+		<bean className="com.orchestranetworks.ps.scripttask.SetContextFromRecordScriptTask">
+            <documentation xml:lang="en-US">
+                <label>Set Context from Record value</label>
+                <description>
+                    Extract a value from a record field and assign it to a Data Context output
+                </description>
+            </documentation>
+            <properties>
+                <property name="dataspace" input="true">
+                    <documentation xml:lang="en-US">
+                        <label>Data space</label>
+                        <description>
+                           The data space where the value to set is located
+                        </description>
+                    </documentation>
+                </property>
+                <property name="dataset" input="true">
+                    <documentation xml:lang="en-US">
+                        <label>Data set</label>
+                        <description>
+                            The data set where the value to set is located
+                        </description>
+                    </documentation>
+                </property>
+                <property name="record" input="true">
+                    <documentation xml:lang="en-US">
+                         <label>Record XPath</label>
+                        <description>
+                           XPath to the record containing the value to extract
+                        </description>
+                    </documentation>
+                </property>
+                <property name="field" input="true">
+                    <documentation xml:lang="en-US">
+                         <label>XPath to Field within Record</label>
+                        <description>
+                           XPath within the record to the field containing the value
+                        </description>
+                    </documentation>
+                </property>
+                <property name="outputValue" output="true">
+                    <documentation xml:lang="en-US">
+                        <label>Output Value</label>
+                        <description>
+                           Value to set in the selected field
+                        </description>
+                    </documentation>
+                </property>
+            </properties>
+        </bean>
+		<bean className="com.orchestranetworks.ps.scripttask.LaunchWorkflowScriptTask">
+		    <documentation xml:lang="en-US">
+				<label>Launch a Workflow</label>
+				<description>
+				    Create a process instance of a given publication
+				</description>
+		    </documentation>
+		    <properties>
+				<property name="workflow" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Workflow publication</label>
+					<description>
+					   Workflow publication to launch
+					</description>
+				    </documentation>
+				</property>
+		    </properties>
+		</bean>
+		<bean className="com.orchestranetworks.ps.condition.PredicateCondition">
+		    <documentation xml:lang="en-US">
+				<label>Predicate is true?</label>
+				<description>
+				    Test if a XPath predicate is true
+				</description>
+		    </documentation>
+		    <properties>
+				<property name="dataspace" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Data space</label>
+					<description>
+					   The data space where to apply the predicate
+					</description>
+				    </documentation>
+				</property>
+				<property name="dataset" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Data set</label>
+					<description>
+					    The data where to apply the predicate
+					</description>
+				    </documentation>
+				</property>
+				<property name="xpath" input="true">
+				    <documentation xml:lang="en-US">
+					 <label>XPath</label>
+					<description>
+					   XPath to the record where to apply the predicate
+					</description>
+				    </documentation>
+				</property>
+				<property name="predicate" input="true">
+					<documentation xml:lang="en-US">
+					<label>Predicate</label>
+					<description>
+						Predicate to test
+					</description>
+				    </documentation>
+				</property>
+		    </properties>
+		</bean>
+		<bean className="com.orchestranetworks.ps.condition.DoesDataSpaceContainChangesCondition">
+		    <documentation xml:lang="en-US">
+				<label>Does Data Space Contain Certain Changes?</label>
+				<description>
+				    This is a condition that checks if any changes have occurred in a data space. Can check at either a data set, table, or record level.
+				</description>
+		    </documentation>
+		    <properties>
+				<property name="dataSpace" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Data space</label>
+					<description>
+					   The data space to be checked
+					</description>
+				    </documentation>
+				</property>
+				<property name="dataSet" input="true">
+				    <documentation xml:lang="en-US">
+					<label>Data set</label>
+					<description>
+					    The data set to be checked
+					</description>
+				    </documentation>
+				</property>
+				<property name="tableXPath" input="true">
+				    <documentation xml:lang="en-US">
+					 <label>Table XPath</label>
+					<description>
+					   the table to be checked (optional)
+					</description>
+				    </documentation>
+				</property>
+				<property name="recordXPath" input="true">
+					<documentation xml:lang="en-US">
+					<label>Record XPath</label>
+					<description>
+						the record to be checked (optional)
+					</description>
+				    </documentation>
+				</property>
+		    </properties>
+		</bean>
+		<bean className="com.orchestranetworks.ps.project.actionpermissions.ProjectWorkflowActionPermissions">
+		</bean>
+		<bean className="com.orchestranetworks.ps.project.workflow.trigger.ProjectWorkflowTrigger">
+		</bean>
+		<bean className="com.orchestranetworks.ps.workflow.trigger.BaseWorkflowTrigger">
+		</bean>
+	</beans>
+
+</module>
+

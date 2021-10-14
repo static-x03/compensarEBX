@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Data mapping domain</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_data_mapping_group_main" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_data_mapping_group.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; Reference Guide &gt; Administration Area</span></div>
+<h1>
+Data mapping domain</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_data_mapping_group_top">Function</a><ul class="toc2">
+<li class="toc2"><a href="#TableMapping1337_61">Table mapping</a></li><li class="toc2"><a href="#FieldMapping4af_62">Field mapping</a></li><li class="toc2"><a href="#ref_data_mapping_table_mapping_preference">Table mapping preference</a></li><li class="toc2"><a href="#ref_data_mapping_field_mapping_preference">Field mapping preference</a></li><li class="toc2"><a href="#FieldMappingTransformation18ec_63">Field mapping transformation</a></li><li class="toc2"><a href="#AdditionalFieldMapping1fce_64">Additional field mapping</a></li><li class="toc2"><a href="#AdditionalFieldMappingTransformation1d66_65">Additional field mapping transformation</a></li></ul>
+</li></ul>
+</div>
+<h2 id="ref_data_mapping_group_top">
+Function</h2>
+<p>The <strong>Data mapping</strong> domain contains the data mapping configuration for tables and fields.</p><h3 id="TableMapping1337_61">
+Table mapping</h3>
+<p>The data mapping configuration between the tables.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Source table</p></td><td valign="top"><p>Reference to the table used as the source for the data flow.</p></td></tr>
+<tr>
+<td valign="top"><p>Target table</p></td><td valign="top"><p>Reference to the table used as the target for the data flow.</p></td></tr>
+<tr>
+<td valign="top"><p>Source application</p></td><td valign="top"><p>Used to sort the records based on the application name and type. This data is computed automatically from the source table value.</p></td></tr>
+<tr>
+<td valign="top"><p>Java class</p></td><td valign="top"><p>This property specifies the Java class used to validate data on import, or transfer. This class ensures that only records that meet specific conditions are imported, or transferred. When used in a bidirectional data transfer this class applies when data moves from the table specified in the &#39;Source table&#39; property to the table in the &#39;Target table&#39; property.</p></td></tr>
+<tr>
+<td valign="top"><p>Java class description</p></td><td valign="top"><p>Description of the &#39;Java class&#39;.</p></td></tr>
+<tr>
+<td valign="top"><p>Inverse java class</p></td><td valign="top"><p>This property specifies an optional Java class you can use to validate data in a bidirectional transfer. The class you specify here validates data when it moves in the inverse direction of the table mapping. So, it applies when data moves from the specified &#39;Target table&#39; to the &#39;Source table&#39;.</p></td></tr>
+<tr>
+<td valign="top"><p>Inverse java class description </p></td><td valign="top"><p>Description of the &#39;Inverse Java class&#39;.</p></td></tr>
+</tbody>
+</table>
+<h3 id="FieldMapping4af_62">
+Field mapping</h3>
+<p>The data mapping configuration between the fields.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Source field</p></td><td valign="top"><p>Reference to the field used as the source for the data flow.</p></td></tr>
+<tr>
+<td valign="top"><p>Target field</p></td><td valign="top"><p>Reference to the field used as the target for the data flow.</p></td></tr>
+<tr>
+<td valign="top"><p>Source application</p></td><td valign="top"><p>Used to sort the records based on the application&#39;s name and type. This data is computed automatically from the source field value.</p></td></tr>
+<tr>
+<td valign="top"><p>Reference field</p></td><td valign="top"><p>Contains the path to any referenced field.</p></td></tr>
+<tr>
+<td valign="top"><p>Mapping type</p></td><td valign="top"><p>The mapping can be performed in a &#39;direct&#39; way (the target field is equal to the source field) or based on split, or aggregation policies. In the current version of the add-on, only the direct mapping type is available.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_data_mapping_table_mapping_preference">
+Table mapping preference</h3>
+<p>This table stores any data mapping configuration preferences between tables.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top">Name</td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top">Ignored table</td><td valign="top"><p>The table will be ignored during import/export execution if value is set to True.</p></td></tr>
+<tr>
+<td valign="top">First row of content</td><td valign="top"><p>The first row of table content in imported file.</p></td></tr>
+<tr>
+<td valign="top">First column of content</td><td valign="top"><p>The first column of table content in imported file.</p></td></tr>
+<tr>
+<td valign="top">Export with title</td><td valign="top"><p>Exported Excel file will contain the title if value is set to True.</p></td></tr>
+<tr>
+<td valign="top">Title of table</td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top">Style for title</td><td valign="top"><p>Reference to a style object on which title style is defined.</p></td></tr>
+<tr>
+<td valign="top">Export with subtitle</td><td valign="top"><p>Exported Excel file will contain the subtitle title if value is set to True.</p></td></tr>
+<tr>
+<td valign="top">Subtitle of table</td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top">Style for subtitle</td><td valign="top"><p>Reference to a style on which the subtitle style is defined.</p></td></tr>
+<tr>
+<td valign="top">Export with border</td><td valign="top"><p>Cell of export excel file has borders if value is set to True.</p></td></tr>
+<tr>
+<td valign="top">Style for column title</td><td valign="top"><p>Reference to a style object on which column title style is defined.</p></td></tr>
+<tr>
+<td valign="top">Style for data content</td><td valign="top"><p>Reference to a style object on which data content style is defined.</p></td></tr>
+<tr>
+<td valign="top">Table mapping</td><td valign="top"><p>Reference to a table mapping.</p></td></tr>
+<tr>
+<td valign="top">Application interface preference</td><td valign="top"><p>Reference of an application interface preference.</p></td></tr>
+</tbody>
+</table>
+<h3 id="ref_data_mapping_field_mapping_preference">
+Field mapping preference</h3>
+<p>This table stores any data mapping configuration preferences between fields.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Code</p></td><td valign="top"><p>Any naming convention is valid.</p></td></tr>
+<tr>
+<td valign="top">Ignored field</td><td valign="top"><p>Field is ignored during import/export execution if value is set to True.</p></td></tr>
+<tr>
+<td valign="top">Date time pattern</td><td valign="top"><p>Date time pattern that is used for importing/ exporting CSV.</p></td></tr>
+<tr>
+<td valign="top">Field mapping</td><td valign="top"><p>Reference to a field mapping.</p></td></tr>
+<tr>
+<td valign="top">Table mapping preference</td><td valign="top"><p>Reference of a table mapping preference.</p></td></tr>
+</tbody>
+</table>
+<h3 id="FieldMappingTransformation18ec_63">
+Field mapping transformation</h3>
+<p>The data transformation applied during field data mapping.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Field mapping</p></td><td valign="top"><p>Reference to a Field mapping declaration.</p></td></tr>
+<tr>
+<td valign="top"><p>Transformation function</p></td><td valign="top"><p>Reference to the transformation function to be applied.</p></td></tr>
+<tr>
+<td valign="top"><p>Order</p></td><td valign="top"><p>Execution order of the transformation function in case several functions must be applied. When a field mapping contains multiple transformation functions, the function with the lowest order will be applied.</p></td></tr>
+<tr>
+<td valign="top"><p>Parameters</p></td><td valign="top"><p>Lists each input parameter&#39;s name and value. Values can be edited.</p></td></tr>
+</tbody>
+</table>
+<h3 id="AdditionalFieldMapping1fce_64">
+Additional field mapping</h3>
+<p>The <strong>Additional field mapping</strong> table allows you to configure fields that are involved in a one-to-many fields transformation function, such as aggregation and split.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Field mapping </p></td><td valign="top"><p>Reference to a &#39;Field mapping&#39; declaration. </p></td></tr>
+<tr>
+<td valign="top"><p>Additional field </p></td><td valign="top"><p>Field involved in the mapping.</p></td></tr>
+<tr>
+<td valign="top"><p>Order</p></td><td valign="top"><p>Order of source field when executing aggregation of fields or order of target field when executing a split of fields. </p></td></tr>
+</tbody>
+</table>
+<h3 id="AdditionalFieldMappingTransformation1d66_65">
+Additional field mapping transformation</h3>
+<p>The <strong>Additional field mapping transformation</strong> table is used when you have to declare a transformation function on a field that is used in an <strong>Additional field mapping</strong> record.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Definition</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Additional field mapping</p></td><td valign="top"><p>Reference to an &#39;Additional field&#39; mapping declaration.</p></td></tr>
+<tr>
+<td valign="top"><p>Transformation function</p></td><td valign="top"><p>Reference to the transformation function to be applied.</p></td></tr>
+<tr>
+<td valign="top"><p>Order</p></td><td valign="top"><p>Execution order of the transformation function in case several functions must be applied.</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

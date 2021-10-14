@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Development recommendations</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="coding_recommendations" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Developer Guide &gt; User interface</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_interface/coding_recommendations.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface</span></div>
+<h1>
+Development recommendations</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#UICustomDevRecommendations_HTML">HTML</a><ul class="toc2">
+<li class="toc2"><a href="#UICustomDevRecommendations_HTML_XHTML">XHTML</a></li><li class="toc2"><a href="#UICustomDevRecommendations_HTML_iFrames">iFrames</a></li></ul>
+</li><li class="toc1"><a href="#UICustomDevRecommendations_CSS">CSS</a><ul class="toc2">
+<li class="toc2"><a href="#UICustomDevRecommendations_CSS_publicClasses">Public CSS classes</a></li><li class="toc2"><a href="#UICustomDevRecommendations_CSS_advanced">Advanced CSS</a></li></ul>
+</li><li class="toc1"><a href="#UICustomDevRecommendations_JS">JavaScript</a><ul class="toc2">
+<li class="toc2"><a href="#UICustomDevRecommendations_JS_publicClasses">Public JS functions</a></li><li class="toc2"><a href="#UICustomDevRecommendations_JS_callFromJava">JavaScript call during page generation in Java</a></li><li class="toc2"><a href="#UICustomDevRecommendations_JS_advanced">Advanced JavaScript</a></li></ul>
+</li></ul>
+</div>
+<h2 id="UICustomDevRecommendations_HTML">
+HTML</h2>
+<p>It is recommended to minimize the inclusion of specific HTML styles and tags to allow the default styles of TIBCO EBX&reg; to apply to custom interfaces. The approach of the API is to automatically apply a standardized style to all elements on HTML pages, while simplifying the implementation process for the developer.</p><h3 id="UICustomDevRecommendations_HTML_XHTML">
+XHTML</h3>
+<p>EBX&reg; is a Rich Internet Application developed in XHTML 1.0 Transitional. It means that the structure of the HTML is strict XML file and that all tags must be closed, including &quot;br&quot; tags. This structure allows for greater control over CSS rules, with fewer differences in browser rendering.</p><h3 id="UICustomDevRecommendations_HTML_iFrames">
+iFrames</h3>
+<p>Using iFrame is allowed in EBX&reg;, especially in collaboration with a URL of a <code><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIHttpManagerComponent.html"><code>UIHttpManagerComponent</code></a></code>. For technical reasons, it is advised to set the <code>src</code> attribute of an iFrame using JavaScript only. In this way, the iFrame will be loaded once the page is fully rendered and when all the built-in HTML components are ready.</p><h4>
+Example</h4>
+<p>The following example, developed from any <code><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIComponentWriter.html"><code>UIComponentWriter</code></a></code>, uses a <code><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIHttpManagerComponent.html"><code>UIHttpManagerComponent</code></a></code> to build the URL of an iFrame, and set it in the right way:</p><pre class="brush: java; toolbar: false; gutter: false;">
+// using iFrame in the current page requires a sub session component
+UIHttpManagerComponent managerComponent = writer.createWebComponentForSubSession();
+
+// [...] managerComponent configuration
+
+String iFrameURL = managerComponent.getURIWithParameters();
+
+String iFrameId = "mySweetIFrame";
+
+// place the iFrame in the page, with an empty src attribute
+writer.add("&lt;iframe id=\"").add(iFrameId).add("\" src=\"\" >").add("&lt;/iframe>");
+
+// launch the iFrame from JavaScript
+writer.addJS("document.getElementById(\"").addJS(iFrameId).addJS("\").src = \"").addJS(iFrameURL).addJS("\";");
+</pre>
+<h2 id="UICustomDevRecommendations_CSS">
+CSS</h2>
+<h3 id="UICustomDevRecommendations_CSS_publicClasses">
+Public CSS classes</h3>
+<p>The constant catalog <a target="_blank" href="../Java_API/com/orchestranetworks/ui/UICSSClasses.html"><code>UICSSClasses</code></a> offers the main CSS classes used in the software to style the components. These CSS classes ensure a proper long-term integration into the software, because they follow the background colors, borders, customizable text in the administration; the floating margins and paddings fluctuate according to the variable density; to the style of the icons, etc.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a target="_blank" href="../Java_API/com/orchestranetworks/ui/UICSSUtils.html"><code>UICSSUtils</code></a></li></ul>
+</div>
+<h3 id="UICustomDevRecommendations_CSS_advanced">
+Advanced CSS</h3>
+<p>EBX&reg; allows to integrate to all its pages one or more external Cascading Style Sheet. These external CSS, considered as resources, need to be declared in the <a href="../models/modules_packaging.html#registration">Module registration</a>.</p><p>In order to ensure the proper functioning of your CSS rules and properties without altering the software, the following recommendations should be respected. Failure to respect these rules could lead to:</p><ul>
+<li><p>Improper functioning of the software, both aesthetically and functionally: risk of losing the display of some of the data and some input components may stop working.</p></li><li><p>Improper functioning of your CSS rules and properties, since the native CSS rules will impact the CSS implementation.</p></li></ul>
+<h4 id="UICustomDevRecommendations_CSS_privatePrefixes">
+Reserved prefixes for CSS identifiers and class names</h4>
+<p>The following prefixes should not be used to create CSS #ids and .classes.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>ebx_</p></td><td class="ebx_definitionListDefinition"><p>Internal built-in</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>yui</p></td><td class="ebx_definitionListDefinition"><p>Yahoo User Interface global</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>ygtv</p></td><td class="ebx_definitionListDefinition"><p>Yahoo User Interface tree view</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>layout-doc</p></td><td class="ebx_definitionListDefinition"><p>Yahoo User Interface layout</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>cke_</p></td><td class="ebx_definitionListDefinition"><p>CK editor (used by HTML editor widget)</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>fa</p></td><td class="ebx_definitionListDefinition"><p>Font Awesome (icons used by perspectives and toolbars)</p></td></tr>
+</table>
+<h4 id="UICustomDevRecommendations_CSS_privateClasses">
+CSS classes used internally by EBX&reg;</h4>
+<p>The following CSS classes should never be included in a ruleset that has no contextual selector.</p><p>If you do not prefix your CSS selector using one of the CSS classes below, it will cause conflicts and corrupt the UI of EBX&reg;.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>selected</p></td><td class="ebx_definitionListDefinition"><p>YUI selected tree node</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>hd</p></td><td class="ebx_definitionListDefinition"><p>YUI floating pane header</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>bd</p></td><td class="ebx_definitionListDefinition"><p>YUI floating pane body</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>ft</p></td><td class="ebx_definitionListDefinition"><p>YUI floating pane footer</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>container-close</p></td><td class="ebx_definitionListDefinition"><p>YUI inner popup close button</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>underlay</p></td><td class="ebx_definitionListDefinition"><p>YUI inner popup shadow</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>hastitle</p></td><td class="ebx_definitionListDefinition"><p>YUI menu group with title</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>topscrollbar</p></td><td class="ebx_definitionListDefinition"><p>YUI menu top scroll zone</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>bottomscrollbar</p></td><td class="ebx_definitionListDefinition"><p>YUI menu bottom scroll zone</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>withtitle</p></td><td class="ebx_definitionListDefinition"><p>YUI calendar</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>link-close</p></td><td class="ebx_definitionListDefinition"><p>YUI calendar close button</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>collapse</p></td><td class="ebx_definitionListDefinition"><p>YUI layout closed pane indicator</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>pull-right</p></td><td class="ebx_definitionListDefinition"><p>Font Awesome parameter</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>pull-left</p></td><td class="ebx_definitionListDefinition"><p>Font Awesome parameter</p></td></tr>
+</table>
+<h5>
+Examples to avoid conflicts</h5>
+<p><em>Don&#39;t</em></p><pre class="brush: css; toolbar: false; gutter: false;">
+.selected {
+	background-color: red;
+}</pre>
+<p><em>Do</em></p><pre class="brush: css; toolbar: false; gutter: false;">
+#myCustomComponent li.selected {
+	background-color: red;
+}</pre>
+<h2 id="UICustomDevRecommendations_JS">
+JavaScript</h2>
+<h3 id="UICustomDevRecommendations_JS_publicClasses">
+Public JS functions</h3>
+<p>The catalog of JavaScript functions <a target="_blank" href="../Java_API/com/orchestranetworks/ui/JavaScriptCatalog.html"><code>JavaScriptCatalog</code></a> offers a list of functions to use directly (through copy-paste) in the JS files.</p><h3 id="UICustomDevRecommendations_JS_callFromJava">
+JavaScript call during page generation in Java</h3>
+<p>When generating the HTML of a Java component, it is possible to add specific JavaScript code with the API <a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIJavaScriptWriter.html"><code>UIJavaScriptWriter</code></a>.</p><p>This JavaScript is executed once the whole page is loaded. It is possible to instantly manage the HTML elements written with <a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIBodyWriter.html#add-java.lang.String-"><code>UIBodyWriter.add</code></a>. Setting on-load functions (such as <code>window.onload = myFunctionToCallOnload;</code>) is not supported because the execution context comes after the on-load event. </p><h3 id="UICustomDevRecommendations_JS_advanced">
+Advanced JavaScript</h3>
+<p>EBX&reg; allows to include one or more external JavaScript files. These external JavaScript files, considered as resources, need to be declared in the <a href="../models/modules_packaging.html#registration">Module registration</a>. For performance reasons, it is recommended to include the JavaScript resource only when necessary (in a User service or a specific form, for example). The API <a target="_blank" href="../Java_API/com/orchestranetworks/ui/UIDependencyRegisterer.html"><code>UIDependencyRegisterer</code></a> allows a developer to specify the conditions for which the JavaScript resources will be integrated into a given page according to its context.</p><p>In order to ensure the proper functioning of your JavaScript resources without altering the software, the following recommendations should be respected. Failure to respect them could lead to:</p><ul>
+<li><p>Improper functioning of the software: if functions or global variables of the software were to be erased, some input or display components (including the whole screen) may stop working.</p></li><li><p>Improper functioning of your JavaScript instructions, since global variables or function names could be erased.</p></li></ul>
+<h4 id="UICustomDevRecommendations_JS_privatePrefixes">
+Reserved JS prefixes</h4>
+<p>The following prefixes are reserved and should not be used to create variables, functions, methods, classes, etc.</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>ebx_</p></td><td class="ebx_definitionListDefinition"><p>Internal built-in API</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>EBX_</p></td><td class="ebx_definitionListDefinition"><p>Internal built-in API</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>YAHOO</p></td><td class="ebx_definitionListDefinition"><p>Yahoo User Interface API</p></td></tr>
+</table>
+<div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Developer Guide &gt; User interface</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

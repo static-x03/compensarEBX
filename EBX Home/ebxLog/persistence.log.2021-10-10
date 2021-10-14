@@ -1,0 +1,283 @@
+2021-10-10 08:01:25,895 MDT INFO   log.persistence 1155 [ebx-rro-5-unique] Heart beat #27000: avgInterval=8676: maxInterval=51373956 ms.
+2021-10-10 09:08:46,872 MDT INFO   log.persistence 1155 [localhost-startStop-1] **** Server Started (logVersion=1.4) ****
+2021-10-10 09:08:48,181 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #0 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:49,183 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #1 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:50,185 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #2 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:51,186 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #3 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:52,193 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #4 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:53,195 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #5 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:54,198 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #6 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:55,199 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #7 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:56,202 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #8 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:57,207 MDT INFO   log.persistence 1155 [ebx-boot] Attempt #9 to take exclusive ownership of a repository apparently owned by: id=5, hostName=MacBook-Pro.local, hostAddress=192.168.166.1, mode=unique, state=Owner.
+2021-10-10 09:08:58,214 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Starting repository ownership heart beat thread on entry: id=6, hostName=MacBook-Pro.local, hostAddress=127.0.0.1, mode=unique, state=Not owner.
+2021-10-10 09:09:07,244 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #10: avgInterval=903: maxInterval=1005 ms.
+2021-10-10 09:09:15,192 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 573 ms.
+2021-10-10 09:09:15,571 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 125 ms.
+2021-10-10 09:09:15,734 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 161 ms.
+2021-10-10 09:09:16,197 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 279 ms.
+2021-10-10 09:09:16,650 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 124 ms.
+2021-10-10 09:09:17,278 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #20: avgInterval=953: maxInterval=1005 ms.
+2021-10-10 09:09:18,523 MDT INFO   log.persistence 1155 [ebx-boot] Committed 4 blocs modified in Java Cache; in 227 ms.
+2021-10-10 09:09:19,093 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 108 ms.
+2021-10-10 09:09:19,575 MDT INFO   log.persistence 1155 [ebx-boot] Committed 5 blocs modified in Java Cache; in 482 ms.
+2021-10-10 09:09:19,710 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 130 ms.
+2021-10-10 09:09:20,006 MDT INFO   log.persistence 1155 [ebx-boot] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 09:09:32,263 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 100 ms.
+2021-10-10 09:12:17,883 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #200: avgInterval=998: maxInterval=1006 ms.
+2021-10-10 09:15:38,588 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #400: avgInterval=1000: maxInterval=1006 ms.
+2021-10-10 09:18:59,310 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #600: avgInterval=1001: maxInterval=1006 ms.
+2021-10-10 09:22:19,944 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #800: avgInterval=1002: maxInterval=1006 ms.
+2021-10-10 09:25:40,575 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #1000: avgInterval=1002: maxInterval=1012 ms.
+2021-10-10 09:42:23,321 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #2000: avgInterval=1002: maxInterval=1012 ms.
+2021-10-10 10:59:10,520 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #3000: avgInterval=2204: maxInterval=1680454 ms.
+2021-10-10 16:59:44,584 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #4000: avgInterval=7061: maxInterval=7199741 ms.
+2021-10-10 17:16:27,375 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #5000: avgInterval=5849: maxInterval=7199741 ms.
+2021-10-10 17:47:26,360 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #6000: avgInterval=5184: maxInterval=7199741 ms.
+2021-10-10 18:04:09,200 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #7000: avgInterval=4587: maxInterval=7199741 ms.
+2021-10-10 18:09:03,169 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-10 18:09:23,453 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:09:36,562 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:09:56,467 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:10:15,048 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 107 ms.
+2021-10-10 18:10:33,548 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 79 ms.
+2021-10-10 18:10:47,921 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 80 ms.
+2021-10-10 18:11:04,324 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:11:22,131 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:11:38,889 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:11:54,109 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:12:07,733 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:12:20,386 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:12:40,324 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 2 blocs modified in Java Cache; in 153 ms.
+2021-10-10 18:13:27,994 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:13:48,254 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 64 ms.
+2021-10-10 18:14:05,569 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 80 ms.
+2021-10-10 18:14:31,919 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:14:51,637 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:15:11,995 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 90 ms.
+2021-10-10 18:15:26,815 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:15:55,760 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 108 ms.
+2021-10-10 18:16:07,255 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 105 ms.
+2021-10-10 18:16:17,671 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 218 ms.
+2021-10-10 18:16:47,561 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 100 ms.
+2021-10-10 18:17:08,043 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:17:18,558 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-10 18:17:30,060 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:17:40,484 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:17:43,426 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-10 18:17:47,099 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-10 18:17:49,702 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 2 blocs modified in Java Cache; in 264 ms.
+2021-10-10 18:17:54,796 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 6 blocs modified in Java Cache; in 540 ms.
+2021-10-10 18:18:20,326 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 2 blocs modified in Java Cache; in 216 ms.
+2021-10-10 18:18:38,143 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:18:56,058 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:19:15,290 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-10 18:19:31,547 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:19:55,150 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 123 ms.
+2021-10-10 18:20:12,469 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:20:28,727 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 148 ms.
+2021-10-10 18:20:52,221 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #8000: avgInterval=4139: maxInterval=7199741 ms.
+2021-10-10 18:20:52,544 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:21:07,441 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:21:26,170 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 97 ms.
+2021-10-10 18:21:44,023 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:22:07,544 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 124 ms.
+2021-10-10 18:22:27,428 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:22:44,534 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:22:59,461 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 102 ms.
+2021-10-10 18:23:27,256 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 2 blocs modified in Java Cache; in 172 ms.
+2021-10-10 18:23:45,771 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-10 18:24:09,618 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 90 ms.
+2021-10-10 18:24:29,885 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 97 ms.
+2021-10-10 18:24:42,436 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:24:59,133 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 140 ms.
+2021-10-10 18:25:16,752 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-10 18:25:33,373 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:25:54,935 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-10 18:26:11,967 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 95 ms.
+2021-10-10 18:26:16,479 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 103 ms.
+2021-10-10 18:26:35,872 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:26:53,930 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 102 ms.
+2021-10-10 18:27:09,593 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 129 ms.
+2021-10-10 18:27:30,975 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:27:48,774 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 976 ms.
+2021-10-10 18:28:08,324 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:28:28,267 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:28:47,400 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:28:49,242 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-10 18:29:10,294 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:29:28,488 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-10 18:29:43,781 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:29:51,355 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 250 ms.
+2021-10-10 18:29:55,004 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 106 ms.
+2021-10-10 18:29:57,374 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:29:57,847 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 5 blocs modified in Java Cache; in 473 ms.
+2021-10-10 18:29:57,952 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 103 ms.
+2021-10-10 18:29:58,183 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 108 ms.
+2021-10-10 18:30:23,719 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-10 18:31:20,898 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 106 ms.
+2021-10-10 18:31:44,314 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 104 ms.
+2021-10-10 18:31:44,406 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:31:47,855 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 92 ms.
+2021-10-10 18:31:52,721 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 92 ms.
+2021-10-10 18:31:54,642 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 3 blocs modified in Java Cache; in 210 ms.
+2021-10-10 18:31:56,218 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 3 blocs modified in Java Cache; in 280 ms.
+2021-10-10 18:32:00,987 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 6 blocs modified in Java Cache; in 629 ms.
+2021-10-10 18:32:48,060 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 2 blocs modified in Java Cache; in 150 ms.
+2021-10-10 18:33:06,052 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:33:23,390 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:33:36,911 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 99 ms.
+2021-10-10 18:33:49,272 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:34:04,434 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-10 18:34:17,645 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:34:33,531 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:34:50,799 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 2 blocs modified in Java Cache; in 144 ms.
+2021-10-10 18:35:07,347 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 104 ms.
+2021-10-10 18:35:23,092 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:35:40,823 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:35:54,217 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 2 blocs modified in Java Cache; in 169 ms.
+2021-10-10 18:36:26,082 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:36:42,205 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 96 ms.
+2021-10-10 18:36:55,449 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:37:08,451 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 2 blocs modified in Java Cache; in 160 ms.
+2021-10-10 18:37:14,895 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 98 ms.
+2021-10-10 18:37:35,264 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #9000: avgInterval=3790: maxInterval=7199741 ms.
+2021-10-10 18:37:39,595 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 90 ms.
+2021-10-10 18:37:54,692 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:38:10,928 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:38:33,776 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:38:36,754 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-10 18:38:54,372 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:39:05,434 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:39:22,612 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 2 blocs modified in Java Cache; in 162 ms.
+2021-10-10 18:39:37,468 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 151 ms.
+2021-10-10 18:39:52,621 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:40:09,035 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:40:23,724 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 90 ms.
+2021-10-10 18:40:37,613 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:40:57,393 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 2 blocs modified in Java Cache; in 146 ms.
+2021-10-10 18:41:14,410 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:41:30,437 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 105 ms.
+2021-10-10 18:41:55,989 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:42:16,328 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 153 ms.
+2021-10-10 18:42:33,182 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:42:45,261 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:43:04,013 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 103 ms.
+2021-10-10 18:43:19,487 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:43:31,845 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:43:47,198 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:44:01,389 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 99 ms.
+2021-10-10 18:44:11,936 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:44:27,022 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:44:39,531 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:44:48,721 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 126 ms.
+2021-10-10 18:44:58,856 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 105 ms.
+2021-10-10 18:45:12,300 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:45:24,537 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:45:38,182 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:46:04,694 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 95 ms.
+2021-10-10 18:46:08,262 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 98 ms.
+2021-10-10 18:46:10,949 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 2 blocs modified in Java Cache; in 201 ms.
+2021-10-10 18:46:15,880 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 7 blocs modified in Java Cache; in 934 ms.
+2021-10-10 18:47:29,335 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 2 blocs modified in Java Cache; in 143 ms.
+2021-10-10 18:47:48,156 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 165 ms.
+2021-10-10 18:47:58,183 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:48:15,740 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 18:48:30,930 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:48:40,674 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:48:58,589 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 128 ms.
+2021-10-10 18:49:16,895 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 278 ms.
+2021-10-10 18:49:32,301 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 97 ms.
+2021-10-10 18:49:37,356 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 18:49:47,966 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:50:04,132 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:50:24,340 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 166 ms.
+2021-10-10 18:50:41,710 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 2 blocs modified in Java Cache; in 149 ms.
+2021-10-10 18:50:58,577 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:51:13,423 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:51:29,187 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-10 18:51:47,174 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 103 ms.
+2021-10-10 18:52:04,811 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:52:19,513 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 123 ms.
+2021-10-10 18:52:24,676 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 109 ms.
+2021-10-10 18:52:38,664 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:52:44,863 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 92 ms.
+2021-10-10 18:52:53,167 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-10 18:52:56,391 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 2 blocs modified in Java Cache; in 191 ms.
+2021-10-10 18:53:00,888 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 6 blocs modified in Java Cache; in 615 ms.
+2021-10-10 18:53:19,688 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 146 ms.
+2021-10-10 18:53:38,009 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 102 ms.
+2021-10-10 18:53:52,365 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 18:54:04,129 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 81 ms.
+2021-10-10 18:54:18,449 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #10000: avgInterval=3512: maxInterval=7199741 ms.
+2021-10-10 18:54:20,814 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:54:35,159 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 2 blocs modified in Java Cache; in 190 ms.
+2021-10-10 18:55:12,154 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:55:23,479 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:55:38,953 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 80 ms.
+2021-10-10 18:55:49,083 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 2 blocs modified in Java Cache; in 145 ms.
+2021-10-10 18:56:04,903 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 105 ms.
+2021-10-10 18:56:21,062 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 18:56:33,140 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:56:46,670 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-10 18:57:02,632 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 18:57:15,828 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 18:57:25,392 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:57:42,291 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 79 ms.
+2021-10-10 18:57:46,740 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 98 ms.
+2021-10-10 18:57:50,393 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 2 blocs modified in Java Cache; in 207 ms.
+2021-10-10 18:57:54,567 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 6 blocs modified in Java Cache; in 598 ms.
+2021-10-10 18:58:13,577 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 2 blocs modified in Java Cache; in 226 ms.
+2021-10-10 18:58:50,593 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-10 18:59:03,714 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:59:16,600 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 18:59:28,748 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 388 ms.
+2021-10-10 18:59:41,497 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-10 18:59:51,810 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 19:00:10,174 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 19:00:27,567 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 19:00:42,888 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 19:01:01,560 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 19:01:14,926 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 19:01:28,729 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 130 ms.
+2021-10-10 19:02:02,558 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 2 blocs modified in Java Cache; in 151 ms.
+2021-10-10 19:02:21,108 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 97 ms.
+2021-10-10 19:02:24,385 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 89 ms.
+2021-10-10 19:02:47,825 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 19:02:59,665 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 19:03:11,989 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 19:03:22,773 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 19:03:32,937 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 19:03:46,272 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 19:04:00,583 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 82 ms.
+2021-10-10 19:04:02,998 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 113 ms.
+2021-10-10 19:04:20,330 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 304 ms.
+2021-10-10 19:04:28,212 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 110 ms.
+2021-10-10 19:04:40,300 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 2 blocs modified in Java Cache; in 175 ms.
+2021-10-10 19:05:04,112 MDT INFO   log.persistence 1155 [http-nio-9090-exec-6] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 19:05:12,265 MDT INFO   log.persistence 1155 [http-nio-9090-exec-9] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-10 19:05:25,947 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 83 ms.
+2021-10-10 19:05:33,215 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 1 blocs modified in Java Cache; in 91 ms.
+2021-10-10 19:05:44,151 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 19:06:00,080 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 2 blocs modified in Java Cache; in 147 ms.
+2021-10-10 19:06:28,910 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 19:06:41,276 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 19:06:48,374 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 242 ms.
+2021-10-10 19:07:04,198 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 95 ms.
+2021-10-10 19:07:17,939 MDT INFO   log.persistence 1155 [http-nio-9090-exec-3] Committed 2 blocs modified in Java Cache; in 146 ms.
+2021-10-10 19:07:36,098 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-10 19:07:48,744 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 85 ms.
+2021-10-10 19:07:53,721 MDT INFO   log.persistence 1155 [http-nio-9090-exec-10] Committed 1 blocs modified in Java Cache; in 92 ms.
+2021-10-10 19:08:08,434 MDT INFO   log.persistence 1155 [http-nio-9090-exec-1] Committed 1 blocs modified in Java Cache; in 84 ms.
+2021-10-10 19:08:22,912 MDT INFO   log.persistence 1155 [http-nio-9090-exec-8] Committed 1 blocs modified in Java Cache; in 87 ms.
+2021-10-10 19:08:40,296 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 88 ms.
+2021-10-10 19:08:44,389 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 93 ms.
+2021-10-10 19:08:54,283 MDT INFO   log.persistence 1155 [http-nio-9090-exec-7] Committed 1 blocs modified in Java Cache; in 102 ms.
+2021-10-10 19:09:06,134 MDT INFO   log.persistence 1155 [http-nio-9090-exec-2] Committed 1 blocs modified in Java Cache; in 86 ms.
+2021-10-10 19:09:18,939 MDT INFO   log.persistence 1155 [http-nio-9090-exec-4] Committed 1 blocs modified in Java Cache; in 120 ms.
+2021-10-10 19:09:34,922 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 96 ms.
+2021-10-10 19:09:38,664 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 2 blocs modified in Java Cache; in 224 ms.
+2021-10-10 19:09:54,674 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 6 blocs modified in Java Cache; in 730 ms.
+2021-10-10 19:11:01,480 MDT INFO   log.persistence 1155 [ebx-rro-6-unique] Heart beat #11000: avgInterval=3283: maxInterval=7199741 ms.
+2021-10-10 19:27:35,798 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 1 blocs modified in Java Cache; in 94 ms.
+2021-10-10 19:27:39,971 MDT INFO   log.persistence 1155 [http-nio-9090-exec-5] Committed 2 blocs modified in Java Cache; in 252 ms.

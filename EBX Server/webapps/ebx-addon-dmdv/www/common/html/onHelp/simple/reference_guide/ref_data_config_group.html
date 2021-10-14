@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Value and relationship graphs group</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="ref_data_config" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Reference Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=reference_guide/ref_data_config_group.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Reference Guide</span></div>
+<h1>
+Value and relationship graphs group</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#ref_data_config_overview">Overview</a></li><li class="toc1"><a href="#id2">Configuration table</a></li><li class="toc1"><a href="#id3">Scope table</a></li><li class="toc1"><a href="#id4">Table configuration</a></li><li class="toc1"><a href="#id5">Link configuration</a></li></ul>
+</div>
+<h2 id="ref_data_config_overview">
+Overview</h2>
+<p>The <strong>Data configuration</strong> group allows you to define how the add-on renders graphs showing data values. This group contains the following tables:</p><ul>
+<li><p>Configuration</p></li><li><p>Scope</p></li><li><p>Table configuration</p></li><li><p>Link configuration</p></li></ul>
+<h2 id="id2">
+Configuration table</h2>
+<p>Each configuration specifies general graph behavior. They also act as an anchor point for the settings that determine a graph&#39;s scope, displayed tables, and included links. When more than one configuration applies to the same table, the add-on allows users to choose which will display. </p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Name</p></td><td valign="top"><p>The name used by this configuration.</p></td></tr>
+<tr>
+<td valign="top"><p>Orientation</p></td><td valign="top"><p>Defines the graph&#39;s default orientation for relationships displayed using lines. You can choose from the following options: Left-to-right, Right-to-left, Bottom-up, or Top-down.</p></td></tr>
+<tr>
+<td valign="top"><p>Allow links to overlap nodes</p></td><td valign="top"><p>Determines whether lines drawn for links can overlap nodes. Note that if disabled, this can negatively impact performance.</p></td></tr>
+<tr>
+<td valign="top"><p>Highlight color</p></td><td valign="top"><p>Sets the color used to highlight relationships and nodes when selected.</p></td></tr>
+</tbody>
+</table>
+<h2 id="id3">
+Scope table</h2>
+<p>The <strong>Scope</strong> table allows you to specify the locations used in graph construction.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Configuration</p></td><td valign="top"><p>The configuration to which you want to apply these settings.</p></td></tr>
+<tr>
+<td valign="top"><p>Dataspace</p></td><td valign="top"><p>Sets the dataspace searched by the add-on when searching for nodes to display in the graph. </p></td></tr>
+<tr>
+<td valign="top"><p>Dataset</p></td><td valign="top"><p>Sets the dataset(s) searched by the add-on when searching for nodes to display in the graph.</p></td></tr>
+</tbody>
+</table>
+<h2 id="id4">
+Table configuration</h2>
+<p>Each record allows you to associate a table with a data graph configuration. The add-on renders these tables when users generate the specified graph configuration. After adding a table to a configuration, you can configure links to and from the table that determine how graphs display. Two different tabs display and allow you to configure the main and node style configuration options. The following table provides descriptions for the fields on the <strong>Main</strong> tab:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Configuration</p></td><td valign="top"><p>Specifies the configuration to which this table will be added.</p></td></tr>
+<tr>
+<td valign="top"><p>Data model</p></td><td valign="top"><p>The data model containing the table to include in this configuration.</p></td></tr>
+<tr>
+<td valign="top"><p>Table</p></td><td valign="top"><p>The table to include in this configuration.</p></td></tr>
+<tr>
+<td valign="top"><p>Allow generation from selected table</p></td><td valign="top"><p>Indicates whether users can generate the graph configuration from this table&#39;s <strong>Actions</strong> menu. </p></td></tr>
+<tr>
+<td valign="top"><p>Default label</p></td><td valign="top"><p>Text to display on nodes. You can use an XPath expression to define the label. The Default label only applies when the Localized Label and Programmatic Label are undefined.</p></td></tr>
+<tr>
+<td valign="top"><p>Localized label</p></td><td valign="top"><p>Text to display on nodes according to locales. You can use an XPath expression to define the label. The Localized label only applies if no Programmatic Label is defined.</p></td></tr>
+<tr>
+<td valign="top"><p>Programmatic label</p></td><td valign="top"><p>The custom class you want to use to display a custom label on nodes. The value must specify a complete custom class, for example: <code>com.orchestranetworks.dmdv.ProgramaticNodeLabelForItem</code>.</p></td></tr>
+</tbody>
+</table>
+<p>The following table provides descriptions for the options on the <strong>Node style</strong> tab:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Default style group</p></td><td valign="top"><p>Defines the default styles for nodes.</p></td></tr>
+<tr>
+<td valign="top"><p>Style</p></td><td valign="top"><p>Specifies the color for the border, background and text. Additionally, sets the width and style for the border configuration.</p></td></tr>
+<tr>
+<td valign="top"><p>Icon</p></td><td valign="top"><p>Allows you to associate an icon with the node. By default, the icon displays on the left-hand side of the node.</p></td></tr>
+<tr>
+<td valign="top"><p>Conditional styles group</p></td><td valign="top"><p>Defines conditional style for nodes. The add-on applies these styles only certain conditions have been met. You each style component&#39;s <strong>Condition</strong> property to set the desired criteria.</p></td></tr>
+<tr>
+<td valign="top"><p>Background color</p></td><td valign="top"><p>Conditional background color.</p></td></tr>
+<tr>
+<td valign="top"><p>Label in legend</p></td><td valign="top"><p>Text displayed in the legend for this background color conditional style.</p></td></tr>
+<tr>
+<td valign="top"><p>Color</p></td><td valign="top"><p>Color of background displayed both in graph and legend if condition is true.</p></td></tr>
+<tr>
+<td valign="top"><p>Condition</p></td><td valign="top"><p>Condition statement associated with the background color. All of the current table&#39;s fields are available through the XPath editor. For example: &quot;./available=true&quot; where &quot;available&quot; is a boolean field of current table)</p></td></tr>
+<tr>
+<td valign="top"><p>Label Color</p></td><td valign="top"><p>Conditional label color.</p></td></tr>
+<tr>
+<td valign="top"><p>Label in legend</p></td><td valign="top"><p>Text displayed in the legend for this label color conditional style.</p></td></tr>
+<tr>
+<td valign="top"><p>Color</p></td><td valign="top"><p>Color of the label displayed both in graph and legend if the condition is true.</p></td></tr>
+<tr>
+<td valign="top"><p>Condition</p></td><td valign="top"><p>Condition statement associated to the label color. All of the current table&#39;s fields are available through the XPath editor. For example: &quot;./available=true&quot; where &quot;available&quot; is a boolean field of current table).</p></td></tr>
+<tr>
+<td valign="top"><p>Border Color</p></td><td valign="top"><p>Conditional border color.</p></td></tr>
+<tr>
+<td valign="top"><p>Label in legend</p></td><td valign="top"><p>Text displayed in the legend for this border color conditional style.</p></td></tr>
+<tr>
+<td valign="top"><p>Color</p></td><td valign="top"><p>Color of the border displayed in the graph and legend if the condition is true.</p></td></tr>
+<tr>
+<td valign="top"><p>Condition</p></td><td valign="top"><p>Condition statement associated to the border color. All of the current table&#39;s fields are available through the XPath editor. For example: &quot;./available=true&quot; where &quot;available&quot; is a boolean field of current table).</p></td></tr>
+<tr>
+<td valign="top"><p>Border Style</p></td><td valign="top"><p>Conditional border style.</p></td></tr>
+<tr>
+<td valign="top"><p>Label in legend</p></td><td valign="top"><p>Text displayed in the legend for this conditional border style.</p></td></tr>
+<tr>
+<td valign="top"><p>Style</p></td><td valign="top"><p>The border style displayed in the graph and legend if the condition is true.</p></td></tr>
+<tr>
+<td valign="top"><p>Condition</p></td><td valign="top"><p>Condition statement associated to the Border Style. All of the current table&#39;s fields are available through the XPath editor. For example: &quot;./available=true&quot; where &quot;available&quot; is a boolean field of current table).</p></td></tr>
+<tr>
+<td valign="top"><p>Border Width</p></td><td valign="top"><p>Conditional border width.</p></td></tr>
+<tr>
+<td valign="top"><p>Label in legend</p></td><td valign="top"><p>Text displayed in the legend for this conditional border width conditional style.</p></td></tr>
+<tr>
+<td valign="top"><p>Width</p></td><td valign="top"><p>The border width displayed in the graph and legend if the condition is true. Borders can be a width of 1 to 4.</p></td></tr>
+<tr>
+<td valign="top"><p>Condition</p></td><td valign="top"><p>Condition statement associated to the border width. All of the current table&#39;s fields are available through the XPath editor. For example: &quot;./available=true&quot; where &quot;available&quot; is a boolean field of current table).</p></td></tr>
+<tr>
+<td valign="top"><p>Node template</p></td><td valign="top"><p>The custom class you want to use to customize node appearance in the graph. The value must specify a complete custom class, for example: com.orchestranetworks.dmdv.NodeTemplateForItem.</p></td></tr>
+</tbody>
+</table>
+<h2 id="id5">
+Link configuration</h2>
+<p>This table determines how the add-on displays relationships in the graph.</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Property</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Configuration</p></td><td valign="top"><p>The configuration these link display options apply to.</p></td></tr>
+<tr>
+<td valign="top"><p>Display relationships as</p></td><td valign="top"><p>Specifies whether the graph displays this relationship using lines to connect nodes, or containers with nested nodes.</p></td></tr>
+<tr>
+<td valign="top"><p>Target/Parent table</p></td><td valign="top"><p>Sets the table used as the target if the relationship type is set to <strong>Line</strong>, or the parent table if the relationship type is <strong>Containment</strong>.</p></td></tr>
+<tr>
+<td valign="top"><p>Source/Child table</p></td><td valign="top"><p>Sets the table used as the source if the relationship type is set to <strong>Line</strong>, or the child table if the relationship type is <strong>Containment</strong>.</p></td></tr>
+<tr>
+<td valign="top"><p>Display parent/target nodes automatically</p></td><td valign="top"><p>Determines whether the child or source nodes defined in this link configuration automatically expand to display their respective parent and target relationships. When enabled, the add-on automatically expands this relationship when a user opens a graph displaying these child/source nodes, or when a user expands an existing node to display these child/source nodes.</p></td></tr>
+<tr>
+<td valign="top"><p>Custom filter class</p></td><td valign="top"><p>The fully qualified name of a custom filter Java class.</p></td></tr>
+<tr>
+<td valign="top"><p>Default label</p></td><td valign="top"><p>Text that will be displayed as default. This applies only if no Localized Label and no Programmatic Label are defined.</p></td></tr>
+<tr>
+<td valign="top"><p>Localized label</p></td><td valign="top"><p>Text that will be displayed according to locales. This applies only if no Programmatic Label is defined.</p></td></tr>
+<tr>
+<td valign="top"><p>Programmatic label</p></td><td valign="top"><p>The custom class you want to use to display a custom label on a link (custom complete class to set, for example &quot;com.orchestranetworks.dmdv.ProgramaticLinkLabelForItem&quot;).</p></td></tr>
+<tr>
+<td valign="top"><p>Foreign keys</p></td><td valign="top"><p>Each path entry defines a foreign key relationship between the source/target, or parent/child table to display in the graph. This group&#39;s fields are described below:</p><ul>
+<li><p>The <strong>Path</strong> field sets the FK&#39;s path. Click the wizard icon to display and select the desired FK.</p></li><li><p>The add-on automatically sets the value of <strong>Reverse direction</strong> when the defined foreign key references another table. If the defined foreign key is self-referencing, this property&#39;s setting determines the direction in which the add-on follows the foreign key. The direction determines how the generated graph renders the relationship.</p></li><li><p>Use the <strong>Conditional Filter</strong> field to define an XPath predicate and apply a specific filter on a link. This limits the number of displayed nodes in the graph.</p></li></ul>
+</td></tr>
+</tbody>
+</table>
+<p>The following table provides descriptions for the options on the <strong>Link Style</strong> tab:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Action</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Link styles group</p></td><td valign="top"><p>Contains the link style definition.</p></td></tr>
+<tr>
+<td valign="top"><p>Condition</p></td><td valign="top"><p>If no condition is defined, the style is considered always valid and will be applied.</p></td></tr>
+<tr>
+<td valign="top"><p>Color</p></td><td valign="top"><p>Defines the link&#39;s color.</p></td></tr>
+<tr>
+<td valign="top"><p>Shape Type</p></td><td valign="top"><p>Defines the link&#39;s shape.</p></td></tr>
+<tr>
+<td valign="top"><p>Line Type</p></td><td valign="top"><p>Defines the type of line used for the link.</p></td></tr>
+<tr>
+<td valign="top"><p>Width</p></td><td valign="top"><p>Defines the width of the link. The width can be set from 1 to 4. </p></td></tr>
+<tr>
+<td valign="top"><p>Programmatic Style</p></td><td valign="top"><p>The custom class you want to use to display the custom link style (custom complete class to set, for example <code>com.orchestranetworks.dmdv.ProgramaticLinkStyleForRelation1</code>).</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

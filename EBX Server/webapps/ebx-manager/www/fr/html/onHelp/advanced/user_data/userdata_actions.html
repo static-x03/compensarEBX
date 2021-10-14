@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Actions sur les jeux de donn&eacute;es existants</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="data_actions" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Jeux de données</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/userdata_actions.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+<h1>
+Actions sur les jeux de donn&eacute;es existants</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#validation">Validation du jeu de donn&eacute;es</a></li><li class="toc1"><a href="#id2">Duplication d&#39;un jeu de donn&eacute;es</a></li><li class="toc1"><a href="#deactivate">D&eacute;sactivation d&#39;un jeu de donn&eacute;es</a></li><li class="toc1"><a href="#permissions">Gestion des permissions de jeux de donn&eacute;es</a></li></ul>
+</div>
+<h2 id="validation">
+Validation du jeu de donn&eacute;es</h2>
+<p>Il est possible de valider un jeu de donn&eacute;es en s&eacute;lectionnant <em> Actions &gt; Valider</em> depuis le panneau de navigation. Les &eacute;ventuels messages issus de la validation du jeu de donn&eacute;es sont pr&eacute;sent&eacute;s dans un rapport. Depuis le rapport de validation, cliquer sur le bouton <em>Revalider</em> pour mettre &agrave; jour ce rapport. Pour supprimer tous les messages de validation actuellement associ&eacute;s au jeu de donn&eacute;es, et pouvoir relancer une validation compl&egrave;te, cliquer sur le bouton <em>R&eacute;initialiser le rapport de validation</em>.</p><p>Dans la section &#39;Donn&eacute;es&#39;, il est &eacute;galement possible de valider une table, en la s&eacute;lectionnant dans le panneau de navigation et en utilisant l&#39;action <em>Actions &gt; Valider</em> dans l&#39;espace de travail.</p><p>Voir <a href="../references/performance.html#validation">Validation</a> pour obtenir plus d&#39;informations concernant la validation incr&eacute;mentale de donn&eacute;es.</p><h2 id="id2">
+Duplication d&#39;un jeu de donn&eacute;es</h2>
+<p>Pour dupliquer un jeu de donn&eacute;es existant, s&eacute;lectionnez-le dans le menu &quot;<a href="../user_data/userdata_intro.html#ui"><em>S&eacute;lectionner le jeu de donn&eacute;es</em></a>&quot; <img alt="/ebx_menu.png" src="../resources/images/symbols/ebx_menu.png" class="ebx_appButton"></img>dans le panneau de navigation, puis s&eacute;lectionnez <em>Actions &gt; Dupliquer</em>.</p><h2 id="deactivate">
+D&eacute;sactivation d&#39;un jeu de donn&eacute;es</h2>
+<p>Si un jeu de donn&eacute;es est activ&eacute;, il sera sujet &agrave; la validation. Tous les &eacute;l&eacute;ments obligatoires doivent &ecirc;tre d&eacute;finis pour que le jeu de donn&eacute;es soit valide. Si un jeu de donn&eacute;es est activ&eacute; et valide, on consid&egrave;re qu&#39;il peut &ecirc;tre export&eacute; de fa&ccedil;on s&eacute;curis&eacute;e vers des syst&egrave;mes externes (ou utilis&eacute; par d&#39;autres applications Java).</p><p>Il est possible de d&eacute;sactiver un jeu de donn&eacute;es dont les &eacute;l&eacute;ments obligatoires ne sont pas d&eacute;finis, en sp&eacute;cifiant &quot;Non&quot; pour la propri&eacute;t&eacute; &quot;Activ&eacute;&quot; dans <em>Actions &gt; Informations</em>.</p><h2 id="permissions">
+Gestion des permissions de jeux de donn&eacute;es</h2>
+<p>Les permissions de jeux de donn&eacute;es sont accessibles en s&eacute;lectionnant <em>Actions &gt; Permissions</em> dans le panneau de navigation.</p><p>Les permissions sont d&eacute;finies en cr&eacute;ant des <em>profils</em>. Pour cr&eacute;er un nouveau profil de permissions, cr&eacute;ez un nouvel enregistrement dans la table &quot;Droits d&#39;acc&egrave;s par profil&quot;.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#profile">Profil</a></li></ul>
+</div>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Profil</p></td><td class="ebx_definitionListDefinition"><p>Indique le profil concern&eacute; par la permission d&eacute;finie.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Restriction d&#39;acc&egrave;s</p></td><td class="ebx_definitionListDefinition"><p>Indique si la permission d&eacute;finie restreint celles affect&eacute;es &agrave; un utilisateur donn&eacute; par des politiques d&eacute;finies pour d&#39;autres profils.</p><p>Voir <a href="../references/permissions.html#restrictionpolicy">Restriction d&#39;acc&egrave;s</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Actions sur les jeux de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Cette section sp&eacute;cifie les permissions des actions sur les jeux de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Cr&eacute;er un le jeu de donn&eacute;es enfant</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut cr&eacute;er un jeu de donn&eacute;es enfants. L&#39;h&eacute;ritage doit aussi &ecirc;tre activ&eacute; dans le mod&egrave;le de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Dupliquer le jeu de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut dupliquer le jeu de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Supprimer le jeu de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut supprimer le jeu de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Activer/d&eacute;sactiver le jeu de donn&eacute;es</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut modifier la propri&eacute;t&eacute; &quot;Activ&eacute;&quot; dans les informations du jeu de donn&eacute;es.</p><p>Voir <a href="#deactivate">D&eacute;sactivation d&#39;un jeu de donn&eacute;es</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Cr&eacute;er une vue</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut cr&eacute;er des vues et des hi&eacute;rarchies.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Droits sur tables</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie les permissions par d&eacute;faut pour toutes les tables. Des permissions sp&eacute;cifiques peuvent &ecirc;tre appliqu&eacute;es &agrave; une ou plusieurs tables en cliquant sur le bouton &#39;+&#39; sous Droits sp&eacute;cifiques par table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Droits par d&eacute;faut &gt;Cr&eacute;er un nouvel enregistrement</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut cr&eacute;er des enregistrements dans une table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Droits par d&eacute;faut &gt;Surcharger des enregistrements</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut remplacer des enregistrements h&eacute;rit&eacute;s dans une table. Cette permission est utile quand on utilise l&#39;h&eacute;ritage de jeu de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Droits par d&eacute;faut &gt;Occulter des enregistrements</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut occulter des enregistrements h&eacute;rit&eacute;s dans une table. Cette permission est utile quand on utilise l&#39;h&eacute;ritage de jeu de donn&eacute;es.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Droits par d&eacute;faut &gt;Supprimer un enregistrement</p></td><td class="ebx_definitionListDefinition"><p>Indique si le profil peut supprimer des enregistrements dans une table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Droits sur valeurs</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie les permissions d&#39;acc&egrave;s par d&eacute;faut pour tous les &eacute;l&eacute;ments (tables, groupes et champs) d&#39;un jeu de donn&eacute;es, et permet de d&eacute;finir des permissions pour des &eacute;l&eacute;ments sp&eacute;cifiques. Les permissions d&#39;acc&egrave;s par d&eacute;faut sont utilis&eacute;es, &agrave; condition qu&#39;il n&#39;y ait pas de permission sp&eacute;cifique affect&eacute;e &agrave; un &eacute;l&eacute;ment.</p><p>Le s&eacute;lecteur de droits sp&eacute;cifiques permet d&#39;attribuer des permissions d&#39;acc&egrave;s sp&eacute;cifiques &agrave; un &eacute;l&eacute;ment. Les liens &quot;Lecture&quot;, &quot;Ecriture&quot; et &quot;Non visible&quot; d&eacute;terminent les permissions d&#39;acc&egrave;s correspondant &agrave; l&#39;&eacute;l&eacute;ment s&eacute;lectionn&eacute;.</p><p> Il est possible de retirer une permission d&#39;acc&egrave;s sp&eacute;cifique en utilisant le lien &quot;(par d&eacute;faut)&quot;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Droits sur les services</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie les permissions d&#39;acc&egrave;s sur les services. Un service barr&eacute; n&#39;est pas accessible &agrave; un profil.</p></td></tr>
+</table>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Publication d&#39;un mod&egrave;le de workflow</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="wm_publication" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de workflow</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_workflowmodel/userworkflowmodel_publish.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+<h1>
+Publication d&#39;un mod&egrave;le de workflow</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">A propos des publications de workflow</a></li><li class="toc1"><a href="#publicationstep">Publication et images de mod&egrave;le de donn&eacute;es</a></li><li class="toc1"><a href="#id3">Sous-workflows dans les publications</a></li></ul>
+</div>
+<h2 id="id1">
+A propos des publications de workflow</h2>
+<p>D&egrave;s qu&#39;un mod&egrave;le de workflow est d&eacute;fini, il doit &ecirc;tre publi&eacute; afin d&#39;autoriser les utilisateurs &agrave; lancer des workflows de donn&eacute;es associ&eacute;s. Une publication est r&eacute;alis&eacute;e en cliquant sur le bouton &#39;Publier&#39; dans le panneau de navigation.</p><p>Si aucune &eacute;tape d&#39;appel &agrave; des sous-workflows n&#39;est incluse dans le mod&egrave;le courant, l&#39;option de publier d&#39;autres mod&egrave;les en m&ecirc;me temps vous sera propos&eacute;e sur la page de publication. Si le mod&egrave;le de workflow actuel contient des &eacute;tapes d&#39;appel &agrave; des sous-workflows, il doit &ecirc;tre publi&eacute; seul.</p><p>Les mod&egrave;les de workflow peuvent &ecirc;tre publi&eacute;s plusieurs fois. Une publication est identifi&eacute;e par son nom de publication.</p><h2 id="publicationstep">
+Publication et images de mod&egrave;le de donn&eacute;es</h2>
+<p>Durant la publication d&#39;un mod&egrave;le de workflow, une image est enregistr&eacute;e de son &eacute;tat actuel. Vous pouvez pr&eacute;ciser un libell&eacute; et une description de l&#39;image. Le libell&eacute; par d&eacute;faut pour l&#39;image est l&#39;heure et la date au moment de publication. La description par d&eacute;faut indique l&#39;utilisateur qui a publi&eacute; le mod&egrave;le de workflow.</p><p>Pour chaque mod&egrave;le de workflow publi&eacute;, le nom de la publication doit &ecirc;tre unique. Si un mod&egrave;le de workflow a d&eacute;j&agrave; &eacute;t&eacute; publi&eacute;, il est possible de mettre &agrave; jour une publication existante en r&eacute;utilisant le m&ecirc;me nom de publication. Les noms des publications de workflow existantes sont propos&eacute;s dans un menu. Dans le cas d&#39;une mise &agrave; jour de publication, l&#39;ancienne version ne sera plus disponible pour lancer des workflows de donn&eacute;es&nbsp;;&nbsp;mais elle permettra aux workflows existants de finir de s&#39;ex&eacute;cuter. Le contenu des diff&eacute;rentes images peut &ecirc;tre consult&eacute; dans l&#39;historique des images de mod&egrave;le de workflow.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../user_workflowmodel/userworkflowmodel_actions.html#workflow_history">Historique des images du mod&egrave;le de workflow</a></li></ul>
+</div>
+<h2 id="id3">
+Sous-workflows dans les publications</h2>
+<p>Quand un mod&egrave;le de workflow, contenant un appel &agrave; des sous-workflows, est publi&eacute;, il n&#39;est pas n&eacute;cessaire de publier s&eacute;par&eacute;ment les sous-workflows appel&eacute;s. D&#39;un point de vue d&#39;administration, le mod&egrave;le du workflow principal (celui actuellement publi&eacute; par l&#39;utilisateur) et les mod&egrave;les de sous-workflows sont publi&eacute;s comme une entit&eacute; unique.</p><p>La publication multiple n&#39;est pas disponible pour un mod&egrave;le de workflow contenant un appel &agrave; des sous-workflows. C&#39;est pourquoi la premi&egrave;re &eacute;tape de publication (s&eacute;lection des mod&egrave;les de workflow &agrave; publier) n&#39;est pas propos&eacute;e dans ce cas.</p><p>La republication du mod&egrave;le de workflow principal met automatiquement &agrave; jour les mod&egrave;les de sous-workflows appel&eacute;s.</p><p>Bien qu&#39;un sous-workflow puisse &ecirc;tre publi&eacute; s&eacute;par&eacute;ment comme mod&egrave;le de workflow principal, cela ne modifiera pas la version utilis&eacute;e par un autre mod&egrave;le de workflow principal publi&eacute; qui utilise ce sous-workflow.</p><p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction to workflow models</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="wm_introduction" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Workflow models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_workflowmodel/userworkflowmodel_intro.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Workflow models</span></div>
+<h1>
+Introduction to workflow models</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">What is a workflow model?</a></li><li class="toc2"><a href="#id1s2">Basic concepts related to workflow models</a></li></ul>
+</li><li class="toc1"><a href="#introduction">Using the Workflow Models area user interface</a></li><li class="toc1"><a href="#notification">Generic message templates</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Example</a></li></ul>
+</li><li class="toc1"><a href="#limitations">Limitations of workflows</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<h3 id="id1s1">
+What is a workflow model?</h3>
+<p>Workflows in TIBCO EBX&reg; facilitate the collaborative management of data in the repository. A workflow can include human actions on data and automated tasks alike, while supporting notifications on certain events.</p><p>The first step of realizing a workflow is to create a <em>workflow model</em> that defines the progression of steps, responsibilities of users, as well as other behavior related to the workflow.</p><p>Once a workflow model has been defined, it can be validated and published as a <em>workflow publication</em>. Data workflows can then be launched from the workflow publication to execute the steps defined in the workflow model.</p><div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#workflowmodel">Workflow model (glossary)</a></li><li><a href="../glossary/simple_glossary.html#workflow">Data workflow (glossary)</a></li></ul>
+</div>
+<h3 id="id1s2">
+Basic concepts related to workflow models</h3>
+<p>A basic understanding of the following terms is necessary to proceed with the creation of workflow models:</p><ul>
+<li><p><a href="../glossary/simple_glossary.html#scripttask">script task</a></p></li><li><p><a href="../glossary/simple_glossary.html#usertask">user task</a></p></li><li><p><a href="../glossary/simple_glossary.html#workitem">work item</a></p></li><li><p><a href="../glossary/simple_glossary.html#condition">workflow condition</a></p></li><li><p><a href="../glossary/simple_glossary.html#subworkflow">sub-workflow invocation</a></p></li><li><p><a href="../glossary/simple_glossary.html#waitTask">wait task</a></p></li><li><p><a href="../glossary/simple_glossary.html#datacontext">data context</a></p></li></ul>
+<h2 id="introduction">
+Using the Workflow Models area user interface</h2>
+<p align="center"><img alt="/WorkflowModel.png" src="../resources/images/user_workflowmodel/WorkflowModel.png" align="middle"></img></p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This area is available only to authorized users in the &#39;Advanced perspective&#39;. Only authorized users can access these interfaces.</p></div>
+<h2 id="notification">
+Generic message templates</h2>
+<p>Notification emails can be sent to inform users of specific events during the execution of data workflows.</p><p>Generic templates can be defined and reused by any workflow model in the repository. To work with generic templates, select &#39;Message templates&#39; from the Workflow Models area <strong>Actions</strong> menu.</p><p>These templates, which are shared by all workflow models, are included statically at workflow model publication. Thus, in order to take template changes into account, you must update your existing publication by re-publishing the affected models.</p><p>Please note that, if you want to export those templates in an archive, you will have to select the dataset &quot;configuration&quot; as it is the one containing the message templates.</p><p>When creating a new template, two fields are required:</p><ul>
+<li><p><strong>Label &amp; Description</strong>: Specifies the localized labels and descriptions associated with the template.</p></li><li><p><strong>Message</strong>: Specifies the localized subjects and bodies of the message.</p></li></ul>
+<p>The message template can include data context variables, such as <code>${variable.name}</code>, which are replaced when notifications are sent. System variables that can be used include: </p><p></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>system.time</p></td><td class="ebx_definitionListDefinition"><p>System time of the repository.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>system.date</p></td><td class="ebx_definitionListDefinition"><p>System date of the repository.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.lastComment </p></td><td class="ebx_definitionListDefinition"><p>Last comment on the previous user task. (Note: this variable refers to the last user task, not the current one. Also the current task is the one on which the workflow is positioned, and it also includes the completion notification of a user task).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.lastDecision </p></td><td class="ebx_definitionListDefinition"><p>Last decisions made on the previous user task. (Note: this variable refers to the last user task, not the current one. Also the current task is the one on which the workflow is positioned, and it also includes the completion notification of a user task).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>user.fullName </p></td><td class="ebx_definitionListDefinition"><p>Full name of the notified user.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>user.login </p></td><td class="ebx_definitionListDefinition"><p>Login of the notified user.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.process.label </p></td><td class="ebx_definitionListDefinition"><p>Label of the current workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.process.description </p></td><td class="ebx_definitionListDefinition"><p>Description of the current workflow.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.label </p></td><td class="ebx_definitionListDefinition"><p>Label of the current work item.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.description </p></td><td class="ebx_definitionListDefinition"><p>Description of the current work item.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.offeredTo </p></td><td class="ebx_definitionListDefinition"><p>Role to which the current work item has been offered.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.allocatedTo </p></td><td class="ebx_definitionListDefinition"><p>User to whom the current work item has been allocated.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.link </p></td><td class="ebx_definitionListDefinition"><p>Link to access the current work item in the work item inbox, using the Web Component API.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.link.allocateAndStart</p></td><td class="ebx_definitionListDefinition"><p>Link to access the current work item in the work item inbox, using the Web Component API. If the target work item has not yet been started, it will be automatically allocated to and started by the user clicking the link.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.currentStep.label </p></td><td class="ebx_definitionListDefinition"><p>Label of the current step.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.currentStep.description </p></td><td class="ebx_definitionListDefinition"><p>Description of the current step.</p></td></tr>
+</table>
+<h3 id="id3s1">
+Example</h3>
+<p>Generic template message:</p><blockquote><p><em>Today at ${system.time}, a new work item was offered to you</em></p></blockquote><p>Resulting email:</p><blockquote><p><em>Today at 15:19, a new work item was offered to you</em></p></blockquote><h2 id="limitations">
+Limitations of workflows</h2>
+<p>The following functionality is currently unsupported in EBX&reg;:</p><ul>
+<li><p><strong>Scheduled tasks</strong>, task executed as soon as its turn comes, and whose execution cannot be delayed.</p></li><li><p><strong>Event tasks</strong>, allowing the workflow to move forward upon receiving an event, such as a web service call.</p></li><li><p><strong>Time limitation </strong>on a task duration.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+Related concepts</h5>
+<ul>
+<li><a href="../user_dataworkflow/userdataworkflow_intro.html">Data workflows</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Workflow models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+-------------------------------------------------------------------
+PLEASE DO NO REPLY THIS MESSAGE
+Automatic notification by [[javaclass:com.orchestranetworks.manager.core.uicomponent.main.UIRepositoryTitle]].
+-------------------------------------------------------------------
+The integrity of this message cannot be guaranteed on the Internet.
+TIBCO Software Inc. cannot therefore be considered responsible for its contents.
+If you are not the intended recipient of this confidential message, 
+then please delete it and notify the sender immediately.
+-------------------------------------------------------------------

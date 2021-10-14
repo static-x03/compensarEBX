@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX(TM) DMA instance [reference=ebx-addon-tese-search] on Fri Jan 29 15:32:51 ICT 2021 by user [admin].-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:ebxs="urn:ebx-schemas:session_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd" />
+	<xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<osd:extensions class="com.orchestranetworks.addon.tese.module.TextSearchSchemaExtensions" />
+			<osd:validation>
+				<validationMessageThreshold>1000</validationMessageThreshold>
+			</osd:validation>
+			<osd:inheritance>
+				<dataSetInheritance>none</dataSetInheritance>
+			</osd:inheritance>
+			<ebxbnd:binding targetDirectory="../addon-tese/src-api">
+				<javaPathConstants typeName="com.orchestranetworks.addon.tese.model.TeseInformationSearchPaths">
+					<nodes prefix="" relativeToRoot="false" root="/root" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.addon.tese.i18n.xsdSchema.ebx-addon-tese-search" />
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="root" osd:access="--">
+		<xs:annotation>
+			<xs:appinfo>
+				<osd:information>@administrative</osd:information>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="searchableDataset" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.searchableDataset" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/code</primaryKeys>
+								<defaultLabel>${./code}-${./customTitle}</defaultLabel>
+							</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.searchableDataset.code" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="customTitle" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.searchableDataset.customTitle" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="80" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="dataspace" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.searchableDataset.dataspace" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.addon.tese.model.DataspaceEnumeration" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dataset" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.searchableDataset.dataset" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.addon.tese.model.DatasetEnumeration" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="searchTemplate" type="xs:string" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.searchableDataset.searchTemplate" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraint class="com.orchestranetworks.addon.tese.model.NoDuplicateContextConstraint" />
+											<osd:constraintEnumeration class="com.orchestranetworks.addon.tese.model.SearchTemplateEnumeration" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Permission" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.Permission" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/profile</primaryKeys>
+							</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="profile" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Permission.profile" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.addon.tese.model.ProfileDataModelSearchEnumeration" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="searchableDataset" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.Permission.searchableDataset" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraint class="com.orchestranetworks.addon.tese.model.PermissionTableContextConstraint" />
+											<osd:tableRef>
+												<tablePath>/root/searchableDataset</tablePath>
+											</osd:tableRef>
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="UserPreference" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.UserPreference" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/user</primaryKeys>
+							</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="user" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.UserPreference.user" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.addon.tese.model.UserEnumeration" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="maxNumberOfHistory" minOccurs="1" maxOccurs="1" default="20">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.UserPreference.maxNumberOfHistory" />
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:int">
+										<xs:minInclusive value="0" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="displayHistoryByDefault" type="xs:boolean" minOccurs="1" maxOccurs="1" default="true" osd:checkNullInput="true">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.UserPreference.displayHistoryByDefault" />
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="History" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation osd:id="element.root.History" />
+						<xs:appinfo>
+							<osd:table>
+								<primaryKeys>/oid</primaryKeys>
+							</osd:table>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="oid" type="xs:int" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.History.oid" />
+									<xs:appinfo>
+										<osd:autoIncrement />
+										<osd:defaultView>
+											<hidden>true</hidden>
+											<hiddenInViews>true</hiddenInViews>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="lastExecutionTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.History.lastExecutionTime" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="keyword" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.History.keyword" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="numberOfResults" type="xs:int" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.History.numberOfResults" />
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="user" type="xs:string" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.History.user" />
+									<xs:appinfo>
+										<osd:otherFacets>
+											<osd:constraintEnumeration class="com.orchestranetworks.addon.tese.model.UserHistoryEnumeration" />
+										</osd:otherFacets>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dataModel" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.History.dataModel" />
+									<xs:appinfo>
+										<osd:defaultView>
+											<hidden>true</hidden>
+											<hiddenInSearch>true</hiddenInSearch>
+											<hiddenInViews>true</hiddenInViews>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="table" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation osd:id="element.root.History.table" />
+									<xs:appinfo>
+										<osd:defaultView>
+											<hidden>true</hidden>
+											<hiddenInSearch>true</hiddenInSearch>
+											<hiddenInViews>true</hiddenInViews>
+										</osd:defaultView>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

@@ -1,0 +1,6 @@
+{
+  "inheritedField": {
+    "sourceRecord": "/path/to/record", // (optional)
+    "sourceNode": "./path/to/Node"
+  }
+}

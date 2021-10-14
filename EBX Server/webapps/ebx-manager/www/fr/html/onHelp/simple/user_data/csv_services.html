@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Import et export CSV</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="csv_services" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Jeux de données &gt; Services d'import et d'export</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_data/csv_services.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données &gt; Services d'import et d'export</span></div>
+<h1>
+Import et export CSV</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Introduction</a></li><li class="toc1"><a href="#export">Exports</a></li><li class="toc1"><a href="#import">Imports</a></li><li class="toc1"><a href="#id4">Gestion des valeurs de champ</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">Listes agr&eacute;g&eacute;es</a></li><li class="toc2"><a href="#id4s2">Champs cach&eacute;s</a></li><li class="toc2"><a href="#id4s3">Valeur de chaîne &#39;Null&#39;</a></li><li class="toc2"><a href="#id4s4">Formats de date, heure et dateTime</a></li></ul>
+</li><li class="toc1"><a href="#id5">Limitations connues</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">Listes agr&eacute;g&eacute;es de groupes</a></li><li class="toc2"><a href="#id5s2">Groupes terminaux</a></li><li class="toc2"><a href="#id5s3">En-t&ecirc;tes de libell&eacute; de colonne</a></li><li class="toc2"><a href="#id5s4">Champs d&#39;association</a></li><li class="toc2"><a href="#id5s5">Nœuds de s&eacute;lection</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Introduction</h2>
+<p>L&#39;import et l&#39;export CSV peuvent &ecirc;tre r&eacute;alis&eacute;s sur des tables via l&#39;interface utilisateur en utilisant le menu &#39;Actions&#39; de l&#39;espace de travail. </p><p>L&#39;import et l&#39;export sont r&eacute;alis&eacute;s dans le contexte d&#39;un jeu de donn&eacute;es.</p><h2 id="export">
+Exports</h2>
+<p>Lors d&#39;un export au format CSV, si des filtres sont appliqu&eacute;s &agrave; la table, seuls les enregistrements correspondant au filtre seront inclus.</p><p>Les options d&#39;export CSV sont :</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom du fichier de t&eacute;l&eacute;chargement</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le nom du fichier CSV &agrave; exporter. Ce champ est pr&eacute;-rempli avec le nom de la table source des enregistrements.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Jeu de caract&egrave;res</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le jeu de caract&egrave;re &agrave; utiliser pour le fichier export&eacute;. La valeur par d&eacute;faut est UTF-8.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Activer l&#39;h&eacute;ritage</p></td><td class="ebx_definitionListDefinition"><p>Afin de prendre en compte l&#39;<a href="../glossary/simple_glossary.html#inheritance">h&eacute;ritage</a> lors d&#39;un export CSV, l&#39;option doit &ecirc;tre sp&eacute;cifi&eacute;e au pr&eacute;alable dans le mod&egrave;le.</p><p>Sp&eacute;cifie si l&#39;h&eacute;ritage est pris en compte durant l&#39;export CSV. </p><p>Si l&#39;h&eacute;ritage est activ&eacute;, les valeurs de champs r&eacute;solues sont export&eacute;es avec les donn&eacute;es techniques qui d&eacute;finissent le mode d&#39;h&eacute;ritage potentiel de l&#39;enregistrement ou du champ. </p><p>Si l&#39;h&eacute;ritage est d&eacute;sactiv&eacute;, les valeurs de champs r&eacute;solues sont export&eacute;es et les enregistrements occult&eacute;s sont ignor&eacute;s. </p><p>Par d&eacute;faut, cette option est d&eacute;sactiv&eacute;e.</p><p><strong>Note&nbsp;:&nbsp;</strong>L&#39;h&eacute;ritage est toujours ignor&eacute; lorsque le jeu de donn&eacute;es de la table n&#39;a pas de parent ou si la table n&#39;a pas de champ h&eacute;rit&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mode convivial</p></td><td class="ebx_definitionListDefinition"><p>Indique si les valeurs doivent &ecirc;tre pr&eacute;sent&eacute;es de fa&ccedil;on conviviale pour l&#39;utilisateur ou sous leur forme brute (format XML standard). En mode convivial, les dates et les nombres sont format&eacute;s selon la r&eacute;gion de l&#39;utilisateur, les cl&eacute;s &eacute;trang&egrave;res et valeurs &eacute;num&eacute;r&eacute;es pr&eacute;sentent les libell&eacute;s associ&eacute;s, etc.</p><p><strong>Note :</strong> Si cette option est s&eacute;lectionn&eacute;e, le fichier export&eacute; ne pourra pas &ecirc;tre r&eacute;-import&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Inclure les donn&eacute;es techniques</p></td><td class="ebx_definitionListDefinition"><p>Indique si des donn&eacute;es techniques internes seront incluses dans l&#39;export.</p><p><strong>Note :</strong> Si cette option est s&eacute;lectionn&eacute;e, le fichier export&eacute; ne pourra pas &ecirc;tre r&eacute;-import&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>En-t&ecirc;tes de colonne</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie s&#39;il faut ou non inclure les en-t&ecirc;tes de colonne dans le fichier CSV.</p><ul>
+<li><p><strong>Pas d&#39;en-t&ecirc;te</strong></p></li><li><p><strong>Libell&eacute; :</strong> Une ligne est ajout&eacute;e au d&eacute;but du fichier CSV et contient dans chaque colonne son libell&eacute; correspondant. Chaque libell&eacute; est localis&eacute; conform&eacute;ment &agrave; la pr&eacute;f&eacute;rence de langue de la session active. Si aucun libell&eacute; n&#39;est d&eacute;fini pour un nœud, le nom technique du nœud est utilis&eacute;.</p></li><li><p><strong>XPath:</strong> Une ligne est ajout&eacute;e au d&eacute;but du fichier CSV et contient dans chaque colonne le chemin d&#39;acc&egrave;s correspondant.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>S&eacute;parateur de champ</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le s&eacute;parateur de champ &agrave; utiliser lors des exports. Le s&eacute;parateur par d&eacute;faut est la virgule, il peut &ecirc;tre red&eacute;fini dans <em>Administration &gt; Interface utilisateur</em>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>S&eacute;parateur de liste</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le s&eacute;parateur &agrave; utiliser pour les listes de valeurs. Le s&eacute;parateur par d&eacute;faut est le retour &agrave; la ligne, il peut &ecirc;tre red&eacute;fini dans <em>Administration &gt; Interface utilisateur</em>.</p></td></tr>
+</table>
+<h2 id="import">
+Imports</h2>
+<table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Nom du fichier de t&eacute;l&eacute;chargement</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le nom du fichier CSV &agrave; importer.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mode d&#39;import</p></td><td class="ebx_definitionListDefinition"><p>Lors de l&#39;import d&#39;un fichier CSV, il est n&eacute;cessaire de sp&eacute;cifier un des modes suivants, qui contr&ocirc;lera l&#39;int&eacute;grit&eacute; des op&eacute;rations entre la source et la table cible.</p><ul>
+<li><p><strong>Insertion seulement :</strong> Seule la cr&eacute;ation d&#39;enregistrement est autoris&eacute;e. Si un enregistrement avec la m&ecirc;me cl&eacute; primaire existe dans la table, une erreur se produit et l&#39;op&eacute;ration est annul&eacute;e.</p></li><li><p><strong>Mise &agrave; jour seulement :</strong> Seule la mise &agrave; jour d&#39;enregistrement est autoris&eacute;e. Si un enregistrement avec la m&ecirc;me cl&eacute; primaire n&#39;existe pas dans la table, une erreur se produit et l&#39;op&eacute;ration est annul&eacute;e.</p></li><li><p><strong>Mise &agrave; jour ou insertion :</strong> Si un enregistrement avec la m&ecirc;me cl&eacute; primaire existe dans la table, il est mis &agrave; jour&nbsp;;&nbsp;sinon, il est cr&eacute;&eacute;.</p></li><li><p><strong>Remplacement (synchronisation) :</strong> Si un enregistrement avec la m&ecirc;me cl&eacute; primaire existe dans la table cible, celui-ci est mis &agrave; jour&nbsp;;&nbsp;sinon, un nouvel enregistrement est cr&eacute;&eacute;. D&#39;autre part, si un enregistrement n&#39;est plus pr&eacute;sent dans la source, il est supprim&eacute;.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Jeu de caract&egrave;res</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le jeu de caract&egrave;re &agrave; utiliser pour le fichier import&eacute;. La valeur par d&eacute;faut est UTF-8.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>En-t&ecirc;tes de colonne</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie s&#39;il faut ou non inclure les en-t&ecirc;tes de colonne dans le fichier CSV.</p><ul>
+<li><p><strong>Pas d&#39;en-t&ecirc;te</strong></p></li><li><p><strong>Libell&eacute; :</strong> Une ligne est ajout&eacute;e au d&eacute;but du fichier CSV et contient dans chaque colonne son libell&eacute; correspondant. Chaque libell&eacute; est localis&eacute; conform&eacute;ment &agrave; la pr&eacute;f&eacute;rence de langue de la session active. Si aucun libell&eacute; n&#39;est d&eacute;fini pour un nœud, le nom technique du nœud est utilis&eacute;.</p></li><li><p><strong>XPath:</strong> Une ligne est ajout&eacute;e au d&eacute;but du fichier CSV et contient dans chaque colonne le chemin d&#39;acc&egrave;s correspondant.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>S&eacute;parateur de champ</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le s&eacute;parateur de champ &agrave; utiliser lors des imports. Le s&eacute;parateur par d&eacute;faut est la virgule, il peut &ecirc;tre red&eacute;fini dans <em>Administration &gt; Interface utilisateur</em>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>S&eacute;parateur de liste</p></td><td class="ebx_definitionListDefinition"><p>Sp&eacute;cifie le s&eacute;parateur &agrave; utiliser pour les listes de valeurs. Le s&eacute;parateur par d&eacute;faut est le retour &agrave; la ligne, il peut &ecirc;tre red&eacute;fini dans <em>Administration &gt; Interface utilisateur</em>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Activer l&#39;h&eacute;ritage</p></td><td class="ebx_definitionListDefinition"><p>Afin de prendre en compte l&#39;<a href="../glossary/simple_glossary.html#inheritance">h&eacute;ritage</a> lors d&#39;un export CSV, l&#39;option doit &ecirc;tre sp&eacute;cifi&eacute;e au pr&eacute;alable dans le mod&egrave;le.</p><p>Sp&eacute;cifie si l&#39;h&eacute;ritage est pris en compte pendant un import CSV. Si les donn&eacute;es techniques dans le fichier CSV d&eacute;finissent un mode d&#39;h&eacute;ritage, les champs ou les enregistrements correspondants sont obligatoirement h&eacute;rit&eacute;s. Si des donn&eacute;es techniques d&eacute;finissent un mode occult&eacute;, les enregistrements correspondants sont obligatoirement occult&eacute;s. Autrement, les champs sont &eacute;cras&eacute;s au profit de valeurs issues du fichier CSV. </p><p>Par d&eacute;faut, cette option est d&eacute;sactiv&eacute;e.</p><p><strong>Note :</strong> L&#39;h&eacute;ritage est toujours ignor&eacute; lorsque le jeu de donn&eacute;es de la table n&#39;a pas de parent ou si la table n&#39;a pas de champ h&eacute;rit&eacute;.</p></td></tr>
+</table>
+<h2 id="id4">
+Gestion des valeurs de champ</h2>
+<h3 id="id4s1">
+Listes agr&eacute;g&eacute;es</h3>
+<p>Les services d&#39;import et d&#39;export CSV supportent les champs &agrave; valeurs multiples, &agrave; savoir les listes agr&eacute;g&eacute;es. Seules les listes simples telles que les listes de <code>string</code>, <code>date</code>, ou <code>int</code> et les cl&eacute;s &eacute;trang&egrave;res sont support&eacute;es. Si une cl&eacute; &eacute;trang&egrave;re est li&eacute;e &agrave; un enregistrement via une cl&eacute; primaire compos&eacute;e, chaque champ de la cl&eacute; &eacute;trang&egrave;re est une chaîne format&eacute;e, par exemple, &quot;true|99&quot;. Les listes agr&eacute;g&eacute;es des groupes ne sont pas export&eacute;es.</p><p>Lors d&#39;un export, les &eacute;l&eacute;ments de la liste sont s&eacute;par&eacute;s par le s&eacute;parateur de ligne. Dans les cas o&ugrave; le champ export&eacute; contient d&eacute;j&agrave; un s&eacute;parateur de ligne, par exemple dans un <code>osd:html</code> ou un <code>osd:text</code>, le code <code>_crnl_</code> est ins&eacute;r&eacute; &agrave; la place du s&eacute;parateur de ligne du champ de valeur. Le m&ecirc;me formatage est attendu lors de l&#39;import, l&#39;ensemble des valeurs de champ sont alors entour&eacute;es de guillemets.</p><h3 id="id4s2">
+Champs cach&eacute;s</h3>
+<p>Les champs cach&eacute;s sont export&eacute;s en tant que chaînes <code>ebx-csv:hidden</code>. Une chaîne cach&eacute;e import&eacute;e ne modifiera pas le contenu d&#39;un champ.</p><h3 id="id4s3">
+Valeur de chaîne &#39;Null&#39;</h3>
+<p>En utilisant les services d&#39;import et d&#39;export CSV, une chaîne dont la valeur est <code>null</code> est export&eacute;e en tant que chaîne vide. Par cons&eacute;quent, une boucle de proc&eacute;dure d&#39;export-import finira par remplacer les valeurs de chaîne <code>null</code> par des chaînes vides.</p><h3 id="id4s4">
+Formats de date, heure et dateTime</h3>
+<p>Les formats de date et d&#39;heure suivants sont support&eacute;s :</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p><strong>Type</strong></p></th><th valign="top"><p><strong>Format</strong></p></th><th align="right" valign="top"><p><strong>Exemple</strong></p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><p>xs:date</p></td><td><p>aaaa-MM-jj</p></td><td align="right"><p>2007-12-31</p></td></tr>
+<tr>
+<td><p>xs:time</p></td><td><p>HH:mm:ss ou HH:mm:ss.SSS</p></td><td align="right"><p>11:55:00</p></td></tr>
+<tr>
+<td><p>xs:dateTime</p></td><td><p>aaaa-MM-jjTHH:mm:ss ou aaaa-MM-jjTHH:mm:ss.SSS</p></td><td align="right"><p>2007-12-31T11:55:00</p></td></tr>
+</tbody>
+</table>
+<h2 id="id5">
+Limitations connues</h2>
+<h3 id="id5s1">
+Listes agr&eacute;g&eacute;es de groupes</h3>
+<p>Les services d&#39;import et d&#39;export CSV ne supportent pas les groupes &agrave; valeurs multiples, &agrave; savoir, des listes agr&eacute;g&eacute;es d&#39;&eacute;l&eacute;ments de type complexe. L&#39;export de ces nœuds ne causera aucune erreur, cependant, aucune valeur ne sera export&eacute;e.</p><h3 id="id5s2">
+Groupes terminaux</h3>
+<p>Dans un fichier CSV, il est impossible de diff&eacute;rencier un groupe terminal cr&eacute;&eacute;, contenant uniquement des champs vides, d&#39;un groupe terminal non cr&eacute;&eacute;.</p><p>Par cons&eacute;quent, quelques diff&eacute;rences peuvent apparaître lors de la comparaison apr&egrave;s avoir r&eacute;alis&eacute; une boucle de proc&eacute;dure d&#39;export-import. Afin de s&#39;assurer de la sym&eacute;trie de l&#39;import et de l&#39;export, il est pr&eacute;f&eacute;rable d&#39;utiliser la fonction import et export XML. Voir <a href="../user_data/xml_services.html">Import et export XML</a>.</p><h3 id="id5s3">
+En-t&ecirc;tes de libell&eacute; de colonne</h3>
+<p>Si deux colonnes partagent le m&ecirc;me libell&eacute;, l&#39;export de la table peut &ecirc;tre r&eacute;alis&eacute; avec succ&egrave;s, mais les donn&eacute;es export&eacute;es ne pourront pas &ecirc;tre r&eacute;-import&eacute;es par la suite.</p><h3 id="id5s4">
+Champs d&#39;association</h3>
+<p>Les services d&#39;import et d&#39;export CSV ne supportent pas les valeurs d&#39;association, c&#39;est &agrave; dire les enregistrements associ&eacute;s.</p><p>L&#39;export de ces champs ne causera aucune erreur, cependant, aucune valeur ne sera export&eacute;e.</p><p>L&#39;import de ces champs causera une erreur et la proc&eacute;dure d&#39;import &eacute;chouera.</p><h3 id="id5s5">
+Nœuds de s&eacute;lection</h3>
+<p>Les services d&#39;import et d&#39;export CSV ne supportent pas les valeurs de s&eacute;lection, c&#39;est &agrave; dire les enregistrements s&eacute;lectionn&eacute;s.</p><p>L&#39;export de ces champs ne causera aucune erreur, cependant, aucune valeur ne sera export&eacute;e.</p><p>L&#39;import de ces champs causera une erreur et la proc&eacute;dure d&#39;import &eacute;chouera.</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Jeux de données &gt; Services d'import et d'export</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

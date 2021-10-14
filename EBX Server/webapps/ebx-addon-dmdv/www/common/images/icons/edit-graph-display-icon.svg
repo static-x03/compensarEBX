@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>edit-graph-display-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8.434375,11.39375 C8.478125,11.59375 8.5,11.8 8.5,12.009375 C8.5,14.546875 6.80625,16 4.2875,16 C1.296875,16 0,13.596875 0,10.8625 C0.325,11.084375 1.465625,12.003125 1.834375,12.003125 C2.053125,12.003125 2.240625,11.878125 2.31875,11.671875 C3.05625,9.728125 4.396875,9.28125 5.846875,9.253125 C6.334375,10.309375 7.2875,11.115625 8.434375,11.39375 L8.434375,11.39375 Z M14.39375,0 C13.94375,0 13.521875,0.2 13.2,0.490625 C7.13125,5.9375 6.5,6.065625 6.5,7.66875 C6.5,9.19375 7.765625,10.5 9.31875,10.5 C11.1625,10.5 12.23125,9.14375 15.5875,2.85 C15.80625,2.421875 16,1.959375 16,1.478125 C16,0.615625 15.228125,0 14.39375,0 Z" id="path-1"></path>
+    </defs>
+    <g id="edit-graph-display-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="paint-brush">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#606060" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

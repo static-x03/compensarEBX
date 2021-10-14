@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+EBX(R) Add-on's root module - version 3.0.0 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------
+2021-10-07 12:24:08,695 MDT INFO   log.wbp.ebx-addon-common.main 1155 [ebx-logUpdateScheduler] **** Logs Updated (logVersion=1.4) ****
+2021-10-07 14:56:45,799 MDT INFO   log.wbp.ebx-addon-common.main 1155 [ebx-shutdown] **** Server Stopped (logVersion=1.4) ****
+------------------------------------------------------------------------
+EBX(R) Add-on's root module - version 3.0.0 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------
+2021-10-07 14:57:06,262 MDT INFO   log.wbp.ebx-addon-common.main 1155 [ebx-boot] **** Server Started (logVersion=1.4) ****
+2021-10-07 14:57:06,263 MDT INFO   log.wbp.ebx-addon-common.main 1155 [ebx-boot] **** EBX(R) Add-on's root module - version 3.0.0 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------
+EBX(R) Add-on's root module - version 3.0.0 [1009] - bundle-version 5.1.0.1009
+------------------------------------------------------------------------

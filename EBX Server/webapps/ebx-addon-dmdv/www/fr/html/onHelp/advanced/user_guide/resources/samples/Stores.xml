@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--XML content generated for /root/store in data set basicSupplyChain in data space Reference on 2018-07-31T07:39:56.654 by user [admin].-->
+<root>
+	<store>
+		<storeName>Store A</storeName>
+		<supplier>Eastern Plant</supplier>
+	</store>
+	<store>
+		<storeName>Store B</storeName>
+		<supplier>Midwest Plant</supplier>
+	</store>
+	<store>
+		<storeName>Store C</storeName>
+		<supplier>Western Plant</supplier>
+	</store>
+	<store>
+		<storeName>Store D</storeName>
+		<supplier>Western Plant</supplier>
+	</store>
+</root>

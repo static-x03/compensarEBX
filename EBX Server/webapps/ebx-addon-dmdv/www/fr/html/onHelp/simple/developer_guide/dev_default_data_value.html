@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Displaying a default data value graph</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dev_data_value_default" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=developer_guide/dev_default_data_value.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; Developer Guide</span></div>
+<h1>
+Displaying a default data value graph</h1>
+<p>You can write a sample service that opens a default data value and relationship graph based on a user&#39;s record selection. Note that default data value graphs require no prior configuration in the UI. The API also allows you to determine display of certain graph features. As shown in the following sample, the <strong>Overview</strong> map has been removed. Additionally, record details are disabled which prevents the end-user from double-clicking a node to open the record.</p><pre class="brush: java; toolbar: false; gutter: false;">
+public class DefaultDataValueGraph implements UserService&lt;RecordEntitySelection>
+{
+
+	@Override
+	public void setupObjectContext(
+		UserServiceSetupObjectContext&lt;RecordEntitySelection> context,
+		UserServiceObjectContextBuilder builder)
+	{
+	}
+
+	@Override
+	public void setupDisplay(
+		UserServiceSetupDisplayContext&lt;RecordEntitySelection> context,
+		UserServiceDisplayConfigurator config)
+
+	{
+
+		final Adaptation record = context.getEntitySelection().getRecord();
+
+		if (record != null)
+		{
+			UIButtonSpecNavigation close = config.newCloseButton();
+			close.setDefaultButton(true);
+
+			config.setContent(new UserServicePane()
+			{
+				@Override
+				public void writePane(UserServicePaneContext context, UserServicePaneWriter writer)
+				{
+
+					//Disable display of the Overview box
+					GraphDataSpec spec = new GraphDataSpec();
+					spec.setOverviewDisplay(OverviewDisplayOptions.DISABLE);
+					
+					//Prevent users from accessing a detailed view of records
+					spec.disableFeatures(GraphDataFeatures.RECORD_DETAILS);
+
+					UIHttpManagerComponent comp = GraphDataHttpManagerComponentUtils
+						.getComponentForGraphDataService(writer, record, spec);
+
+					writer.add("&lt;div id='incrementalDataContainerTab' style='height: 100%;'>");
+					writer.add("&lt;iframe id='incrementalDataTabIframe' width='100%' height='100%'");
+
+					String url = comp.getURIWithParameters();
+					writer.add(
+						" frameBorder='0' style='border-width: 0px; ' src='" + url + "'>&lt;/iframe>");
+					writer.add("&lt;/div>");
+					writer.addJS_cr(
+						"var incrementalDataContainerTabElement = document.getElementById('incrementalDataContainerTab');");
+
+					writer.addJS_cr("function resizeIncrementalDataTab(size){");
+					{
+						writer.addJS_cr(
+							"incrementalDataContainerTabElement.style.width = size.w + 'px';");
+						writer.addJS_cr(
+							"incrementalDataContainerTabElement.style.height = size.h + 'px';");
+					}
+					writer.addJS_cr("}");
+					writer.addJS_addResizeWorkspaceListener("resizeIncrementalDataTab");
+				}
+			});
+		}
+	}
+
+	@Override
+	public void validate(UserServiceValidateContext&lt;RecordEntitySelection> context)
+	{
+	}
+
+	@Override
+	public UserServiceEventOutcome processEventOutcome(
+		UserServiceProcessEventOutcomeContext&lt;RecordEntitySelection> context,
+		UserServiceEventOutcome eventOutcome)
+	{
+		return null;
+	}
+}</pre>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange Add-on Documentation - Transferring between tables based on different models</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_advanced_configuring_transfer" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Advanced Mapping Topics &gt; Data Transfer Mapping</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_transfer_advanced_config.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange Add-on Documentation &gt; User Guide &gt; Advanced Data Exchange Options &gt; Advanced Mapping Topics &gt; Data Transfer Mapping</span></div>
+<h1>
+Transferring between tables based on different models</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_advanced_config_transfer">Overview</a></li><li class="toc1"><a href="#user_config_mapping_for_transfer">Configuring a custom mapping for data transfer</a></li></ul>
+</div>
+<h2 id="user_advanced_config_transfer">
+Overview</h2>
+<p>When the source and target locations are based on different data models, you must create a custom mapping configuration. This process is illustrated below and described in detail in the following section.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>All steps below must be completed by an administrator.</p></div>
+<h2 id="user_config_mapping_for_transfer">
+Configuring a custom mapping for data transfer</h2>
+<p>For simplicities sake, the steps below demonstrate the configuration process using a blank canvas and a very simple model. In other words, everything will be shown as if starting from scratch. No mapping components were previously created—either user-defined, or automatically by the add-on.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>This example uses the add-on&#39;s <strong>Auto data mapping</strong> feature and thus includes the additional steps involving the semantic layer. Depending on your requirements, you can automatically generate the source and target models, and manually map the tables and fields. This option will be presented in the appropriate step below.</p></div>
+<p>To create a custom mapping configuration for transfer:</p><ol>
+<li><p>Create source and target applications by navigating to <em>Administration &gt; Integration &gt; TIBCO EBX® Data Exchange Add-on &gt; Application &gt; Application</em> and creating two new records.</p><p><img alt="/advanced_trans_application_creation.png" src="./resources/images/advanced_trans_application_creation.png"></img></p></li><li><p>Use the <strong>Application by type</strong> table to assign these applications to the <em>EBX</em> application type. For each application:</p><ol>
+<li><p>Create a new record under the <strong>EBX</strong> node.</p><p><img alt="/advanced_trans_type_creation.png" src="./resources/images/advanced_trans_type_creation.png"></img></p></li><li><p>Select the application from the <strong>Application type</strong> drop-down menu and save to display additional fields.</p></li><li><p>From the <strong>Application path</strong> drop-down menu, select <strong>Create</strong>.</p><p><img alt="/advanced_trans_data_model_path.png" src="./resources/images/advanced_trans_data_model_path.png"></img></p></li><li><p>Leave all options as is, and click <strong>Save</strong>, but do not close.</p></li><li><p>Use the <strong>Data model</strong> drop-down list to select the data model you want to use as the <em>Source</em> in the transfer operation.</p><p><img alt="/advanced_trans_path_creation.png" src="./resources/images/advanced_trans_path_creation.png"></img></p></li><li><p>Save and close until you return to the <strong>Application by type</strong> table. You can repeat the above steps to add the target application. Our example configuration is shown below:</p><p><img alt="/advanced_trans_type_finished.png" src="./resources/images/advanced_trans_type_finished.png"></img></p></li></ol>
+</li><li><p>In the <strong>Application by type</strong> table, run the <strong>Generate models</strong> service on the <em>source</em> and <em>target</em> applications.</p><ul>
+<li><p>On the <strong>Generation</strong> screen select the <strong>Semantic model and data model</strong> option. This option follows along with the remaining steps presented here. If you want to skip auto-data mapping, choose <strong>Data model</strong>. You will then need to create an interface that defines the applications as a source and target, and use the <strong>Data mapping</strong> domain to manually map tables and fields.</p></li><li><p>Click <strong>Generate</strong>.</p></li></ul>
+</li><li><p>This step is very important for successful transfer. You must link the <em>Target&#39;s</em> generated table and fields with the <em>Source&#39;s</em> generated Object Class and Properties. To accomplish this:</p><ol>
+<li><p>Navigate to the <strong>Object Class by Application</strong> table.</p></li><li><p>From the <em>target</em> application&#39;s <strong>Services</strong> menu select <strong>Create a record</strong>.</p><p><img alt="/advanced_trans_target_app_object.png" src="./resources/images/advanced_trans_target_app_object.png"></img></p></li><li><p>In the <strong>Object class</strong> field select the <em>source</em> table (Client in this case). Save and close.</p></li><li><p>Navigate to, and open the <em>target</em> table in the <strong>Data Model</strong> domain (see image below for sample location):</p><p><img alt="/advanced_trans_set_target_record.png" src="./resources/images/advanced_trans_set_target_record.png"></img></p></li><li><p>In the <strong>Object Class</strong> field select the <em>Source</em> Object Class that you created in an earlier step.</p><p><img alt="/advanced_trans_link_table_object_class.png" src="./resources/images/advanced_trans_link_table_object_class.png"></img></p></li><li><p>Save, but do not close the record. You now do this same process for each field you want to map by selecting the <strong>Field</strong> tab, opening each field, changing its <strong>Property</strong> drop-down value to the corresponding field from the <em>source</em>.</p></li><li><p>Navigate to the <strong>Application by type</strong> table and from the <em>source</em> application&#39;s <strong>Services</strong> menu, select <strong>Auto data mapping</strong>.</p></li><li><p>Select the <strong>Target</strong> application and click <strong>Mapping</strong>. From the results page that displays you can view the auto-generated mappings.</p></li></ol>
+</li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

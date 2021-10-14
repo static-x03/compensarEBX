@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ****** Schema[module: ebx-manager, path: /WEB-INF/ebx/schemas/recordPermissionsDefinition_1.0.xsd, iid=005]
+-->
+<search>
+    <association>
+        <searchTemplate>@default</searchTemplate>
+        <field>/root/permissions/script</field>
+        <searchStrategy>@Name</searchStrategy>
+    </association>
+</search>

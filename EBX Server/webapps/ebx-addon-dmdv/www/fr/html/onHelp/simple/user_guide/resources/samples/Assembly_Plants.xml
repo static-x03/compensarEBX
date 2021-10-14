@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--XML content generated for /root/plants in data set basicSupplyChain in data space Reference on 2018-07-31T07:38:51.649 by user [admin].-->
+<root>
+	<plants>
+		<plantName>Eastern Plant</plantName>
+		<supplier>Northern Factory</supplier>
+	</plants>
+	<plants>
+		<plantName>Midwest Plant</plantName>
+		<supplier>Northern Factory</supplier>
+	</plants>
+	<plants>
+		<plantName>Western Plant</plantName>
+		<supplier>Southern Factory</supplier>
+	</plants>
+</root>

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	Copyright TIBCO Software Inc. 2001-2021. All rights reserved.
+	
+	******************************************************************
+	You may not use this schema unless you have a valid license to
+	TIBCO EBX®. This schema is subject to and controlled by such 
+	license and may not be modified.
+	******************************************************************
+	Reserved schema for maintaining users' preferences, not meant for modifications
+	******************************************************************
+	For security reasons, TIBCO EBX® takes back an internal definition
+	of this schema. Consequently, any modifications done in this
+	document will be ignored by TIBCO EBX® runtime.
+	******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0"
+	xmlns:osd="urn:ebx-schemas:common_1.0">
+	<xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="./common_1.0.xsd" />
+	<xs:annotation>
+		<xs:appinfo>
+			<ebxbnd:binding targetDirectory="../_ebx/src/">
+				<javaPathConstants typeName="com.orchestranetworks.service.preferences.UserPreferencesPaths_5_0">
+					<nodes prefix="" root="/" />
+				</javaPathConstants>
+			</ebxbnd:binding>
+			<osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.userPreferences" />
+            <osd:extensions class="com.orchestranetworks.service.preferences.UserPreferencesSchemaExtensions"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<!-- 
+		Root
+	-->
+	<xs:element name="preferences" osd:access="--">
+		<xs:annotation>
+			<xs:documentation osd:id="element.preferences" />
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="userPreferences" type="UserPreferenceType" />
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="usersFavoriteViews" type="UsersFavoriteViewsType" />
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="usersFavoritePerspectives" type="UsersFavoritePerspectivesType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object definition -->
+	<xs:complexType name="DocumentationType" osd:class="com.onwbp.base.text.bean.LabelDescription">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.DocumentationType" />
+			<xs:appinfo>
+				<osd:uiBean class="com.onwbp.base.text.bean.UILabelDescriptionSchemaAware">
+					<pathToSchema>../schemaKey</pathToSchema>
+				</osd:uiBean>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="localizedDocumentations">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations" />
+				</xs:annotation>
+				<xs:complexType osd:class="com.onwbp.base.text.bean.LabelDescriptionForLocale">
+					<xs:sequence>
+						<xs:element name="locale" type="osd:locale" />
+						<xs:element minOccurs="0" name="label" type="xs:string">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.label" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="description">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.DocumentationType.localizedDocumentations.description" />
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="99999" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Table definition -->
+	<xs:complexType name="UserPreferenceType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.UserPreferenceType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/profile</primaryKeys>
+                    <defaultView>
+                        <displayOfGroups>tab</displayOfGroups>
+                    </defaultView>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="profile">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserPreferenceType.profile" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ProfileForPreferencesConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="locale" type="osd:locale">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserPreferenceType.locale" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="configuration" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserPreferenceType.configuration" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ConfigurationConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lastWorkingHome" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserPreferenceType.lastWorkingHome" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.cce.cache.dataspace.AdaptationHomeConstraintEnumeration" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="tableMaxDisplay" type="xs:int">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserPreferenceType.tableMaxDisplay" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="displayDensity">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserPreferenceType.displayDensity" />
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="COMPACT">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.displayDensity.COMPACT" />
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="COMFORTABLE">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.displayDensity.COMFORTABLE" />
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="navigationPaneSize" minOccurs="0" osd:access="RW" osd:class="com.orchestranetworks.service.preferences.UserPreferencesNavigationPaneSize">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize" />
+                    <xs:appinfo>
+                        <osd:defaultView>
+                            <displayMode>tab</displayMode>
+                        </osd:defaultView>
+                    </xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dataNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.data" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dataSpaceNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.dataSpaces" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dataModelNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.dataModel" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="workflowModelNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.workflowModel" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="workflowNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.workflow" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dataServicesNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.dataServices" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="adminNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.admin" />
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="customPerspectiveNavigationPaneSize" type="xs:int" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation osd:id="complexType.UserPreferenceType.navigationPaneSize.customPerspective" />
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="UsersFavoriteViewsType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.UsersFavoriteViewsType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/Id</primaryKeys>
+				</osd:table>
+				<osd:trigger class="com.orchestranetworks.service.preferences.UsersFavoriteViewsTableTrigger" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Id" type="xs:string" >
+				<xs:annotation>
+					<xs:appinfo>
+						<osd:defaultView>
+							<hidden>true</hidden>
+						</osd:defaultView>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schemaKey" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UsersFavoriteViewsType.schemaKey" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsSchemaConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tablePath" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UsersFavoriteViewsType.tablePath" />
+					<xs:appinfo>						
+						<osd:otherFacets>
+							<osd:constraint class="com.orchestranetworks.service.preferences.schema.ViewsTableConstraint" />
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="activity" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UsersFavoriteViewsType.activity" />
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="userReference" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UsersFavoriteViewsType.userReference" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="viewId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UsersFavoriteViewsType.viewId" />
+					<xs:appinfo>
+						<osd:uiBean class="com.orchestranetworks.service.preferences.views.UIBeanViewPreferences_ViewID"/>
+                        <osd:otherFacets>
+                            <osd:tableRef>
+                            	<branch>ebx-views</branch>
+                            	<container>ebx-views</container>
+                                <tablePath>/preferences/tableViews</tablePath>
+                            </osd:tableRef>
+                        </osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="UsersFavoritePerspectivesType">
+		<xs:annotation>
+			<xs:documentation osd:id="complexType.UsersFavoritePerspectivesType" />
+			<xs:appinfo>
+				<osd:table>
+					<primaryKeys>/userReference</primaryKeys>
+				</osd:table>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="userReference" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation osd:id="complexType.UsersFavoritePerspectivesType.userReference" />
+					<xs:appinfo>
+						<osd:otherFacets>
+							<osd:constraintEnumeration class="com.orchestranetworks.service.preferences.schema.ViewsProfileConstraintEnumeration"/>
+						</osd:otherFacets>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+            <xs:element name="perspective" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation osd:id="complexType.UsersFavoritePerspectivesType.perspective"/>
+                    <xs:appinfo>
+                        <osd:otherFacets>
+                            <osd:constraintEnumeration class="com.orchestranetworks.ui.perspective.internal.PpvPerspectiveEnumeration">
+                            	<profilePath>../userReference</profilePath>
+                            </osd:constraintEnumeration>
+                        </osd:otherFacets>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
+

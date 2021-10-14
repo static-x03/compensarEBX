@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="7px" viewBox="0 0 12 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Icon / Arrow-down</title>
+    <desc>Created with Sketch.</desc>
+    <g id="DMDV-Design-System" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DMDV-/-Design-system" transform="translate(-374.000000, -1501.000000)" fill="#606060">
+            <g id="Icon-/-Arrow-down" transform="translate(374.000000, 1501.000000)">
+                <path d="M9.38550318,3.26032424 L2.77857841,-2.4432457 C2.70230826,-2.51021595 2.63678554,-2.51789951 2.58207132,-2.46639123 C2.52735711,-2.41488294 2.5,-2.32211112 2.5,-2.18817062 L2.5,9.18804533 C2.5,9.32208069 2.52735711,9.41485251 2.58207132,9.4663608 C2.63678554,9.51786908 2.70230826,9.51028038 2.77857841,9.44321527 L9.38550318,3.73964533 C9.46183439,3.67258022 9.5,3.59251946 9.5,3.49993736 C9.5,3.40716553 9.46183439,3.32729449 9.38550318,3.26032424 L9.38550318,3.26032424 Z" id="Shape" transform="translate(6.000000, 3.500000) rotate(-270.000000) translate(-6.000000, -3.500000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

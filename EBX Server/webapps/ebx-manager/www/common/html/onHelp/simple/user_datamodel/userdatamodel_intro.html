@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction to data models</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="dm_introduction" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; User Guide &gt; Data models</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_datamodel/userdatamodel_intro.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models</span></div>
+<h1>
+Introduction to data models</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">What is a data model?</a></li><li class="toc2"><a href="#notions">Basic concepts used in data modeling</a></li></ul>
+</li><li class="toc1"><a href="#ui">Using the Data Models area user interface</a><ul class="toc2">
+<li class="toc2"><a href="#navigating">Navigating within the Data Model Assistant</a></li><li class="toc2"><a href="#icons">Data model element icons</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<h3 id="id1s1">
+What is a data model?</h3>
+<p>The first step towards managing data in TIBCO EBX&reg; is to develop a data model. The purpose of a data model is to provide the detailed structural definition of the data that will be managed in the repository, in terms of organization, data types, and semantic relationships.</p><p>In order to implement a data model in the repository, you will first create a new data model, then define the details of the structure of its component table, field, and group elements, as well as their behavior and properties. When you have completed the entry or import of your data model structure in the repository, you will publish it to make it available for use by datasets. Once you have a publication of your data model, you and other users can create datasets based upon it to contain the data that is managed by the EBX&reg; repository.</p><h3 id="notions">
+Basic concepts used in data modeling</h3>
+<p>A basic understanding of the following terms is necessary to proceed with the creation of data models:</p><ul>
+<li><p><a href="../glossary/simple_glossary.html#field">field</a></p></li><li><p><a href="../glossary/simple_glossary.html#pkey">primary key</a></p></li><li><p><a href="../glossary/simple_glossary.html#fkey">foreign key</a></p></li><li><p><a href="../glossary/simple_glossary.html#tableindatamodel">table (in data model)</a></p></li><li><p><a href="../glossary/simple_glossary.html#group">group</a></p></li><li><p><a href="../glossary/simple_glossary.html#reusabletype">reusable type</a></p></li><li><p><a href="../glossary/simple_glossary.html#validation">validation rule</a></p></li></ul>
+<h2 id="ui">
+Using the Data Models area user interface</h2>
+<h3 id="navigating">
+Navigating within the Data Model Assistant</h3>
+<p>Data models can be created, edited or imported, and published in the <strong>Data Models</strong> area of the user interface. The EBX&reg; data model assistant (DMA) facilitates the development of data models.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>This area is available only to authorized users in the &#39;Advanced perspective&#39;.</p></div>
+<p><img alt="/userdatamodel_area.png" src="../resources/images/user_datamodel/userdatamodel_area.png"></img></p><p>The navigation pane is organized into the following sections:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Configuration</p></td><td class="ebx_definitionListDefinition"><p>The technical configuration of the data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Global properties</p></td><td class="ebx_definitionListDefinition"><p>Defines the global properties of the data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Included data models</p></td><td class="ebx_definitionListDefinition"><p>Defines the data models included in the current model. All types defined in included data models can be reused in the current model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+</tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Add-ons</p></td><td class="ebx_definitionListDefinition"><p>Specifies which add-ons are used by the data model. These add-ons will have the capacity to enrich the current data model after the publication by adding properties and constraints to the elements of the data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Data structure</p></td><td class="ebx_definitionListDefinition"><p>The structure of the data model. Defines the relationship between the elements of the data model and provides access to the definition of each element.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Simple data types</p></td><td class="ebx_definitionListDefinition"><p>Simple reusable types defined in the current data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Complex data types</p></td><td class="ebx_definitionListDefinition"><p>Complex reusable types defined in the current data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Included simple data types</p></td><td class="ebx_definitionListDefinition"><p>Simple reusable types defined in an included external data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Included complex data types</p></td><td class="ebx_definitionListDefinition"><p>Complex reusable types defined in an included external data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Extensions</p></td><td class="ebx_definitionListDefinition"><p>Extensions available in the current data model.</p></td></tr>
+<tr class="ebx_definitionListItem">
+</tr>
+<tr class="ebx_definitionListItem">
+</tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>        Data services</p></td><td class="ebx_definitionListDefinition"><p>Specifies the WSDL operations&#39; suffixes that allow to refer to a table in the data service operations using a unique name instead of its path.</p></td></tr>
+<tr class="ebx_definitionListItem">
+</tr>
+<tr class="ebx_definitionListItem">
+</tr>
+<tr class="ebx_definitionListItem">
+</tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_datamodel/userdatamodel_implementdatastructure.html">Implementing the data model structure</a></li><li><a href="../user_datamodel/userdatamodel_configuring.html">Configuring the data model</a></li><li><a href="../user_datamodel/userdatamodel_implementdatastructure.html#reusableTypes">Reusable types</a></li></ul>
+</div>
+<h3 id="icons">
+Data model element icons</h3>
+<p><img alt="/ebx_attribute.png" src="../resources/images/symbols/ebx_attribute.png" align="middle"></img>  <a href="../glossary/simple_glossary.html#field">field</a></p><p><img alt="/ebx_pkey.png" src="../resources/images/symbols/ebx_pkey.png" align="middle"></img>  <a href="../glossary/simple_glossary.html#pkey">primary key</a></p><p><img alt="/ebx_fkey.png" src="../resources/images/symbols/ebx_fkey.png" align="middle"></img>  <a href="../glossary/simple_glossary.html#fkey">foreign key</a></p><p><img alt="/ebx_table.png" src="../resources/images/symbols/ebx_table.png" align="middle"></img>  <a href="../glossary/simple_glossary.html#tableindatamodel">table</a></p><p><img alt="/ebx_group.png" src="../resources/images/symbols/ebx_group.png" align="middle"></img>  <a href="../glossary/simple_glossary.html#group">group</a></p><div class="ebx_seealso">
+<h5>
+Related concepts</h5>
+<ul>
+<li><a href="../user_dataspace/userdataspace_intro.html">Dataspaces</a></li><li><a href="../user_data/userdata_intro.html">Datasets</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img> User guide <a href="../table_contents_user.html"> table of contents</a></em></p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; User Guide &gt; Data models</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

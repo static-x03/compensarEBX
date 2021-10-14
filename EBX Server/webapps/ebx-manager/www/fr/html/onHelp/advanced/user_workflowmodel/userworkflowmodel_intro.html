@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<title>
+TIBCO EBX® Documentation - Introduction aux mod&egrave;les de workflow</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="wm_introduction" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Documentation &gt; Guide utilisateur &gt; Modèles de workflow</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_workflowmodel/userworkflowmodel_intro.html" title="Afficher cette page avec l'en-tête et les panneaux de navigation" target="_top">Mode navigation</a><span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+<h1>
+Introduction aux mod&egrave;les de workflow</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Pr&eacute;sentation</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">D&eacute;finition d&#39;un mod&egrave;le de workflow</a></li><li class="toc2"><a href="#id1s2">Concepts de base utilis&eacute;s dans la mod&eacute;lisation des workflows</a></li></ul>
+</li><li class="toc1"><a href="#introduction">Utilisation de l&#39;interface de mod&eacute;lisation de workflow</a></li><li class="toc1"><a href="#notification">Mod&egrave;les de message g&eacute;n&eacute;riques</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">Exemple</a></li></ul>
+</li><li class="toc1"><a href="#limitations">Limitations de workflows</a></li></ul>
+</div>
+<h2 id="id1">
+Pr&eacute;sentation</h2>
+<h3 id="id1s1">
+D&eacute;finition d&#39;un mod&egrave;le de workflow</h3>
+<p>Dans TIBCO EBX&reg;, les workflows facilitent la gestion collaborative des donn&eacute;es dans le r&eacute;f&eacute;rentiel. Un workflow peut contenir des actions utilisateurs sur les donn&eacute;es ainsi que des t&acirc;ches automatiques, tout en &eacute;mettant des notifications sur diff&eacute;rents &eacute;v&eacute;nements.</p><p>La premi&egrave;re &eacute;tape pour r&eacute;aliser un workflow est de cr&eacute;er un <em>mod&egrave;le de workflow</em> qui d&eacute;finit la succession d&#39;&eacute;tapes, les implications des utilisateurs, ainsi que le comportement du workflow.</p><p>Une fois qu&#39;un mod&egrave;le de workflow est d&eacute;fini, il peut &ecirc;tre valid&eacute; et publi&eacute; comme <em>publication de workflow</em>. Ensuite, les workflows de donn&eacute;es peuvent &ecirc;tre lanc&eacute;s &agrave; partir de la publication de workflow pour ex&eacute;cuter les &eacute;tapes d&eacute;finies dans le mod&egrave;le de workflow.</p><div class="ebx_seealso">
+<h5>
+Voir aussi</h5>
+<ul>
+<li><a href="../glossary/simple_glossary.html#workflowmodel">Mod&egrave;le de workflow (glossaire)</a></li><li><a href="../glossary/simple_glossary.html#workflow">Workflow de donn&eacute;es (glossaire)</a></li></ul>
+</div>
+<h3 id="id1s2">
+Concepts de base utilis&eacute;s dans la mod&eacute;lisation des workflows</h3>
+<p>Une compr&eacute;hension des termes suivants est n&eacute;cessaire pour r&eacute;aliser la cr&eacute;ation de mod&egrave;les de workflows :</p><ul>
+<li><p><a href="../glossary/simple_glossary.html#scripttask">t&acirc;che automatique</a></p></li><li><p><a href="../glossary/simple_glossary.html#usertask">t&acirc;che utilisateur</a></p></li><li><p><a href="../glossary/simple_glossary.html#workitem">bon de travail</a></p></li><li><p><a href="../glossary/simple_glossary.html#condition">condition de workflow</a></p></li><li><p><a href="../glossary/simple_glossary.html#subworkflow">appel &agrave; des sous-workflows</a></p></li><li><p><a href="../glossary/simple_glossary.html#waitTask">t&acirc;che d&#39;attente</a></p></li><li><p><a href="../glossary/simple_glossary.html#datacontext">contexte des donn&eacute;es</a></p></li></ul>
+<h2 id="introduction">
+Utilisation de l&#39;interface de mod&eacute;lisation de workflow</h2>
+<p align="center"><img alt="/WorkflowModel.png" src="../resources/images/user_workflowmodel/WorkflowModel.png" align="middle"></img></p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Seuls les utilisateurs autoris&eacute;s peuvent acc&eacute;der &agrave; cet &eacute;cran via la &#39;Perspective avanc&eacute;e&#39;. Seuls les utilisateurs autoris&eacute;s peuvent acc&eacute;der &agrave; ces interfaces sp&eacute;cifiques. </p></div>
+<h2 id="notification">
+Mod&egrave;les de message g&eacute;n&eacute;riques</h2>
+<p>Des emails de notification peuvent &ecirc;tre envoy&eacute;s pour notifier les utilisateurs d&#39;&eacute;v&eacute;nements sp&eacute;cifiques pendant l&#39;ex&eacute;cution d&#39;un workflow.</p><p>Les mod&egrave;les de message peuvent &ecirc;tre d&eacute;finis et r&eacute;utilis&eacute;s dans n&#39;importe quel mod&egrave;le de workflow dans le r&eacute;f&eacute;rentiel. Pour modifier les mod&egrave;les de message g&eacute;n&eacute;riques, s&eacute;lectionnez &quot;Mod&egrave;les de message&quot; dans le menu &#39;Actions&#39; de la section Mod&egrave;les de Workflow.</p><p>Ces mod&egrave;les, qui sont partag&eacute;s par tous les mod&egrave;les de workflows, sont fig&eacute;s et inclus dans chaque publication de workflow. Ainsi, pour prendre en compte les modifications des mod&egrave;les de message, il sera n&eacute;cessaire de mettre &agrave; jour les publications existantes en re-publiant les mod&egrave;les de workflow concern&eacute;s.</p><p>A noter &eacute;galement que, lors d&#39;un archivage, si l&#39;on souhaite sauvegarder ces mod&egrave;les de messages, le jeu de donn&eacute;es &quot;configuration&quot; doit &ecirc;tre s&eacute;lectionn&eacute; car celui-ci contient ces mod&egrave;les. </p><p>A la cr&eacute;ation d&#39;un mod&egrave;le de message g&eacute;n&eacute;rique, deux champs sont obligatoires :</p><ul>
+<li><p>&#39;Libell&eacute; &amp; Description&#39;&nbsp;:&nbsp;sp&eacute;cifie les libell&eacute;s et descriptions associ&eacute;s &agrave; ce mod&egrave;le de message, localis&eacute;.</p></li><li><p>&#39;Message&#39;&nbsp;:&nbsp;sp&eacute;cifie l&#39;objet de l&#39;email et son corps de texte, localis&eacute;s.</p></li></ul>
+<p>Le &#39;Type du message&#39; est une donn&eacute;e facultative.</p><p>Le message peut inclure des variables du contexte de donn&eacute;es sous la forme <em>${nom.variable}</em>, qui seront &eacute;valu&eacute;es lorsque le message sera envoy&eacute;. De plus, les variables syst&egrave;me suivantes peuvent &ecirc;tre incluses&nbsp;:&nbsp;</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>system.time</p></td><td class="ebx_definitionListDefinition"><p>Heure syst&egrave;me du r&eacute;f&eacute;rentiel.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>system.date</p></td><td class="ebx_definitionListDefinition"><p>Date syst&egrave;me du r&eacute;f&eacute;rentiel.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.lastComment </p></td><td class="ebx_definitionListDefinition"><p>Dernier commentaire sur la t&acirc;che utilisateur pr&eacute;c&eacute;dente. (Note&nbsp;:&nbsp;cette variable concerne la derni&egrave;re t&acirc;che utilisateur, et non la courante. Est consid&eacute;r&eacute;e courante la t&acirc;che sur laquelle est positionn&eacute; le workflow, incluant &eacute;galement la notification de compl&eacute;tion de t&acirc;che utilisateur).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.lastDecision </p></td><td class="ebx_definitionListDefinition"><p>Derni&egrave;res d&eacute;cisions sur la t&acirc;che utilisateur pr&eacute;c&eacute;dente. (Note&nbsp;:&nbsp;cette variable concerne la derni&egrave;re t&acirc;che utilisateur, et non la courante. Est consid&eacute;r&eacute;e courante la t&acirc;che sur laquelle est positionn&eacute; le workflow, incluant &eacute;galement la notification de compl&eacute;tion de t&acirc;che utilisateur).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>user.fullName </p></td><td class="ebx_definitionListDefinition"><p>Nom complet de l&#39;utilisateur notifi&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>user.login </p></td><td class="ebx_definitionListDefinition"><p>Login de l&#39;utilisateur notifi&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.process.label </p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; du workflow en cours.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.process.description </p></td><td class="ebx_definitionListDefinition"><p>Description du workflow en cours.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.label </p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; du bon de travail en cours.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.description </p></td><td class="ebx_definitionListDefinition"><p>Description du bon de travail en cours.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.offeredTo </p></td><td class="ebx_definitionListDefinition"><p>R&ocirc;le auquel le bon de travail courant a &eacute;t&eacute; propos&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.allocatedTo </p></td><td class="ebx_definitionListDefinition"><p>Utilisateur, &agrave; qui le bon de travail en cours a &eacute;t&eacute; allou&eacute;.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.link </p></td><td class="ebx_definitionListDefinition"><p>Lien d&#39;acc&egrave;s au bon de travail courant dans la corbeille, au moyen de l&#39;API du composant web.</p><p>Pour que ce lien soit calcul&eacute;, il est n&eacute;cessaire qu&#39;un bon de travail courant soit d&eacute;fini et que l&#39;URL soit configur&eacute;e dans Workflow-executions, dans la configuration de mail.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.workItem.link.allocateAndStart</p></td><td class="ebx_definitionListDefinition"><p>Lien d&#39;acc&egrave;s au bon de travail courant dans la corbeille, au moyen de l&#39;API du composant web. Si le bon de travail cible n&#39;est pas encore d&eacute;marr&eacute;, il sera automatiquement allou&eacute; &agrave; l&#39;utilisateur qui a cliqu&eacute; sur le lien, puis d&eacute;marr&eacute;.</p><p>Pour que ce lien soit calcul&eacute;, il est n&eacute;cessaire qu&#39;un bon de travail courant soit d&eacute;fini et que l&#39;URL soit configur&eacute;e dans Workflow-executions, dans la configuration de mail.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.currentStep.label </p></td><td class="ebx_definitionListDefinition"><p>Libell&eacute; de l&#39;&eacute;tape courante.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>workflow.currentStep.description </p></td><td class="ebx_definitionListDefinition"><p>Description de l&#39;&eacute;tape courante.</p></td></tr>
+</table>
+<h3 id="id3s1">
+Exemple</h3>
+<p>Mod&egrave;les de message g&eacute;n&eacute;rique :</p><blockquote><p><em>Aujourd&#39;hui &agrave; ${system.time}, un nouveau bon de travail vous a &eacute;t&eacute; propos&eacute;.</em></p></blockquote><p>Email r&eacute;sultant :</p><blockquote><p><em>Aujourd&#39;hui &agrave; 15:19, un nouveau bon de travail vous a &eacute;t&eacute; propos&eacute;.</em></p></blockquote><h2 id="limitations">
+Limitations de workflows</h2>
+<p>Les fonctionnalit&eacute;s suivantes ne sont pas support&eacute;es :</p><ul>
+<li><p><strong>T&acirc;ches programm&eacute;es</strong>, t&acirc;ches ex&eacute;cut&eacute;es d&egrave;s lors que leur tour vient, et dont l&#39;ex&eacute;cution ne peut pas &ecirc;tre report&eacute;e.</p></li><li><p><strong>T&acirc;ches &eacute;v&eacute;nementielles</strong> permettant au workflow de progresser quand il re&ccedil;oit un &eacute;v&eacute;nement, du type appel web service.</p></li><li><p><strong>Limitation temporelle</strong> sur la dur&eacute;e d&#39;une t&acirc;che.</p></li></ul>
+<div class="ebx_seealso">
+<h5>
+Concepts apparentés</h5>
+<ul>
+<li><a href="../user_dataworkflow/userdataworkflow_intro.html">Workflows de donn&eacute;es</a></li></ul>
+</div>
+<p class="noPrint" align="right"><em><img alt="/ebx_search.png" src="../resources/images/symbols/ebx_search.png"></img><a href="../table_contents_user.html"> Sommaire</a></em> du guide utilisateur</p><div id="ebx_breadcrumbBottom">
+<span class="ebx_breadcrumbLabel">Documentation &gt; Guide utilisateur &gt; Modèles de workflow</span></div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

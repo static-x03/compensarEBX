@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		 2001-2021
+
+		******************************************************************************
+		EBX(R) schema.
+		This schema is not meant for modifications.
+		Any modification done on this document can prevent the
+		execution of EBX(R) software.
+		******************************************************************************
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0"
+  xmlns:osd="urn:ebx-schemas:common_1.0">
+  <xs:import namespace="urn:ebx-schemas:common_1.0"
+    schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+  <xs:import namespace="urn:ebx-schemas:session_1.0"
+    schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+  <xs:annotation>
+    <xs:appinfo>
+      <osd:extensions
+        class="com.orchestranetworks.manager.core.script.function.ScriptFunctionSchemaExtensions"/>
+      <osd:inheritance>
+        <dataSetInheritance>none</dataSetInheritance>
+      </osd:inheritance>
+      <ebxbnd:binding targetDirectory="../_ebx/src">
+        <javaPathConstants
+          typeName="com.orchestranetworks.schema.script.function.ScriptFunctionPaths">
+          <nodes relativeToRoot="false" root="/root"/>
+        </javaPathConstants>
+      </ebxbnd:binding>
+      <osd:resourceBundle source="com.orchestranetworks.i18n.xsdSchema.scriptFunction"/>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="root" osd:access="--">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="function" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation osd:id="element.root.function"/>
+            <xs:appinfo>
+              <osd:table>
+                <primaryKeys>/fieldPath</primaryKeys>
+                <defaultLabel>${./fieldPath}</defaultLabel>
+                <recordForm
+                  osd:class="com.orchestranetworks.manager.core.script.function.ScriptFunctionFormFactory"/>
+              </osd:table>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fieldPath" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation osd:id="element.root.function.fieldPath"/>
+                  <xs:appinfo>
+                    <osd:otherFacets>
+                      <osd:constraintEnumeration
+                        class="com.orchestranetworks.manager.core.script.function.FieldPathConstraintEnumeration"/>
+                    </osd:otherFacets>
+                  </xs:appinfo>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="script" type="xs:string" minOccurs="0" maxOccurs="1"
+                osd:checkNullInput="false">
+                <xs:annotation>
+                  <xs:documentation osd:id="element.root.function.script"/>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

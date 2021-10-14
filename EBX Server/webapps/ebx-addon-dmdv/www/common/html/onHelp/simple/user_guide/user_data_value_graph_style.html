@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Model and Data Visualization Add-on Documentation - Customizing styles</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright TIBCO Software Inc. 2001-2021. All rights reserved." name="copyright"></meta><meta content="user_data_value_graph_styles" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+TIBCO EBX®</div>
+<div class="chapterName">
+Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_data_value_graph_style.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Model and Data Visualization Add-on Documentation &gt; User Guide &gt; Data value graphs &gt; Configuration</span></div>
+<h1 id="user_data_value_graph_styles_topPage">
+Customizing styles</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#user_data_value_graph_styles_overview">Overview</a></li><li class="toc1"><a href="#id2">Where and how to customize</a></li></ul>
+</div>
+<h2 id="user_data_value_graph_styles_overview">
+Overview</h2>
+<p>You can customize styles for data value graph nodes and relationships. Customization can be as basic as setting some default options, or as complex as basing style on the outcome of an evaluated XPath expression. You can also implement a Java class:</p><ul>
+<li><p>to define programmatic styles for links. A Java class allows you to define more complex logic, such as applying a style to only a specific foreign key path in the graph. </p></li><li><p>to create custom node templates. This gives you fine-grained control over the appearance of nodes. See <a href="../developer_guide/dev_node_template_overview.html">Node templates</a> for detailed instructions.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>Customization of link styles is only available for relationships set to display as lines and not containers.</p></div>
+<h2 id="id2">
+Where and how to customize</h2>
+<p>Administrators can customize display in the following locations:</p><ul>
+<li><p><em>Administration &gt; User interface &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Table configuration &gt; Node Style</em>. Use the settings in the <strong>Default style</strong> group to determine how nodes display in normal conditions. All of the same default settings can be set individually to have one or more styles that display based on a condition. Simply select the plus icon and fill in the required fields.</p><p>In the image below, node color changes for employees that are not active. Also, you can specify a label that will be used in the table legend to differentiate these nodes. </p><p><img alt="/node-style-1.png" src="./resources/images/node-style-1.png"></img></p></li><li><p><em>Administration &gt; User interface &gt; TIBCO EBX® Data Model and Data Visualization Add-on &gt; Value and relationship graphs &gt; Link configuration &gt; Link Style</em>. Click the plus icon to edit link styles via the UI. Alternatively, use the <strong>Programmatic Style</strong> field to enter the fully qualified name to a Java class that defines link styles. The following image shows a customized link style.</p><p><img alt="/link_style_1.png" src="./resources/images/link_style_1.png"></img></p></li></ul>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.0.1. </b>Copyright &copy; <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">TIBCO&nbsp;Software&nbsp;Inc.</a> 2001-2021. All rights reserved.<br></br>All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>
